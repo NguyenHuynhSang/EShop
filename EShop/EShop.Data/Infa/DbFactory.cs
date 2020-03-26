@@ -6,13 +6,25 @@ using System.Text;
 
 namespace EShop.Data.In
 {
-    class DbFactory : Disposable, IDbFactory
+    public class DbFactory : Disposable, IDbFactory
     {
         EShopDbContext dbContext;
-        DbContextOptions<EShopDbContext> options;
+        DbContextOptions<EShopDbContext> Options;
         public EShopDbContext Init()
         {
-            return dbContext ?? (dbContext = new EShopDbContext(options)); 
+            if (dbContext==null)
+            {
+                var optionsBuilder = new DbContextOptionsBuilder<EShopDbContext>();
+                optionsBuilder.UseSqlServer(@"data source=LAPTOP-6KVMDIF8;initial catalog=Bt2;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework");
+                return dbContext ?? (dbContext = new EShopDbContext(optionsBuilder.Options));
+            }
+            return dbContext;
+        }
+
+        protected override void DisposeCore()
+        {
+            if (dbContext != null)
+                dbContext.Dispose();
         }
     }
 }

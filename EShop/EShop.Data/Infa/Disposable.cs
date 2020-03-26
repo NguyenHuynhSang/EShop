@@ -26,7 +26,7 @@ namespace EShop.Data.In
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+           // throw new NotImplementedException();
         }
 
         protected virtual void DisposeCore() 

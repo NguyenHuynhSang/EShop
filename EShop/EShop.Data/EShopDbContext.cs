@@ -18,7 +18,10 @@ namespace EShop.Data
         }
         public DbSet<Product> Products { get; set; }
 
-
+        public static EShopDbContext Create(DbContextOptions<EShopDbContext> options)
+        {
+            return new EShopDbContext(options);
+        }
 
 
     }
