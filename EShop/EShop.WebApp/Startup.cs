@@ -16,6 +16,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 
 namespace EShop.WebApp  
 {
@@ -32,9 +33,10 @@ namespace EShop.WebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddMvc()
-            //                .AddControllersAsServices();      // <---- Super important
+            services.AddMvc();
 
+            //                .AddControllersAsServices();      // <---- Super important
+            
             services.AddControllers();
 
 
@@ -54,9 +56,10 @@ namespace EShop.WebApp
 
             services.AddCors(x => x.AddPolicy("EnableCORS",
                 builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod().AllowCredentials().Build()));
-
-           
-         
+            services.AddSwaggerGen(swagger =>
+            {
+                swagger.SwaggerDoc("v1", new OpenApiInfo { Title = "My API" });
+            });
 
         }
 
@@ -82,6 +85,15 @@ namespace EShop.WebApp
             {
                 endpoints.MapControllers();
             });
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API");
+            });
+
+
+          
         }
     }
 }
