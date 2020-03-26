@@ -20,11 +20,5 @@ namespace EShop.Data.In
             }
             return dbContext;
         }
-
-        protected override void DisposeCore()
-        {
-            if (dbContext != null)
-                dbContext.Dispose();
-        }
     }
 }

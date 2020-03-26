@@ -17,14 +17,14 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace EShop.WebApp
+namespace EShop.WebApp  
 {
     public class Startup
     {
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            Common.Common.Configuration = configuration;
+     
         }
 
         public IConfiguration Configuration { get; }
@@ -32,15 +32,15 @@ namespace EShop.WebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc()
-                            .AddControllersAsServices();      // <---- Super important
+            //services.AddMvc()
+            //                .AddControllersAsServices();      // <---- Super important
 
             services.AddControllers();
 
 
-            //services.AddDbContext<EShopDbContext>(options =>
-            //        options.UseSqlServer(Configuration.GetConnectionString("EShopDbContext")));
-           
+            services.AddDbContext<EShopDbContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("EShopDbContext")));
+
             //   services.AddScoped<EShopDbContext, EShopDbContext>();
 
             //inject tùm lum khúc này, cần tìm hiểu thêm

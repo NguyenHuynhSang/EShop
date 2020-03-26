@@ -6,6 +6,6 @@ namespace EShop.Common
 {
     public class Common
     {
-        public static IConfiguration Configuration { get; set; }
+        public static string ConnectionString = @"data source = LAPTOP - 6KVMDIF8;initial catalog = Bt2; integrated security = True; MultipleActiveResultSets=True;App=EntityFramework";
     }
 }
