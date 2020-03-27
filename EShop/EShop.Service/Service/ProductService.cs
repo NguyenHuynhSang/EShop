@@ -1,4 +1,4 @@
-﻿using EShop.Data.In;
+﻿using EShop.Data.DataCore;
 using EShop.Data.Repository;
 using EShop.Model.Models;
 using System;

@@ -8,7 +8,7 @@ using EShop.Service.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace EShop.WebApp.Controllers
+namespace EShop.WebApp.Api
 {
     [Route("api/[controller]/[action]")]
     [ApiController]

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EShop.Data;
-using EShop.Data.In;
+using EShop.Data.DataCore;
 using EShop.Data.Repository;
 using EShop.Model.Models;
 using EShop.Service.Service;
@@ -47,12 +47,19 @@ namespace EShop.WebApp
 
             //inject tùm lum khúc này, cần tìm hiểu thêm
 
-            services.AddSingleton<IDbFactory,DbFactory>();
+            services.AddScoped<IDbFactory,DbFactory>();
 
-            services.AddSingleton<IUnitOfWork,UnitOfWork>();
+            services.AddScoped<IUnitOfWork,UnitOfWork>();
             services.AddScoped<IProductRepository, ProductRepository>();
 
             services.AddScoped<IProductService,ProductService>();
+
+            services.AddScoped<INewsRepository, NewsRepository>();
+
+            services.AddScoped<INewsService, NewsService>();
+
+
+
 
             services.AddCors(x => x.AddPolicy("EnableCORS",
                 builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod().AllowCredentials().Build()));

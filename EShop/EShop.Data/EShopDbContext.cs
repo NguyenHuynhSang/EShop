@@ -16,13 +16,18 @@ namespace EShop.Data
         {
           
         }
-        public DbSet<Product> Products { get; set; }
-
+      
         public static EShopDbContext Create(DbContextOptions<EShopDbContext> options)
         {
             return new EShopDbContext(options);
         }
 
+        /// <summary>
+        /// Add db here
+        /// </summary>
+        public DbSet<Product> Products { get; set; }
+        public DbSet<News> News { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
     }
 }

@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace EShop.Data.In
+namespace EShop.Data.DataCore
 {
     public class DbFactory : Disposable, IDbFactory
     {

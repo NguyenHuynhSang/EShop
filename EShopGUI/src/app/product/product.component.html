@@ -2,47 +2,71 @@
   <h1 style="text-align: center ; color: blue; ">
     Blue©
   </h1>
-
-  <div>
-    <table style="width:100% ">
-      <thead>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Quantity</th>
-      </thead>
-      <tbody>
-        <tr *ngFor="let row of listProduct">
-          <td>{{row.id}} </td>
-          <td>{{row.productName}} </td>
-          <td>{{row.unitPrice}} </td>
-          <td>{{row.quantity}} </td>
-        </tr>
-      </tbody>
-    </table>
+  <div style="flex: 1 ;flex-direction: row ;justify-content: center; display: flex;	">
+    <div style="flex: 1 ;">
+      <label>Sản phẩm</label>
+      <table>
+        <thead>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Quantity</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of listProduct">
+            <td>{{row.id}} </td>
+            <td>{{row.productName}} </td>
+            <td>{{row.unitPrice}} </td>
+            <td>{{row.quantity}} </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="flex: 1 ;flex-direction: row ;">
+      <label>Tin tức</label>
+      <table>
+        <thead>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Category</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of newsViewModels">
+            <td>{{item.news.id}} </td>
+            <td>{{item.news.content}} </td>
+            <td>{{item.caterory.name}} </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="flex: 1 ;flex-direction: column ;">
+      <h2>Create Here</h2>
+      <br>
+      <div class="md-col-3 row-2">
+        <label> Tên sản phẩm</label>
+        <input name="name" [(ngModel)]="product.productName" />
+  
+      </div>
+      <form>
+        <div class="md-col-3 row-2">
+          <br>
+          <label> Giá sản phẩm</label>
+          <input name="price" type="number" [(ngModel)]="this.product.unitPrice" />
+        </div>
+        <div class="form-group">
+          <br>
+          <label> Số lượng</label>
+          <input name="quantity" type="number" [(ngModel)]="product.quantity" />
+        </div>
+      </form>
+      <br>
+      <button style="width: 50px;height: 20px; background-color: cornflowerblue;" class="btn btn-primary"
+        (click)="Create()">Create </button>
+    </div>
   </div>
 
-  <h2>Create Here</h2>
-  <br>
-  <div class="md-col-3 row-2">
-    <label> Tên sản phẩm</label>
-    <input name="name" [(ngModel)]="product.productName" />
+ 
 
-  </div>
-<form>
-  <div class="md-col-3 row-2">
-    <br>
-    <label> Giá sản phẩm</label>
-    <input name="price" type="number" [(ngModel)]="this.product.unitPrice" />
-  </div>
-  <div class="form-group">
-    <br>
-    <label> Số lượng</label>
-    <input name="quantity" type="number" [(ngModel)]="product.quantity" />
-  </div>
-</form>
-<br>
-<button style="width: 50px;height: 20px; background-color: cornflowerblue;" class="btn btn-primary" (click)="Create()" ></button>
 </div>
 
 <router-outlet></router-outlet>

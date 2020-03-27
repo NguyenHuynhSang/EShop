@@ -5,7 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace EShop.Data.In
+namespace EShop.Data.DataCore
 {
     /// <summary>
     /// Thân hàm mấy thằng phương thức chung

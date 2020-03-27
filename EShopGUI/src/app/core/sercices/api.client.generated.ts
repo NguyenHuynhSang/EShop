@@ -22,7 +22,62 @@ export class AppService {
 
     constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
-        this.baseUrl =  "https://localhost:5001";
+        this.baseUrl = "https://localhost:5001";
+    }
+
+    /**
+     * @return Success
+     */
+    getNewsForView(): Observable<NewsViewmodel[]> {
+        let url_ = this.baseUrl + "/api/News/GetNewsForView";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",			
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetNewsForView(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetNewsForView(<any>response_);
+                } catch (e) {
+                    return <Observable<NewsViewmodel[]>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<NewsViewmodel[]>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processGetNewsForView(response: HttpResponseBase): Observable<NewsViewmodel[]> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(NewsViewmodel.fromJS(item));
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<NewsViewmodel[]>(<any>null);
     }
 
     /**
@@ -297,6 +352,130 @@ export class AppService {
         }
         return _observableOf<WeatherForecast[]>(<any>null);
     }
+}
+
+export class News implements INews {
+    id?: number;
+    content?: string | undefined;
+    categoryID?: number;
+
+    constructor(data?: INews) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.content = _data["content"];
+            this.categoryID = _data["categoryID"];
+        }
+    }
+
+    static fromJS(data: any): News {
+        data = typeof data === 'object' ? data : {};
+        let result = new News();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["content"] = this.content;
+        data["categoryID"] = this.categoryID;
+        return data; 
+    }
+}
+
+export interface INews {
+    id?: number;
+    content?: string | undefined;
+    categoryID?: number;
+}
+
+export class Category implements ICategory {
+    id?: number;
+    name?: string | undefined;
+
+    constructor(data?: ICategory) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.name = _data["name"];
+        }
+    }
+
+    static fromJS(data: any): Category {
+        data = typeof data === 'object' ? data : {};
+        let result = new Category();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["name"] = this.name;
+        return data; 
+    }
+}
+
+export interface ICategory {
+    id?: number;
+    name?: string | undefined;
+}
+
+export class NewsViewmodel implements INewsViewmodel {
+    news?: News;
+    caterory?: Category;
+
+    constructor(data?: INewsViewmodel) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.news = _data["news"] ? News.fromJS(_data["news"]) : <any>undefined;
+            this.caterory = _data["caterory"] ? Category.fromJS(_data["caterory"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): NewsViewmodel {
+        data = typeof data === 'object' ? data : {};
+        let result = new NewsViewmodel();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["news"] = this.news ? this.news.toJSON() : <any>undefined;
+        data["caterory"] = this.caterory ? this.caterory.toJSON() : <any>undefined;
+        return data; 
+    }
+}
+
+export interface INewsViewmodel {
+    news?: News;
+    caterory?: Category;
 }
 
 export class Product implements IProduct {

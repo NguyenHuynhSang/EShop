@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { templateJitUrl } from '@angular/compiler';
-import { AppService,Product} from '../core/sercices/api.client.generated';
+import { AppService,Product, News,NewsViewmodel} from '../core/sercices/api.client.generated';
 
 
 @Component({
@@ -13,10 +13,15 @@ export class ProductComponent{
     public _appService:AppService;
     public listProduct:Product[];
     public product:Product=new Product();
+    public newsViewModels:NewsViewmodel[];
     constructor(appService: AppService){
         this._appService=appService;
         this._appService.getAll().subscribe(response=>{
             this.listProduct=response;
+        });
+
+        this._appService.getNewsForView().subscribe(response=>{
+            this.newsViewModels=response;
         });
 
     }
