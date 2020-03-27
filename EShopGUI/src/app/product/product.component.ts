@@ -56,7 +56,7 @@ export class ProductComponent {
             });
             console.log(this.listProduct.length);
             this.LoadChart();
-
+            this.LoadDoughnutChart();
         });
 
 
@@ -65,15 +65,11 @@ export class ProductComponent {
 
     LoadChart() {
 
-        let data: Array<{ y: number, label: string }>=[];
+        let data: Array<{ y: number, label: string }> = [];
 
 
         this.listProduct.forEach(element => {
-
-            let price = element.unitPrice;
-            var name = element.productName;
-
-            var temp= {y:price,label:name}
+            var temp = { y:  element.unitPrice, label:  element.productName }
             console.log(temp);
             data.push(temp);
         });
@@ -95,6 +91,42 @@ export class ProductComponent {
 
     }
 
+
+    LoadDoughnutChart() {
+
+        let data: Array<{ y: number, name: string }> = [];
+
+
+        this.listProduct.forEach(element => {
+            var temp = { y:  element.unitPrice, name:  element.productName }
+            console.log(temp);
+            data.push(temp);
+        });
+
+
+
+        let chart2 = new CanvasJS.Chart("chartContainer2", {
+            theme: "light2",
+            animationEnabled: true,
+            exportEnabled: true,
+            title: {
+                text: "Monthly Expense"
+            },
+            data: [{
+                type: "pie",
+                showInLegend: true,
+                toolTipContent: "<b>{name}</b>: ${y} (#percent%)",
+                indexLabel: "{name} - #percent%",
+                dataPoints: data
+            }]
+        });
+
+        chart2.render();
+
+
+    }
+
+
     Create(): void {
 
         if (this.product.productName == "") return;
@@ -109,43 +141,6 @@ export class ProductComponent {
 
 
     }
-
-
-    public chartType: string = 'horizontalBar';
-
-    public chartDatasets: Array<any> = [
-        { data: [65, 59, 80, 81, 56, 55, 40], label: 'My First dataset' }
-    ];
-
-    public chartLabels: Array<any> = ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'];
-
-    public chartColors: Array<any> = [
-        {
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 2,
-        }
-    ];
-
-    public chartOptions: any = {
-        responsive: true
-    };
-    public chartClicked(e: any): void { }
-    public chartHovered(e: any): void { }
 
 
 
