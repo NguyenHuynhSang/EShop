@@ -1,10 +1,10 @@
-<div style="text-align:center">
+<div *ngIf="this.isLoaded" style="text-align:center">
   <h1 style="text-align: center ; color: blue; ">
     Blue©
   </h1>
   <div style="flex: 1 ;flex-direction: row ;justify-content: center; display: flex;	">
     <div style="flex: 1 ;">
-      <label>Sản phẩm</label>
+      <label>Sản phẩm(Single table)</label>
       <table>
         <thead>
           <th>ID</th>
@@ -13,7 +13,7 @@
           <th>Quantity</th>
         </thead>
         <tbody>
-          <tr *ngFor="let row of listProduct">
+          <tr *ngFor="let row of this.listProduct">
             <td>{{row.id}} </td>
             <td>{{row.productName}} </td>
             <td>{{row.unitPrice}} </td>
@@ -23,7 +23,7 @@
       </table>
     </div>
     <div style="flex: 1 ;flex-direction: row ;">
-      <label>Tin tức</label>
+      <label>Tin tức (Joined table)</label>
       <table>
         <thead>
           <th>ID</th>
@@ -65,8 +65,8 @@
     </div>
   </div>
 
- 
+
 
 </div>
-
+<div id="chartContainer" style="height: 370px; width: 100%;" ></div>
 <router-outlet></router-outlet>
