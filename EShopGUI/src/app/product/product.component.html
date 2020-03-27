@@ -1,12 +1,12 @@
 <div style="text-align:center">
   <h1 style="text-align: center ; color: blue; ">
-   Blue©
+    Blue©
   </h1>
 
-  <div >
+  <div>
     <table style="width:100% ">
-      <thead >
-         <th>ID</th>
+      <thead>
+        <th>ID</th>
         <th>Name</th>
         <th>Price</th>
         <th>Quantity</th>
@@ -21,7 +21,28 @@
       </tbody>
     </table>
   </div>
- 
+
+  <h2>Create Here</h2>
+  <br>
+  <div class="md-col-3 row-2">
+    <label> Tên sản phẩm</label>
+    <input name="name" [(ngModel)]="product.productName" />
+
+  </div>
+<form>
+  <div class="md-col-3 row-2">
+    <br>
+    <label> Giá sản phẩm</label>
+    <input name="price" type="number" [(ngModel)]="this.product.unitPrice" />
+  </div>
+  <div class="form-group">
+    <br>
+    <label> Số lượng</label>
+    <input name="quantity" type="number" [(ngModel)]="product.quantity" />
+  </div>
+</form>
+<br>
+<button style="width: 50px;height: 20px; background-color: cornflowerblue;" class="btn btn-primary" (click)="Create()" ></button>
 </div>
 
-<router-outlet></router-outlet> 
+<router-outlet></router-outlet>

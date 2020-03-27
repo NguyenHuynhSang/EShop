@@ -10,14 +10,36 @@ import { AppService,Product} from '../core/sercices/api.client.generated';
 
 export class ProductComponent{
 
-
+    public _appService:AppService;
     public listProduct:Product[];
+    public product:Product=new Product();
     constructor(appService: AppService){
-        appService.getAll().subscribe(response=>{
+        this._appService=appService;
+        this._appService.getAll().subscribe(response=>{
             this.listProduct=response;
         });
 
     }
+
+    Create():void
+    {
+    
+    if(this.product.productName=="" ) return;
+ 
+
+    this._appService.create(this.product).subscribe(result => {
+        console.log("Created");
+        window.location.reload();
+    })
+
+    
+    
+    }
+
+
+  
+
+
 
 
 }

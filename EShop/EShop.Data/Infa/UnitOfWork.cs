@@ -20,6 +20,10 @@ namespace EShop.Data.In
         }
         public void Commit()
         {
+            if (dbContext==null)
+            {
+                dbContext = dbFactory.Init();
+            }
             dbContext.SaveChanges();
         }
     }

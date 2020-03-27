@@ -31,6 +31,29 @@ namespace EShop.WebApp.Controllers
             return list;
 
         }
+
+        [HttpGet]
+        public IEnumerable<Product> GetBlaBlaAll()
+        {
+            var list = _productService.GetAll();
+
+            return list;
+
+        }
+
+        [HttpPost]
+        public void Create([FromBody] Product product)
+        {
+            _productService.Add(product);
+            _productService.SaveChanges();
+        }
+
+        [HttpGet]
+        public Product GetById(int id)
+        {
+           return  _productService.GetProductById(id);
+
+        }
     }
 
 

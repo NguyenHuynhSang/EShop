@@ -12,6 +12,8 @@ namespace EShop.Service.Service
         void Add(Product product);
         IEnumerable<Product> GetAll();
 
+        public Product GetProductById(int id);
+
         void SaveChanges();
 
     }
@@ -34,6 +36,12 @@ namespace EShop.Service.Service
         public IEnumerable<Product> GetAll()
         {
             return _productRepository.GetAll();
+        }
+
+
+        public Product GetProductById(int id)
+        {
+            return _productRepository.GetSingleById(id);
         }
 
         public void SaveChanges()
