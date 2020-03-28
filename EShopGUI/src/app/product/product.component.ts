@@ -29,7 +29,7 @@ export class ProductComponent {
         this.LoadObject();
 
 
-        for (let item of this.listProduct)
+        for (let item of this.listProduct) 
             console.log('ádasdsadas');
 
         console.log(this.listProduct.length);
