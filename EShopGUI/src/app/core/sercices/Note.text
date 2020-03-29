@@ -1,9 +1,14 @@
-///replance OpaqueToken in api.client.generated.ts with InjectionToken everytime run nswag  
-// à sửa cái   this.baseUrl = "https://localhost:5001";
+
+
+
+>> mỗi lần chạy lại nswag
+// sửa cái   this.baseUrl = "https://localhost:5001"; trong api.client.generated
 
 
 KEY
 
-InjectionToken
 
-"https://localhost:5001"
+   constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = "https://localhost:5001";
+    }
