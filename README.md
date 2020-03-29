@@ -21,9 +21,9 @@
 	vào http://localhost:4200/ để xem kq
 	
 ## Reference
-    * [Repository Design Pattern](https://visualstudio.microsoft.com/)
-    * [Dependency Injection](https://tedu.com.vn/lap-trinh-aspnet-core/co-che-dependency-injection-trong-aspnet-core-256.html)
-    * [Database factory Design Pattern ](https://kienchu.blogspot.com/2016/06/design-patterns-trong-qua-cac-du-thuc.html)
+   * [Repository Design Pattern](https://visualstudio.microsoft.com/)
+   * [Dependency Injection](https://tedu.com.vn/lap-trinh-aspnet-core/co-che-dependency-injection-trong-aspnet-core-256.html)
+   * [Database factory Design Pattern ] (https://kienchu.blogspot.com/2016/06/design-patterns-trong-qua-cac-du-thuc.html)
    * [BUILDING SINGLE PAGE APPLICATIONS USING WEB API AND ANGULARJS](https://chsakell.com/2015/08/23/building-single-page-applications-using-web-api-and-angularjs-free-e-book/#architecture)
    
   
