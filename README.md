@@ -3,7 +3,7 @@
   *  [Visual studio 2019](https://visualstudio.microsoft.com/)
   *  [Nodejs](https://nodejs.org/en/)
   *  [NswagStudio](https://github.com/RicoSuter/NSwag/wiki/NSwagStudio)
-   *  [SQL SERVER 2019](https://www.microsoft.com/en-us/sql-server/sql-server-2019)
+  *  [SQL SERVER 2019](https://www.microsoft.com/en-us/sql-server/sql-server-2019)
   ## Hướng dẫn config
   ### Host
      1. Mở file appsettings.json trong project ESHop.WebApp
@@ -20,6 +20,10 @@
     1. cd vào \EShopGUI gõ npm install sau đó npm start
 	vào http://localhost:4200/ để xem kq
 	
-	
-  
+## Reference
+    * [Repository Design Pattern](https://visualstudio.microsoft.com/)
+    * [Dependency Injection](https://tedu.com.vn/lap-trinh-aspnet-core/co-che-dependency-injection-trong-aspnet-core-256.html)
+    * [Database factory Design Pattern ](https://kienchu.blogspot.com/2016/06/design-patterns-trong-qua-cac-du-thuc.html)
+   * [BUILDING SINGLE PAGE APPLICATIONS USING WEB API AND ANGULARJS](https://chsakell.com/2015/08/23/building-single-page-applications-using-web-api-and-angularjs-free-e-book/#architecture)
+   
   
