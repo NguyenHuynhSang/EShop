@@ -4,6 +4,7 @@
   *  [Nodejs](https://nodejs.org/en/)
   *  [NswagStudio](https://github.com/RicoSuter/NSwag/wiki/NSwagStudio)
   *  [SQL SERVER 2019](https://www.microsoft.com/en-us/sql-server/sql-server-2019)
+  *  [.NETCore3.1 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1)
   ## Hướng dẫn config
   ### Host
      1. Mở file appsettings.json trong project ESHop.WebApp
