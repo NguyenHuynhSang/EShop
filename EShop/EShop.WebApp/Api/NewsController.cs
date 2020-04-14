@@ -25,7 +25,6 @@ namespace EShop.WebApp.Api
         public IEnumerable<NewsViewmodel> GetNewsForView()
         {
             var list = _NewsService.GetNewsForView();
-
             return list;
 
         }
