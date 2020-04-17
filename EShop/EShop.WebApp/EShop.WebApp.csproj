@@ -27,8 +27,8 @@
   <ItemGroup>
     <Folder Include="Assets\admin\" />
     <Folder Include="Assets\client\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Infrastructure\Extension\" />
+    <Folder Include="Scripts\Plugins\angularjs\i18n\ngLocale\" />
   </ItemGroup>
 
 

@@ -8,7 +8,7 @@ using System.Net.Http;
 
 namespace EShop.WebApp.Infrastructure.Core
 {
-    [ApiController]
+  
     public class ApiBaseController : ControllerBase
     {
         private IErrorService _errorService;

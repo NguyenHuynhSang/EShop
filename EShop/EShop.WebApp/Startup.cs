@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using EShop.Data;
@@ -15,6 +16,7 @@ using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
@@ -34,10 +36,12 @@ namespace EShop.WebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+
+            services.AddMvc(option => option.EnableEndpointRouting = false);
+
 
             //                .AddControllersAsServices();      // <---- Super important
-            
+
             services.AddControllers();
 
 
@@ -51,6 +55,9 @@ namespace EShop.WebApp
             services.AddScoped<IDbFactory,DbFactory>();
 
             services.AddScoped<IUnitOfWork,UnitOfWork>();
+
+            services.AddScoped<IErrorRepository, ErrorRepository>();
+            services.AddScoped<IErrorService, ErrorService>();
             services.AddScoped<IProductRepository, ProductRepository>();
 
             services.AddScoped<IProductService,ProductService>();
@@ -89,17 +96,36 @@ namespace EShop.WebApp
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapControllers();
+            //});
 
+            app.UseMvc(routes => {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}"
+                );
+            });
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API");
               //  c.RoutePrefix = string.Empty;
             });
+
+
+
+            /// Load các cấu trúc tự tạo vào project
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+               Path.Combine(Directory.GetCurrentDirectory(), "Scripts")),
+                RequestPath = "/Scripts"
+            }
+);
+
+
 
         }
     }
