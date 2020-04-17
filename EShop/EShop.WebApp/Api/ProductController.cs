@@ -1,35 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
-using EShop.Model.Models;
+﻿using EShop.Model.Models;
 using EShop.Service.Service;
-using Microsoft.AspNetCore.Http;
+using EShop.WebApp.Infrastructure.Core;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Net;
+using System.Linq;
 
 namespace EShop.WebApp.Api
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-
-    public class ProductController : ControllerBase
+    public class ProductController : ApiBaseController
     {
-         IProductService _productService;
-        public ProductController(IProductService productService)
+        private IProductService _productService;
+
+        public ProductController(IErrorService errorService, IProductService productService)
+            : base(errorService)
         {
             this._productService = productService;
-        
-
         }
 
         [HttpGet]
         public IEnumerable<Product> GetAll()
         {
             var list = _productService.GetAll();
-           
-            return list;
 
+            return list;
         }
 
         [HttpGet]
@@ -38,24 +35,37 @@ namespace EShop.WebApp.Api
             var list = _productService.GetAll();
 
             return list;
-
         }
 
         [HttpPost]
-        public void Create([FromBody] Product product)
+        public HttpResponseMessage Create(HttpRequestMessage request, [FromBody] Product product)
         {
-            _productService.Add(product);
-            _productService.SaveChanges();
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage msg = null;
+                if (ModelState.IsValid)
+                {
+                    var message = string.Join(" | ", ModelState.Values
+                       .SelectMany(v => v.Errors)
+                       .Select(e => e.ErrorMessage));
+                    request.CreateErrorResponse(HttpStatusCode.BadRequest, message);
+                }
+                else
+                {
+                    var newProduct = _productService.Add(product);
+                    _productService.SaveChanges();
+                    msg = request.CreateResponse(HttpStatusCode.Created);
+                }
+                return msg;
+            });
+
+
         }
 
         [HttpGet]
         public Product GetById(int id)
         {
-           return  _productService.GetProductById(id);
-
+            return _productService.GetProductById(id);
         }
     }
-
-
-
 }

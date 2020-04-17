@@ -29,5 +29,7 @@ namespace EShop.Data
         public DbSet<News> News { get; set; }
         public DbSet<Category> Categories { get; set; }
 
+        public DbSet<Error> Errors { get; set; }
+
     }
 }

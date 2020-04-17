@@ -12,11 +12,12 @@ namespace EShop.Data.DataCore
     /// </summary>
     public interface IRepository<T> where T : class
     {
-        void Add(T entity);
+        T Add(T entity);
 
         void Update(T entity);
 
-        void Delete(T entity);
+        T Delete(T entity);
+
 
         void DeleteMulti(Expression<Func<T, bool>> where);
 
@@ -30,11 +31,11 @@ namespace EShop.Data.DataCore
         /// <returns></returns>
         T GetSingleByCondition(Expression<Func<T, bool>> expression, string[] includes = null);
 
-        IQueryable<T> GetAll(string[] include = null);
+        IEnumerable<T> GetAll(string[] include = null);
 
-        IQueryable<T> GetMulti(Expression<Func<T, bool>> predicate, string[] include = null);
+        IEnumerable<T> GetMulti(Expression<Func<T, bool>> predicate, string[] include = null);
 
-        IQueryable<T> GetMultiPaging(Expression<Func<T, bool>> filter
+        IEnumerable<T> GetMultiPaging(Expression<Func<T, bool>> filter
             , out int total, int index = 0, int size = 50, string[] include = null);
 
         int Count(Expression<Func<T, bool>> where);

@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 
 namespace EShop.Data.DataCore
 {
@@ -11,56 +11,57 @@ namespace EShop.Data.DataCore
     /// Thân hàm mấy thằng phương thức chung
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class RepositoryBase<T>:IRepository<T> where T:class
+    public abstract class RepositoryBase<T> : IRepository<T> where T : class
     {
         private EShopDbContext dbContext;
         private readonly DbSet<T> dbSet;
+
         protected IDbFactory DbFactory
         {
             get;
             private set;
         }
+
         protected RepositoryBase(IDbFactory dbFactory)
         {
             DbFactory = dbFactory;
             dbSet = DbContext.Set<T>();
         }
 
-
-
         protected EShopDbContext DbContext
         {
             get { return dbContext ?? (dbContext = DbFactory.Init()); }
         }
-        public void Add(T entity)
+
+        public virtual T Add(T entity)
         {
-            dbContext.Add(entity);
+            return dbSet.Add(entity).Entity;
         }
 
-        public void Update(T entity)
+        public virtual void Update(T entity)
         {
             dbContext.Attach(entity);
             dbContext.Entry(entity).State = EntityState.Modified;
         }
 
-        public void Delete(T entity)
+        public virtual T Delete(T entity)
         {
-            dbSet.Remove(entity);
+            return dbSet.Remove(entity).Entity;
         }
 
-        public void DeleteMulti(Expression<Func<T, bool>> where)
+        public virtual void DeleteMulti(Expression<Func<T, bool>> where)
         {
             IEnumerable<T> objects = dbSet.Where<T>(where).AsEnumerable();
             foreach (T obj in objects)
                 dbSet.Remove(obj);
         }
 
-        public T GetSingleById(int id)
+        public virtual T GetSingleById(int id)
         {
             return dbSet.Find(id);
         }
 
-        public T GetSingleByCondition(Expression<Func<T, bool>> expression, string[] includes = null)
+        public virtual T GetSingleByCondition(Expression<Func<T, bool>> expression, string[] includes = null)
         {
             if (includes != null && includes.Count() > 0)
             {
@@ -72,7 +73,7 @@ namespace EShop.Data.DataCore
             return dbContext.Set<T>().FirstOrDefault(expression);
         }
 
-        public IQueryable<T> GetAll(string[] includes = null)
+        public virtual IEnumerable<T> GetAll(string[] includes = null)
         {
             //HANDLE INCLUDES FOR ASSOCIATED OBJECTS IF APPLICABLE
             if (includes != null && includes.Count() > 0)
@@ -86,7 +87,7 @@ namespace EShop.Data.DataCore
             return dbContext.Set<T>().AsQueryable();
         }
 
-        public IQueryable<T> GetMulti(Expression<Func<T, bool>> predicate, string[] includes = null)
+        public virtual IEnumerable<T> GetMulti(Expression<Func<T, bool>> predicate, string[] includes = null)
         {
             //HANDLE INCLUDES FOR ASSOCIATED OBJECTS IF APPLICABLE
             if (includes != null && includes.Count() > 0)
@@ -100,7 +101,7 @@ namespace EShop.Data.DataCore
             return dbContext.Set<T>().Where<T>(predicate).AsQueryable<T>();
         }
 
-        public IQueryable<T> GetMultiPaging(Expression<Func<T, bool>> predicate, out int total, int index = 0, int size = 50, string[] includes = null)
+        public virtual IEnumerable<T> GetMultiPaging(Expression<Func<T, bool>> predicate, out int total, int index = 0, int size = 50, string[] includes = null)
         {
             int skipCount = index * size;
             IQueryable<T> _resetSet;

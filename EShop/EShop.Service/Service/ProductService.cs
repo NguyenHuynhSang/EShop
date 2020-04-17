@@ -9,7 +9,7 @@ namespace EShop.Service.Service
 {
     public interface  IProductService
     {
-        void Add(Product product);
+        Product Add(Product product);
         IEnumerable<Product> GetAll();
 
         public Product GetProductById(int id);
@@ -28,9 +28,9 @@ namespace EShop.Service.Service
             this._unitOfWork = unitOfWork;
 
         }
-        public void Add(Product product)
+        public Product Add(Product product)
         {
-            _productRepository.Add(product);
+          return  _productRepository.Add(product);
         }
 
         public IEnumerable<Product> GetAll()

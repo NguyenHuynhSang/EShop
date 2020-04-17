@@ -6,11 +6,12 @@ using System.Text;
 
 namespace EShop.Model.Models
 {
-    [Table("Product")]
+    [Table("Product")] // map class với table trong csdl
     public class Product
     {
-        [Key]
+        [Key] // chỉ định    khóa chính
         public int ID { set; get; }
+        [MaxLength(500)] //chỉ định độ dài tối đa, nếu k có mặc định là max
         public string ProductName { set; get; }
 
         public float UnitPrice { set; get; }
