@@ -25,10 +25,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Assets\admin\" />
+    <Folder Include="app\components\user\" />
+    <Folder Include="app\components\product_atribute_value\" />
+    <Folder Include="app\components\product_attribute\" />
+    <Folder Include="app\components\product_catalog\" />
+    <Folder Include="app\shared\header\" />
+    <Folder Include="app\shared\footer\" />
+    <Folder Include="app\shared\navigation\" />
+    <Folder Include="app\shared\directive\" />
+    <Folder Include="app\shared\services\" />
     <Folder Include="Assets\client\" />
     <Folder Include="Infrastructure\Extension\" />
-    <Folder Include="Scripts\Plugins\angularjs\i18n\ngLocale\" />
+    <Folder Include="Scripts\" />
   </ItemGroup>
 
 
