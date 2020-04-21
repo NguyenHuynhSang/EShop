@@ -33,7 +33,6 @@
     <Folder Include="app\shared\footer\" />
     <Folder Include="app\shared\navigation\" />
     <Folder Include="app\shared\directive\" />
-    <Folder Include="app\shared\services\" />
     <Folder Include="Assets\client\" />
     <Folder Include="Infrastructure\Extension\" />
     <Folder Include="Scripts\" />

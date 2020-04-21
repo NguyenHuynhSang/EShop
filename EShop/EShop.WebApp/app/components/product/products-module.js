@@ -5,9 +5,13 @@
     config.$inject = ['$stateProvider', '$urlRouterProvider'];
     function config($stateProvider, $urlRouterProvider) {
         $stateProvider.state('product-edit', {
-            url: "/admin/product-edit",
+            url: "/product-edit",
             templateUrl: "/app/components/product/product-edit-view.html",
             controller: "product-edit-controller"
+        }).state('product-list', {
+            url: "/product-list",
+            templateUrl: "/app/components/product/product-list-view.html",
+            controller: "product-list-controller"
         });
     }
 
