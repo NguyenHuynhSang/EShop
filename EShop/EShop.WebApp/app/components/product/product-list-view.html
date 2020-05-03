@@ -5,32 +5,34 @@
     <title></title>
 </head>
 <body>
-    <h1> Product List</h1>
+    <h1> Product List ABC</h1>
 
     <div class="kt-section__content">
+        <button class="btn btn-facebook" ui-sref="product-create"> Thêm mới</button>
+        <div class="kt-align-left">
+            <input ng-model="keyWord"  ng-change="search()"  class="kt-searchbar" type="text">
+            <button ng-click="search()" class="btn btn-primary">Search</button>
+        </div>
         <table class="table">
             <thead>
                 <tr>
                     <th>#</th>
                     <th>First Name</th>
                     <th>Last Name</th>
-                    <th>Username</th>
+
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="item in productList">
                     <th scope="row">{{item.id}}</th>
-                    <td>{{item.productName}}</td>
-                    <td>{{item.unitPrice}}</td>
-                    <td>{{item.quantity}}</td>
+                    <td>{{item.name}}</td>
+                    <td>
+                        <button ui-sref="product-edit({id:item.id})" class="btn btn-primary">EDIT</button>
+                    </td>
                 </tr>
-          
             </tbody>
         </table>
     </div>
-
-
-
 
 </body>
 </html>

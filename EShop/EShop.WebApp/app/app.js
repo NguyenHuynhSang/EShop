@@ -7,7 +7,8 @@
     function config($stateProvider, $urlRouterProvider) {
         $stateProvider.state('home', {
             url: "/home",
-            templateUrl: "/app/components/home/home-view.html",
+            //missing a fucking dot
+            templateUrl: "./app/components/home/home-view.html",
             controller: "home-controller"
         });
 

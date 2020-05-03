@@ -77,11 +77,7 @@ namespace EShop.WebApp
             app.UseRouting();
 
             app.UseAuthorization();
-
-            //app.UseEndpoints(endpoints =>
-            //{
-            //    endpoints.MapControllers();
-            //});
+            app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod());
 
             app.UseMvc(routes =>
             {
