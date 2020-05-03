@@ -5,6 +5,8 @@
   "devDependencies": {
     "angular": "1.7.9",
     "angular-ui-router": "1.0.25",
-    "toastr": "2.1.2"
+    "toastr": "2.1.2",
+    "bootbox": "5.4.0",
+    "ngbootbox": "0.2.0"
   }
 }
