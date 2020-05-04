@@ -15,14 +15,14 @@
         }
 
         function getListProduct() {
-            var config = {
-                params: {
-                    keyword: $scope.keyWord,
-                    action: "getAll",
-                }
-            }
+            //var config = {
+            //    params: {
+            //        keyword: $scope.keyWord,
+            //        action: "getAll",
+            //    }
+            //}
 
-            apiService.get('/eshopcore_war/api/json', config, function (result) {
+            apiService.get('/api/Product/GetAll', null, function (result) {
                 $scope.productList = result.data;
                 if (result.data.length == 0) {
                     notificationService.displayWarning("Không tìm thấy bản ghi nào");
