@@ -3,31 +3,19 @@
     productEditController.$inject = ['api-service','$scope', 'notification-service','$state','$stateParams'];
 
     function productEditController(apiService,$scope,notificationService,$state,$stateParams) {
-        $scope.jsonEntity = {};
+        $scope.newProduct = {};
         $scope.EditProduct = EditProduct;
 
         function LoadProductByID() {
-
             var config = {
                 params: {
-                    keyword: "",
-                    ID:$stateParams.id,
-                    action: "getByID",
+                    id: $stateParams.id,
                 }
             }
-
-            apiService.get('/eshopcore_war/api/json', config, function (result) {
-                $scope.jsonEntity = result.data;
-                if (result.data.length == 0) {
-                    //notificationService.displayWarning("Không tìm thấy bản ghi nào");
-                } else {
-
-                //    notificationService.displaySuccess("Tìm thấy " + result.data.length + "bản ghi");
-                }
-
-
+            apiService.get('/api/Product/GetById', config, function (result) {
+                $scope.newProduct = result.data;
+                console.log($scope.newProduct);
             }, function () {
-                console.log('Load product api failed.');
                 notificationService.displayError("Không lấy được dữ liệu từ server");
             });
 

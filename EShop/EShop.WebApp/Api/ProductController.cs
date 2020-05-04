@@ -24,20 +24,21 @@ namespace EShop.WebApp.Api
         }
 
         [HttpGet]
-        public IEnumerable<Product> GetAll()
+        public IEnumerable<Product> GetAll(string keyword)
         {
-            var list = _productService.GetAll();
+            var list = _productService.GetAll(keyword);
 
             return list;
         }
 
-        [HttpGet]
-        public IEnumerable<Product> GetBlaBlaAll()
+        [HttpPost]
+        public Product CreateProduct(Product product)
         {
-            var list = _productService.GetAll();
-
-            return list;
+            var newProduct = _productService.Add(product);
+            _productService.SaveChanges();
+            return newProduct;
         }
+
 
          
         //public HttpResponseMessage Create(HttpRequestMessage request, Product product)
@@ -68,6 +69,12 @@ namespace EShop.WebApp.Api
         public Product GetById(int id)
         {
             return _productService.GetProductById(id);
+        }
+
+        [HttpDelete]
+        public Product DeleteProduct(Product product)
+        {
+            return _productService.Delete(product);
         }
     }
 }

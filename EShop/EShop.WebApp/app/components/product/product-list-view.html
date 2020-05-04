@@ -27,7 +27,9 @@
                     <th scope="row">{{item.id}}</th>
                     <td>{{item.productName}}</td>
                     <td>
-                        <button ui-sref="product-edit({id:item.id})" class="btn btn-primary">EDIT</button>
+                        <button ui-sref="product-edit({id:item.id})" class="btn btn-primary"><i class="fa fa-edit">edit</i> </button>
+
+                        <button ng-click="delProduct(item)" class="btn btn-primary"><i class="fa fa-trash">delete</i> </button>
                     </td>
                 </tr>
             </tbody>

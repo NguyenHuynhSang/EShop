@@ -1,6 +1,7 @@
 ﻿using EShop.Data.DataCore;
 using EShop.Data.Repository;
 using EShop.Model.Models;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,9 +11,11 @@ namespace EShop.Service.Service
     public interface  IProductService
     {
         Product Add(Product product);
-        IEnumerable<Product> GetAll();
+        IEnumerable<Product> GetAll(string keyword);
 
         public Product GetProductById(int id);
+
+        public Product Delete(Product product);
 
         void SaveChanges();
 
@@ -33,9 +36,22 @@ namespace EShop.Service.Service
           return  _productRepository.Add(product);
         }
 
-        public IEnumerable<Product> GetAll()
+        public Product Delete(Product product)
         {
-            return _productRepository.GetAll();
+            return _productRepository.Delete(product);
+        }
+
+        public IEnumerable<Product> GetAll(string keyword)
+        {
+            if (String.IsNullOrEmpty(keyword))
+            {
+                return _productRepository.GetAll();
+            }
+            else
+            {
+                return _productRepository.GetMulti(x=>x.ProductName.Contains(keyword));
+            }
+           
         }
 
 
