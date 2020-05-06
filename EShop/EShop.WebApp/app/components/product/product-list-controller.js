@@ -15,21 +15,15 @@
 
 
 
-        function delProduct(any item) {
+        function delProduct(item) {
             $scope.product = item;
-            apiService.del('/api/Product/delete', $scope.product, function (result) {
-                $scope.productList = result.data;
-                if (result.data.length == 0) {
-                    notificationService.displayWarning("Không tìm thấy bản ghi nào");
-                } else {
-
-                    notificationService.displaySuccess("Tìm thấy " + result.data.length + " bản ghi");
-                }
+            apiService.del('/api/Product/DeleteProduct', item, function (result) {
+                notificationService.displaySuccess("Xóa bản ghi thành công");
+                $state.go('product-list');
             }, function () {
-                console.log('Load product api failed.');
-                notificationService.displayError("Không lấy được dữ liệu từ server");
+                    console.log('delete api failed.');
+                    notificationService.displayError("Xóa bản ghi KHÔNG thành công");
             });
-
 
         }
 

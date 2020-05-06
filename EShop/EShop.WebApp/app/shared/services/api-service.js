@@ -8,7 +8,7 @@
             get:get,
             post:post,
             put:put,
-
+            del:del
         }
 
         function get(url, params, success, failed) {
@@ -50,7 +50,14 @@
 
         }
 
-        f
+        function del(url, data, success, failed) {
+            $http.delete(url, data).then(function (result) {
+                success(result);
+            }, (function (error) {
+                failed(error);
+            }));
+
+        }
     }
 
 })(angular.module('eshop-common'));

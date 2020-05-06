@@ -15,7 +15,7 @@ namespace EShop.WebApp.Api
     [ApiController]
     public class ProductController : ApiBaseController
     {
-        private IProductService _productService;
+        private IProductService _productService;// service xử dụng
 
         public ProductController(IProductService productService, IErrorService errorService)
             : base(errorService)
