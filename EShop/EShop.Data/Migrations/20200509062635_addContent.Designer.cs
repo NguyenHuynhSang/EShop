@@ -4,14 +4,16 @@ using EShop.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EShop.Data.Migrations
 {
     [DbContext(typeof(EShopDbContext))]
-    partial class EShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200509062635_addContent")]
+    partial class addContent
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -171,20 +173,6 @@ namespace EShop.Data.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("ContentCategory");
-                });
-
-            modelBuilder.Entity("EShop.Model.Models.ContentTag", b =>
-                {
-                    b.Property<string>("TagID")
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
-
-                    b.Property<long>("ContentID")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("TagID", "ContentID");
-
-                    b.ToTable("ContentTag");
                 });
 
             modelBuilder.Entity("EShop.Model.Models.Error", b =>

@@ -28,8 +28,15 @@ namespace EShop.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<News> News { get; set; }
         public DbSet<Category> Categories { get; set; }
-
         public DbSet<Error> Errors { get; set; }
-
+        public DbSet<Tag> Tags { get; set; }
+        public DbSet<ContentCategory> ContentCategories { get; set; }
+        public DbSet<Content> Contents { get; set; }
+        public DbSet<ContentTag> contentTags { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder) //Một bảng có 2 khóa chính phải sử dụng fluent API
+        {
+            modelBuilder.Entity<ContentTag>()
+                .HasKey(o => new { o.TagID , o.ContentID});
+        }
     }
 }

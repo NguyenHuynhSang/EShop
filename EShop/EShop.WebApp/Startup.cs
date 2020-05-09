@@ -53,6 +53,9 @@ namespace EShop.WebApp
 
             services.AddScoped<INewsService, NewsService>();
 
+            services.AddScoped<ITagRepository, TagRepository>();
+            services.AddScoped<ITagService, TagService>();
+
             services.AddCors(x => x.AddPolicy("EnableCORS",
                 builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod().AllowCredentials().Build()));
             services.AddSwaggerGen(swagger =>
