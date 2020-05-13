@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace EShop.Data.Repository
+﻿namespace EShop.Data.Repository
 {
-    class ContentCategoryRepository
+    internal class ContentCategoryRepository
     {
     }
 }

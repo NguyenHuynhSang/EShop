@@ -2935,19 +2935,36 @@ License: You must have a valid license purchased only from themeforest(the above
     @* <script src="~/Assets/admin/js/pages/dashboard.js" type="text/javascript"></script>*@
     <!--Begin::embed angularJs-->
     <script src="~/Assets/admin/libs/Plugins/angular/angular.js"></script>
-
     <script src="~/Assets/admin/libs/Plugins/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="~/Assets/admin/libs/Plugins/toastr/toastr.js"></script>
+    <script src="~/Assets/admin/libs/Plugins/bootbox/bootbox.js"></script>
+    <script src="~/Assets/admin/libs/Plugins/ngbootbox/dist/ngBootbox.js"></script>
 
     <script src="~/app/shared/modules/eshop-common.js"></script>
-
+    <%--
+    conponent module container
+    --%>
     <script src="~/app/components/product/products-module.js"></script>
+    <script src="~/app/components/order/orders-module.js"></script>
+
     <script src="~/app/app.js"></script>
     <script src="~/app/shared/services/api-service.js"></script>
     <script src="~/app/shared/services/notification-service.js"></script>
     <script src="~/app/components/home/home-controller.js"></script>
+    <%--
+    Product controller container
+    --%>
     <script src="~/app/components/product/product-list-controller.js"></script>
     <script src="~/app/components/product/product-edit-controller.js"></script>
     <script src="~/app/components/product/product-create-controller.js"></script>
+
+    <%--
+    order controller container
+    --%>
+    <script src="~/app/components/order/order-list-controller.js"></script>
+
+
+
     <!--end::embed angularJs-->
     <!--end::Page Scripts -->
 </body>

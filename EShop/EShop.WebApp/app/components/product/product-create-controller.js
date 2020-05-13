@@ -3,10 +3,10 @@
     productCreateController.$inject = ['api-service','$scope', 'notification-service','$state'];
 
     function productCreateController(apiService,$scope,notificationService,$state) {
-        $scope.newProduct = {};
+        $scope.jsonEntity = {};
         $scope.CreateProduct = CreateProduct;
         function CreateProduct() {
-            apiService.post('/api/Product/CreateProduct', $scope.newProduct, function (result) {
+            apiService.post('/eshopcore_war/api/json',  JSON.stringify($scope.jsonEntity)  , function (result) {
                 notificationService.displaySuccess("Thêm mới bản ghi thành công");
                 $state.go('product-list');
             }, function () {

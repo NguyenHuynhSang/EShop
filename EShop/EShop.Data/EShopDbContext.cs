@@ -33,6 +33,12 @@ namespace EShop.Data
         public DbSet<ContentCategory> ContentCategories { get; set; }
         public DbSet<Content> Contents { get; set; }
         public DbSet<ContentTag> contentTags { get; set; }
+
+        public DbSet<Catalog> Catalogs { get; set; }
+
+        public DbSet<Model.Models.Attribute> Attributes { get; set; }
+
+        public DbSet<AttributeValue> AttributeValues { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder) //Một bảng có 2 khóa chính phải sử dụng fluent API
         {
             modelBuilder.Entity<ContentTag>()

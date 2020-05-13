@@ -49,7 +49,7 @@ namespace EShop.Service.Service
             }
             else
             {
-                return _productRepository.GetMulti(x=>x.ProductName.Contains(keyword));
+                return _productRepository.GetMulti(x=>x.Name.Contains(keyword));
             }
            
         }

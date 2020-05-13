@@ -1,5 +1,8 @@
 ﻿
 (function () {
-    angular.module('eshop-common', ['ui.router'])
+    /*
+    * inject các module dùng chung
+    * */
+    angular.module('eshop-common', ['ui.router','ngBootbox'])
 
 })();

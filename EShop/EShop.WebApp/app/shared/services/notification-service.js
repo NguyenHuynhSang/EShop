@@ -1,7 +1,6 @@
 (
     function (app) {
         app.factory('notification-service', notificationService);
-
         function notificationService() {
             toastr.options = {
                 "debug": false,

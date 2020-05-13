@@ -1,44 +1,46 @@
 ﻿(function (app) {
     app.controller('product-list-controller', productListController)
-    productListController.$inject = ['$scope', 'api-service', 'notification-service'];
+    //inject các service cần dùng
+    productListController.$inject = ['$scope', 'api-service', 'notification-service', '$ngBootbox'];
 
-    function productListController($scope, apiService, notificationService) {
+//chú ý thứ tự
+    function productListController($scope, apiService, notificationService, $ngBootbox) {
         $scope.productList = [];
         $scope.getListProduct = getListProduct;
         $scope.keyWord = '';
 
         $scope.search = search;
-
         $scope.delProduct = delProduct;
 
-        $scope.product = {};
-
-
-
-        function delProduct(item) {
-            $scope.product = item;
-            apiService.del('/api/Product/DeleteProduct', item, function (result) {
-                notificationService.displaySuccess("Xóa bản ghi thành công");
-                $state.go('product-list');
-            }, function () {
-                    console.log('delete api failed.');
-                    notificationService.displayError("Xóa bản ghi KHÔNG thành công");
-            });
-
-        }
 
         function search() {
             getListProduct();
         }
 
-        function getListProduct() {
-            var config = {
-                params: {
-                    keyword: $scope.keyWord,
+        function delProduct(id) {
+            $ngBootbox.confirm('Bạn có chắc muốn xóa?').then(function () {
+                var config = {
+                    params: {
+                        ID: id,
+                    }
                 }
-            }
+                apiService.del('/api/Product/GetAll', config, function () {
+                    notificationService.displaySuccess("Xóa  thành công bản ghi");
+                    getListProduct();
+                }, function () {
 
-            apiService.get('/api/Product/GetAll', config, function (result) {
+                });
+                notificationService.displaySuccess("Xóa  thành công bản ghi");
+                getListProduct();
+            });
+
+        }
+
+        function getListProduct() {
+            /*Cấu trúc config cho doget để get ra parameter chú ý các tên action*/
+           
+
+            apiService.get('/api/Product/GetAll', null, function (result) {
                 $scope.productList = result.data;
                 if (result.data.length == 0) {
                     notificationService.displayWarning("Không tìm thấy bản ghi nào");

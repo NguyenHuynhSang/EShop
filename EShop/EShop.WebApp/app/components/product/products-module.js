@@ -18,8 +18,6 @@
             controller: "product-create-controller"
         });
 
-
-
     }
 
 })();
