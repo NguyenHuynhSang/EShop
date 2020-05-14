@@ -41,6 +41,8 @@ namespace EShop.Model.Models
 
         public int Weight { set; get; }
 
+
+        [Column(TypeName = "decimal(18,0)")]
         public decimal? OriginalPrice { get; set; }
 
         public bool Deliver { set; get; }

@@ -43,6 +43,14 @@ namespace EShop.Data
         {
             modelBuilder.Entity<ContentTag>()
                 .HasKey(o => new { o.TagID , o.ContentID});
+
+            modelBuilder.Entity<Product>().HasData(new Product { ID = 1, Name = "Iphone test",ApplyPromotion=true,Content="This is an iphone",Deliver=true,Description="no discrip" },
+                                                   new Product { ID = 2, Name = "samsung galaxy test", ApplyPromotion = true, Content = "This is a samsung", Deliver = true, Description = "no discrip"});
+
         }
+
+
+
+
     }
 }
