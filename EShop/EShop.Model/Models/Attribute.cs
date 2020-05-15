@@ -9,6 +9,7 @@ namespace EShop.Model.Models
     [Table("Attribute")]
     public class Attribute
     {
+        
         [Key] // chỉ định    khóa chính
         public int ID { set; get; }
 

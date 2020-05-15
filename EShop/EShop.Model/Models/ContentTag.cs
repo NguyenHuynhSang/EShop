@@ -10,7 +10,7 @@ namespace EShop.Model.Models
     public class ContentTag 
     {
         [Column(Order = 0)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+      
         public long ContentID { get; set; }
         [Column(Order = 1)]
         [MaxLength(50)]

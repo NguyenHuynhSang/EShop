@@ -4,14 +4,16 @@ using EShop.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EShop.Data.Migrations
 {
     [DbContext(typeof(EShopDbContext))]
-    partial class EShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200515034532_add_table_productVersion")]
+    partial class add_table_productVersion
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -284,22 +286,6 @@ namespace EShop.Data.Migrations
                     b.ToTable("Error");
                 });
 
-            modelBuilder.Entity("EShop.Model.Models.Image", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Url")
-                        .HasColumnType("nvarchar(500)")
-                        .HasMaxLength(500);
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Image");
-                });
-
             modelBuilder.Entity("EShop.Model.Models.News", b =>
                 {
                     b.Property<int>("ID")
@@ -410,63 +396,6 @@ namespace EShop.Data.Migrations
                             Name = "samsung galaxy test",
                             Weight = 0
                         });
-                });
-
-            modelBuilder.Entity("EShop.Model.Models.ProductVersion", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Barcode")
-                        .HasColumnType("nvarchar(250)")
-                        .HasMaxLength(250);
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(500)")
-                        .HasMaxLength(500);
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,0)");
-
-                    b.Property<int>("ProductID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Quantum")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RemainingAmount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("SKU")
-                        .HasColumnType("nvarchar(250)")
-                        .HasMaxLength(250);
-
-                    b.Property<int>("WareHouseID")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("ProductVersions");
-                });
-
-            modelBuilder.Entity("EShop.Model.Models.ProductVersionImage", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("ImageID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductVersionID")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("ProductVersionImage");
                 });
 
             modelBuilder.Entity("EShop.Model.Models.Tag", b =>

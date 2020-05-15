@@ -7,6 +7,10 @@
   <ItemGroup>
     <Compile Remove="Migrations\20200513081822_addCatalogTable.cs" />
     <Compile Remove="Migrations\20200513081822_addCatalogTable.Designer.cs" />
+    <Compile Remove="Migrations\20200515034230_add_table_productVersion_auto_increment_key.cs" />
+    <Compile Remove="Migrations\20200515034230_add_table_productVersion_auto_increment_key.Designer.cs" />
+    <Compile Remove="Migrations\20200515034732_add_table_productVersion_fix.cs" />
+    <Compile Remove="Migrations\20200515034732_add_table_productVersion_fix.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -6,12 +6,18 @@ using System.Text;
 
 namespace EShop.Model.Models
 {
-    public class Category
+    [Table("Image")]
+    public class Image
     {
-        [Key]
-       
+        [Key] // chỉ định    khóa chính
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { set; get; }
 
-        public string Name { set; get; }
+
+
+        [MaxLength(500)]
+        public string Url { set; get; }
+
+
     }
 }

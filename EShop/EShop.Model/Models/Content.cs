@@ -10,6 +10,7 @@ namespace EShop.Model.Models
     public class Content
     {
         [Key]
+     
         public long ID { get; set; }
         [MaxLength(250, ErrorMessage = "Tên tin tức không vượt quá 250 ký tự"), MinLength(1, ErrorMessage = "Độ dài tối thiểu 1 ký tự")]
         [Required(ErrorMessage = "Tên tin tức không được để trống")]

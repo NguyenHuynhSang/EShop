@@ -9,6 +9,8 @@ namespace EShop.Model.Models
     [Table("Catalog")]
     public class Catalog
     {
+       
+
         [Key] // chỉ định    khóa chính
         public int ID { set; get; }
 

@@ -6,19 +6,20 @@ using System.Text;
 
 namespace EShop.Model.Models
 {
-    [Table("AttributeValue")]
-    public class AttributeValue
+    [Table("ProductVersionImage")]
+    public class ProductVersionImage
     {
-       
-
         [Key] // chỉ định    khóa chính
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { set; get; }
 
-        [Required]
-        public int AttributeID { set; get; }
+      
+        public int ImageID { set; get; }
 
-        [StringLength(500)]
-        public string Name { set; get; }
+        public int ProductVersionID { set; get; }
+
+
+
 
 
     }

@@ -9,7 +9,8 @@ namespace EShop.Model.Models
     [Table("ContentCategory")]
     public class ContentCategory
     {
-        [Key] 
+        [Key]
+      
         public long ID { get; set; }
 
         [MaxLength(250)]

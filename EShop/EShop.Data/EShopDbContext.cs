@@ -39,10 +39,24 @@ namespace EShop.Data
         public DbSet<Model.Models.Attribute> Attributes { get; set; }
 
         public DbSet<AttributeValue> AttributeValues { get; set; }
+
+        public DbSet<ProductVersion> ProductVersions { get; set; }
+
+        public DbSet<ProductVersionImage> ProductVersionImages { get; set; }
+
+        public DbSet<Image> Images { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder) //Một bảng có 2 khóa chính phải sử dụng fluent API
         {
             modelBuilder.Entity<ContentTag>()
                 .HasKey(o => new { o.TagID , o.ContentID});
+
+
+            // auto increment key
+
+
+
+
+
 
             modelBuilder.Entity<Product>().HasData(new Product { ID = 1, Name = "Iphone test",ApplyPromotion=true,Content="This is an iphone",Deliver=true,Description="no discrip" },
                                                    new Product { ID = 2, Name = "samsung galaxy test", ApplyPromotion = true, Content = "This is a samsung", Deliver = true, Description = "no discrip"});
