@@ -5,6 +5,8 @@
     function productCreateController(apiService,$scope,notificationService,$state) {
         $scope.jsonEntity = {};
         $scope.CreateProduct = CreateProduct;
+  
+
         function CreateProduct() {
             apiService.post('/eshopcore_war/api/json',  JSON.stringify($scope.jsonEntity)  , function (result) {
                 notificationService.displaySuccess("Thêm mới bản ghi thành công");

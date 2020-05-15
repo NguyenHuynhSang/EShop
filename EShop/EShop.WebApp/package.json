@@ -5,8 +5,10 @@
   "devDependencies": {
     "angular": "1.7.9",
     "angular-ui-router": "1.0.25",
-    "toastr": "2.1.2",
     "bootbox": "5.4.0",
-    "ngbootbox": "0.2.0"
+    "ngbootbox": "~0.2.0",
+    "ng-ckeditor": "2.0.5",
+    "ckeditor": "4.12.1",
+    "toastr": "2.1.2"
   }
 }
