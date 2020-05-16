@@ -4,51 +4,30 @@
 
     function productCreateController(apiService, $scope, notificationService, $state) {
 
-        var temp2 = ' <div class="form-group row">'
-            + '  <div class="col-lg-3">'
-            + '    <label>Thuộc tính </label>'
-            + '    <div class="input-group">'
-            + '        <div class="input-group-prepend"><span class="input-group-text" id="basic-addon2"><i>VNĐ</i></span></div>'
-            + '         <select class="form-control" ng-model="selectedItem" ng-options="x for x in listItem.id">'
-            + '         </select >'
-            + '   </div>'
-            + '   </div>'
-            + '  <div class="col-lg-6">'
-            + '        <label>Giá trị thuộc tính</label>'
-            + '        <div class="input-group">'
-            + '            <input type="text" class="form-control" placeholder="Nhập barcode" required>'
-            + '                           </div>'
-            + '         </div>'
-            + '       <div class="col-lg-3">'
-            + '          <label>Tùy chọn</label>'
-            + '          <div class="input-group align-content-center center-block">'
-            + '              <button style="height:100%"><i class="la flaticon-delete"></i></button>'
-            + '           </div>'
-            + '      </div>'
-            + '   </div>';
-
-
-
+      
         $scope.listItem = [
             {
                 id: 1,
             },
-
-
-
         ]
-        var maxID = $scope.listItem.length;
+
+        
+
+      
         $scope.selectedItem = {};
         $scope.jsonEntity = {};
         $scope.CreateProduct = CreateProduct;
         $scope.counter = 0;
         $scope.addDirective;
+        $scope.listAttribute = [];
+        $scope.listAttributeValue = [];
+        $scope.selectedAttributeValue = {};
+
         $scope.IncreateCounter = function () {
             $scope.counter++;
         }
 
         $scope.removeItem = function (id) {
-
             $('#object-' + id).empty();
         }
 
@@ -57,6 +36,62 @@
             $scope.listItem.push({ id: maxID });
         
         }
+
+
+        $scope.removeAtribute = function (index,id) {
+       
+            var config = {
+                params: {
+                    atributeId: index,
+                    action: "getAll",
+                }
+            }
+            apiService.get('/api/AttributeValue/GetAll', config, function (result) {
+                $scope.listAttributeValue[id]= result.data;
+                if (result.data.length == 0) {
+                    notificationService.displayWarning("Không tìm thấy bản ghi nào");
+                } else {
+
+                    notificationService.displaySuccess("Tìm thấy " + result.data.length + " bản ghi");
+                }
+            }, function () {
+                notificationService.displayError("Không lấy được dữ liệu từ server");
+            });
+        }
+
+
+        function GetListAttribute() {
+           
+            apiService.get('/api/Attribute/GetAll', null, function (result) {
+                $scope.listAttribute = result.data;
+                if (result.data.length == 0) {
+                    notificationService.displayWarning("Không tìm thấy bản ghi nào");
+                } else {
+
+                    notificationService.displaySuccess("Tìm thấy " + result.data.length + " bản ghi");
+                }
+            }, function () {
+                notificationService.displayError("Không lấy được dữ liệu từ server");
+            });
+
+        }
+
+        function GetListAttributeValue() {
+            apiService.get('/api/AttributeValue/GetAll', null, function (result) {
+                $scope.listAttributeValue = result.data;
+                if (result.data.length == 0) {
+                    notificationService.displayWarning("Không tìm thấy bản ghi nào");
+                } else {
+
+                    notificationService.displaySuccess("Tìm thấy " + result.data.length + " bản ghi");
+                }
+            }, function () {
+                notificationService.displayError("Không lấy được dữ liệu từ server");
+            });
+
+        }
+
+        var maxID = $scope.listItem.length;
         function CreateProduct() {
             apiService.post('/eshopcore_war/api/json', JSON.stringify($scope.jsonEntity), function (result) {
                 notificationService.displaySuccess("Thêm mới bản ghi thành công");
@@ -67,6 +102,9 @@
             });
         }
 
+
+        GetListAttribute();
+        GetListAttributeValue();
     }
 
 

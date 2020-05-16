@@ -41,15 +41,15 @@ namespace EShop.Service.Service
             return _attributeValueRepository.Delete(attributeValue);
         }
 
-        public IEnumerable<AttributeValue> GetAll(string keyword)
+        public IEnumerable<AttributeValue> GetAll(string atributeId)
         {
-            if (String.IsNullOrEmpty(keyword))
+            if (String.IsNullOrEmpty(atributeId))
             {
                 return _attributeValueRepository.GetAll();
             }
             else
             {
-                return _attributeValueRepository.GetMulti(x => x.Name.Contains(keyword));
+                return _attributeValueRepository.GetMulti(x => x.AttributeID== Int32.Parse(atributeId));
             }
 
         }

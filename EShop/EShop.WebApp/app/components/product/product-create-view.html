@@ -336,13 +336,13 @@
                                                 <label>Thuộc tính</label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend"><span class="input-group-text" id="basic-addon2"><i>VNĐ</i></span></div>
-                                                    <select ng-change="" class="form-control" ng-model="selectedItem[item.id]" ng-options="x.id for x in listItem"></select>
+                                                    <select ng-change="removeAtribute(selectedItem[item.id],item.id)" class="form-control" ng-model="selectedItem[item.id]" ng-options="x.id as x.name for x in listAttribute"></select>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <label>Giá trị thuộc tính</label>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" placeholder="Nhập barcode" required>
+                                                    <select class="form-control" ng-model="selectedAttributeValue[item.id]" ng-options="x.id as x.name for x in listAttributeValue[item.id]"></select>
 
                                                 </div>
                                             </div>

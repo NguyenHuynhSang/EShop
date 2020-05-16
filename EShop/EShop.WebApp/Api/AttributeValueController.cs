@@ -21,9 +21,9 @@ namespace EShop.WebApp.Api
         }
 
         [HttpGet]
-        public IEnumerable<AttributeValue> GetAll(string keyword)
+        public IEnumerable<AttributeValue> GetAll(string atributeId)
         {
-            var list = _attributeValueService.GetAll(keyword);
+            var list = _attributeValueService.GetAll(atributeId);
 
             return list;
         }
