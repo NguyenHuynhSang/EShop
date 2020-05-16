@@ -56,6 +56,17 @@ namespace EShop.WebApp
             services.AddScoped<ITagRepository, TagRepository>();
             services.AddScoped<ITagService, TagService>();
 
+            services.AddScoped<IAttributeRepository, AttributeRepository>();
+            services.AddScoped<IAttributeService, AttributeService>();
+
+            services.AddScoped<IAttributeValueRepository, AttributeValueRepository>();
+            services.AddScoped<IAttributeValueService, AttributeValueService>();
+
+
+            services.AddScoped<IProductAttributeRepository, ProductAttributeRepository>();
+            services.AddScoped<IProductAttributeService, ProductAttributeService>();
+
+
             services.AddCors(x => x.AddPolicy("EnableCORS",
                 builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod().AllowCredentials().Build()));
             services.AddSwaggerGen(swagger =>

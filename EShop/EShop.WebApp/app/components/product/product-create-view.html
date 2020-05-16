@@ -286,18 +286,105 @@
                 </div>
 
                 <div class="kt-portlet__body">
-                    <div class="form-group">
+                    <div class="kt-portlet kt-portlet--mobile" style="border-style: solid; border-color: #92a8d1;" id="productVersions">
 
-                        <label>Tên sản phẩm</label>
-                        <input type="text" class="form-control" placeholder="Nhập tên sản phẩm" required>
-                        <span class="form-text text-muted">We'll never share your email with anyone else.</span>
+                        <h5 class="kt-portlet__head-title ">
+                            Phiên bản
+                        </h5>
+                        <div class="kt-portlet__body">
+                            <div class="form-group row">
+                                <div class="col-lg-6">
+                                    <label>Giá gốc</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend"><span class="input-group-text" id="basic-addon2"><i>VNĐ</i></span></div>
+                                        <input type="number" class="form-control" placeholder="Chọn loại sản phẩm" min="0" value="0" required>
 
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <label>Số lượng</label>
+                                    <div class="input-group">
+                                        <input type="number" class="form-control" placeholder="Chọn loại sản phẩm" min="0" value="0" required>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-lg-6">
+                                    <label>SKU</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend"><span class="input-group-text" id="basic-addon2"><i>VNĐ</i></span></div>
+                                        <input type="text" class="form-control" placeholder="Chọn loại sản phẩm" required>
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <label>BarCode</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Nhập barcode" required>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group ">
+                                <div ng-repeat="item in listItem">
+                                    <div id="{{ 'object-' + item.id }}">
+                                        <div class="form-group row">
+                                            <div class="col-lg-3">
+                                                <label>Thuộc tính</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend"><span class="input-group-text" id="basic-addon2"><i>VNĐ</i></span></div>
+                                                    <select ng-change="" class="form-control" ng-model="selectedItem[item.id]" ng-options="x.id for x in listItem"></select>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <label>Giá trị thuộc tính</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" placeholder="Nhập barcode" required>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <label>Tùy chọn</label>
+                                                <div class="input-group align-content-center center-block">
+                                                    <button ng-click="removeItem(item.id)"><i class="la flaticon-delete"></i></button>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+
+                                <button ng-click="addMoreAttribute()" class="btn btn-facebook">Add more</button>
+                            </div>
+
+
+
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label>Mô tả phiên bản</label>
+                            <ng-ckeditor height="500px" remove-buttons="Image" remove-plugins="iframe,flash,smiley" style="height:500px"></ng-ckeditor>
+                        </div>
                     </div>
-                </div>
-            </div>
 
+
+                </div>
+                <br />
+
+
+            </div>
         </div>
 
-
     </div>
+
+
+</div>
 </div>

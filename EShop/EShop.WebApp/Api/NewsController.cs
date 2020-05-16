@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace EShop.WebApp.Api
 {
     [Route("api/[controller]/[action]")]
-    [ApiController]
+    [ApiController] 
     public class NewsController : ApiBaseController
     {
         INewsService _NewsService;
@@ -20,7 +20,6 @@ namespace EShop.WebApp.Api
             :base(errorService)
         {
             this._NewsService = newsService;
-
         }
 
         [HttpGet]

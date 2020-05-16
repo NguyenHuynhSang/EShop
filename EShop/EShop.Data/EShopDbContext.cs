@@ -45,6 +45,8 @@ namespace EShop.Data
         public DbSet<ProductVersionImage> ProductVersionImages { get; set; }
 
         public DbSet<Image> Images { get; set; }
+
+        public DbSet<ProductAttribute> productAttributes { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder) //Một bảng có 2 khóa chính phải sử dụng fluent API
         {
             modelBuilder.Entity<ContentTag>()
