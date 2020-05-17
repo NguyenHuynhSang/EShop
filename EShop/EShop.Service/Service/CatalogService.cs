@@ -15,6 +15,8 @@ namespace EShop.Service.Service
 
         IEnumerable<CatalogViewModel> GetAll(string keyword);
 
+        IEnumerable<CatalogTreeModel> GetCatalogTree();
+
         public Catalog GetCatalogById(int id);
 
         public Catalog Delete(Catalog catalog);
@@ -54,6 +56,11 @@ namespace EShop.Service.Service
         public Catalog GetCatalogById(int id)
         {
             return _catalogRepository.GetSingleById(id);
+        }
+
+        public IEnumerable<CatalogTreeModel> GetCatalogTree()
+        {
+            return _catalogRepository.GetTreeCatalog();
         }
 
         public IEnumerable<Catalog> GetChild()

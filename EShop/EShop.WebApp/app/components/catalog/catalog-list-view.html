@@ -111,9 +111,9 @@
 </div>
 <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
     <!-- begin:: tabs -->
-    <div class="kt-portlet kt-portlet--mobile">
-        <div class="kt-portlet__head kt-portlet__head--lg">
-
+    <!--begin::Portlet-->
+    <div class="kt-portlet">
+        <div class="kt-portlet__head">
             <div class="kt-portlet__head-label">
                 <span class="kt-portlet__head-icon">
                     <i class="kt-font-brand flaticon2-line-chart"></i>
@@ -122,151 +122,189 @@
                     Quản lý Danh mục
                 </h3>
             </div>
-            <div class="kt-portlet__head-toolbar">
-                <div class="kt-portlet__head-wrapper">
-                    <div class="kt-portlet__head-actions">
-                        <div class="dropdown dropdown-inline">
-                            <button type="button" class="btn btn-default btn-icon-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="la la-download"></i> Export
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <ul class="kt-nav">
-                                    <li class="kt-nav__section kt-nav__section--first">
-                                        <span class="kt-nav__section-text">Choose an option</span>
-                                    </li>
-                                    <li class="kt-nav__item">
-                                        <a href="#" class="kt-nav__link">
-                                            <i class="kt-nav__link-icon la la-print"></i>
-                                            <span class="kt-nav__link-text">Print</span>
-                                        </a>
-                                    </li>
-                                    <li class="kt-nav__item">
-                                        <a href="#" class="kt-nav__link">
-                                            <i class="kt-nav__link-icon la la-copy"></i>
-                                            <span class="kt-nav__link-text">Copy</span>
-                                        </a>
-                                    </li>
-                                    <li class="kt-nav__item">
-                                        <a href="#" class="kt-nav__link">
-                                            <i class="kt-nav__link-icon la la-file-excel-o"></i>
-                                            <span class="kt-nav__link-text">Excel</span>
-                                        </a>
-                                    </li>
-                                    <li class="kt-nav__item">
-                                        <a href="#" class="kt-nav__link">
-                                            <i class="kt-nav__link-icon la la-file-text-o"></i>
-                                            <span class="kt-nav__link-text">CSV</span>
-                                        </a>
-                                    </li>
-                                    <li class="kt-nav__item">
-                                        <a href="#" class="kt-nav__link">
-                                            <i class="kt-nav__link-icon la la-file-pdf-o"></i>
-                                            <span class="kt-nav__link-text">PDF</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        &nbsp;
-                        <a ui-sref="product-create" class="btn btn-brand btn-elevate btn-icon-sm">
-                            <i class="la la-plus"></i>
-                            Tạo sản phẩm mới
-                        </a>
+            <div class="kt-portlet__head-actions">
+                <div class="dropdown dropdown-inline">
+                    <button type="button" class="btn btn-default btn-icon-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="la la-download"></i> Export
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <ul class="kt-nav">
+                            <li class="kt-nav__section kt-nav__section--first">
+                                <span class="kt-nav__section-text">Choose an option</span>
+                            </li>
+                            <li class="kt-nav__item">
+                                <a href="#" class="kt-nav__link">
+                                    <i class="kt-nav__link-icon la la-print"></i>
+                                    <span class="kt-nav__link-text">Print</span>
+                                </a>
+                            </li>
+                            <li class="kt-nav__item">
+                                <a href="#" class="kt-nav__link">
+                                    <i class="kt-nav__link-icon la la-copy"></i>
+                                    <span class="kt-nav__link-text">Copy</span>
+                                </a>
+                            </li>
+                            <li class="kt-nav__item">
+                                <a href="#" class="kt-nav__link">
+                                    <i class="kt-nav__link-icon la la-file-excel-o"></i>
+                                    <span class="kt-nav__link-text">Excel</span>
+                                </a>
+                            </li>
+                            <li class="kt-nav__item">
+                                <a href="#" class="kt-nav__link">
+                                    <i class="kt-nav__link-icon la la-file-text-o"></i>
+                                    <span class="kt-nav__link-text">CSV</span>
+                                </a>
+                            </li>
+                            <li class="kt-nav__item">
+                                <a href="#" class="kt-nav__link">
+                                    <i class="kt-nav__link-icon la la-file-pdf-o"></i>
+                                    <span class="kt-nav__link-text">PDF</span>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
+                &nbsp;
+                <a ui-sref="product-create" class="btn btn-brand btn-elevate btn-icon-sm">
+                    <i class="la la-plus"></i>
+                    Tạo sản phẩm mới
+                </a>
             </div>
         </div>
         <div class="kt-portlet__body">
+            <ul class="nav nav-tabs  nav-tabs-line" role="tablist">
+                <li class="nav-item" style="width:40%;">
+                    <a class="nav-link active" data-toggle="tab" href="#kt_tabs_1_1" role="tab">Dạng danh sách</a>
+                </li>
 
-            <form class="kt-form kt-form--fit kt-margin-b-20">
-                <div class="row kt-margin-b-20">
-                    <div class="col-lg-6 kt-margin-b-10-tablet-and-mobile">
-                        <label>Mã:</label>
-                        <input type="text" class="form-control kt-input" placeholder="Mã" data-col-index="0">
-                    </div>
-                    <div class="col-lg-6 kt-margin-b-10-tablet-and-mobile">
-                        <label>Chọn danh mục:</label>
-                        <input type="text" class="form-control kt-input" placeholder="Danh mục cha" data-col-index="1">
-                    </div>
-          
-                </div>
-    
-                <div class="kt-separator kt-separator--md kt-separator--dashed"></div>
-                <div class="row">
-                    <div class="col-lg-8">
-                        <!--<button class="btn btn-primary btn-brand--icon" id="kt_search">
-                            <span>
-                                <i class="la la-search"></i>
-                                <span>Search</span>
-                            </span>
-                        </button>-->
-                        &nbsp;&nbsp;
-                        <button class="btn btn-secondary btn-secondary--icon" id="kt_reset">
-                            <span>
-                                <i class="la la-close"></i>
-                                <span>Reset</span>
-                            </span>
-                        </button>
-                    </div>
-                    <div class="col-lg-4">
-                     <!--   <span style="float: right;">abc</span>-->
-                    </div>
-                </div>
-            </form>
+                <li class="nav-item" style="width:40%;">
+                    <a class="nav-link" data-toggle="tab" href="#kt_tabs_1_3" role="tab">Dạng cây phân cấp</a>
+                </li>
+            </ul>
             <div class="tab-content">
-                <!-- begin:: tab1-->
-                <div class="tab-pane active" id="kt_tabs_5_1" role="tabpanel">
-                    <!-- begin:: content-tab1-->
+                <div class="tab-pane active" id="kt_tabs_1_1" role="tabpanel">
 
-                    <div class="kt-portlet kt-portlet--mobile">
-                        <!--begin: Datatable -->
-                        <table ng-if="catalogList.length>0" class="table table-striped- table-bordered table-hover table-checkable" id="kt_table_1">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Tên danh mục</th>
-                                    <th>Danh mục cha</th>
-                                    <th>Ngày tạo</th>
-                                    <th>Người tạo</th>
-                                    <th>.....</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="item in catalogList">
-                                    <td>{{item.catalog.id}}</td>
-                                    <td>{{item.catalog.name}}</td>
-                                    <td>{{item.parentName}}</td>
-                                    <td>{{item.catalog.createdBy}}</td>
-                                    <td>{{item.catalog.createdDate}}</td>
-                                    <td>tool here</td>
-                                </tr>
-                            </tbody>
-                        </table>
 
-                        <!--end: Datatable -->
+                    <div class="kt-portlet__head-toolbar">
+                        <div class="kt-portlet__head-wrapper">
 
+                        </div>
+
+
+                        <form class="kt-form kt-form--fit kt-margin-b-20">
+                            <div class="row kt-margin-b-20">
+                                <div class="col-lg-6 kt-margin-b-10-tablet-and-mobile">
+                                    <label>Mã:</label>
+                                    <input type="text" class="form-control kt-input" placeholder="Mã" data-col-index="0">
+                                </div>
+                                <div class="col-lg-6 kt-margin-b-10-tablet-and-mobile">
+                                    <label>Chọn danh mục:</label>
+                                    <input type="text" class="form-control kt-input" placeholder="Danh mục cha" data-col-index="1">
+                                </div>
+
+                            </div>
+
+                            <div class="kt-separator kt-separator--md kt-separator--dashed"></div>
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <!--<button class="btn btn-primary btn-brand--icon" id="kt_search">
+                                        <span>
+                                            <i class="la la-search"></i>
+                                            <span>Search</span>
+                                        </span>
+                                    </button>-->
+                                    &nbsp;&nbsp;
+                                    <button class="btn btn-secondary btn-secondary--icon" id="kt_reset">
+                                        <span>
+                                            <i class="la la-close"></i>
+                                            <span>Reset</span>
+                                        </span>
+                                    </button>
+                                </div>
+                                <div class="col-lg-4">
+                                    <!--   <span style="float: right;">abc</span>-->
+                                </div>
+                            </div>
+                        </form>
+                        <div class="tab-content">
+                            <!-- begin:: tab1-->
+                            <div class="tab-pane active" id="kt_tabs_5_1" role="tabpanel">
+                                <!-- begin:: content-tab1-->
+
+                                <div class="kt-portlet kt-portlet--mobile">
+                                    <!--begin: Datatable -->
+                                    <table ng-if="catalogList.length>0" class="table table-striped- table-bordered table-hover table-checkable" id="kt_table_1">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Tên danh mục</th>
+                                                <th>Danh mục cha</th>
+                                                <th>Ngày tạo</th>
+                                                <th>Người tạo</th>
+                                                <th>.....</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="item in catalogList">
+                                                <td>{{item.catalog.id}}</td>
+                                                <td>{{item.catalog.name}}</td>
+                                                <td>{{item.parentName}}</td>
+                                                <td>{{item.catalog.createdBy}}</td>
+                                                <td>{{item.catalog.createdDate}}</td>
+                                                <td>tool here</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <!--end: Datatable -->
+
+
+                                </div>
+                                <!-- end:: content-tab1-->
+                            </div>
+                            <!-- end:: tab1-->
+                            <!-- begin:: tab2-->
+                            <!--
+                            <div class="tab-pane" id="kt_tabs_5_2" role="tabpanel">
+                                content 2
+                            </div>
+                            <div class="tab-pane" id="kt_tabs_5_3" role="tabpanel">
+                                content 3
+
+                            </div>
+                            <div class="tab-pane" id="kt_tabs_5_4" role="tabpanel">
+                                content 4
+
+                            </div>
+                            -->
+                        </div>
 
                     </div>
-                    <!-- end:: content-tab1-->
                 </div>
-                <!-- end:: tab1-->
-                <!-- begin:: tab2-->
-                <!--
-                <div class="tab-pane" id="kt_tabs_5_2" role="tabpanel">
-                    content 2
+                <div class="tab-pane" id="kt_tabs_1_3" role="tabpanel">
+                    <div ui-tree="treeOptions" data-max-depth="2" class="angular-ui-tree"">
+                        <ol ui-tree-nodes ng-model="catalogTree" expand-on-hover="false" data-type="top-level" collapsed="false">
+                            <li ng-repeat="item in catalogTree" ui-tree-node>
+                                <div ui-tree-handle>
+                                    {{item.parent.name}}
+                                </div>
+                                <ol ui-tree-nodes ng-model="item.childs">
+                                    <li ng-repeat="subItem in item.childs" ui-tree-node>
+                                        <div ui-tree-handle>
+                                            {{subItem.name}}
+                                        </div>
+                                    </li>
+                                </ol>
+                            </li>
+                        </ol>
+                    </div>
                 </div>
-                <div class="tab-pane" id="kt_tabs_5_3" role="tabpanel">
-                    content 3
-
-                </div>
-                <div class="tab-pane" id="kt_tabs_5_4" role="tabpanel">
-                    content 4
-
-                </div>
-                -->
             </div>
         </div>
     </div>
+
+
     <!-- end:: tabs -->
 </div>
 <!-- end:: Content -->

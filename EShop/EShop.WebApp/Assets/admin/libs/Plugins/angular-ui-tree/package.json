@@ -1,0 +1,80 @@
+{
+  "_from": "angular-ui-tree@2.22.6",
+  "_id": "angular-ui-tree@2.22.6",
+  "_inBundle": false,
+  "_integrity": "sha512-VzuXM6NdYeQD0Y1RF5oTYc3o8yoW9mtxhnJs5Fvwu40V1Alzq7ybJj+kvApXZ69M0mvRd8LLM+3Q4pI26md+fA==",
+  "_location": "/angular-ui-tree",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "angular-ui-tree@2.22.6",
+    "name": "angular-ui-tree",
+    "escapedName": "angular-ui-tree",
+    "rawSpec": "2.22.6",
+    "saveSpec": null,
+    "fetchSpec": "2.22.6"
+  },
+  "_requiredBy": [
+    "#DEV:/"
+  ],
+  "_resolved": "https://registry.npmjs.org/angular-ui-tree/-/angular-ui-tree-2.22.6.tgz",
+  "_shasum": "849727fdd1d13d84c1a590bb08934cc224e5a407",
+  "_spec": "angular-ui-tree@2.22.6",
+  "_where": "D:\\Git\\CoreAngular\\EShop\\EShop\\EShop.WebApp",
+  "bugs": {
+    "url": "https://github.com/angular-ui-tree/angular-ui-tree/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "An AngularJS UI component that can sort nested lists, provides drag & drop support and doesn't depend on jQuery",
+  "devDependencies": {
+    "codacy-coverage": "2.0.2",
+    "connect-livereload": "0.6.0",
+    "coveralls": "2.13.1",
+    "del": "3.0.0",
+    "gulp": "3.9.1",
+    "gulp-concat": "2.6.1",
+    "gulp-connect": "5.0.0",
+    "gulp-cssnano": "2.1.2",
+    "gulp-gh-pages": "0.5.4",
+    "gulp-jscs": "4.0.0",
+    "gulp-jshint": "2.0.4",
+    "gulp-load-plugins": "1.5.0",
+    "gulp-rename": "1.2.2",
+    "gulp-symlink": "2.1.4",
+    "gulp-uglify": "2.1.2",
+    "jshint": "2.9.5",
+    "jshint-stylish": "2.2.1",
+    "karma": "1.7.0",
+    "karma-coverage": "1.1.1",
+    "karma-firefox-launcher": "1.0.1",
+    "karma-jasmine": "1.1.0",
+    "karma-ng-html2js-preprocessor": "1.0.0",
+    "karma-phantomjs-launcher": "1.0.4",
+    "load-grunt-tasks": "3.5.2",
+    "open": "0.0.5",
+    "phantomjs-prebuilt": "2.1.15",
+    "protractor": "4.0.14",
+    "require-dir": "0.3.2"
+  },
+  "engines": {
+    "node": ">=6"
+  },
+  "homepage": "https://github.com/angular-ui-tree/angular-ui-tree#readme",
+  "license": "MIT",
+  "main": "index.js",
+  "name": "angular-ui-tree",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angular-ui-tree/angular-ui-tree.git"
+  },
+  "scripts": {
+    "codacy": "cat ./coverage/lcov/lcov.info | codacy-coverage --verbose",
+    "coveralls": "cat ./coverage/lcov/lcov.info | coveralls",
+    "pretest:e2e": "webdriver-manager update",
+    "test": "gulp build && npm run test:e2e",
+    "test:e2e": "protractor"
+  },
+  "version": "2.22.6"
+}

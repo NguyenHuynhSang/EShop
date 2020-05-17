@@ -6,13 +6,37 @@
     //chú ý thứ tự
     function catalogListController($scope, apiService, notificationService, $ngBootbox) {
         $scope.catalogList = [];
+        $scope.catalogTree = [];
+
+
         $scope.getListCatalog = getListCatalog;
+        $scope.getCatalogTree = getCatalogTree;
+
         $scope.keyWord = '';
 
         $scope.search = search;
         $scope.delProduct = delProduct;
 
+        $scope.treeOptions = {
+            accept: function (sourceNodeScope, destNodesScope, destIndex) {
 
+
+                console.log("Des");
+                console.log(destNodesScope.$modelValue);
+                if (sourceNodeScope.$modelValue.hasOwnProperty("parent")==true) {
+                    if (sourceNodeScope.$modelValue.parent.parentID == null) {
+                        return false;
+                    }
+                }
+
+                if (destNodesScope.$modelValue.lengh==0) {
+                    return false;
+                }
+
+                return true;
+
+            }
+        };
         function search() {
             getListProduct();
         }
@@ -53,6 +77,23 @@
             });
 
         }
-        $scope.getListCatalog();
+        function getCatalogTree() {
+
+            apiService.get('/api/Catalog/GetTree', null, function (result) {
+                $scope.catalogTree = result.data;
+                if (result.data.length == 0) {
+                    notificationService.displayWarning("Không tìm thấy bản ghi nào");
+                } else {
+
+                    notificationService.displaySuccess("Tìm thấy " + result.data.length + " bản ghi");
+                }
+            }, function () {
+                notificationService.displayError("Không lấy được dữ liệu từ server");
+            });
+        }
+
+
+        // $scope.getListCatalog();
+        $scope.getCatalogTree();
     }
 })(angular.module('eshop-catalog'));

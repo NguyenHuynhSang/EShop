@@ -45,7 +45,13 @@ namespace EShop.WebApp.Api
             return list;
         }
 
+        [HttpGet]
+        public IEnumerable<CatalogTreeModel> GetTree()
+        {
+            var list = _catalogService.GetCatalogTree();
 
+            return list;
+        }
         [HttpPost]
         public Catalog Create(Catalog catalog)
         {
@@ -53,6 +59,8 @@ namespace EShop.WebApp.Api
             return newCatalog;
         }
 
+
+       
 
 
     }

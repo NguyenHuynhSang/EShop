@@ -15,6 +15,9 @@ namespace EShop.Data.Repository
         IEnumerable<Catalog> GetParentCatalog();
 
         IEnumerable<CatalogViewModel> GetAllCatalogForView();
+
+        IEnumerable<CatalogTreeModel> GetTreeCatalog();
+
     }
     public class CatalogRepository : RepositoryBase<Catalog>, ICatalogRepository
     {
@@ -53,6 +56,17 @@ namespace EShop.Data.Repository
         {
             var querry = DbContext.Catalogs.Where(x => x.ParentID == null);
             return querry;
+        }
+
+        public IEnumerable<CatalogTreeModel> GetTreeCatalog()
+        {
+            var querry = from p in DbContext.Catalogs.Where(x => x.ParentID == null)
+                         select new CatalogTreeModel
+                         {
+                             Parent = p,
+                             Childs = DbContext.Catalogs.Where(x => x.ParentID == p.ID)
+                         };
+            return querry.OrderBy(x => x.Parent.CreatedDate).ToList();
         }
     }
 }

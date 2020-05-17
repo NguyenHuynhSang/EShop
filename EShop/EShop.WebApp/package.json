@@ -9,6 +9,7 @@
     "ngbootbox": "~0.2.0",
     "ng-ckeditor": "2.0.5",
     "ckeditor": "4.12.1",
-    "toastr": "2.1.2"
+    "toastr": "2.1.2",
+    "angular-ui-tree": "2.22.6"
   }
 }
