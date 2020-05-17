@@ -4,14 +4,16 @@ using EShop.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EShop.Data.Migrations
 {
     [DbContext(typeof(EShopDbContext))]
-    partial class EShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200517041821_add_attribute_name_Table_Catalog")]
+    partial class add_attribute_name_Table_Catalog
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -97,36 +99,6 @@ namespace EShop.Data.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Catalog");
-
-                    b.HasData(
-                        new
-                        {
-                            ID = 1,
-                            Name = "Điện thoại"
-                        },
-                        new
-                        {
-                            ID = 2,
-                            Name = "Laptop"
-                        },
-                        new
-                        {
-                            ID = 3,
-                            Name = "Samsung",
-                            ParentID = 1
-                        },
-                        new
-                        {
-                            ID = 4,
-                            Name = "Apple",
-                            ParentID = 1
-                        },
-                        new
-                        {
-                            ID = 5,
-                            Name = "Macbook",
-                            ParentID = 2
-                        });
                 });
 
             modelBuilder.Entity("EShop.Model.Models.Category", b =>

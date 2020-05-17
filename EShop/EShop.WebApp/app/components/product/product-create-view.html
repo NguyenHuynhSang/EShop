@@ -132,7 +132,7 @@
                     <div class="form-group">
 
                         <label>Tên sản phẩm</label>
-                        <input type="text" class="form-control" placeholder="Nhập tên sản phẩm" required>
+                        <input type="text" class="form-control" ng-model="product.name" placeholder="Nhập tên sản phẩm" required>
                         <span class="form-text text-muted">We'll never share your email with anyone else.</span>
 
                     </div>
@@ -158,7 +158,7 @@
 
                     <div class="form-group">
                         <label>Mô tả sản phẩm</label>
-                        <ng-ckeditor ckeditor="ckeditorConfig" height="500px" ng-model="htmlEditor" remove-buttons="Image" remove-plugins="iframe,flash,smiley" style="height:500px"></ng-ckeditor>
+                        <ng-ckeditor height="500px" ng-model="product.description" remove-buttons="Image" remove-plugins="iframe,flash,smiley" style="height:500px"></ng-ckeditor>
 
 
                         <span class="form-text text-muted">We'll never share your email with anyone else.</span>
@@ -342,15 +342,14 @@
                                             <div class="col-lg-6">
                                                 <label>Giá trị thuộc tính</label>
                                                 <div class="input-group">
-                                                    <select class="form-control" ng-model="selectedAttributeValue[item.id]" ng-options="x.id as x.name for x in listAttributeValue[item.id]"></select>
+                                                    <select class="form-control" ng-disabled="listAttributeValue[item.id].length == 0" ng-model="selectedAttributeValue[item.id]" ng-options="x.id as x.name for x in listAttributeValue[item.id]  "></select>
 
                                                 </div>
                                             </div>
                                             <div class="col-lg-3">
                                                 <label>Tùy chọn</label>
                                                 <div class="input-group align-content-center center-block">
-                                                    <button ng-click="removeItem(item.id)"><i class="la flaticon-delete"></i></button>
-
+                                                    <button ng-click="removeItem(selectedAttributeValue[item.id],item.id)"><i class="la flaticon-delete"></i></button>
                                                 </div>
                                             </div>
                                         </div>

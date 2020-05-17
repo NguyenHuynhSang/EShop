@@ -67,6 +67,10 @@ namespace EShop.WebApp
             services.AddScoped<IProductAttributeService, ProductAttributeService>();
 
 
+
+            services.AddScoped<ICatalogRepository,CatalogRepository>();
+            services.AddScoped<ICatalogService,CatalogService>();
+
             services.AddCors(x => x.AddPolicy("EnableCORS",
                 builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod().AllowCredentials().Build()));
             services.AddSwaggerGen(swagger =>

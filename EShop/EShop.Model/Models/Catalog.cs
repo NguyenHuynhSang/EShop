@@ -17,7 +17,7 @@ namespace EShop.Model.Models
         public int? ParentID { set; get; }
 
         [StringLength(500)]
-        public string Name;
+        public string Name { set; get; }
 
         [StringLength(500)]
         public string SEOTitle { set; get; }

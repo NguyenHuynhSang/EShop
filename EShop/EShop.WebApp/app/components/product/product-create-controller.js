@@ -4,16 +4,20 @@
 
     function productCreateController(apiService, $scope, notificationService, $state) {
 
-      
+
         $scope.listItem = [
             {
                 id: 1,
             },
         ]
 
-        
 
-      
+
+
+        $scope.product = {};
+        $scope.productVertion = {};
+
+
         $scope.selectedItem = {};
         $scope.jsonEntity = {};
         $scope.CreateProduct = CreateProduct;
@@ -27,19 +31,19 @@
             $scope.counter++;
         }
 
-        $scope.removeItem = function (id) {
+        $scope.removeItem = function (selectedItem, id) {
             $('#object-' + id).empty();
         }
 
         $scope.addMoreAttribute = function () {
             maxID++;
             $scope.listItem.push({ id: maxID });
-        
+            $scope.listItem.forEach(element => console.log($scope.selectedItem[element.id]));
         }
 
 
-        $scope.removeAtribute = function (index,id) {
-       
+        $scope.removeAtribute = function (index, id) {
+
             var config = {
                 params: {
                     atributeId: index,
@@ -47,7 +51,7 @@
                 }
             }
             apiService.get('/api/AttributeValue/GetAll', config, function (result) {
-                $scope.listAttributeValue[id]= result.data;
+                $scope.listAttributeValue[id] = result.data;
                 if (result.data.length == 0) {
                     notificationService.displayWarning("Không tìm thấy bản ghi nào");
                 } else {
@@ -57,11 +61,18 @@
             }, function () {
                 notificationService.displayError("Không lấy được dữ liệu từ server");
             });
+
+            //for (var i = 0; i < $scope.listAttribute.length; i++) {
+            //    if ($scope.listAttribute[i].id == index) {
+            //        $scope.listAttribute.splice(i, 1);
+            //    }
+            //}
+
         }
 
 
         function GetListAttribute() {
-           
+
             apiService.get('/api/Attribute/GetAll', null, function (result) {
                 $scope.listAttribute = result.data;
                 if (result.data.length == 0) {
@@ -89,6 +100,9 @@
                 notificationService.displayError("Không lấy được dữ liệu từ server");
             });
 
+
+
+
         }
 
         var maxID = $scope.listItem.length;
@@ -104,7 +118,7 @@
 
 
         GetListAttribute();
-        GetListAttributeValue();
+      //  GetListAttributeValue();
     }
 
 
@@ -141,7 +155,7 @@
             + '         <select class="form-control" ng-model="selectedItem" ng-options="x for x in list">'
             + '         </select >'
             + '   </div>'
-            +'   </div>'
+            + '   </div>'
             + '  <div class="col-lg-6">'
             + '        <label>Giá trị thuộc tính</label>'
             + '        <div class="input-group">'
@@ -154,7 +168,7 @@
             + '              <button style="height:100%"><i class="la flaticon-delete"></i></button>'
             + '           </div>'
             + '      </div>'
-            +'   </div>';
+            + '   </div>';
         return {
             restrict: 'A',
             scope: true,
@@ -165,13 +179,13 @@
                 $scope.selectedItem;
                 $scope.click = function () {
                     $('#attributeDiv').append($compile(temp)($scope));
-          
+
                 }
             }
         }
     });
 
 
-    
+
 })(angular.module('eshop-product'));
 

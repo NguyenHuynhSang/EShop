@@ -6,7 +6,7 @@ using System.Text;
 
 namespace EShop.Data
 {
-    public class EShopDbContext:DbContext
+    public class EShopDbContext : DbContext
     {
         //private static DbContextOptions GetOptions(string connectionString)
         //{
@@ -14,9 +14,9 @@ namespace EShop.Data
         //}
         public EShopDbContext(DbContextOptions<EShopDbContext> options) : base(options)
         {
-          
+
         }
-      
+
         public static EShopDbContext Create(DbContextOptions<EShopDbContext> options)
         {
             return new EShopDbContext(options);
@@ -50,7 +50,7 @@ namespace EShop.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder) //Một bảng có 2 khóa chính phải sử dụng fluent API
         {
             modelBuilder.Entity<ContentTag>()
-                .HasKey(o => new { o.TagID , o.ContentID});
+                .HasKey(o => new { o.TagID, o.ContentID });
 
 
             // auto increment key
@@ -60,8 +60,14 @@ namespace EShop.Data
 
 
 
-            modelBuilder.Entity<Product>().HasData(new Product { ID = 1, Name = "Iphone test",ApplyPromotion=true,Content="This is an iphone",Deliver=true,Description="no discrip" },
-                                                   new Product { ID = 2, Name = "samsung galaxy test", ApplyPromotion = true, Content = "This is a samsung", Deliver = true, Description = "no discrip"});
+            modelBuilder.Entity<Product>().HasData(new Product { ID = 1, Name = "Iphone test", ApplyPromotion = true, Content = "This is an iphone", Deliver = true, Description = "no discrip" },
+                                                   new Product { ID = 2, Name = "samsung galaxy test", ApplyPromotion = true, Content = "This is a samsung", Deliver = true, Description = "no discrip" });
+
+            modelBuilder.Entity<Catalog>().HasData(new Catalog { ID = 1, ParentID = null, Name = "Điện thoại" },
+                                                 new Catalog { ID = 2, ParentID = null, Name = "Laptop" },
+                                                 new Catalog { ID = 3, ParentID = 1, Name = "Samsung" },
+                                                 new Catalog { ID = 4, ParentID = 1, Name = "Apple" },
+                                                 new Catalog { ID = 5, ParentID = 2, Name = "Macbook" });
 
         }
 

@@ -11,6 +11,8 @@
     <Compile Remove="Migrations\20200515034230_add_table_productVersion_auto_increment_key.Designer.cs" />
     <Compile Remove="Migrations\20200515034732_add_table_productVersion_fix.cs" />
     <Compile Remove="Migrations\20200515034732_add_table_productVersion_fix.Designer.cs" />
+    <Compile Remove="Migrations\20200517041739_add_attribute_name_Table_Catalog.cs" />
+    <Compile Remove="Migrations\20200517041739_add_attribute_name_Table_Catalog.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
