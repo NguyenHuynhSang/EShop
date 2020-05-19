@@ -93,7 +93,7 @@
         }
 
 
-        // $scope.getListCatalog();
+        $scope.getListCatalog();
         $scope.getCatalogTree();
     }
 })(angular.module('eshop-catalog'));

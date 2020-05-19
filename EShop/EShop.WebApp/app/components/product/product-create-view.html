@@ -270,7 +270,8 @@
 
     </div>
 
-    <div class="row">
+    <div class="row" ">
+
         <div class="col-md-9">
             <div class="kt-portlet kt-portlet--mobile">
 
@@ -285,7 +286,7 @@
 
                 </div>
 
-                <div class="kt-portlet__body">
+                <div class="kt-portlet__body" ng-repeat="ver in product.version  track by $index" ng-init="versionIndex=$index">
                     <div class="kt-portlet kt-portlet--mobile" style="border-style: solid; border-color: #92a8d1;" id="productVersions">
 
                         <h5 class="kt-portlet__head-title ">
@@ -297,14 +298,14 @@
                                     <label>Giá gốc</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend"><span class="input-group-text" id="basic-addon2"><i>VNĐ</i></span></div>
-                                        <input type="number" class="form-control" placeholder="Chọn loại sản phẩm" min="0" value="0" required>
+                                        <input ng-model="ver.price[versionIndex]" type="number" class="form-control" placeholder="Chọn loại sản phẩm" min="0" value="0" required>
 
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <label>Số lượng</label>
                                     <div class="input-group">
-                                        <input type="number" class="form-control" placeholder="Chọn loại sản phẩm" min="0" value="0" required>
+                                        <input ng-model="ver.quantum[versionIndex]" type="number" class="form-control" placeholder="Chọn loại sản phẩm" min="0" value="0" required>
 
                                     </div>
                                 </div>
@@ -314,14 +315,14 @@
                                     <label>SKU</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend"><span class="input-group-text" id="basic-addon2"><i>VNĐ</i></span></div>
-                                        <input type="text" class="form-control" placeholder="Chọn loại sản phẩm" required>
+                                        <input ng-model="ver.sKU[versionIndex]" type="text" class="form-control" placeholder="Chọn loại sản phẩm" required>
 
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <label>BarCode</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Nhập barcode" required>
+                                        <input ng-model="ver.barcode[versionIndex]" type="text" class="form-control" placeholder="Nhập barcode" required>
 
                                     </div>
                                 </div>
@@ -329,27 +330,27 @@
 
 
                             <div class="form-group ">
-                                <div ng-repeat="item in listItem">
-                                    <div id="{{ 'object-' + item.id }}">
+                                <div ng-repeat="attr in ver.attribute track by $index" ng-init="childIndex=$index">
+                                    <div >
                                         <div class="form-group row">
                                             <div class="col-lg-3">
                                                 <label>Thuộc tính</label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend"><span class="input-group-text" id="basic-addon2"><i>VNĐ</i></span></div>
-                                                    <select ng-change="removeAtribute(selectedItem[item.id],item.id)" class="form-control" ng-model="selectedItem[item.id]" ng-options="x.id as x.name for x in listAttribute"></select>
+                                                    <select ng-change="selectAttributeName(versionIndex,childIndex,var[childIndex].id)" class="form-control" ng-model="var[childIndex].id" ng-options="x.id as x.name for x in listAttribute"></select>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <label>Giá trị thuộc tính</label>
                                                 <div class="input-group">
-                                                    <select class="form-control" ng-disabled="listAttributeValue[item.id].length == 0" ng-model="selectedAttributeValue[item.id]" ng-options="x.id as x.name for x in listAttributeValue[item.id]  "></select>
+                                                    <select class="form-control" ng-model="attr[childIndex].attributeID" ng-options="x.id as x.name for x in attributeValueListPerVersion[versionIndex].atributeValue[childIndex]  "></select>
 
                                                 </div>
                                             </div>
                                             <div class="col-lg-3">
                                                 <label>Tùy chọn</label>
                                                 <div class="input-group align-content-center center-block">
-                                                    <button ng-click="removeItem(selectedAttributeValue[item.id],item.id)"><i class="la flaticon-delete"></i></button>
+                                                    <button ng-click="removeAttributeValue(versionIndex,childIndex)"><i class="la flaticon-delete"></i></button>
                                                 </div>
                                             </div>
                                         </div>
@@ -359,7 +360,7 @@
 
                                 </div>
 
-                                <button ng-click="addMoreAttribute()" class="btn btn-facebook">Add more</button>
+                                <button ng-click="addNewAttributeSet(versionIndex)" class="btn btn-facebook">Add more</button>
                             </div>
 
 
@@ -372,9 +373,20 @@
                             <label>Mô tả phiên bản</label>
                             <ng-ckeditor height="500px" remove-buttons="Image" remove-plugins="iframe,flash,smiley" style="height:500px"></ng-ckeditor>
                         </div>
+
+
+
                     </div>
 
 
+                </div>
+
+
+                <div class="form-control">
+                    <div class="form-group">
+                        <button class="btn btn-primary" ng-click="addNewVersion()">Thêm phiên bản</button>
+
+                    </div>
                 </div>
                 <br />
 
@@ -382,8 +394,13 @@
             </div>
         </div>
 
+
+
     </div>
 
+    <div class="row">
+        <button class="btn btn-primary" ng-click="submit()">Submit</button>
+    </div>
 
 </div>
 </div>
