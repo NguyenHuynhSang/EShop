@@ -69,6 +69,16 @@ namespace EShop.Data
                                                  new Catalog { ID = 4, ParentID = 1, Name = "Apple" },
                                                  new Catalog { ID = 5, ParentID = 2, Name = "Macbook" });
 
+            modelBuilder.Entity<Model.Models.Attribute>().HasData(new Model.Models.Attribute { ID = 1, Name="Màu sắc" },
+                                                 new Model.Models.Attribute { ID = 2, Name="Dung lượng" });
+
+            modelBuilder.Entity<AttributeValue>().HasData(new AttributeValue { ID = 1, AttributeID=1,Name="Đỏ"},
+                                                new AttributeValue { ID = 2, AttributeID = 1, Name = "Xanh" },
+                                               new AttributeValue { ID = 3, AttributeID = 1, Name = "Tím" },
+                                                new AttributeValue { ID = 4, AttributeID = 2, Name = "16gb" },
+                                                new AttributeValue { ID =5, AttributeID = 2, Name = "32gb" },
+                                                   new AttributeValue { ID = 6, AttributeID = 2, Name = "64gb" });
+
         }
 
 
