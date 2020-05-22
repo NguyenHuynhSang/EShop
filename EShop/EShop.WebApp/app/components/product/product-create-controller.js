@@ -13,8 +13,8 @@
         //ds attributevalue của từng attribute của từng version
         $scope.attributeValueListPerVersion = [{ atributeValue: [] }]
 
-        $scope.product = {
-            name: '', description: '', version: [{ attribute: [{}]}]
+        $scope.productInput = {
+            name: '', description: '', version: [{ attribute: []}]
         };
 
 
@@ -22,27 +22,30 @@
 
         ///Thêm  phiên bản cho sản phẩm
         $scope.addNewVersion = function() {
-            $scope.product.version.push({ attribute: [] });
+            $scope.productInput.version.push({ attribute: [] });
             $scope.attributeValueListPerVersion.push({ atributeValue: [] });
         }
         
 
         // Thêm  attributevalue dựa vào phiên bản
         $scope.addNewAttributeSet = function (verIndex) {
-            $scope.product.version[verIndex].attribute.push({});
+            $scope.productInput.version[verIndex].attribute.push({});
+        
         
         };
 
         // loại bỏ 1 attribute value
         $scope.removeAttributeValue = function (verIndex,element) {
-            $scope.product.version[verIndex].attribute.splice(element, 1);
+            $scope.productInput.version[verIndex].attribute.splice(element, 1);
+            $scope.attributeValueListPerVersion[verIndex].atributeValue.splice(element,1);
+            var afterRemoveIndexOfAttribute = $scope.productInput.version[verIndex].attribute;
         };
 
 
         
         //submit form để test
         $scope.submit = function () {
-            var temp = $scope.product;
+            var temp = $scope.productInput;
             var selected = $scope.attributeValueListPerVersion;
         }
 
@@ -116,65 +119,6 @@
 
 
 
-
-
-    //app.directive('addDivDirective', function () {
-    //    var temp = '<div class="form-group">'
-    //        + '<label>{{counter}}</label>'
-    //        + '<input type="text" class="form-control" placeholder="Nhập tên sản phẩm" required>'
-    //        + '<span class="form-text text-muted">hello</span > '
-    //        + '</div>';
-    //    return {
-    //        restrict: 'A',
-    //        scope: true,
-    //        template: '<button id="addDiv" class="btn btn-default" ng-click="click()">Add</button>',
-    //        controller: function ($scope, $element, $compile) {
-    //            $scope.clicked = 0;
-    //            $scope.click = function () {
-    //                $('#addMoreVersion').append($compile(temp)($scope));
-    //            }
-    //        }
-    //    }
-    //});
-
-    //app.directive('addAttributeDirective', function () {
-    //    var temp = ' <div class="form-group row">'
-    //        + '  <div class="col-lg-3">'
-    //        + '    <label>Thuộc tính </label>'
-    //        + '    <div class="input-group">'
-    //        + '        <div class="input-group-prepend"><span class="input-group-text" id="basic-addon2"><i>VNĐ</i></span></div>'
-    //        + '         <select class="form-control" ng-model="selectedItem" ng-options="x for x in list">'
-    //        + '         </select >'
-    //        + '   </div>'
-    //        + '   </div>'
-    //        + '  <div class="col-lg-6">'
-    //        + '        <label>Giá trị thuộc tính</label>'
-    //        + '        <div class="input-group">'
-    //        + '            <input type="text" class="form-control" placeholder="Nhập barcode" required>'
-    //        + '                           </div>'
-    //        + '         </div>'
-    //        + '       <div class="col-lg-3">'
-    //        + '          <label>Tùy chọn</label>'
-    //        + '          <div class="input-group align-content-center center-block">'
-    //        + '              <button style="height:100%"><i class="la flaticon-delete"></i></button>'
-    //        + '           </div>'
-    //        + '      </div>'
-    //        + '   </div>';
-    //    return {
-    //        restrict: 'A',
-    //        scope: true,
-    //        template: '<button id="addAtributeBtn" class="btn btn-default" ng-click="click()">Add</button>',
-    //        controller: function ($scope, $element, $compile) {
-    //            $scope.clicked = 0;
-    //            $scope.list = ['option A', 'option B', 'option C']
-    //            $scope.selectedItem;
-    //            $scope.click = function () {
-    //                $('#attributeDiv').append($compile(temp)($scope));
-
-    //            }
-    //        }
-    //    }
-    //});
 
 
 

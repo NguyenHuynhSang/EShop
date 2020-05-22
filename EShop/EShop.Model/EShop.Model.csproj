@@ -8,4 +8,8 @@
     <ProjectReference Include="..\EShop.Common\EShop.Common.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="InputModels\" />
+  </ItemGroup>
+
 </Project>
