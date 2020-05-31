@@ -10,7 +10,6 @@ namespace EShop.Model.Models
     public class AttributeValue
     {
        
-
         [Key] // chỉ định    khóa chính
         public int ID { set; get; }
 
@@ -19,7 +18,6 @@ namespace EShop.Model.Models
 
         [StringLength(500)]
         public string Name { set; get; }
-
 
     }
 }

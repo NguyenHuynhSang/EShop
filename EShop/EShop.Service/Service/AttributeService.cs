@@ -12,7 +12,6 @@ namespace EShop.Service.Service
     {
         Model.Models.Attribute Add(Model.Models.Attribute attribute);
         IEnumerable<Model.Models.Attribute> GetAll(string keyword);
-
         public Model.Models.Attribute GetAttributeById(int id);
 
         public Model.Models.Attribute Delete(Model.Models.Attribute attribute);

@@ -3,17 +3,31 @@
     //inject các service cần dùng
     productListController.$inject = ['$scope', 'api-service', 'notification-service', '$ngBootbox'];
 
-//chú ý thứ tự
+    //chú ý thứ tự
     function productListController($scope, apiService, notificationService, $ngBootbox) {
         $scope.productList = [];
         $scope.getListProduct = getListProduct;
+
+        $scope.productFilter = {};
+
+
+
         $scope.keyWord = '';
 
+
+
+
         $scope.search = search;
+        $scope.reset = function () {
+            $scope.productFilter = {};
+            getListProduct();
+        }
+
         $scope.delProduct = delProduct;
 
 
         function search() {
+
             getListProduct();
         }
 
@@ -38,9 +52,14 @@
 
         function getListProduct() {
             /*Cấu trúc config cho doget để get ra parameter chú ý các tên action*/
-           
 
-            apiService.get('/api/Product/GetAll', null, function (result) {
+            var config = {
+                params: {
+                    filterJson: angular.toJson($scope.productFilter)
+                }
+            }
+        
+            apiService.get('/api/Product/GetAll', config, function (result) {
                 $scope.productList = result.data;
                 if (result.data.length == 0) {
                     notificationService.displayWarning("Không tìm thấy bản ghi nào");
@@ -56,6 +75,11 @@
             });
 
         }
+
+
+
+
+
 
         $scope.getListProduct();
     }

@@ -14,10 +14,7 @@ namespace EShop.Data.Repository
     {
         public AttributeRepository(IDbFactory dbFactory) : base(dbFactory)
         {
-
         }
-
-
     }
 
 }

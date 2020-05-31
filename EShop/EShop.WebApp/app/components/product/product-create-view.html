@@ -148,8 +148,9 @@
                             <label>Loại sản phẩm</label>
                             <div class="input-group">
                                 <div class="input-group-prepend"><span class="input-group-text" id="basic-addon2"><i class="la la-search"></i></span></div>
-                                <input type="text" class="form-control" placeholder="Chọn loại sản phẩm" required>
-
+                                <select class="form-control"  ng-model="productInput.catalogID" ng-options="x.id as x.name for x in childCagalogList">
+                                    <option selected disabled  value="">---Chọn loại sản phẩm----</option>
+                                </select>
                             </div>
 
                             <!-- <span class="form-text text-muted">We'll never share your email with anyone else.</span>-->
@@ -363,8 +364,6 @@
                                 <button ng-click="addNewAttributeSet(versionIndex)" class="btn btn-facebook">Add more</button>
                             </div>
 
-
-
                         </div>
 
 
@@ -373,12 +372,7 @@
                             <label>Mô tả phiên bản</label>
                             <ng-ckeditor height="500px" remove-buttons="Image" remove-plugins="iframe,flash,smiley" style="height:500px"></ng-ckeditor>
                         </div>
-
-
-
                     </div>
-
-
                 </div>
 
 

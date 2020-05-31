@@ -5,11 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EShop.Common\EShop.Common.csproj" />
+    <Compile Remove="InputModels\**" />
+    <EmbeddedResource Remove="InputModels\**" />
+    <None Remove="InputModels\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="InputModels\" />
+    <ProjectReference Include="..\EShop.Common\EShop.Common.csproj" />
   </ItemGroup>
 
 </Project>

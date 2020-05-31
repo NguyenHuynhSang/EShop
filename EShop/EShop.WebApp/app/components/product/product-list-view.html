@@ -182,39 +182,32 @@
                 <div class="row kt-margin-b-20">
                     <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
                         <label>Mã:</label>
-                        <input type="text" class="form-control kt-input" placeholder="Mã" data-col-index="0">
+                        <input type="number" ng-model="productFilter.id" class="form-control kt-input" placeholder="Mã" data-col-index="0">
                     </div>
                     <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
-                        <label>Khách hàng:</label>
-                        <input type="text" class="form-control kt-input" placeholder="Tên khách hàng" data-col-index="1">
+                        <label>Tên sản phẩm:</label>
+                        <input type="text" ng-model="productFilter.name"  class="form-control kt-input" placeholder="Tên sản phẩm" data-col-index="1">
                     </div>
                     <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
-                        <label>Loại:</label>
-                        <select class="form-control kt-input" data-col-index="2">
+                        <label>Loại sản phẩm:</label>
+                        <select ng-model="productFilter.catalogID"  class="form-control kt-input" data-col-index="2">
                             <option value="">Select</option>
-                            <option value="Argentina">Argentina</option>
-                            <option value="Austria">Austria</option>
-                            <option value="China">China</option>
-                            <option value="Colombia">Colombia</option>
-                            <option value="Croatia">Croatia</option>
-                            <option value="Indonesia">Indonesia</option>
-                            <option value="Thailand">Thailand</option>
                         </select>
                     </div>
                     <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
-                        <label>COD:</label>
+                        <label>Số phiên bản:</label>
                         <input type="text" class="form-control kt-input" placeholder="COD" data-col-index="4">
                     </div>
                 </div>
                 <div class="row kt-margin-b-20">
                     <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
-                        <label>Ngày tạo:</label>
+                        <label>Trọng lượng:</label>
                         <div class="input-daterange input-group" id="kt_datepicker">
-                            <input type="text" class="form-control kt-input" name="start" placeholder="From" data-col-index="5">
+                            <input type="number" class="form-control kt-input" name="start" placeholder="từ" data-col-index="5">
                             <div class="input-group-append">
                                 <span class="input-group-text"><i class="la la-ellipsis-h"></i></span>
                             </div>
-                            <input type="text" class="form-control kt-input" name="end" placeholder="To" data-col-index="5">
+                            <input type="number" class="form-control kt-input" name="end" placeholder="đến" data-col-index="5">
                         </div>
                     </div>
                     <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
@@ -241,7 +234,7 @@
                         <label>Tùy chọn</label>
                         <div class="form-check-label" >
                             <label class="kt-checkbox kt-checkbox--tick kt-checkbox--brand">
-                                <input type="checkbox" checked="false"> Hiện thị phiên bản
+                                <input type="checkbox" ng-model="productFilter.searchByMultiKeyword"  checked="false">Tìm kiếm kết hợp từ khóa
                                 <span></span>
                             </label>
                         </div>
@@ -251,14 +244,14 @@
                 <div class="kt-separator kt-separator--md kt-separator--dashed"></div>
                 <div class="row">
                     <div class="col-lg-8">
-                        <!--<button class="btn btn-primary btn-brand--icon" id="kt_search">
+                        <button class="btn btn-primary btn-brand--icon" ng-click="search()" id="kt_search">
                             <span>
                                 <i class="la la-search"></i>
-                                <span>Search</span>
+                                <span>Tìm kiếm</span>
                             </span>
-                        </button>-->
+                        </button>
                         &nbsp;&nbsp;
-                        <button class="btn btn-secondary btn-secondary--icon" id="kt_reset">
+                        <button class="btn btn-secondary btn-secondary--icon" ng-click="reset()" id="kt_reset">
                             <span>
                                 <i class="la la-close"></i>
                                 <span>Reset</span>

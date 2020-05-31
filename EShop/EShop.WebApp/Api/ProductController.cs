@@ -6,6 +6,10 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Net;
 using System.Linq;
+using EShop.Model.InputModel;
+using EShop.Model.FilterModel;
+using Newtonsoft.Json;
+
 
 namespace EShop.WebApp.Api
 {
@@ -24,9 +28,15 @@ namespace EShop.WebApp.Api
         }
 
         [HttpGet]
-        public IEnumerable<Product> GetAll(string keyword)
+        public IEnumerable<Product> GetAll(string filterJson)
         {
-            var list = _productService.GetAll(keyword);
+            ProductFilterModel filterModel = null;
+            if (!string.IsNullOrEmpty(filterJson))
+            {
+                filterModel = JsonConvert.DeserializeObject<ProductFilterModel>(filterJson);
+            }
+
+            var list = _productService.GetAll(filterModel) ;
 
             return list;
         }
@@ -40,7 +50,14 @@ namespace EShop.WebApp.Api
         }
 
 
-         
+        [HttpPost]
+        public void CreateProductByProductInput(ProductInput product)
+        {
+             _productService.CreateByProductInput(product);
+             
+        }
+
+
         //public HttpResponseMessage Create(HttpRequestMessage request, Product product)
         //{
         //    return CreateHttpResponse(request, () =>
