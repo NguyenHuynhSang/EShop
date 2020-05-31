@@ -24,7 +24,7 @@ var KTDatatablesBasicBasic = function() {
 			order: [[1, 'desc']],
 
 			headerCallback: function(thead, data, start, end, display) {
-				thead.getElementsByTagName('th')[0].innerHTML = `
+				thead.getElementsByProductName('th')[0].innerHTML = `
                     <label class="kt-checkbox kt-checkbox--single kt-checkbox--solid">
                         <input type="checkbox" value="" class="kt-group-checkable">
                         <span></span>

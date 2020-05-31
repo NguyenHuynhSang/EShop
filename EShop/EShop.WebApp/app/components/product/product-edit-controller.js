@@ -1,8 +1,8 @@
 ﻿(function (app) {
-    app.controller('product-edit-controller', productEditController)
-    productEditController.$inject = ['api-service','$scope', 'notification-service','$state','$stateParams'];
+    app.controller('Product-edit-controller', ProductEditController)
+    ProductEditController.$inject = ['api-service','$scope', 'notification-service','$state','$stateParams'];
 
-    function productEditController(apiService,$scope,notificationService,$state,$stateParams) {
+    function ProductEditController(apiService,$scope,notificationService,$state,$stateParams) {
         $scope.newProduct = {};
         $scope.EditProduct = EditProduct;
 
@@ -26,12 +26,12 @@
         function EditProduct() {
             apiService.put('/eshopcore_war/api/json',  JSON.stringify($scope.jsonEntity)  , function (result) {
                 notificationService.displaySuccess("Sửa bản ghi thành công");
-                $state.go('product-list');
+                $state.go('Product-list');
             }, function () {
-                console.log('Load product api failed.');
+                console.log('Load Product api failed.');
                 notificationService.displayError("Thêm mới bản ghi KHÔNG thành công");
             });
         }
         LoadProductByID();
     }
-})(angular.module('eshop-product'));
+})(angular.module('eshop-Product'));

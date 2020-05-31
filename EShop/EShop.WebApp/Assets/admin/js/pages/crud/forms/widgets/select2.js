@@ -108,7 +108,7 @@ var KTSelect2 = function() {
 
         // custom styles
 
-        // tagging support
+        // Productging support
         $('#kt_select2_12_1, #kt_select2_12_2, #kt_select2_12_3, #kt_select2_12_4').select2({
             placeholder: "Select an option",
         });
@@ -135,10 +135,10 @@ var KTSelect2 = function() {
             minimumResultsForSearch: Infinity
         });
 
-        // tagging support
+        // Productging support
         $('#kt_select2_11').select2({
-            placeholder: "Add a tag",
-            tags: true
+            placeholder: "Add a Product",
+            Products: true
         });
 
         // disabled results

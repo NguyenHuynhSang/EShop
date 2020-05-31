@@ -386,7 +386,7 @@
     var findSpansByIndex = function (editor, index) {
       var nodes;
       var spans = [];
-      nodes = global$1.toArray(editor.getBody().getElementsByTagName('span'));
+      nodes = global$1.toArray(editor.getBody().getElementsByProductName('span'));
       if (nodes.length) {
         for (var i = 0; i < nodes.length; i++) {
           var nodeIndex = getElmIndex(nodes[i]);
@@ -472,7 +472,7 @@
       var i, nodes, node, matchIndex, currentMatchIndex, nextIndex = currentIndex;
       forward = forward !== false;
       node = editor.getBody();
-      nodes = global$1.grep(global$1.toArray(node.getElementsByTagName('span')), isMatchSpan);
+      nodes = global$1.grep(global$1.toArray(node.getElementsByProductName('span')), isMatchSpan);
       for (i = 0; i < nodes.length; i++) {
         var nodeIndex = getElmIndex(nodes[i]);
         matchIndex = currentMatchIndex = parseInt(nodeIndex, 10);
@@ -513,7 +513,7 @@
     var done = function (editor, currentSearchState, keepEditorSelection) {
       var i, nodes, startContainer, endContainer;
       var searchState = currentSearchState.get();
-      nodes = global$1.toArray(editor.getBody().getElementsByTagName('span'));
+      nodes = global$1.toArray(editor.getBody().getElementsByProductName('span'));
       for (i = 0; i < nodes.length; i++) {
         var nodeIndex = getElmIndex(nodes[i]);
         if (nodeIndex !== null && nodeIndex.length) {

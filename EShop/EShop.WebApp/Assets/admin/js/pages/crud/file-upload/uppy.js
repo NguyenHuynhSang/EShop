@@ -12,7 +12,7 @@ var KTUppy = function () {
 	const Dashboard = Uppy.Dashboard;
 	const Dropbox = Uppy.Dropbox;
 	const GoogleDrive = Uppy.GoogleDrive;
-	const Instagram = Uppy.Instagram;
+	const InsProductram = Uppy.InsProductram;
 	const Webcam = Uppy.Webcam;
 
 	// Private functions
@@ -47,7 +47,7 @@ var KTUppy = function () {
 		uppyDashboard.use(Tus, { endpoint: 'https://master.tus.io/files/' });
 		uppyDashboard.use(GoogleDrive, { target: Dashboard, companionUrl: 'https://companion.uppy.io' });
 		uppyDashboard.use(Dropbox, { target: Dashboard, companionUrl: 'https://companion.uppy.io' });
-		uppyDashboard.use(Instagram, { target: Dashboard, companionUrl: 'https://companion.uppy.io' });
+		uppyDashboard.use(InsProductram, { target: Dashboard, companionUrl: 'https://companion.uppy.io' });
 		uppyDashboard.use(Webcam, { target: Dashboard });
 	}
 
@@ -293,7 +293,7 @@ var KTUppy = function () {
 		uppyDashboard.use(Tus, { endpoint: 'https://master.tus.io/files/' });
 		uppyDashboard.use(GoogleDrive, { target: Dashboard, companionUrl: 'https://companion.uppy.io' });
 		uppyDashboard.use(Dropbox, { target: Dashboard, companionUrl: 'https://companion.uppy.io' });
-		uppyDashboard.use(Instagram, { target: Dashboard, companionUrl: 'https://companion.uppy.io' });
+		uppyDashboard.use(InsProductram, { target: Dashboard, companionUrl: 'https://companion.uppy.io' });
 		uppyDashboard.use(Webcam, { target: Dashboard });
 	}
 

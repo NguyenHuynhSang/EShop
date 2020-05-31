@@ -162,10 +162,10 @@ function bytediffFormatter(data) {
 }
 
 /**
- * Format a number as a percentage
+ * Format a number as a percenProducte
  * @param  {Number} num       Number to format as a percent
  * @param  {Number} precision Precision of the decimal
- * @return {Number}           Formatted perentage
+ * @return {Number}           Formatted perenProducte
  */
 function formatPercent(num, precision) {
     return (num * 100).toFixed(precision);

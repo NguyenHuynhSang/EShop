@@ -21,8 +21,8 @@
       return editor.getParam('toc_class', 'mce-toc');
     };
     var getTocHeader = function (editor) {
-      var tagName = editor.getParam('toc_header', 'h2');
-      return /^h[1-6]$/.test(tagName) ? tagName : 'h2';
+      var ProductName = editor.getParam('toc_header', 'h2');
+      return /^h[1-6]$/.test(ProductName) ? ProductName : 'h2';
     };
     var getTocDepth = function (editor) {
       var depth = parseInt(editor.getParam('toc_depth', '3'), 10);
@@ -57,10 +57,10 @@
     };
     var readHeaders = function (editor) {
       var tocClass = Settings.getTocClass(editor);
-      var headerTag = Settings.getTocHeader(editor);
+      var headerProduct = Settings.getTocHeader(editor);
       var selector = generateSelector(Settings.getTocDepth(editor));
       var headers = editor.$(selector);
-      if (headers.length && /^h[1-9]$/i.test(headerTag)) {
+      if (headers.length && /^h[1-9]$/i.test(headerProduct)) {
         headers = headers.filter(function (i, el) {
           return !editor.dom.hasClass(el.parentNode, tocClass);
         });
@@ -86,10 +86,10 @@
       }
       return minLevel;
     };
-    var generateTitle = function (tag, title) {
-      var openTag = '<' + tag + ' contenteditable="true">';
-      var closeTag = '</' + tag + '>';
-      return openTag + global$1.DOM.encode(title) + closeTag;
+    var generateTitle = function (Product, title) {
+      var openProduct = '<' + Product + ' contenteditable="true">';
+      var closeProduct = '</' + Product + '>';
+      return openProduct + global$1.DOM.encode(title) + closeProduct;
     };
     var generateTocHtml = function (editor) {
       var html = generateTocContentHtml(editor);

@@ -17,12 +17,12 @@ Docs & License: https://fullcalendar.io/
         colSpan: true,
         rowSpan: true
     };
-    var containerTagHash = {
+    var containerProductHash = {
         '<tr': 'tbody',
         '<td': 'tr'
     };
-    function createElement(tagName, attrs, content) {
-        var el = document.createElement(tagName);
+    function createElement(ProductName, attrs, content) {
+        var el = document.createElement(ProductName);
         if (attrs) {
             for (var attrName in attrs) {
                 if (attrName === 'style') {
@@ -46,7 +46,7 @@ Docs & License: https://fullcalendar.io/
     }
     function htmlToElement(html) {
         html = html.trim();
-        var container = document.createElement(computeContainerTag(html));
+        var container = document.createElement(computeContainerProduct(html));
         container.innerHTML = html;
         return container.firstChild;
     }
@@ -55,13 +55,13 @@ Docs & License: https://fullcalendar.io/
     }
     function htmlToNodeList(html) {
         html = html.trim();
-        var container = document.createElement(computeContainerTag(html));
+        var container = document.createElement(computeContainerProduct(html));
         container.innerHTML = html;
         return container.childNodes;
     }
-    // assumes html already trimmed and tag names are lowercase
-    function computeContainerTag(html) {
-        return containerTagHash[html.substr(0, 3) // faster than using regex
+    // assumes html already trimmed and Product names are lowercase
+    function computeContainerProduct(html) {
+        return containerProductHash[html.substr(0, 3) // faster than using regex
         ] || 'div';
     }
     function appendToElement(el, content) {
@@ -3400,11 +3400,11 @@ Docs & License: https://fullcalendar.io/
     }
 
     // Generates HTML for an anchor to another view into the calendar.
-    // Will either generate an <a> tag or a non-clickable <span> tag, depending on enabled settings.
+    // Will either generate an <a> Product or a non-clickable <span> Product, depending on enabled settings.
     // `gotoOptions` can either be a DateMarker, or an object with the form:
     // { date, type, forceOff }
     // `type` is a view-type like "day" or "week". default value is "day".
-    // `attrs` and `innerHtml` are use to generate the rest of the HTML tag.
+    // `attrs` and `innerHtml` are use to generate the rest of the HTML Product.
     function buildGotoAnchorHtml(allOptions, dateEnv, gotoOptions, attrs, innerHtml) {
         var date;
         var type;
@@ -6455,7 +6455,7 @@ Docs & License: https://fullcalendar.io/
                 var seg = getElSeg(segEl);
                 if (seg && // might be the <div> surrounding the more link
                     component.isValidSegDownEl(ev.target)) {
-                    // our way to simulate a link click for elements that can't be <a> tags
+                    // our way to simulate a link click for elements that can't be <a> Products
                     // grab before trigger fired in case trigger trashes DOM thru rerendering
                     var hasUrlContainer = elementClosest(ev.target, '.fc-has-url');
                     var url = hasUrlContainer ? hasUrlContainer.querySelector('a[href]').href : '';
@@ -7985,7 +7985,7 @@ Docs & License: https://fullcalendar.io/
     */
     var FillRenderer = /** @class */ (function () {
         function FillRenderer() {
-            this.fillSegTag = 'div';
+            this.fillSegProduct = 'div';
             this.dirtySizeFlags = {};
             this.containerElsByType = {};
             this.segsByType = {};
@@ -8042,7 +8042,7 @@ Docs & License: https://fullcalendar.io/
                 }
                 // correct element type? (would be bad if a non-TD were inserted into a table for example)
                 segs = segs.filter(function (seg) {
-                    return elementMatches(seg.el, _this.fillSegTag);
+                    return elementMatches(seg.el, _this.fillSegProduct);
                 });
             }
             return segs;
@@ -8065,10 +8065,10 @@ Docs & License: https://fullcalendar.io/
             else {
                 classNames.push('fc-' + type.toLowerCase());
             }
-            return '<' + this.fillSegTag +
+            return '<' + this.fillSegProduct +
                 (classNames.length ? ' class="' + classNames.join(' ') + '"' : '') +
                 (css ? ' style="' + cssToStr(css) + '"' : '') +
-                '></' + this.fillSegTag + '>';
+                '></' + this.fillSegProduct + '>';
         };
         FillRenderer.prototype.detachSegs = function (type, segs) {
             var containerEls = this.containerElsByType[type];
@@ -9257,7 +9257,7 @@ Docs & License: https://fullcalendar.io/
         __extends(DayGridFillRenderer, _super);
         function DayGridFillRenderer(dayGrid) {
             var _this = _super.call(this) || this;
-            _this.fillSegTag = 'td'; // override the default tag name
+            _this.fillSegProduct = 'td'; // override the default Product name
             _this.dayGrid = dayGrid;
             return _this;
         }
@@ -9304,7 +9304,7 @@ Docs & License: https://fullcalendar.io/
             skeletonEl = core.htmlToElement('<div class="fc-' + className + '-skeleton">' +
                 '<table><tr></tr></table>' +
                 '</div>');
-            trEl = skeletonEl.getElementsByTagName('tr')[0];
+            trEl = skeletonEl.getElementsByProductName('tr')[0];
             if (startCol > 0) {
                 core.appendToElement(trEl, 
                 // will create (startCol + 1) td's
@@ -11536,8 +11536,8 @@ Docs & License: https://fullcalendar.io/
     // certain clipping containers should never constrain interactions, like <html> and <body>
     // https://github.com/fullcalendar/fullcalendar/issues/3615
     function isIgnoredClipping(node) {
-        var tagName = node.tagName;
-        return tagName === 'HTML' || tagName === 'BODY';
+        var ProductName = node.ProductName;
+        return ProductName === 'HTML' || ProductName === 'BODY';
     }
 
     /*
@@ -13304,7 +13304,7 @@ Docs & License: https://fullcalendar.io/
         };
         // Calculate seg.forwardCoord and seg.backwardCoord for the segment, where both values range
         // from 0 to 1. If the calendar is left-to-right, the seg.backwardCoord maps to "left" and
-        // seg.forwardCoord maps to "right" (via percentage). Vice-versa if the calendar is right-to-left.
+        // seg.forwardCoord maps to "right" (via percenProducte). Vice-versa if the calendar is right-to-left.
         //
         // The segment might be part of a "series", which means consecutive segments with the same pressure
         // who's width is unknown until an edge has been hit. `seriesBackwardPressure` is the number of

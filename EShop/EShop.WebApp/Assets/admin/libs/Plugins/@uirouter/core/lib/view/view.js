@@ -215,7 +215,7 @@ var ViewService = /** @class */ (function () {
      * Given a ui-view and a ViewConfig, determines if they "match".
      *
      * A ui-view has a fully qualified name (fqn) and a context object.  The fqn is built from its overall location in
-     * the DOM, describing its nesting relationship to any parent ui-view tags it is nested inside of.
+     * the DOM, describing its nesting relationship to any parent ui-view Products it is nested inside of.
      *
      * A ViewConfig has a target ui-view name and a context anchor.  The ui-view name can be a simple name, or
      * can be a segmented ui-view path, describing a portion of a ui-view fqn.

@@ -23,10 +23,10 @@ Toastr Release Checklist
 	* Include License and Readme
 	* Test Locally
 	* Update Github repo toastr-bower
-	* Github tag
+	* Github Product
 	* Register with Bower
 7. Publish Nugets
 8. Release on Github 
-	* Tag with semver
+	* Product with semver
 	* Attach all artifacts
 9. Blog post

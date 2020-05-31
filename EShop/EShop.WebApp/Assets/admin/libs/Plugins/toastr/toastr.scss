@@ -37,7 +37,7 @@
   filter: alpha(opacity=40);
 }
 /*Additional properties for button version
- iOS requires the button element instead of an anchor tag.
+ iOS requires the button element instead of an anchor Product.
  If you want the anchor version, it requires `href="#"`.*/
 button.toast-close-button {
   padding: 0;

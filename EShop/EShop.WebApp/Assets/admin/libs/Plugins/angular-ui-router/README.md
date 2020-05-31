@@ -16,7 +16,7 @@ version 0.x, it can be found [here](https://github.com/angular-ui/ui-router/tree
 **[FAQ](https://github.com/angular-ui/ui-router/wiki/Frequently-Asked-Questions) |**
 **[Report an Issue](https://github.com/angular-ui/ui-router/blob/master/CONTRIBUTING.md#report-an-issue) |**
 **[Contribute](https://github.com/angular-ui/ui-router/blob/master/CONTRIBUTING.md#contribute) |**
-**[Help!](http://stackoverflow.com/questions/ask?tags=angularjs,angular-ui-router) |**
+**[Help!](http://stackoverflow.com/questions/ask?Products=angularjs,angular-ui-router) |**
 
 ---
 

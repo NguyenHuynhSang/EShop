@@ -53,6 +53,18 @@ namespace EShop.WebApp
 
             services.AddScoped<INewsService, NewsService>();
 
+            services.AddScoped<IContentCategoryRepository, ContentCategoryRepository>();
+            services.AddScoped<IContentCategoryService, ContentCategoryService>();
+
+            services.AddScoped<ITagRepository, TagRepository>();
+            services.AddScoped<ITagService, TagService>();
+
+            services.AddScoped<IContentTagRepository, ContentTagRepository>();
+            services.AddScoped<IContentTagService, ContentTagService>();
+
+            services.AddScoped<IContentRepository, ContentRepository>();
+            services.AddScoped<IContentService, ContentService>();
+
             services.AddCors(x => x.AddPolicy("EnableCORS",
                 builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod().AllowCredentials().Build()));
             services.AddSwaggerGen(swagger =>

@@ -39,7 +39,7 @@ function getTypeInfo(el) {
     var isForm = el[0].nodeName === 'FORM';
     return {
         attr: isForm ? 'action' : isSvg ? 'xlink:href' : 'href',
-        isAnchor: el.prop('tagName').toUpperCase() === 'A',
+        isAnchor: el.prop('ProductName').toUpperCase() === 'A',
         clickable: !isForm,
     };
 }

@@ -633,7 +633,7 @@ var KTFlotchartsDemo = function() {
             {label: "Google", data: 20, color:  KTApp.getStateColor("brand")},
             {label: "Twitter", data: 35, color:  KTApp.getStateColor("success")},
             {label: "Linkedin", data: 20, color:  KTApp.getStateColor("danger")},
-            {label: "Instagram", data: 25, color:  KTApp.getStateColor("warning")},
+            {label: "InsProductram", data: 25, color:  KTApp.getStateColor("warning")},
             {label: "Facebook", data: 10, color:  KTApp.getStateColor("info")}
         ];
 

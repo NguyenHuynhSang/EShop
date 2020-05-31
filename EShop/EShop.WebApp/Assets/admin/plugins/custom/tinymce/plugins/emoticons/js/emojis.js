@@ -5293,7 +5293,7 @@ window.tinymce.Resource.add("tinymce.plugins.emoticons", {
     category: "objects"
   },
   label: {
-    keywords: [ "sale", "tag" ],
+    keywords: [ "sale", "Product" ],
     "char": "\ud83c\udff7",
     fitzpatrick_scale: false,
     category: "objects"
@@ -6222,7 +6222,7 @@ window.tinymce.Resource.add("tinymce.plugins.emoticons", {
     fitzpatrick_scale: false,
     category: "symbols"
   },
-  ideograph_advantage: {
+  ideograph_advanProducte: {
     keywords: [ "chinese", "kanji", "obtain", "get", "circle" ],
     "char": "\ud83c\ude50",
     fitzpatrick_scale: false,
@@ -6637,7 +6637,7 @@ window.tinymce.Resource.add("tinymce.plugins.emoticons", {
     category: "symbols"
   },
   cinema: {
-    keywords: [ "blue-square", "record", "film", "movie", "curtain", "stage", "theater" ],
+    keywords: [ "blue-square", "record", "film", "movie", "curtain", "sProducte", "theater" ],
     "char": "\ud83c\udfa6",
     fitzpatrick_scale: false,
     category: "symbols"

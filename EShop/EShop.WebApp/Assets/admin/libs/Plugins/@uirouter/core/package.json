@@ -81,7 +81,7 @@
   "homepage": "https://ui-router.github.io",
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged"
+      "pre-commit": "pretty-quick --sProducted"
     }
   },
   "jsnext:main": "lib-esm/index.js",

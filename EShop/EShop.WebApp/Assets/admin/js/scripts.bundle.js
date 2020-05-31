@@ -3558,7 +3558,7 @@ var KTUtil = function() {
 
             if (el = document.getElementById(query)) {
                 return el;
-            } else if (el = document.getElementsByTagName(query), el.length > 0) {
+            } else if (el = document.getElementsByProductName(query), el.length > 0) {
                 return el[0];
             } else if (el = document.getElementsByClassName(query), el.length > 0) {
                 return el[0];
@@ -3575,10 +3575,10 @@ var KTUtil = function() {
             return document.getElementById(query);
         },
 
-        getByTag: function(query) {
+        getByProduct: function(query) {
             var el;
 
-            if (el = document.getElementsByTagName(query)) {
+            if (el = document.getElementsByProductName(query)) {
                 return el[0];
             } else {
                 return null;
@@ -3842,7 +3842,7 @@ var KTUtil = function() {
                 return [].indexOf.call(document.querySelectorAll(s), this) !== -1;
             };
 
-            if (el && el.tagName) {
+            if (el && el.ProductName) {
                 return f.call(el, selector);
             } else {
                 return false;
@@ -3858,16 +3858,16 @@ var KTUtil = function() {
                         return;
                     }
 
-                    if (element.customDataTag === undefined) {
+                    if (element.customDataProduct === undefined) {
                         window.KTUtilElementDataStoreID++;
-                        element.customDataTag = window.KTUtilElementDataStoreID;
+                        element.customDataProduct = window.KTUtilElementDataStoreID;
                     }
 
-                    if (window.KTUtilElementDataStore[element.customDataTag] === undefined) {
-                        window.KTUtilElementDataStore[element.customDataTag] = {};
+                    if (window.KTUtilElementDataStore[element.customDataProduct] === undefined) {
+                        window.KTUtilElementDataStore[element.customDataProduct] = {};
                     }
 
-                    window.KTUtilElementDataStore[element.customDataTag][name] = data;
+                    window.KTUtilElementDataStore[element.customDataProduct][name] = data;
                 },
 
                 get: function(name) {
@@ -3875,11 +3875,11 @@ var KTUtil = function() {
                         return;
                     }
 
-                    if (element == null || element.customDataTag === undefined) {
+                    if (element == null || element.customDataProduct === undefined) {
                         return null;
                     }
 
-                    return this.has(name) ? window.KTUtilElementDataStore[element.customDataTag][name] : null;
+                    return this.has(name) ? window.KTUtilElementDataStore[element.customDataProduct][name] : null;
                 },
 
                 has: function(name) {
@@ -3887,16 +3887,16 @@ var KTUtil = function() {
                         return false;
                     }
 
-                    if (element == null || element.customDataTag === undefined) {
+                    if (element == null || element.customDataProduct === undefined) {
                         return false;
                     }
 
-                    return (window.KTUtilElementDataStore[element.customDataTag] && window.KTUtilElementDataStore[element.customDataTag][name]) ? true : false;
+                    return (window.KTUtilElementDataStore[element.customDataProduct] && window.KTUtilElementDataStore[element.customDataProduct][name]) ? true : false;
                 },
 
                 remove: function(name) {
                     if (element && this.has(name)) {
-                        delete window.KTUtilElementDataStore[element.customDataTag][name];
+                        delete window.KTUtilElementDataStore[element.customDataProduct][name];
                     }
                 }
             };
@@ -4659,7 +4659,7 @@ KTUtil.ready(function() {
     KTUtil.init();
 });
 
-// CSS3 Transitions only after page load(.kt-page-loading class added to body tag and remove with JS on page load)
+// CSS3 Transitions only after page load(.kt-page-loading class added to body Product and remove with JS on page load)
 window.onload = function() {
     KTUtil.removeClass(KTUtil.get('body'), 'kt-page--loading');
 }
@@ -5634,7 +5634,7 @@ if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
 				datatable.initialDatatable = $(datatable).clone();
 
 				// main element
-				if ($(datatable).prop('tagName') === 'TABLE') {
+				if ($(datatable).prop('ProductName') === 'TABLE') {
 					// if main init element is <table>, wrap with div
 					datatable.table = $(datatable).removeClass(pfx + 'datatable').addClass(pfx + 'datatable__table');
 					if ($(datatable.table).parents('.' + pfx + 'datatable').length === 0) {
@@ -6125,8 +6125,8 @@ if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
 				if (typeof tablePart === 'undefined') tablePart = datatable.tableHead;
 				tablePart = $(tablePart)[0];
 				var columns = options.columns;
-				var row = tablePart.getElementsByTagName('tr')[0];
-				var ths = tablePart.getElementsByTagName('td');
+				var row = tablePart.getElementsByProductName('tr')[0];
+				var ths = tablePart.getElementsByProductName('td');
 
 				if (typeof row === 'undefined') {
 					row = document.createElement('tr');
@@ -9394,7 +9394,7 @@ var KTLayout = function() {
 			Cookies.set('kt_aside_toggle_state', toggle.getState());
 			// to set default minimized left aside use this cookie value in your
 			// server side code and add "kt-brand--minimize kt-aside--minimize" classes to
-			// the body tag in order to initialize the minimized left aside mode during page loading.
+			// the body Product in order to initialize the minimized left aside mode during page loading.
 		});
 
 		asideToggler.on('beforeToggle', function(toggle) {
@@ -9510,7 +9510,7 @@ var KTLayout = function() {
 			this.initAsideSecondary();
 			this.initPageStickyPortlet();
 
-			// Non functional links notice(can be removed in production)
+			// Non functional links notice(can be removed in Production)
 			$('#kt_aside_menu, #kt_header_menu').on('click', '.kt-menu__link[href="#"]', function(e) {
 				swal.fire("", "You have clicked on a non-functional dummy link!");
 

@@ -574,9 +574,9 @@
       }
       return fromDom(div.childNodes[0]);
     };
-    var fromTag = function (tag, scope) {
+    var fromProduct = function (Product, scope) {
       var doc = scope || domGlobals.document;
-      var node = doc.createElement(tag);
+      var node = doc.createElement(Product);
       return fromDom(node);
     };
     var fromText = function (text, scope) {
@@ -596,7 +596,7 @@
     };
     var Element = {
       fromHtml: fromHtml,
-      fromTag: fromTag,
+      fromProduct: fromProduct,
       fromText: fromText,
       fromDom: fromDom,
       fromPoint: fromPoint
@@ -1303,20 +1303,20 @@
       filterFirstLayer: filterFirstLayer
     };
 
-    var lookup = function (tags, element, isRoot) {
+    var lookup = function (Products, element, isRoot) {
       if (isRoot === void 0) {
         isRoot = never;
       }
       if (isRoot(element)) {
         return Option.none();
       }
-      if (contains(tags, name(element))) {
+      if (contains(Products, name(element))) {
         return Option.some(element);
       }
       var isRootOrUpperTable = function (elm) {
         return is(elm, 'table') || isRoot(elm);
       };
-      return ancestor$1(element, tags.join(','), isRootOrUpperTable);
+      return ancestor$1(element, Products.join(','), isRootOrUpperTable);
     };
     var cell = function (element, isRoot) {
       return lookup([
@@ -1505,8 +1505,8 @@
     };
     var makeCell = function (list, seenSelected, rowIndex) {
       var row = list[rowIndex].element();
-      var td = Element.fromTag('td');
-      append(td, Element.fromTag('br'));
+      var td = Element.fromProduct('td');
+      append(td, Element.fromProduct('br'));
       var f = seenSelected ? append : prepend;
       f(row, td);
     };
@@ -1651,26 +1651,26 @@
     var deep = function (original) {
       return clone$1(original, true);
     };
-    var shallowAs = function (original, tag) {
-      var nu = Element.fromTag(tag);
+    var shallowAs = function (original, Product) {
+      var nu = Element.fromProduct(Product);
       var attributes = clone(original);
       setAll(nu, attributes);
       return nu;
     };
-    var copy$1 = function (original, tag) {
-      var nu = shallowAs(original, tag);
+    var copy$1 = function (original, Product) {
+      var nu = shallowAs(original, Product);
       var cloneChildren = children(deep(original));
       append$1(nu, cloneChildren);
       return nu;
     };
 
     var createCell = function () {
-      var td = Element.fromTag('td');
-      append(td, Element.fromTag('br'));
+      var td = Element.fromProduct('td');
+      append(td, Element.fromProduct('br'));
       return td;
     };
-    var replace = function (cell, tag, attrs) {
-      var replica = copy$1(cell, tag);
+    var replace = function (cell, Product, attrs) {
+      var replica = copy$1(cell, Product);
       each$1(attrs, function (v, k) {
         if (v === null) {
           remove(replica, k);
@@ -1685,7 +1685,7 @@
     };
     var newRow = function (doc) {
       return function () {
-        return Element.fromTag('tr', doc.dom());
+        return Element.fromProduct('tr', doc.dom());
       };
     };
     var cloneFormats = function (oldCell, newCell, formats) {
@@ -1706,7 +1706,7 @@
     var cellOperations = function (mutate, doc, formatsToClone) {
       var newCell = function (prev) {
         var docu = owner(prev.element());
-        var td = Element.fromTag(name(prev.element()), docu.dom());
+        var td = Element.fromProduct(name(prev.element()), docu.dom());
         var formats = formatsToClone.getOr([
           'strong',
           'em',
@@ -1724,7 +1724,7 @@
           'div'
         ]);
         var lastNode = formats.length > 0 ? cloneFormats(prev.element(), td, formats) : td;
-        append(lastNode, Element.fromTag('br'));
+        append(lastNode, Element.fromProduct('br'));
         copy(prev.element(), td);
         remove$1(td, 'height');
         if (prev.colspan() !== 1) {
@@ -1875,7 +1875,7 @@
       getBox: getBox$1
     };
 
-    var TagBoundaries = [
+    var ProductBoundaries = [
       'body',
       'p',
       'div',
@@ -1923,9 +1923,9 @@
         if (name(element) === 'body') {
           return true;
         }
-        return contains(TagBoundaries, name(element));
+        return contains(ProductBoundaries, name(element));
       };
-      var isEmptyTag = function (element) {
+      var isEmptyProduct = function (element) {
         if (!isElement(element)) {
           return false;
         }
@@ -1983,7 +1983,7 @@
           remove: remove$2
         }),
         create: constant({
-          nu: Element.fromTag,
+          nu: Element.fromProduct,
           clone: clone$1,
           text: Element.fromText
         }),
@@ -2003,7 +2003,7 @@
           getText: get$3,
           setText: set$2,
           isBoundary: isBoundary,
-          isEmptyTag: isEmptyTag,
+          isEmptyProduct: isEmptyProduct,
           isNonEditable: isNonEditable
         }),
         eq: eq,
@@ -2650,12 +2650,12 @@
     };
 
     var genericSizeRegex = /(\d+(\.\d+)?)(\w|%)*/;
-    var percentageBasedSizeRegex = /(\d+(\.\d+)?)%/;
+    var percenProducteBasedSizeRegex = /(\d+(\.\d+)?)%/;
     var pixelBasedSizeRegex = /(\d+(\.\d+)?)px|em/;
     var setPixelWidth = function (cell, amount) {
       set$1(cell, 'width', amount + 'px');
     };
-    var setPercentageWidth = function (cell, amount) {
+    var setPercenProducteWidth = function (cell, amount) {
       set$1(cell, 'width', amount + '%');
     };
     var setHeight = function (cell, amount) {
@@ -2701,25 +2701,25 @@
         return Option.some(width);
       });
     };
-    var normalizePercentageWidth = function (cellWidth, tableSize) {
+    var normalizePercenProducteWidth = function (cellWidth, tableSize) {
       return cellWidth / tableSize.pixelWidth() * 100;
     };
-    var choosePercentageSize = function (element, width, tableSize) {
-      var percentMatch = percentageBasedSizeRegex.exec(width);
+    var choosePercenProducteSize = function (element, width, tableSize) {
+      var percentMatch = percenProducteBasedSizeRegex.exec(width);
       if (percentMatch !== null) {
         return parseFloat(percentMatch[1]);
       } else {
         var intWidth = get$5(element);
-        return normalizePercentageWidth(intWidth, tableSize);
+        return normalizePercenProducteWidth(intWidth, tableSize);
       }
     };
-    var getPercentageWidth = function (cell, tableSize) {
+    var getPercenProducteWidth = function (cell, tableSize) {
       var width = getRawWidth(cell);
       return width.fold(function () {
         var intWidth = get$5(cell);
-        return normalizePercentageWidth(intWidth, tableSize);
+        return normalizePercenProducteWidth(intWidth, tableSize);
       }, function (w) {
-        return choosePercentageSize(cell, w, tableSize);
+        return choosePercenProducteSize(cell, w, tableSize);
       });
     };
     var normalizePixelWidth = function (cellWidth, tableSize) {
@@ -2730,7 +2730,7 @@
       if (pixelMatch !== null) {
         return parseInt(pixelMatch[1], 10);
       }
-      var percentMatch = percentageBasedSizeRegex.exec(width);
+      var percentMatch = percenProducteBasedSizeRegex.exec(width);
       if (percentMatch !== null) {
         var floatWidth = parseFloat(percentMatch[1]);
         return normalizePixelWidth(floatWidth, tableSize);
@@ -2766,13 +2766,13 @@
       set$1(cell, 'width', amount + unit);
     };
     var Sizes = {
-      percentageBasedSizeRegex: constant(percentageBasedSizeRegex),
+      percenProducteBasedSizeRegex: constant(percenProducteBasedSizeRegex),
       pixelBasedSizeRegex: constant(pixelBasedSizeRegex),
       setPixelWidth: setPixelWidth,
-      setPercentageWidth: setPercentageWidth,
+      setPercenProducteWidth: setPercenProducteWidth,
       setHeight: setHeight,
       getPixelWidth: getPixelWidth,
-      getPercentageWidth: getPercentageWidth,
+      getPercenProducteWidth: getPercenProducteWidth,
       getGenericWidth: getGenericWidth,
       setGenericWidth: setGenericWidth,
       getHeight: getHeight$1,
@@ -2958,7 +2958,7 @@
       var newCells = [];
       var renderSection = function (gridSection, sectionName) {
         var section = child$2(table, sectionName).getOrThunk(function () {
-          var tb = Element.fromTag(sectionName, owner(table).dom());
+          var tb = Element.fromProduct(sectionName, owner(table).dom());
           append(table, tb);
           return tb;
         });
@@ -3225,7 +3225,7 @@
     var Styles = { resolve: styles.resolve };
 
     var col = function (column, x, y, w, h) {
-      var bar = Element.fromTag('div');
+      var bar = Element.fromProduct('div');
       setAll$1(bar, {
         position: 'absolute',
         left: x - w / 2 + 'px',
@@ -3240,7 +3240,7 @@
       return bar;
     };
     var row$1 = function (r, x, y, w, h) {
-      var bar = Element.fromTag('div');
+      var bar = Element.fromProduct('div');
       setAll$1(bar, {
         position: 'absolute',
         left: x + 'px',
@@ -4068,8 +4068,8 @@
     var getRawWidths = function (warehouse, direction, tableSize) {
       return getWidthFrom(warehouse, direction, getRawW, getDeduced, tableSize);
     };
-    var getPercentageWidths = function (warehouse, direction, tableSize) {
-      return getWidthFrom(warehouse, direction, Sizes.getPercentageWidth, function (deduced) {
+    var getPercenProducteWidths = function (warehouse, direction, tableSize) {
+      return getWidthFrom(warehouse, direction, Sizes.getPercenProducteWidth, function (deduced) {
         return deduced.fold(function () {
           return tableSize.minCellWidth();
         }, function (cellWidth) {
@@ -4108,7 +4108,7 @@
     var ColumnSizes = {
       getRawWidths: getRawWidths,
       getPixelWidths: getPixelWidths,
-      getPercentageWidths: getPercentageWidths,
+      getPercenProducteWidths: getPercenProducteWidths,
       getPixelHeights: getPixelHeights,
       getRawHeights: getRawHeights
     };
@@ -4156,7 +4156,7 @@
       matchRowHeight: matchRowHeight
     };
 
-    var percentageSize = function (width, element) {
+    var percenProducteSize = function (width, element) {
       var floatWidth = parseFloat(width);
       var pixelWidth = get$5(element);
       var getCellDelta = function (delta) {
@@ -4171,16 +4171,16 @@
       var setTableWidth = function (table, _newWidths, delta) {
         var ratio = delta / 100;
         var change = ratio * floatWidth;
-        Sizes.setPercentageWidth(table, floatWidth + change);
+        Sizes.setPercenProducteWidth(table, floatWidth + change);
       };
       return {
         width: constant(floatWidth),
         pixelWidth: constant(pixelWidth),
-        getWidths: ColumnSizes.getPercentageWidths,
+        getWidths: ColumnSizes.getPercenProducteWidths,
         getCellDelta: getCellDelta,
         singleColumnWidth: singleColumnWidth,
         minCellWidth: minCellWidth,
-        setElementWidth: Sizes.setPercentageWidth,
+        setElementWidth: Sizes.setPercenProducteWidth,
         setTableWidth: setTableWidth
       };
     };
@@ -4208,9 +4208,9 @@
       };
     };
     var chooseSize = function (element, width) {
-      var percentMatch = Sizes.percentageBasedSizeRegex().exec(width);
+      var percentMatch = Sizes.percenProducteBasedSizeRegex().exec(width);
       if (percentMatch !== null) {
-        return percentageSize(percentMatch[1], element);
+        return percenProducteSize(percentMatch[1], element);
       }
       var pixelMatch = Sizes.pixelBasedSizeRegex().exec(width);
       if (pixelMatch !== null) {
@@ -4389,7 +4389,7 @@
         cursor: position.get
       };
     };
-    var transform = function (scope, tag) {
+    var transform = function (scope, Product) {
       return function (generators) {
         var position = Cell(Option.none());
         verifyGenerators(generators);
@@ -4401,7 +4401,7 @@
         };
         var makeNew = function (element) {
           var attrs = { scope: scope };
-          var cell = generators.replace(element, tag, attrs);
+          var cell = generators.replace(element, Product, attrs);
           list.push({
             item: element,
             sub: cell
@@ -4486,18 +4486,18 @@
       'address'
     ];
     var isList = function (universe, item) {
-      var tagName = universe.property().name(item);
+      var ProductName = universe.property().name(item);
       return contains([
         'ol',
         'ul'
-      ], tagName);
+      ], ProductName);
     };
     var isBlock = function (universe, item) {
-      var tagName = universe.property().name(item);
-      return contains(blockList, tagName);
+      var ProductName = universe.property().name(item);
+      return contains(blockList, ProductName);
     };
     var isFormatting = function (universe, item) {
-      var tagName = universe.property().name(item);
+      var ProductName = universe.property().name(item);
       return contains([
         'address',
         'pre',
@@ -4508,10 +4508,10 @@
         'h4',
         'h5',
         'h6'
-      ], tagName);
+      ], ProductName);
     };
     var isHeading = function (universe, item) {
-      var tagName = universe.property().name(item);
+      var ProductName = universe.property().name(item);
       return contains([
         'h1',
         'h2',
@@ -4519,7 +4519,7 @@
         'h4',
         'h5',
         'h6'
-      ], tagName);
+      ], ProductName);
     };
     var isContainer = function (universe, item) {
       return contains([
@@ -4532,7 +4532,7 @@
         'caption'
       ], universe.property().name(item));
     };
-    var isEmptyTag = function (universe, item) {
+    var isEmptyProduct = function (universe, item) {
       return contains([
         'br',
         'img',
@@ -4544,7 +4544,7 @@
       return universe.property().name(item) === 'iframe';
     };
     var isInline = function (universe, item) {
-      return !(isBlock(universe, item) || isEmptyTag(universe, item)) && universe.property().name(item) !== 'li';
+      return !(isBlock(universe, item) || isEmptyProduct(universe, item)) && universe.property().name(item) !== 'li';
     };
     var Structure = {
       isBlock: isBlock,
@@ -4552,7 +4552,7 @@
       isFormatting: isFormatting,
       isHeading: isHeading,
       isContainer: isContainer,
-      isEmptyTag: isEmptyTag,
+      isEmptyProduct: isEmptyProduct,
       isFrame: isFrame,
       isInline: isInline
     };
@@ -4573,8 +4573,8 @@
     var isContainer$1 = function (element) {
       return Structure.isContainer(universe$1, element);
     };
-    var isEmptyTag$1 = function (element) {
-      return Structure.isEmptyTag(universe$1, element);
+    var isEmptyProduct$1 = function (element) {
+      return Structure.isEmptyProduct(universe$1, element);
     };
     var isFrame$1 = function (element) {
       return Structure.isFrame(universe$1, element);
@@ -4588,7 +4588,7 @@
       isFormatting: isFormatting$1,
       isHeading: isHeading$1,
       isContainer: isContainer$1,
-      isEmptyTag: isEmptyTag$1,
+      isEmptyProduct: isEmptyProduct$1,
       isFrame: isFrame$1,
       isInline: isInline$1
     };
@@ -4610,7 +4610,7 @@
           if (DomStructure.isBlock(rightSibling)) {
             return true;
           }
-          if (DomStructure.isEmptyTag(rightSibling)) {
+          if (DomStructure.isEmptyProduct(rightSibling)) {
             return name(rightSibling) === 'img' ? false : true;
           }
           return false;
@@ -4620,7 +4620,7 @@
         return last$1(cell).bind(function (rightEdge) {
           var rightSiblingIsBlock = siblingIsBlock(rightEdge);
           return parent(rightEdge).map(function (parent) {
-            return rightSiblingIsBlock === true || isListItem(parent) || isBr(rightEdge) || DomStructure.isBlock(parent) && !eq(cell, parent) ? [] : [Element.fromTag('br')];
+            return rightSiblingIsBlock === true || isListItem(parent) || isBr(rightEdge) || DomStructure.isBlock(parent) && !eq(cell, parent) ? [] : [Element.fromProduct('br')];
           });
         }).getOr([]);
       };
@@ -4629,7 +4629,7 @@
           var children$1 = children(cell);
           return advancedBr(children$1) ? [] : children$1.concat(markCell(cell));
         });
-        return content.length === 0 ? [Element.fromTag('br')] : content;
+        return content.length === 0 ? [Element.fromProduct('br')] : content;
       };
       var contents = markContent();
       empty(cells[0]);
@@ -4935,7 +4935,7 @@
     var getTableClassList = function (editor) {
       return editor.getParam('table_class_list', [], 'array');
     };
-    var isPercentagesForced = function (editor) {
+    var isPercenProductesForced = function (editor) {
       return editor.getParam('table_responsive_width') === true;
     };
     var isPixelsForced = function (editor) {
@@ -5893,22 +5893,22 @@
         'width': '100%'
       },
       attributes: { border: '1' },
-      percentages: true
+      percenProductes: true
     };
     var makeTable = function () {
-      return Element.fromTag('table');
+      return Element.fromProduct('table');
     };
     var tableBody = function () {
-      return Element.fromTag('tbody');
+      return Element.fromProduct('tbody');
     };
     var tableRow = function () {
-      return Element.fromTag('tr');
+      return Element.fromProduct('tr');
     };
     var tableHeaderCell = function () {
-      return Element.fromTag('th');
+      return Element.fromProduct('th');
     };
     var tableCell = function () {
-      return Element.fromTag('td');
+      return Element.fromProduct('td');
     };
     var render$1 = function (rows, columns, rowHeaders, columnHeaders, renderOpts) {
       if (renderOpts === void 0) {
@@ -5930,8 +5930,8 @@
           if (i < rowHeaders) {
             set(td, 'scope', 'col');
           }
-          append(td, Element.fromTag('br'));
-          if (renderOpts.percentages) {
+          append(td, Element.fromProduct('br'));
+          if (renderOpts.percenProductes) {
             set$1(td, 'width', 100 / columns + '%');
           }
           append(tr, td);
@@ -5946,7 +5946,7 @@
       return element.dom().innerHTML;
     };
     var getOuter$2 = function (element) {
-      var container = Element.fromTag('div');
+      var container = Element.fromProduct('div');
       var clone = Element.fromDom(element.dom().cloneNode(true));
       append(container, clone);
       return get$8(container);
@@ -5967,7 +5967,7 @@
         });
       });
     };
-    var isPercentage = function (width) {
+    var isPercenProducte = function (width) {
       return isString(width) && width.indexOf('%') !== -1;
     };
     var insert$1 = function (editor, columns, rows) {
@@ -5975,7 +5975,7 @@
       var options = {
         styles: defaultStyles,
         attributes: getDefaultAttributes(editor),
-        percentages: isPercentage(defaultStyles.width) && !isPixelsForced(editor)
+        percenProductes: isPercenProducte(defaultStyles.width) && !isPixelsForced(editor)
       };
       var table = render$1(rows, columns, 0, 0, options);
       set(table, 'data-mce-id', '__mce');
@@ -6091,7 +6091,7 @@
     var TableDialogGeneralTab = { getItems: getItems$2 };
 
     var styleTDTH = function (dom, elm, name, value) {
-      if (elm.tagName === 'TD' || elm.tagName === 'TH') {
+      if (elm.ProductName === 'TD' || elm.ProductName === 'TH') {
         if (isString(name)) {
           dom.setStyle(elm, name, value);
         } else {
@@ -6536,7 +6536,7 @@
 
     var Blocker = function (options) {
       var settings = __assign({ layerClass: Styles$2.resolve('blocker') }, options);
-      var div = Element.fromTag('div');
+      var div = Element.fromProduct('div');
       set(div, 'role', 'presentation');
       setAll$1(div, {
         position: 'fixed',
@@ -6977,7 +6977,7 @@
     var TableResize = { create: create$2 };
 
     var createContainer = function () {
-      var container = Element.fromTag('div');
+      var container = Element.fromProduct('div');
       setAll$1(container, {
         position: 'static',
         height: '0',
@@ -7002,18 +7002,18 @@
       remove: remove$6
     };
 
-    var calculatePercentageWidth = function (element, parent) {
+    var calculatePercenProducteWidth = function (element, parent) {
       return getPixelWidth$1(element.dom()) / getPixelWidth$1(parent.dom()) * 100 + '%';
     };
-    var enforcePercentage = function (rawTable) {
+    var enforcePercenProducte = function (rawTable) {
       var table = Element.fromDom(rawTable);
       parent(table).map(function (parent) {
-        return calculatePercentageWidth(table, parent);
-      }).each(function (tablePercentage) {
-        set$1(table, 'width', tablePercentage);
+        return calculatePercenProducteWidth(table, parent);
+      }).each(function (tablePercenProducte) {
+        set$1(table, 'width', tablePercenProducte);
         each(descendants$1(table, 'tr'), function (tr) {
           each(children(tr), function (td) {
-            set$1(td, 'width', calculatePercentageWidth(td, tr));
+            set$1(td, 'width', calculatePercenProducteWidth(td, tr));
           });
         });
       });
@@ -7026,7 +7026,7 @@
       var selectionRng = Option.none();
       var resize = Option.none();
       var wire = Option.none();
-      var percentageBasedSizeRegex = /(\d+(\.\d+)?)%/;
+      var percenProducteBasedSizeRegex = /(\d+(\.\d+)?)%/;
       var startW;
       var startRawW;
       var isTable = function (elm) {
@@ -7083,13 +7083,13 @@
       editor.on('ObjectResizeStart', function (e) {
         var targetElm = e.target;
         if (isTable(targetElm)) {
-          var tableHasPercentage = getRawWidth(targetElm).map(function (w) {
-            return percentageBasedSizeRegex.test(w);
+          var tableHasPercenProducte = getRawWidth(targetElm).map(function (w) {
+            return percenProducteBasedSizeRegex.test(w);
           }).getOr(false);
-          if (tableHasPercentage && isPixelsForced(editor)) {
+          if (tableHasPercenProducte && isPixelsForced(editor)) {
             enforcePixels(targetElm);
-          } else if (!tableHasPercentage && isPercentagesForced(editor)) {
-            enforcePercentage(targetElm);
+          } else if (!tableHasPercenProducte && isPercenProductesForced(editor)) {
+            enforcePercenProducte(targetElm);
           }
           startW = e.width;
           startRawW = getRawWidth(targetElm).getOr('');
@@ -7099,8 +7099,8 @@
         var targetElm = e.target;
         if (isTable(targetElm)) {
           var table = targetElm;
-          if (percentageBasedSizeRegex.test(startRawW)) {
-            var percentW = parseFloat(percentageBasedSizeRegex.exec(startRawW)[1]);
+          if (percenProducteBasedSizeRegex.test(startRawW)) {
+            var percentW = parseFloat(percenProducteBasedSizeRegex.exec(startRawW)[1]);
             var targetPercentW = e.width * percentW / startW;
             editor.dom.setStyle(table, 'width', targetPercentW + '%');
           } else {
@@ -8062,7 +8062,7 @@
         return Option.some(point(cell, getEnd(cell)));
       });
     };
-    var BrTags = {
+    var BrProducts = {
       tryBr: tryBr,
       process: process
     };
@@ -8294,12 +8294,12 @@
     var platform$2 = detect$3();
     var findSpot = function (bridge, isRoot, direction) {
       return bridge.getSelection().bind(function (sel) {
-        return BrTags.tryBr(isRoot, sel.finish(), sel.foffset(), direction).fold(function () {
+        return BrProducts.tryBr(isRoot, sel.finish(), sel.foffset(), direction).fold(function () {
           return Option.some(point(sel.finish(), sel.foffset()));
         }, function (brNeighbour) {
           var range = bridge.fromSitus(brNeighbour);
           var analysis = BeforeAfter.verify(bridge, sel.finish(), sel.foffset(), range.finish(), range.foffset(), direction.failure, isRoot);
-          return BrTags.process(analysis);
+          return BrProducts.process(analysis);
         });
       });
     };

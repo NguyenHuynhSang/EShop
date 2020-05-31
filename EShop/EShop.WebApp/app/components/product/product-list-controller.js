@@ -1,9 +1,9 @@
 ﻿(function (app) {
-    app.controller('product-list-controller', productListController)
-    productListController.$inject = ['$scope', 'api-service', 'notification-service'];
+    app.controller('Product-list-controller', ProductListController)
+    ProductListController.$inject = ['$scope', 'api-service', 'notification-service'];
 
-    function productListController($scope, apiService, notificationService) {
-        $scope.productList = [];
+    function ProductListController($scope, apiService, notificationService) {
+        $scope.ProductList = [];
         $scope.getListProduct = getListProduct;
         $scope.keyWord = '';
 
@@ -11,15 +11,15 @@
 
         $scope.delProduct = delProduct;
 
-        $scope.product = {};
+        $scope.Product = {};
 
 
 
         function delProduct(item) {
-            $scope.product = item;
+            $scope.Product = item;
             apiService.del('/api/Product/DeleteProduct', item, function (result) {
                 notificationService.displaySuccess("Xóa bản ghi thành công");
-                $state.go('product-list');
+                $state.go('Product-list');
             }, function () {
                     console.log('delete api failed.');
                     notificationService.displayError("Xóa bản ghi KHÔNG thành công");
@@ -39,7 +39,7 @@
             }
 
             apiService.get('/api/Product/GetAll', config, function (result) {
-                $scope.productList = result.data;
+                $scope.ProductList = result.data;
                 if (result.data.length == 0) {
                     notificationService.displayWarning("Không tìm thấy bản ghi nào");
                 } else {
@@ -49,7 +49,7 @@
 
 
             }, function () {
-                console.log('Load product api failed.');
+                console.log('Load Product api failed.');
                 notificationService.displayError("Không lấy được dữ liệu từ server");
             });
 
@@ -57,4 +57,4 @@
 
         $scope.getListProduct();
     }
-})(angular.module('eshop-product'));
+})(angular.module('eshop-Product'));

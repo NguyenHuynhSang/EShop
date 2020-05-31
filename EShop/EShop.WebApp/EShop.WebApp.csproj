@@ -26,9 +26,9 @@
 
   <ItemGroup>
     <Folder Include="app\components\user\" />
-    <Folder Include="app\components\product_atribute_value\" />
-    <Folder Include="app\components\product_attribute\" />
-    <Folder Include="app\components\product_catalog\" />
+    <Folder Include="app\components\Tag_atribute_value\" />
+    <Folder Include="app\components\Tag_attribute\" />
+    <Folder Include="app\components\Tag_catalog\" />
     <Folder Include="app\shared\header\" />
     <Folder Include="app\shared\footer\" />
     <Folder Include="app\shared\navigation\" />

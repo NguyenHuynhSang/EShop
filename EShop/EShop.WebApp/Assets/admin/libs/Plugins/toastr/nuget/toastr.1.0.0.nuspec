@@ -25,7 +25,7 @@ toastr.info('Are you the 6 fingered man?')
     <summary>toastr is a Javascript library for Gnome / Growl type non-blocking notifications. jQuery is required. The goal is to create a simple core library that can be customized and extended.</summary>
     <copyright>Copyright © 2012 Hans Fjällemark &amp; John Papa.</copyright>
     <language>en-US</language>
-    <tags>toastr, toast, notification, dialog, jquery</tags>
+    <Products>toastr, toast, notification, dialog, jquery</Products>
   </metadata>
   <files>
     <file src="content\content\toastr-responsive.css" target="content\content\toastr-responsive.css" />

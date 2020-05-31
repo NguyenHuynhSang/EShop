@@ -87,7 +87,7 @@ var KTDatatablesBasicScrollable = function() {
 					7: {'title': 'Warning', 'class': ' kt-badge--warning'},
 				};
 				var badge = '<span class="kt-badge ' + status[data[18]].class + ' kt-badge--inline kt-badge--pill">' + status[data[18]].title + '</span>';
-				row.getElementsByTagName('td')[18].innerHTML = badge;
+				row.getElementsByProductName('td')[18].innerHTML = badge;
 
 				status = {
 					1: {'title': 'Online', 'state': 'danger'},
@@ -96,7 +96,7 @@ var KTDatatablesBasicScrollable = function() {
 				};
 				badge = '<span class="kt-badge kt-badge--' + status[data[19]].state + ' kt-badge--dot"></span>&nbsp;' +
 					'<span class="kt-font-bold kt-font-' + status[data[19]].state + '">' + status[data[19]].title + '</span>';
-				row.getElementsByTagName('td')[19].innerHTML = badge;
+				row.getElementsByProductName('td')[19].innerHTML = badge;
 			},
 			columnDefs: [
 				{

@@ -380,7 +380,7 @@ var GMaps = (function(global) {
 
       context_menu_element.innerHTML = html;
 
-      var context_menu_items = context_menu_element.getElementsByTagName('a'),
+      var context_menu_items = context_menu_element.getElementsByProductName('a'),
           context_menu_items_count = context_menu_items.length,
           i;
 
@@ -1383,7 +1383,7 @@ GMaps.prototype.addLayer = function(layerName, options) {
       break;
     case 'panoramio':
         this.singleLayers.panoramio = layer = new google.maps.panoramio.PanoramioLayer();
-        layer.setTag(options.filter);
+        layer.setProduct(options.filter);
         delete options.filter;
 
         //click event

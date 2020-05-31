@@ -27,18 +27,18 @@ var KTAppInbox = function() {
 
         // Init autocompletes
         var toEl = KTUtil.find(formEl, '[name=compose_to]');
-        var tagifyTo = new Tagify(toEl, {
-            delimiters: ", ", // add new tags when a comma or a space character is entered
-            maxTags: 10,
+        var ProductifyTo = new Productify(toEl, {
+            delimiters: ", ", // add new Products when a comma or a space character is entered
+            maxProducts: 10,
             blacklist: ["fuck", "shit", "pussy"],
-            keepInvalidTags: true, // do not remove invalid tags (but keep them marked as invalid)
+            keepInvalidProducts: true, // do not remove invalid Products (but keep them marked as invalid)
             whitelist: [{
                 value: 'Chris Muller',
                 email: 'chris.muller@wix.com',
                 initials: '',
                 initialsState: '',
                 pic: './assets/media/users/100_11.jpg',
-                class: 'tagify__tag--brand'
+                class: 'Productify__Product--brand'
             }, {
                 value: 'Nick Bold',
                 email: 'nick.seo@gmail.com',
@@ -83,18 +83,18 @@ var KTAppInbox = function() {
                 pic: './assets/media/users/100_15.jpg'
             }],
             templates: {
-                dropdownItem: function(tagData) {
+                dropdownItem: function(ProductData) {
                     try {
                         var html = '';
 
-                        html += '<div class="tagify__dropdown__item">';
+                        html += '<div class="Productify__dropdown__item">';
                         html += '   <div class="kt-media-card">';
-                        html += '       <span class="kt-media kt-media--' + (tagData.initialsState ? tagData.initialsState : '') + '" style="background-image: url(\''+ (tagData.pic ? tagData.pic : '') + '\')">';
-                        html += '           <span>' + (tagData.initials ? tagData.initials : '') + '</span>';
+                        html += '       <span class="kt-media kt-media--' + (ProductData.initialsState ? ProductData.initialsState : '') + '" style="background-image: url(\''+ (ProductData.pic ? ProductData.pic : '') + '\')">';
+                        html += '           <span>' + (ProductData.initials ? ProductData.initials : '') + '</span>';
                         html += '       </span>';
                         html += '       <div class="kt-media-card__info">';
-                        html += '           <a href="#" class="kt-media-card__title">'+ (tagData.value ? tagData.value : '') + '</a>';
-                        html += '           <span class="kt-media-card__desc">' + (tagData.email ? tagData.email : '') + '</span>';
+                        html += '           <a href="#" class="kt-media-card__title">'+ (ProductData.value ? ProductData.value : '') + '</a>';
+                        html += '           <span class="kt-media-card__desc">' + (ProductData.email ? ProductData.email : '') + '</span>';
                         html += '       </div>';
                         html += '   </div>';
                         html += '</div>';
@@ -103,8 +103,8 @@ var KTAppInbox = function() {
                     } catch (err) {}
                 }
             },
-            transformTag: function(tagData) {
-                tagData.class = 'tagify__tag tagify__tag--brand';
+            transformProduct: function(ProductData) {
+                ProductData.class = 'Productify__Product Productify__Product--brand';
             },
             dropdown: {
                 classname: "color-blue",
@@ -114,18 +114,18 @@ var KTAppInbox = function() {
         });
 
         var ccEl = KTUtil.find(formEl, '[name=compose_cc]');
-        var tagifyC = new Tagify(ccEl, {
-            delimiters: ", ", // add new tags when a comma or a space character is entered
-            maxTags: 10,
+        var ProductifyC = new Productify(ccEl, {
+            delimiters: ", ", // add new Products when a comma or a space character is entered
+            maxProducts: 10,
             blacklist: ["fuck", "shit", "pussy"],
-            keepInvalidTags: true, // do not remove invalid tags (but keep them marked as invalid)
+            keepInvalidProducts: true, // do not remove invalid Products (but keep them marked as invalid)
             whitelist: [{
                 value: 'Chris Muller',
                 email: 'chris.muller@wix.com',
                 initials: '',
                 initialsState: '',
                 pic: './assets/media/users/100_11.jpg',
-                class: 'tagify__tag--brand'
+                class: 'Productify__Product--brand'
             }, {
                 value: 'Nick Bold',
                 email: 'nick.seo@gmail.com',
@@ -170,18 +170,18 @@ var KTAppInbox = function() {
                 pic: './assets/media/users/100_15.jpg'
             }],
             templates: {
-                dropdownItem: function(tagData) {
+                dropdownItem: function(ProductData) {
                     try {
                         var html = '';
 
-                        html += '<div class="tagify__dropdown__item">';
+                        html += '<div class="Productify__dropdown__item">';
                         html += '   <div class="kt-media-card">';
-                        html += '       <span class="kt-media kt-media--' + (tagData.initialsState ? tagData.initialsState : '') + '" style="background-image: url(\''+ (tagData.pic ? tagData.pic : '') + '\')">';
-                        html += '           <span>' + (tagData.initials ? tagData.initials : '') + '</span>';
+                        html += '       <span class="kt-media kt-media--' + (ProductData.initialsState ? ProductData.initialsState : '') + '" style="background-image: url(\''+ (ProductData.pic ? ProductData.pic : '') + '\')">';
+                        html += '           <span>' + (ProductData.initials ? ProductData.initials : '') + '</span>';
                         html += '       </span>';
                         html += '       <div class="kt-media-card__info">';
-                        html += '           <a href="#" class="kt-media-card__title">'+ (tagData.value ? tagData.value : '') + '</a>';
-                        html += '           <span class="kt-media-card__desc">' + (tagData.email ? tagData.email : '') + '</span>';
+                        html += '           <a href="#" class="kt-media-card__title">'+ (ProductData.value ? ProductData.value : '') + '</a>';
+                        html += '           <span class="kt-media-card__desc">' + (ProductData.email ? ProductData.email : '') + '</span>';
                         html += '       </div>';
                         html += '   </div>';
                         html += '</div>';
@@ -190,8 +190,8 @@ var KTAppInbox = function() {
                     } catch (err) {}
                 }
             },
-            transformTag: function(tagData) {
-                tagData.class = 'tagify__tag tagify__tag--brand';
+            transformProduct: function(ProductData) {
+                ProductData.class = 'Productify__Product Productify__Product--brand';
             },
             dropdown: {
                 classname: "color-blue",
@@ -201,18 +201,18 @@ var KTAppInbox = function() {
         });
 
         var bccEl = KTUtil.find(formEl, '[name=compose_bcc]');
-        var tagifyBcc = new Tagify(bccEl, {
-            delimiters: ", ", // add new tags when a comma or a space character is entered
-            maxTags: 10,
+        var ProductifyBcc = new Productify(bccEl, {
+            delimiters: ", ", // add new Products when a comma or a space character is entered
+            maxProducts: 10,
             blacklist: ["fuck", "shit", "pussy"],
-            keepInvalidTags: true, // do not remove invalid tags (but keep them marked as invalid)
+            keepInvalidProducts: true, // do not remove invalid Products (but keep them marked as invalid)
             whitelist: [{
                 value: 'Chris Muller',
                 email: 'chris.muller@wix.com',
                 initials: '',
                 initialsState: '',
                 pic: './assets/media/users/100_11.jpg',
-                class: 'tagify__tag--brand'
+                class: 'Productify__Product--brand'
             }, {
                 value: 'Nick Bold',
                 email: 'nick.seo@gmail.com',
@@ -257,18 +257,18 @@ var KTAppInbox = function() {
                 pic: './assets/media/users/100_15.jpg'
             }],
             templates: {
-                dropdownItem: function(tagData) {
+                dropdownItem: function(ProductData) {
                     try {
                         var html = '';
 
-                        html += '<div class="tagify__dropdown__item">';
+                        html += '<div class="Productify__dropdown__item">';
                         html += '   <div class="kt-media-card">';
-                        html += '       <span class="kt-media kt-media--' + (tagData.initialsState ? tagData.initialsState : '') + '" style="background-image: url(\''+ (tagData.pic ? tagData.pic : '') + '\')">';
-                        html += '           <span>' + (tagData.initials ? tagData.initials : '') + '</span>';
+                        html += '       <span class="kt-media kt-media--' + (ProductData.initialsState ? ProductData.initialsState : '') + '" style="background-image: url(\''+ (ProductData.pic ? ProductData.pic : '') + '\')">';
+                        html += '           <span>' + (ProductData.initials ? ProductData.initials : '') + '</span>';
                         html += '       </span>';
                         html += '       <div class="kt-media-card__info">';
-                        html += '           <a href="#" class="kt-media-card__title">'+ (tagData.value ? tagData.value : '') + '</a>';
-                        html += '           <span class="kt-media-card__desc">' + (tagData.email ? tagData.email : '') + '</span>';
+                        html += '           <a href="#" class="kt-media-card__title">'+ (ProductData.value ? ProductData.value : '') + '</a>';
+                        html += '           <span class="kt-media-card__desc">' + (ProductData.email ? ProductData.email : '') + '</span>';
                         html += '       </div>';
                         html += '   </div>';
                         html += '</div>';
@@ -277,8 +277,8 @@ var KTAppInbox = function() {
                     } catch (err) {}
                 }
             },
-            transformTag: function(tagData) {
-                tagData.class = 'tagify__tag tagify__tag--brand';
+            transformProduct: function(ProductData) {
+                ProductData.class = 'Productify__Product Productify__Product--brand';
             },
             dropdown: {
                 classname: "color-blue",

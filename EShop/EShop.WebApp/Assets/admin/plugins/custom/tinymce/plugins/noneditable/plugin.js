@@ -46,10 +46,10 @@
           return match;
         }
         if (prevChar === '>') {
-          var findStartTagIndex = content.lastIndexOf('<', index);
-          if (findStartTagIndex !== -1) {
-            var tagHtml = content.substring(findStartTagIndex, index);
-            if (tagHtml.indexOf('contenteditable="false"') !== -1) {
+          var findStartProductIndex = content.lastIndexOf('<', index);
+          if (findStartProductIndex !== -1) {
+            var ProductHtml = content.substring(findStartProductIndex, index);
+            if (ProductHtml.indexOf('contenteditable="false"') !== -1) {
               return match;
             }
           }

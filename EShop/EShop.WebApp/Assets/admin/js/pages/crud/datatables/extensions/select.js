@@ -75,7 +75,7 @@ var KTDatatablesExtensionsKeytable = function() {
 				selector: 'td:first-child .kt-checkable',
 			},
 			headerCallback: function(thead, data, start, end, display) {
-				thead.getElementsByTagName('th')[0].innerHTML = `
+				thead.getElementsByProductName('th')[0].innerHTML = `
                     <label class="kt-checkbox kt-checkbox--single kt-checkbox--solid kt-checkbox--brand">
                         <input type="checkbox" value="" class="kt-group-checkable">
                         <span></span>

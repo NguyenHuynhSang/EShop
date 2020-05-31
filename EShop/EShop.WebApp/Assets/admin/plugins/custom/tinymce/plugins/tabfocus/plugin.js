@@ -49,7 +49,7 @@
             return e.nodeName === 'BODY' || e.type !== 'hidden' && e.style.display !== 'none' && e.style.visibility !== 'hidden' && canSelectRecursive(e.parentNode);
           }
           function canSelect(el) {
-            return /INPUT|TEXTAREA|BUTTON/.test(el.tagName) && global$2.get(e.id) && el.tabIndex !== -1 && canSelectRecursive(el);
+            return /INPUT|TEXTAREA|BUTTON/.test(el.ProductName) && global$2.get(e.id) && el.tabIndex !== -1 && canSelectRecursive(el);
           }
           global$5.each(el, function (e, i) {
             if (e.id === editor.id) {

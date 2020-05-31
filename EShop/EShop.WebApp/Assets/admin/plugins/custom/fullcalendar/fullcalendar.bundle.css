@@ -231,7 +231,7 @@ temporary rendered events).
   position: relative;
   /* for resize handle and other inner positioning */
   display: block;
-  /* make the <a> tag block */
+  /* make the <a> Product block */
   font-size: 0.85em;
   line-height: 1.4;
   border-radius: 3px;
@@ -1019,7 +1019,7 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
   padding-left: 0; }
 
 .fc-list-item-title a {
-  /* every event title cell has an <a> tag */
+  /* every event title cell has an <a> Product */
   text-decoration: none;
   color: inherit; }
 

@@ -238,7 +238,7 @@ export interface StateDeclaration {
      *
      * During a transition, Resolve data can be injected into:
      *
-     * - Views (the components which fill a `ui-view` tag)
+     * - Views (the components which fill a `ui-view` Product)
      * - Transition Hooks
      * - Other resolves (a resolve may depend on asynchronous data from a different resolve)
      *

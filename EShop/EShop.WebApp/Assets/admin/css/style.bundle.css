@@ -9141,34 +9141,34 @@ button.btn {
     .btn-twitter + .btn.dropdown-toggle:hover:before, .btn-twitter + .btn.dropdown-toggle:focus:before, .btn-twitter + .btn.dropdown-toggle.active:before {
       display: none; }
 
-.btn-instagram {
+.btn-insProductram {
   color: #fff;
   background-color: #517fa4;
   border-color: #517fa4;
   color: #ffffff; }
-  .btn-instagram:hover {
+  .btn-insProductram:hover {
     color: #fff;
     background-color: #446b8a;
     border-color: #406582; }
-  .btn-instagram:focus, .btn-instagram.focus {
+  .btn-insProductram:focus, .btn-insProductram.focus {
     -webkit-box-shadow: 0 0 0 0.2rem rgba(107, 146, 178, 0.5);
     box-shadow: 0 0 0 0.2rem rgba(107, 146, 178, 0.5); }
-  .btn-instagram.disabled, .btn-instagram:disabled {
+  .btn-insProductram.disabled, .btn-insProductram:disabled {
     color: #fff;
     background-color: #517fa4;
     border-color: #517fa4; }
-  .btn-instagram:not(:disabled):not(.disabled):active, .btn-instagram:not(:disabled):not(.disabled).active,
-  .show > .btn-instagram.dropdown-toggle {
+  .btn-insProductram:not(:disabled):not(.disabled):active, .btn-insProductram:not(:disabled):not(.disabled).active,
+  .show > .btn-insProductram.dropdown-toggle {
     color: #fff;
     background-color: #406582;
     border-color: #3c5e79; }
-    .btn-instagram:not(:disabled):not(.disabled):active:focus, .btn-instagram:not(:disabled):not(.disabled).active:focus,
-    .show > .btn-instagram.dropdown-toggle:focus {
+    .btn-insProductram:not(:disabled):not(.disabled):active:focus, .btn-insProductram:not(:disabled):not(.disabled).active:focus,
+    .show > .btn-insProductram.dropdown-toggle:focus {
       -webkit-box-shadow: 0 0 0 0.2rem rgba(107, 146, 178, 0.5);
       box-shadow: 0 0 0 0.2rem rgba(107, 146, 178, 0.5); }
-  .btn-instagram + .btn.dropdown-toggle {
+  .btn-insProductram + .btn.dropdown-toggle {
     position: relative; }
-    .btn-instagram + .btn.dropdown-toggle:before {
+    .btn-insProductram + .btn.dropdown-toggle:before {
       display: block;
       content: ' ';
       border-left: 1px solid #ffffff;
@@ -9177,7 +9177,7 @@ button.btn {
       left: -1px;
       bottom: 3px;
       opacity: 0.3; }
-    .btn-instagram + .btn.dropdown-toggle:hover:before, .btn-instagram + .btn.dropdown-toggle:focus:before, .btn-instagram + .btn.dropdown-toggle.active:before {
+    .btn-insProductram + .btn.dropdown-toggle:hover:before, .btn-insProductram + .btn.dropdown-toggle:focus:before, .btn-insProductram + .btn.dropdown-toggle.active:before {
       display: none; }
 
 .btn-youtube {
@@ -10228,31 +10228,31 @@ input.btn.btn-label-twitter {
     background-color: #4AB3F4;
     color: #ffffff; }
 
-.btn.btn-label-instagram {
+.btn.btn-label-insProductram {
   background-color: rgba(81, 127, 164, 0.1);
   color: #517fa4;
   cursor: text !important; }
 
-.btn.btn-label-instagram-o2 {
+.btn.btn-label-insProductram-o2 {
   background-color: rgba(81, 127, 164, 0.2);
   color: #517fa4;
   cursor: text !important; }
 
-label.btn.btn-label-instagram,
-a.btn.btn-label-instagram,
-button.btn.btn-label-instagram,
-input.btn.btn-label-instagram {
+label.btn.btn-label-insProductram,
+a.btn.btn-label-insProductram,
+button.btn.btn-label-insProductram,
+input.btn.btn-label-insProductram {
   cursor: pointer !important; }
-  label.btn.btn-label-instagram:focus, label.btn.btn-label-instagram:hover, label.btn.btn-label-instagram.active,
-  a.btn.btn-label-instagram:focus,
-  a.btn.btn-label-instagram:hover,
-  a.btn.btn-label-instagram.active,
-  button.btn.btn-label-instagram:focus,
-  button.btn.btn-label-instagram:hover,
-  button.btn.btn-label-instagram.active,
-  input.btn.btn-label-instagram:focus,
-  input.btn.btn-label-instagram:hover,
-  input.btn.btn-label-instagram.active {
+  label.btn.btn-label-insProductram:focus, label.btn.btn-label-insProductram:hover, label.btn.btn-label-insProductram.active,
+  a.btn.btn-label-insProductram:focus,
+  a.btn.btn-label-insProductram:hover,
+  a.btn.btn-label-insProductram.active,
+  button.btn.btn-label-insProductram:focus,
+  button.btn.btn-label-insProductram:hover,
+  button.btn.btn-label-insProductram.active,
+  input.btn.btn-label-insProductram:focus,
+  input.btn.btn-label-insProductram:hover,
+  input.btn.btn-label-insProductram.active {
     background-color: #517fa4;
     color: #ffffff; }
 
@@ -14578,7 +14578,7 @@ body.swal2-height-auto {
     background-color: #5d78ff;
     -webkit-box-shadow: none;
     box-shadow: none; }
-  .kt-uppy .uppy-ProgressBar .uppy-ProgressBar-percentage {
+  .kt-uppy .uppy-ProgressBar .uppy-ProgressBar-percenProducte {
     color: #74788d;
     font-size: 0.9rem;
     font-weight: 400; }
@@ -14842,18 +14842,18 @@ body.swal2-height-auto {
   overflow: visible;
   border-radius: 4px; }
 
-.tagify {
+.Productify {
   border-radius: 4px;
   border-color: #e2e5ec; }
-  .tagify:hover {
+  .Productify:hover {
     border-color: #e2e5ec; }
-  .tagify.tagify--focus {
+  .Productify.Productify--focus {
     border: 1px solid #9aabff; }
-  .tagify .tagify__input {
+  .Productify .Productify__input {
     color: #595d6e; }
-    .tagify .tagify__input:before {
+    .Productify .Productify__input:before {
       margin-top: 2px; }
-  .tagify .tagify__tag {
+  .Productify .Productify__Product {
     background-color: #ebedf2;
     display: -webkit-inline-box;
     display: -ms-inline-flexbox;
@@ -14863,22 +14863,22 @@ body.swal2-height-auto {
     align-items: center;
     padding: 0 0.5rem;
     border-radius: 4px; }
-    .tagify .tagify__tag div {
+    .Productify .Productify__Product div {
       -webkit-box-ordinal-group: 2;
       -ms-flex-order: 1;
       order: 1;
       padding-right: 0.25rem; }
-      .tagify .tagify__tag div .tagify__tag-text {
+      .Productify .Productify__Product div .Productify__Product-text {
         color: #74788d;
         font-weight: 400; }
-      .tagify .tagify__tag div:before {
+      .Productify .Productify__Product div:before {
         -webkit-box-shadow: none !important;
         box-shadow: none !important;
         -webkit-animation: none;
         animation: none;
         -webkit-transition: none;
         transition: none; }
-    .tagify .tagify__tag .tagify__tag__removeBtn {
+    .Productify .Productify__Product .Productify__Product__removeBtn {
       line-height: 1;
       -webkit-box-ordinal-group: 3;
       -ms-flex-order: 2;
@@ -14888,7 +14888,7 @@ body.swal2-height-auto {
       position: static;
       border-radius: 0;
       margin-top: -2px; }
-      .tagify .tagify__tag .tagify__tag__removeBtn:after {
+      .Productify .Productify__Product .Productify__Product__removeBtn:after {
         font-family: Flaticon2;
         font-style: normal;
         font-weight: normal;
@@ -14903,120 +14903,120 @@ body.swal2-height-auto {
         content: "";
         font-size: 0.6rem;
         color: #a2a5b9; }
-      .tagify .tagify__tag .tagify__tag__removeBtn:hover {
+      .Productify .Productify__Product .Productify__Product__removeBtn:hover {
         background: transparent;
         color: #5d78ff; }
-        .tagify .tagify__tag .tagify__tag__removeBtn:hover + div > span {
+        .Productify .Productify__Product .Productify__Product__removeBtn:hover + div > span {
           opacity: .4; }
-    .tagify .tagify__tag.tagify__tag--brand {
+    .Productify .Productify__Product.Productify__Product--brand {
       background-color: rgba(93, 120, 255, 0.1); }
-      .tagify .tagify__tag.tagify__tag--brand div .tagify__tag-text {
+      .Productify .Productify__Product.Productify__Product--brand div .Productify__Product-text {
         color: #5d78ff; }
-      .tagify .tagify__tag.tagify__tag--brand .tagify__tag__removeBtn:after {
+      .Productify .Productify__Product.Productify__Product--brand .Productify__Product__removeBtn:after {
         color: #5d78ff; }
-      .tagify .tagify__tag.tagify__tag--brand .tagify__tag__removeBtn:hover {
+      .Productify .Productify__Product.Productify__Product--brand .Productify__Product__removeBtn:hover {
         background: transparent;
         color: #ffffff; }
-        .tagify .tagify__tag.tagify__tag--brand .tagify__tag__removeBtn:hover + div > span {
+        .Productify .Productify__Product.Productify__Product--brand .Productify__Product__removeBtn:hover + div > span {
           opacity: .3; }
-    .tagify .tagify__tag.tagify__tag--light {
+    .Productify .Productify__Product.Productify__Product--light {
       background-color: rgba(255, 255, 255, 0.1); }
-      .tagify .tagify__tag.tagify__tag--light div .tagify__tag-text {
+      .Productify .Productify__Product.Productify__Product--light div .Productify__Product-text {
         color: #ffffff; }
-      .tagify .tagify__tag.tagify__tag--light .tagify__tag__removeBtn:after {
+      .Productify .Productify__Product.Productify__Product--light .Productify__Product__removeBtn:after {
         color: #ffffff; }
-      .tagify .tagify__tag.tagify__tag--light .tagify__tag__removeBtn:hover {
+      .Productify .Productify__Product.Productify__Product--light .Productify__Product__removeBtn:hover {
         background: transparent;
         color: #282a3c; }
-        .tagify .tagify__tag.tagify__tag--light .tagify__tag__removeBtn:hover + div > span {
+        .Productify .Productify__Product.Productify__Product--light .Productify__Product__removeBtn:hover + div > span {
           opacity: .3; }
-    .tagify .tagify__tag.tagify__tag--dark {
+    .Productify .Productify__Product.Productify__Product--dark {
       background-color: rgba(40, 42, 60, 0.1); }
-      .tagify .tagify__tag.tagify__tag--dark div .tagify__tag-text {
+      .Productify .Productify__Product.Productify__Product--dark div .Productify__Product-text {
         color: #282a3c; }
-      .tagify .tagify__tag.tagify__tag--dark .tagify__tag__removeBtn:after {
+      .Productify .Productify__Product.Productify__Product--dark .Productify__Product__removeBtn:after {
         color: #282a3c; }
-      .tagify .tagify__tag.tagify__tag--dark .tagify__tag__removeBtn:hover {
+      .Productify .Productify__Product.Productify__Product--dark .Productify__Product__removeBtn:hover {
         background: transparent;
         color: #ffffff; }
-        .tagify .tagify__tag.tagify__tag--dark .tagify__tag__removeBtn:hover + div > span {
+        .Productify .Productify__Product.Productify__Product--dark .Productify__Product__removeBtn:hover + div > span {
           opacity: .3; }
-    .tagify .tagify__tag.tagify__tag--primary {
+    .Productify .Productify__Product.Productify__Product--primary {
       background-color: rgba(88, 103, 221, 0.1); }
-      .tagify .tagify__tag.tagify__tag--primary div .tagify__tag-text {
+      .Productify .Productify__Product.Productify__Product--primary div .Productify__Product-text {
         color: #5867dd; }
-      .tagify .tagify__tag.tagify__tag--primary .tagify__tag__removeBtn:after {
+      .Productify .Productify__Product.Productify__Product--primary .Productify__Product__removeBtn:after {
         color: #5867dd; }
-      .tagify .tagify__tag.tagify__tag--primary .tagify__tag__removeBtn:hover {
+      .Productify .Productify__Product.Productify__Product--primary .Productify__Product__removeBtn:hover {
         background: transparent;
         color: #ffffff; }
-        .tagify .tagify__tag.tagify__tag--primary .tagify__tag__removeBtn:hover + div > span {
+        .Productify .Productify__Product.Productify__Product--primary .Productify__Product__removeBtn:hover + div > span {
           opacity: .3; }
-    .tagify .tagify__tag.tagify__tag--success {
+    .Productify .Productify__Product.Productify__Product--success {
       background-color: rgba(10, 187, 135, 0.1); }
-      .tagify .tagify__tag.tagify__tag--success div .tagify__tag-text {
+      .Productify .Productify__Product.Productify__Product--success div .Productify__Product-text {
         color: #0abb87; }
-      .tagify .tagify__tag.tagify__tag--success .tagify__tag__removeBtn:after {
+      .Productify .Productify__Product.Productify__Product--success .Productify__Product__removeBtn:after {
         color: #0abb87; }
-      .tagify .tagify__tag.tagify__tag--success .tagify__tag__removeBtn:hover {
+      .Productify .Productify__Product.Productify__Product--success .Productify__Product__removeBtn:hover {
         background: transparent;
         color: #ffffff; }
-        .tagify .tagify__tag.tagify__tag--success .tagify__tag__removeBtn:hover + div > span {
+        .Productify .Productify__Product.Productify__Product--success .Productify__Product__removeBtn:hover + div > span {
           opacity: .3; }
-    .tagify .tagify__tag.tagify__tag--info {
+    .Productify .Productify__Product.Productify__Product--info {
       background-color: rgba(85, 120, 235, 0.1); }
-      .tagify .tagify__tag.tagify__tag--info div .tagify__tag-text {
+      .Productify .Productify__Product.Productify__Product--info div .Productify__Product-text {
         color: #5578eb; }
-      .tagify .tagify__tag.tagify__tag--info .tagify__tag__removeBtn:after {
+      .Productify .Productify__Product.Productify__Product--info .Productify__Product__removeBtn:after {
         color: #5578eb; }
-      .tagify .tagify__tag.tagify__tag--info .tagify__tag__removeBtn:hover {
+      .Productify .Productify__Product.Productify__Product--info .Productify__Product__removeBtn:hover {
         background: transparent;
         color: #ffffff; }
-        .tagify .tagify__tag.tagify__tag--info .tagify__tag__removeBtn:hover + div > span {
+        .Productify .Productify__Product.Productify__Product--info .Productify__Product__removeBtn:hover + div > span {
           opacity: .3; }
-    .tagify .tagify__tag.tagify__tag--warning {
+    .Productify .Productify__Product.Productify__Product--warning {
       background-color: rgba(255, 184, 34, 0.1); }
-      .tagify .tagify__tag.tagify__tag--warning div .tagify__tag-text {
+      .Productify .Productify__Product.Productify__Product--warning div .Productify__Product-text {
         color: #ffb822; }
-      .tagify .tagify__tag.tagify__tag--warning .tagify__tag__removeBtn:after {
+      .Productify .Productify__Product.Productify__Product--warning .Productify__Product__removeBtn:after {
         color: #ffb822; }
-      .tagify .tagify__tag.tagify__tag--warning .tagify__tag__removeBtn:hover {
+      .Productify .Productify__Product.Productify__Product--warning .Productify__Product__removeBtn:hover {
         background: transparent;
         color: #111111; }
-        .tagify .tagify__tag.tagify__tag--warning .tagify__tag__removeBtn:hover + div > span {
+        .Productify .Productify__Product.Productify__Product--warning .Productify__Product__removeBtn:hover + div > span {
           opacity: .3; }
-    .tagify .tagify__tag.tagify__tag--danger {
+    .Productify .Productify__Product.Productify__Product--danger {
       background-color: rgba(253, 57, 122, 0.1); }
-      .tagify .tagify__tag.tagify__tag--danger div .tagify__tag-text {
+      .Productify .Productify__Product.Productify__Product--danger div .Productify__Product-text {
         color: #fd397a; }
-      .tagify .tagify__tag.tagify__tag--danger .tagify__tag__removeBtn:after {
+      .Productify .Productify__Product.Productify__Product--danger .Productify__Product__removeBtn:after {
         color: #fd397a; }
-      .tagify .tagify__tag.tagify__tag--danger .tagify__tag__removeBtn:hover {
+      .Productify .Productify__Product.Productify__Product--danger .Productify__Product__removeBtn:hover {
         background: transparent;
         color: #ffffff; }
-        .tagify .tagify__tag.tagify__tag--danger .tagify__tag__removeBtn:hover + div > span {
+        .Productify .Productify__Product.Productify__Product--danger .Productify__Product__removeBtn:hover + div > span {
           opacity: .3; }
 
-.tagify--outside {
+.Productify--outside {
   border: 0 !important;
   padding: 0 !important;
   margin: 5px 0 10px 0 !important; }
-  .tagify--outside tag:first-child {
+  .Productify--outside Product:first-child {
     margin-left: 0; }
 
-.tagify__input.form-control {
+.Productify__input.form-control {
   margin: 0; }
-  .tagify__input.form-control:before {
+  .Productify__input.form-control:before {
     top: 6px; }
 
-.tagify__input--outside {
+.Productify__input--outside {
   display: block;
   max-width: 600px;
   border: 1px solid #DDD;
   margin-top: 1.5em;
   margin-bottom: 1em; }
 
-.tagify__dropdown {
+.Productify__dropdown {
   -webkit-box-shadow: 0px 0px 50px 0px rgba(82, 63, 105, 0.15);
   box-shadow: 0px 0px 50px 0px rgba(82, 63, 105, 0.15);
   background: #fff;
@@ -15024,16 +15024,16 @@ body.swal2-height-auto {
   padding: 0.75rem 0;
   z-index: 95;
   border-radius: 4px; }
-  .modal-open .tagify__dropdown {
+  .modal-open .Productify__dropdown {
     z-index: 1051; }
-  .tagify__dropdown .tagify__dropdown__item {
+  .Productify__dropdown .Productify__dropdown__item {
     color: #74788d;
     border-radius: 0;
     padding: 0.75rem 1.5rem;
     margin: 0;
     -webkit-box-shadow: none;
     box-shadow: none; }
-    .tagify__dropdown .tagify__dropdown__item.tagify__dropdown__item--active {
+    .Productify__dropdown .Productify__dropdown__item.Productify__dropdown__item--active {
       background: #f7f8fa;
       color: #5d78ff; }
 
@@ -20486,7 +20486,7 @@ strong {
 .kt-font-twitter {
   color: #4AB3F4 !important; }
 
-.kt-font-instagram {
+.kt-font-insProductram {
   color: #517fa4 !important; }
 
 .kt-font-youtube {
@@ -27336,14 +27336,14 @@ strong {
       .kt-user-card-v3 .kt-user-card-v3__detalis .kt-user-card-v3__info a.kt-user-card-v3__item > i {
         line-height: 0;
         font-size: 1.4rem; }
-      .kt-user-card-v3 .kt-user-card-v3__detalis .kt-user-card-v3__info a.kt-user-card-v3__item .kt-user-card-v3__tag {
+      .kt-user-card-v3 .kt-user-card-v3__detalis .kt-user-card-v3__info a.kt-user-card-v3__item .kt-user-card-v3__Product {
         font-size: 0.9rem;
         font-weight: 400;
         color: #9e9bb1;
         padding-left: 0.8rem;
         -webkit-transition: all 0.3s;
         transition: all 0.3s; }
-      .kt-user-card-v3 .kt-user-card-v3__detalis .kt-user-card-v3__info a.kt-user-card-v3__item:hover .kt-user-card-v3__tag {
+      .kt-user-card-v3 .kt-user-card-v3__detalis .kt-user-card-v3__info a.kt-user-card-v3__item:hover .kt-user-card-v3__Product {
         -webkit-transition: all 0.3s;
         transition: all 0.3s;
         color: #5d78ff; }

@@ -90,7 +90,7 @@ interface JQueryAjaxSettings {
      */
     headers?: { [key: string]: any; };
     /**
-     * Allow the request to be successful only if the response has changed since the last request. This is done by checking the Last-Modified header. Default value is false, ignoring the header. In jQuery 1.4 this technique also checks the 'etag' specified by the server to catch unmodified data.
+     * Allow the request to be successful only if the response has changed since the last request. This is done by checking the Last-Modified header. Default value is false, ignoring the header. In jQuery 1.4 this technique also checks the 'eProduct' specified by the server to catch unmodified data.
      */
     ifModified?: boolean;
     /**
@@ -122,7 +122,7 @@ interface JQueryAjaxSettings {
      */
     processData?: boolean;
     /**
-     * Only applies when the "script" transport is used (e.g., cross-domain requests with "jsonp" or "script" dataType and "GET" type). Sets the charset attribute on the script tag used in the request. Used when the character set on the local page is not the same as the one on the remote script.
+     * Only applies when the "script" transport is used (e.g., cross-domain requests with "jsonp" or "script" dataType and "GET" type). Sets the charset attribute on the script Product used in the request. Used when the character set on the local page is not the same as the one on the remote script.
      */
     scriptCharset?: string;
     /**

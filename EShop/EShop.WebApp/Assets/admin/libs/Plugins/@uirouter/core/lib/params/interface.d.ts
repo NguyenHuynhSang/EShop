@@ -266,15 +266,15 @@ export interface ParamDeclaration {
      *
      * #### Example:
      * ```js
-     * url: '/product/:slug',
+     * url: '/Product/:slug',
      * params: {
      *   slug: { type: 'string', raw: true }
      * }
      * ```
      *
      * This allows a URL parameter of `{ slug: 'camping/tents/awesome_tent' }`
-     * to serialize to `/product/camping/tents/awesome_tent`
-     * instead of `/product/camping%2Ftents%2Fawesome_tent`.
+     * to serialize to `/Product/camping/tents/awesome_tent`
+     * instead of `/Product/camping%2Ftents%2Fawesome_tent`.
      *
      * ---
      *
@@ -286,7 +286,7 @@ export interface ParamDeclaration {
      * For example, given a url template such as `/:raw1/:raw2`
      * the url `/foo/bar/baz/qux/`, there is no way to determine which slashes belong to which params.
      *
-     * It's generally safe to use a raw parameter at the end of a path, like '/product/:slug'.
+     * It's generally safe to use a raw parameter at the end of a path, like '/Product/:slug'.
      * However, beware of the characters you allow in your raw parameter values.
      * Avoid unencoded characters that could disrupt normal URL parsing, such as `?` and `#`.
      *

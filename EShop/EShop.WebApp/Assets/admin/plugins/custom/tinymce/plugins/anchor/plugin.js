@@ -16,12 +16,12 @@
     };
     var getId = function (editor) {
       var selectedNode = editor.selection.getNode();
-      var isAnchor = selectedNode.tagName === 'A' && editor.dom.getAttrib(selectedNode, 'href') === '';
+      var isAnchor = selectedNode.ProductName === 'A' && editor.dom.getAttrib(selectedNode, 'href') === '';
       return isAnchor ? selectedNode.getAttribute('id') || selectedNode.getAttribute('name') : '';
     };
     var insert = function (editor, id) {
       var selectedNode = editor.selection.getNode();
-      var isAnchor = selectedNode.tagName === 'A' && editor.dom.getAttrib(selectedNode, 'href') === '';
+      var isAnchor = selectedNode.ProductName === 'A' && editor.dom.getAttrib(selectedNode, 'href') === '';
       if (isAnchor) {
         selectedNode.removeAttribute('name');
         selectedNode.id = id;

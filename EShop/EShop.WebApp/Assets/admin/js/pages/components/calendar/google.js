@@ -34,7 +34,7 @@ var KTCalendarGoogle = function() {
                 eventLimit: true, // allow "more" link when too many events
                 navLinks: true,
 
-                // THIS KEY WON'T WORK IN PRODUCTION!!!
+                // THIS KEY WON'T WORK IN ProductION!!!
                 // To make your own Google API key, follow the directions here:
                 // http://fullcalendar.io/docs/google_calendar/
                 googleCalendarApiKey: 'AIzaSyDcnW6WejpTOCffshGDDb4neIrXVUA1EAE',

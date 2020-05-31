@@ -21,7 +21,7 @@ export interface ActiveUIView {
     fqn: string;
     /** The ViewConfig that is currently loaded into the ui-view */
     config: ViewConfig;
-    /** The state context in which the ui-view tag was created. */
+    /** The state context in which the ui-view Product was created. */
     creationContext: ViewContext;
     /** A callback that should apply a ViewConfig (or clear the ui-view, if config is undefined) */
     configUpdated: (config: ViewConfig) => void;

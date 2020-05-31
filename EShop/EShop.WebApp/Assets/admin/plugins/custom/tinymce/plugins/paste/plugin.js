@@ -981,10 +981,10 @@
     var toBRs = function (text) {
       return text.replace(/\r?\n/g, '<br>');
     };
-    var openContainer = function (rootTag, rootAttrs) {
+    var openContainer = function (rootProduct, rootAttrs) {
       var key;
       var attrs = [];
-      var tag = '<' + rootTag;
+      var Product = '<' + rootProduct;
       if (typeof rootAttrs === 'object') {
         for (key in rootAttrs) {
           if (rootAttrs.hasOwnProperty(key)) {
@@ -992,25 +992,25 @@
           }
         }
         if (attrs.length) {
-          tag += ' ' + attrs.join(' ');
+          Product += ' ' + attrs.join(' ');
         }
       }
-      return tag + '>';
+      return Product + '>';
     };
-    var toBlockElements = function (text, rootTag, rootAttrs) {
+    var toBlockElements = function (text, rootProduct, rootAttrs) {
       var blocks = text.split(/\n\n/);
-      var tagOpen = openContainer(rootTag, rootAttrs);
-      var tagClose = '</' + rootTag + '>';
+      var ProductOpen = openContainer(rootProduct, rootAttrs);
+      var ProductClose = '</' + rootProduct + '>';
       var paragraphs = global$4.map(blocks, function (p) {
         return p.split(/\n/).join('<br />');
       });
       var stitch = function (p) {
-        return tagOpen + p + tagClose;
+        return ProductOpen + p + ProductClose;
       };
       return paragraphs.length === 1 ? paragraphs[0] : global$4.map(paragraphs, stitch).join('');
     };
-    var convert = function (text, rootTag, rootAttrs) {
-      return rootTag ? toBlockElements(text, rootTag === true ? 'p' : rootTag, rootAttrs) : toBRs(text);
+    var convert = function (text, rootProduct, rootAttrs) {
+      return rootProduct ? toBlockElements(text, rootProduct === true ? 'p' : rootProduct, rootAttrs) : toBRs(text);
     };
     var Newlines = {
       isPlainText: isPlainText,

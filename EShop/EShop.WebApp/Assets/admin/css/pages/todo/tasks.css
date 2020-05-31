@@ -681,9 +681,9 @@
         -webkit-box-flex: 1;
         -ms-flex-positive: 1;
         flex-grow: 1; }
-      .kt-todo .kt-todo__form .kt-todo__body .kt-todo__to .tagify {
+      .kt-todo .kt-todo__form .kt-todo__body .kt-todo__to .Productify {
         border: 0 !important; }
-        .kt-todo .kt-todo__form .kt-todo__body .kt-todo__to .tagify .tagify__input {
+        .kt-todo .kt-todo__form .kt-todo__body .kt-todo__to .Productify .Productify__input {
           border: 0 !important; }
       .kt-todo .kt-todo__form .kt-todo__body .kt-todo__to .kt-todo__field {
         display: -webkit-box;

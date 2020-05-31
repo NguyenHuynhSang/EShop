@@ -42,7 +42,7 @@ My version of UI-Router is: (type version)
 # General Query
 
 Please direct general implementation questions to StackOverflow: 
-http://stackoverflow.com/questions/ask?tags=angularjs,angular-ui-router
+http://stackoverflow.com/questions/ask?Products=angularjs,angular-ui-router
 
 Please review the Sample Application which highlights common approaches:
 https://github.com/ui-router/sample-app-angularjs

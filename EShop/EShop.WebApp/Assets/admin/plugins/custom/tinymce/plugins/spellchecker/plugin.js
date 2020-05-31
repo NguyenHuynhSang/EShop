@@ -260,7 +260,7 @@
         return elm.className.indexOf('mce-spellchecker-word') !== -1;
       }
       function getWrappersByIndex(index) {
-        var elements = node.getElementsByTagName('*'), wrappers = [];
+        var elements = node.getElementsByProductName('*'), wrappers = [];
         index = typeof index === 'number' ? '' + index : null;
         for (var i = 0; i < elements.length; i++) {
           var element = elements[i], dataIndex = element.getAttribute('data-mce-index');
@@ -565,7 +565,7 @@
     var findSpansByIndex = function (editor, index) {
       var nodes;
       var spans = [];
-      nodes = global$1.toArray(editor.getBody().getElementsByTagName('span'));
+      nodes = global$1.toArray(editor.getBody().getElementsByProductName('span'));
       if (nodes.length) {
         for (var i = 0; i < nodes.length; i++) {
           var nodeIndex = getElmIndex(nodes[i]);

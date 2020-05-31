@@ -699,9 +699,9 @@
         -webkit-box-flex: 1;
         -ms-flex-positive: 1;
         flex-grow: 1; }
-      .kt-inbox .kt-inbox__form .kt-inbox__body .kt-inbox__to .tagify {
+      .kt-inbox .kt-inbox__form .kt-inbox__body .kt-inbox__to .Productify {
         border: 0 !important; }
-        .kt-inbox .kt-inbox__form .kt-inbox__body .kt-inbox__to .tagify .tagify__input {
+        .kt-inbox .kt-inbox__form .kt-inbox__body .kt-inbox__to .Productify .Productify__input {
           border: 0 !important; }
       .kt-inbox .kt-inbox__form .kt-inbox__body .kt-inbox__to .kt-inbox__field {
         display: -webkit-box;

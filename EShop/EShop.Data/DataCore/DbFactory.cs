@@ -14,7 +14,7 @@ namespace EShop.Data.DataCore
         {
 
             var optionsBuilder = new DbContextOptionsBuilder<EShopDbContext>();
-            optionsBuilder.UseSqlServer(@"data source=LAPTOP-6KVMDIF8;initial catalog=Bt2;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework");
+            optionsBuilder.UseSqlServer(@"data source=DESKTOP-0B8181F\SQLEXPRESS;initial catalog=Bt2;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework");
             return dbContext ?? (dbContext = new EShopDbContext(optionsBuilder.Options));
 
         }

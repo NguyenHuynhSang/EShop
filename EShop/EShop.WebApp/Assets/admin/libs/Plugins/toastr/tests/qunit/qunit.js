@@ -1170,7 +1170,7 @@ QUnit.load = function() {
 
 		urlConfigCheckboxesContainer = document.createElement("span");
 		urlConfigCheckboxesContainer.innerHTML = urlConfigHtml;
-		urlConfigCheckboxes = urlConfigCheckboxesContainer.getElementsByTagName("input");
+		urlConfigCheckboxes = urlConfigCheckboxesContainer.getElementsByProductName("input");
 		// For oldIE support:
 		// * Add handlers to the individual elements instead of the container
 		// * Use "click" instead of "change"
@@ -1188,7 +1188,7 @@ QUnit.load = function() {
 			moduleFilter.setAttribute( "id", "qunit-modulefilter-container" );
 			moduleFilter.innerHTML = moduleFilterHtml;
 			addEvent( moduleFilter.lastChild, "change", function() {
-				var selectBox = moduleFilter.getElementsByTagName("select")[0],
+				var selectBox = moduleFilter.getElementsByProductName("select")[0],
 					selectedModule = decodeURIComponent(selectBox.options[selectBox.selectedIndex].value);
 
 				window.location = QUnit.url({
@@ -1978,8 +1978,8 @@ QUnit.jsDump = (function() {
 					var len, i, val,
 						open = QUnit.jsDump.HTML ? "&lt;" : "<",
 						close = QUnit.jsDump.HTML ? "&gt;" : ">",
-						tag = node.nodeName.toLowerCase(),
-						ret = open + tag,
+						Product = node.nodeName.toLowerCase(),
+						ret = open + Product,
 						attrs = node.attributes;
 
 					if ( attrs ) {
@@ -1999,7 +1999,7 @@ QUnit.jsDump = (function() {
 						ret += node.nodeValue;
 					}
 
-					return ret + open + "/" + tag + close;
+					return ret + open + "/" + Product + close;
 				},
 				// function calls it internally, it's the arguments part of the function
 				functionArgs: function( fn ) {

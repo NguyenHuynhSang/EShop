@@ -181,12 +181,12 @@ uiView = [
                         config: null,
                         configUpdated: configUpdatedCallback,
                         get creationContext() {
-                            // The context in which this ui-view "tag" was created
-                            var fromParentTagConfig = parse('$cfg.viewDecl.$context')(inherited);
+                            // The context in which this ui-view "Product" was created
+                            var fromParentProductConfig = parse('$cfg.viewDecl.$context')(inherited);
                             // Allow <ui-view name="foo"><ui-view name="bar"></ui-view></ui-view>
                             // See https://github.com/angular-ui/ui-router/issues/3355
-                            var fromParentTag = parse('$uiView.creationContext')(inherited);
-                            return fromParentTagConfig || fromParentTag;
+                            var fromParentProduct = parse('$uiView.creationContext')(inherited);
+                            return fromParentProductConfig || fromParentProduct;
                         },
                     };
                     trace.traceUIViewEvent('Linking', activeUIView);
@@ -332,11 +332,11 @@ function $ViewDirectiveFill($compile, $controller, $transitions, $view, $q, $tim
                 // Wait for the component to appear in the DOM
                 if (isString(cfg.component)) {
                     var kebobName = kebobString(cfg.component);
-                    var tagRegexp_1 = new RegExp("^(x-|data-)?" + kebobName + "$", 'i');
+                    var ProductRegexp_1 = new RegExp("^(x-|data-)?" + kebobName + "$", 'i');
                     var getComponentController = function () {
                         var directiveEl = [].slice
                             .call($element[0].children)
-                            .filter(function (el) { return el && el.tagName && tagRegexp_1.exec(el.tagName); });
+                            .filter(function (el) { return el && el.ProductName && ProductRegexp_1.exec(el.ProductName); });
                         return directiveEl && angular.element(directiveEl).data("$" + cfg.component + "Controller");
                     };
                     var deregisterWatch_1 = scope.$watch(getComponentController, function (ctrlInstance) {

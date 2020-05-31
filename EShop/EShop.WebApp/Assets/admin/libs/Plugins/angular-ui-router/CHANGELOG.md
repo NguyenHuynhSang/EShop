@@ -115,7 +115,7 @@ Changelog for `@uirouter/core`:
 ### Bug Fixes
 
 * **dynamic:** Use 'find' from common.ts instead of Array.prototype.find ([66a3244](https://github.com/ui-router/core/commit/66a3244)), closes [#215](https://github.com/ui-router/core/issues/215)
-* **url:** When using html5Mode and no <base> tag is present, default to '/' ([23742e3](https://github.com/ui-router/core/commit/23742e3)), closes [#223](https://github.com/ui-router/core/issues/223)
+* **url:** When using html5Mode and no <base> Product is present, default to '/' ([23742e3](https://github.com/ui-router/core/commit/23742e3)), closes [#223](https://github.com/ui-router/core/issues/223)
 
 ## 1.0.19 (2018-07-20)
 [Compare `@uirouter/angularjs` versions 1.0.18 and 1.0.19](https://github.com/angular-ui/ui-router/compare/1.0.18...1.0.19)
@@ -249,7 +249,7 @@ Changelog for `@uirouter/core`:
 
 ### Bug Fixes
 
-* **browserLocation:** Use location.pathname (not href) or '/' when no base tag found ([db461d6](https://github.com/ui-router/core/commit/db461d6))
+* **browserLocation:** Use location.pathname (not href) or '/' when no base Product found ([db461d6](https://github.com/ui-router/core/commit/db461d6))
 * **browserLocationConfig:** If no base href found, use location.href (not empty string) ([0251424](https://github.com/ui-router/core/commit/0251424))
 * **pushStateLocation:** Fix URLs: add slash between base and path when necessary ([bfa5755](https://github.com/ui-router/core/commit/bfa5755))
 * **pushStateLocation:** When url is "" or "/", use baseHref for pushState ([042a950](https://github.com/ui-router/core/commit/042a950))
@@ -1843,7 +1843,7 @@ This release includes a lot of bug fixes around default/optional and typed param
 ### 0.2.9 (2014-01-17)
 
 
-This release is identical to 0.2.8. 0.2.8 was re-tagged in git to fix a problem with bower.
+This release is identical to 0.2.8. 0.2.8 was re-Productged in git to fix a problem with bower.
 
 
 ### 0.2.8 (2014-01-16)

@@ -329,9 +329,9 @@
       }
       return fromDom(div.childNodes[0]);
     };
-    var fromTag = function (tag, scope) {
+    var fromProduct = function (Product, scope) {
       var doc = scope || domGlobals.document;
-      var node = doc.createElement(tag);
+      var node = doc.createElement(Product);
       return fromDom(node);
     };
     var fromText = function (text, scope) {
@@ -351,7 +351,7 @@
     };
     var Element = {
       fromHtml: fromHtml,
-      fromTag: fromTag,
+      fromProduct: fromProduct,
       fromText: fromText,
       fromDom: fromDom,
       fromPoint: fromPoint

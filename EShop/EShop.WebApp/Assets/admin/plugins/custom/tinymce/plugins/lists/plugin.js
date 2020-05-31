@@ -633,9 +633,9 @@
       }
       return fromDom(div.childNodes[0]);
     };
-    var fromTag = function (tag, scope) {
+    var fromProduct = function (Product, scope) {
       var doc = scope || domGlobals.document;
-      var node = doc.createElement(tag);
+      var node = doc.createElement(Product);
       return fromDom(node);
     };
     var fromText = function (text, scope) {
@@ -655,7 +655,7 @@
     };
     var Element = {
       fromHtml: fromHtml,
-      fromTag: fromTag,
+      fromProduct: fromProduct,
       fromText: fromText,
       fromDom: fromDom,
       fromPoint: fromPoint
@@ -1028,7 +1028,7 @@
       var node, textBlock, hasContentNode;
       if (blockName) {
         textBlock = dom.create(blockName);
-        if (textBlock.tagName === blockName.toUpperCase()) {
+        if (textBlock.ProductName === blockName.toUpperCase()) {
           dom.setAttribs(textBlock, Settings.getForcedRootBlockAttrs(editor));
         }
         if (!NodeType.isBlock(contentNode.firstChild, blockElements)) {
@@ -1126,14 +1126,14 @@
     var deep = function (original) {
       return clone$1(original, true);
     };
-    var shallowAs = function (original, tag) {
-      var nu = Element.fromTag(tag);
+    var shallowAs = function (original, Product) {
+      var nu = Element.fromProduct(Product);
       var attributes = clone(original);
       setAll(nu, attributes);
       return nu;
     };
-    var mutate = function (original, tag) {
-      var nu = shallowAs(original, tag);
+    var mutate = function (original, Product) {
+      var nu = shallowAs(original, Product);
       before(original, nu);
       var children$1 = children(original);
       append$1(nu, children$1);
@@ -1154,8 +1154,8 @@
     };
     var createSegment = function (scope, listType) {
       var segment = {
-        list: Element.fromTag(listType, scope),
-        item: Element.fromTag('li', scope)
+        list: Element.fromProduct(listType, scope),
+        item: Element.fromProduct('li', scope)
       };
       append(segment.list, segment.item);
       return segment;
@@ -1184,7 +1184,7 @@
       setAll(segment.list, entry.listAttributes);
     };
     var createItem = function (scope, attr, content) {
-      var item = Element.fromTag('li', scope);
+      var item = Element.fromProduct('li', scope);
       setAll(item, attr);
       append$1(item, content);
       return item;

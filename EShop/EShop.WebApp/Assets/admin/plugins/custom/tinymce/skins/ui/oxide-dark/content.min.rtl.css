@@ -90,7 +90,7 @@ pre[class*=language-] {
 .namespace {
   opacity: .7; }
 
-.token.constant, .token.deleted, .token.property, .token.symbol, .token.tag {
+.token.constant, .token.deleted, .token.property, .token.symbol, .token.Product {
   color: #ff79c6; }
 
 .token.boolean, .token.number {

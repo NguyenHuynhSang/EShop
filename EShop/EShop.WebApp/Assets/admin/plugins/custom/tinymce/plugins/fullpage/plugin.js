@@ -465,13 +465,13 @@
         });
       }
       dom.remove('fullpage_styles');
-      var headElm = editor.getDoc().getElementsByTagName('head')[0];
+      var headElm = editor.getDoc().getElementsByProductName('head')[0];
       if (styles) {
         var styleElm = dom.add(headElm, 'style', { id: 'fullpage_styles' });
         styleElm.appendChild(domGlobals.document.createTextNode(styles));
       }
       var currentStyleSheetsMap = {};
-      global$1.each(headElm.getElementsByTagName('link'), function (stylesheet) {
+      global$1.each(headElm.getElementsByProductName('link'), function (stylesheet) {
         if (stylesheet.rel === 'stylesheet' && stylesheet.getAttribute('data-mce-fullpage')) {
           currentStyleSheetsMap[stylesheet.href] = stylesheet;
         }

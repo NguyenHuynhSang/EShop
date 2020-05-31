@@ -22,18 +22,18 @@ namespace EShop.Service.Service
     }
   public  class NewsService : INewsService
     {
-        INewsRepository _productRepository;
+        INewsRepository _ProductRepository;
         IUnitOfWork _unitOfWork;
 
         public NewsService(INewsRepository newRepository, IUnitOfWork unitOfWork)
         {
-            this._productRepository = newRepository;
+            this._ProductRepository = newRepository;
             this._unitOfWork = unitOfWork;
 
         }
         public void Add(News news)
         {
-            this._productRepository.Add(news);
+            this._ProductRepository.Add(news);
         }
 
         public News GeNewsById(int id)
@@ -48,7 +48,7 @@ namespace EShop.Service.Service
 
         public IEnumerable<NewsViewmodel> GetNewsForView()
         {
-            return _productRepository.GetNewsForView();
+            return _ProductRepository.GetNewsForView();
         }
 
         public void SaveChanges()

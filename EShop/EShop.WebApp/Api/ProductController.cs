@@ -15,33 +15,33 @@ namespace EShop.WebApp.Api
     [ApiController]
     public class ProductController : ApiBaseController
     {
-        private IProductService _productService;// service xử dụng
+        private IProductService _ProductService;// service xử dụng
 
-        public ProductController(IProductService productService, IErrorService errorService)
+        public ProductController(IProductService ProductService, IErrorService errorService)
             : base(errorService)
         {
-            this._productService = productService;
+            this._ProductService = ProductService;
         }
 
         [HttpGet]
         public IEnumerable<Product> GetAll(string keyword)
         {
-            var list = _productService.GetAll(keyword);
+            var list = _ProductService.GetAll(keyword);
 
             return list;
         }
 
         [HttpPost]
-        public Product CreateProduct(Product product)
+        public Product CreateProduct(Product Product)
         {
-            var newProduct = _productService.Add(product);
-            _productService.SaveChanges();
+            var newProduct = _ProductService.Add(Product);
+            _ProductService.SaveChanges();
             return newProduct;
         }
 
 
          
-        //public HttpResponseMessage Create(HttpRequestMessage request, Product product)
+        //public HttpResponseMessage Create(HttpRequestMessage request, Product Product)
         //{
         //    return CreateHttpResponse(request, () =>
         //    {
@@ -55,8 +55,8 @@ namespace EShop.WebApp.Api
         //        }
         //        else
         //        {
-        //            var newProduct = _productService.Add(product);
-        //            _productService.SaveChanges();
+        //            var newProduct = _ProductService.Add(Product);
+        //            _ProductService.SaveChanges();
         //            msg = request.CreateResponse(HttpStatusCode.Created);
         //        }
         //        return msg;
@@ -68,13 +68,13 @@ namespace EShop.WebApp.Api
         [HttpGet]
         public Product GetById(int id)
         {
-            return _productService.GetProductById(id);
+            return _ProductService.GetProductById(id);
         }
 
         [HttpDelete]
-        public Product DeleteProduct(Product product)
+        public Product DeleteProduct(Product Product)
         {
-            return _productService.Delete(product);
+            return _ProductService.Delete(Product);
         }
     }
 }

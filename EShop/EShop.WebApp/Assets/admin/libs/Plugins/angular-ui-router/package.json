@@ -86,7 +86,7 @@
   "homepage": "https://ui-router.github.io",
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged"
+      "pre-commit": "pretty-quick --sProducted"
     }
   },
   "jsnext:main": "lib-esm/index.js",
@@ -108,7 +108,7 @@
     "url": "git+https://github.com/angular-ui/ui-router.git"
   },
   "scripts": {
-    "artifacts": "artifact_tagging",
+    "artifacts": "artifact_Productging",
     "build": "npm run clean && npm run compile && npm run bundle && npm run fixmaps:lib && npm run fixmaps:bundle",
     "bundle": "npm run bundle_router && npm run bundle_monolithic_router && npm run bundle_events && npm run bundle_resolve",
     "bundle_events": "rollup -c --environment EVENTS  && rollup -c --environment EVENTS,MINIFY",

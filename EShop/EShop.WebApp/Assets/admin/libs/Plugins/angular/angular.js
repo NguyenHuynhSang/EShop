@@ -213,7 +213,7 @@ function minErr(module, ErrorConstructor) {
   convertTimezoneToLocal,
   timezoneToOffset,
   addDateMinutes,
-  startingTag,
+  startingProduct,
   tryDecodeURIComponent,
   parseKeyValue,
   toKeyValue,
@@ -769,8 +769,8 @@ function isArray(arr) {
  * @returns {boolean} True if `value` is an `Error`.
  */
 function isError(value) {
-  var tag = toString.call(value);
-  switch (tag) {
+  var Product = toString.call(value);
+  switch (Product) {
     case '[object Error]': return true;
     case '[object Exception]': return true;
     case '[object DOMException]': return true;
@@ -1315,7 +1315,7 @@ var csp = function() {
  * others ignored.
  *
  * @example
- * This example shows how to force jqLite using the `ngJq` directive to the `html` tag.
+ * This example shows how to force jqLite using the `ngJq` directive to the `html` Product.
  ```html
  <!doctype html>
  <html ng-app ng-jq>
@@ -1506,7 +1506,7 @@ function convertTimezoneToLocal(date, timezone, reverse) {
 /**
  * @returns {string} Returns the string representation of the element.
  */
-function startingTag(element) {
+function startingProduct(element) {
   element = jqLite(element).clone().empty();
   var elemHtml = jqLite('<div></div>').append(element).html();
   try {
@@ -1711,7 +1711,7 @@ var isAutoBootstrapAllowed = allowAutoBootstrap(window.document);
  *
  * Use this directive to **auto-bootstrap** an AngularJS application. The `ngApp` directive
  * designates the **root element** of the application and is typically placed near the root element
- * of the page - e.g. on the `<body>` or `<html>` tags.
+ * of the page - e.g. on the `<body>` or `<html>` Products.
  *
  * There are a few things to keep in mind when using `ngApp`:
  * - only one AngularJS application can be auto-bootstrapped per HTML document. The first `ngApp`
@@ -1938,12 +1938,12 @@ function bootstrap(element, modules, config) {
     element = jqLite(element);
 
     if (element.injector()) {
-      var tag = (element[0] === window.document) ? 'document' : startingTag(element);
+      var Product = (element[0] === window.document) ? 'document' : startingProduct(element);
       // Encode angle brackets to prevent input from being sanitized to empty string #8683.
       throw ngMinErr(
           'btstrpd',
           'App already bootstrapped with this element \'{0}\'',
-          tag.replace(/</,'&lt;').replace(/>/,'&gt;'));
+          Product.replace(/</,'&lt;').replace(/>/,'&gt;'));
     }
 
     modules = modules || [];
@@ -3010,7 +3010,7 @@ function publishExternalAPI(angular) {
  * jqLite (such as the element argument in a directive's compile / link function). They are never raw DOM references.</div>
  *
  * <div class="alert alert-warning">**Note:** Keep in mind that this function will not find elements
- * by tag name / CSS selector. For lookups by tag name, try instead `angular.element(document).find(...)`
+ * by Product name / CSS selector. For lookups by Product name, try instead `angular.element(document).find(...)`
  * or `$document.find()`, or use the standard DOM APIs, e.g. `document.querySelectorAll()`.</div>
  *
  * ## AngularJS's jqLite
@@ -3031,7 +3031,7 @@ function publishExternalAPI(angular) {
  * - [`detach()`](http://api.jquery.com/detach/)
  * - [`empty()`](http://api.jquery.com/empty/)
  * - [`eq()`](http://api.jquery.com/eq/)
- * - [`find()`](http://api.jquery.com/find/) - Limited to lookups by tag name
+ * - [`find()`](http://api.jquery.com/find/) - Limited to lookups by Product name
  * - [`hasClass()`](http://api.jquery.com/hasClass/)
  * - [`html()`](http://api.jquery.com/html/)
  * - [`next()`](http://api.jquery.com/next/) - Does not support selectors
@@ -3128,10 +3128,10 @@ function kebabToCamel(name) {
     .replace(DASH_LOWERCASE_REGEXP, fnCamelCaseReplace);
 }
 
-var SINGLE_TAG_REGEXP = /^<([\w-]+)\s*\/?>(?:<\/\1>|)$/;
+var SINGLE_Product_REGEXP = /^<([\w-]+)\s*\/?>(?:<\/\1>|)$/;
 var HTML_REGEXP = /<|&#?\w+;/;
-var TAG_NAME_REGEXP = /<([\w:-]+)/;
-var XHTML_TAG_REGEXP = /<(?!area|br|col|embed|hr|img|input|link|meta|param)(([\w:-]+)[^>]*)\/>/gi;
+var Product_NAME_REGEXP = /<([\w:-]+)/;
+var XHTML_Product_REGEXP = /<(?!area|br|col|embed|hr|img|input|link|meta|param)(([\w:-]+)[^>]*)\/>/gi;
 
 var wrapMap = {
   'option': [1, '<select multiple="multiple">', '</select>'],
@@ -3167,7 +3167,7 @@ function jqLiteHasData(node) {
 }
 
 function jqLiteBuildFragment(html, context) {
-  var tmp, tag, wrap,
+  var tmp, Product, wrap,
       fragment = context.createDocumentFragment(),
       nodes = [], i;
 
@@ -3177,9 +3177,9 @@ function jqLiteBuildFragment(html, context) {
   } else {
     // Convert html into DOM nodes
     tmp = fragment.appendChild(context.createElement('div'));
-    tag = (TAG_NAME_REGEXP.exec(html) || ['', ''])[1].toLowerCase();
-    wrap = wrapMap[tag] || wrapMap._default;
-    tmp.innerHTML = wrap[1] + html.replace(XHTML_TAG_REGEXP, '<$1></$2>') + wrap[2];
+    Product = (Product_NAME_REGEXP.exec(html) || ['', ''])[1].toLowerCase();
+    wrap = wrapMap[Product] || wrapMap._default;
+    tmp.innerHTML = wrap[1] + html.replace(XHTML_Product_REGEXP, '<$1></$2>') + wrap[2];
 
     // Descend through wrappers to the right content
     i = wrap[0];
@@ -3207,7 +3207,7 @@ function jqLiteParseHTML(html, context) {
   context = context || window.document;
   var parsed;
 
-  if ((parsed = SINGLE_TAG_REGEXP.exec(html))) {
+  if ((parsed = SINGLE_Product_REGEXP.exec(html))) {
     return [context.createElement(parsed[1])];
   }
 
@@ -4003,8 +4003,8 @@ forEach({
   },
 
   find: function(element, selector) {
-    if (element.getElementsByTagName) {
-      return element.getElementsByTagName(selector);
+    if (element.getElementsByProductName) {
+      return element.getElementsByProductName(selector);
     } else {
       return [];
     }
@@ -5889,7 +5889,7 @@ var $AnimateProvider = ['$provide', /** @this */ function($provide) {
        * @description Associates the provided element with a host parent element to allow the element to be animated even if it exists
        *    outside of the DOM structure of the AngularJS application. By doing so, any animation triggered via `$animate` can be issued on the
        *    element despite being outside the realm of the application or within another application. Say for example if the application
-       *    was bootstrapped on an element that is somewhere inside of the `<body>` tag, but we wanted to allow for an element to be situated
+       *    was bootstrapped on an element that is somewhere inside of the `<body>` Product, but we wanted to allow for an element to be situated
        *    as a direct child of `document.body`, then this can be achieved by pinning the element via `$animate.pin(element)`. Keep in mind
        *    that calling `$animate.pin(element, parentElement)` will not actually insert into the DOM anywhere; it will just create the association.
        *
@@ -7214,10 +7214,10 @@ function $CacheFactoryProvider() {
  * {@link ng.$cacheFactory $cacheFactory}.
  *
  * The first time a template is used, it is loaded in the template cache for quick retrieval. You
- * can load templates directly into the cache in a `script` tag, by using {@link $templateRequest},
+ * can load templates directly into the cache in a `script` Product, by using {@link $templateRequest},
  * or by consuming the `$templateCache` service directly.
  *
- * Adding via the `script` tag:
+ * Adding via the `script` Product:
  *
  * ```html
  *   <script type="text/ng-template" id="templateId.html">
@@ -7225,7 +7225,7 @@ function $CacheFactoryProvider() {
  *   </script>
  * ```
  *
- * **Note:** the `script` tag containing the template does not need to be included in the `head` of
+ * **Note:** the `script` Product containing the template does not need to be included in the `head` of
  * the document, but it must be a descendent of the {@link ng.$rootElement $rootElement} (e.g.
  * element with {@link ngApp} attribute), otherwise the template will be ignored.
  *
@@ -8347,7 +8347,7 @@ function $TemplateCacheProvider() {
  * ## Security
  *
  * Binding expressions to arbitrary properties poses a security risk, as  properties like `innerHTML`
- * can insert potentially dangerous HTML into the application, e.g. script tags that execute
+ * can insert potentially dangerous HTML into the application, e.g. script Products that execute
  * malicious code.
  * For this reason, `ngProp` applies Strict Contextual Escaping with the {@link ng.$sce $sce service}.
  * This means vulnerable properties require their content to be "trusted", based on the
@@ -8373,7 +8373,7 @@ function $TemplateCacheProvider() {
  * By default, `$sce` will throw an error if it detects untrusted HTML content, and will not bind the
  * content.
  * However, if you include the {@link ngSanitize ngSanitize module}, it will try to sanitize the
- * potentially dangerous HTML, e.g. strip non-whitelisted tags and attributes when binding to
+ * potentially dangerous HTML, e.g. strip non-whitelisted Products and attributes when binding to
  * `innerHTML`.
  *
  * @example
@@ -9306,7 +9306,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
 
       // It's not possible to work around this using `$sce.trustAsMediaUrl`.
       // If you want to programmatically set explicitly trusted unsafe URLs, you should use
-      // `$sce.trustAsHtml` on the whole `img` tag and inject it into the DOM using the
+      // `$sce.trustAsHtml` on the whole `img` Product and inject it into the DOM using the
       // `ng-bind-html` directive.
 
       var result = '';
@@ -10418,7 +10418,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
               addLinkFns(bind(context, linkFn.pre), bind(context, linkFn.post), attrStart, attrEnd);
             }
           } catch (e) {
-            $exceptionHandler(e, startingTag($compileNode));
+            $exceptionHandler(e, startingProduct($compileNode));
           }
         }
 
@@ -10632,7 +10632,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
               throw $compileMinErr('noslot',
                'No parent directive that requires a transclusion with slot name "{0}". ' +
                'Element: {1}',
-               slotName, startingTag($element));
+               slotName, startingProduct($element));
             }
           } else {
             return boundTranscludeFn(scope, cloneAttachFn, transcludeControllers, futureParentElement, scopeToChild);
@@ -10980,7 +10980,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
       if (previousDirective) {
         throw $compileMinErr('multidir', 'Multiple directives [{0}{1}, {2}{3}] asking for {4} on: {5}',
             previousDirective.name, wrapModuleNameIfDefined(previousDirective.$$moduleName),
-            directive.name, wrapModuleNameIfDefined(directive.$$moduleName), what, startingTag(element));
+            directive.name, wrapModuleNameIfDefined(directive.$$moduleName), what, startingProduct(element));
       }
     }
 
@@ -11126,7 +11126,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
       if (name === 'multiple' && nodeName === 'select') {
         throw $compileMinErr('selmulti',
             'Binding to the \'multiple\' attribute is not supported. Element: {0}',
-            startingTag(node));
+            startingProduct(node));
       }
 
       if (EVENT_HANDLER_ATTR_REGEXP.test(name)) {
@@ -11268,7 +11268,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
       try {
         linkFn(scope, $element, attrs, controllers, transcludeFn);
       } catch (e) {
-        $exceptionHandler(e, startingTag($element));
+        $exceptionHandler(e, startingProduct($element));
       }
     }
 
@@ -12690,7 +12690,7 @@ function $HttpProvider() {
      * the cookie, your server can be assured that the XHR came from JavaScript running on your
      * domain.
      *
-     * To take advantage of this, your server needs to set a token in a JavaScript readable session
+     * To take advanProducte of this, your server needs to set a token in a JavaScript readable session
      * cookie called `XSRF-TOKEN` on the first HTTP GET request. On subsequent XHR requests the
      * server can verify that the cookie matches the `X-XSRF-TOKEN` HTTP header, and therefore be
      * sure that only JavaScript running on your domain could have sent the request. The token must
@@ -15133,8 +15133,8 @@ function $LocationProvider() {
    *     change urls where supported. Will fall back to hash-prefixed paths in browsers that do not
    *     support `pushState`.
    *   - **requireBase** - `{boolean}` - (default: `true`) When html5Mode is enabled, specifies
-   *     whether or not a <base> tag is required to be present. If `enabled` and `requireBase` are
-   *     true, and a base tag is not present, an error will be thrown when `$location` is injected.
+   *     whether or not a <base> Product is required to be present. If `enabled` and `requireBase` are
+   *     true, and a base Product is not present, an error will be thrown when `$location` is injected.
    *     See the {@link guide/$location $location guide for more information}
    *   - **rewriteLinks** - `{boolean|string}` - (default: `true`) When html5Mode is enabled,
    *     enables/disables URL rewriting for relative links. If set to a string, URL rewriting will
@@ -15219,7 +15219,7 @@ function $LocationProvider() {
     if (html5Mode.enabled) {
       if (!baseHref && html5Mode.requireBase) {
         throw $locationMinErr('nobase',
-          '$location in HTML5 mode requires a <base> tag to be present!');
+          '$location in HTML5 mode requires a <base> Product to be present!');
       }
       appBase = serverBase(initialUrl) + (baseHref || '/');
       LocationMode = $sniffer.history ? LocationHtml5Url : LocationHashbangInHtml5Url;
@@ -15271,9 +15271,9 @@ function $LocationProvider() {
 
       var elm = jqLite(event.target);
 
-      // traverse the DOM up to find first A tag
+      // traverse the DOM up to find first A Product
       while (nodeName_(elm[0]) !== 'a') {
-        // ignore rewriting if no A tag (reached root element, or no parent - removed from document)
+        // ignore rewriting if no A Product (reached root element, or no parent - removed from document)
         if (elm[0] === $rootElement[0] || !(elm = elm.parent())[0]) return;
       }
 
@@ -16384,7 +16384,7 @@ ASTCompiler.prototype = {
     findConstantAndWatchExpressions(ast, self.$filter);
     var extra = '';
     var assignable;
-    this.stage = 'assign';
+    this.sProducte = 'assign';
     if ((assignable = assignableAST(ast))) {
       this.state.computing = 'assign';
       var result = this.nextId();
@@ -16393,7 +16393,7 @@ ASTCompiler.prototype = {
       extra = 'fn.assign=' + this.generateFunction('assign', 's,v,l');
     }
     var toWatch = getInputs(ast.body);
-    self.stage = 'inputs';
+    self.sProducte = 'inputs';
     forEach(toWatch, function(watch, key) {
       var fnKey = 'fn' + key;
       self.state[fnKey] = {vars: [], body: [], own: {}};
@@ -16405,7 +16405,7 @@ ASTCompiler.prototype = {
       watch.watchId = key;
     });
     this.state.computing = 'fn';
-    this.stage = 'main';
+    this.sProducte = 'main';
     this.recurse(ast);
     var fnString =
       // The build and minification steps remove the string "use strict" from the code, but this is done using a regex.
@@ -16427,7 +16427,7 @@ ASTCompiler.prototype = {
           getStringValue,
           ifDefined,
           plusFn);
-    this.state = this.stage = undefined;
+    this.state = this.sProducte = undefined;
     return fn;
   },
 
@@ -16537,13 +16537,13 @@ ASTCompiler.prototype = {
     case AST.Identifier:
       intoId = intoId || this.nextId();
       if (nameId) {
-        nameId.context = self.stage === 'inputs' ? 's' : this.assign(this.nextId(), this.getHasOwnProperty('l', ast.name) + '?l:s');
+        nameId.context = self.sProducte === 'inputs' ? 's' : this.assign(this.nextId(), this.getHasOwnProperty('l', ast.name) + '?l:s');
         nameId.computed = false;
         nameId.name = ast.name;
       }
-      self.if_(self.stage === 'inputs' || self.not(self.getHasOwnProperty('l', ast.name)),
+      self.if_(self.sProducte === 'inputs' || self.not(self.getHasOwnProperty('l', ast.name)),
         function() {
-          self.if_(self.stage === 'inputs' || 's', function() {
+          self.if_(self.sProducte === 'inputs' || 's', function() {
             if (create && create !== 1) {
               self.if_(
                 self.isNull(self.nonComputedMember('s', ast.name)),
@@ -19471,7 +19471,7 @@ function $RootScopeProvider() {
        * ```
        *
        *
-       * Scope's `$apply()` method transitions through the following stages:
+       * Scope's `$apply()` method transitions through the following sProductes:
        *
        * 1. The {@link guide/expression expression} is executed using the
        *    {@link ng.$rootScope.Scope#$eval $eval()} method.
@@ -20530,7 +20530,7 @@ function $SceDelegateProvider() {
  * | `$sce.CSS`          | For CSS that's safe to source into the application.  Currently unused.  Feel free to use it in your own directives. |
  * | `$sce.MEDIA_URL`    | For URLs that are safe to render as media. Is automatically converted from string by sanitizing when needed. |
  * | `$sce.URL`          | For URLs that are safe to follow as links. Is automatically converted from string by sanitizing when needed. Note that `$sce.URL` makes a stronger statement about the URL than `$sce.MEDIA_URL` does and therefore contexts requiring values trusted for `$sce.URL` can be used anywhere that values trusted for `$sce.MEDIA_URL` are required.|
- * | `$sce.RESOURCE_URL` | For URLs that are not only safe to follow as links, but whose contents are also safe to include in your application.  Examples include `ng-include`, `src` / `ngSrc` bindings for tags other than `IMG` (e.g. `IFRAME`, `OBJECT`, etc.)  <br><br>Note that `$sce.RESOURCE_URL` makes a stronger statement about the URL than `$sce.URL` or `$sce.MEDIA_URL` do and therefore contexts requiring values trusted for `$sce.RESOURCE_URL` can be used anywhere that values trusted for `$sce.URL` or `$sce.MEDIA_URL` are required. <br><br> The {@link $sceDelegateProvider#resourceUrlWhitelist $sceDelegateProvider#resourceUrlWhitelist()} and {@link $sceDelegateProvider#resourceUrlBlacklist $sceDelegateProvider#resourceUrlBlacklist()} can be used to restrict trusted origins for `RESOURCE_URL` |
+ * | `$sce.RESOURCE_URL` | For URLs that are not only safe to follow as links, but whose contents are also safe to include in your application.  Examples include `ng-include`, `src` / `ngSrc` bindings for Products other than `IMG` (e.g. `IFRAME`, `OBJECT`, etc.)  <br><br>Note that `$sce.RESOURCE_URL` makes a stronger statement about the URL than `$sce.URL` or `$sce.MEDIA_URL` do and therefore contexts requiring values trusted for `$sce.RESOURCE_URL` can be used anywhere that values trusted for `$sce.URL` or `$sce.MEDIA_URL` are required. <br><br> The {@link $sceDelegateProvider#resourceUrlWhitelist $sceDelegateProvider#resourceUrlWhitelist()} and {@link $sceDelegateProvider#resourceUrlBlacklist $sceDelegateProvider#resourceUrlBlacklist()} can be used to restrict trusted origins for `RESOURCE_URL` |
  * | `$sce.JS`           | For JavaScript that is safe to execute in your application's context.  Currently unused.  Feel free to use it in your own directives. |
  *
  *
@@ -20663,7 +20663,7 @@ function $SceDelegateProvider() {
  *
  * Yes, you can.  However, this is strongly discouraged.  SCE gives you a lot of security benefits
  * for little coding overhead.  It will be much harder to take an SCE disabled application and
- * either secure it on your own or enable SCE at a later stage.  It might make sense to disable SCE
+ * either secure it on your own or enable SCE at a later sProducte.  It might make sense to disable SCE
  * for cases where you have a lot of existing code that was written before SCE was introduced and
  * you're migrating them a module at a time. Also do note that this is an app-wide setting, so if
  * you are writing a library, you will cause security bugs applications using it.
@@ -21763,7 +21763,7 @@ function urlIsSameOrigin(requestUrl) {
  * Parse a request URL and determine whether it is same-origin as the current document base URL.
  *
  * Note: The base URL is usually the same as the document location (`location.href`) but can
- * be overriden by using the `<base>` tag.
+ * be overriden by using the `<base>` Product.
  *
  * @param {string|object} requestUrl The url of the request as a string that will be resolved
  * or a parsed URL object.
@@ -23976,17 +23976,17 @@ function ngDirective(directive) {
  * @restrict E
  *
  * @description
- * Modifies the default behavior of the html a tag so that the default action is prevented when
+ * Modifies the default behavior of the html a Product so that the default action is prevented when
  * the href attribute is empty.
  *
- * For dynamically creating `href` attributes for a tags, see the {@link ng.ngHref `ngHref`} directive.
+ * For dynamically creating `href` attributes for a Products, see the {@link ng.ngHref `ngHref`} directive.
  */
 var htmlAnchorDirective = valueFn({
   restrict: 'E',
   compile: function(element, attr) {
     if (!attr.href && !attr.xlinkHref) {
       return function(scope, element) {
-        // If the linked element is not an anchor tag anymore, do nothing
+        // If the linked element is not an anchor Product anymore, do nothing
         if (element[0].nodeName.toLowerCase() !== 'a') return;
 
         // SVGAElement does not use the href attribute, but rather the 'xlinkHref' attribute.
@@ -24835,7 +24835,7 @@ addSetValidityMethod({
  * <div class="alert alert-danger">
  * **Note**: `ngForm` cannot be used as a replacement for `<form>`, because it lacks its
  * [built-in HTML functionality](https://html.spec.whatwg.org/#the-form-element).
- * Specifically, you cannot submit `ngForm` like a `<form>` tag. That means,
+ * Specifically, you cannot submit `ngForm` like a `<form>` Product. That means,
  * you cannot send data to the server with `ngForm`, or integrate it with
  * {@link ng.directive:ngSubmit `ngSubmit`}.
  * </div>
@@ -28407,7 +28407,7 @@ var ngClassEvenDirective = classDirective('Even', 1);
  * ```
  *
  * When this css rule is loaded by the browser, all html elements (including their children) that
- * are tagged with the `ngCloak` directive are hidden. When AngularJS encounters this directive
+ * are Productged with the `ngCloak` directive are hidden. When AngularJS encounters this directive
  * during the compilation of the template it deletes the `ngCloak` element attribute, making
  * the compiled element visible.
  *
@@ -28486,7 +28486,7 @@ var ngCloakDirective = ngDirective({
  * `ng-controller="SettingsController2"`
  *
  * The second option is more common in the AngularJS community, and is generally used in boilerplates
- * and in this guide. However, there are advantages to binding properties directly to the controller
+ * and in this guide. However, there are advanProductes to binding properties directly to the controller
  * and avoiding scope.
  *
  * * Using `controller as` makes it obvious which controller you are accessing in the template when
@@ -28718,7 +28718,7 @@ var ngControllerDirective = [function() {
  * ```
  *
  * This error is harmless but annoying. To prevent the error from showing up, put the `ngCsp`
- * directive on an element of the HTML document that appears before the `<script>` tag that loads
+ * directive on an element of the HTML document that appears before the `<script>` Product that loads
  * the `angular.js` file.
  *
  * *Note: This directive is only available in the `ng-csp` and `data-ng-csp` attribute form.*
@@ -28753,7 +28753,7 @@ var ngControllerDirective = [function() {
  *
  * @example
  *
- * This example shows how to apply the `ngCsp` directive to the `html` tag.
+ * This example shows how to apply the `ngCsp` directive to the `html` Product.
    ```html
      <!doctype html>
      <html ng-app ng-csp>
@@ -30353,7 +30353,7 @@ NgModelController.prototype = {
       };
     } else if (!this.$$parsedNgModel.assign) {
       throw ngModelMinErr('nonassign', 'Expression \'{0}\' is non-assignable. Element: {1}',
-          this.$$attr.ngModel, startingTag(this.$$element));
+          this.$$attr.ngModel, startingProduct(this.$$element));
     }
   },
 
@@ -30832,8 +30832,8 @@ NgModelController.prototype = {
    * directive calls it when the value of the input changes and {@link ng.directive:select select}
    * calls it when an option is selected.
    *
-   * When `$setViewValue` is called, the new `value` will be staged for committing through the `$parsers`
-   * and `$validators` pipelines. If there are no special {@link ngModelOptions} specified then the staged
+   * When `$setViewValue` is called, the new `value` will be sProducted for committing through the `$parsers`
+   * and `$validators` pipelines. If there are no special {@link ngModelOptions} specified then the sProducted
    * value is sent directly for processing through the `$parsers` pipeline. After this, the `$validators` and
    * `$asyncValidators` are called and the value is applied to `$modelValue`.
    * Finally, the value is set to the **expression** specified in the `ng-model` attribute and
@@ -32282,7 +32282,7 @@ var ngOptionsDirective = ['$compile', '$document', '$parse', function($compile, 
         'Expected expression in form of ' +
         '\'_select_ (as _label_)? for (_key_,)?_value_ in _collection_\'' +
         ' but got \'{0}\'. Element: {1}',
-        optionsExp, startingTag(selectElement));
+        optionsExp, startingProduct(selectElement));
     }
 
     // Extract the parts from the ngOptions expression
@@ -33494,8 +33494,8 @@ var ngRefDirective = ['$parse', function($parse) {
  * ## Special repeat start and end points
  * To repeat a series of elements instead of just one parent element, ngRepeat (as well as other ng directives) supports extending
  * the range of the repeater by defining explicit start and end points by using **ng-repeat-start** and **ng-repeat-end** respectively.
- * The **ng-repeat-start** directive works the same as **ng-repeat**, but will repeat all the HTML code (including the tag it's defined on)
- * up to and including the ending HTML tag where **ng-repeat-end** is placed.
+ * The **ng-repeat-start** directive works the same as **ng-repeat**, but will repeat all the HTML code (including the Product it's defined on)
+ * up to and including the ending HTML Product where **ng-repeat-end** is placed.
  *
  * The example below makes use of this feature:
  * ```html
@@ -34832,7 +34832,7 @@ var ngTranscludeDirective = ['$compile', function($compile) {
           'Illegal use of ngTransclude directive in the template! ' +
           'No parent directive that requires a transclusion found. ' +
           'Element: {0}',
-          startingTag($element));
+          startingProduct($element));
         }
 
 
@@ -34898,7 +34898,7 @@ var ngTranscludeDirective = ['$compile', function($compile) {
  * @param {string} id Cache name of the template.
  *
  * @example
-  <example  name="script-tag">
+  <example  name="script-Product">
     <file name="index.html">
       <script type="text/ng-template" id="/tpl.html">
         Content of the template.
@@ -34908,7 +34908,7 @@ var ngTranscludeDirective = ['$compile', function($compile) {
       <div id="tpl-content" ng-include src="currentTpl"></div>
     </file>
     <file name="protractor.js" type="protractor">
-      it('should load template defined inside script tag', function() {
+      it('should load template defined inside script Product', function() {
         element(by.css('#tpl-link')).click();
         expect(element(by.css('#tpl-content')).getText()).toMatch(/Content of the template/);
       });
@@ -35072,7 +35072,7 @@ function setOptionSelectedStatus(optionEl, value) {
 
       expect(error.isPresent()).toBe(false);
 
-      element(by.tagName('button')).click();
+      element(by.ProductName('button')).click();
 
       expect(error.getText()).toBe('Error: Please select a value');
     });
@@ -36254,7 +36254,7 @@ function parsePatternAttr(regex, patternExp, elm) {
   if (!regex.test) {
     throw minErr('ngPattern')('noregexp',
       'Expected {0} to be a RegExp but was {1}. Element: {2}', patternExp,
-      regex, startingTag(elm));
+      regex, startingProduct(elm));
   }
 
   return regex;

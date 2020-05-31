@@ -20,12 +20,12 @@ var VectorCanvas = function (width, height, params) {
       if (!document.namespaces.rvml) {
         document.namespaces.add('rvml', 'urn:schemas-microsoft-com:vml');
       }
-      this.createVmlNode = function (tagName) {
-        return document.createElement('<rvml:' + tagName + ' class="rvml">');
+      this.createVmlNode = function (ProductName) {
+        return document.createElement('<rvml:' + ProductName + ' class="rvml">');
       };
     } catch (e) {
-      this.createVmlNode = function (tagName) {
-        return document.createElement('<' + tagName + ' xmlns="urn:schemas-microsoft.com:vml" class="rvml">');
+      this.createVmlNode = function (ProductName) {
+        return document.createElement('<' + ProductName + ' xmlns="urn:schemas-microsoft.com:vml" class="rvml">');
       };
     }
 
@@ -1132,20 +1132,20 @@ VectorCanvas.prototype.createPath = function (config) {
     node.appendChild(fill);
 
     node.setFill = function (color) {
-      this.getElementsByTagName('fill')[0].color = color;
+      this.getElementsByProductName('fill')[0].color = color;
       if (this.getAttribute('original') === null) {
         this.setAttribute('original', color);
       }
     };
 
     node.getFill = function () {
-      return this.getElementsByTagName('fill')[0].color;
+      return this.getElementsByProductName('fill')[0].color;
     };
     node.getOriginalFill = function () {
       return this.getAttribute('original');
     };
     node.setOpacity = function (opacity) {
-      this.getElementsByTagName('fill')[0].opacity = parseInt(opacity * 100, 10) + '%';
+      this.getElementsByProductName('fill')[0].opacity = parseInt(opacity * 100, 10) + '%';
     };
   }
   return node;
@@ -1265,7 +1265,7 @@ VectorCanvas.prototype.setSize = function (width, height) {
     this.canvas.coordsize = width + ' ' + height;
     this.canvas.coordorigin = '0 0';
     if (this.rootGroup) {
-      var paths = this.rootGroup.getElementsByTagName('shape');
+      var paths = this.rootGroup.getElementsByProductName('shape');
       for (var i = 0, l = paths.length; i < l; i++) {
         paths[i].coordsize = width + ' ' + height;
         paths[i].style.width = width + 'px';

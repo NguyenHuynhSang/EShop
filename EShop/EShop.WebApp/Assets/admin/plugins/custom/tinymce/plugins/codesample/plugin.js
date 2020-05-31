@@ -349,7 +349,7 @@
                         } catch (err) {
                           var src = (/at [^(\r\n]*\((.*):.+:.+\)$/i.exec(err.stack) || [])[1];
                           if (src) {
-                            var scripts = document.getElementsByTagName('script');
+                            var scripts = document.getElementsByProductName('script');
                             for (var i in scripts) {
                               if (scripts[i].src == src) {
                                 return scripts[i];
@@ -622,7 +622,7 @@
                     var env = {
                       type: o.type,
                       content: Token.stringify(o.content, language),
-                      tag: 'span',
+                      Product: 'span',
                       classes: [
                         'token',
                         o.type
@@ -638,7 +638,7 @@
                     var attributes = Object.keys(env.attributes).map(function (name) {
                       return name + '="' + (env.attributes[name] || '').replace(/"/g, '&quot;') + '"';
                     }).join(' ');
-                    return '<' + env.tag + ' class="' + env.classes.join(' ') + '"' + (attributes ? ' ' + attributes : '') + '>' + env.content + '</' + env.tag + '>';
+                    return '<' + env.Product + ' class="' + env.classes.join(' ') + '"' + (attributes ? ' ' + attributes : '') + '>' + env.content + '</' + env.Product + '>';
                   };
                   if (!_self.document) {
                     if (!_self.addEventListener) {
@@ -815,14 +815,14 @@
                 Prism.languages.css['atrule'].inside.rest = Prism.languages.css;
                 var markup = Prism.languages.markup;
                 if (markup) {
-                  markup.tag.addInlined('style', 'css');
+                  markup.Product.addInlined('style', 'css');
                   Prism.languages.insertBefore('inside', 'attr-value', {
                     'style-attr': {
                       pattern: /\s*style=("|')(?:\\[\s\S]|(?!\1)[^\\])*\1/i,
                       inside: {
                         'attr-name': {
                           pattern: /^\s*style/i,
-                          inside: markup.tag.inside
+                          inside: markup.Product.inside
                         },
                         'punctuation': /^\s*=\s*['"]|['"]\s*$/,
                         'attr-value': {
@@ -832,7 +832,7 @@
                       },
                       alias: 'language-css'
                     }
-                  }, markup.tag);
+                  }, markup.Product);
                 }
               }(Prism));
             },
@@ -977,7 +977,7 @@
                 }
               });
               if (Prism.languages.markup) {
-                Prism.languages.markup.tag.addInlined('script', 'javascript');
+                Prism.languages.markup.Product.addInlined('script', 'javascript');
               }
               Prism.languages.js = Prism.languages.javascript;
             },
@@ -1076,11 +1076,11 @@
                   greedy: true
                 },
                 'cdata': /<!\[CDATA\[[\s\S]*?]]>/i,
-                'tag': {
+                'Product': {
                   pattern: /<\/?(?!\d)[^\s>\/=$<%]+(?:\s(?:\s*[^\s>\/=]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+(?=[\s>]))|(?=[\s/>])))+)?\s*\/?>/i,
                   greedy: true,
                   inside: {
-                    'tag': {
+                    'Product': {
                       pattern: /^<\/?[^\s>\/]+/i,
                       inside: {
                         'punctuation': /^<\/?/,
@@ -1108,14 +1108,14 @@
                 },
                 'entity': /&#?[\da-z]{1,8};/i
               };
-              Prism.languages.markup['tag'].inside['attr-value'].inside['entity'] = Prism.languages.markup['entity'];
+              Prism.languages.markup['Product'].inside['attr-value'].inside['entity'] = Prism.languages.markup['entity'];
               Prism.hooks.add('wrap', function (env) {
                 if (env.type === 'entity') {
                   env.attributes['title'] = env.content.replace(/&amp;/, '&');
                 }
               });
-              Object.defineProperty(Prism.languages.markup.tag, 'addInlined', {
-                value: function addInlined(tagName, lang) {
+              Object.defineProperty(Prism.languages.markup.Product, 'addInlined', {
+                value: function addInlined(ProductName, lang) {
                   var includedCdataInside = {};
                   includedCdataInside['language-' + lang] = {
                     pattern: /(^<!\[CDATA\[)[\s\S]+?(?=\]\]>$)/i,
@@ -1134,8 +1134,8 @@
                     inside: Prism.languages[lang]
                   };
                   var def = {};
-                  def[tagName] = {
-                    pattern: RegExp(/(<__[\s\S]*?>)(?:<!\[CDATA\[[\s\S]*?\]\]>\s*|[\s\S])*?(?=<\/__>)/.source.replace(/__/g, tagName), 'i'),
+                  def[ProductName] = {
+                    pattern: RegExp(/(<__[\s\S]*?>)(?:<!\[CDATA\[[\s\S]*?\]\]>\s*|[\s\S])*?(?=<\/__>)/.source.replace(/__/g, ProductName), 'i'),
                     lookbehind: true,
                     greedy: true,
                     inside: inside
@@ -1343,7 +1343,7 @@
                   inside: {
                     'delimiter': {
                       pattern: /^#\{|\}$/,
-                      alias: 'tag'
+                      alias: 'Product'
                     },
                     rest: Prism.languages.ruby
                   }

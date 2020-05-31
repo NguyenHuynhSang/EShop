@@ -37,9 +37,9 @@ var BrowserLocationConfig = /** @class */ (function () {
         return this._baseHref;
     };
     BrowserLocationConfig.prototype.getBaseHref = function () {
-        var baseTag = document.getElementsByTagName('base')[0];
-        if (baseTag && baseTag.href) {
-            return baseTag.href.replace(/^([^/:]*:)?\/\/[^/]*/, '');
+        var baseProduct = document.getElementsByProductName('base')[0];
+        if (baseProduct && baseProduct.href) {
+            return baseProduct.href.replace(/^([^/:]*:)?\/\/[^/]*/, '');
         }
         return this._isHtml5 ? '/' : location.pathname || '/';
     };

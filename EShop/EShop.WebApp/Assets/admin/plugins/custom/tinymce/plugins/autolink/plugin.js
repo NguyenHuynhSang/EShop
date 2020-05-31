@@ -70,7 +70,7 @@
       var rng, end, start, endContainer, bookmark, text, matches, prev, len, rngText;
       var autoLinkPattern = Settings.getAutoLinkPattern(editor);
       var defaultLinkTarget = Settings.getDefaultLinkTarget(editor);
-      if (editor.selection.getNode().tagName === 'A') {
+      if (editor.selection.getNode().ProductName === 'A') {
         return;
       }
       rng = editor.selection.getRng(true).cloneRange();
