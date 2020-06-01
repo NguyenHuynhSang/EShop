@@ -56,6 +56,7 @@ namespace EShop.WebApp.Api
         public Catalog Create(Catalog catalog)
         {
             var newCatalog = _catalogService.Add(catalog);
+            _catalogService.SaveChanges();
             return newCatalog;
         }
 
