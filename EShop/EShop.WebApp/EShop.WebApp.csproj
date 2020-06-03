@@ -37,19 +37,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EShop.Common\EShop.Common.csproj" />
-    <ProjectReference Include="..\EShop.Data\EShop.Data.csproj" />
-    <ProjectReference Include="..\EShop.Model\EShop.Model.csproj" />
-    <ProjectReference Include="..\EShop.Service\EShop.Service.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="app\shared\header\" />
     <Folder Include="app\shared\footer\" />
     <Folder Include="app\shared\navigation\" />
     <Folder Include="app\shared\directive\" />
     <Folder Include="Assets\client\" />
-    <Folder Include="Infrastructure\Extension\" />
     <Folder Include="Scripts\" />
   </ItemGroup>
 

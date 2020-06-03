@@ -29,7 +29,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EShop.Common\EShop.Common.csproj" />
     <ProjectReference Include="..\EShop.Model\EShop.Model.csproj" />
   </ItemGroup>
 

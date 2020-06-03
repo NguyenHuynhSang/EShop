@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace EShop.Model.Models
+namespace EShop.EShop.Server.Models
 {
     [Table("AttributeValue")]
     public class AttributeValue

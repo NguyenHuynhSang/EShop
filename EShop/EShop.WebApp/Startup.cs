@@ -1,5 +1,5 @@
 ﻿using EShop.Data;
-using EShop.Data.DataCore;
+using EShop.Server.Data.DataCore;
 using EShop.Data.Repository;
 using EShop.Service.Service;
 using Microsoft.AspNetCore.Builder;
