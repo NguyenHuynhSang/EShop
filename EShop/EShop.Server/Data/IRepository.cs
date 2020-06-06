@@ -42,5 +42,8 @@ namespace EShop.Server.Data
 
         bool CheckContains(Expression<Func<T, bool>> predicate);
 
+
+        void Commit();
+
     }
 }

@@ -129,5 +129,10 @@ namespace EShop.Server.Data
         {
             return _dbContext.Set<T>().Count<T>(predicate) > 0;
         }
+
+        public void Commit()
+        {
+            _dbContext.SaveChanges();
+        }
     }
 }
