@@ -14,7 +14,7 @@ namespace EShop.Server.Repository
     {
 
 
-        public TagRepository(IDbFactory dbFactory) : base(dbFactory)
+        public TagRepository(EShopDbContext dbContext) : base(dbContext)
         {
 
         }

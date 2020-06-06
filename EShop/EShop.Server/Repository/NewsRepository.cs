@@ -16,7 +16,7 @@ namespace EShop.Server.Repository
     public class NewsRepository : RepositoryBase<News>, INewsRepository
     {
 
-        public NewsRepository(IDbFactory dbFactory) : base(dbFactory)
+        public NewsRepository(EShopDbContext dbContext) : base(dbContext)
         {
 
         }

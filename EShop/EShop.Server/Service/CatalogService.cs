@@ -30,12 +30,12 @@ namespace EShop.Server.Service
     public class CatalogService : ICatalogService
     {
         ICatalogRepository _catalogRepository;
-        IUnitOfWork _unitOfWork;
+       
 
-        public CatalogService(ICatalogRepository catalogRepository, IUnitOfWork unitOfWork)
+        public CatalogService(ICatalogRepository catalogRepository)
         {
             this._catalogRepository = catalogRepository;
-            this._unitOfWork = unitOfWork;
+           
 
         }
         public Catalog Add(Catalog catalog)
@@ -75,7 +75,7 @@ namespace EShop.Server.Service
 
         public void SaveChanges()
         {
-            _unitOfWork.Commit();
+           
         }
 
         public void Update(Catalog catalog)

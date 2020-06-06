@@ -12,7 +12,7 @@ namespace EShop.Server.Repository
     }
     public class AttributeRepository : RepositoryBase<EShop.Server.Models.Attribute>, IAttributeRepository
     {
-        public AttributeRepository(IDbFactory dbFactory) : base(dbFactory)
+        public AttributeRepository(EShopDbContext dbContext) : base(dbContext)
         {
         }
     }
