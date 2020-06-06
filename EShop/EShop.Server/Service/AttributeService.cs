@@ -22,12 +22,12 @@ namespace EShop.Server.Service
     public class AttributeService : IAttributeService
     {
         IAttributeRepository _attributeRepository;
-        IUnitOfWork _unitOfWork;
+       
 
-        public AttributeService(IAttributeRepository attributeRepository, IUnitOfWork unitOfWork)
+        public AttributeService(IAttributeRepository attributeRepository)
         {
             this._attributeRepository = attributeRepository;
-            this._unitOfWork = unitOfWork;
+           
 
         }
         public EShop.Server.Models.Attribute Add(EShop.Server.Models.Attribute attribute)
@@ -56,7 +56,8 @@ namespace EShop.Server.Service
 
         public void SaveChanges()
         {
-            _unitOfWork.Commit();
+          
+           
         }
     }
 }

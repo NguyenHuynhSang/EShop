@@ -22,12 +22,12 @@ namespace EShop.Server.Service
         /// IUnitOfWork đơn vị công việc dùng để lưu database bằng _unitOfWork.Commit
         /// </summary>
         IErrorRepository _errorRepository; 
-        IUnitOfWork _unitOfWork;
+       
 
-        public ErrorService(IErrorRepository errorRepository, IUnitOfWork unitOfWork) 
+        public ErrorService(IErrorRepository errorRepository) 
         {
             this._errorRepository = errorRepository;
-            this._unitOfWork = unitOfWork;
+           
         }
         public Error Create(Error error)
         {
@@ -37,7 +37,7 @@ namespace EShop.Server.Service
        
         public void Save()
         {
-            _unitOfWork.Commit();
+           
         }
     }
 }

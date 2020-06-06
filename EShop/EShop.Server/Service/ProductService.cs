@@ -26,12 +26,12 @@ namespace EShop.Server.Service
     public class ProductService : IProductService
     {
         IProductRepository _productRepository;
-        IUnitOfWork _unitOfWork;
+       
 
-        public ProductService(IProductRepository productRepository, IUnitOfWork unitOfWork)
+        public ProductService(IProductRepository productRepository)
         {
             this._productRepository = productRepository;
-            this._unitOfWork = unitOfWork;
+           
 
         }
         public Product Add(Product product)
@@ -99,7 +99,7 @@ namespace EShop.Server.Service
 
         public void SaveChanges()
         {
-            _unitOfWork.Commit();
+           
         }
     }
 }

@@ -37,8 +37,8 @@ namespace EShop.Server
                 opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             });
 
-            services.AddScoped<IDbFactory, DbFactory>();
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+      
+
 
             services.AddScoped<IErrorRepository, ErrorRepository>();
             services.AddScoped<IErrorService, ErrorService>();

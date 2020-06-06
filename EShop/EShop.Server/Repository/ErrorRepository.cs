@@ -15,7 +15,7 @@ namespace EShop.Server.Repository
     {
 
 
-        public ErrorRepository(IDbFactory dbFactory) : base(dbFactory)
+        public ErrorRepository(EShopDbContext dbContext) : base(dbContext)
         {
 
         }

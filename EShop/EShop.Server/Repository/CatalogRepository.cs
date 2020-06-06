@@ -23,7 +23,7 @@ namespace EShop.Server.Repository
     {
 
 
-        public CatalogRepository(IDbFactory dbFactory) : base(dbFactory)
+        public CatalogRepository(EShopDbContext dbContext) : base(dbContext)
         {
 
         }

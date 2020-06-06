@@ -11,26 +11,22 @@ namespace EShop.Server.Data
     /// Thân hàm mấy thằng phương thức chung
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class RepositoryBase<T> : IRepository<T> where T : class
+    public abstract class RepositoryBase<T> : IRepository<T> where T : class, new()
     {
-        private EShopDbContext dbContext;
+        private EShopDbContext _dbContext;
         private readonly DbSet<T> dbSet;
 
-        protected IDbFactory DbFactory
-        {
-            get;
-            private set;
-        }
+ 
 
-        protected RepositoryBase(IDbFactory dbFactory)
+        protected RepositoryBase(EShopDbContext dbContext)
         {
-            DbFactory = dbFactory;
-            dbSet = DbContext.Set<T>();
+            _dbContext = dbContext;
+            dbSet = _dbContext.Set<T>();
         }
 
         protected EShopDbContext DbContext
         {
-            get { return dbContext ?? (dbContext = DbFactory.Init()); }
+            get { return _dbContext; }
         }
 
         public virtual T Add(T entity)
@@ -40,8 +36,8 @@ namespace EShop.Server.Data
 
         public virtual void Update(T entity)
         {
-            dbContext.Attach(entity);
-            dbContext.Entry(entity).State = EntityState.Modified;
+            _dbContext.Attach(entity);
+            _dbContext.Entry(entity).State = EntityState.Modified;
         }
 
         public virtual T Delete(T entity)
@@ -65,12 +61,12 @@ namespace EShop.Server.Data
         {
             if (includes != null && includes.Count() > 0)
             {
-                var query = dbContext.Set<T>().Include(includes.First());
+                var query = _dbContext.Set<T>().Include(includes.First());
                 foreach (var include in includes.Skip(1))
                     query = query.Include(include);
                 return query.FirstOrDefault(expression);
             }
-            return dbContext.Set<T>().FirstOrDefault(expression);
+            return _dbContext.Set<T>().FirstOrDefault(expression);
         }
 
         public virtual IEnumerable<T> GetAll(string[] includes = null)
@@ -78,13 +74,13 @@ namespace EShop.Server.Data
             //HANDLE INCLUDES FOR ASSOCIATED OBJECTS IF APPLICABLE
             if (includes != null && includes.Count() > 0)
             {
-                var query = dbContext.Set<T>().Include(includes.First());
+                var query = _dbContext.Set<T>().Include(includes.First());
                 foreach (var include in includes.Skip(1))
                     query = query.Include(include);
                 return query.AsQueryable();
             }
 
-            return dbContext.Set<T>().AsQueryable();
+            return _dbContext.Set<T>().AsQueryable();
         }
 
         public virtual IEnumerable<T> GetMulti(Expression<Func<T, bool>> predicate, string[] includes = null)
@@ -92,13 +88,13 @@ namespace EShop.Server.Data
             //HANDLE INCLUDES FOR ASSOCIATED OBJECTS IF APPLICABLE
             if (includes != null && includes.Count() > 0)
             {
-                var query = dbContext.Set<T>().Include(includes.First());
+                var query = _dbContext.Set<T>().Include(includes.First());
                 foreach (var include in includes.Skip(1))
                     query = query.Include(include);
                 return query.Where<T>(predicate).AsQueryable<T>();
             }
 
-            return dbContext.Set<T>().Where<T>(predicate).AsQueryable<T>();
+            return _dbContext.Set<T>().Where<T>(predicate).AsQueryable<T>();
         }
 
         public virtual IEnumerable<T> GetMultiPaging(Expression<Func<T, bool>> predicate, out int total, int index = 0, int size = 50, string[] includes = null)
@@ -109,14 +105,14 @@ namespace EShop.Server.Data
             //HANDLE INCLUDES FOR ASSOCIATED OBJECTS IF APPLICABLE
             if (includes != null && includes.Count() > 0)
             {
-                var query = dbContext.Set<T>().Include(includes.First());
+                var query = _dbContext.Set<T>().Include(includes.First());
                 foreach (var include in includes.Skip(1))
                     query = query.Include(include);
                 _resetSet = predicate != null ? query.Where<T>(predicate).AsQueryable() : query.AsQueryable();
             }
             else
             {
-                _resetSet = predicate != null ? dbContext.Set<T>().Where<T>(predicate).AsQueryable() : dbContext.Set<T>().AsQueryable();
+                _resetSet = predicate != null ? _dbContext.Set<T>().Where<T>(predicate).AsQueryable() : _dbContext.Set<T>().AsQueryable();
             }
 
             _resetSet = skipCount == 0 ? _resetSet.Take(size) : _resetSet.Skip(skipCount).Take(size);
@@ -131,7 +127,7 @@ namespace EShop.Server.Data
 
         public bool CheckContains(Expression<Func<T, bool>> predicate)
         {
-            return dbContext.Set<T>().Count<T>(predicate) > 0;
+            return _dbContext.Set<T>().Count<T>(predicate) > 0;
         }
     }
 }

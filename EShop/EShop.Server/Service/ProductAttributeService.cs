@@ -23,12 +23,12 @@ namespace EShop.Server.Service
     public class ProductAttributeService : IProductAttributeService
     {
         IProductAttributeRepository _productAttributeRepository;
-        IUnitOfWork _unitOfWork;
+       
 
-        public ProductAttributeService(IProductAttributeRepository productAttributeRepository, IUnitOfWork unitOfWork)
+        public ProductAttributeService(IProductAttributeRepository productAttributeRepository)
         {
             this._productAttributeRepository = productAttributeRepository;
-            this._unitOfWork = unitOfWork;
+           
 
         }
         public ProductAttribute Add(ProductAttribute productAttribute)
@@ -54,7 +54,7 @@ namespace EShop.Server.Service
 
         public void SaveChanges()
         {
-            _unitOfWork.Commit();
+           
         }
     }
 }

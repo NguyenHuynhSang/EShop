@@ -23,12 +23,12 @@ namespace EShop.Server.Service
   public  class NewsService : INewsService
     {
         INewsRepository _productRepository;
-        IUnitOfWork _unitOfWork;
+       
 
-        public NewsService(INewsRepository newRepository, IUnitOfWork unitOfWork)
+        public NewsService(INewsRepository newRepository)
         {
             this._productRepository = newRepository;
-            this._unitOfWork = unitOfWork;
+           
 
         }
         public void Add(News news)
@@ -53,7 +53,7 @@ namespace EShop.Server.Service
 
         public void SaveChanges()
         {
-            _unitOfWork.Commit();
+           
         }
     }
 }

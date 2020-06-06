@@ -10,7 +10,7 @@ namespace EShop.Server.Data
     /// <summary>
     ///  Chứa các phương thức dùng chung 
     /// </summary>
-    public interface IRepository<T> where T : class
+    public interface IRepository<T> where T : class, new()
     {
         T Add(T entity);
 

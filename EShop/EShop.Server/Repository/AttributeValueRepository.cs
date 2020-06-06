@@ -17,7 +17,7 @@ namespace EShop.Server.Repository
     {
 
 
-        public AttributeValueRepository(IDbFactory dbFactory) : base(dbFactory)
+        public AttributeValueRepository(EShopDbContext dbContext) : base(dbContext)
         {
 
         }

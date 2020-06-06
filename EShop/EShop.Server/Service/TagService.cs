@@ -23,12 +23,12 @@ namespace EShop.Server.Service
     public class TagService : ITagService
     {
         ITagRepository _TagRepository;
-        IUnitOfWork _unitOfWork;
+       
 
-        public TagService(ITagRepository TagRepository, IUnitOfWork unitOfWork)
+        public TagService(ITagRepository TagRepository)
         {
             this._TagRepository = TagRepository;
-            this._unitOfWork = unitOfWork;
+           
 
         }
         public Tag Add(Tag Tag)
@@ -62,7 +62,7 @@ namespace EShop.Server.Service
 
         public void SaveChanges()
         {
-            _unitOfWork.Commit();
+           
         }
     }
 }
