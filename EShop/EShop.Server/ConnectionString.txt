@@ -1,1 +1,1 @@
-﻿data source=LAPTOP-6KVMDIF8;initial catalog=Bt2;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework
+﻿data source=LAPTOP-6KVMDIF8;initial catalog=Bt2;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework 
