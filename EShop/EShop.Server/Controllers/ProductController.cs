@@ -1,5 +1,5 @@
-﻿using EShop.Server.Service;
-using EShop.WebApp.Infrastructure.Core;
+﻿ using EShop.Server.Service;
+
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -16,18 +16,18 @@ namespace EShop.Server.Controllers
     [Route("api/[controller]/[action]")]
    
     [ApiController]
-    public class ProductController : ApiBaseController
+    public class ProductController:ControllerBase 
     {
         private IProductService _productService;// service xử dụng
 
-        public ProductController(IProductService productService, IErrorService errorService)
-            : base(errorService)
+        public ProductController(IProductService productService)
+            
         {
             this._productService = productService;
         }
 
         [HttpGet]
-        public IEnumerable<Product> GetAll(string filterJson)
+        public ActionResult<PagedList<Product>> GetAll(string filterJson,int pageNumder=1,int pageSize=50)
         {
             ProductFilterModel filterModel = null;
             if (!string.IsNullOrEmpty(filterJson))
@@ -37,7 +37,7 @@ namespace EShop.Server.Controllers
 
             var list = _productService.GetAll(filterModel) ;
 
-            return list;
+            return PagedList<Product>.ToPagedList(list, pageNumder, pageSize);
         }
 
         [HttpPost]
@@ -57,29 +57,7 @@ namespace EShop.Server.Controllers
         }
 
 
-        //public HttpResponseMessage Create(HttpRequestMessage request, Product product)
-        //{
-        //    return CreateHttpResponse(request, () =>
-        //    {
-        //        HttpResponseMessage msg = null;
-        //        if (ModelState.IsValid)
-        //        {
-        //            var message = string.Join(" | ", ModelState.Values
-        //               .SelectMany(v => v.Errors)
-        //               .Select(e => e.ErrorMessage));
-        //            request.CreateErrorResponse(HttpStatusCode.BadRequest, message);
-        //        }
-        //        else
-        //        {
-        //            var newProduct = _productService.Add(product);
-        //            _productService.SaveChanges();
-        //            msg = request.CreateResponse(HttpStatusCode.Created);
-        //        }
-        //        return msg;
-        //    });
-
-
-        //}
+    
 
         [HttpGet]
         public Product GetById(int id)
