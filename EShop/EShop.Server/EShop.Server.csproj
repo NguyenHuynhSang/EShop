@@ -25,4 +25,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="5.2.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Mapping\" />
+    <Folder Include="Utility\" />
+  </ItemGroup>
+
 </Project>

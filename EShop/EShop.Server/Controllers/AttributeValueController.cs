@@ -4,18 +4,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using EShop.Server.Models;
 using EShop.Server.Service;
-using EShop.WebApp.Infrastructure.Core;
+
 using Microsoft.AspNetCore.Mvc;
 
 namespace EShop.Server.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class AttributeValueController : ApiBaseController
+    public class AttributeValueController : ControllerBase
     {
         private IAttributeValueService _attributeValueService;// service xử dụng
-        public AttributeValueController(IAttributeValueService attributeValueService, IErrorService errorService)
-           : base(errorService)
+        public AttributeValueController(IAttributeValueService attributeValueService)
+           
         {
             _attributeValueService = attributeValueService;
         }

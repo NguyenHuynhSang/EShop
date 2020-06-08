@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using EShop.Server.Models;
 using EShop.Server.ViewModels;
 using EShop.Server.Service;
-using EShop.WebApp.Infrastructure.Core;
+
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,11 +13,11 @@ namespace EShop.Server.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class CatalogController : ApiBaseController
+    public class CatalogController : ControllerBase
     {
         private ICatalogService _catalogService;// service xử dụng
-        public CatalogController(ICatalogService catalogService, IErrorService errorService)
-           : base(errorService)
+        public CatalogController(ICatalogService catalogService)
+           
         {
             _catalogService = catalogService;
         }

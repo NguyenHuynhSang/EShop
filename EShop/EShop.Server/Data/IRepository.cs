@@ -19,28 +19,28 @@ namespace EShop.Server.Data
         T Delete(T entity);
 
 
-        void DeleteMulti(Expression<Func<T, bool>> where);
+        void DeleteMulti(Expression<Func<T, bool>> filter);
 
         T GetSingleById(int id);
 
         /// <summary>
         /// Lấy entity dựa vào điều kiện
         /// </summary>
-        /// <param name="expression"></param>
+        /// <param name="filter"></param>
         /// <param name="includes"> vi du nhu may cai bảng con</param>
         /// <returns></returns>
-        T GetSingleByCondition(Expression<Func<T, bool>> expression, string[] includes = null);
+        T GetSingleByCondition(Expression<Func<T, bool>> filter, string[] includes = null);
 
-        IEnumerable<T> GetAll(string[] include = null);
+        IEnumerable<T> GetAll(string[] filter = null);
 
-        IEnumerable<T> GetMulti(Expression<Func<T, bool>> predicate, string[] include = null);
+        IEnumerable<T> GetMulti(Expression<Func<T, bool>> filter, string[] include = null);
 
         IEnumerable<T> GetMultiPaging(Expression<Func<T, bool>> filter
             , out int total, int index = 0, int size = 50, string[] include = null);
 
-        int Count(Expression<Func<T, bool>> where);
+        int Count(Expression<Func<T, bool>> filter);
 
-        bool CheckContains(Expression<Func<T, bool>> predicate);
+        bool CheckContains(Expression<Func<T, bool>> filter);
 
 
         void Commit();
