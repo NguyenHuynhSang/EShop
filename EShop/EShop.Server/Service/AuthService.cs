@@ -13,6 +13,7 @@ namespace EShop.Server.Service
         User Login(string username, string password);
         bool UserExists(string username);
 
+        void SaveChange();
     }
 
   
@@ -78,6 +79,9 @@ namespace EShop.Server.Service
             return this._authRepository.CheckContains(x => x.Username == username);
         }
 
-       
+        public void SaveChange()
+        {
+            this._authRepository.Commit();
+        }
     }
 }

@@ -46,7 +46,11 @@ namespace EShop.Server.Controllers
                 Username = user.Username,
             };
             var newUser = _authService.Register(userToCreate, user.Password);
-
+            if (newUser!=null)
+            {
+                this._authService.SaveChange();
+            }
+            
             return StatusCode(201);
             // return Ok(newUser);
         }
