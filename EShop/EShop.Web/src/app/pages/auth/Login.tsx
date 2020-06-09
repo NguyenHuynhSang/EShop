@@ -52,7 +52,7 @@ function Login(props) {
               password: "demo"
             }}
             validate={values => {
-              const errors = { email: '', password: '' };
+              const errors: { email?: string; password?: string; } = {};
 
               if (!values.email) {
                 // https://github.com/formatjs/react-intl/blob/master/docs/API.md#injection-api
