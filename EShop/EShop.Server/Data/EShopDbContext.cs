@@ -1,9 +1,11 @@
 ﻿using EShop.Server.Models;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
-
+using EShop.Server.Extension;
 namespace EShop.Server.Data
 {
     using ProductAttribute = Server.Models.Attribute;
@@ -48,7 +50,15 @@ namespace EShop.Server.Data
 
         public DbSet<Image> Images { get; set; }
 
-        public DbSet<ProductAttribute> productAttributes { get; set; }
+        public DbSet<ProductAttribute> ProductAttributes { get; set; }
+
+        public DbSet<User> Users { get; set; }
+
+        public DbSet<Photo> Photos { get; set; }
+
+
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder) //Một bảng có 2 khóa chính phải sử dụng fluent API
         {
             modelBuilder.Entity<ContentTag>()
@@ -71,18 +81,39 @@ namespace EShop.Server.Data
                                                  new Catalog { ID = 4, ParentID = 1, Name = "Apple" },
                                                  new Catalog { ID = 5, ParentID = 2, Name = "Macbook" });
 
-            modelBuilder.Entity<EShop.Server.Models.Attribute>().HasData(new ProductAttribute { ID = 1, Name="Màu sắc" },
-                                                 new ProductAttribute { ID = 2, Name="Dung lượng" });
+            modelBuilder.Entity<EShop.Server.Models.Attribute>().HasData(new ProductAttribute { ID = 1, Name = "Màu sắc" },
+                                                 new ProductAttribute { ID = 2, Name = "Dung lượng" });
 
-            modelBuilder.Entity<AttributeValue>().HasData(new AttributeValue { ID = 1, AttributeID=1,Name="Đỏ"},
+            modelBuilder.Entity<AttributeValue>().HasData(new AttributeValue { ID = 1, AttributeID = 1, Name = "Đỏ" },
                                                 new AttributeValue { ID = 2, AttributeID = 1, Name = "Xanh" },
                                                new AttributeValue { ID = 3, AttributeID = 1, Name = "Tím" },
                                                 new AttributeValue { ID = 4, AttributeID = 2, Name = "16gb" },
-                                                new AttributeValue { ID =5, AttributeID = 2, Name = "32gb" },
+                                                new AttributeValue { ID = 5, AttributeID = 2, Name = "32gb" },
                                                    new AttributeValue { ID = 6, AttributeID = 2, Name = "64gb" });
 
-        }
 
+
+            var userData = File.ReadAllText("Data/UserSeedData.json");
+            var users = JsonConvert.DeserializeObject<List<User>>(userData);
+
+            foreach (var user in users)
+            {
+                byte[] passwordHash, passwordSalt;
+
+                EShop.Server.Extension.Extensions.CreatePasswordHash("password", out passwordHash, out passwordSalt);
+                user.PasswordHash = passwordHash;
+                user.PasswordSalt = passwordSalt;
+                user.Username = user.Username.ToLower();
+
+                modelBuilder.Entity<User>().OwnsMany<Photo>(u => u.Photos).HasData(user);
+            }
+
+
+
+
+
+
+        }
 
 
 
