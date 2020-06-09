@@ -93,20 +93,20 @@ namespace EShop.Server.Data
 
 
 
-            var userData = File.ReadAllText("Data/UserSeedData.json");
-            var users = JsonConvert.DeserializeObject<List<User>>(userData);
+            //var userData = File.ReadAllText("Data/UserSeedData.json");
+            //var users = JsonConvert.DeserializeObject<List<User>>(userData);
 
-            foreach (var user in users)
-            {
-                byte[] passwordHash, passwordSalt;
+            //foreach (var user in users)
+            //{
+            //    byte[] passwordHash, passwordSalt;
 
-                EShop.Server.Extension.Extensions.CreatePasswordHash("password", out passwordHash, out passwordSalt);
-                user.PasswordHash = passwordHash;
-                user.PasswordSalt = passwordSalt;
-                user.Username = user.Username.ToLower();
+            //    EShop.Server.Extension.Extensions.CreatePasswordHash("password", out passwordHash, out passwordSalt);
+            //    user.PasswordHash = passwordHash;
+            //    user.PasswordSalt = passwordSalt;
+            //    user.Username = user.Username.ToLower();
 
-                modelBuilder.Entity<User>().OwnsMany<Photo>(u => u.Photos).HasData(user);
-            }
+            //    modelBuilder.Entity<User>().OwnsMany<Photo>(u => u.Photos).HasData(user);
+            //}
 
 
 
