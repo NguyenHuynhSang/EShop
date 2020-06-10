@@ -9,6 +9,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { LastLocationProvider } from "react-router-last-location";
 import { Routes } from "./app/router/Routes";
 import { I18nProvider, LayoutSplashScreen, ThemeProvider } from "./_metronic";
+import GlobalStyles from './app/styles/global';
 
 export default function App({ store, Layout, persistor, basename }) {
   return (
@@ -24,6 +25,7 @@ export default function App({ store, Layout, persistor, basename }) {
             <LastLocationProvider>
               {/* Provide Metronic theme overrides. */}
               <ThemeProvider>
+                <GlobalStyles />
                 {/* Provide `react-intl` context synchronized with Redux state.  */}
                 <I18nProvider>
                   {/* Render routes with provided `Layout`. */}

@@ -1,5 +1,15 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
+import styled from 'styled-components';
+
+const MenuLinkIcon = styled.i`
+    color: #c4cff9 !important;
+    transition: color ease .2s;
+
+    .kt-menu__link:hover & {
+      color: var(--blue) !important;
+    }
+`;
 
 export default class MenuItemText extends React.Component {
   render() {
@@ -7,7 +17,7 @@ export default class MenuItemText extends React.Component {
 
     return (
       <>
-        {item.icon && <i className={`kt-menu__link-icon ${item.icon}`} />}
+        {item.icon && <MenuLinkIcon className={`kt-menu__link-icon ${item.icon}`} />}
 
         {parentItem && parentItem.bullet === "dot" && (
           <i className="kt-menu__link-bullet kt-menu__link-bullet--dot">

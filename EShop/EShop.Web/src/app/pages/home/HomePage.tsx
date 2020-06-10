@@ -3,6 +3,7 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import Builder from "./Builder";
 import Dashboard from "./Dashboard";
 import DocsPage from "./docs/DocsPage";
+import ProductsPage from "./products/ProductsPage";
 import { LayoutSplashScreen } from "../../../_metronic";
 
 const GoogleMaterialPage = lazy(() =>
@@ -24,6 +25,7 @@ export default function HomePage(props: HomePageProps): JSX.Element {
           /* Redirect from root URL to /dashboard. */
           <Redirect exact from="/" to="/dashboard" />
         }
+        <Route path="/products" component={ProductsPage} />
         <Route path="/builder" component={Builder} />
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/google-material" component={GoogleMaterialPage} />

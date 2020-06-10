@@ -2,13 +2,13 @@ import React, { forwardRef, useEffect, useState, ReactNode } from "react";
 import clsx from "clsx";
 import { isFragment } from "react-is";
 
-type HasClassProps = {
+type PortletBaseProps = {
   className?: string;
-  children: string;
+  children: React.ReactNode;
 };
 
 export const PortletHeaderIcon = forwardRef(
-  (props: HasClassProps, ref: React.Ref<HTMLSpanElement>) => (
+  (props: PortletBaseProps, ref: React.Ref<HTMLSpanElement>) => (
     <span
       ref={ref}
       className={clsx("kt-portlet__head-icon", props.className)}
@@ -17,7 +17,7 @@ export const PortletHeaderIcon = forwardRef(
 );
 
 export const PortletHeaderTitle = forwardRef(
-  (props: HasClassProps, ref: React.Ref<HTMLHeadingElement>) => {
+  (props: PortletBaseProps, ref: React.Ref<HTMLHeadingElement>) => {
     const { className, ...rest } = props;
     return (
       <h3
@@ -30,7 +30,7 @@ export const PortletHeaderTitle = forwardRef(
 );
 
 export const PortletHeaderToolbar = forwardRef(
-  (props: HasClassProps, ref: React.Ref<HTMLDivElement>) => {
+  (props: PortletBaseProps, ref: React.Ref<HTMLDivElement>) => {
     const { className, ...rest } = props;
 
     return (
@@ -45,11 +45,11 @@ export const PortletHeaderToolbar = forwardRef(
 
 type PortletHeaderProps = {
   className?: string;
-  icon: ReactNode;
-  title: string;
-  toolbar: string;
-  sticky: boolean;
-  labelRef: string;
+  icon?: ReactNode;
+  title: React.ReactNode;
+  toolbar: JSX.Element;
+  sticky?: boolean;
+  labelRef?: string;
 };
 
 export const PortletHeader = forwardRef(
@@ -146,9 +146,10 @@ export const PortletHeader = forwardRef(
 );
 
 type PortletBody = {
-  fit: boolean;
-  fluid: boolean;
+  fit?: boolean;
+  fluid?: boolean;
   className?: string;
+  children: React.ReactNode;
 };
 
 export const PortletBody = forwardRef(
@@ -172,7 +173,7 @@ export const PortletBody = forwardRef(
 );
 
 export const PortletFooter = forwardRef(
-  (props: HasClassProps, ref: React.Ref<HTMLDivElement>) => {
+  (props: PortletBaseProps, ref: React.Ref<HTMLDivElement>) => {
     const { className, ...rest } = props;
     return (
       <div
@@ -186,7 +187,8 @@ export const PortletFooter = forwardRef(
 
 type PortletProps = {
   className?: string;
-  fluidHeight: boolean;
+  fluidHeight?: boolean;
+  children: React.ReactNode;
 };
 
 export const Portlet = forwardRef(

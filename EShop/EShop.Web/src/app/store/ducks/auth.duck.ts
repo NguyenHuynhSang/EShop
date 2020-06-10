@@ -3,7 +3,7 @@ import storage from "redux-persist/lib/storage";
 import { put, takeLatest } from "redux-saga/effects";
 import { getUserByToken } from "../../crud/auth.crud";
 import * as routerHelpers from "../../router/RouterHelpers";
-import { ActionType, AuthActionTypes, AuthState } from "./auth.duck.type";
+import { ActionType, AuthActionTypes, AuthState } from "./auth.duck.d";
 
 export { ActionType };
 

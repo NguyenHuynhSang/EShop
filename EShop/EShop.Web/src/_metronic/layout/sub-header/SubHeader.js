@@ -5,6 +5,10 @@ import objectPath from "object-path";
 import { withRouter } from "react-router-dom";
 import { QuickActions } from "./quick-actions/QuickActions";
 import { LayoutContextConsumer } from "../LayoutContext";
+import Typography from "@material-ui/core/Typography";
+import Breadcrumbs from "@material-ui/core/Breadcrumbs";
+import Link from "@material-ui/core/Link";
+import { capitalize } from "lodash";
 import { ReactComponent as SortNum1Icon } from "../../../_metronic/layout/assets/layout-svg-icons/SortNum1.svg";
 
 class SubHeader extends React.Component {
@@ -13,6 +17,9 @@ class SubHeader extends React.Component {
     .subheader_container;
 
   render() {
+    const { pathname } = this.props.location;
+    const pathSegments = pathname.split("/").filter((p) => !!p);
+
     return (
       <div
         id="kt_subheader"
@@ -36,13 +43,32 @@ class SubHeader extends React.Component {
             </LayoutContextConsumer>
 
             <span className="kt-subheader__separator kt-subheader__separator--v" />
-            <span className="kt-subheader__desc">#XRS-45670</span>
-            <a
+
+            <Breadcrumbs aria-label="Breadcrumb">
+              {pathSegments.map((p, i) => {
+                return i === pathSegments.length - 1 ? (
+                  <Typography key={i} color="textPrimary">
+                    {capitalize(p)}
+                  </Typography>
+                ) : (
+                  <Link
+                    key={i}
+                    color="inherit"
+                    href={"/" + pathSegments.slice(0, i + 1).join("/")}
+                  >
+                    {capitalize(p)}
+                  </Link>
+                );
+              })}
+            </Breadcrumbs>
+
+            {/* <span className="kt-subheader__desc">#XRS-45670</span> */}
+            {/* <a
               href="#"
               className="btn btn-label-warning btn-bold btn-sm btn-icon-h kt-margin-l-10"
             >
               Add New
-            </a>
+            </a> */}
           </div>
 
           <div className="kt-subheader__toolbar">
@@ -60,13 +86,13 @@ class SubHeader extends React.Component {
   }
 }
 
-const mapStateToProps = store => ({
+const mapStateToProps = (store) => ({
   config: store.builder.layoutConfig,
   menuConfig: store.builder.menuConfig,
   subheaderMobileToggle: objectPath.get(
     store.builder.layoutConfig,
     "subheader.mobile-toggle"
-  )
+  ),
 });
 
 export default withRouter(connect(mapStateToProps)(SubHeader));
