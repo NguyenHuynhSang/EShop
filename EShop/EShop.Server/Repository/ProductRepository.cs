@@ -19,6 +19,7 @@ namespace EShop.Server.Repository
 
         IEnumerable<ProductViewModel> GetProductViewModels();
         void CreateProductByProductInputModel(ProductInput productInput);
+        ProductInput GetProductInputByID(int id);
     }
     public class ProductRepository:RepositoryBase<Product>, IProductRepository
     {
@@ -90,6 +91,34 @@ namespace EShop.Server.Repository
         public IEnumerable<Product> GetByAlias(string alias)
         {
             throw new NotImplementedException();
+        }
+
+        public ProductInput GetProductInputByID(int id)
+        {
+            
+            var product = DbContext.Products.SingleOrDefault(x => x.ID == id);
+            if (product==null)
+            {
+                return null;
+            }
+            var productInput = _mapper.Map<ProductInput>(product);
+           
+            var version = DbContext.ProductVersions.Where(x => x.ProductID==product.ID);
+            List<ProductVersionInput> vers= new List<ProductVersionInput>();
+            foreach (var item in version)
+            {
+                var verInput = _mapper.Map<ProductVersionInput>(item);
+                vers.Add(verInput);
+            }
+            productInput.Versions = vers;
+            foreach (var item in productInput.Versions)
+            {
+                item.Images = DbContext.ProductVersionImages.Where(x => x.ProductVersionID == item.ID).ToList();
+                item.Attributes = DbContext.ProductAttributeValues.Where(x => x.ProductVersionID == item.ID).ToList();
+            }
+
+            return productInput;
+
         }
 
         public IEnumerable<ProductViewModel> GetProductViewModels()

@@ -71,17 +71,22 @@ namespace EShop.Server.Controllers
              
         }
 
-
-    
-
         [HttpGet]
         public Product GetById(int id)
         {
             return _productService.GetProductById(id);
         }
 
+        [HttpGet]
+        public ProductInput GetProductInputById(int id)
+        {
+            return _productService.GetProductInputByID(id);
+        }
+
+
+
         [HttpDelete]
-        public Product DeleteProduct(Product product)
+        public Product Delete(Product product)
         {
             return _productService.Delete(product);
         }

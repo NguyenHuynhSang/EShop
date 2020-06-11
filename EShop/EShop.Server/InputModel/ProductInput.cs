@@ -9,7 +9,7 @@ namespace EShop.Server.InputModel
 
     public class ProductVersionInput
     {
-   
+        public int ID { set; get; }
         public int ProductID { set; get; }
 
         public int WareHouseID { set; get; }
@@ -27,11 +27,11 @@ namespace EShop.Server.InputModel
         public List<ProductAttributeValue> Attributes { set; get; }
         public List<ProductVersionImage> Images { set; get; }
     }
-  
+
 
     public class ProductInput
     {
-  
+
         public long CatalogID { set; get; }
         public string Url { set; get; }
         public string Name { set; get; }
@@ -50,7 +50,7 @@ namespace EShop.Server.InputModel
 
         public int Weight { set; get; }
 
-    
+
         public decimal? OriginalPrice { get; set; }
 
         public bool Deliver { set; get; }

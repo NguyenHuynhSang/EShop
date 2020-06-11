@@ -8,10 +8,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EShop.Server.Controllers
 {
+    using ProductAttribute = Server.Models.Attribute;
     [Route("api/[controller]/[action]")]
     [ApiController]
     public class AttributeController : ControllerBase
     {
+        
         private IAttributeService _attributeService;// service xử dụng
         public AttributeController(IAttributeService attributeService)
            
@@ -20,12 +22,32 @@ namespace EShop.Server.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Server.Models.Attribute> GetAll(string keyword)
+        public IEnumerable<ProductAttribute> GetAll(string keyword)
         {
             var list = _attributeService.GetAll(keyword);
 
             return list;
         }
+        [HttpPost]
+        public ProductAttribute Create(ProductAttribute attr)
+        {
+            var att = _attributeService.Add(attr);
+            _attributeService.SaveChanges();
+            return att;
+        }
+
+        [HttpGet]
+        public ProductAttribute GetById(int id)
+        {
+            return _attributeService.GetAttributeById(id);
+        }
+
+        [HttpDelete]
+        public ProductAttribute Delete(ProductAttribute attribute)
+        {
+            return _attributeService.Delete(attribute);
+        }
+
 
     }
 }

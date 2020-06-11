@@ -28,5 +28,25 @@ namespace EShop.Server.Controllers
             return list;
         }
 
+        [HttpPost]
+        public AttributeValue Create(AttributeValue attr)
+        {
+            var att = _attributeValueService.Add(attr);
+            _attributeValueService.SaveChanges();
+            return att;
+        }
+
+        [HttpGet]
+        public AttributeValue GetById(int id)
+        {
+            return _attributeValueService.GetAttributeValueById(id);
+        }
+
+        [HttpDelete]
+        public AttributeValue Delete(AttributeValue attribute)
+        {
+            return _attributeValueService.Delete(attribute);
+        }
+
     }
 }

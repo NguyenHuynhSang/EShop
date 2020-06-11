@@ -35,7 +35,9 @@ namespace EShop.Server.Mapping
             CreateMap<Photo, PhotoForReturnDto>();
 
             CreateMap<ProductInput, Product>();
+            CreateMap<Product,ProductInput> ();
             CreateMap<ProductVersionInput, ProductVersion>();
+            CreateMap<ProductVersion, ProductVersionInput>();
         }
     }
 }

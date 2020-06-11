@@ -20,6 +20,7 @@ namespace EShop.Server.Service
         IEnumerable<ProductViewModel> GetAllProductViewModel(ProductFilterModel? filterModel = null);
 
         public Product GetProductById(int id);
+        public ProductInput GetProductInputByID(int id);
         public Product Delete(Product product);
 
         void SaveChanges();
@@ -176,9 +177,14 @@ namespace EShop.Server.Service
             return _productRepository.GetSingleById(id);
         }
 
+        public ProductInput GetProductInputByID(int id)
+        {
+            return _productRepository.GetProductInputByID(id);
+        }
+
         public void SaveChanges()
         {
-           
+            _productRepository.Commit();
         }
     }
 }
