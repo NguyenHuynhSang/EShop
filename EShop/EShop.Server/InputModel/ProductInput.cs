@@ -7,14 +7,6 @@ namespace EShop.Server.InputModel
 {
 
 
-    public class ProductAttributeInput
-    {
-        public int AttributeValueID { set; get; }
-        public int SelectedAttributeID { set; get; }
-
-
-    }
-
     public class ProductVersionInput
     {
         public String SKU { set; get; }
@@ -23,6 +15,14 @@ namespace EShop.Server.InputModel
         public String Descripton { set; get; }
         public List<ProductAttributeInput> Attribute { set; get; }
     }
+    public class ProductAttributeInput
+    {
+        public int AttributeValueID { set; get; }
+        public int SelectedAttributeID { set; get; }
+
+
+    }
+
     public class ProductInput
     {
         public String Name { get; set; }

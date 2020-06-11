@@ -57,7 +57,6 @@ namespace EShop.Server.Models
         [StringLength(500)]
         public string SEODescription { set; get; }
 
-
         public bool ApplyPromotion { set; get; }
 
     }

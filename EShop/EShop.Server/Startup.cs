@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using EShop.Server.Data;
+using EShop.Server.Extension;
+using EShop.Server.FilterModel;
 using EShop.Server.Repository;
 using EShop.Server.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -91,9 +93,10 @@ namespace EShop.Server
             services.AddSwaggerGen(swagger =>
             {
                 swagger.SwaggerDoc("v1", new OpenApiInfo { Title = "My API" });
+                swagger.DocumentFilter<CustomModelDocumentFilter<ProductFilterModel>>();
             });
 
-
+      
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

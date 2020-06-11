@@ -28,12 +28,12 @@ namespace EShop.Server.Controllers
         }
 
         [HttpGet]
-        public ActionResult<PagedList<Product>> GetAll(string filterJson,int pageNumder=1,int pageSize=50)
+        public ActionResult<PagedList<Product>> GetAll(string productFilterModelJson, int pageNumder=1,int pageSize=50)
         {
             ProductFilterModel filterModel = null;
-            if (!string.IsNullOrEmpty(filterJson))
+            if (!string.IsNullOrEmpty(productFilterModelJson))
             {
-                filterModel = JsonConvert.DeserializeObject<ProductFilterModel>(filterJson);
+                filterModel = JsonConvert.DeserializeObject<ProductFilterModel>(productFilterModelJson);
             }
 
             var list = _productService.GetAll(filterModel) ;
@@ -42,12 +42,12 @@ namespace EShop.Server.Controllers
         }
 
         [HttpGet]
-        public ActionResult<PagedList<ProductViewModel>> GetProductAllVersions(string filterJson, int pageNumder = 1, int pageSize = 50)
+        public ActionResult<PagedList<ProductViewModel>> GetProductAllVersions(string productFilterModelJson, int pageNumder = 1, int pageSize = 50)
         {
             ProductFilterModel filterModel = null;
-            if (!string.IsNullOrEmpty(filterJson))
+            if (!string.IsNullOrEmpty(productFilterModelJson))
             {
-                filterModel = JsonConvert.DeserializeObject<ProductFilterModel>(filterJson);
+                filterModel = JsonConvert.DeserializeObject<ProductFilterModel>(productFilterModelJson);
             }
 
             var list = _productService.GetAllProductViewModel(filterModel);
