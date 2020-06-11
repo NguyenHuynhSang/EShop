@@ -54,11 +54,12 @@ namespace EShop.Server
             services.AddTransient<Seed>();
 
             services.AddScoped<IProductRepository, ProductRepository>();
-
             services.AddScoped<IProductService, ProductService>();
 
-            services.AddScoped<INewsRepository, NewsRepository>();
+            services.AddScoped<ICatalogRepository, CatalogRepository>();
+            services.AddScoped<ICatalogService, CatalogService>();
 
+            services.AddScoped<INewsRepository, NewsRepository>();
             services.AddScoped<INewsService, NewsService>();
 
             services.AddScoped<ITagRepository, TagRepository>();
