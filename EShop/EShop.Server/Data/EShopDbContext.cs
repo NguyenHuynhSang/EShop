@@ -63,23 +63,25 @@ namespace EShop.Server.Data
         {
             modelBuilder.Entity<ContentTag>()
                 .HasKey(o => new { o.TagID, o.ContentID });
-
-
             // auto increment key
 
 
 
+            modelBuilder.Entity<ProductVersion>().HasData(new ProductVersion { ID = 1, SKU = "Iphone test", Barcode = "COC", Price = 19000000, ProductID = 1, RemainingAmount = 100, Quantum = 100, Description = "Màu đỏ dl 250" },
+                                               new ProductVersion { ID = 2, SKU = "Iphone test", Barcode = "COC", Price = 18000000, ProductID = 1, RemainingAmount = 100, Quantum = 100, Description = "Màu xanh dl 250" },
+                                               new ProductVersion { ID = 3, SKU = "Iphone test", Barcode = "COC", Price = 16000000, ProductID = 2, RemainingAmount = 100, Quantum = 100, Description = "Màu xanh dl 250" });
 
-
-
-            modelBuilder.Entity<Product>().HasData(new Product { ID = 1, Name = "Iphone test", ApplyPromotion = true, Content = "This is an iphone", Deliver = true, Description = "no discrip" },
-                                                   new Product { ID = 2, Name = "samsung galaxy test", ApplyPromotion = true, Content = "This is a samsung", Deliver = true, Description = "no discrip" });
 
             modelBuilder.Entity<Catalog>().HasData(new Catalog { ID = 1, ParentID = null, Name = "Điện thoại" },
                                                  new Catalog { ID = 2, ParentID = null, Name = "Laptop" },
                                                  new Catalog { ID = 3, ParentID = 1, Name = "Samsung" },
                                                  new Catalog { ID = 4, ParentID = 1, Name = "Apple" },
                                                  new Catalog { ID = 5, ParentID = 2, Name = "Macbook" });
+
+
+
+            modelBuilder.Entity<Product>().HasData(new Product { ID = 1, CatalogID = 1, Name = "Iphone test", ApplyPromotion = true, OriginalPrice = 16000000, Content = "This is an iphone", Deliver = true, Description = "no discrip" },
+                                                 new Product { ID = 2, CatalogID = 1, Name = "samsung galaxy test", ApplyPromotion = true, OriginalPrice = 14000000, Content = "This is a samsung", Deliver = true, Description = "no discrip" });
 
             modelBuilder.Entity<EShop.Server.Models.Attribute>().HasData(new ProductAttribute { ID = 1, Name = "Màu sắc" },
                                                  new ProductAttribute { ID = 2, Name = "Dung lượng" });
@@ -89,7 +91,7 @@ namespace EShop.Server.Data
                                                new AttributeValue { ID = 3, AttributeID = 1, Name = "Tím" },
                                                 new AttributeValue { ID = 4, AttributeID = 2, Name = "16gb" },
                                                 new AttributeValue { ID = 5, AttributeID = 2, Name = "32gb" },
-                                                   new AttributeValue { ID = 6, AttributeID = 2, Name = "64gb" });
+                                                new AttributeValue { ID = 6, AttributeID = 2, Name = "64gb" });
 
 
 

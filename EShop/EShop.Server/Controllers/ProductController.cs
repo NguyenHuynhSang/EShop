@@ -9,6 +9,7 @@ using EShop.Server.InputModel;
 using EShop.Server.FilterModel;
 using Newtonsoft.Json;
 using EShop.Server.Models;
+using EShop.Server.ViewModels;
 
 namespace EShop.Server.Controllers
 {
@@ -38,6 +39,20 @@ namespace EShop.Server.Controllers
             var list = _productService.GetAll(filterModel) ;
 
             return PagedList<Product>.ToPagedList(list, pageNumder, pageSize);
+        }
+
+        [HttpGet]
+        public ActionResult<PagedList<ProductViewModel>> GetProductAllVersions(string filterJson, int pageNumder = 1, int pageSize = 50)
+        {
+            ProductFilterModel filterModel = null;
+            if (!string.IsNullOrEmpty(filterJson))
+            {
+                filterModel = JsonConvert.DeserializeObject<ProductFilterModel>(filterJson);
+            }
+
+            var list = _productService.GetAllProductViewModel(filterModel);
+
+            return PagedList<ProductViewModel>.ToPagedList(list, pageNumder, pageSize);
         }
 
         [HttpPost]
