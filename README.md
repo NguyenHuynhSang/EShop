@@ -26,7 +26,8 @@ data source=VT-CNTT-NGUYENN\MSSQLSERVER01;initial catalog=Bt2;integrated securit
 trên IIS express nếu màn hình hiện https://localhost:5001/swagger/index.html
 là ok
 
-
+## Database Diagram
+https://drive.google.com/file/d/1xqVIjxMEDO5DzFqbf96U2llX9aTtlNV1/view?usp=sharing
 ## Các module chính của chương trình
   
   ### Trang quản trị
