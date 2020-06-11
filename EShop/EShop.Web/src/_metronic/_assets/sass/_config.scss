@@ -75,7 +75,7 @@ $kt-dropdown-zindex: 95 !default;
 $kt-state-colors: (
     // Metronic states
     brand: (
-        base: #5d78ff,
+        base: #3699ff,
         inverse: #ffffff
     ),
     light: (
@@ -89,23 +89,23 @@ $kt-state-colors: (
 
     // Bootstrap states
     primary: (
-        base: #5867dd,
+        base: #3699ff,
         inverse: #ffffff
     ),
     success: (
-        base: #0abb87, //1dc9b7,
+        base: #1bc5bd, //1dc9b7,
         inverse: #ffffff
     ),
     info: (
-        base: #5578eb,
+        base: #8950fc,
         inverse: #ffffff
     ),
     warning: (
-        base: #ffb822,
-        inverse: #111111
+        base: #ffa800,
+        inverse: #ffffff
     ),
     danger: (
-        base: #fd397a,
+        base: #f64e60,
         inverse: #ffffff
     )
 ) !default;

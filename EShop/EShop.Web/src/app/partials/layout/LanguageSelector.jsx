@@ -13,7 +13,7 @@ const languages = [
   },
   {
     lang: "vn",
-    name: "Vietnam",
+    name: "Vietnamese",
     flag: toAbsoluteUrl("/media/flags/220-vietnam.svg")
   },
 ];
