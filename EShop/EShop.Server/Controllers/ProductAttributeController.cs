@@ -21,7 +21,7 @@ namespace EShop.Server.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<ProductAttribute> GetAll(string keyword)
+        public IEnumerable<EShop.Server.Models.Attribute> GetAll(string keyword)
         {
             var list = _productAttbuteService.GetAll(keyword);
 

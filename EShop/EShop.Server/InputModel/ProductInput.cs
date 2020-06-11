@@ -9,25 +9,60 @@ namespace EShop.Server.InputModel
 
     public class ProductVersionInput
     {
-        public String SKU { set; get; }
-        public String Barcode { set; get; }
+   
+        public int ProductID { set; get; }
 
-        public String Descripton { set; get; }
-        public List<ProductAttributeInput> Attribute { set; get; }
+        public int WareHouseID { set; get; }
+
+        public string Description { set; get; }
+
+        public decimal Price { set; get; }
+
+        public int Quantum { set; get; }
+
+        public int RemainingAmount { set; get; }
+
+        public string SKU { set; get; }
+        public string Barcode { set; get; }
+        public List<ProductAttributeValue> Attributes { set; get; }
+        public List<ProductVersionImage> Images { set; get; }
     }
-    public class ProductAttributeInput
-    {
-        public int AttributeValueID { set; get; }
-        public int SelectedAttributeID { set; get; }
-
-
-    }
+  
 
     public class ProductInput
     {
-        public String Name { get; set; }
-        public String Content { set; get; }
-        public IEnumerable<ProductVersionInput> Version { set; get; }
+  
+        public long CatalogID { set; get; }
+        public string Url { set; get; }
+        public string Name { set; get; }
+
+        public string Description { set; get; }
+
+        public string Content { set; get; }
+
+        public DateTime? CreatedDate { get; set; }
+
+        public string CreatedBy { get; set; }
+
+        public DateTime? ModifiedDate { get; set; }
+
+        public string ModifiedBy { get; set; }
+
+        public int Weight { set; get; }
+
+    
+        public decimal? OriginalPrice { get; set; }
+
+        public bool Deliver { set; get; }
+
+        public string SEOTitle { set; get; }
+
+        public string SEOUrl { set; get; }
+
+        public string SEODescription { set; get; }
+
+        public bool ApplyPromotion { set; get; }
+        public IEnumerable<ProductVersionInput> Versions { set; get; }
     }
 
 }

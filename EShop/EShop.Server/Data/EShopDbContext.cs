@@ -51,7 +51,7 @@ namespace EShop.Server.Data
         public DbSet<Image> Images { get; set; }
 
         public DbSet<ProductAttribute> ProductAttributes { get; set; }
-
+        public DbSet<ProductAttributeValue> ProductAttributeValues { get; set; }
         public DbSet<User> Users { get; set; }
 
         public DbSet<Photo> Photos { get; set; }

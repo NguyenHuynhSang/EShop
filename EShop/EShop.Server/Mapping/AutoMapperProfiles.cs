@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using EShop.Server.Extension;
+using EShop.Server.InputModel;
 
 namespace EShop.Server.Mapping
 {
@@ -29,8 +30,12 @@ namespace EShop.Server.Mapping
                 });
             CreateMap<UserForUpdateDto, User>();
             CreateMap<Photo, PhotoForDetailDto>();
+           
             CreateMap<PhotoForCreationDto, Photo>();
             CreateMap<Photo, PhotoForReturnDto>();
+
+            CreateMap<ProductInput, Product>();
+            CreateMap<ProductVersionInput, ProductVersion>();
         }
     }
 }

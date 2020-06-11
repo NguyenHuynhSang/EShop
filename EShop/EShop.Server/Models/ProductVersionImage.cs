@@ -13,9 +13,10 @@ namespace EShop.Server.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { set; get; }
 
-      
-        public int ImageID { set; get; }
 
+        public String Url { set; get; }
+
+        public bool IsMain { set; get; }
         public int ProductVersionID { set; get; }
 
 

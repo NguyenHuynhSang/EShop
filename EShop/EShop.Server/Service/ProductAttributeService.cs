@@ -7,7 +7,7 @@ using System.Text;
 
 namespace EShop.Server.Service
 {
-
+    using ProductAttribute = Server.Models.Attribute;
     public interface IProductAttributeService
     {
         ProductAttribute Add(ProductAttribute productAttribute);

@@ -4,14 +4,16 @@ using EShop.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EShop.Server.Migrations
 {
     [DbContext(typeof(EShopDbContext))]
-    partial class EShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200611140840_change_table_ProductVersionImage")]
+    partial class change_table_ProductVersionImage
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -528,24 +530,6 @@ namespace EShop.Server.Migrations
                             OriginalPrice = 14000000m,
                             Weight = 0
                         });
-                });
-
-            modelBuilder.Entity("EShop.Server.Models.ProductAttributeValue", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("AttributeValueID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductVersionID")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("ProductAttribute");
                 });
 
             modelBuilder.Entity("EShop.Server.Models.ProductVersion", b =>

@@ -45,7 +45,7 @@ namespace EShop.Server.Service
 
         public void CreateByProductInput(ProductInput productInput)
         {
-            throw new NotImplementedException();
+            _productRepository.CreateProductByProductInputModel(productInput);
         }
 
         public Product Delete(Product product)
