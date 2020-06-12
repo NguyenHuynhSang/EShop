@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EShop.Server.Abstract;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -7,7 +8,7 @@ using System.Text;
 namespace EShop.Server.Models
 {
     [Table("ContentCategory")]
-    public class ContentCategory
+    public class ContentCategory:SeoAndAudit
     {
         [Key]
       
@@ -23,18 +24,6 @@ namespace EShop.Server.Models
 
         public int DisplayOrder { get; set; }
 
-        [MaxLength(250)]
-        public string SeoTitle { get; set; }
-
-        public DateTime CreatedDate { get; set; }
-
-        [MaxLength(50)]
-        public string CreatedBy { get; set; }
-
-        public DateTime? ModifiedDate { get; set; }
-
-        [MaxLength(50)]
-        public string ModifiedBy { get; set; }
 
         [MaxLength(250)]
         public string MetaKeywords { get; set; }

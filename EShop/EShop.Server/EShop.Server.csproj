@@ -9,6 +9,10 @@
     <Compile Remove="Migrations\20200608161623_add_table_users.Designer.cs" />
     <Compile Remove="Migrations\20200611111111_seed_productVersopm.cs" />
     <Compile Remove="Migrations\20200611111111_seed_productVersopm.Designer.cs" />
+    <Compile Remove="Migrations\20200612124736_test.cs" />
+    <Compile Remove="Migrations\20200612124736_test.Designer.cs" />
+    <Compile Remove="Migrations\20200612125510_fix_audit_table.cs" />
+    <Compile Remove="Migrations\20200612125510_fix_audit_table.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

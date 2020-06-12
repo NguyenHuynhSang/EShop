@@ -4,14 +4,16 @@ using EShop.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EShop.Server.Migrations
 {
     [DbContext(typeof(EShopDbContext))]
-    partial class EShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200612125529_fix_audit_table_content")]
+    partial class fix_audit_table_content
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -152,28 +154,33 @@ namespace EShop.Server.Migrations
                         new
                         {
                             ID = 1,
+                            CreatedDate = new DateTime(2020, 6, 12, 19, 55, 29, 422, DateTimeKind.Local).AddTicks(9995),
                             Name = "Điện thoại"
                         },
                         new
                         {
                             ID = 2,
+                            CreatedDate = new DateTime(2020, 6, 12, 19, 55, 29, 424, DateTimeKind.Local).AddTicks(388),
                             Name = "Laptop"
                         },
                         new
                         {
                             ID = 3,
+                            CreatedDate = new DateTime(2020, 6, 12, 19, 55, 29, 424, DateTimeKind.Local).AddTicks(449),
                             Name = "Samsung",
                             ParentID = 1
                         },
                         new
                         {
                             ID = 4,
+                            CreatedDate = new DateTime(2020, 6, 12, 19, 55, 29, 424, DateTimeKind.Local).AddTicks(453),
                             Name = "Apple",
                             ParentID = 1
                         },
                         new
                         {
                             ID = 5,
+                            CreatedDate = new DateTime(2020, 6, 12, 19, 55, 29, 424, DateTimeKind.Local).AddTicks(456),
                             Name = "Macbook",
                             ParentID = 2
                         });
@@ -530,6 +537,7 @@ namespace EShop.Server.Migrations
                             ApplyPromotion = true,
                             CatalogID = 1L,
                             Content = "This is an iphone",
+                            CreatedDate = new DateTime(2020, 6, 12, 19, 55, 29, 424, DateTimeKind.Local).AddTicks(1371),
                             Deliver = true,
                             Description = "no discrip",
                             Name = "Iphone test",
@@ -542,6 +550,7 @@ namespace EShop.Server.Migrations
                             ApplyPromotion = true,
                             CatalogID = 1L,
                             Content = "This is a samsung",
+                            CreatedDate = new DateTime(2020, 6, 12, 19, 55, 29, 424, DateTimeKind.Local).AddTicks(5748),
                             Deliver = true,
                             Description = "no discrip",
                             Name = "samsung galaxy test",
