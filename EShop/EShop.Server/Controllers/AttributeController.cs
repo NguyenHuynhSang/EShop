@@ -45,7 +45,9 @@ namespace EShop.Server.Controllers
         [HttpDelete]
         public ProductAttribute Delete(ProductAttribute attribute)
         {
-            return _attributeService.Delete(attribute);
+            var oldEntity = _attributeService.Delete(attribute);
+            _attributeService.SaveChanges();
+            return oldEntity;
         }
 
 

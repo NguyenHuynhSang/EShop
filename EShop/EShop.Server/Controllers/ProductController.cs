@@ -88,7 +88,9 @@ namespace EShop.Server.Controllers
         [HttpDelete]
         public Product Delete(Product product)
         {
-            return _productService.Delete(product);
+            var oldEntity = _productService.Delete(product);
+            _productService.SaveChanges();
+            return oldEntity;
         }
     }
 }

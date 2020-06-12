@@ -20,8 +20,5 @@ namespace EShop.Server.Models
         public int ProductVersionID { set; get; }
 
 
-
-
-
     }
 }

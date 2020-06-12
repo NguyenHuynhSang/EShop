@@ -75,7 +75,8 @@ namespace EShop.Server.Service
 
         public void SaveChanges()
         {
-           
+
+            _catalogRepository.Commit();
         }
 
         public void Update(Catalog catalog)

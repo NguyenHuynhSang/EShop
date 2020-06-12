@@ -62,7 +62,7 @@ namespace EShop.Server.Service
 
         public void SaveChanges()
         {
-           
+            _attributeValueRepository.Commit();
         }
     }
 }
