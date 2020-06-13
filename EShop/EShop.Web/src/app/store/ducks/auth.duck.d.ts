@@ -3,7 +3,7 @@ export interface AuthState {
   authToken?: string;
 }
 
-export enum ActionType {
+export enum AuthAction {
   Login = "[Login] Action",
   Logout = "[Logout] Action",
   Register = "[Register] Action",
@@ -12,38 +12,38 @@ export enum ActionType {
 }
 
 interface LoginAction {
-  type: typeof ActionType.Login;
+  type: typeof AuthAction.Login;
   payload: {
     authToken: string;
   };
 }
 
 interface RegisterAction {
-  type: typeof ActionType.Register;
+  type: typeof AuthAction.Register;
   payload: {
     authToken: string;
   };
 }
 
 interface LogoutAction {
-  type: typeof ActionType.Logout;
+  type: typeof AuthAction.Logout;
 }
 
 interface UserRequestedAction {
-  type: typeof ActionType.UserRequested;
+  type: typeof AuthAction.UserRequested;
   payload: {
     user: string;
   };
 }
 
 interface UserLoadedAction {
-  type: typeof ActionType.UserLoaded;
+  type: typeof AuthAction.UserLoaded;
   payload: {
     user: string;
   };
 }
 
-export type AuthActionTypes =
+export type AuthActionType =
   | LoginAction
   | RegisterAction
   | LogoutAction

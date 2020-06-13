@@ -3,36 +3,36 @@ import storage from "redux-persist/lib/storage";
 import { put, takeLatest } from "redux-saga/effects";
 import { getUserByToken } from "../../crud/auth.crud";
 import * as routerHelpers from "../../router/RouterHelpers";
-import { ActionType, AuthActionTypes, AuthState } from "./auth.duck.d";
+import { AuthAction, AuthActionType, AuthState } from "./auth.duck.d";
 
-export { ActionType };
+export { AuthAction };
 
-const initialAuthState: AuthState = {
+const initialState: AuthState = {
   user: undefined,
   authToken: undefined
 };
 
-export const reducer = persistReducer<AuthState, AuthActionTypes>(
-    { storage, key: "demo1-auth", whitelist: ["user", "authToken"] },
-    (state = initialAuthState, action) => {
+export const reducer = persistReducer<AuthState, AuthActionType>(
+    { storage, key: "auth", whitelist: ["user", "authToken"] },
+    (state = initialState, action) => {
       switch (action.type) {
-        case ActionType.Login: {
+        case AuthAction.Login: {
           const { authToken } = action.payload;
           return { authToken, user: undefined };
         }
 
-        case ActionType.Register: {
+        case AuthAction.Register: {
           const { authToken } = action.payload;
 
           return { authToken, user: undefined };
         }
 
-        case ActionType.Logout: {
+        case AuthAction.Logout: {
           routerHelpers.forgotLastLocation();
-          return initialAuthState;
+          return initialState;
         }
 
-        case ActionType.UserLoaded: {
+        case AuthAction.UserLoaded: {
           const { user } = action.payload;
 
           return { ...state, user };
@@ -45,26 +45,26 @@ export const reducer = persistReducer<AuthState, AuthActionTypes>(
 );
 
 export const actions = {
-  login: (authToken): AuthActionTypes => ({ type: ActionType.Login, payload: { authToken } }),
-  register: (authToken): AuthActionTypes => ({
-    type: ActionType.Register,
+  login: (authToken): AuthActionType => ({ type: AuthAction.Login, payload: { authToken } }),
+  register: (authToken): AuthActionType => ({
+    type: AuthAction.Register,
     payload: { authToken }
   }),
-  logout: (): AuthActionTypes => ({ type: ActionType.Logout }),
-  requestUser: (user): AuthActionTypes => ({ type: ActionType.UserRequested, payload: { user } }),
-  fulfillUser: (user): AuthActionTypes => ({ type: ActionType.UserLoaded, payload: { user } })
+  logout: (): AuthActionType => ({ type: AuthAction.Logout }),
+  requestUser: (user): AuthActionType => ({ type: AuthAction.UserRequested, payload: { user } }),
+  fulfillUser: (user): AuthActionType => ({ type: AuthAction.UserLoaded, payload: { user } })
 };
 
 export function* saga() {
-  yield takeLatest(ActionType.Login, function* loginSaga() {
+  yield takeLatest(AuthAction.Login, function* loginSaga() {
     yield put(actions.requestUser(null));
   });
 
-  yield takeLatest(ActionType.Register, function* registerSaga() {
+  yield takeLatest(AuthAction.Register, function* registerSaga() {
     yield put(actions.requestUser(null));
   });
 
-  yield takeLatest(ActionType.UserRequested, function* userRequested() {
+  yield takeLatest(AuthAction.UserRequested, function* userRequested() {
     const { data: user } = yield getUserByToken();
 
     yield put(actions.fulfillUser(user));

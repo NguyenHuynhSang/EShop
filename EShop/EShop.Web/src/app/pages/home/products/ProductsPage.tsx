@@ -10,6 +10,7 @@ import { PrimaryButton, SvgIcon } from "../../../widgets/Common";
 import { ReactComponent as PlusIcon } from "../../../../assets/Add.svg";
 import { ReactComponent as ProductIcon } from "../../../../assets/Product.svg";
 import theme from "../../../styles/theme";
+import ProductTable from './ProductTable';
 
 const PortletIcon = styled(SvgIcon)`
   padding-right: 0.4rem;
@@ -43,7 +44,9 @@ export default function ProductsPage() {
         }
       />
 
-      <PortletBody>lol</PortletBody>
+      <PortletBody>
+        <ProductTable />
+      </PortletBody>
     </Portlet>
   );
 }

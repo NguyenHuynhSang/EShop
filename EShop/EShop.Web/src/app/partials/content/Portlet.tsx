@@ -145,7 +145,7 @@ export const PortletHeader = forwardRef(
   }
 );
 
-type PortletBody = {
+type PortletBodyProps = {
   fit?: boolean;
   fluid?: boolean;
   className?: string;
@@ -153,7 +153,7 @@ type PortletBody = {
 };
 
 export const PortletBody = forwardRef(
-  (props: PortletBody, ref: React.Ref<HTMLDivElement>) => {
+  (props: PortletBodyProps, ref: React.Ref<HTMLDivElement>) => {
     const { fit, fluid, className, ...rest } = props;
     return (
       <div

@@ -20,6 +20,9 @@ import "./_metronic/_assets/plugins/line-awesome/css/line-awesome.css";
 import "./_metronic/_assets/plugins/flaticon/flaticon.css";
 import "./_metronic/_assets/plugins/flaticon2/flaticon.css";
 
+import 'ag-grid-community/dist/styles/ag-grid.css';
+import 'ag-grid-community/dist/styles/ag-theme-balham.css';
+
 /**
  * Base URL of the website.
  *
