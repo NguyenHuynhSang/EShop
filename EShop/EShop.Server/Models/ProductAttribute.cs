@@ -7,7 +7,7 @@ using System.Text;
 namespace EShop.Server.Models
 {
     [Table("ProductAttribute")] // map class với table trong csdl
-    public class ProductAttribute
+    public class ProductAttributeValue
     {
         [Key] // chỉ định    khóa chính
         public int ID { set; get; }

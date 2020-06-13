@@ -208,7 +208,7 @@ namespace EShop.Server.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
-                    b.Property<DateTime>("CreatedDate")
+                    b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -242,13 +242,25 @@ namespace EShop.Server.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
-                    b.Property<DateTime>("ModifiedDate")
+                    b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(250)")
                         .HasMaxLength(250);
+
+                    b.Property<string>("SEODescription")
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
+
+                    b.Property<string>("SEOTitle")
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
+
+                    b.Property<string>("SEOUrl")
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
 
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
@@ -282,7 +294,7 @@ namespace EShop.Server.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
-                    b.Property<DateTime>("CreatedDate")
+                    b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("DisplayOrder")
@@ -318,9 +330,17 @@ namespace EShop.Server.Migrations
                     b.Property<long>("ParentID")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("SeoTitle")
-                        .HasColumnType("nvarchar(250)")
-                        .HasMaxLength(250);
+                    b.Property<string>("SEODescription")
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
+
+                    b.Property<string>("SEOTitle")
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
+
+                    b.Property<string>("SEOUrl")
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
 
                     b.Property<bool>("ShowOnHome")
                         .HasColumnType("bit");
@@ -402,6 +422,38 @@ namespace EShop.Server.Migrations
                     b.ToTable("News");
                 });
 
+            modelBuilder.Entity("EShop.Server.Models.Photo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsMain")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("PublicId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Photos");
+                });
+
             modelBuilder.Entity("EShop.Server.Models.Product", b =>
                 {
                     b.Property<int>("ID")
@@ -476,24 +528,44 @@ namespace EShop.Server.Migrations
                         {
                             ID = 1,
                             ApplyPromotion = true,
-                            CatalogID = 0L,
+                            CatalogID = 1L,
                             Content = "This is an iphone",
                             Deliver = true,
                             Description = "no discrip",
                             Name = "Iphone test",
+                            OriginalPrice = 16000000m,
                             Weight = 0
                         },
                         new
                         {
                             ID = 2,
                             ApplyPromotion = true,
-                            CatalogID = 0L,
+                            CatalogID = 1L,
                             Content = "This is a samsung",
                             Deliver = true,
                             Description = "no discrip",
                             Name = "samsung galaxy test",
+                            OriginalPrice = 14000000m,
                             Weight = 0
                         });
+                });
+
+            modelBuilder.Entity("EShop.Server.Models.ProductAttributeValue", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AttributeValueID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductVersionID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("ProductAttribute");
                 });
 
             modelBuilder.Entity("EShop.Server.Models.ProductVersion", b =>
@@ -533,6 +605,44 @@ namespace EShop.Server.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("ProductVersions");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Barcode = "COC",
+                            Description = "Màu đỏ dl 250",
+                            Price = 19000000m,
+                            ProductID = 1,
+                            Quantum = 100,
+                            RemainingAmount = 100,
+                            SKU = "Iphone test",
+                            WareHouseID = 0
+                        },
+                        new
+                        {
+                            ID = 2,
+                            Barcode = "COC",
+                            Description = "Màu xanh dl 250",
+                            Price = 18000000m,
+                            ProductID = 1,
+                            Quantum = 100,
+                            RemainingAmount = 100,
+                            SKU = "Iphone test",
+                            WareHouseID = 0
+                        },
+                        new
+                        {
+                            ID = 3,
+                            Barcode = "COC",
+                            Description = "Màu xanh dl 250",
+                            Price = 16000000m,
+                            ProductID = 2,
+                            Quantum = 100,
+                            RemainingAmount = 100,
+                            SKU = "Iphone test",
+                            WareHouseID = 0
+                        });
                 });
 
             modelBuilder.Entity("EShop.Server.Models.ProductVersionImage", b =>
@@ -542,11 +652,14 @@ namespace EShop.Server.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ImageID")
-                        .HasColumnType("int");
+                    b.Property<bool>("IsMain")
+                        .HasColumnType("bit");
 
                     b.Property<int>("ProductVersionID")
                         .HasColumnType("int");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
 
@@ -566,6 +679,66 @@ namespace EShop.Server.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Tag");
+                });
+
+            modelBuilder.Entity("EShop.Server.Models.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Gender")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Interests")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Introduction")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("KnownAs")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("LastActive")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LookingFor")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("PasswordHash")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<byte[]>("PasswordSalt")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("EShop.Server.Models.Photo", b =>
+                {
+                    b.HasOne("EShop.Server.Models.User", "User")
+                        .WithMany("Photos")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

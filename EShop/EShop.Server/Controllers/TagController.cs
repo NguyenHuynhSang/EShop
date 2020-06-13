@@ -1,6 +1,6 @@
 ﻿using EShop.Server.Models;
 using EShop.Server.Service;
-using EShop.WebApp.Infrastructure.Core;
+
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -13,12 +13,12 @@ namespace EShop.Server.Controllers
     [Route("api/[controller]/[action]")]
 
     [ApiController]
-    public class TagController : ApiBaseController
+    public class TagController : ControllerBase
     {
         private ITagService _TagService;// service xử dụng
 
-        public TagController(ITagService TagService, IErrorService errorService)
-            : base(errorService)
+        public TagController(ITagService TagService)
+
         {
             this._TagService = TagService;
         }

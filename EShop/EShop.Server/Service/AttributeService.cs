@@ -56,8 +56,7 @@ namespace EShop.Server.Service
 
         public void SaveChanges()
         {
-          
-           
+             _attributeRepository.Commit();
         }
     }
 }

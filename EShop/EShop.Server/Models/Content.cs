@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EShop.Server.Abstract;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -7,7 +8,7 @@ using System.Text;
 namespace EShop.Server.Models
 {
     [Table("Content")]
-    public class Content
+    public class Content:SeoAndAudit
     {
         [Key]
      
@@ -31,15 +32,6 @@ namespace EShop.Server.Models
 
         public int Warranty { get; set; }
 
-        public DateTime CreatedDate { get; set; }
-
-        [MaxLength(50)]
-        public string CreatedBy { get; set; }
-
-        public DateTime ModifiedDate { get; set; }
-
-        [MaxLength(50)]
-        public string ModifiedBy { get; set; }
 
         [MaxLength(250)]
         public string MetaKeywords { get; set; }

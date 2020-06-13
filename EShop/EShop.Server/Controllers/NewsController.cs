@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EShop.Server.Service;
 using EShop.Server.ViewModels;
-using EShop.WebApp.Infrastructure.Core;
+
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -12,12 +12,11 @@ using Microsoft.AspNetCore.Mvc;
 namespace EShop.Server.Controllers
 {
     [Route("api/[controller]/[action]")]
-    [ApiController] 
-    public class NewsController : ApiBaseController
+    [ApiController]
+    public class NewsController : ControllerBase
     {
         INewsService _NewsService;
-        public NewsController(INewsService newsService, IErrorService errorService)
-            :base(errorService)
+        public NewsController(INewsService newsService)
         {
             this._NewsService = newsService;
         }

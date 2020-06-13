@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EShop.Server.Abstract;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -7,7 +8,7 @@ using System.Text;
 namespace EShop.Server.Models
 {
     [Table("Product")] // map class với table trong csdl
-    public class Product
+    public class Product:SeoAndAudit
     {
        
         [Key] // chỉ định    khóa chính
@@ -30,15 +31,6 @@ namespace EShop.Server.Models
 
         public string Content { set; get; }
 
-        public DateTime? CreatedDate { get; set; }
-
-        [StringLength(50)]
-        public string CreatedBy { get; set; }
-
-        public DateTime? ModifiedDate { get; set; }
-
-        [StringLength(50)]
-        public string ModifiedBy { get; set; }
 
         public int Weight { set; get; }
 
@@ -48,14 +40,6 @@ namespace EShop.Server.Models
 
         public bool Deliver { set; get; }
 
-        [StringLength(500)]
-        public string SEOTitle { set; get; }
-
-        [StringLength(500)]
-        public string SEOUrl { set; get; }
-
-        [StringLength(500)]
-        public string SEODescription { set; get; }
 
 
         public bool ApplyPromotion { set; get; }

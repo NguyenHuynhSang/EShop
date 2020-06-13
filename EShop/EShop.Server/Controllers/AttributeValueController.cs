@@ -4,18 +4,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using EShop.Server.Models;
 using EShop.Server.Service;
-using EShop.WebApp.Infrastructure.Core;
+
 using Microsoft.AspNetCore.Mvc;
 
 namespace EShop.Server.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class AttributeValueController : ApiBaseController
+    public class AttributeValueController : ControllerBase
     {
         private IAttributeValueService _attributeValueService;// service xử dụng
-        public AttributeValueController(IAttributeValueService attributeValueService, IErrorService errorService)
-           : base(errorService)
+        public AttributeValueController(IAttributeValueService attributeValueService)
+           
         {
             _attributeValueService = attributeValueService;
         }
@@ -26,6 +26,28 @@ namespace EShop.Server.Controllers
             var list = _attributeValueService.GetAll(atributeId);
 
             return list;
+        }
+
+        [HttpPost]
+        public AttributeValue Create(AttributeValue attr)
+        {
+            var att = _attributeValueService.Add(attr);
+            _attributeValueService.SaveChanges();
+            return att;
+        }
+
+        [HttpGet]
+        public AttributeValue GetById(int id)
+        {
+            return _attributeValueService.GetAttributeValueById(id);
+        }
+
+        [HttpDelete]
+        public AttributeValue Delete(AttributeValue attribute)
+        {
+            var oldEntity= _attributeValueService.Delete(attribute);
+            _attributeValueService.SaveChanges();
+            return oldEntity;
         }
 
     }
