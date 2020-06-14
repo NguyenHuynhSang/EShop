@@ -11,7 +11,7 @@ namespace EShop.Server.ViewModels
     public class ProductViewModel
     {
         public Product Product { set; get; }
-        public Catalog Catalog { set; get; }
+        public ProductCatalog Catalog { set; get; }
         public IEnumerable<ProductVersion> ProductVersion{ set; get; }
     }
 }

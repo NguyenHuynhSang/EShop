@@ -10,21 +10,21 @@ namespace EShop.Server.Service
 {
     public interface ICatalogService
     {
-        Catalog Add(Catalog productAttribute);
-        void Update(Catalog productAttribute);
+        ProductCatalog Add(ProductCatalog productAttribute);
+        void Update(ProductCatalog productAttribute);
 
         IEnumerable<CatalogViewModel> GetAll(string keyword);
 
         IEnumerable<CatalogTreeModel> GetCatalogTree();
 
-        public Catalog GetCatalogById(int id);
+        public ProductCatalog GetCatalogById(int id);
 
-        public Catalog Delete(Catalog catalog);
+        public ProductCatalog Delete(ProductCatalog catalog);
 
         void SaveChanges();
 
-        IEnumerable<Catalog> GetParent();
-        IEnumerable<Catalog> GetChild();
+        IEnumerable<ProductCatalog> GetParent();
+        IEnumerable<ProductCatalog> GetChild();
 
     }
     public class CatalogService : ICatalogService
@@ -38,12 +38,12 @@ namespace EShop.Server.Service
            
 
         }
-        public Catalog Add(Catalog catalog)
+        public ProductCatalog Add(ProductCatalog catalog)
         {
             return _catalogRepository.Add(catalog);
         }
 
-        public Catalog Delete(Catalog catalog)
+        public ProductCatalog Delete(ProductCatalog catalog)
         {
             return _catalogRepository.Delete(catalog);
         }
@@ -53,7 +53,7 @@ namespace EShop.Server.Service
             return _catalogRepository.GetAllCatalogForView();
         }
 
-        public Catalog GetCatalogById(int id)
+        public ProductCatalog GetCatalogById(int id)
         {
             return _catalogRepository.GetSingleById(id);
         }
@@ -63,12 +63,12 @@ namespace EShop.Server.Service
             return _catalogRepository.GetTreeCatalog();
         }
 
-        public IEnumerable<Catalog> GetChild()
+        public IEnumerable<ProductCatalog> GetChild()
         {
             return _catalogRepository.GetChildCatalog();
         }
 
-        public IEnumerable<Catalog> GetParent()
+        public IEnumerable<ProductCatalog> GetParent()
         {
             return _catalogRepository.GetParentCatalog();
         }
@@ -79,7 +79,7 @@ namespace EShop.Server.Service
             _catalogRepository.Commit();
         }
 
-        public void Update(Catalog catalog)
+        public void Update(ProductCatalog catalog)
         {
             _catalogRepository.Update(catalog);
         }

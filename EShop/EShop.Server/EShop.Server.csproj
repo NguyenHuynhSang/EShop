@@ -13,6 +13,8 @@
     <Compile Remove="Migrations\20200612124736_test.Designer.cs" />
     <Compile Remove="Migrations\20200612125510_fix_audit_table.cs" />
     <Compile Remove="Migrations\20200612125510_fix_audit_table.Designer.cs" />
+    <Compile Remove="Migrations\20200614103652_rename_table_category_toBlogCategory_catalog_toProductCatalog.cs" />
+    <Compile Remove="Migrations\20200614103652_rename_table_category_toBlogCategory_catalog_toProductCatalog.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

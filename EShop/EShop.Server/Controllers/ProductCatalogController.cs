@@ -13,10 +13,10 @@ namespace EShop.Server.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class CatalogController : ControllerBase
+    public class ProductCatalogController : ControllerBase
     {
         private ICatalogService _catalogService;// service xử dụng
-        public CatalogController(ICatalogService catalogService)
+        public ProductCatalogController(ICatalogService catalogService)
            
         {
             _catalogService = catalogService;
@@ -30,7 +30,7 @@ namespace EShop.Server.Controllers
             return list;
         }
         [HttpGet]
-        public IEnumerable<Catalog> GetParent()
+        public IEnumerable<ProductCatalog> GetParent()
         {
             var list = _catalogService.GetParent();
 
@@ -38,7 +38,7 @@ namespace EShop.Server.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Catalog> GetChild()
+        public IEnumerable<ProductCatalog> GetChild()
         {
             var list = _catalogService.GetChild();
 
@@ -53,7 +53,7 @@ namespace EShop.Server.Controllers
             return list;
         }
         [HttpPost]
-        public Catalog Create(Catalog catalog)
+        public ProductCatalog Create(ProductCatalog catalog)
         {
             var newCatalog = _catalogService.Add(catalog);
             _catalogService.SaveChanges();

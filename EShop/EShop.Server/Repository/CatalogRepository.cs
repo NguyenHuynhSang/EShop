@@ -9,17 +9,17 @@ using EShop.Server.ViewModels;
 namespace EShop.Server.Repository
 {
 
-    public interface ICatalogRepository : IRepository<Catalog>
+    public interface ICatalogRepository : IRepository<ProductCatalog>
     {
-        IEnumerable<Catalog> GetChildCatalog();
-        IEnumerable<Catalog> GetParentCatalog();
+        IEnumerable<ProductCatalog> GetChildCatalog();
+        IEnumerable<ProductCatalog> GetParentCatalog();
 
         IEnumerable<CatalogViewModel> GetAllCatalogForView();
 
         IEnumerable<CatalogTreeModel> GetTreeCatalog();
 
     }
-    public class CatalogRepository : RepositoryBase<Catalog>, ICatalogRepository
+    public class CatalogRepository : RepositoryBase<ProductCatalog>, ICatalogRepository
     {
 
 
@@ -30,9 +30,9 @@ namespace EShop.Server.Repository
 
         public IEnumerable<CatalogViewModel> GetAllCatalogForView()
         {
-            var parentList = DbContext.Catalogs.Where(x => x.ParentID == null);
-            var querry = from c in DbContext.Catalogs
-                         join p in DbContext.Catalogs
+            var parentList = DbContext.ProductCatalogs.Where(x => x.ParentID == null);
+            var querry = from c in DbContext.ProductCatalogs
+                         join p in DbContext.ProductCatalogs
                          on c.ParentID equals p.ID
                          into ps
                          from p in ps.DefaultIfEmpty()
@@ -45,26 +45,26 @@ namespace EShop.Server.Repository
             return querry.ToList();
         }
 
-        public IEnumerable<Catalog> GetChildCatalog()
+        public IEnumerable<ProductCatalog> GetChildCatalog()
         {
-            var querry = DbContext.Catalogs.Where(x => x.ParentID != null);
+            var querry = DbContext.ProductCatalogs.Where(x => x.ParentID != null);
             return querry;
 
         }
 
-        public IEnumerable<Catalog> GetParentCatalog()
+        public IEnumerable<ProductCatalog> GetParentCatalog()
         {
-            var querry = DbContext.Catalogs.Where(x => x.ParentID == null);
+            var querry = DbContext.ProductCatalogs.Where(x => x.ParentID == null);
             return querry;
         }
 
         public IEnumerable<CatalogTreeModel> GetTreeCatalog()
         {
-            var querry = from p in DbContext.Catalogs.Where(x => x.ParentID == null)
+            var querry = from p in DbContext.ProductCatalogs.Where(x => x.ParentID == null)
                          select new CatalogTreeModel
                          {
                              Parent = p,
-                             Childs = DbContext.Catalogs.Where(x => x.ParentID == p.ID)
+                             Childs = DbContext.ProductCatalogs.Where(x => x.ParentID == p.ID)
                          };
             return querry.OrderBy(x => x.Parent.CreatedDate).ToList();
         }

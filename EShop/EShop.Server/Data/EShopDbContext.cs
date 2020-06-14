@@ -31,14 +31,14 @@ namespace EShop.Server.Data
         /// </summary>
         public DbSet<Product> Products { get; set; }
         public DbSet<News> News { get; set; }
-        public DbSet<Category> Categories { get; set; }
+        public DbSet<BlogCategory> BlogCategories { get; set; }
         public DbSet<Error> Errors { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<ContentCategory> ContentCategories { get; set; }
         public DbSet<Content> Contents { get; set; }
         public DbSet<ContentTag> contentTags { get; set; }
 
-        public DbSet<Catalog> Catalogs { get; set; }
+        public DbSet<ProductCatalog> ProductCatalogs { get; set; }
 
         public DbSet<EShop.Server.Models.Attribute> Attributes { get; set; }
 
@@ -72,11 +72,11 @@ namespace EShop.Server.Data
                                                new ProductVersion { ID = 3, SKU = "Iphone test", Barcode = "COC", Price = 16000000, ProductID = 2, RemainingAmount = 100, Quantum = 100, Description = "Màu xanh dl 250" });
 
 
-            modelBuilder.Entity<Catalog>().HasData(new Catalog { ID = 1, ParentID = null, Name = "Điện thoại" },
-                                                 new Catalog { ID = 2, ParentID = null, Name = "Laptop" },
-                                                 new Catalog { ID = 3, ParentID = 1, Name = "Samsung" },
-                                                 new Catalog { ID = 4, ParentID = 1, Name = "Apple" },
-                                                 new Catalog { ID = 5, ParentID = 2, Name = "Macbook" });
+            modelBuilder.Entity<ProductCatalog>().HasData(new ProductCatalog { ID = 1, ParentID = null, Name = "Điện thoại" },
+                                                 new ProductCatalog { ID = 2, ParentID = null, Name = "Laptop" },
+                                                 new ProductCatalog { ID = 3, ParentID = 1, Name = "Samsung" },
+                                                 new ProductCatalog { ID = 4, ParentID = 1, Name = "Apple" },
+                                                 new ProductCatalog { ID = 5, ParentID = 2, Name = "Macbook" });
 
 
 

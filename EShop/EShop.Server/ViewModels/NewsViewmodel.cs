@@ -8,6 +8,6 @@ namespace EShop.Server.ViewModels
     public class NewsViewmodel
     {
         public News News { get; set; }
-        public Category Caterory { get; set; }
+        public BlogCategory Caterory { get; set; }
     }
 }
