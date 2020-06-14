@@ -21,7 +21,8 @@ const theme = {
         danger: 'var(--danger)',
         light: 'var(--light)',
         dark: 'var(--dark)',
-    }
+    },
+    tableRowHeight: 40,
 }
 
 export default theme;

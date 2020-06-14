@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import { useDispatch, shallowEqual } from "react-redux";
 import { IconButton } from "@material-ui/core";
-import DeleteIcon from "@material-ui/icons/Delete";
-import EditIcon from "@material-ui/icons/Edit";
+import DeleteIconMaterial from "@material-ui/icons/Delete";
+import EditIconMaterial from "@material-ui/icons/Edit";
 import { AgGridReact, AgGridColumn } from "ag-grid-react";
 import {
   GridApi,
@@ -17,6 +17,7 @@ import { actions } from "./product.duck";
 import { useSelector } from "../../../store/store";
 import { useEffectOnce } from "../helpers/hookHelpers";
 import toMap from "../helpers/toMap";
+import theme from '../../../styles/theme';
 
 // TODO: currency locale
 function formatNumber(number) {
@@ -50,6 +51,13 @@ function displayRenderer(params: ICellRendererParams) {
     />
   );
 }
+
+const EditIcon = styled(EditIconMaterial)`
+  color: ${theme.color.blue};
+`;
+const DeleteIcon = styled(DeleteIconMaterial)`
+  color: ${theme.color.danger};
+`;
 function actionRenderer(params: ICellRendererParams) {
   return (
     <div>
@@ -108,6 +116,8 @@ export default function ProductTable(props) {
       <div className={`ag-theme-balham table-wrapper ${className}`}>
         <AgGridReact
           enableColResize
+          rowHeight={theme.tableRowHeight}
+          headerHeight={45}
           columnTypes={{
             editable: {
               editable: true,
@@ -175,10 +185,6 @@ export default function ProductTable(props) {
             field="display"
             maxWidth={80}
             cellRenderer="displayRenderer"
-            cellStyle={{
-              display: "flex",
-              justifyContent: "center",
-            }}
           />
           <AgGridColumn
             headerName="Tùy chọn"
