@@ -17,7 +17,8 @@ import { actions } from "./product.duck";
 import { useSelector } from "../../../store/store";
 import { useEffectOnce } from "../helpers/hookHelpers";
 import toMap from "../helpers/toMap";
-import theme from '../../../styles/theme';
+import theme from "../../../styles/theme";
+import Product from "./product.model";
 
 // TODO: currency locale
 function formatNumber(number) {
@@ -29,16 +30,19 @@ function currencyFormatter(params: ValueFormatterParams) {
   return formatNumber(params.value) + "đ";
 }
 
+function markAsDirty(params: ICellRendererParams) {
+  params.colDef.cellClass = (p) =>
+    p.rowIndex.toString() === params.node.id ? "ag-cell-dirty" : "";
+  params.api.refreshCells({
+    columns: [params.column.getId()],
+    rowNodes: [params.node],
+    force: true, // without this line, the cell style is not refreshed at the first time
+  });
+}
+
 const CellCheckbox = styled(Checkbox)`
   padding: 0 !important;
 `;
-
-function markAsDirty(params: ICellRendererParams) {
-  params.colDef.cellStyle = {
-    backgroundColor: "rgba(255, 193, 7, .5)",
-  };
-}
-
 function displayRenderer(params: ICellRendererParams) {
   return (
     <CellCheckbox
@@ -74,7 +78,7 @@ function actionRenderer(params: ICellRendererParams) {
 export default function ProductTable(props) {
   const { className, ...rest } = props;
   const lastQuery = useSelector((state) => state.products.lastQuery);
-  const products = useSelector(
+  const products = useSelector<Product[]>(
     (state) =>
       state.products.cachedQueries[lastQuery]?.map((p) => {
         p.category = p.category.toString();
@@ -97,6 +101,14 @@ export default function ProductTable(props) {
   useEffect(() => {
     dispatch(actions.getAllRequest("/"));
     // console.log(products, lastQuery);
+    // if (products) {
+    //   setTimeout(() => {
+    //     // dispatch(actions.getAllRequest("/"));
+    //     const productToUpdate = products[3];
+    //     productToUpdate.numberOfVersions = 12;
+    //     gridApiRef.current?.applyTransaction({ update: [productToUpdate] });
+    //   }, 5000);
+    // }
   }, [dispatch, lastQuery]);
 
   const onFirstDataRendered = () => gridApiRef.current?.sizeColumnsToFit();

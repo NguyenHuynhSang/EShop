@@ -43,6 +43,10 @@ export default createGlobalStyle`
     background-color: transparent;
 }
 
+.ag-root-wrapper .ag-cell.ag-cell-dirty {
+    background-color: rgba(255, 193, 7, .5);
+}
+
 .ag-ltr .ag-right-aligned-cell {
     justify-content: right; /* text-align not working since we use flex here */
 }
