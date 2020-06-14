@@ -23,7 +23,7 @@ namespace EShop.Server.Repository
         public IEnumerable<NewsViewmodel> GetNewsForView()
         {
             var querry = from n in DbContext.News
-                         join c in DbContext.Categories
+                         join c in DbContext.BlogCategories
                          on n.categoryID equals c.ID
                          select new NewsViewmodel
                          {

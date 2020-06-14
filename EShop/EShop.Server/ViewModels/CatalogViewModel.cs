@@ -8,6 +8,6 @@ namespace EShop.Server.ViewModels
    public class CatalogViewModel
     {
         public String ParentName { set; get; }
-        public Catalog Catalog { set; get; }
+        public ProductCatalog Catalog { set; get; }
     }
 }

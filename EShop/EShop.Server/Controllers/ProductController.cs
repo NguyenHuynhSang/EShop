@@ -28,7 +28,7 @@ namespace EShop.Server.Controllers
         }
 
         [HttpGet]
-        public ActionResult<PagedList<Product>> GetAll(string productFilterModelJson, int pageNumder=1,int pageSize=50)
+        public ActionResult<PagedList<Product>> GetAllPaging(string productFilterModelJson, int pageNumder=1,int pageSize=50)
         {
             ProductFilterModel filterModel = null;
             if (!string.IsNullOrEmpty(productFilterModelJson))
@@ -42,7 +42,7 @@ namespace EShop.Server.Controllers
         }
 
         [HttpGet]
-        public ActionResult<PagedList<ProductViewModel>> GetProductAllVersions(string productFilterModelJson, int pageNumder = 1, int pageSize = 50)
+        public ActionResult<PagedList<ProductViewModel>> GetProductAllVersionsPaging(string productFilterModelJson, int pageNumder = 1, int pageSize = 50)
         {
             ProductFilterModel filterModel = null;
             if (!string.IsNullOrEmpty(productFilterModelJson))
