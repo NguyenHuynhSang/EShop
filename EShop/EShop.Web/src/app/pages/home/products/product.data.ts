@@ -1,92 +1,164 @@
 import Product, { ProductCategory } from "./product.model";
+import { LoremIpsum } from "lorem-ipsum";
+
+const descriptionGen = new LoremIpsum({
+  sentencesPerParagraph: {
+    max: 8,
+    min: 4
+  },
+  wordsPerSentence: {
+    max: 16,
+    min: 4
+  }
+});
+const contentGen = new LoremIpsum({
+  sentencesPerParagraph: {
+    max: 3,
+    min: 1
+  },
+  wordsPerSentence: {
+    max: 20,
+    min: 4
+  }
+});
+
+function randomBetween(min, max) { // min and max included
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+function randomBoolean() {
+  return Math.random() > .5 ? true : false;
+}
+
+function getDescription() {
+  return descriptionGen.generateParagraphs(randomBetween(3, 5))
+}
+
+function getContent() {
+  return contentGen.generateParagraphs(randomBetween(8, 14))
+}
 
 const products: Product[] = [
   {
     id: 0,
     name: "IPhone XX",
+    description: getDescription(),
+    content: getContent(),
+    weight: .5,
     category: 5,
     numberOfVersions: 4,
     price: 26000000,
     originalPrice: 20000000,
     discountPrice: 23000000,
     quantity: 432,
-    display: false,
+    display: randomBoolean(),
+    deliver: randomBoolean(),
+    applyPromotion: randomBoolean(),
   },
   {
     id: 1,
     name: "Samsung galaxy X",
+    description: getDescription(),
+    content: getContent(),
+    weight: .7,
     category: 0,
     numberOfVersions: 3,
     price: 26000000,
     originalPrice: 20000000,
     discountPrice: 23000000,
     quantity: 308,
-    display: true,
+    display: randomBoolean(),
+    deliver: randomBoolean(),
+    applyPromotion: randomBoolean(),
   },
   {
     id: 2,
     name: "IPad Pro 69 XX",
+    description: getDescription(),
+    content: getContent(),
+    weight: .8,
     category: 4,
     numberOfVersions: 3,
     price: 25000000,
     originalPrice: 22000000,
     discountPrice: 24000000,
     quantity: 76,
-    display: true,
+    display: randomBoolean(),
+    deliver: randomBoolean(),
+    applyPromotion: randomBoolean(),
   },
   {
     id: 3,
     name: "Macbook Pro 16'",
+    description: getDescription(),
+    content: getContent(),
+    weight: 1.5,
     category: 3,
     numberOfVersions: 2,
     price: 40000000,
     originalPrice: 35000000,
     discountPrice: 37000000,
     quantity: 160,
-    display: true,
+    display: randomBoolean(),
+    deliver: randomBoolean(),
+    applyPromotion: randomBoolean(),
   },
   {
     id: 4,
     name: "HP 15 da0054TU i3 7020U (4ME68PA)",
+    description: getDescription(),
+    content: getContent(),
+    weight: 1.7,
     category: 2,
     numberOfVersions: 8,
     price: 5000000,
     originalPrice: 3000000,
     discountPrice: 3750000,
     quantity: 234,
-    display: true,
+    display: randomBoolean(),
+    deliver: randomBoolean(),
+    applyPromotion: randomBoolean(),
   },
   {
     id: 5,
     name: "Huawei MatePad T8",
+    description: getDescription(),
+    content: getContent(),
+    weight: 1.4,
     category: 1,
     numberOfVersions: 4,
     price: 3290000,
     originalPrice: 1500000,
     discountPrice: 2000000,
     quantity: 485,
-    display: true,
+    display: randomBoolean(),
+    deliver: randomBoolean(),
+    applyPromotion: randomBoolean(),
   },
   {
     id: 6,
     name: "Samsung Galaxy A70",
+    description: getDescription(),
+    content: getContent(),
+    weight: .6,
     category: 0,
     numberOfVersions: 5,
     price: 4400000,
     originalPrice: 3000000,
     discountPrice: 3500000,
     quantity: 431,
-    display: true,
+    display: randomBoolean(),
+    deliver: randomBoolean(),
+    applyPromotion: randomBoolean(),
   },
 ];
 
 export const productCategories: ProductCategory[] = [
-  { id: 0, name: "Samsung"},
-  { id: 1, name: "Huawei"},
-  { id: 2, name: "HP"},
-  { id: 3, name: "Macbook"},
-  { id: 4, name: "IPad"},
-  { id: 5, name: "IPhone"},
+  { id: 0, name: "Samsung" },
+  { id: 1, name: "Huawei" },
+  { id: 2, name: "HP" },
+  { id: 3, name: "Macbook" },
+  { id: 4, name: "IPad" },
+  { id: 5, name: "IPhone" },
 ];
 
 export default products;
