@@ -137,27 +137,27 @@ namespace EShop.Server.Service
                     }
                     else if (filterModel.FromNumVersion != null && filterModel.ToNumVersion != null)
                     {
-                        return _productRepository.GetProductViewModels().Where(x => x.ProductVersion.Count() >= filterModel.FromNumVersion && x.ProductVersion.Count() <= filterModel.ToNumVersion);
+                        return _productRepository.GetProductViewModels().Where(x => x.ProductVersions.Count() >= filterModel.FromNumVersion && x.ProductVersions.Count() <= filterModel.ToNumVersion);
                     }
                     else if (filterModel.FromNumVersion == null && filterModel.ToNumVersion != null)
                     {
-                        return _productRepository.GetProductViewModels().Where(x => x.ProductVersion.Count() <= filterModel.ToNumVersion);
+                        return _productRepository.GetProductViewModels().Where(x => x.ProductVersions.Count() <= filterModel.ToNumVersion);
                     }
                     else if (filterModel.FromNumVersion != null && filterModel.ToNumVersion == null)
                     {
-                        return _productRepository.GetProductViewModels().Where(x => x.ProductVersion.Count() >= filterModel.FromNumVersion);
+                        return _productRepository.GetProductViewModels().Where(x => x.ProductVersions.Count() >= filterModel.FromNumVersion);
                     }
                     else if (filterModel.FromPrice != null && filterModel.ToPrice != null)
                     {
-                        return _productRepository.GetProductViewModels().Where(x => x.ProductVersion.Where(y=>y.Price >= filterModel.FromPrice.Value).Count()>0);
+                        return _productRepository.GetProductViewModels().Where(x => x.ProductVersions.Where(y=>y.Price >= filterModel.FromPrice.Value).Count()>0);
                     }
                     else if (filterModel.FromPrice == null && filterModel.ToPrice != null)
                     {
-                        return _productRepository.GetProductViewModels().Where(x => x.ProductVersion.Where(y => y.Price <= filterModel.ToPrice.Value).Count() > 0);
+                        return _productRepository.GetProductViewModels().Where(x => x.ProductVersions.Where(y => y.Price <= filterModel.ToPrice.Value).Count() > 0);
                     }
                     else if (filterModel.FromPrice != null && filterModel.ToPrice == null)
                     {
-                        return _productRepository.GetProductViewModels().Where(x => x.ProductVersion.Where(y => y.Price >= filterModel.FromPrice.Value).Count() > 0);
+                        return _productRepository.GetProductViewModels().Where(x => x.ProductVersions.Where(y => y.Price >= filterModel.FromPrice.Value).Count() > 0);
                     }
                     else if (filterModel.CatalogID != null)
                     {

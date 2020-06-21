@@ -130,7 +130,7 @@ namespace EShop.Server.Repository
                          {
                              Product = p,
                              Catalog = c,
-                             ProductVersion = DbContext.ProductVersions.Where(x=>x.ProductID== p.ID)
+                            // ProductVersions;
                          };
             return querry.ToList();
         }

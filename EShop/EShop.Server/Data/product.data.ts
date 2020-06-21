@@ -31,7 +31,7 @@
             "seoUrl": null,
             "seoDescription": null
         },
-        "productVersion": [
+        "productVersions": [
             {
                 "id": 1,
                 "productID": 1,
@@ -41,7 +41,21 @@
                 "quantum": 100,
                 "remainingAmount": 100,
                 "sku": "Iphone test",
-                "barcode": "COC"
+                "barcode": "COC",
+                "productVersionImages": [
+                    {
+                        "id": 1,
+                        "productVersionID": 1,
+                        "isMain": true,
+                        "url": "https://cdn.tgdd.vn/Products/Images/42/200533/iphone-11-pro-max-black-400x460.png",
+                    },
+                    {
+                        "id": 2,
+                        "productVersionID": 1,
+                        "isMain": false,
+                        "url": "https://cdn.tgdd.vn/Products/Images/42/200533/iphone-11-pro-max-vang-5-180x125.jpg",
+                    },
+                ]
             },
             {
                 "id": 2,
@@ -52,7 +66,21 @@
                 "quantum": 100,
                 "remainingAmount": 100,
                 "sku": "Iphone test",
-                "barcode": "COC"
+                "barcode": "COC",
+                 "productVersionImages": [
+                    {
+                        "id": 3,
+                        "productVersionID": 2,
+                        "isMain": true,
+                         "url": "https://cdn.tgdd.vn/Products/Images/42/153856/iphone-11-red-2-400x460-400x460.png",
+                    },
+                    {
+                        "id": 4,
+                        "productVersionID": 2,
+                        "isMain": false,
+                        "url": "https://cdn.tgdd.vn/Products/Images/42/153856/iphone-114-1.jpg",
+                    },
+                ]
             }
         ]
     },
@@ -88,7 +116,7 @@
             "seoUrl": null,
             "seoDescription": null
         },
-        "productVersion": [
+        "productVersions": [
             {
                 "id": 3,
                 "productID": 2,
@@ -98,7 +126,22 @@
                 "quantum": 100,
                 "remainingAmount": 100,
                 "sku": "Iphone test",
-                "barcode": "COC"
+                "barcode": "COC",
+                "productVersionImages": [
+                    {
+                        "id": 1,
+                        "productVersionID": 1,
+                        "isMain": true,
+                        "url": "https://cdn.tgdd.vn/Products/Images/42/214909/samsung-galaxy-note-10-lite-chi-tiet-1-400x460.png",
+                    },
+                    {
+                        "id": 2,
+                        "productVersionID": 1,
+                        "isMain": false,
+                        "url": "https://cdn.tgdd.vn/Products/Images/42/214909/samsung-galaxy-note-10-lite-tgdd3-3.jpg",
+                    },
+                ]
+
             }
         ]
     },
@@ -134,7 +177,7 @@
             "seoUrl": null,
             "seoDescription": null
         },
-        "productVersion": [
+        "productVersions": [
             {
                 "id": 4,
                 "productID": 4,
@@ -144,7 +187,21 @@
                 "quantum": 100,
                 "remainingAmount": 200,
                 "sku": "MBB",
-                "barcode": "BAR"
+                "barcode": "BAR",
+                "productVersionImages": [
+                    {
+                        "id": 1,
+                        "productVersionID": 1,
+                        "isMain": true,
+                        "url": "https://cdn.tgdd.vn/Products/Images/44/221914/apple-macbook-pro-touch-2020-i5-mwp72sa-a-221914-600x600.jpg",
+                    },
+                    {
+                        "id": 2,
+                        "productVersionID": 1,
+                        "isMain": false,
+                        "url": "https://cdn.tgdd.vn/Products/Images/44/221914/apple-macbook-pro-touch-2020-i5-mwp72sa-a-6-chip-4-ram16gb.jpg",
+                    },
+                ]
             }
         ]
     }
