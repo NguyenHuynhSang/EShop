@@ -25,11 +25,9 @@ export default function ColumnDisplayDialog(props: ColumnDisplayDialogProps) {
   const [columnDisplay, setColumnDisplay] = React.useState(columnInfos);
 
   const onChangeCheckbox = (name) => (e) => {
-    const colIndex = columnDisplay.findIndex(
-      (c) => c.columnName === name
-    )
+    const colIndex = columnDisplay.findIndex((c) => c.columnName === name);
     columnDisplay[colIndex].visible = e.target.checked;
-    setColumnDisplay([...columnDisplay])
+    setColumnDisplay([...columnDisplay]);
   };
 
   const onSave = () => {
@@ -44,6 +42,7 @@ export default function ColumnDisplayDialog(props: ColumnDisplayDialogProps) {
         <FormGroup>
           {columnDisplay.map((c) => (
             <FormControlLabel
+              key={c.columnName}
               control={
                 <Checkbox
                   checked={c.visible}

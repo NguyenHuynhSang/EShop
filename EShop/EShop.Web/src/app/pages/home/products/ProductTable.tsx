@@ -83,43 +83,56 @@ function getColumn(
     case "id":
       return (
         <AgGridColumn
+          key={columnName}
           headerName="ID"
-          field="id"
+          lockPosition
+          field={columnName}
           resizable={false}
           type="numericColumn"
         />
       );
     case "name":
-      return <AgGridColumn headerName="Tên" field="name" type={["editable"]} />;
+      return (
+        <AgGridColumn
+          key={columnName}
+          headerName="Tên"
+          field={columnName}
+          type={["editable"]}
+        />
+      );
     case "description":
       return (
         <AgGridColumn
+          key={columnName}
           headerName="Mô tả"
-          field="description"
-          type={["editable"]}
+          field={columnName}
+          type={["editable", "largeText"]}
         />
       );
     case "content":
       return (
         <AgGridColumn
+          key={columnName}
           headerName="Nội dung"
-          field="content"
-          type={["editable"]}
+          field={columnName}
+          type={["editable", "largeText"]}
         />
       );
     case "weight":
       return (
         <AgGridColumn
+          key={columnName}
           headerName="Khối lượng"
-          field="weight"
+          field={columnName}
           type={["editable", "numericColumn"]}
         />
       );
     case "category": {
       return (
         <AgGridColumn
+          key={columnName}
           headerName="Loại"
-          field="category"
+          field={columnName}
           type={["editable"]}
           cellEditor="agSelectCellEditor"
           cellEditorParams={{
@@ -132,72 +145,81 @@ function getColumn(
     case "numberOfVersions":
       return (
         <AgGridColumn
+          key={columnName}
           headerName="Số phiên bản"
-          field="numberOfVersions"
+          field={columnName}
           type={["editable", "numericColumn"]}
         />
       );
     case "price":
       return (
         <AgGridColumn
+          key={columnName}
           headerName="Giá"
-          field="price"
+          field={columnName}
           type={["editable", "numericColumn", "currency"]}
         />
       );
     case "originalPrice":
       return (
         <AgGridColumn
+          key={columnName}
           headerName="Giá gốc"
-          field="originalPrice"
+          field={columnName}
           type={["editable", "numericColumn", "currency"]}
         />
       );
     case "discountPrice":
       return (
         <AgGridColumn
+          key={columnName}
           headerName="Giá khuyến mãi"
-          field="discountPrice"
+          field={columnName}
           type={["editable", "numericColumn", "currency"]}
         />
       );
     case "quantity":
       return (
         <AgGridColumn
+          key={columnName}
           headerName="Số lượng"
-          field="quantity"
+          field={columnName}
           type={["editable", "numericColumn"]}
         />
       );
     case "display":
       return (
         <AgGridColumn
+          key={columnName}
           headerName="Hiển thị"
-          field="display"
+          field={columnName}
           type={["checkbox"]}
         />
       );
     case "deliver":
       return (
         <AgGridColumn
+          key={columnName}
           headerName="Giao hàng"
-          field="deliver"
+          field={columnName}
           type={["checkbox"]}
         />
       );
     case "applyPromotion":
       return (
         <AgGridColumn
+          key={columnName}
           headerName="Khuyến mãi"
-          field="applyPromotion"
+          field={columnName}
           type={["checkbox"]}
         />
       );
     case "action":
       return (
         <AgGridColumn
+          key={columnName}
           headerName="Tùy chọn"
-          field="action"
+          field={columnName}
           cellRenderer="actionRenderer"
         />
       );
@@ -278,7 +300,9 @@ export default function ProductTable(props: ProductTableProps) {
             valueFormatter: currencyFormatter,
           },
           checkbox: {
-            cellRenderer: "displayRenderer",
+          largeText: {
+            cellEditor: "agLargeTextCellEditor",
+            maxWidth: 250,
           },
         }}
         onFirstDataRendered={onFirstDataRendered}
