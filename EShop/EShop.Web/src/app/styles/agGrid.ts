@@ -2,6 +2,10 @@ import { createGlobalStyle } from "styled-components";
 import theme from "./theme";
 
 export default createGlobalStyle`
+.table-wrapper {
+    width: 100%;
+    height: 100%;
+}
 .ag-root {
     width: 100% !important;
     border: none !important;
@@ -21,6 +25,11 @@ export default createGlobalStyle`
     display: flex;
     /* vertically align content because custom height is larger than normal */
     align-items: center;
+}
+
+.ag-root-wrapper-body {
+    /* without this line, the table will be collapsed */
+    height: 100% !important;
 }
 
 /* theming */
@@ -73,5 +82,9 @@ export default createGlobalStyle`
 /* ag input */
 .ag-right-aligned-cell .ag-text-field-input {
     text-align: right;
+}
+
+.ag-center-cols-container {
+    width: 100% !important;
 }
 `;

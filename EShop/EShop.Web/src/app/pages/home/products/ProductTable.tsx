@@ -11,6 +11,7 @@ import {
   ICellRendererParams,
 } from "ag-grid-community";
 import styled from "styled-components";
+import classNames from "classnames";
 import { Checkbox } from "@material-ui/core";
 import { actions } from "./product.duck";
 import { useSelector, useDispatch, shallowEqual } from "../../../store/store";
@@ -19,6 +20,7 @@ import toMap from "../helpers/toMap";
 import theme from "../../../styles/theme";
 import Product from "./product.model";
 import { ColumnInfo } from "./product.duck.d";
+import { BaseColDefParams } from "ag-grid-community/dist/lib/entities/colDef";
 
 // TODO: currency locale
 function formatNumber(number) {
@@ -43,7 +45,7 @@ function markAsDirty(params: ICellRendererParams) {
 const CellCheckbox = styled(Checkbox)`
   padding: 0 !important;
 `;
-function displayRenderer(params: ICellRendererParams) {
+function checkboxRenderer(params: ICellRendererParams) {
   return (
     <CellCheckbox
       checked={params.value}
@@ -233,6 +235,12 @@ type ProductTableProps = {
   columnInfos: ColumnInfo[];
 };
 
+function autoSizeAllColumns(gridColumnApi?: ColumnApi) {
+  const allColumnIds =
+    gridColumnApi?.getAllColumns().map((c) => c.getId()) || [];
+  gridColumnApi?.autoSizeColumns(allColumnIds, false);
+}
+
 export default function ProductTable(props: ProductTableProps) {
   const { className, columnInfos, ...rest } = props;
   const lastQuery = useSelector((state) => state.products.lastQuery);
@@ -269,28 +277,26 @@ export default function ProductTable(props: ProductTableProps) {
     // }
   }, [dispatch, lastQuery]);
 
-  useEffect(() => {
-    gridApiRef.current?.sizeColumnsToFit();
-  }, [columnInfos]);
+  useEffect(() => autoSizeAllColumns(gridColumnApiRef.current), [columnInfos]);
 
-  const onFirstDataRendered = () => gridApiRef.current?.sizeColumnsToFit();
+  const onFirstDataRendered = () =>
+    autoSizeAllColumns(gridColumnApiRef.current);
   const onGridReady = (params: GridReadyEvent) => {
     gridApiRef.current = params.api;
     gridColumnApiRef.current = params.columnApi;
 
     window.addEventListener("resize", function() {
-      setTimeout(function() {
-        gridApiRef.current?.sizeColumnsToFit();
-      });
+      setTimeout(() => autoSizeAllColumns(gridColumnApiRef.current));
     });
   };
 
   return (
-    <div className={`ag-theme-balham table-wrapper ${className}`}>
+    <div className={classNames("ag-theme-balham table-wrapper", className)}>
       <AgGridReact
         enableColResize
         rowHeight={theme.tableRowHeight}
         headerHeight={45}
+        suppressDragLeaveHidesColumns
         columnTypes={{
           editable: {
             editable: true,
@@ -300,6 +306,8 @@ export default function ProductTable(props: ProductTableProps) {
             valueFormatter: currencyFormatter,
           },
           checkbox: {
+            cellRenderer: "checkboxRenderer",
+          },
           largeText: {
             cellEditor: "agLargeTextCellEditor",
             maxWidth: 250,
@@ -312,9 +320,8 @@ export default function ProductTable(props: ProductTableProps) {
         onGridReady={onGridReady}
         rowData={products}
         // getRowClass={this.getRowClass}
-        domLayout="print"
         frameworkComponents={{
-          displayRenderer,
+          checkboxRenderer,
           actionRenderer,
         }}
         {...rest}

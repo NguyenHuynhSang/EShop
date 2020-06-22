@@ -21,6 +21,7 @@ const theme = {
         danger: 'var(--danger)',
         light: 'var(--light)',
         dark: 'var(--dark)',
+        background: 'var(--background-color)'
     },
     tableRowHeight: 40,
     spacing: {
