@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using EShop.Server.Extension;
 using EShop.Server.InputModel;
+using EShop.Server.ViewModels;
 
 namespace EShop.Server.Mapping
 {
@@ -38,6 +39,9 @@ namespace EShop.Server.Mapping
             CreateMap<Product,ProductInput> ();
             CreateMap<ProductVersionInput, ProductVersion>();
             CreateMap<ProductVersion, ProductVersionInput>();
+            CreateMap<IEnumerable<ProductVersionViewModel>, IEnumerable<ProductVersion>>();
+            CreateMap<IEnumerable<ProductVersion>, IEnumerable<ProductVersionViewModel>>();
+         
         }
     }
 }

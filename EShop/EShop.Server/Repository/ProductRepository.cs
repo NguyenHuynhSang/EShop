@@ -13,7 +13,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EShop.Server.Repository
 {
-    public interface IProductRepository:IRepository<Product>
+    public interface IProductRepository : IRepository<Product>
     {
         IEnumerable<Product> GetByAlias(string alias);
 
@@ -21,7 +21,7 @@ namespace EShop.Server.Repository
         void CreateProductByProductInputModel(ProductInput productInput);
         ProductInput GetProductInputByID(int id);
     }
-    public class ProductRepository:RepositoryBase<Product>, IProductRepository
+    public class ProductRepository : RepositoryBase<Product>, IProductRepository
     {
 
         private IMapper _mapper;
@@ -84,7 +84,7 @@ namespace EShop.Server.Repository
                     }
                 }
             }
-          
+
 
         }
 
@@ -95,16 +95,16 @@ namespace EShop.Server.Repository
 
         public ProductInput GetProductInputByID(int id)
         {
-            
+
             var product = DbContext.Products.SingleOrDefault(x => x.ID == id);
-            if (product==null)
+            if (product == null)
             {
                 return null;
             }
             var productInput = _mapper.Map<ProductInput>(product);
-           
-            var version = DbContext.ProductVersions.Where(x => x.ProductID==product.ID);
-            List<ProductVersionInput> vers= new List<ProductVersionInput>();
+
+            var version = DbContext.ProductVersions.Where(x => x.ProductID == product.ID);
+            List<ProductVersionInput> vers = new List<ProductVersionInput>();
             foreach (var item in version)
             {
                 var verInput = _mapper.Map<ProductVersionInput>(item);
@@ -130,8 +130,24 @@ namespace EShop.Server.Repository
                          {
                              Product = p,
                              Catalog = c,
-                            // ProductVersions;
+                             ProductVersions = from ver in DbContext.ProductVersions.Where(x => x.ProductID == p.ID)
+                                               select new ProductVersionViewModel
+                                               {
+                                                   ID = ver.ID,
+                                                   Description = ver.Description,
+                                                   Barcode = ver.Barcode,
+                                                   WareHouseID = ver.WareHouseID,
+                                                   Price = ver.Price,
+                                                   ProductID = ver.ProductID,
+                                                   Quantum = ver.Quantum,
+                                                   RemainingAmount = ver.RemainingAmount,
+                                                   SKU = ver.SKU,
+                                                   ProductVersionImages = DbContext.ProductVersionImages.Where(x => x.ProductVersionID == ver.ID)
+                                               }
                          };
+
+
+
             return querry.ToList();
         }
     }
