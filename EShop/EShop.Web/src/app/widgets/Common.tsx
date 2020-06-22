@@ -3,23 +3,19 @@ import { Button } from "react-bootstrap";
 import styled from "styled-components";
 
 export const PrimaryButton = styled(PrimaryButtonInner)`
-  display: inline-flex;
   height: 40px !important;
-  padding-top: 0;
-  padding-bottom: 0;
-  margin-top: 0.25rem;
-  margin-bottom: 0.25rem;
 `;
 
 type ButtonProps = {
   className?: string;
   children: React.ReactNode;
+  onClick?: ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void) | undefined;
 };
 
 export default function PrimaryButtonInner(props: ButtonProps) {
-  const { className, children } = props;
+  const { className, children, onClick } = props;
   return (
-    <Button type="button" variant="primary" className={className}>
+    <Button type="button" variant="primary" onClick={onClick} className={className}>
       {children}
     </Button>
   );

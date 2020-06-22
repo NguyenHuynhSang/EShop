@@ -1,5 +1,10 @@
 import Product, { ProductCategory } from "./product.model";
 
+export type ColumnInfo = {
+  columnName: string;
+  visible: boolean;
+};
+
 export interface ProductState {
   loading: boolean;
   cachedQueries: {
@@ -7,9 +12,11 @@ export interface ProductState {
   };
   productCategories: ProductCategory[];
   lastQuery: string;
+  columnInfos: ColumnInfo[];
 }
 
 export enum ProductAction {
+  SetColumnDisplay = "[Set Column Display] Action",
   GetAllRequest = "[Get All Request] Action",
   GetAllSuccess = "[Get All Success] Product API",
   GetAllFailure = "[Get All Failure] Product API",
@@ -45,7 +52,15 @@ interface GetCategoriesSuccessAction {
   };
 }
 
+interface SetColumnDisplayAction {
+  type: typeof ProductAction.SetColumnDisplay;
+  payload: {
+    columnInfos: ColumnInfo[];
+  };
+}
+
 export type ProductActionType =
+  | SetColumnDisplayAction
   | GetAllRequestAction
   | GetAllSuccessAction
   | GetCategoriesRequestAction

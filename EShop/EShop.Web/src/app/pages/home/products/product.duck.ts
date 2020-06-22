@@ -7,6 +7,7 @@ import {
   ProductActionType,
   ProductState,
   GetAllRequestAction,
+  ColumnInfo,
 } from "./product.duck.d";
 import Product, { ProductCategory } from "./product.model";
 import { AxiosResponse } from "axios";
@@ -18,12 +19,37 @@ const initialState: ProductState = {
   cachedQueries: {},
   productCategories: [],
   lastQuery: "", // TODO: workaround to prevent refetching data. First on mount, second on lastQuery changed
+  columnInfos: [
+    { columnName: "id", visible: true },
+    { columnName: "name", visible: true },
+    { columnName: "description", visible: false },
+    { columnName: "content", visible: false },
+    { columnName: "weight", visible: false },
+    { columnName: "category", visible: true },
+    { columnName: "numberOfVersions", visible: true },
+    { columnName: "price", visible: true },
+    { columnName: "originalPrice", visible: false },
+    { columnName: "discountPrice", visible: false },
+    { columnName: "quantity", visible: true },
+    { columnName: "display", visible: true },
+    { columnName: "deliver", visible: false },
+    { columnName: "applyPromotion", visible: false },
+    { columnName: "action", visible: true },
+  ],
 };
 
 export const reducer = persistReducer<ProductState, ProductActionType>(
   { storage, key: "products", whitelist: ["cachedQueries"] },
   (state = initialState, action) => {
     switch (action.type) {
+      case ProductAction.SetColumnDisplay: {
+        const { columnInfos } = action.payload;
+
+        return {
+          ...state,
+          columnInfos,
+        };
+      }
       case ProductAction.GetAllRequest: {
         const { params } = action.payload;
 
@@ -58,6 +84,10 @@ export const reducer = persistReducer<ProductState, ProductActionType>(
 );
 
 export const actions = {
+  setColumnDisplay: (columnInfos: ColumnInfo[]): ProductActionType => ({
+    type: ProductAction.SetColumnDisplay,
+    payload: { columnInfos },
+  }),
   getAllRequest: (params: string): ProductActionType => ({
     type: ProductAction.GetAllRequest,
     payload: { params },

@@ -9,8 +9,11 @@ import {
 import { PrimaryButton, SvgIcon } from "../../../widgets/Common";
 import { ReactComponent as PlusIcon } from "../../../../assets/Add.svg";
 import { ReactComponent as ProductIcon } from "../../../../assets/Product.svg";
+import { ReactComponent as VisibleIcon } from "../../../../assets/Visible.svg";
 import theme from "../../../styles/theme";
-import ProductTable from './ProductTable';
+import ProductTable from "./ProductTable";
+import ColumnDisplayDialog from "./ColumnDisplayDialog";
+import { useSelector, shallowEqual } from "../../../store/store";
 
 const PortletIcon = styled(SvgIcon)`
   padding-right: 0.4rem;
@@ -20,7 +23,16 @@ const PortletIcon = styled(SvgIcon)`
   }
 `;
 
+const Toolbar = styled.div`
+  margin-bottom: ${theme.spacing.md};
+`;
+
 export default function ProductsPage() {
+  const columnInfos = useSelector((state) => state.products.columnInfos, shallowEqual);
+  const [displayColDialogVisible, setDisplayColDialogVisible] = React.useState(
+    false
+  );
+
   return (
     <Portlet>
       <PortletHeader
@@ -45,8 +57,21 @@ export default function ProductsPage() {
       />
 
       <PortletBody>
-        <ProductTable />
+        <Toolbar>
+          <PrimaryButton onClick={() => setDisplayColDialogVisible(true)}>
+            <SvgIcon color="white" size={20}>
+              <VisibleIcon />
+            </SvgIcon>
+            &nbsp;&nbsp;Cột hiển thị&nbsp;
+          </PrimaryButton>
+        </Toolbar>
+        <ProductTable columnInfos={columnInfos} />
       </PortletBody>
+      <ColumnDisplayDialog
+        open={displayColDialogVisible}
+        handleClose={() => setDisplayColDialogVisible(false)}
+        initialValue={columnInfos}
+      />
     </Portlet>
   );
 }

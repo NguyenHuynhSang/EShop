@@ -23,6 +23,13 @@ const theme = {
         dark: 'var(--dark)',
     },
     tableRowHeight: 40,
+    spacing: {
+        xl: '3rem',
+        lg: '2rem',
+        md: '1rem',
+        sm: '.5rem',
+        xs: '.25rem',
+    }
 }
 
 export default theme;

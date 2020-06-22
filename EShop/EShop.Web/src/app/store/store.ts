@@ -1,16 +1,22 @@
 import { applyMiddleware, compose, createStore } from "redux";
 import createSagaMiddleware from "redux-saga";
 import { persistStore } from "redux-persist";
-import { useSelector as useReduxSelector, TypedUseSelectorHook } from 'react-redux'
+import {
+  useSelector as useReduxSelector,
+  TypedUseSelectorHook,
+  useDispatch,
+  shallowEqual,
+} from "react-redux";
 import { rootReducer, rootSaga, RootState } from "./rootDuck";
 
 // thank you, kind stranger https://stackoverflow.com/a/52801110/9449426
-const composeEnhancers = window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] as typeof compose || compose;
+const composeEnhancers =
+  (window["__REDUX_DEVTOOLS_EXTENSION_COMPOSE__"] as typeof compose) || compose;
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
-    rootReducer,
-    composeEnhancers(applyMiddleware(sagaMiddleware))
+  rootReducer,
+  composeEnhancers(applyMiddleware(sagaMiddleware))
 );
 
 /**
@@ -21,6 +27,7 @@ export const persistor = persistStore(store);
 
 sagaMiddleware.run(rootSaga);
 
-export const useSelector: TypedUseSelectorHook<RootState> = useReduxSelector
+export const useSelector: TypedUseSelectorHook<RootState> = useReduxSelector;
+export { useDispatch, shallowEqual };
 
 export default store;
