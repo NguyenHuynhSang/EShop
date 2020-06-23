@@ -85,6 +85,7 @@ export default createGlobalStyle`
 }
 
 .ag-center-cols-container {
-    width: 100% !important;
+    /* we don't want to see blank space if there is few columns, fill the rest of the table with the same background color */
+    width: 1000% !important;
 }
 `;

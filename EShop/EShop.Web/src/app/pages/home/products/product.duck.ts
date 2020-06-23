@@ -39,7 +39,7 @@ const initialState: ProductState = {
 };
 
 export const reducer = persistReducer<ProductState, ProductActionType>(
-  { storage, key: "products", whitelist: ["cachedQueries"] },
+  { storage, key: "products", whitelist: ["cachedQueries", "columnInfos"] },
   (state = initialState, action) => {
     switch (action.type) {
       case ProductAction.SetColumnDisplay: {

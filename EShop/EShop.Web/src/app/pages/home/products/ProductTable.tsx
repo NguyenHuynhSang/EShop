@@ -9,6 +9,7 @@ import {
   GridReadyEvent,
   ValueFormatterParams,
   ICellRendererParams,
+  ColumnMovedEvent,
 } from "ag-grid-community";
 import styled from "styled-components";
 import classNames from "classnames";
@@ -17,6 +18,7 @@ import { actions } from "./product.duck";
 import { useSelector, useDispatch, shallowEqual } from "../../../store/store";
 import { useEffectOnce } from "../helpers/hookHelpers";
 import toMap from "../helpers/toMap";
+import moveArrayItem from "../helpers/moveArrayItem";
 import theme from "../../../styles/theme";
 import Product from "./product.model";
 import { ColumnInfo } from "./product.duck.d";
@@ -78,9 +80,10 @@ function actionRenderer(params: ICellRendererParams) {
 }
 
 function getColumn(
-  columnName: string,
+  columnInfo: ColumnInfo,
   productCategories: { [key: string]: string }
 ) {
+  const { columnName, visible } = columnInfo;
   switch (columnName) {
     case "id":
       return (
@@ -89,8 +92,10 @@ function getColumn(
           headerName="ID"
           lockPosition
           field={columnName}
+          pinned
           resizable={false}
           type="numericColumn"
+          hide={!visible}
         />
       );
     case "name":
@@ -98,8 +103,10 @@ function getColumn(
         <AgGridColumn
           key={columnName}
           headerName="Tên"
+          pinned
           field={columnName}
           type={["editable"]}
+          hide={!visible}
         />
       );
     case "description":
@@ -109,6 +116,7 @@ function getColumn(
           headerName="Mô tả"
           field={columnName}
           type={["editable", "largeText"]}
+          hide={!visible}
         />
       );
     case "content":
@@ -118,6 +126,7 @@ function getColumn(
           headerName="Nội dung"
           field={columnName}
           type={["editable", "largeText"]}
+          hide={!visible}
         />
       );
     case "weight":
@@ -127,6 +136,7 @@ function getColumn(
           headerName="Khối lượng"
           field={columnName}
           type={["editable", "numericColumn"]}
+          hide={!visible}
         />
       );
     case "category": {
@@ -141,6 +151,7 @@ function getColumn(
             values: Object.keys(productCategories),
           }}
           refData={productCategories}
+          hide={!visible}
         />
       );
     }
@@ -151,6 +162,7 @@ function getColumn(
           headerName="Số phiên bản"
           field={columnName}
           type={["editable", "numericColumn"]}
+          hide={!visible}
         />
       );
     case "price":
@@ -160,6 +172,7 @@ function getColumn(
           headerName="Giá"
           field={columnName}
           type={["editable", "numericColumn", "currency"]}
+          hide={!visible}
         />
       );
     case "originalPrice":
@@ -169,6 +182,7 @@ function getColumn(
           headerName="Giá gốc"
           field={columnName}
           type={["editable", "numericColumn", "currency"]}
+          hide={!visible}
         />
       );
     case "discountPrice":
@@ -178,6 +192,7 @@ function getColumn(
           headerName="Giá khuyến mãi"
           field={columnName}
           type={["editable", "numericColumn", "currency"]}
+          hide={!visible}
         />
       );
     case "quantity":
@@ -187,6 +202,7 @@ function getColumn(
           headerName="Số lượng"
           field={columnName}
           type={["editable", "numericColumn"]}
+          hide={!visible}
         />
       );
     case "display":
@@ -196,6 +212,7 @@ function getColumn(
           headerName="Hiển thị"
           field={columnName}
           type={["checkbox"]}
+          hide={!visible}
         />
       );
     case "deliver":
@@ -205,6 +222,7 @@ function getColumn(
           headerName="Giao hàng"
           field={columnName}
           type={["checkbox"]}
+          hide={!visible}
         />
       );
     case "applyPromotion":
@@ -214,6 +232,7 @@ function getColumn(
           headerName="Khuyến mãi"
           field={columnName}
           type={["checkbox"]}
+          hide={!visible}
         />
       );
     case "action":
@@ -223,6 +242,7 @@ function getColumn(
           headerName="Tùy chọn"
           field={columnName}
           cellRenderer="actionRenderer"
+          hide={!visible}
         />
       );
     default:
@@ -289,13 +309,24 @@ export default function ProductTable(props: ProductTableProps) {
       setTimeout(() => autoSizeAllColumns(gridColumnApiRef.current));
     });
   };
+  const onColumnMoved = (e: ColumnMovedEvent) => {
+    if (e.columns !== null && e.toIndex !== undefined) {
+      for (let column of e.columns.reverse()) {
+        const fromIndex = columnInfos.findIndex(c => c.columnName === column.getColDef().field)
+        dispatch(actions.setColumnDisplay(moveArrayItem(columnInfos, fromIndex, e.toIndex)));
+      }
+    }
+  }
 
   return (
     <div className={classNames("ag-theme-balham table-wrapper", className)}>
       <AgGridReact
+        animateRows
+        onColumnMoved={onColumnMoved}
         enableColResize
         rowHeight={theme.tableRowHeight}
         headerHeight={45}
+        // you can already toggle show/hide columns. dragging outside to hide column just makes it more confusing
         suppressDragLeaveHidesColumns
         columnTypes={{
           editable: {
@@ -326,9 +357,7 @@ export default function ProductTable(props: ProductTableProps) {
         }}
         {...rest}
       >
-        {columnInfos
-          .filter((c) => c.visible)
-          .map((c) => getColumn(c.columnName, productCategories))}
+        {columnInfos.map((c) => getColumn(c, productCategories))}
       </AgGridReact>
     </div>
   );
