@@ -21,6 +21,7 @@ import toMap from "../helpers/toMap";
 import moveArrayItem from "../helpers/moveArrayItem";
 import theme from "../../../styles/theme";
 import Product from "./product.model";
+import ProductTableHeader from "./ProductTableHeader";
 import { ColumnInfo } from "./product.duck.d";
 import { BaseColDefParams } from "ag-grid-community/dist/lib/entities/colDef";
 
@@ -282,20 +283,8 @@ export default function ProductTable(props: ProductTableProps) {
 
   useEffectOnce(() => {
     dispatch(actions.getCategoriesRequest());
+    dispatch(actions.getAllRequest());
   });
-
-  useEffect(() => {
-    dispatch(actions.getAllRequest("/"));
-    // console.log(products, lastQuery);
-    // if (products) {
-    //   setTimeout(() => {
-    //     // dispatch(actions.getAllRequest("/"));
-    //     const productToUpdate = products[3];
-    //     productToUpdate.numberOfVersions = 12;
-    //     gridApiRef.current?.applyTransaction({ update: [productToUpdate] });
-    //   }, 5000);
-    // }
-  }, [dispatch, lastQuery]);
 
   useEffect(() => autoSizeAllColumns(gridColumnApiRef.current), [columnInfos]);
 
@@ -312,11 +301,17 @@ export default function ProductTable(props: ProductTableProps) {
   const onColumnMoved = (e: ColumnMovedEvent) => {
     if (e.columns !== null && e.toIndex !== undefined) {
       for (let column of e.columns.reverse()) {
-        const fromIndex = columnInfos.findIndex(c => c.columnName === column.getColDef().field)
-        dispatch(actions.setColumnDisplay(moveArrayItem(columnInfos, fromIndex, e.toIndex)));
+        const fromIndex = columnInfos.findIndex(
+          (c) => c.columnName === column.getColDef().field
+        );
+        dispatch(
+          actions.setColumnDisplay(
+            moveArrayItem(columnInfos, fromIndex, e.toIndex)
+          )
+        );
       }
     }
-  }
+  };
 
   return (
     <div className={classNames("ag-theme-balham table-wrapper", className)}>
@@ -354,6 +349,7 @@ export default function ProductTable(props: ProductTableProps) {
         frameworkComponents={{
           checkboxRenderer,
           actionRenderer,
+          agColumnHeader: ProductTableHeader,
         }}
         {...rest}
       >

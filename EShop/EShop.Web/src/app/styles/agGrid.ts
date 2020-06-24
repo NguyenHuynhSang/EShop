@@ -16,9 +16,16 @@ export default createGlobalStyle`
     border: none !important;
 }
 
+/* make wrapper.ag-grid-container has the same width as the column width to easily align content inside */
+.ag-header-cell .ag-react-container {
+    width: 100%;
+    height: 100%;
+}
+
 .ag-cell .ag-react-container {
     display: flex; /* vertically center custom components like checkbox */
     justify-content: center;
+    width: 100%;
 }
 
 .ag-cell {

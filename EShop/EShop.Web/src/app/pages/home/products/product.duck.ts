@@ -8,6 +8,7 @@ import {
   ProductState,
   GetAllRequestAction,
   ColumnInfo,
+  Params,
 } from "./product.duck.d";
 import Product, { ProductCategory } from "./product.model";
 import { AxiosResponse } from "axios";
@@ -55,14 +56,14 @@ export const reducer = persistReducer<ProductState, ProductActionType>(
 
         return {
           ...state,
-          lastQuery: params,
+          lastQuery: JSON.stringify(params),
         };
       }
       case ProductAction.GetAllSuccess: {
         const { params, results } = action.payload;
         const { cachedQueries } = state;
 
-        cachedQueries[params] = results;
+        cachedQueries[JSON.stringify(params)] = results;
 
         return {
           ...state,
@@ -88,11 +89,11 @@ export const actions = {
     type: ProductAction.SetColumnDisplay,
     payload: { columnInfos },
   }),
-  getAllRequest: (params: string): ProductActionType => ({
+  getAllRequest: (params?: Params): ProductActionType => ({
     type: ProductAction.GetAllRequest,
     payload: { params },
   }),
-  getAllSuccess: (params: string, results: Product[]): ProductActionType => ({
+  getAllSuccess: (results: Product[], params?: Params): ProductActionType => ({
     type: ProductAction.GetAllSuccess,
     payload: { params, results },
   }),
@@ -110,8 +111,11 @@ export function* saga() {
     action: GetAllRequestAction
   ) {
     // TODO: error handling
-    const response: AxiosResponse<Product[]> = yield ProductService.getAll();
-    yield put(actions.getAllSuccess(action.payload.params, response.data));
+    const { params } = action.payload;
+    const response: AxiosResponse<Product[]> = yield ProductService.getAll(
+      params
+    );
+    yield put(actions.getAllSuccess(response.data, params));
   });
 
   yield takeLatest(ProductAction.GetCategoriesRequest, function* getAllSaga() {

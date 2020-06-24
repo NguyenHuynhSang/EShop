@@ -26,17 +26,19 @@ export enum ProductAction {
   GetCategoriesFailure = "[Get Categories Failure] Product API",
 }
 
+export type Params = { [key: string]: string | undefined };
+
 export interface GetAllRequestAction {
   type: typeof ProductAction.GetAllRequest;
   payload: {
-    params: string;
+    params?: Params;
   };
 }
 
 interface GetAllSuccessAction {
   type: typeof ProductAction.GetAllSuccess;
   payload: {
-    params: string;
+    params?: Params;
     results: Product[];
   };
 }
