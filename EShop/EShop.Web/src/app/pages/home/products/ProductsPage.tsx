@@ -34,7 +34,7 @@ export default function ProductsPage() {
   );
 
   return (
-    <Portlet>
+    <Portlet id='productTableContainer'>
       <PortletHeader
         title={
           <>

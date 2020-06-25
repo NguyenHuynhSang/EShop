@@ -186,6 +186,7 @@ export const PortletFooter = forwardRef(
 );
 
 type PortletProps = {
+  id?: string;
   className?: string;
   fluidHeight?: boolean;
   children: React.ReactNode;

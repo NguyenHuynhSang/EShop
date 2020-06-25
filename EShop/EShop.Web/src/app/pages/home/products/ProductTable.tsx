@@ -260,6 +260,11 @@ function autoSizeAllColumns(gridColumnApi?: ColumnApi) {
   const allColumnIds =
     gridColumnApi?.getAllColumns().map((c) => c.getId()) || [];
   gridColumnApi?.autoSizeColumns(allColumnIds, false);
+  // when using custom header component, autosize does not work on the first try
+  // especially when there too many columns to fit on one screen
+  setTimeout(() => {
+    gridColumnApi?.autoSizeColumns(allColumnIds, false);
+  });
 }
 
 export default function ProductTable(props: ProductTableProps) {
@@ -286,17 +291,22 @@ export default function ProductTable(props: ProductTableProps) {
     dispatch(actions.getAllRequest());
   });
 
-  useEffect(() => autoSizeAllColumns(gridColumnApiRef.current), [columnInfos]);
-
-  const onFirstDataRendered = () =>
+  useEffect(() => {
     autoSizeAllColumns(gridColumnApiRef.current);
+  }, [columnInfos]);
+
+  const onFirstDataRendered = () => {
+    autoSizeAllColumns(gridColumnApiRef.current);
+  };
   const onGridReady = (params: GridReadyEvent) => {
     gridApiRef.current = params.api;
     gridColumnApiRef.current = params.columnApi;
 
-    window.addEventListener("resize", function() {
-      setTimeout(() => autoSizeAllColumns(gridColumnApiRef.current));
-    });
+    document
+      .getElementById("productTableContainer")
+      ?.addEventListener("resize", function() {
+        setTimeout(() => autoSizeAllColumns(gridColumnApiRef.current));
+      });
   };
   const onColumnMoved = (e: ColumnMovedEvent) => {
     if (e.columns !== null && e.toIndex !== undefined) {

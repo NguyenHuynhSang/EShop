@@ -11,8 +11,6 @@ export default function mockProduct(mock: MockAdapter) {
     const sort = params?.sort || "none";
     let result = productData;
 
-    console.log(sortField, sort)
-
     if (sort !== "none") {
       if (sort === "asc") {
         result = sortBy<Product>(productData, [sortField]);
