@@ -3,6 +3,8 @@ import Product, { ProductCategory } from "./product.model";
 export type ColumnInfo = {
   columnName: string;
   visible: boolean;
+  alwaysVisible?: boolean;
+  pinned?: boolean;
 };
 
 export interface ProductState {

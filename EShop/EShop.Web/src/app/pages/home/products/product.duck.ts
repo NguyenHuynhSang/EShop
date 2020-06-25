@@ -21,7 +21,7 @@ const initialState: ProductState = {
   productCategories: [],
   lastQuery: "", // TODO: workaround to prevent refetching data. First on mount, second on lastQuery changed
   columnInfos: [
-    { columnName: "id", visible: true },
+    { columnName: "id", visible: true, alwaysVisible: true },
     { columnName: "name", visible: true },
     { columnName: "description", visible: false },
     { columnName: "content", visible: false },
@@ -35,7 +35,7 @@ const initialState: ProductState = {
     { columnName: "display", visible: true },
     { columnName: "deliver", visible: false },
     { columnName: "applyPromotion", visible: false },
-    { columnName: "action", visible: true },
+    { columnName: "action", visible: true, alwaysVisible: true },
   ],
 };
 

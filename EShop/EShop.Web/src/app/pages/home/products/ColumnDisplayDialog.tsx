@@ -43,6 +43,7 @@ export default function ColumnDisplayDialog(props: ColumnDisplayDialogProps) {
           {columnDisplay.map((c) => (
             <FormControlLabel
               key={c.columnName}
+              disabled={c.alwaysVisible || false}
               control={
                 <Checkbox
                   checked={c.visible}
