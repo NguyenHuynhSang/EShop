@@ -10,7 +10,7 @@
  */
 export default function toMap(array: Object[], keyPath: string, valuePath: string) {
     const mappings: { [key: string]: string } = {};
-
+    console.log('toMap()')
     array.forEach(o => {
         const key = o[keyPath];
         const value = o[valuePath];

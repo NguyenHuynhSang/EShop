@@ -17,11 +17,11 @@ import { Checkbox } from "@material-ui/core";
 import { actions } from "./product.duck";
 import { useSelector, useDispatch, shallowEqual } from "../../../store/store";
 import { useEffectOnce } from "../helpers/hookHelpers";
-import toMap from "../helpers/toMap";
 import moveArrayItem from "../helpers/moveArrayItem";
 import theme from "../../../styles/theme";
 import Product from "./product.model";
 import ProductTableHeader from "./ProductTableHeader";
+import ProductTableColumn from "./ProductTableColumn";
 import { ColumnInfo } from "./product.duck.d";
 import { BaseColDefParams } from "ag-grid-community/dist/lib/entities/colDef";
 
@@ -79,178 +79,6 @@ function actionRenderer(params: ICellRendererParams) {
     </div>
   );
 }
-
-function getColumn(
-  columnInfo: ColumnInfo,
-  productCategories: { [key: string]: string }
-) {
-  const { columnName, visible } = columnInfo;
-  switch (columnName) {
-    case "id":
-      return (
-        <AgGridColumn
-          key={columnName}
-          headerName="ID"
-          lockPosition
-          field={columnName}
-          pinned
-          resizable={false}
-          type="numericColumn"
-          hide={!visible}
-        />
-      );
-    case "name":
-      return (
-        <AgGridColumn
-          key={columnName}
-          headerName="Tên"
-          pinned
-          field={columnName}
-          type={["editable"]}
-          hide={!visible}
-        />
-      );
-    case "description":
-      return (
-        <AgGridColumn
-          key={columnName}
-          headerName="Mô tả"
-          field={columnName}
-          type={["editable", "largeText"]}
-          hide={!visible}
-        />
-      );
-    case "content":
-      return (
-        <AgGridColumn
-          key={columnName}
-          headerName="Nội dung"
-          field={columnName}
-          type={["editable", "largeText"]}
-          hide={!visible}
-        />
-      );
-    case "weight":
-      return (
-        <AgGridColumn
-          key={columnName}
-          headerName="Khối lượng"
-          field={columnName}
-          type={["editable", "numericColumn"]}
-          hide={!visible}
-        />
-      );
-    case "category": {
-      return (
-        <AgGridColumn
-          key={columnName}
-          headerName="Loại"
-          field={columnName}
-          type={["editable"]}
-          cellEditor="agSelectCellEditor"
-          cellEditorParams={{
-            values: Object.keys(productCategories),
-          }}
-          refData={productCategories}
-          hide={!visible}
-        />
-      );
-    }
-    case "numberOfVersions":
-      return (
-        <AgGridColumn
-          key={columnName}
-          headerName="Số phiên bản"
-          field={columnName}
-          type={["editable", "numericColumn"]}
-          hide={!visible}
-        />
-      );
-    case "price":
-      return (
-        <AgGridColumn
-          key={columnName}
-          headerName="Giá"
-          field={columnName}
-          type={["editable", "numericColumn", "currency"]}
-          hide={!visible}
-        />
-      );
-    case "originalPrice":
-      return (
-        <AgGridColumn
-          key={columnName}
-          headerName="Giá gốc"
-          field={columnName}
-          type={["editable", "numericColumn", "currency"]}
-          hide={!visible}
-        />
-      );
-    case "discountPrice":
-      return (
-        <AgGridColumn
-          key={columnName}
-          headerName="Giá khuyến mãi"
-          field={columnName}
-          type={["editable", "numericColumn", "currency"]}
-          hide={!visible}
-        />
-      );
-    case "quantity":
-      return (
-        <AgGridColumn
-          key={columnName}
-          headerName="Số lượng"
-          field={columnName}
-          type={["editable", "numericColumn"]}
-          hide={!visible}
-        />
-      );
-    case "display":
-      return (
-        <AgGridColumn
-          key={columnName}
-          headerName="Hiển thị"
-          field={columnName}
-          type={["checkbox"]}
-          hide={!visible}
-        />
-      );
-    case "deliver":
-      return (
-        <AgGridColumn
-          key={columnName}
-          headerName="Giao hàng"
-          field={columnName}
-          type={["checkbox"]}
-          hide={!visible}
-        />
-      );
-    case "applyPromotion":
-      return (
-        <AgGridColumn
-          key={columnName}
-          headerName="Khuyến mãi"
-          field={columnName}
-          type={["checkbox"]}
-          hide={!visible}
-        />
-      );
-    case "action":
-      return (
-        <AgGridColumn
-          key={columnName}
-          headerName="Tùy chọn"
-          field={columnName}
-          cellRenderer="actionRenderer"
-          hide={!visible}
-        />
-      );
-    default:
-      console.log(columnName);
-  }
-}
-
 type ProductTableProps = {
   className?: string;
   columnInfos: ColumnInfo[];
@@ -278,8 +106,8 @@ export default function ProductTable(props: ProductTableProps) {
       }),
     shallowEqual
   );
-  let productCategories = useSelector(
-    (state) => toMap(state.products.productCategories, "id", "name"),
+  const productCategories = useSelector(
+    (state) => state.products.productCategories,
     shallowEqual
   );
   const dispatch = useDispatch();
@@ -328,7 +156,6 @@ export default function ProductTable(props: ProductTableProps) {
       <AgGridReact
         animateRows
         onColumnMoved={onColumnMoved}
-        enableColResize
         rowHeight={theme.tableRowHeight}
         headerHeight={45}
         // you can already toggle show/hide columns. dragging outside to hide column just makes it more confusing
@@ -352,6 +179,7 @@ export default function ProductTable(props: ProductTableProps) {
         onFirstDataRendered={onFirstDataRendered}
         defaultColDef={{
           sortable: true,
+          resizable: true,
         }}
         onGridReady={onGridReady}
         rowData={products}
@@ -363,7 +191,9 @@ export default function ProductTable(props: ProductTableProps) {
         }}
         {...rest}
       >
-        {columnInfos.map((c) => getColumn(c, productCategories))}
+        {columnInfos.map((columnInfo) => {
+          return ProductTableColumn({ columnInfo, productCategories });
+        })}
       </AgGridReact>
     </div>
   );
