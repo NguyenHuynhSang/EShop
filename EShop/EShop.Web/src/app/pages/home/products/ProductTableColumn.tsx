@@ -170,6 +170,7 @@ function getColumn(
           field={columnName}
           cellRenderer="actionRenderer"
           hide={!visible}
+          sortable={false}
         />
       );
     default:

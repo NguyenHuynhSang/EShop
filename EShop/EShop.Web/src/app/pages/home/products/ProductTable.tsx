@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { IconButton } from "@material-ui/core";
 import DeleteIconMaterial from "@material-ui/icons/Delete";
 import EditIconMaterial from "@material-ui/icons/Edit";
-import { AgGridReact, AgGridColumn } from "ag-grid-react";
+import { AgGridReact } from "ag-grid-react";
 import {
   GridApi,
   ColumnApi,
@@ -174,6 +174,7 @@ export default function ProductTable(props: ProductTableProps) {
           largeText: {
             cellEditor: "agLargeTextCellEditor",
             maxWidth: 250,
+            sortable: false,
           },
         }}
         onFirstDataRendered={onFirstDataRendered}
