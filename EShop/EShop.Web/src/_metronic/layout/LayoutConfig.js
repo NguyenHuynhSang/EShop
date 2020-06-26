@@ -94,12 +94,12 @@ export const initLayoutConfig = {
   },
   brand: {
     self: {
-      skin: "dark"
+      skin: "light"
     }
   },
   aside: {
     self: {
-      skin: "dark",
+      skin: "light",
       display: true,
       fixed: true,
       minimize: {
