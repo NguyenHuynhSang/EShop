@@ -1,25 +1,10 @@
 import React from "react";
-import { Button } from "react-bootstrap";
+import { Button as BsButton, ButtonProps } from "react-bootstrap";
 import styled from "styled-components";
 
-export const PrimaryButton = styled(PrimaryButtonInner)`
+export const Button = styled(BsButton)<ButtonProps>`
   height: 40px !important;
 `;
-
-type ButtonProps = {
-  className?: string;
-  children: React.ReactNode;
-  onClick?: ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void) | undefined;
-};
-
-export default function PrimaryButtonInner(props: ButtonProps) {
-  const { className, children, onClick } = props;
-  return (
-    <Button type="button" variant="primary" onClick={onClick} className={className}>
-      {children}
-    </Button>
-  );
-}
 
 const SvgIconWrapper = styled.span<SvgIconProps>`
   svg {

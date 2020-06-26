@@ -6,7 +6,7 @@ import {
   PortletHeader,
   PortletHeaderToolbar,
 } from "../../../partials/content/Portlet";
-import { PrimaryButton, SvgIcon } from "../../../widgets/Common";
+import { Button, SvgIcon } from "../../../widgets/Common";
 import { ReactComponent as PlusIcon } from "../../../../assets/Add.svg";
 import { ReactComponent as ProductIcon } from "../../../../assets/Product.svg";
 import { ReactComponent as VisibleIcon } from "../../../../assets/Visible.svg";
@@ -28,13 +28,16 @@ const Toolbar = styled.div`
 `;
 
 export default function ProductsPage() {
-  const columnInfos = useSelector((state) => state.products.columnInfos, shallowEqual);
+  const columnInfos = useSelector(
+    (state) => state.products.columnInfos,
+    shallowEqual
+  );
   const [displayColDialogVisible, setDisplayColDialogVisible] = React.useState(
     false
   );
 
   return (
-    <Portlet id='productTableContainer'>
+    <Portlet id="productTableContainer">
       <PortletHeader
         title={
           <>
@@ -46,24 +49,27 @@ export default function ProductsPage() {
         }
         toolbar={
           <PortletHeaderToolbar>
-            <PrimaryButton>
+            <Button variant="primary">
               <SvgIcon color="white" size={20}>
                 <PlusIcon />
               </SvgIcon>
               &nbsp;&nbsp;Thêm sản phẩm
-            </PrimaryButton>
+            </Button>
           </PortletHeaderToolbar>
         }
       />
 
       <PortletBody>
         <Toolbar>
-          <PrimaryButton onClick={() => setDisplayColDialogVisible(true)}>
+          <Button
+            variant="primary"
+            onClick={() => setDisplayColDialogVisible(true)}
+          >
             <SvgIcon color="white" size={20}>
               <VisibleIcon />
             </SvgIcon>
             &nbsp;&nbsp;Cột hiển thị&nbsp;
-          </PrimaryButton>
+          </Button>
         </Toolbar>
         <ProductTable columnInfos={columnInfos} />
       </PortletBody>
