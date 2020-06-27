@@ -10,73 +10,50 @@ import {
   ButtonGroup,
   DropdownButton,
   SplitButton,
-  ButtonToolbar
+  ButtonToolbar,
 } from "react-bootstrap";
 
-class CustomToggle extends React.Component {
-  constructor(props, context) {
-    super(props, context);
+const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
+  <a
+    href=""
+    ref={ref}
+    onClick={(e) => {
+      e.preventDefault();
+      onClick(e);
+    }}
+  >
+    {children}
+  </a>
+));
 
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick(e) {
-    e.preventDefault();
-
-    this.props.onClick(e);
-  }
-
-  render() {
-    return (
-      <a href="" onClick={this.handleClick}>
-        {this.props.children}
-      </a>
-    );
-  }
-}
-
-class CustomMenu extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-
-    this.handleChange = this.handleChange.bind(this);
-
-    this.state = { value: "" };
-  }
-
-  handleChange(e) {
-    this.setState({ value: e.target.value.toLowerCase().trim() });
-  }
-
-  render() {
-    const {
-      children,
-      style,
-      className,
-      "aria-labelledby": labeledBy
-    } = this.props;
-
-    const { value } = this.state;
+const CustomMenu = React.forwardRef(
+  ({ children, style, className, 'aria-labelledby': labeledBy }, ref) => {
+    const [value, setValue] = React.useState('');
 
     return (
-      <div style={style} className={className} aria-labelledby={labeledBy}>
+      <div
+        ref={ref}
+        style={style}
+        className={className}
+        aria-labelledby={labeledBy}
+      >
         <FormControl
           autoFocus
           className="mx-3 my-2 w-auto"
           placeholder="Type to filter..."
-          onChange={this.handleChange}
+          onChange={(e) => setValue(e.target.value.toLowerCase().trim())}
           value={value}
         />
         <ul className="list-unstyled">
           {React.Children.toArray(children).filter(
-            child =>
-              !value || child.props.children.toLowerCase().startsWith(value)
+            (child) =>
+              !value || child.props.children.toLowerCase().startsWith(value),
           )}
         </ul>
       </div>
     );
-  }
-}
+  },
+);
 
 export default class DropdownsExamplesPage extends React.Component {
   render() {
@@ -241,7 +218,7 @@ export default class DropdownsExamplesPage extends React.Component {
                 <div className="kt-separator kt-separator--dashed" />
                 <>
                   <ButtonToolbar>
-                    {["up", "down", "left", "right"].map(direction => (
+                    {["up", "down", "left", "right"].map((direction) => (
                       <div className="pr-1 pb-1" key={direction}>
                         <DropdownButton
                           drop={direction}
@@ -267,7 +244,7 @@ export default class DropdownsExamplesPage extends React.Component {
                   </ButtonToolbar>
 
                   <ButtonToolbar>
-                    {["up", "down", "left", "right"].map(direction => (
+                    {["up", "down", "left", "right"].map((direction) => (
                       <div className="pr-1" key={direction}>
                         <SplitButton
                           drop={direction}
