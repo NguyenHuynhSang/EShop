@@ -36,22 +36,6 @@ namespace EShop.Server.Controllers
         {
             var list = _catalogService.GetAll(keyword);
 
-            switch (sort)
-            {
-                case "desc":
-
-                    list = sortBy == "name" ? list.Distinct().OrderByWithDirection(x => x.Catalog.Name, true) : list;
-                    list = sortBy == "createdDate" ? list.Distinct().OrderByWithDirection(x => x.Catalog.CreatedDate, true) : list;
-                    list = sortBy == "parentID" ? list.Distinct().OrderByWithDirection(x => x.Catalog.ParentID, true) : list;
-                    break;
-                case "asc":
-                    list = sortBy == "name" ? list.Distinct().OrderByWithDirection(x => x.Catalog.Name, false) : list;
-                    list = sortBy == "createdDate" ? list.Distinct().OrderByWithDirection(x => x.Catalog.CreatedDate, false) : list;
-                    list = sortBy == "parentID" ? list.Distinct().OrderByWithDirection(x => x.Catalog.ParentID, false) : list;
-                    break;
-                default:
-                    break;
-            }
 
 
 

@@ -32,53 +32,17 @@ namespace EShop.Server.Controllers
         [HttpGet]
         public ActionResult<PagedList<Product>> GetAllPaging(string productFilterModelJson, string sortBy, string sort= "desc", int pageNumder = 1, int pageSize = 50)
         {
-            ProductFilterModel filterModel = null;
-            if (!string.IsNullOrEmpty(productFilterModelJson))
-            {
-                filterModel = JsonConvert.DeserializeObject<ProductFilterModel>(productFilterModelJson);
-            }
 
-            var list = _productService.GetAll(filterModel);
-            switch (sort)
-            {
-                case "desc":
-
-                    list = sortBy == "name" ? list.Distinct().OrderByWithDirection(x => x.Name, true) : list;
-                    list = sortBy == "createdDate" ? list.Distinct().OrderByWithDirection(x => x.CreatedDate, true) : list;
-                    break;
-                case "asc":
-                    list = sortBy == "name" ? list.Distinct().OrderByWithDirection(x => x.Name, false) : list;
-                    list = sortBy == "createdDate" ? list.Distinct().OrderByWithDirection(x => x.CreatedDate, false) : list;
-                    break;
-                default:
-                    break;
-            }
+            Params param = new Params(productFilterModelJson,sort,sortBy,pageNumder,pageSize);
+            var list = _productService.GetAll(param);
             return PagedList<Product>.ToPagedList(list, pageNumder, pageSize);
         }
 
         [HttpGet]
         public ActionResult<PagedList<ProductViewModel>> GetProductAllVersionsPaging(string productFilterModelJson, string sortBy , string sort = "desc", int pageNumder = 1, int pageSize = 50)
         {
-            ProductFilterModel filterModel = null;
-            var list = _productService.GetAllProductViewModel(filterModel);
-            if (!string.IsNullOrEmpty(productFilterModelJson))
-            {
-                filterModel = JsonConvert.DeserializeObject<ProductFilterModel>(productFilterModelJson);
-            }
-            switch (sort)
-            {
-                case "desc":
-
-                    list = sortBy == "name" ? list.Distinct().OrderByWithDirection(x => x.Product.Name, true) : list;
-                    list = sortBy == "createdDate" ? list.Distinct().OrderByWithDirection(x => x.Product.CreatedDate, true) : list;
-                    break;
-                case "asc":
-                    list = sortBy == "name" ? list.Distinct().OrderByWithDirection(x => x.Product.Name, false) : list;
-                    list = sortBy == "createdDate" ? list.Distinct().OrderByWithDirection(x => x.Product.CreatedDate, false) : list;
-                    break;
-                default:
-                    break;
-            }
+            Params param = new Params(productFilterModelJson, sort, sortBy, pageNumder, pageSize);
+            var list = _productService.GetAllProductViewModel(param);
 
             return PagedList<ProductViewModel>.ToPagedList(list, pageNumder, pageSize);
         }
