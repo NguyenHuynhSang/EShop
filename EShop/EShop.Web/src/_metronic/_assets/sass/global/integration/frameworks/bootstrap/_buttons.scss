@@ -387,20 +387,6 @@ button.btn {
 	cursor: text !important;
 }
 
-.btn.btn-link,
-a.btn.btn-label,
-button.btn.btn-label,
-input.btn.btn-label {
-	cursor: pointer !important;
-
-	&:focus,
-	&:hover,
-	&.active {
-	    background-color: kt-brand-color();
-	    color: kt-brand-color(inverse);
-	}
-}
-
 // Label button states
 @each $name, $color in join($kt-state-colors, $kt-social-colors) {
 	.btn.btn-label-#{$name} {

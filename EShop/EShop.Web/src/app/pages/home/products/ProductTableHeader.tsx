@@ -1,20 +1,33 @@
 import React from "react";
-import styled from "styled-components";
-import { IHeaderParams } from "ag-grid-community";
+import { IHeaderParams, Column, ColumnApi } from "ag-grid-community";
+import {
+  OverlayTrigger,
+  Popover,
+  ButtonGroup,
+  Button,
+  ListGroup,
+} from "react-bootstrap";
+import isArray from "lodash/isArray";
+import isString from "lodash/isString";
+import { IconButton } from "@material-ui/core";
 import { useSelector, useDispatch, shallowEqual } from "../../../store/store";
+import MenuIcon from "@material-ui/icons/Menu";
 import { actions } from "./product.duck";
+import pressKey, { VKey } from "../helpers/pressKey";
+import ThemeProvider from "../../../../_metronic/materialUIThemeProvider/ThemeProvider";
+import styled, { important } from "../../../styles/styled";
 
 type HeaderWrapperProps = {
   isNumericColumn: boolean;
 };
 
-const HeaderWrapper = styled.div<HeaderWrapperProps>`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: ${(props) => (props.isNumericColumn ? "end" : "start")};
-`;
+const HeaderWrapper = styled<HeaderWrapperProps>("div")({
+  width: "100%",
+  height: "100%",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: (props) => (props.isNumericColumn ? "end" : "start"),
+});
 
 enum SortMode {
   None = "none",
@@ -51,6 +64,74 @@ const useSort = (
   return [sortMode, cycleSort];
 };
 
+const useColumnMenu = (column: Column, columnApi: ColumnApi) => {
+  const colDef = column.getColDef();
+  const setPin = (pinned: "left" | "right" | null) => {
+    columnApi.setColumnPinned(column.getColId(), pinned || "");
+  };
+
+  if (
+    (isArray(colDef.type) && colDef.type.find((t) => t === "currency")) ||
+    (isString(colDef.type) && colDef.type === "currency")
+  ) {
+    return (
+      // prevent this column from being sorted if clicking this button
+      <div onClick={(e) => e.stopPropagation()}>
+        <ThemeProvider>
+          <OverlayTrigger
+            trigger="click"
+            rootClose
+            placement="top"
+            overlay={
+              <Popover id="popover-positioned-top">
+                <ListGroup variant="flush">
+                  <ListGroup.Item>
+                    <ButtonGroup>
+                      <Button
+                        variant="secondary"
+                        onClick={() => setPin("left")}
+                      >
+                        Pin Left
+                      </Button>
+                      <Button
+                        variant="secondary"
+                        onClick={() => setPin(null)}
+                        autoFocus
+                      >
+                        No Pin
+                      </Button>
+                      <Button
+                        variant="secondary"
+                        onClick={() => setPin("right")}
+                      >
+                        Pin Right
+                      </Button>
+                    </ButtonGroup>
+                  </ListGroup.Item>
+                  <ListGroup.Item
+                    action
+                    onClick={() => {
+                      columnApi.autoSizeColumn(column.getColId());
+                      pressKey("keyup", VKey.Escape);
+                    }}
+                  >
+                    Autosize This Column
+                  </ListGroup.Item>
+                </ListGroup>
+              </Popover>
+            }
+          >
+            <IconButton size="small" color="primary">
+              <MenuIcon fontSize="inherit" />
+            </IconButton>
+          </OverlayTrigger>
+        </ThemeProvider>
+      </div>
+    );
+  }
+  return null;
+};
+
 const getSortIndicator = (sortMode: SortMode) => {
   if (sortMode === SortMode.None) return null;
 
@@ -64,7 +145,7 @@ const getSortIndicator = (sortMode: SortMode) => {
 };
 
 export default function ProductTableHeader(props: IHeaderParams) {
-  const { displayName, column, enableSorting } = props;
+  const { displayName, column, enableSorting, columnApi } = props;
   const colDef = column.getColDef();
   const isNumericColumn =
     colDef.type !== undefined && colDef.type?.indexOf("numericColumn") !== -1;
@@ -77,6 +158,7 @@ export default function ProductTableHeader(props: IHeaderParams) {
       onClick={() => cycleSort()}
     >
       {displayName}
+      {useColumnMenu(column, columnApi)}
       {enableSorting && getSortIndicator(sortMode)}
     </HeaderWrapper>
   );
