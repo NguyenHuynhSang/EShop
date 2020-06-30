@@ -1,4 +1,5 @@
 import Product, { ProductCategory } from "./product.model";
+import Currency from "../base/currency/currency.model";
 
 export type ColumnInfo = {
   columnName: string;
@@ -9,16 +10,17 @@ export type ColumnInfo = {
 
 export interface ProductState {
   loading: boolean;
-  cachedQueries: {
-    [query: string]: Product[];
-  };
+  params?: Params;
+  products: Product[];
   productCategories: ProductCategory[];
-  lastQuery: string;
   columnInfos: ColumnInfo[];
+  currency?: Currency;
+  currencies: Currency[];
 }
 
 export enum ProductAction {
   SetColumnDisplay = "[Set Column Display] Action",
+  SetCurrentCurrency = "[Set Current Currency] Action",
   GetAllRequest = "[Get All Request] Action",
   GetAllSuccess = "[Get All Success] Product API",
   GetAllFailure = "[Get All Failure] Product API",
@@ -26,9 +28,22 @@ export enum ProductAction {
   GetCategoriesRequest = "[Get Categories Request] Action",
   GetCategoriesSuccess = "[Get Categories Success] Product API",
   GetCategoriesFailure = "[Get Categories Failure] Product API",
+  GetCurrenciesRequest = "[Get Currencies Request] Action",
+  GetCurrenciesSuccess = "[Get Currencies Success] Product API",
+  GetCurrenciesFailure = "[Get Currencies Failure] Product API",
 }
 
-export type Params = { [key: string]: string | undefined };
+export enum SortMode {
+  None = "none",
+  Ascending = "asc",
+  Descending = "desc",
+}
+
+export type Params = {
+  sort?: SortMode;
+  sortBy?: string;
+  currency?: number;
+};
 
 export interface GetAllRequestAction {
   type: typeof ProductAction.GetAllRequest;
@@ -40,7 +55,6 @@ export interface GetAllRequestAction {
 interface GetAllSuccessAction {
   type: typeof ProductAction.GetAllSuccess;
   payload: {
-    params?: Params;
     results: Product[];
   };
 }
@@ -56,6 +70,17 @@ interface GetCategoriesSuccessAction {
   };
 }
 
+interface GetCurrenciesRequestAction {
+  type: typeof ProductAction.GetCurrenciesRequest;
+}
+
+interface GetCurrenciesSuccessAction {
+  type: typeof ProductAction.GetCurrenciesSuccess;
+  payload: {
+    results: Currency[];
+  };
+}
+
 interface SetColumnDisplayAction {
   type: typeof ProductAction.SetColumnDisplay;
   payload: {
@@ -63,9 +88,19 @@ interface SetColumnDisplayAction {
   };
 }
 
+export interface SetCurrentCurrencyAction {
+  type: typeof ProductAction.SetCurrentCurrency;
+  payload: {
+    currencyId: number;
+  };
+}
+
 export type ProductActionType =
   | SetColumnDisplayAction
+  | SetCurrentCurrencyAction
   | GetAllRequestAction
   | GetAllSuccessAction
   | GetCategoriesRequestAction
-  | GetCategoriesSuccessAction;
+  | GetCategoriesSuccessAction
+  | GetCurrenciesRequestAction
+  | GetCurrenciesSuccessAction;

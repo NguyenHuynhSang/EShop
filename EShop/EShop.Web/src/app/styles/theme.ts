@@ -12,6 +12,7 @@ const theme = {
         cyan: 'var(--cyan)',
         white: 'var(--white)',
         gray: 'var(--gray)',
+        grey2: '#cfd8dc',
         grayDark: 'var(--gray-dark)',
         primary: 'var(--primary)',
         secondary: 'var(--secondary)',

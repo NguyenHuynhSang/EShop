@@ -1,40 +1,34 @@
 import Product, { ProductCategory } from "./product.model";
 import { LoremIpsum } from "lorem-ipsum";
+import { randomBetween, randomBoolean } from "../helpers/random";
 
 const descriptionGen = new LoremIpsum({
   sentencesPerParagraph: {
     max: 8,
-    min: 4
+    min: 4,
   },
   wordsPerSentence: {
     max: 16,
-    min: 4
-  }
+    min: 4,
+  },
 });
 const contentGen = new LoremIpsum({
   sentencesPerParagraph: {
     max: 3,
-    min: 1
+    min: 1,
   },
   wordsPerSentence: {
     max: 20,
-    min: 4
-  }
+    min: 4,
+  },
 });
 
-function randomBetween(min, max) { // min and max included
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
-function randomBoolean() {
-  return Math.random() > .5 ? true : false;
-}
-
 function getDescription() {
-  return descriptionGen.generateParagraphs(randomBetween(3, 5))
+  return descriptionGen.generateParagraphs(randomBetween(3, 5));
 }
 
 function getContent() {
-  return contentGen.generateParagraphs(randomBetween(8, 14))
+  return contentGen.generateParagraphs(randomBetween(8, 14));
 }
 
 const products: Product[] = [
@@ -43,7 +37,7 @@ const products: Product[] = [
     name: "IPhone XX",
     description: getDescription(),
     content: getContent(),
-    weight: .5,
+    weight: 0.5,
     category: 5,
     numberOfVersions: 4,
     price: 26000000,
@@ -59,7 +53,7 @@ const products: Product[] = [
     name: "Samsung galaxy X",
     description: getDescription(),
     content: getContent(),
-    weight: .7,
+    weight: 0.7,
     category: 0,
     numberOfVersions: 3,
     price: 26000000,
@@ -75,7 +69,7 @@ const products: Product[] = [
     name: "IPad Pro 69 XX",
     description: getDescription(),
     content: getContent(),
-    weight: .8,
+    weight: 0.8,
     category: 4,
     numberOfVersions: 3,
     price: 25000000,
@@ -139,7 +133,7 @@ const products: Product[] = [
     name: "Samsung Galaxy A70",
     description: getDescription(),
     content: getContent(),
-    weight: .6,
+    weight: 0.6,
     category: 0,
     numberOfVersions: 5,
     price: 4400000,

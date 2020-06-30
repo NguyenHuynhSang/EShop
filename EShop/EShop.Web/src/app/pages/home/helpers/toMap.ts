@@ -8,15 +8,19 @@
  * @param keyPath the path of the key property
  * @param valuePath the path of the value property
  */
-export default function toMap(array: Object[], keyPath: string, valuePath: string) {
-    const mappings: { [key: string]: string } = {};
+export default function toMap(
+  array: Object[],
+  keyPath: string,
+  valuePath: string
+) {
+  const mappings: { [key: string]: string } = {};
 
-    array.forEach(o => {
-        const key = o[keyPath];
-        const value = o[valuePath];
+  array.forEach((o) => {
+    const key = o[keyPath];
+    const value = o[valuePath];
 
-        mappings[key] = value;
-    });
+    mappings[key] = value;
+  });
 
-    return mappings
+  return mappings;
 }

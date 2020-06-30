@@ -12,6 +12,7 @@ import { ReactComponent as ProductIcon } from "../../../../assets/Product.svg";
 import { ReactComponent as VisibleIcon } from "../../../../assets/Visible.svg";
 import theme from "../../../styles/theme";
 import ProductTable from "./ProductTable";
+import CurrencySelector from "./CurrencySelector";
 import ColumnDisplayDialog from "./ColumnDisplayDialog";
 import { useSelector, shallowEqual } from "../../../store/store";
 
@@ -25,6 +26,11 @@ const PortletIcon = styled(SvgIcon)`
 
 const Toolbar = styled.div`
   margin-bottom: ${theme.spacing.md};
+  display: flex;
+
+  & > :not(:last-child) {
+    margin-right: ${theme.spacing.md};
+  }
 `;
 
 export default function ProductsPage() {
@@ -70,6 +76,7 @@ export default function ProductsPage() {
             </SvgIcon>
             &nbsp;&nbsp;Cột hiển thị&nbsp;
           </Button>
+          <CurrencySelector />
         </Toolbar>
         <ProductTable columnInfos={columnInfos} />
       </PortletBody>

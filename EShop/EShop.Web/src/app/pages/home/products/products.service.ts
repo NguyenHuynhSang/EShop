@@ -1,9 +1,11 @@
 import axios from "axios";
 import Product, { ProductCategory } from "./product.model";
 import { Params } from "./product.duck.d";
+import Currency from "../base/currency/currency.model";
 
 export const PRODUCT_GET_URL = "api/products/";
 export const PRODUCT_CATEGORY_GET_URL = "api/product-categories/";
+export const CURRENCY_GET_URL = "api/currencies/";
 
 export default class ProductService {
   //   login(email, password) {
@@ -26,5 +28,9 @@ export default class ProductService {
 
   static getCategories() {
     return axios.get<ProductCategory[]>(PRODUCT_CATEGORY_GET_URL);
+  }
+
+  static getCurrencies() {
+    return axios.get<Currency[]>(CURRENCY_GET_URL);
   }
 }

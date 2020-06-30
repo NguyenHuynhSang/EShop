@@ -16,12 +16,18 @@ import { actions } from "./product.duck";
 import pressKey, { VKey } from "../helpers/pressKey";
 import ThemeProvider from "../../../../_metronic/materialUIThemeProvider/ThemeProvider";
 import styled, { important } from "../../../styles/styled";
+import { SortMode } from "./product.duck.d";
 
 type HeaderWrapperProps = {
   isNumericColumn: boolean;
 };
 
-const HeaderWrapper = styled<HeaderWrapperProps>("div")({
+const HeaderWrapper = styled<HeaderWrapperProps>((props) => {
+  // TODO: need a better way, props filter is hard to read
+  // https://github.com/styled-components/styled-components/pull/3006
+  const { isNumericColumn, ...rest } = props;
+  return <div {...rest} />;
+})({
   width: "100%",
   height: "100%",
   display: "flex",
@@ -29,11 +35,6 @@ const HeaderWrapper = styled<HeaderWrapperProps>("div")({
   justifyContent: (props) => (props.isNumericColumn ? "end" : "start"),
 });
 
-enum SortMode {
-  None = "none",
-  Ascending = "asc",
-  Descending = "desc",
-}
 type SortFunction = () => void;
 
 const sortModes = [SortMode.None, SortMode.Ascending, SortMode.Descending];
@@ -64,16 +65,20 @@ const useSort = (
   return [sortMode, cycleSort];
 };
 
-const useColumnMenu = (column: Column, columnApi: ColumnApi) => {
+export function hasType(column: Column, type: string) {
   const colDef = column.getColDef();
+  return (
+    (isArray(colDef.type) && colDef.type.find((t) => t === type)) ||
+    (isString(colDef.type) && colDef.type === type)
+  );
+}
+
+const useColumnMenu = (column: Column, columnApi: ColumnApi) => {
   const setPin = (pinned: "left" | "right" | null) => {
     columnApi.setColumnPinned(column.getColId(), pinned || "");
   };
 
-  if (
-    (isArray(colDef.type) && colDef.type.find((t) => t === "currency")) ||
-    (isString(colDef.type) && colDef.type === "currency")
-  ) {
+  if (hasType(column, "currency")) {
     return (
       // prevent this column from being sorted if clicking this button
       <div onClick={(e) => e.stopPropagation()}>
@@ -96,6 +101,7 @@ const useColumnMenu = (column: Column, columnApi: ColumnApi) => {
                       <Button
                         variant="secondary"
                         onClick={() => setPin(null)}
+                        // TODO: update highlight status
                         autoFocus
                       >
                         No Pin

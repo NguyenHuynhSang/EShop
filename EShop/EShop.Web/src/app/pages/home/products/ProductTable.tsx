@@ -3,6 +3,7 @@ import { IconButton } from "@material-ui/core";
 import DeleteIconMaterial from "@material-ui/icons/Delete";
 import EditIconMaterial from "@material-ui/icons/Edit";
 import { AgGridReact } from "ag-grid-react";
+import has from "lodash/has";
 import {
   GridApi,
   ColumnApi,
@@ -23,17 +24,24 @@ import Product from "./product.model";
 import ProductTableHeader from "./ProductTableHeader";
 import ProductTableColumn from "./ProductTableColumn";
 import { ColumnInfo } from "./product.duck.d";
-import { BaseColDefParams } from "ag-grid-community/dist/lib/entities/colDef";
 
-// TODO: currency locale
-function formatNumber(number) {
+// TODO: use intl https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat
+function formatNumber(number: number) {
   return Math.floor(number)
     .toString()
     .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
 }
-function currencyFormatter(params: ValueFormatterParams) {
-  return formatNumber(params.value) + "đ";
-}
+const suffixCurrencyCode = {
+  đ: true,
+};
+let SYMBOL = "";
+const currencyFormatter = (params: ValueFormatterParams) => {
+  const symbol = SYMBOL;
+  if (symbol === undefined) return formatNumber(params.value);
+  if (has(suffixCurrencyCode, symbol))
+    return formatNumber(params.value) + symbol;
+  return symbol + formatNumber(params.value);
+};
 
 function markAsDirty(params: ICellRendererParams) {
   params.colDef.cellClass = (p) =>
@@ -94,13 +102,11 @@ function autoSizeAllColumns(gridColumnApi?: ColumnApi) {
     gridColumnApi?.autoSizeColumns(allColumnIds, false);
   });
 }
-
 export default function ProductTable(props: ProductTableProps) {
   const { className, columnInfos, ...rest } = props;
-  const lastQuery = useSelector((state) => state.products.lastQuery);
   const products = useSelector<Product[]>(
     (state) =>
-      state.products.cachedQueries[lastQuery]?.map((p) => {
+      state.products.products?.map((p) => {
         p.category = p.category.toString(); // TODO: fix category type
         return p;
       }),
@@ -110,6 +116,7 @@ export default function ProductTable(props: ProductTableProps) {
     (state) => state.products.productCategories,
     shallowEqual
   );
+  const symbol = useSelector((state) => state.products.currency?.symbol) ?? "";
   const dispatch = useDispatch();
   const gridApiRef = useRef<GridApi>();
   const gridColumnApiRef = useRef<ColumnApi>();
@@ -122,6 +129,13 @@ export default function ProductTable(props: ProductTableProps) {
   useEffect(() => {
     autoSizeAllColumns(gridColumnApiRef.current);
   }, [columnInfos]);
+
+  useEffect(() => {
+    // refresh to update valueFormatter to display latest currency format
+    // valueFormatter is only registered once on mount so we have to use module-scope variable
+    // which is referenced by valueFormatter.
+    SYMBOL = symbol;
+  }, [symbol]);
 
   const onFirstDataRendered = () => {
     autoSizeAllColumns(gridColumnApiRef.current);
