@@ -15,7 +15,7 @@ const vndCurrency = currencies.find((c) => c.code === "VND")!;
 
 function convert(price: number, currency: Currency) {
   // use VND currency as base
-  return (price / vndCurrency.rate) * currency.rate;
+  return Math.floor((price / vndCurrency.rate) * currency.rate);
 }
 
 export default function mockProduct(mock: MockAdapter) {
