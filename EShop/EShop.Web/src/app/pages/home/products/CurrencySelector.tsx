@@ -7,8 +7,7 @@ import { ReactComponent as UsaIcon } from "../../../../assets/Flags/united-state
 import { ReactComponent as VietnamIcon } from "../../../../assets/Flags/vietnam.svg";
 import { ReactComponent as EuIcon } from "../../../../assets/Flags/european-union.svg";
 import { ReactComponent as JapanIcon } from "../../../../assets/Flags/japan.svg";
-import styled from "../../../styles/styled";
-import theme from "../../../styles/theme";
+import styled, { theme } from "../../../styles/styled";
 import Currency from "../base/currency/currency.model";
 
 const currencyCodeToFlag = {

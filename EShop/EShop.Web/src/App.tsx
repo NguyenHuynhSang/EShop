@@ -9,12 +9,12 @@ import { PersistGate } from "redux-persist/integration/react";
 import { LastLocationProvider } from "react-router-last-location";
 import { Routes } from "./app/router/Routes";
 import { I18nProvider, LayoutSplashScreen, ThemeProvider } from "./_metronic";
-import GlobalStyles from './app/styles/global';
+import GlobalStyles from "./app/styles/global";
 
 export default function App({ store, Layout, persistor, basename }) {
   return (
     /* Provide Redux store */
-    <Provider store={store} loading={<LayoutSplashScreen />}>
+    <Provider store={store}>
       {/* Asynchronously persist redux stores and show `SplashScreen` while it's loading. */}
       <PersistGate persistor={persistor}>
         {/* Add high level `Suspense` in case if was not handled inside the React tree. */}

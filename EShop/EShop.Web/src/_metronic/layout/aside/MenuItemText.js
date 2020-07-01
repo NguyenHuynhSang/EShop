@@ -1,54 +1,65 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
-import styled from 'styled-components';
+import { makeStyles } from "@material-ui/core";
+import classNames from "classnames";
+import { important } from "../../../app/styles/styled";
 
-const MenuLinkIcon = styled.i`
-    color: #c4cff9 !important;
-    transition: color ease .2s;
+const useStyles = makeStyles({
+  menuLinkIcon: {
+    color: important("#c4cff9"),
+    transition: "color ease .2s",
 
-    .kt-menu__link:hover & {
-      color: var(--blue) !important;
-    }
-`;
+    ".kt-menu__link:hover &": {
+      color: important("var(--blue)"),
+    },
+  },
+});
 
-export default class MenuItemText extends React.Component {
-  render() {
-    const { item, parentItem } = this.props;
+export default function MenuItemText(props) {
+  const { item, parentItem } = props;
+  const styles = useStyles();
 
-    return (
-      <>
-        {item.icon && <MenuLinkIcon className={`kt-menu__link-icon ${item.icon}`} />}
-
-        {parentItem && parentItem.bullet === "dot" && (
-          <i className="kt-menu__link-bullet kt-menu__link-bullet--dot">
-            <span />
-          </i>
-        )}
-
-        {parentItem && parentItem.bullet === "line" && (
-          <i className="kt-menu__link-bullet kt-menu__link-bullet--line">
-            <span />
-          </i>
-        )}
-
-        <span className="kt-menu__link-text" style={{ whiteSpace: "nowrap" }}>
-          {!item.translate ? (
-            item.title
-          ) : (
-            <FormattedMessage id={item.translate} defaultMessage={item.title} />
+  return (
+    <>
+      {item.icon && (
+        <i
+          className={classNames(
+            "kt-menu__link-icon",
+            item.icon,
+            styles.menuLinkIcon
           )}
-        </span>
+        />
+      )}
 
-        {item.badge && (
-          <span className="kt-menu__link-badge">
-            <span className={`kt-badge ${item.badge.type}`}>
-              {item.badge.value}
-            </span>
-          </span>
+      {parentItem && parentItem.bullet === "dot" && (
+        <i className="kt-menu__link-bullet kt-menu__link-bullet--dot">
+          <span />
+        </i>
+      )}
+
+      {parentItem && parentItem.bullet === "line" && (
+        <i className="kt-menu__link-bullet kt-menu__link-bullet--line">
+          <span />
+        </i>
+      )}
+
+      <span className="kt-menu__link-text" style={{ whiteSpace: "nowrap" }}>
+        {!item.translate ? (
+          item.title
+        ) : (
+          <FormattedMessage id={item.translate} defaultMessage={item.title} />
         )}
+      </span>
 
-        {item.submenu && <i className="kt-menu__ver-arrow la la-angle-right" />}
-      </>
-    );
-  }
+      {item.badge && (
+        <span className="kt-menu__link-badge">
+          <span className={`kt-badge ${item.badge.type}`}>
+            {item.badge.value}
+          </span>
+        </span>
+      )}
+
+      {item.submenu && <i className="kt-menu__ver-arrow la la-angle-right" />}
+    </>
+  );
 }

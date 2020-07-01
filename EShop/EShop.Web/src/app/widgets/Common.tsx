@@ -2,12 +2,11 @@ import React from "react";
 import { Button as BsButton, ButtonProps } from "react-bootstrap";
 import isString from "lodash/isString";
 import ReactSelect, { StylesConfig, Props as SelectProps } from "react-select";
-import styled from "styled-components";
-import theme from "../styles/theme";
+import styled, { theme, important } from "../styles/styled";
 
-export const Button = styled(BsButton)<ButtonProps>`
-  height: 40px !important;
-`;
+export const Button = styled<ButtonProps>(BsButton)({
+  height: important("40px"),
+});
 
 const customStyles: StylesConfig = {
   container: (provided, { selectProps }) => ({
@@ -55,17 +54,17 @@ export function Select(props: SelectProps & CustomSelectProps) {
   return <ReactSelect styles={customStyles} {...props} />;
 }
 
-const SvgIconWrapper = styled.span<SvgIconProps>`
-  svg {
-    width: ${(p) => p.size}px;
+const SvgIconWrapper = styled<SvgIconProps>("span")({
+  "& svg": {
+    width: (p) => p.size + "px",
 
-    g {
-      [fill] {
-        fill: ${(p) => p.color};
-      }
-    }
-  }
-`;
+    "& g": {
+      "& [fill]": {
+        fill: (p) => p.color,
+      },
+    },
+  },
+});
 
 type SvgIconProps = {
   color?: string;

@@ -1,5 +1,5 @@
-import { createGlobalStyle } from "styled-components";
-import theme from "./theme";
+import createGlobalStyle from "./createGlobalStyle";
+import { theme } from "./styled";
 
 export default createGlobalStyle`
 .table-wrapper {

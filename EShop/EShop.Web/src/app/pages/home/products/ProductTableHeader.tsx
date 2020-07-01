@@ -15,7 +15,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import { actions } from "./product.duck";
 import pressKey, { VKey } from "../helpers/pressKey";
 import ThemeProvider from "../../../../_metronic/materialUIThemeProvider/ThemeProvider";
-import styled, { important } from "../../../styles/styled";
+import styled from "../../../styles/styled";
 import { SortMode } from "./product.duck.d";
 
 type HeaderWrapperProps = {

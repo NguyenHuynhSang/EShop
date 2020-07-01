@@ -12,18 +12,17 @@ import {
   ICellRendererParams,
   ColumnMovedEvent,
 } from "ag-grid-community";
-import styled from "styled-components";
 import classNames from "classnames";
 import { Checkbox } from "@material-ui/core";
 import { actions } from "./product.duck";
 import { useSelector, useDispatch, shallowEqual } from "../../../store/store";
 import { useEffectOnce } from "../helpers/hookHelpers";
 import moveArrayItem from "../helpers/moveArrayItem";
-import theme from "../../../styles/theme";
 import Product from "./product.model";
 import ProductTableHeader from "./ProductTableHeader";
 import ProductTableColumn from "./ProductTableColumn";
 import { ColumnInfo } from "./product.duck.d";
+import styled, { important, theme } from "../../../styles/styled";
 
 // TODO: use intl https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat
 function formatNumber(number: number) {
@@ -53,9 +52,9 @@ function markAsDirty(params: ICellRendererParams) {
   });
 }
 
-const CellCheckbox = styled(Checkbox)`
-  padding: 0 !important;
-`;
+const CellCheckbox = styled(Checkbox)({
+  padding: important(0),
+});
 function checkboxRenderer(params: ICellRendererParams) {
   return (
     <CellCheckbox
@@ -69,12 +68,12 @@ function checkboxRenderer(params: ICellRendererParams) {
   );
 }
 
-const EditIcon = styled(EditIconMaterial)`
-  color: ${theme.color.blue};
-`;
-const DeleteIcon = styled(DeleteIconMaterial)`
-  color: ${theme.color.danger};
-`;
+const EditIcon = styled(EditIconMaterial)({
+  color: theme.color.blue,
+});
+const DeleteIcon = styled(DeleteIconMaterial)({
+  color: theme.color.danger,
+});
 function actionRenderer(params: ICellRendererParams) {
   return (
     <div>

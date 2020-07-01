@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import {
   Portlet,
   PortletBody,
@@ -10,28 +9,27 @@ import { Button, SvgIcon } from "../../../widgets/Common";
 import { ReactComponent as PlusIcon } from "../../../../assets/Add.svg";
 import { ReactComponent as ProductIcon } from "../../../../assets/Product.svg";
 import { ReactComponent as VisibleIcon } from "../../../../assets/Visible.svg";
-import theme from "../../../styles/theme";
 import ProductTable from "./ProductTable";
 import CurrencySelector from "./CurrencySelector";
 import ColumnDisplayDialog from "./ColumnDisplayDialog";
 import { useSelector, shallowEqual } from "../../../store/store";
+import styled, { theme } from "../../../styles/styled";
 
-const PortletIcon = styled(SvgIcon)`
-  padding-right: 0.4rem;
+const PortletIcon = styled(SvgIcon)({
+  paddingRight: "0.4rem",
+  "& svg": {
+    marginTop: "-0.2rem",
+  },
+});
 
-  svg {
-    margin-top: -0.2rem;
-  }
-`;
+const Toolbar = styled("div")({
+  marginBottom: theme.spacing.md,
+  display: "flex",
 
-const Toolbar = styled.div`
-  margin-bottom: ${theme.spacing.md};
-  display: flex;
-
-  & > :not(:last-child) {
-    margin-right: ${theme.spacing.md};
-  }
-`;
+  "& > :not(:last-child)": {
+    marginRight: theme.spacing.md,
+  },
+});
 
 export default function ProductsPage() {
   const columnInfos = useSelector(
