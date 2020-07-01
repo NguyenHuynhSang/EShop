@@ -5,17 +5,15 @@ import {
   PortletHeader,
   PortletHeaderToolbar,
 } from "../../../partials/content/Portlet";
-import { Button, SvgIcon } from "../../../widgets/Common";
-import { ReactComponent as PlusIcon } from "../../../../assets/Add.svg";
-import { ReactComponent as ProductIcon } from "../../../../assets/Product.svg";
-import { ReactComponent as VisibleIcon } from "../../../../assets/Visible.svg";
+import { Button } from "../../../widgets/Common";
+import { PlusIcon, ProductIcon, VisibleIcon } from "../../../widgets/SvgIcons";
 import ProductTable from "./ProductTable";
 import CurrencySelector from "./CurrencySelector";
 import ColumnDisplayDialog from "./ColumnDisplayDialog";
 import { useSelector, shallowEqual } from "../../../store/store";
 import styled, { theme } from "../../../styles/styled";
 
-const PortletIcon = styled(SvgIcon)({
+const StyledProductIcon = styled(ProductIcon)({
   paddingRight: "0.4rem",
   "& svg": {
     marginTop: "-0.2rem",
@@ -45,18 +43,14 @@ export default function ProductsPage() {
       <PortletHeader
         title={
           <>
-            <PortletIcon color={theme.color.blue} size={20}>
-              <ProductIcon />
-            </PortletIcon>
+            <StyledProductIcon color={theme.color.blue} size={20} />
             <span>Quản lý sản phẩm</span>
           </>
         }
         toolbar={
           <PortletHeaderToolbar>
             <Button variant="primary">
-              <SvgIcon color="white" size={20}>
-                <PlusIcon />
-              </SvgIcon>
+              <PlusIcon color="white" size={20} />
               &nbsp;&nbsp;Thêm sản phẩm
             </Button>
           </PortletHeaderToolbar>
@@ -69,9 +63,7 @@ export default function ProductsPage() {
             variant="primary"
             onClick={() => setDisplayColDialogVisible(true)}
           >
-            <SvgIcon color="white" size={20}>
-              <VisibleIcon />
-            </SvgIcon>
+            <VisibleIcon color="white" size={20} />
             &nbsp;&nbsp;Cột hiển thị&nbsp;
           </Button>
           <CurrencySelector />

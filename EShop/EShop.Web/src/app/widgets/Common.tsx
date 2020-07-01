@@ -53,31 +53,3 @@ type CustomSelectProps = {
 export function Select(props: SelectProps & CustomSelectProps) {
   return <ReactSelect styles={customStyles} {...props} />;
 }
-
-const SvgIconWrapper = styled<SvgIconProps>("span")({
-  "& svg": {
-    width: (p) => p.size + "px",
-
-    "& g": {
-      "& [fill]": {
-        fill: (p) => p.color,
-      },
-    },
-  },
-});
-
-type SvgIconProps = {
-  color?: string;
-  size?: number;
-  children: React.ReactNode;
-  className?: string;
-};
-
-export function SvgIcon(props: SvgIconProps) {
-  const { color, size, children, className } = props;
-  return (
-    <SvgIconWrapper color={color} size={size} className={className}>
-      {children}
-    </SvgIconWrapper>
-  );
-}

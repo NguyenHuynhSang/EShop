@@ -2,19 +2,22 @@ import React from "react";
 import { useDispatch, useSelector, shallowEqual } from "../../../store/store";
 import { useEffectOnce } from "../helpers/hookHelpers";
 import { actions } from "./product.duck";
-import { Select, SvgIcon } from "../../../widgets/Common";
-import { ReactComponent as UsaIcon } from "../../../../assets/Flags/united-states.svg";
-import { ReactComponent as VietnamIcon } from "../../../../assets/Flags/vietnam.svg";
-import { ReactComponent as EuIcon } from "../../../../assets/Flags/european-union.svg";
-import { ReactComponent as JapanIcon } from "../../../../assets/Flags/japan.svg";
+import { Select } from "../../../widgets/Common";
+import {
+  UsaIcon,
+  VietnamIcon,
+  EuIcon,
+  JapanIcon,
+} from "../../../widgets/SvgIcons";
 import styled, { theme } from "../../../styles/styled";
 import Currency from "../base/currency/currency.model";
 
+const flagIconSize = 20;
 const currencyCodeToFlag = {
-  USD: <UsaIcon />,
-  VND: <VietnamIcon />,
-  EUR: <EuIcon />,
-  JPY: <JapanIcon />,
+  USD: <UsaIcon size={flagIconSize} />,
+  VND: <VietnamIcon size={flagIconSize} />,
+  EUR: <EuIcon size={flagIconSize} />,
+  JPY: <JapanIcon size={flagIconSize} />,
 };
 
 const OptionContainer = styled("span")({
@@ -28,7 +31,7 @@ const OptionContainer = styled("span")({
 const toOption = (currency: Currency): any => ({
   label: (
     <OptionContainer>
-      <SvgIcon size={20}>{currencyCodeToFlag[currency.code]}</SvgIcon>
+      {currencyCodeToFlag[currency.code]}
       <span>{currency.code}</span>
     </OptionContainer>
   ),
