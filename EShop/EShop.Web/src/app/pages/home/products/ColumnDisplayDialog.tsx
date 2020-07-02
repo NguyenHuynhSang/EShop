@@ -9,6 +9,7 @@ import {
   FormControlLabel,
   FormGroup,
 } from "@material-ui/core";
+import produce from "immer";
 import { ColumnInfo } from "./product.duck.d";
 import { useDispatch } from "../../../store/store";
 import { actions } from "./product.duck";
@@ -24,10 +25,13 @@ export default function ColumnDisplayDialog(props: ColumnDisplayDialogProps) {
   const dispatch = useDispatch();
   const [columnDisplay, setColumnDisplay] = React.useState(columnInfos);
 
-  const onChangeCheckbox = (name) => (e) => {
-    const colIndex = columnDisplay.findIndex((c) => c.columnName === name);
-    columnDisplay[colIndex].visible = e.target.checked;
-    setColumnDisplay([...columnDisplay]);
+  const onChangeCheckbox = (name: string) => (e) => {
+    setColumnDisplay(
+      produce(columnDisplay, (draft) => {
+        const colIndex = draft.findIndex((c) => c.columnName === name);
+        draft[colIndex].visible = e.target.checked;
+      })
+    );
   };
 
   const onSave = () => {

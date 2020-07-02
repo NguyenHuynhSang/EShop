@@ -105,10 +105,11 @@ export default function ProductTable(props: ProductTableProps) {
   const { className, columnInfos, ...rest } = props;
   const products = useSelector<Product[]>(
     (state) =>
-      state.products.products?.map((p) => {
-        p.category = p.category.toString(); // TODO: fix category type
-        return p;
-      }),
+      // TODO: fix category type
+      state.products.products?.map((p) => ({
+        ...p,
+        category: p.category.toString(),
+      })),
     shallowEqual
   );
   const productCategories = useSelector(

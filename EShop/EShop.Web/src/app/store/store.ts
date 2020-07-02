@@ -1,23 +1,39 @@
-import { applyMiddleware, compose, createStore } from "redux";
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import createSagaMiddleware from "redux-saga";
-import { persistStore } from "redux-persist";
+import {
+  persistStore,
+  REGISTER,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+} from "redux-persist";
 import {
   useSelector as useReduxSelector,
   TypedUseSelectorHook,
   useDispatch,
   shallowEqual,
 } from "react-redux";
-import { rootReducer, rootSaga, RootState } from "./rootDuck";
-
-// thank you, kind stranger https://stackoverflow.com/a/52801110/9449426
-const composeEnhancers =
-  (window["__REDUX_DEVTOOLS_EXTENSION_COMPOSE__"] as typeof compose) || compose;
+import { rootSaga, reducer } from "./rootDuck";
 
 const sagaMiddleware = createSagaMiddleware();
-const store = createStore(
-  rootReducer,
-  composeEnhancers(applyMiddleware(sagaMiddleware))
-);
+const middleware = [
+  ...getDefaultMiddleware({
+    thunk: false,
+    serializableCheck: {
+      // FIX: serialization issue when using redux-toolkit with redux-persist
+      // https://github.com/reduxjs/redux-toolkit/issues/121#issuecomment-611641781
+      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER, "builder/setHtmlClassService"],
+      ignoredPaths: ["builder.htmlClassServiceObjects"],
+    },
+    immutableCheck: {
+      ignoredPaths: ["builder.htmlClassServiceObjects"],
+    }
+  }),
+  sagaMiddleware,
+];
+const store = configureStore({ reducer, middleware });
 
 /**
  * @see https://github.com/rt2zz/redux-persist#persiststorestore-config-callback
@@ -27,6 +43,7 @@ export const persistor = persistStore(store);
 
 sagaMiddleware.run(rootSaga);
 
+export type RootState = ReturnType<typeof store.getState>;
 export const useSelector: TypedUseSelectorHook<RootState> = useReduxSelector;
 export { useDispatch, shallowEqual };
 

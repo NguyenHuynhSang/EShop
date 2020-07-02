@@ -40,6 +40,7 @@
     "@material-ui/lab": "^4.0.0-alpha.29",
     "@material-ui/pickers": "^3.2.7",
     "@material-ui/styles": "^4.5.0",
+    "@reduxjs/toolkit": "^1.4.0",
     "@tanem/svg-injector": "^8.0.34",
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",

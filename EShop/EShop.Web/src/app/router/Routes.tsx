@@ -15,8 +15,8 @@ import ErrorsPage from "../pages/errors/ErrorsPage";
 import LogoutPage from "../pages/auth/Logout";
 import { LayoutContextProvider } from "../../_metronic";
 import * as routerHelpers from "./RouterHelpers";
-import { RootState } from "../store/rootDuck";
-import { AuthState } from "../store/ducks/auth.duck.d";
+import { RootState } from "../store/store";
+import { AuthState } from "../store/ducks/auth.duck";
 
 type Selector = {
   isAuthorized: boolean;

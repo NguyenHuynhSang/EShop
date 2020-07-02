@@ -1,40 +1,29 @@
-import { persistReducer } from "redux-persist";
+import { persistReducer, PersistConfig } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-
-enum ActionType {
-  SetLanguage = "i18n/SET_LANGUAGE",
-};
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type i18nState = {
   lang: string;
-}
+};
 
 const initialState: i18nState = {
-  lang: "en"
+  lang: "en",
 };
 
-export const reducer = persistReducer<i18nState, AuthActionTypes>(
-  { storage, key: "i18n" },
-  (state = initialState, action) => {
-    switch (action.type) {
-      case ActionType.SetLanguage:
-        return { ...state, lang: action.payload.lang };
+const slice = createSlice({
+  initialState,
+  name: "i18n",
+  reducers: {
+    setLanguage(state, action: PayloadAction<string>) {
+      state.lang = action.payload;
+    },
+  },
+});
 
-      default:
-        return state;
-    }
-  }
-);
-
-interface SetLanguageAction {
-  type: typeof ActionType.SetLanguage;
-  payload: {
-    lang: string;
-  }
-}
-
-type AuthActionTypes = SetLanguageAction;
-
-export const actions = {
-  setLanguage: lang => ({ type: ActionType.SetLanguage, payload: { lang } })
+const persistConfig: PersistConfig<i18nState> = {
+  storage,
+  key: "i18n",
 };
+
+export const { actions } = slice;
+export const reducer = persistReducer(persistConfig, slice.reducer);
