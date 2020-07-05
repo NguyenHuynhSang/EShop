@@ -11,31 +11,48 @@ import {
 } from "@material-ui/core";
 import produce from "immer";
 import { ColumnInfo } from "./product.duck.d";
-import { useDispatch } from "../../../store/store";
+import { useDispatch, useSelector, shallowEqual } from "../../../store/store";
 import { actions } from "./product.duck";
 
 type ColumnDisplayDialogProps = {
   open: boolean;
   handleClose: () => void;
-  initialValue: ColumnInfo[];
 };
 
 export default function ColumnDisplayDialog(props: ColumnDisplayDialogProps) {
-  const { open, handleClose, initialValue: columnInfos } = props;
+  const { open, handleClose } = props;
   const dispatch = useDispatch();
-  const [columnDisplay, setColumnDisplay] = React.useState(columnInfos);
+  const columnInfos = useSelector(
+    (state) => state.products.columnInfos,
+    shallowEqual
+  );
+  const [draftColumnInfo, setDraftColumnInfo] = React.useState<ColumnInfo[]>([]);
 
-  const onChangeCheckbox = (name: string) => (e) => {
-    setColumnDisplay(
-      produce(columnDisplay, (draft) => {
-        const colIndex = draft.findIndex((c) => c.columnName === name);
-        draft[colIndex].visible = e.target.checked;
+  React.useEffect(() => {
+    if (!open) {
+      // wait until the close animation finishes to reset unsaved changes
+      setTimeout(() => setDraftColumnInfo(columnInfos), 1000)
+    } else {
+      setDraftColumnInfo(columnInfos);
+    }
+  }, [open, columnInfos]);
+
+  const onChangeCheckbox = (name: string) => (_: any, checked: boolean) => {
+    setDraftColumnInfo(
+      produce(draftColumnInfo, (draft) => {
+        const hide = !checked;
+        const column = draft.find(c => c.field === name);
+
+        if (column) {
+          column.hide = hide;
+          if (hide) column.pinned = undefined;
+        }
       })
     );
   };
 
   const onSave = () => {
-    dispatch(actions.setColumnDisplay(columnDisplay));
+    dispatch(actions.setColumnDisplay(draftColumnInfo));
     handleClose();
   };
 
@@ -44,19 +61,21 @@ export default function ColumnDisplayDialog(props: ColumnDisplayDialogProps) {
       <DialogTitle>Chọn những cột cần hiển thị</DialogTitle>
       <DialogContent>
         <FormGroup>
-          {columnDisplay.map((c) => (
-            <FormControlLabel
-              key={c.columnName}
-              disabled={c.alwaysVisible || false}
-              control={
-                <Checkbox
-                  checked={c.visible}
-                  onChange={onChangeCheckbox(c.columnName)}
-                />
-              }
-              label={c.columnName}
-            />
-          ))}
+          {draftColumnInfo.map((c) => {
+            return (
+              <FormControlLabel
+                key={c.field}
+                disabled={c.alwaysVisible || false}
+                control={
+                  <Checkbox
+                    checked={!c.hide}
+                    onChange={onChangeCheckbox(c.field)}
+                  />
+                }
+                label={c.field}
+              />
+            );
+          })}
         </FormGroup>
       </DialogContent>
       <DialogActions>

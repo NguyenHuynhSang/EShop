@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector, shallowEqual } from "../../../store/store";
-import { useEffectOnce } from "../helpers/hookHelpers";
+import { useOnMount } from "../helpers/hookHelpers";
 import { actions } from "./product.duck";
 import { Select } from "../../../widgets/Common";
 import {
@@ -51,7 +51,7 @@ export default function CurrencySelector() {
   );
 
   // TODO: can be defered until the user press the dropdown
-  useEffectOnce(() => {
+  useOnMount(() => {
     dispatch(actions.getCurrenciesRequest());
   });
 

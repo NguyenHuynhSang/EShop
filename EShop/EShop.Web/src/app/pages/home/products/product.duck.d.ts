@@ -1,15 +1,15 @@
 import Product, { ProductCategory } from "./product.model";
 import Currency from "../base/currency/currency.model";
+import { ColDef } from "ag-grid-community";
 
 export type ColumnInfo = {
-  columnName: string;
-  visible: boolean;
+  field: string;
   alwaysVisible?: boolean;
-  pinned?: boolean;
-};
+} & ColDef;
 
 export interface ProductState {
   loading: boolean;
+  columnDisplayGen: number;
   params: Params;
   products: Product[];
   productCategories: ProductCategory[];
@@ -17,6 +17,12 @@ export interface ProductState {
   currency?: Currency;
   currencies: Currency[];
 }
+
+export type Pinned = "left" | "right" | undefined;
+export type ColumnPinPayload = {
+  column: string;
+  pinned: Pinned;
+};
 
 export enum SortMode {
   None = "none",

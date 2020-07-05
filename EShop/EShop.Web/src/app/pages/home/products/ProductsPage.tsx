@@ -30,10 +30,6 @@ const Toolbar = styled("div")({
 });
 
 export default function ProductsPage() {
-  const columnInfos = useSelector(
-    (state) => state.products.columnInfos,
-    shallowEqual
-  );
   const [displayColDialogVisible, setDisplayColDialogVisible] = React.useState(
     false
   );
@@ -68,12 +64,11 @@ export default function ProductsPage() {
           </Button>
           <CurrencySelector />
         </Toolbar>
-        <ProductTable columnInfos={columnInfos} />
+        <ProductTable />
       </PortletBody>
       <ColumnDisplayDialog
         open={displayColDialogVisible}
         handleClose={() => setDisplayColDialogVisible(false)}
-        initialValue={columnInfos}
       />
     </Portlet>
   );

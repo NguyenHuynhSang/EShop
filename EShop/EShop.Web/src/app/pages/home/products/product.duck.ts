@@ -1,37 +1,45 @@
-import { persistReducer, PersistConfig } from "redux-persist";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { persistReducer, PersistConfig, createTransform } from "redux-persist";
+import { createSlice, PayloadAction, current } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import { put, takeLatest, select } from "redux-saga/effects";
-import ProductService from "./products.service";
-import { ProductState, ColumnInfo, Params } from "./product.duck.d";
-import Product, { ProductCategory } from "./product.model";
 import { AxiosResponse } from "axios";
+import ProductService from "./products.service";
+import {
+  ProductState,
+  Params,
+  ColumnPinPayload,
+  ColumnInfo,
+} from "./product.duck.d";
+import Product, { ProductCategory } from "./product.model";
 import Currency from "../base/currency/currency.model";
+
+const columnInfos: ColumnInfo[] = [
+  { field: "id", alwaysVisible: true, pinned: "left" },
+  { field: "name", pinned: "left" },
+  { field: "description", hide: true },
+  { field: "content", hide: true },
+  { field: "weight", hide: true },
+  { field: "category" },
+  { field: "numberOfVersions" },
+  { field: "price" },
+  { field: "originalPrice", hide: true },
+  { field: "discountPrice", hide: true },
+  { field: "quantity" },
+  { field: "display" },
+  { field: "deliver", hide: true },
+  { field: "applyPromotion", hide: true },
+  { field: "action", alwaysVisible: true },
+];
 
 const initialState: ProductState = {
   loading: false,
+  columnDisplayGen: 0,
   productCategories: [],
   params: {},
   products: [],
   currencies: [],
   currency: undefined,
-  columnInfos: [
-    { columnName: "id", visible: true, alwaysVisible: true },
-    { columnName: "name", visible: true },
-    { columnName: "description", visible: false },
-    { columnName: "content", visible: false },
-    { columnName: "weight", visible: false },
-    { columnName: "category", visible: true },
-    { columnName: "numberOfVersions", visible: true },
-    { columnName: "price", visible: true },
-    { columnName: "originalPrice", visible: false },
-    { columnName: "discountPrice", visible: false },
-    { columnName: "quantity", visible: true },
-    { columnName: "display", visible: true },
-    { columnName: "deliver", visible: false },
-    { columnName: "applyPromotion", visible: false },
-    { columnName: "action", visible: true, alwaysVisible: true },
-  ],
+  columnInfos,
 };
 
 const slice = createSlice({
@@ -40,6 +48,17 @@ const slice = createSlice({
   reducers: {
     setColumnDisplay(state, action: PayloadAction<ColumnInfo[]>) {
       state.columnInfos = action.payload;
+      state.columnDisplayGen++;
+    },
+    setColumnOrder(state, action: PayloadAction<Record<string, number>>) {
+      const order = action.payload;
+      state.columnInfos.sort((a, b) => order[a.field] - order[b.field]);
+    },
+    setPinned(state, action: PayloadAction<ColumnPinPayload>) {
+      const { column, pinned } = action.payload;
+      const col = state.columnInfos.find((c) => c.field === column);
+
+      if (col) col.pinned = pinned;
     },
     getAllRequest(state, action: PayloadAction<Params | undefined>) {
       state.params = {
@@ -87,7 +106,7 @@ const slice = createSlice({
 const persistConfig: PersistConfig<ProductState> = {
   storage,
   key: "products",
-  whitelist: ["params", "products", "columnInfos", "currency"],
+  blacklist: ["loading", "columnDisplayGen"],
 };
 
 export const { actions } = slice;

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useCallback } from "react";
 import { IconButton } from "@material-ui/core";
 import DeleteIconMaterial from "@material-ui/icons/Delete";
 import EditIconMaterial from "@material-ui/icons/Edit";
@@ -11,18 +11,20 @@ import {
   ValueFormatterParams,
   ICellRendererParams,
   ColumnMovedEvent,
+  ColumnPinnedEvent,
+  ColDef,
+  ColGroupDef,
 } from "ag-grid-community";
 import classNames from "classnames";
 import { Checkbox } from "@material-ui/core";
 import { actions } from "./product.duck";
 import { useSelector, useDispatch, shallowEqual } from "../../../store/store";
-import { useEffectOnce } from "../helpers/hookHelpers";
-import moveArrayItem from "../helpers/moveArrayItem";
+import { useOnMount } from "../helpers/hookHelpers";
 import Product from "./product.model";
 import ProductTableHeader from "./ProductTableHeader";
-import ProductTableColumn from "./ProductTableColumn";
-import { ColumnInfo } from "./product.duck.d";
+import { ColumnInfo, Pinned } from "./product.duck.d";
 import styled, { important, theme } from "../../../styles/styled";
+import useColumnDefs from "./useColumnDefs";
 
 // TODO: use intl https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat
 function formatNumber(number: number) {
@@ -86,14 +88,10 @@ function actionRenderer(params: ICellRendererParams) {
     </div>
   );
 }
-type ProductTableProps = {
-  className?: string;
-  columnInfos: ColumnInfo[];
-};
 
-function autoSizeAllColumns(gridColumnApi?: ColumnApi) {
+function autoSizeColumns(gridColumnApi?: ColumnApi, columns?: string[]) {
   const allColumnIds =
-    gridColumnApi?.getAllColumns().map((c) => c.getId()) || [];
+    columns || gridColumnApi?.getAllColumns().map((c) => c.getId()) || [];
   gridColumnApi?.autoSizeColumns(allColumnIds, false);
   // when using custom header component, autosize does not work on the first try
   // especially when there too many columns to fit on one screen
@@ -101,8 +99,30 @@ function autoSizeAllColumns(gridColumnApi?: ColumnApi) {
     gridColumnApi?.autoSizeColumns(allColumnIds, false);
   });
 }
+
+const columnTypes: Record<string, ColDef> = {
+  editable: {
+    editable: true,
+    onCellValueChanged: markAsDirty,
+  },
+  currency: {
+    valueFormatter: currencyFormatter,
+  },
+  checkbox: {
+    cellRenderer: "checkboxRenderer",
+  },
+  largeText: {
+    cellEditor: "agLargeTextCellEditor",
+    maxWidth: 250,
+    sortable: false,
+  },
+};
+
+type ProductTableProps = {
+  className?: string;
+};
 export default function ProductTable(props: ProductTableProps) {
-  const { className, columnInfos, ...rest } = props;
+  const { className, ...rest } = props;
   const products = useSelector<Product[]>(
     (state) =>
       // TODO: fix category type
@@ -112,23 +132,20 @@ export default function ProductTable(props: ProductTableProps) {
       })),
     shallowEqual
   );
-  const productCategories = useSelector(
-    (state) => state.products.productCategories,
-    shallowEqual
-  );
   const symbol = useSelector((state) => state.products.currency?.symbol) ?? "";
   const dispatch = useDispatch();
   const gridApiRef = useRef<GridApi>();
   const gridColumnApiRef = useRef<ColumnApi>();
+  const onUpdateColumnDisplay = useCallback(() => {
+    autoSizeColumns(gridColumnApiRef.current);
+  }, []);
 
-  useEffectOnce(() => {
+  useOnMount(() => {
     dispatch(actions.getCategoriesRequest());
     dispatch(actions.getAllRequest());
   });
 
-  useEffect(() => {
-    autoSizeAllColumns(gridColumnApiRef.current);
-  }, [columnInfos]);
+  const [columnDefs, columnInfos] = useColumnDefs(onUpdateColumnDisplay);
 
   useEffect(() => {
     // refresh to update valueFormatter to display latest currency format
@@ -137,9 +154,6 @@ export default function ProductTable(props: ProductTableProps) {
     SYMBOL = symbol;
   }, [symbol]);
 
-  const onFirstDataRendered = () => {
-    autoSizeAllColumns(gridColumnApiRef.current);
-  };
   const onGridReady = (params: GridReadyEvent) => {
     gridApiRef.current = params.api;
     gridColumnApiRef.current = params.columnApi;
@@ -147,20 +161,32 @@ export default function ProductTable(props: ProductTableProps) {
     document
       .getElementById("productTableContainer")
       ?.addEventListener("resize", function() {
-        setTimeout(() => autoSizeAllColumns(gridColumnApiRef.current));
+        setTimeout(() => autoSizeColumns(gridColumnApiRef.current));
       });
   };
   const onColumnMoved = (e: ColumnMovedEvent) => {
     if (e.columns !== null && e.toIndex !== undefined) {
-      for (let column of e.columns.reverse()) {
-        const fromIndex = columnInfos.findIndex(
-          (c) => c.columnName === column.getColDef().field
-        );
-        dispatch(
-          actions.setColumnDisplay(
-            moveArrayItem(columnInfos, fromIndex, e.toIndex)
-          )
-        );
+      const { toIndex } = e;
+      const order: Record<string, number> = {};
+      const columnOrder = gridColumnApiRef.current
+        ?.getColumnState()
+        // remove suffix _[digit]. field: id -> colId: id_1
+        .map((c, i) => (order[c.colId.replace(/_[\d]+$/, "")] = i));
+      if (columnOrder) dispatch(actions.setColumnOrder(order));
+
+      for (let col of e.columns.reverse()) {
+        const column = col.getColDef().field!;
+        const fromIndex = columnInfos.findIndex((c) => c.field === column);
+        console.log(column, fromIndex, toIndex);
+      }
+    }
+  };
+  const onColumnPinned = (e: ColumnPinnedEvent) => {
+    if (e.columns !== null && e.pinned !== null) {
+      const pinned = e.pinned as Pinned;
+      for (let col of e.columns) {
+        const column = col.getColDef().field!;
+        dispatch(actions.setPinned({ column, pinned }));
       }
     }
   };
@@ -168,30 +194,17 @@ export default function ProductTable(props: ProductTableProps) {
   return (
     <div className={classNames("ag-theme-balham table-wrapper", className)}>
       <AgGridReact
-        animateRows
+        // animateRows
         onColumnMoved={onColumnMoved}
+        onColumnPinned={onColumnPinned}
         rowHeight={theme.tableRowHeight}
         headerHeight={45}
-        // you can already toggle show/hide columns. dragging outside to hide column just makes it more confusing
+        // you can already toggle show/hide columns. dragging outside to hide
+        // column just makes it more confusing
         suppressDragLeaveHidesColumns
-        columnTypes={{
-          editable: {
-            editable: true,
-            onCellValueChanged: markAsDirty,
-          },
-          currency: {
-            valueFormatter: currencyFormatter,
-          },
-          checkbox: {
-            cellRenderer: "checkboxRenderer",
-          },
-          largeText: {
-            cellEditor: "agLargeTextCellEditor",
-            maxWidth: 250,
-            sortable: false,
-          },
-        }}
-        onFirstDataRendered={onFirstDataRendered}
+        columnDefs={columnDefs}
+        columnTypes={columnTypes}
+        onFirstDataRendered={onUpdateColumnDisplay}
         defaultColDef={{
           sortable: true,
           resizable: true,
@@ -205,11 +218,7 @@ export default function ProductTable(props: ProductTableProps) {
           agColumnHeader: ProductTableHeader,
         }}
         {...rest}
-      >
-        {columnInfos.map((columnInfo) => {
-          return ProductTableColumn({ columnInfo, productCategories });
-        })}
-      </AgGridReact>
+      />
     </div>
   );
 }

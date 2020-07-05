@@ -24,12 +24,20 @@ const middleware = [
     serializableCheck: {
       // FIX: serialization issue when using redux-toolkit with redux-persist
       // https://github.com/reduxjs/redux-toolkit/issues/121#issuecomment-611641781
-      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER, "builder/setHtmlClassService"],
+      ignoredActions: [
+        FLUSH,
+        REHYDRATE,
+        PAUSE,
+        PERSIST,
+        PURGE,
+        REGISTER,
+        "builder/setHtmlClassService",
+      ],
       ignoredPaths: ["builder.htmlClassServiceObjects"],
     },
     immutableCheck: {
       ignoredPaths: ["builder.htmlClassServiceObjects"],
-    }
+    },
   }),
   sagaMiddleware,
 ];

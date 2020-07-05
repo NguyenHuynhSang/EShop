@@ -1,4 +1,4 @@
-import { formatDistance, sub } from "date-fns";
+import { sub } from "date-fns";
 
 const now = Date.now();
 
