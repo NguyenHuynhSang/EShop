@@ -18,13 +18,15 @@ export const PortletHeaderIcon = forwardRef(
 
 export const PortletHeaderTitle = forwardRef(
   (props: PortletBaseProps, ref: React.Ref<HTMLHeadingElement>) => {
-    const { className, ...rest } = props;
+    const { className, children, ...rest } = props;
     return (
       <h3
         {...rest}
         ref={ref}
         className={clsx("kt-portlet__head-title", className)}
-      />
+      >
+        {children}
+      </h3>
     );
   }
 );

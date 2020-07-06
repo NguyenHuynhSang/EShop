@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable no-restricted-imports */
 import React from "react";
 import {
@@ -371,7 +370,7 @@ export default function CheckboxesExamplesPage() {
                     aria-label="position"
                     name="position"
                     value={value}
-                    onChange={handleChange}
+                    onChange={handleChange4}
                     row
                   >
                     <FormControlLabel

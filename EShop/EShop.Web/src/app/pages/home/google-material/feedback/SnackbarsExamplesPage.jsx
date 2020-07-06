@@ -1,6 +1,5 @@
 /* eslint-disable no-func-assign */
 /* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
 /* eslint-disable no-restricted-imports */
 import React from "react";
 import PropTypes from "prop-types";
@@ -16,11 +15,6 @@ import {
   Fade,
   Slide,
   Grow,
-  CssBaseline,
-  Toolbar,
-  AppBar,
-  Typography,
-  Fab
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import WarningIcon from "@material-ui/icons/Warning";
@@ -28,8 +22,6 @@ import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import ErrorIcon from "@material-ui/icons/Error";
 import InfoIcon from "@material-ui/icons/Info";
 import { amber, green } from "@material-ui/core/colors";
-import AddIcon from "@material-ui/icons/Add";
-import MenuIcon from "@material-ui/icons/Menu";
 
 // Example 1
 const useStyles1 = makeStyles(theme => ({

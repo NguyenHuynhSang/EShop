@@ -13,7 +13,6 @@ import {
   ColumnMovedEvent,
   ColumnPinnedEvent,
   ColDef,
-  ColGroupDef,
 } from "ag-grid-community";
 import classNames from "classnames";
 import { Checkbox } from "@material-ui/core";
@@ -22,7 +21,7 @@ import { useSelector, useDispatch, shallowEqual } from "../../../store/store";
 import { useOnMount } from "../helpers/hookHelpers";
 import Product from "./product.model";
 import ProductTableHeader from "./ProductTableHeader";
-import { ColumnInfo, Pinned } from "./product.duck.d";
+import { Pinned } from "./product.duck.d";
 import styled, { important, theme } from "../../../styles/styled";
 import useColumnDefs from "./useColumnDefs";
 

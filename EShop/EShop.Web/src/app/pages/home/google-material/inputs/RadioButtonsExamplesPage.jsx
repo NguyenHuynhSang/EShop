@@ -1,10 +1,10 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable no-restricted-imports */
 import React from "react";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import {
   Radio,
   RadioGroup,
+  // eslint-disable-next-line no-unused-vars
   FormHelperText,
   FormControlLabel,
   FormControl,

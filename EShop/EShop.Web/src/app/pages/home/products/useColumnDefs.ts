@@ -1,5 +1,5 @@
 import React from "react";
-import { ColDef, ColGroupDef } from "ag-grid-community";
+import { ColDef } from "ag-grid-community";
 import { useSelector, shallowEqual } from "../../../store/store";
 import { ColumnInfo } from "./product.duck.d";
 import { ProductCategory } from "./product.model";
@@ -87,7 +87,7 @@ let COLUMN_DEFS: ColDef[] = [];
 // columnDefs: is used to initialize column definitions on mount
 // columnInfos: current column states saved in the store
 export default function useColumnDefs(
-  onUpdateColumnDisplay: Function
+  onForceUpdateColDefs: Function
 ): [ColDef[], ColumnInfo[]] {
   const productCategories = useSelector(
     (state) => state.products.productCategories,
@@ -117,8 +117,9 @@ export default function useColumnDefs(
     COLUMN_DEFS = columnInfos.map((c) => ({ ...colDefs[c.field], ...c }));
     forceUpdate();
     setTimeout(() => {
-        onUpdateColumnDisplay();
-    })
+      onForceUpdateColDefs();
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [columnDisplayGen]);
 
   return [COLUMN_DEFS, columnInfos];

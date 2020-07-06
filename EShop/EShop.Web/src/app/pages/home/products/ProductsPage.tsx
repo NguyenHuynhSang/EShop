@@ -10,7 +10,6 @@ import { PlusIcon, ProductIcon, VisibleIcon } from "../../../widgets/SvgIcons";
 import ProductTable from "./ProductTable";
 import CurrencySelector from "./CurrencySelector";
 import ColumnDisplayDialog from "./ColumnDisplayDialog";
-import { useSelector, shallowEqual } from "../../../store/store";
 import styled, { theme } from "../../../styles/styled";
 
 const StyledProductIcon = styled(ProductIcon)({

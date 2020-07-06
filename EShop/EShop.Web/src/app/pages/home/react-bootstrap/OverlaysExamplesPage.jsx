@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React from "react";
 import Notice from "../../../partials/content/Notice";
 import CodeExample from "../../../partials/content/CodeExample";
@@ -359,54 +358,6 @@ const Example = () => (
     overlay={renderTooltip}
   >
     <Button variant="success">Hover me to see</Button>
-  </OverlayTrigger>
-);
-
-render(<Example />);
-`;
-const jsCode3 = `
-class Example extends React.Component {
-  constructor(...args) {
-    super(...args);
-
-    this.attachRef = target => this.setState({ target });
-    this.state = { show: false };
-  }
-
-  render() {
-    const { show, target } = this.state;
-    return (
-      <>
-        <Button
-          ref={this.attachRef}
-          onClick={() => this.setState({ show: !show })}
-        >
-          Click me!
-        </Button>
-        <Overlay target={target} show={show} placement="right">
-          {props => (
-            <Tooltip id="overlay-example" {...props}>
-              My Tooltip
-            </Tooltip>
-          )}
-        </Overlay>
-      </>
-    );
-  }
-}
-
-render(<Example />);
-`;
-const jsCode4 = `
-const popover = (
-  <Popover id="popover-basic" title="Popover right">
-    And here's some <strong>amazing</strong> content. It's very engaging. right?
-  </Popover>
-);
-
-const Example = () => (
-  <OverlayTrigger trigger="click" placement="right" overlay={popover}>
-    <Button variant="success">Click me to see</Button>
   </OverlayTrigger>
 );
 

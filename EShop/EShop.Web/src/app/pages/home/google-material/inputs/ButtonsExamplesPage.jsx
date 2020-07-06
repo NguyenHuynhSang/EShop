@@ -1,5 +1,4 @@
 /* eslint-disable no-restricted-imports */
-/* eslint-disable no-unused-vars */
 import React from "react";
 import Notice from "../../../../partials/content/Notice";
 import CodeExample from "../../../../partials/content/CodeExample";
@@ -74,12 +73,6 @@ const ColorButton = withStyles(theme => ({
     }
   }
 }))(Button);
-
-const useStyles = makeStyles(theme => ({
-  margin: {
-    margin: theme.spacing(1)
-  }
-}));
 
 const theme = createMuiTheme({
   palette: {
@@ -226,19 +219,12 @@ const images = [
   }
 ];
 
-const options = [
-  "Create a merge commit",
-  "Squash and merge",
-  "Rebase and merge"
-];
-
 export default function ButtonsExamplesPage() {
   const classes1 = useStyles1();
   const classes2 = useStyles2();
   const classes3 = useStyles3();
   const classes4 = useStyles4();
   const classes5 = useStyles5();
-  const classes = useStyles();
 
   return (
     <>
@@ -1300,95 +1286,6 @@ export default function GroupedButtons() {
   );
 }
 `;
-const jsCode5 = `
-import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import Grow from '@material-ui/core/Grow';
-import Paper from '@material-ui/core/Paper';
-import Popper from '@material-ui/core/Popper';
-import MenuItem from '@material-ui/core/MenuItem';
-import MenuList from '@material-ui/core/MenuList';
-
-const options = ['Create a merge commit', 'Squash and merge', 'Rebase and merge'];
-
-export default function SplitButton() {
-  const [open, setOpen] = React.useState(false);
-  const anchorRef = React.useRef(null);
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
-
-  function handleClick() {
-    alert(\`You clicked \${options[selectedIndex]}\`);
-  }
-
-  function handleMenuItemClick(event, index) {
-    setSelectedIndex(index);
-    setOpen(false);
-  }
-
-  function handleToggle() {
-    setOpen(prevOpen => !prevOpen);
-  }
-
-  function handleClose(event) {
-    if (anchorRef.current && anchorRef.current.contains(event.target)) {
-      return;
-    }
-
-    setOpen(false);
-  }
-
-  return (
-    <Grid container>
-      <Grid item xs={12} align="center">
-        <ButtonGroup variant="contained" color="primary" ref={anchorRef} aria-label="Split button">
-          <Button onClick={handleClick}>{options[selectedIndex]}</Button>
-          <Button
-            color="primary"
-            variant="contained"
-            size="small"
-            aria-owns={open ? 'menu-list-grow' : undefined}
-            aria-haspopup="true"
-            onClick={handleToggle}
-          >
-            <ArrowDropDownIcon />
-          </Button>
-        </ButtonGroup>
-        <Popper open={open} anchorEl={anchorRef.current} transition disablePortal>
-          {({ TransitionProps, placement }) => (
-            <Grow
-              {...TransitionProps}
-              style={{
-                transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom',
-              }}
-            >
-              <Paper id="menu-list-grow">
-                <ClickAwayListener onClickAway={handleClose}>
-                  <MenuList>
-                    {options.map((option, index) => (
-                      <MenuItem
-                        key={option}
-                        disabled={index === 2}
-                        selected={index === selectedIndex}
-                        onClick={event => handleMenuItemClick(event, index)}
-                      >
-                        {option}
-                      </MenuItem>
-                    ))}
-                  </MenuList>
-                </ClickAwayListener>
-              </Paper>
-            </Grow>
-          )}
-        </Popper>
-      </Grid>
-    </Grid>
-  );
-}
-`;
 const jsCode6 = `
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
@@ -1455,9 +1352,9 @@ export default function ButtonSizes() {
   return (
     <div>
       <div>
-        <Button size="small" className={classes.margin}>
-          Small
-        </Button>
+      <Button size="small" className={classes.margin}>
+        Small
+      </Button>
         <Button size="medium" className={classes.margin}>
           Medium
         </Button>

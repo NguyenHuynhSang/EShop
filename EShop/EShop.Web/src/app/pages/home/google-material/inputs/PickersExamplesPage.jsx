@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable no-restricted-imports */
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
@@ -203,7 +202,7 @@ export default function PickersExamplesPage() {
 
             <div className="kt-section__content">
               <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <Grid container className={classes.grid} justify="space-around">
+                <Grid container className={classes4.grid} justify="space-around">
                   <KeyboardDatePicker
                     margin="normal"
                     id="mui-pickers-date"

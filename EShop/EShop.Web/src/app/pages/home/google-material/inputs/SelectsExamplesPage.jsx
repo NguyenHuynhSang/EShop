@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable no-restricted-imports */
 import React from "react";
 import clsx from "clsx";
@@ -229,12 +228,12 @@ export default function SelectsExamplesPage() {
   }
 
   // Example 5
-  const classes5 = useStyles();
+  const classes5 = useStyles5();
   const [age2, setAge2] = React.useState("");
   const [open, setOpen] = React.useState(false);
 
   function handleChange5(event) {
-    setAge(event.target.value);
+    setAge2(event.target.value);
   }
 
   function handleClose() {
@@ -944,7 +943,7 @@ export default function SelectsExamplesPage() {
                           open={open}
                           onClose={handleClose}
                           onOpen={handleOpen}
-                          value={age}
+                          value={age2}
                           onChange={handleChange5}
                           inputProps={{
                             name: "age",
