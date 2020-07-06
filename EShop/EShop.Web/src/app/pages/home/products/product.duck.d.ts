@@ -9,7 +9,7 @@ export type ColumnInfo = {
 
 export interface ProductState {
   loading: boolean;
-  columnDisplayGen: number;
+  columnInfosGen: number;
   params: Params;
   products: Product[];
   productCategories: ProductCategory[];

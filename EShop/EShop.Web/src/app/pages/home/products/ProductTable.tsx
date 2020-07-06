@@ -19,6 +19,7 @@ import { Checkbox } from "@material-ui/core";
 import { actions } from "./product.duck";
 import { useSelector, useDispatch, shallowEqual } from "../../../store/store";
 import { useOnMount } from "../helpers/hookHelpers";
+import { autoSizeColumns, useGridApi } from "../helpers/agGridHelpers";
 import Product from "./product.model";
 import ProductTableHeader from "./ProductTableHeader";
 import { Pinned } from "./product.duck.d";
@@ -88,17 +89,6 @@ function actionRenderer(params: ICellRendererParams) {
   );
 }
 
-function autoSizeColumns(gridColumnApi?: ColumnApi, columns?: string[]) {
-  const allColumnIds =
-    columns || gridColumnApi?.getAllColumns().map((c) => c.getId()) || [];
-  gridColumnApi?.autoSizeColumns(allColumnIds, false);
-  // when using custom header component, autosize does not work on the first try
-  // especially when there too many columns to fit on one screen
-  setTimeout(() => {
-    gridColumnApi?.autoSizeColumns(allColumnIds, false);
-  });
-}
-
 const columnTypes: Record<string, ColDef> = {
   editable: {
     editable: true,
@@ -131,20 +121,26 @@ export default function ProductTable(props: ProductTableProps) {
       })),
     shallowEqual
   );
+  const onGridReadyCb = useCallback(() => {
+    return (_: any, colApi?: ColumnApi) => {
+      document
+        .getElementById("productTableContainer")
+        ?.addEventListener("resize", function() {
+          setTimeout(() => autoSizeColumns(colApi));
+        });
+    };
+  }, []);
+  const [gridApiRef, columnApiRef, onGridReady] = useGridApi(onGridReadyCb);
+  const onFirstDataRendered = () => autoSizeColumns(columnApiRef.current);
   const symbol = useSelector((state) => state.products.currency?.symbol) ?? "";
   const dispatch = useDispatch();
-  const gridApiRef = useRef<GridApi>();
-  const gridColumnApiRef = useRef<ColumnApi>();
-  const onUpdateColumnDisplay = useCallback(() => {
-    autoSizeColumns(gridColumnApiRef.current);
-  }, []);
 
   useOnMount(() => {
     dispatch(actions.getCategoriesRequest());
     dispatch(actions.getAllRequest());
   });
 
-  const [columnDefs, columnInfos] = useColumnDefs(onUpdateColumnDisplay);
+  const [columnDefs, columnInfos] = useColumnDefs(columnApiRef.current);
 
   useEffect(() => {
     // refresh to update valueFormatter to display latest currency format
@@ -153,21 +149,11 @@ export default function ProductTable(props: ProductTableProps) {
     SYMBOL = symbol;
   }, [symbol]);
 
-  const onGridReady = (params: GridReadyEvent) => {
-    gridApiRef.current = params.api;
-    gridColumnApiRef.current = params.columnApi;
-
-    document
-      .getElementById("productTableContainer")
-      ?.addEventListener("resize", function() {
-        setTimeout(() => autoSizeColumns(gridColumnApiRef.current));
-      });
-  };
   const onColumnMoved = (e: ColumnMovedEvent) => {
     if (e.columns !== null && e.toIndex !== undefined) {
       const { toIndex } = e;
       const order: Record<string, number> = {};
-      const columnOrder = gridColumnApiRef.current
+      const columnOrder = columnApiRef.current
         ?.getColumnState()
         // remove suffix _[digit]. field: id -> colId: id_1
         .map((c, i) => (order[c.colId.replace(/_[\d]+$/, "")] = i));
@@ -203,7 +189,7 @@ export default function ProductTable(props: ProductTableProps) {
         suppressDragLeaveHidesColumns
         columnDefs={columnDefs}
         columnTypes={columnTypes}
-        onFirstDataRendered={onUpdateColumnDisplay}
+        onFirstDataRendered={onFirstDataRendered}
         defaultColDef={{
           sortable: true,
           resizable: true,

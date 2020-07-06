@@ -33,13 +33,13 @@ const columnInfos: ColumnInfo[] = [
 
 const initialState: ProductState = {
   loading: false,
-  columnDisplayGen: 0,
   productCategories: [],
   params: {},
   products: [],
   currencies: [],
   currency: undefined,
   columnInfos,
+  columnInfosGen: 0,
 };
 
 const slice = createSlice({
@@ -48,7 +48,7 @@ const slice = createSlice({
   reducers: {
     setColumnDisplay(state, action: PayloadAction<ColumnInfo[]>) {
       state.columnInfos = action.payload;
-      state.columnDisplayGen++;
+      state.columnInfosGen++;
     },
     setColumnOrder(state, action: PayloadAction<Record<string, number>>) {
       const order = action.payload;
@@ -106,7 +106,7 @@ const slice = createSlice({
 const persistConfig: PersistConfig<ProductState> = {
   storage,
   key: "products",
-  blacklist: ["loading", "columnDisplayGen"],
+  blacklist: ["loading", "columnInfosGen"],
 };
 
 export const { actions } = slice;
