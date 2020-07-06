@@ -5,7 +5,6 @@ import EditIconMaterial from "@material-ui/icons/Edit";
 import { AgGridReact } from "ag-grid-react";
 import has from "lodash/has";
 import {
-  ColumnApi,
   ValueFormatterParams,
   ICellRendererParams,
   ColumnPinnedEvent,
@@ -17,7 +16,7 @@ import { Checkbox } from "@material-ui/core";
 import { actions } from "./product.duck";
 import { useSelector, useDispatch, shallowEqual } from "../../../store/store";
 import { useOnMount } from "../helpers/hookHelpers";
-import { autoSizeColumns, useGridApi } from "../helpers/agGridHelpers";
+import { useGridApi } from "../helpers/agGridHelpers";
 import Product from "./product.model";
 import ProductTableHeader from "./ProductTableHeader";
 import { Pinned } from "./product.duck.d";
@@ -119,17 +118,19 @@ export default function ProductTable(props: ProductTableProps) {
       })),
     shallowEqual
   );
-  const onGridReadyCb = useCallback(() => {
-    return (_: any, colApi?: ColumnApi) => {
+  const onGridReadyCb = useCallback(
+    () => () => {
       document
         .getElementById("productTableContainer")
         ?.addEventListener("resize", function() {
-          setTimeout(() => autoSizeColumns(colApi));
+          setTimeout(() => autoSizeColumns());
         });
-    };
-  }, []);
-  const [, columnApiRef, onGridReady] = useGridApi(onGridReadyCb);
-  const onFirstDataRendered = () => autoSizeColumns(columnApiRef.current);
+    },
+    []
+  );
+  const [api, onGridReady, autoSizeColumns] = useGridApi(onGridReadyCb);
+  const [columnDefs] = useColumnDefs(api.column);
+  const onFirstDataRendered = () => autoSizeColumns();
   const symbol = useSelector((state) => state.products.currency?.symbol) ?? "";
   const dispatch = useDispatch();
 
@@ -137,8 +138,6 @@ export default function ProductTable(props: ProductTableProps) {
     dispatch(actions.getCategoriesRequest());
     dispatch(actions.getAllRequest());
   });
-
-  const [columnDefs] = useColumnDefs(columnApiRef.current);
 
   useEffect(() => {
     // refresh to update valueFormatter to display latest currency format
