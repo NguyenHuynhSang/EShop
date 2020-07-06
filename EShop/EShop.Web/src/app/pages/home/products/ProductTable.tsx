@@ -1,18 +1,16 @@
-import React, { useEffect, useRef, useCallback } from "react";
+import React, { useEffect, useCallback } from "react";
 import { IconButton } from "@material-ui/core";
 import DeleteIconMaterial from "@material-ui/icons/Delete";
 import EditIconMaterial from "@material-ui/icons/Edit";
 import { AgGridReact } from "ag-grid-react";
 import has from "lodash/has";
 import {
-  GridApi,
   ColumnApi,
-  GridReadyEvent,
   ValueFormatterParams,
   ICellRendererParams,
-  ColumnMovedEvent,
   ColumnPinnedEvent,
   ColDef,
+  DragStoppedEvent,
 } from "ag-grid-community";
 import classNames from "classnames";
 import { Checkbox } from "@material-ui/core";
@@ -76,7 +74,7 @@ const EditIcon = styled(EditIconMaterial)({
 const DeleteIcon = styled(DeleteIconMaterial)({
   color: theme.color.danger,
 });
-function actionRenderer(params: ICellRendererParams) {
+function actionRenderer() {
   return (
     <div>
       <IconButton>
@@ -130,7 +128,7 @@ export default function ProductTable(props: ProductTableProps) {
         });
     };
   }, []);
-  const [gridApiRef, columnApiRef, onGridReady] = useGridApi(onGridReadyCb);
+  const [, columnApiRef, onGridReady] = useGridApi(onGridReadyCb);
   const onFirstDataRendered = () => autoSizeColumns(columnApiRef.current);
   const symbol = useSelector((state) => state.products.currency?.symbol) ?? "";
   const dispatch = useDispatch();
@@ -140,7 +138,7 @@ export default function ProductTable(props: ProductTableProps) {
     dispatch(actions.getAllRequest());
   });
 
-  const [columnDefs, columnInfos] = useColumnDefs(columnApiRef.current);
+  const [columnDefs] = useColumnDefs(columnApiRef.current);
 
   useEffect(() => {
     // refresh to update valueFormatter to display latest currency format
@@ -149,23 +147,6 @@ export default function ProductTable(props: ProductTableProps) {
     SYMBOL = symbol;
   }, [symbol]);
 
-  const onColumnMoved = (e: ColumnMovedEvent) => {
-    if (e.columns !== null && e.toIndex !== undefined) {
-      const { toIndex } = e;
-      const order: Record<string, number> = {};
-      const columnOrder = columnApiRef.current
-        ?.getColumnState()
-        // remove suffix _[digit]. field: id -> colId: id_1
-        .map((c, i) => (order[c.colId.replace(/_[\d]+$/, "")] = i));
-      if (columnOrder) dispatch(actions.setColumnOrder(order));
-
-      for (let col of e.columns.reverse()) {
-        const column = col.getColDef().field!;
-        const fromIndex = columnInfos.findIndex((c) => c.field === column);
-        console.log(column, fromIndex, toIndex);
-      }
-    }
-  };
   const onColumnPinned = (e: ColumnPinnedEvent) => {
     if (e.columns !== null && e.pinned !== null) {
       const pinned = e.pinned as Pinned;
@@ -175,12 +156,20 @@ export default function ProductTable(props: ProductTableProps) {
       }
     }
   };
+  // has better performance than onColumnMoved: https://stackoverflow.com/a/57287276/9449426
+  const onDragStopped = (e: DragStoppedEvent) => {
+    const columnOrder = e.columnApi
+      ?.getColumnState()
+      // remove suffix _[digit]. field: id -> colId: id_1
+      .map((c) => c.colId.replace(/_[\d]+$/, ""));
+    if (columnOrder) dispatch(actions.setColumnOrder(columnOrder));
+  };
 
   return (
     <div className={classNames("ag-theme-balham table-wrapper", className)}>
       <AgGridReact
         // animateRows
-        onColumnMoved={onColumnMoved}
+        onDragStopped={onDragStopped}
         onColumnPinned={onColumnPinned}
         rowHeight={theme.tableRowHeight}
         headerHeight={45}

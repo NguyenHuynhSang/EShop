@@ -50,8 +50,10 @@ const slice = createSlice({
       state.columnInfos = action.payload;
       state.columnInfosGen++;
     },
-    setColumnOrder(state, action: PayloadAction<Record<string, number>>) {
-      const order = action.payload;
+    setColumnOrder(state, action: PayloadAction<string[]>) {
+      const columns = action.payload;
+      const order: Record<string, number> = {};
+      columns.forEach((c, i) => (order[c] = i));
       state.columnInfos.sort((a, b) => order[a.field] - order[b.field]);
     },
     setPinned(state, action: PayloadAction<ColumnPinPayload>) {
