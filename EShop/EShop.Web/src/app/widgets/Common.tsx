@@ -8,7 +8,11 @@ export const Button = styled<ButtonProps>(BsButton)({
   height: important("40px"),
 });
 
-const customStyles: StylesConfig = {
+// https://github.com/JedWatson/react-select/issues/1025#issuecomment-492552567
+const borderColor = theme.color.grey2;
+const focusColor = theme.color.blue;
+const focusedColor = theme.color.focused;
+const selectStyle: StylesConfig = {
   container: (provided, { selectProps }) => ({
     ...provided,
     display: "inline-block",
@@ -16,34 +20,53 @@ const customStyles: StylesConfig = {
       ? selectProps.width
       : selectProps.width + "px",
   }),
-  control: (provided) => ({
-    ...provided,
-    height: "40px",
-    borderColor: theme.color.grey2,
-    ":hover": {
-      borderColor: theme.color.blue,
-    },
-  }),
+  control: (provided, state) => {
+    // console.log(state);
+    return {
+      ...provided,
+      height: "40px",
+      borderColor,
+      ":hover": {
+        borderColor: focusColor,
+      },
+    };
+  },
   dropdownIndicator: (provided) => ({
     ...provided,
-    color: theme.color.grey2,
+    color: borderColor,
     ":hover": {
-      // TODO: use immer
       ...provided[":hover"],
-      color: theme.color.blue,
+      color: focusColor,
     },
     ":focus": {
       ...provided[":focus"],
-      color: theme.color.blue,
+      color: focusColor,
     },
     ":active": {
       ...provided[":active"],
-      color: theme.color.blue,
+      color: focusColor,
     },
   }),
   indicatorSeparator: (provided) => ({
     display: "none",
   }),
+  menu: (provided) => ({
+    ...provided,
+    boxShadow: theme.shadow.normal,
+  }),
+  option: (provided, { isSelected, isFocused }) => {
+    return {
+      ...provided,
+      transition: "background-color .15s ease",
+      backgroundColor: isSelected
+        ? theme.color.secondaryLight
+        : isFocused
+        ? focusedColor
+        : "transparent",
+      color: isSelected ? theme.color.secondary : "inherit",
+      fontWeight: isSelected ? "bold" : "inherit",
+    };
+  },
 };
 
 type CustomSelectProps = {
@@ -51,5 +74,5 @@ type CustomSelectProps = {
 };
 
 export function Select(props: SelectProps & CustomSelectProps) {
-  return <ReactSelect styles={customStyles} {...props} />;
+  return <ReactSelect styles={selectStyle} {...props} />;
 }
