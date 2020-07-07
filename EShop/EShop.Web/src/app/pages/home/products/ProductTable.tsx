@@ -19,6 +19,7 @@ import { useOnMount } from "../helpers/hookHelpers";
 import { useGridApi } from "../helpers/agGridHelpers";
 import Product from "./product.model";
 import ProductTableHeader from "./ProductTableHeader";
+import { AgSelect } from "../../../widgets/Common";
 import { Pinned } from "./product.duck.d";
 import styled, { important, theme } from "../../../styles/styled";
 import useColumnDefs from "./useColumnDefs";
@@ -85,6 +86,22 @@ function actionRenderer() {
     </div>
   );
 }
+function selectRenderer(params: ICellRendererParams) {
+  const options = params.colDef.cellEditorParams!;
+  const value = options.find((o) => o.value === parseInt(params.value, 10));
+  return (
+    <AgSelect
+      options={options}
+      placeholder="Category"
+      defaultValue={value}
+      isSearchable={false}
+      onChange={(e: any) => {
+        // TODO:
+        markAsDirty(params);
+      }}
+    />
+  );
+}
 
 const columnTypes: Record<string, ColDef> = {
   editable: {
@@ -96,6 +113,11 @@ const columnTypes: Record<string, ColDef> = {
   },
   checkbox: {
     cellRenderer: "checkboxRenderer",
+  },
+  selector: {
+    cellRenderer: "selectRenderer",
+    // remove padding so select's width is the same as container width
+    cellClass: "p0",
   },
   largeText: {
     cellEditor: "agLargeTextCellEditor",

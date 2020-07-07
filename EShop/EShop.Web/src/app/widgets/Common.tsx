@@ -3,6 +3,7 @@ import { Button as BsButton, ButtonProps } from "react-bootstrap";
 import isString from "lodash/isString";
 import ReactSelect, { StylesConfig, Props as SelectProps } from "react-select";
 import styled, { theme, important } from "../styles/styled";
+import { Styles } from "react-select/src/styles";
 
 export const Button = styled<ButtonProps>(BsButton)({
   height: important("40px"),
@@ -11,7 +12,7 @@ export const Button = styled<ButtonProps>(BsButton)({
 
 // https://github.com/JedWatson/react-select/issues/1025#issuecomment-492552567
 const borderColor = theme.color.grey2;
-const focusColor = theme.color.blue;
+const focusColor = theme.color.primary;
 const focusedColor = theme.color.focused;
 const selectStyle: StylesConfig = {
   container: (provided, { selectProps }) => ({
@@ -23,30 +24,22 @@ const selectStyle: StylesConfig = {
       ? { width: selectProps.width }
       : { width: selectProps.width + "px" }),
   }),
-  control: (provided, state) => {
+  control: (provided, { isSelected, isFocused }) => {
     // console.log(state);
     return {
       ...provided,
       height: "40px",
-      borderColor,
+      boxShadow: "none",
+      borderColor: isSelected || isFocused ? focusColor : borderColor,
       ":hover": {
         borderColor: focusColor,
       },
     };
   },
-  dropdownIndicator: (provided) => ({
+  dropdownIndicator: (provided, { isSelected, isFocused }) => ({
     ...provided,
-    color: borderColor,
+    color: isSelected || isFocused ? focusColor : borderColor,
     ":hover": {
-      ...provided[":hover"],
-      color: focusColor,
-    },
-    ":focus": {
-      ...provided[":focus"],
-      color: focusColor,
-    },
-    ":active": {
-      ...provided[":active"],
       color: focusColor,
     },
   }),
@@ -83,7 +76,7 @@ type CustomSelectProps = {
 };
 type Props = SelectProps & CustomSelectProps;
 
-export const StyledReactSelect = styled<ButtonProps>(ReactSelect)({
+const StyledReactSelect = styled<Props>(ReactSelect)({
   // prevent value container from being pushed up when there are no space left
   '& [class$="dummyInput"]': {
     position: "absolute",
@@ -95,3 +88,47 @@ export function Select(props: Props) {
 Select.defaultProps = {
   width: "auto",
 } as Partial<Props>;
+
+const baseStyle = selectStyle as Required<Styles>;
+const agSelectStyle: StylesConfig = {
+  ...baseStyle,
+  container: (provided, state) => ({
+    ...provided,
+    ...baseStyle.container(provided, state),
+    width: "100%",
+  }),
+  control: (provided, state) => ({
+    ...provided,
+    ...baseStyle.control(provided, state),
+    border: "none",
+    backgroundColor: "transparent",
+    borderRadius: 0,
+  }),
+  menu: (provided, state) => ({
+    ...provided,
+    ...baseStyle.menu(provided, state),
+    marginTop: '2px',
+    marginBottom: '2px',
+    borderRadius: 0,
+  }),
+  dropdownIndicator: (provided, state) => ({
+    ...provided,
+    ...baseStyle.dropdownIndicator(provided, state),
+    color: focusColor,
+  }),
+};
+export function AgSelect(props: Props) {
+  return (
+    <StyledReactSelect
+      styles={agSelectStyle}
+      // insert the menu outside of the table so it wont be hidden
+      menuPortalTarget={document.body}
+      // Minimum height of the menu before flipping
+      minMenuHeight={220}
+      // flip when there isn't enough space below the control.
+      menuPlacement='auto'
+      {...props}
+    />
+  );
+}
+AgSelect.defaultProps = { ...Select.defaultProps };

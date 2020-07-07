@@ -57,14 +57,11 @@ export default function CurrencySelector() {
 
   return (
     <Select
-      name="colors"
       placeholder="Currency"
       isSearchable={false}
       defaultValue={defaultValue}
       onChange={(e: any) => dispatch(actions.setCurrency(e.value))}
       options={currencies.map(toOption)}
-      className="basic-multi-select"
-      classNamePrefix="select"
     />
   );
 }

@@ -5,10 +5,9 @@ import { ColumnInfo } from "./product.duck.d";
 import { ProductCategory } from "./product.model";
 import { useForceUpdate } from "../helpers/hookHelpers";
 import { autoSizeColumns } from "../helpers/agGridHelpers";
-import toMap from "../helpers/toMap";
 
 const getColDefs = (categories: ProductCategory[]): Record<string, ColDef> => {
-  const categoryData = toMap(categories, "id", "name");
+  const categoryData = categories.map((c) => ({ label: c.name, value: c.id }));
 
   return {
     id: {
@@ -35,12 +34,8 @@ const getColDefs = (categories: ProductCategory[]): Record<string, ColDef> => {
     },
     category: {
       headerName: "Loại",
-      type: ["editable"],
-      cellEditor: "agSelectCellEditor",
-      cellEditorParams: {
-        values: Object.keys(categoryData),
-      },
-      refData: categoryData,
+      type: ["selector"],
+      cellEditorParams: categoryData,
     },
     numberOfVersions: {
       headerName: "Số phiên bản",
