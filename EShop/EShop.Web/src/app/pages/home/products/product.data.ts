@@ -31,6 +31,15 @@ function getContent() {
   return contentGen.generateParagraphs(randomBetween(8, 14));
 }
 
+export const productCategories: ProductCategory[] = [
+  { id: 0, name: "Samsung" },
+  { id: 1, name: "Huawei" },
+  { id: 2, name: "HP" },
+  { id: 3, name: "Macbook" },
+  { id: 4, name: "IPad" },
+  { id: 5, name: "IPhone" },
+];
+
 const products: Product[] = [
   {
     id: 0,
@@ -38,7 +47,7 @@ const products: Product[] = [
     description: getDescription(),
     content: getContent(),
     weight: 0.5,
-    category: 5,
+    category: productCategories[5],
     numberOfVersions: 4,
     price: 26000000,
     originalPrice: 20000000,
@@ -54,7 +63,7 @@ const products: Product[] = [
     description: getDescription(),
     content: getContent(),
     weight: 0.7,
-    category: 0,
+    category: productCategories[0],
     numberOfVersions: 3,
     price: 26000000,
     originalPrice: 20000000,
@@ -70,7 +79,7 @@ const products: Product[] = [
     description: getDescription(),
     content: getContent(),
     weight: 0.8,
-    category: 4,
+    category: productCategories[4],
     numberOfVersions: 3,
     price: 25000000,
     originalPrice: 22000000,
@@ -86,7 +95,7 @@ const products: Product[] = [
     description: getDescription(),
     content: getContent(),
     weight: 1.5,
-    category: 3,
+    category: productCategories[3],
     numberOfVersions: 2,
     price: 40000000,
     originalPrice: 35000000,
@@ -102,7 +111,7 @@ const products: Product[] = [
     description: getDescription(),
     content: getContent(),
     weight: 1.7,
-    category: 2,
+    category: productCategories[2],
     numberOfVersions: 8,
     price: 5000000,
     originalPrice: 3000000,
@@ -118,7 +127,7 @@ const products: Product[] = [
     description: getDescription(),
     content: getContent(),
     weight: 1.4,
-    category: 1,
+    category: productCategories[1],
     numberOfVersions: 4,
     price: 3290000,
     originalPrice: 1500000,
@@ -134,7 +143,7 @@ const products: Product[] = [
     description: getDescription(),
     content: getContent(),
     weight: 0.6,
-    category: 0,
+    category: productCategories[0],
     numberOfVersions: 5,
     price: 4400000,
     originalPrice: 3000000,
@@ -144,15 +153,6 @@ const products: Product[] = [
     deliver: randomBoolean(),
     applyPromotion: randomBoolean(),
   },
-];
-
-export const productCategories: ProductCategory[] = [
-  { id: 0, name: "Samsung" },
-  { id: 1, name: "Huawei" },
-  { id: 2, name: "HP" },
-  { id: 3, name: "Macbook" },
-  { id: 4, name: "IPad" },
-  { id: 5, name: "IPhone" },
 ];
 
 export default products;

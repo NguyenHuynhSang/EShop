@@ -4,7 +4,7 @@ export default interface Product {
   description: string;
   content: string;
   weight: number;
-  category: number | string;
+  category: ProductCategory;
   // url: string;
   numberOfVersions: number;
   price: number;

@@ -131,12 +131,12 @@ type ProductTableProps = {
 };
 export default function ProductTable(props: ProductTableProps) {
   const { className, ...rest } = props;
-  const products = useSelector<Product[]>(
+  const products = useSelector<any[]>(
     (state) =>
       // TODO: fix category type
       state.products.products?.map((p) => ({
         ...p,
-        category: p.category.toString(),
+        category: p.category.id.toString(),
       })),
     shallowEqual
   );
@@ -210,6 +210,7 @@ export default function ProductTable(props: ProductTableProps) {
         frameworkComponents={{
           checkboxRenderer,
           actionRenderer,
+          selectRenderer,
           agColumnHeader: ProductTableHeader,
         }}
         {...rest}
