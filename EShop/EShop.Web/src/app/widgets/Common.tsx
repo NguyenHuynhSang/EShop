@@ -6,6 +6,7 @@ import styled, { theme, important } from "../styles/styled";
 
 export const Button = styled<ButtonProps>(BsButton)({
   height: important("40px"),
+  whiteSpace: "nowrap",
 });
 
 // https://github.com/JedWatson/react-select/issues/1025#issuecomment-492552567
@@ -16,9 +17,11 @@ const selectStyle: StylesConfig = {
   container: (provided, { selectProps }) => ({
     ...provided,
     display: "inline-block",
-    width: isString(selectProps.width)
-      ? selectProps.width
-      : selectProps.width + "px",
+    ...(selectProps.width === "auto"
+      ? {}
+      : isString(selectProps.width)
+      ? { width: selectProps.width }
+      : { width: selectProps.width + "px" }),
   }),
   control: (provided, state) => {
     // console.log(state);
@@ -47,9 +50,9 @@ const selectStyle: StylesConfig = {
       color: focusColor,
     },
   }),
-  indicatorSeparator: (provided) => ({
-    display: "none",
-  }),
+  // TODO: Add css for auto-width selector if using input
+  // https://github.com/JedWatson/react-select/issues/3603#issuecomment-591511367
+  indicatorSeparator: () => ({ display: "none" }),
   menu: (provided) => ({
     ...provided,
     boxShadow: theme.shadow.normal,
@@ -67,12 +70,28 @@ const selectStyle: StylesConfig = {
       fontWeight: isSelected ? "bold" : "inherit",
     };
   },
+  singleValue: (provided) => ({
+    ...provided,
+    maxWidth: "none",
+    position: "static",
+    transform: "none",
+  }),
 };
 
 type CustomSelectProps = {
   width?: string | number;
 };
+type Props = SelectProps & CustomSelectProps;
 
-export function Select(props: SelectProps & CustomSelectProps) {
-  return <ReactSelect styles={selectStyle} {...props} />;
+export const StyledReactSelect = styled<ButtonProps>(ReactSelect)({
+  // prevent value container from being pushed up when there are no space left
+  '& [class$="dummyInput"]': {
+    position: "absolute",
+  },
+});
+export function Select(props: Props) {
+  return <StyledReactSelect styles={selectStyle} {...props} />;
 }
+Select.defaultProps = {
+  width: "auto",
+} as Partial<Props>;

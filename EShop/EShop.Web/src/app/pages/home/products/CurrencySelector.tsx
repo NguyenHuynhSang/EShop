@@ -58,8 +58,8 @@ export default function CurrencySelector() {
   return (
     <Select
       name="colors"
-      width="150px"
       placeholder="Currency"
+      isSearchable={false}
       defaultValue={defaultValue}
       onChange={(e: any) => dispatch(actions.setCurrency(e.value))}
       options={currencies.map(toOption)}
