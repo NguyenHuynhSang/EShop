@@ -18,18 +18,27 @@ function convert(price: number, currency: Currency) {
   return Math.floor((price / vndCurrency.rate) * currency.rate);
 }
 
+function getSortComparator(sortField?: string) {
+  if (!sortField) return "name";
+  if (sortField === "category") {
+    return (product: Product) => product.category.name;
+  }
+
+  return sortField;
+}
+
 export default function mockProduct(mock: MockAdapter) {
   mock.onGet(PRODUCT_GET_URL).reply((config): [number, Product[]] => {
     const params: Params = config.params;
-    const sortField = params?.sortBy || "name";
+    const sortComparator = getSortComparator(params?.sortBy);
     const sort = params?.sort || "none";
     let products = productData;
 
     if (sort !== "none") {
       if (sort === "asc") {
-        products = sortBy<Product>(productData, [sortField]);
+        products = sortBy<Product>(productData, sortComparator);
       } else if (sort === "desc") {
-        products = sortBy<Product>(productData, [sortField]).reverse();
+        products = sortBy<Product>(productData, sortComparator).reverse();
       }
     }
 
