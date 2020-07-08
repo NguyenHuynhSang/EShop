@@ -6,6 +6,7 @@ import {
   ButtonGroup,
   Button,
   ListGroup,
+  ListGroupItemProps,
 } from "react-bootstrap";
 import isArray from "lodash/isArray";
 import isString from "lodash/isString";
@@ -73,6 +74,24 @@ export function hasType(column: Column, type: string) {
   );
 }
 
+type ActionButtonProps = ListGroupItemProps & {
+  onClick: () => void;
+  children: React.ReactNode;
+};
+function ActionButton(props: ActionButtonProps) {
+  const { onClick, ...rest } = props;
+  return (
+    <ListGroup.Item
+      action
+      onClick={() => {
+        onClick();
+        pressKey("keyup", VKey.Escape);
+      }}
+      {...rest}
+    />
+  );
+}
+
 type ColumnMenuProps = {
   column: Column;
   columnApi: ColumnApi;
@@ -82,8 +101,7 @@ function ColumnMenu(props: ColumnMenuProps) {
   const field = column.getColDef().field!;
   const dispatch = useDispatch();
   const pinned = useSelector(
-    (state) =>
-      state.products.columnInfos.find(c => c.field === field)?.pinned
+    (state) => state.products.columnInfos.find((c) => c.field === field)?.pinned
   );
   const setPin = (pinned: Pinned) => {
     columnApi.setColumnPinned(column.getColId(), pinned ?? "");
@@ -92,6 +110,13 @@ function ColumnMenu(props: ColumnMenuProps) {
       // onColumnPinned from ag-grid doesn't fire when unpinning column
       dispatch(actions.setPinned({ column: field, pinned }));
     }
+  };
+  const autoSizeThisColumn = () => {
+    columnApi.autoSizeColumn(column.getColId(), false);
+  };
+  const autoSizeAll = () => {
+    const allColumnIds = columnApi.getAllColumns().map((c) => c.getId());
+    columnApi.autoSizeColumns(allColumnIds, false);
   };
 
   return (
@@ -130,15 +155,12 @@ function ColumnMenu(props: ColumnMenuProps) {
                     </Button>
                   </ButtonGroup>
                 </ListGroup.Item>
-                <ListGroup.Item
-                  action
-                  onClick={() => {
-                    columnApi.autoSizeColumn(column.getColId());
-                    pressKey("keyup", VKey.Escape);
-                  }}
-                >
+                <ActionButton onClick={autoSizeThisColumn}>
                   Autosize This Column
-                </ListGroup.Item>
+                </ActionButton>
+                <ActionButton onClick={autoSizeAll}>
+                  Autosize All Columns
+                </ActionButton>
               </ListGroup>
             </Popover>
           }
