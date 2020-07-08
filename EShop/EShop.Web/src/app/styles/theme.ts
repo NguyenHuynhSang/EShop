@@ -28,6 +28,7 @@ const theme = {
   },
   tableRowHeight: 40,
   shadow: {
+    light: "0 0 50px 0 rgba(82,63,105,.1)",
     normal: "0 0 50px 0 rgba(82,63,105,.15)",
   },
   spacing: {

@@ -75,6 +75,22 @@ export default createGlobalStyle`
     border-radius: 0 !important;
 }
 
+/* styles for pinned columns and rows */
+.ag-pinned-left-header,
+.ag-pinned-right-header {
+    /* elevation effect to defferentiate between pinned columns and normal ones */
+    box-shadow: ${theme.shadow.light};
+}
+.ag-pinned-left-cols-container::before,
+.ag-pinned-right-cols-container::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    box-shadow: ${theme.shadow.light};
+}
+
 /* ag input */
 .ag-right-aligned-cell .ag-text-field-input {
     text-align: right;

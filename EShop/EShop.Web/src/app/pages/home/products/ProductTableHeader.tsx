@@ -11,11 +11,11 @@ import {
 import isArray from "lodash/isArray";
 import isString from "lodash/isString";
 import { IconButton } from "@material-ui/core";
-import { useDispatch, useSelector } from "../../../store/store";
+import ThemeProvider from "../../../../_metronic/materialUIThemeProvider/ThemeProvider";
 import MenuIcon from "@material-ui/icons/Menu";
+import { useDispatch, useSelector } from "../../../store/store";
 import { actions } from "./product.duck";
 import pressKey, { VKey } from "../helpers/pressKey";
-import ThemeProvider from "../../../../_metronic/materialUIThemeProvider/ThemeProvider";
 import styled from "../../../styles/styled";
 import { SortMode, Pinned } from "./product.duck.d";
 
@@ -34,6 +34,10 @@ const HeaderWrapper = styled<HeaderWrapperProps>((props) => {
   display: "flex",
   alignItems: "center",
   justifyContent: (props) => (props.isNumericColumn ? "end" : "start"),
+
+  "& .fas.fa-thumbtack": {
+    marginLeft: "auto",
+  },
 });
 
 type SortFunction = () => void;
@@ -65,11 +69,16 @@ const useSort = (
 
   return [sortMode, cycleSort];
 };
+const usePinStatus = (column?: string) =>
+  useSelector(
+    (state) =>
+      state.products.columnInfos.find((c) => c.field === column)?.pinned
+  );
 
 export function hasType(column: Column, type: string) {
   const colDef = column.getColDef();
   return (
-    (isArray(colDef.type) && colDef.type.find((t) => t === type)) ||
+    (isArray(colDef.type) && colDef.type.indexOf(type) !== -1) ||
     (isString(colDef.type) && colDef.type === type)
   );
 }
@@ -100,9 +109,7 @@ function ColumnMenu(props: ColumnMenuProps) {
   const { column, columnApi } = props;
   const field = column.getColDef().field!;
   const dispatch = useDispatch();
-  const pinned = useSelector(
-    (state) => state.products.columnInfos.find((c) => c.field === field)?.pinned
-  );
+  const pinned = usePinStatus(field);
   const setPin = (pinned: Pinned) => {
     columnApi.setColumnPinned(column.getColId(), pinned ?? "");
 
@@ -206,19 +213,20 @@ const getSortIndicator = (sortMode: SortMode) => {
 export default function ProductTableHeader(props: IHeaderParams) {
   const { displayName, column, enableSorting, columnApi } = props;
   const colDef = column.getColDef();
-  const isNumericColumn =
-    colDef.type !== undefined && colDef.type?.indexOf("numericColumn") !== -1;
+  const isNumericColumn = hasType(column, "numericColumn");
   const [sortMode, cycleSort] = useSort(enableSorting, colDef.field);
+  const pinned = usePinStatus(colDef.field);
 
   return (
     <HeaderWrapper
       isNumericColumn={isNumericColumn}
       role="button"
-      onClick={() => cycleSort()}
+      onClick={cycleSort}
     >
       {displayName}
       {getColumnMenu(column, columnApi)}
       {enableSorting && getSortIndicator(sortMode)}
+      {pinned && <i className="fas fa-thumbtack fa-sm" />}
     </HeaderWrapper>
   );
 }
