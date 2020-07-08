@@ -118,6 +118,10 @@ function ColumnMenu(props: ColumnMenuProps) {
     const allColumnIds = columnApi.getAllColumns().map((c) => c.getId());
     columnApi.autoSizeColumns(allColumnIds, false);
   };
+  const hideThisColumn = () => {
+    columnApi.setColumnVisible(column.getColId(), false);
+    dispatch(actions.setColumnVisible({ column: field, visible: false }));
+  };
 
   return (
     // prevent this column from being sorted if clicking this button
@@ -156,10 +160,13 @@ function ColumnMenu(props: ColumnMenuProps) {
                   </ButtonGroup>
                 </ListGroup.Item>
                 <ActionButton onClick={autoSizeThisColumn}>
-                  Autosize This Column
+                  Autosize this column
                 </ActionButton>
                 <ActionButton onClick={autoSizeAll}>
-                  Autosize All Columns
+                  Autosize all columns
+                </ActionButton>
+                <ActionButton onClick={hideThisColumn}>
+                  Hide this column
                 </ActionButton>
               </ListGroup>
             </Popover>

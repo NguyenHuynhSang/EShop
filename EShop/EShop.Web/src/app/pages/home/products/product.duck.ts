@@ -9,6 +9,7 @@ import {
   Params,
   ColumnPinPayload,
   ColumnInfo,
+  ColumnVisiblePayload,
 } from "./product.duck.d";
 import Product, { ProductCategory } from "./product.model";
 import Currency from "../base/currency/currency.model";
@@ -49,6 +50,11 @@ const slice = createSlice({
     setColumnDisplay(state, action: PayloadAction<ColumnInfo[]>) {
       state.columnInfos = action.payload;
       state.columnInfosGen++;
+    },
+    setColumnVisible(state, action: PayloadAction<ColumnVisiblePayload>) {
+      const { column, visible } = action.payload;
+      const col = state.columnInfos.find((c) => c.field === column);
+      if (col) col.hide = !visible;
     },
     setColumnOrder(state, action: PayloadAction<string[]>) {
       const columns = action.payload;

@@ -35,3 +35,5 @@ export type Params = {
   sortBy?: string;
   currency?: number;
 };
+
+export type ColumnVisiblePayload = { column: string; visible: boolean };
