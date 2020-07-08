@@ -2,13 +2,13 @@ import React from "react";
 import { useDispatch, useSelector, shallowEqual } from "../../../store/store";
 import { useOnMount } from "../helpers/hookHelpers";
 import { actions } from "./product.duck";
-import { Select } from "../../../widgets/Common";
 import {
+  Select,
   UsaIcon,
   VietnamIcon,
   EuIcon,
   JapanIcon,
-} from "../../../widgets/SvgIcons";
+} from "../../../widgets/Common";
 import styled, { theme } from "../../../styles/styled";
 import Currency from "../base/currency/currency.model";
 

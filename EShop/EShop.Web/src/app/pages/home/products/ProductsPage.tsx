@@ -5,8 +5,12 @@ import {
   PortletHeader,
   PortletHeaderToolbar,
 } from "../../../partials/content/Portlet";
-import { Button } from "../../../widgets/Common";
-import { PlusIcon, ProductIcon, VisibleIcon } from "../../../widgets/SvgIcons";
+import {
+  Button,
+  PlusIcon,
+  ProductIcon,
+  VisibleIcon,
+} from "../../../widgets/Common";
 import ProductTable from "./ProductTable";
 import CurrencySelector from "./CurrencySelector";
 import ColumnDisplayDialog from "./ColumnDisplayDialog";
