@@ -213,7 +213,7 @@ const getSortIndicator = (sortMode: SortMode) => {
 export default function ProductTableHeader(props: IHeaderParams) {
   const { displayName, column, enableSorting, columnApi } = props;
   const colDef = column.getColDef();
-  const isNumericColumn = hasType(column, "numericColumn");
+  const isNumericColumn = colDef.cellClass === "ag-right-aligned-cell";
   const [sortMode, cycleSort] = useSort(enableSorting, colDef.field);
   const pinned = usePinStatus(colDef.field);
 

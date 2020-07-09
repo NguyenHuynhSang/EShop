@@ -7,6 +7,9 @@ export default createGlobalStyle`
     height: 100%;
 }
 .ag-root {
+    --table-font: var(--display-font);
+    --table-number-font: 'Roboto Mono';
+
     width: 100% !important;
     border: none !important;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -22,17 +25,24 @@ export default createGlobalStyle`
     height: 100%;
 }
 
-.ag-cell .ag-react-container {
-    display: flex; /* vertically center custom components like checkbox */
-    justify-content: center;
-    width: 100%;
-}
 /* workaround: custom cell renderer will have duplicated content in 1 frame if
 the cell is refreshed. To be able to hide the duplicated one, add a root wrapper
 in your cell renderer (e.g. don't use React.Fragment as root component)
 */
 .ag-cell .ag-react-container > span:not([class]) ~ * {
     display: none;
+}
+.ag-cell .ag-react-container {
+    display: flex; /* vertically center custom components like checkbox */
+    justify-content: center;
+    width: 100%;
+}
+.ag-cell.ag-right-aligned-cell {
+    justify-content: right;
+    font-family: var(--table-number-font);
+}
+.ag-right-aligned-cell, .ag-right-aligned-cell .ag-react-container {
+    justify-content: right; /* text-align not working since we use flex here */
 }
 
 .ag-cell {
@@ -50,9 +60,13 @@ in your cell renderer (e.g. don't use React.Fragment as root component)
 
 .m0 { margin: 0 !important; }
 .p0 { padding: 0 !important; }
+.unit {
+    color: #a4a4a4;
+    font-family: var(--table-font);
+}
 
 .ag-theme-balham {
-    font-family: var(--display-font) !important;
+    font-family: var(--table-font) !important;
 }
 
 .ag-root-wrapper {
@@ -71,10 +85,6 @@ in your cell renderer (e.g. don't use React.Fragment as root component)
 
 .ag-root-wrapper .ag-cell.ag-cell-dirty {
     background-color: rgba(255, 193, 7, .5);
-}
-
-.ag-ltr .ag-right-aligned-cell {
-    justify-content: right; /* text-align not working since we use flex here */
 }
 
 .ag-cell-inline-editing {

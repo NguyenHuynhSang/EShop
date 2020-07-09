@@ -5,11 +5,11 @@ import EditIconMaterial from "@material-ui/icons/Edit";
 import { AgGridReact } from "ag-grid-react";
 import has from "lodash/has";
 import {
-  ValueFormatterParams,
   ICellRendererParams,
   ColumnPinnedEvent,
   ColDef,
   DragStoppedEvent,
+  ValueGetterParams,
 } from "ag-grid-community";
 import classNames from "classnames";
 import { Checkbox } from "@material-ui/core";
@@ -17,7 +17,6 @@ import { actions } from "./product.duck";
 import { useSelector, useDispatch, shallowEqual } from "../../../store/store";
 import { useOnMount } from "../helpers/hookHelpers";
 import { useGridApi } from "../helpers/agGridHelpers";
-import Product from "./product.model";
 import ProductTableHeader from "./ProductTableHeader";
 import { AgSelect } from "../../../widgets/Common";
 import { Pinned } from "./product.duck.d";
@@ -33,13 +32,25 @@ function formatNumber(number: number) {
 const suffixCurrencyCode = {
   đ: true,
 };
+
+type ValueWithUnit = {
+  prefixUnit: boolean;
+  value: string | number;
+  unit: string;
+};
+
 let SYMBOL = "";
-const currencyFormatter = (params: ValueFormatterParams) => {
-  const symbol = SYMBOL;
-  if (symbol === undefined) return formatNumber(params.value);
-  if (has(suffixCurrencyCode, symbol))
-    return formatNumber(params.value) + symbol;
-  return symbol + formatNumber(params.value);
+const currencyGetter = (params: ValueGetterParams): ValueWithUnit => {
+  const value = formatNumber(params.data[params.column.getColId()]);
+  const unit = SYMBOL;
+  // if (symbol === undefined) return params.value;
+  return { value, unit, prefixUnit: !has(suffixCurrencyCode, unit) };
+};
+let WEIGHT_UNIT = "kg";
+const weightGetter = (params: ValueGetterParams): ValueWithUnit => {
+  const value = params.data[params.column.getColId()];
+  const unit = WEIGHT_UNIT;
+  return { value, unit, prefixUnit: false };
 };
 
 function markAsDirty(params: ICellRendererParams) {
@@ -103,21 +114,42 @@ function selectRenderer(params: ICellRendererParams) {
   );
 }
 
+function numberWithUnitRenderer(params: ICellRendererParams) {
+  const val = params.value as ValueWithUnit;
+  const comp = [
+    val.value,
+    <span key="unit" className="unit">
+      {val.unit}
+    </span>,
+  ];
+
+  if (val.prefixUnit) comp.reverse();
+  return <span>{comp}</span>;
+}
+
 const columnTypes: Record<string, ColDef> = {
   editable: {
     editable: true,
     onCellValueChanged: markAsDirty,
   },
   currency: {
-    valueFormatter: currencyFormatter,
+    // type: 'numericColumn' not working here
+    cellClass: "ag-right-aligned-cell",
+    cellRenderer: "numberWithUnitRenderer",
+    valueGetter: currencyGetter,
+  },
+  weight: {
+    cellClass: "ag-right-aligned-cell",
+    cellRenderer: "numberWithUnitRenderer",
+    valueGetter: weightGetter,
   },
   checkbox: {
     cellRenderer: "checkboxRenderer",
   },
   selector: {
-    cellRenderer: "selectRenderer",
     // remove padding so select's width is the same as container width
     cellClass: "p0",
+    cellRenderer: "selectRenderer",
   },
   largeText: {
     cellEditor: "agLargeTextCellEditor",
@@ -211,6 +243,7 @@ export default function ProductTable(props: ProductTableProps) {
           checkboxRenderer,
           actionRenderer,
           selectRenderer,
+          numberWithUnitRenderer,
           agColumnHeader: ProductTableHeader,
         }}
         {...rest}

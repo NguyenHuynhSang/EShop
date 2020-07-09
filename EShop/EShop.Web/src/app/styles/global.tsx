@@ -12,6 +12,9 @@ const sbThumbColor = "#a2a5b9";
 // I have to copy the relavent code from styled-component to fix the issue. Also
 // mimic styled-component api to have that syntax highlighting in vscode
 const GlobalStyle = createGlobalStyle`
+  :root {
+    --display-font: 'Poppins'
+  }
   ::selection {
     color: ${theme.color.white};
     background-color: ${theme.color.blue};

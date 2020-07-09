@@ -30,7 +30,7 @@ const getColDefs = (categories: ProductCategory[]): Record<string, ColDef> => {
     },
     weight: {
       headerName: "Khối lượng",
-      type: ["editable", "numericColumn"],
+      type: ["editable", "weight"],
     },
     category: {
       headerName: "Loại",
@@ -43,15 +43,15 @@ const getColDefs = (categories: ProductCategory[]): Record<string, ColDef> => {
     },
     price: {
       headerName: "Giá",
-      type: ["editable", "numericColumn", "currency"],
+      type: ["editable", "currency"],
     },
     originalPrice: {
       headerName: "Giá gốc",
-      type: ["editable", "numericColumn", "currency"],
+      type: ["editable", "currency"],
     },
     discountPrice: {
       headerName: "Giá khuyến mãi",
-      type: ["editable", "numericColumn", "currency"],
+      type: ["editable", "currency"],
     },
     quantity: {
       headerName: "Số lượng",
