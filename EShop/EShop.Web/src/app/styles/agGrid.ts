@@ -27,6 +27,13 @@ export default createGlobalStyle`
     justify-content: center;
     width: 100%;
 }
+/* workaround: custom cell renderer will have duplicated content in 1 frame if
+the cell is refreshed. To be able to hide the duplicated one, add a root wrapper
+in your cell renderer (e.g. don't use React.Fragment as root component)
+*/
+.ag-cell .ag-react-container > span:not([class]) ~ * {
+    display: none;
+}
 
 .ag-cell {
     display: flex;
