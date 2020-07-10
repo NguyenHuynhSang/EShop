@@ -26,7 +26,10 @@ const theme = {
     background: "#f2f3f8",
     focused: "#f3f6f9",
   },
-  tableRowHeight: 40,
+  font: {
+    display: "Poppins, Helvetica, sans-serif",
+    number: "'Roboto Mono', monospace",
+  },
   shadow: {
     light: "0 0 50px 0 rgba(82,63,105,.1)",
     normal: "0 0 50px 0 rgba(82,63,105,.15)",
@@ -38,6 +41,7 @@ const theme = {
     sm: ".5rem",
     xs: ".25rem",
   },
+  tableRowHeight: 40,
 };
 
 export default theme;

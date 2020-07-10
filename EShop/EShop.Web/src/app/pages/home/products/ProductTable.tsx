@@ -9,7 +9,7 @@ import {
   ColumnPinnedEvent,
   ColDef,
   DragStoppedEvent,
-  ValueGetterParams,
+  ValueFormatterParams,
 } from "ag-grid-community";
 import classNames from "classnames";
 import { Checkbox } from "@material-ui/core";
@@ -40,17 +40,16 @@ type ValueWithUnit = {
 };
 
 let SYMBOL = "";
-const currencyGetter = (params: ValueGetterParams): ValueWithUnit => {
-  const value = formatNumber(params.data[params.column.getColId()]);
+const currencyFormatter = (params: ValueFormatterParams) => {
+  const value = formatNumber(params.data[params.colDef.field!]);
   const unit = SYMBOL;
-  // if (symbol === undefined) return params.value;
-  return { value, unit, prefixUnit: !has(suffixCurrencyCode, unit) };
+  return { value, unit, prefixUnit: !has(suffixCurrencyCode, unit) } as any;
 };
 let WEIGHT_UNIT = "kg";
-const weightGetter = (params: ValueGetterParams): ValueWithUnit => {
-  const value = params.data[params.column.getColId()];
+const weightFormatter = (params: ValueFormatterParams) => {
+  const value = params.data[params.colDef.field!];
   const unit = WEIGHT_UNIT;
-  return { value, unit, prefixUnit: false };
+  return { value, unit, prefixUnit: false } as any;
 };
 
 function markAsDirty(params: ICellRendererParams) {
@@ -115,7 +114,7 @@ function selectRenderer(params: ICellRendererParams) {
 }
 
 function numberWithUnitRenderer(params: ICellRendererParams) {
-  const val = params.value as ValueWithUnit;
+  const val = params.valueFormatted as ValueWithUnit;
   const comp = [
     val.value,
     <span key="unit" className="unit">
@@ -136,12 +135,12 @@ const columnTypes: Record<string, ColDef> = {
     // type: 'numericColumn' not working here
     cellClass: "ag-right-aligned-cell",
     cellRenderer: "numberWithUnitRenderer",
-    valueGetter: currencyGetter,
+    valueFormatter: currencyFormatter,
   },
   weight: {
     cellClass: "ag-right-aligned-cell",
     cellRenderer: "numberWithUnitRenderer",
-    valueGetter: weightGetter,
+    valueFormatter: weightFormatter,
   },
   checkbox: {
     cellRenderer: "checkboxRenderer",
