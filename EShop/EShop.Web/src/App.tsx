@@ -10,6 +10,10 @@ import { LastLocationProvider } from "react-router-last-location";
 import { Routes } from "./app/router/Routes";
 import { I18nProvider, LayoutSplashScreen, ThemeProvider } from "./_metronic";
 import GlobalStyles from "./app/styles/global";
+import { setAutoFreeze } from "@reduxjs/toolkit/node_modules/immer";
+
+// fucking ag-grid keep messing with my data by mutating it internally.
+setAutoFreeze(false);
 
 export default function App({ store, Layout, persistor, basename }) {
   return (

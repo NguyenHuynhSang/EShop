@@ -14,10 +14,9 @@ import { IconButton } from "@material-ui/core";
 import ThemeProvider from "../../../../_metronic/materialUIThemeProvider/ThemeProvider";
 import MenuIcon from "@material-ui/icons/Menu";
 import { useDispatch, useSelector } from "../../../store/store";
-import { actions } from "./product.duck";
+import { actions, SortMode, Pinned } from "./product.duck";
 import pressKey, { VKey } from "../helpers/pressKey";
 import styled from "../../../styles/styled";
-import { SortMode, Pinned } from "./product.duck.d";
 
 type HeaderWrapperProps = {
   isNumericColumn: boolean;

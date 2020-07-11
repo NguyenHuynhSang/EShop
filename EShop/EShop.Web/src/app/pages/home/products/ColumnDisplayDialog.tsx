@@ -9,10 +9,9 @@ import {
   FormControlLabel,
   FormGroup,
 } from "@material-ui/core";
-import produce from "immer";
-import { ColumnInfo } from "./product.duck.d";
 import { useDispatch, useSelector, shallowEqual } from "../../../store/store";
-import { actions } from "./product.duck";
+import { actions, ColumnInfo } from "./product.duck";
+import immer from 'immer';
 
 type ColumnDisplayDialogProps = {
   open: boolean;
@@ -26,29 +25,30 @@ export default function ColumnDisplayDialog(props: ColumnDisplayDialogProps) {
     (state) => state.products.columnInfos,
     shallowEqual
   );
-  const [draftColumnInfo, setDraftColumnInfo] = React.useState<ColumnInfo[]>([]);
+  const [draftColumnInfo, setDraftColumnInfo] = React.useState<ColumnInfo[]>(
+    []
+  );
 
   React.useEffect(() => {
     if (!open) {
       // wait until the close animation finishes to reset unsaved changes
-      setTimeout(() => setDraftColumnInfo(columnInfos), 1000)
+      setTimeout(() => setDraftColumnInfo(columnInfos), 1000);
     } else {
       setDraftColumnInfo(columnInfos);
     }
   }, [open, columnInfos]);
 
   const onChangeCheckbox = (name: string) => (_: any, checked: boolean) => {
-    setDraftColumnInfo(
-      produce(draftColumnInfo, (draft) => {
-        const hide = !checked;
-        const column = draft.find(c => c.field === name);
+    const hide = !checked;
 
-        if (column) {
-          column.hide = hide;
-          if (hide) column.pinned = undefined;
-        }
-      })
-    );
+    setDraftColumnInfo(immer(draftColumnInfo, (draft) => {
+      const column = draft.find((c) => c.field === name);
+
+      if (column) {
+        column.hide = hide;
+        if (hide) column.pinned = undefined;
+      }
+    }));
   };
 
   const onSave = () => {

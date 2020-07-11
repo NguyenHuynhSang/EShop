@@ -10,7 +10,7 @@ type GridReadyFunc = (event: GridReadyEvent) => void;
 type AutoSizeFunc = (columns?: string[]) => void;
 
 export function useGridApi(
-  onGridReadyCb: GridReadyCb
+  onGridReadyCb?: GridReadyCb
 ): [AgGridApi, GridReadyFunc, AutoSizeFunc] {
   const apiRef = useRef<AgGridApi>({});
   const onGridReady = useCallback(
@@ -18,7 +18,7 @@ export function useGridApi(
       apiRef.current.grid = params.api;
       apiRef.current.column = params.columnApi;
 
-      onGridReadyCb(apiRef.current);
+      if (onGridReadyCb) onGridReadyCb(apiRef.current);
     },
     [onGridReadyCb]
   );

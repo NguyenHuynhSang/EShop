@@ -1,6 +1,6 @@
 import axios from "axios";
 import Product, { ProductCategory } from "./product.model";
-import { Params } from "./product.duck.d";
+import { Params } from "./product.duck";
 import Currency from "../base/currency/currency.model";
 
 export const PRODUCT_GET_URL = "api/products/";

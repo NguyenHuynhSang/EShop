@@ -13,11 +13,14 @@ export interface ProductState {
   params: Params;
   products: Product[];
   productCategories: ProductCategory[];
+  categories: OptionTypeBase[];
   columnInfos: ColumnInfo[];
   currency?: Currency;
+  weightUnit: WeightUnit;
   currencies: Currency[];
 }
 
+export type WeightUnit = "kg" | "lb";
 export type Pinned = "left" | "right" | undefined;
 export type ColumnPinPayload = {
   column: string;

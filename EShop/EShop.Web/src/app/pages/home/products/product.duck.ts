@@ -10,9 +10,12 @@ import {
   ColumnPinPayload,
   ColumnInfo,
   ColumnVisiblePayload,
+  WeightUnit,
 } from "./product.duck.d";
 import Product, { ProductCategory } from "./product.model";
 import Currency from "../base/currency/currency.model";
+
+export * from "./product.duck.d";
 
 const columnInfos: ColumnInfo[] = [
   { field: "id", alwaysVisible: true, pinned: "left" },
@@ -35,10 +38,12 @@ const columnInfos: ColumnInfo[] = [
 const initialState: ProductState = {
   loading: false,
   productCategories: [],
+  categories: [],
   params: {},
   products: [],
   currencies: [],
   currency: undefined,
+  weightUnit: "kg",
   columnInfos,
   columnInfosGen: 0,
 };
@@ -85,6 +90,10 @@ const slice = createSlice({
     getCategoriesRequest() {},
     getCategoriesSuccess(state, action: PayloadAction<ProductCategory[]>) {
       state.productCategories = action.payload;
+      state.categories = action.payload.map((c) => ({
+        label: c.name,
+        value: c.id,
+      }));
     },
     getCategoriesFailure(state, action: PayloadAction<string>) {
       // TODO: implement
@@ -107,6 +116,9 @@ const slice = createSlice({
     setCurrency(state, action: PayloadAction<number>) {
       const currencyId = action.payload;
       state.currency = state.currencies.find((c) => c.id === currencyId);
+    },
+    setWeightUnit(state, action: PayloadAction<WeightUnit>) {
+      state.weightUnit = action.payload;
     },
   },
 });

@@ -8,7 +8,7 @@ import productData, { productCategories } from "./product.data";
 import currencies from "../base/currency/currency.data";
 import sortBy from "lodash/sortBy";
 import Product from "./product.model";
-import { Params } from "./product.duck.d";
+import { Params } from "./product.duck";
 import Currency from "../base/currency/currency.model";
 
 const vndCurrency = currencies.find((c) => c.code === "VND")!;

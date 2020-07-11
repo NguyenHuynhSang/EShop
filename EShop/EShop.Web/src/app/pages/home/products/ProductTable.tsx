@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect } from "react";
 import { IconButton } from "@material-ui/core";
 import DeleteIconMaterial from "@material-ui/icons/Delete";
 import EditIconMaterial from "@material-ui/icons/Edit";
@@ -13,13 +13,12 @@ import {
 } from "ag-grid-community";
 import classNames from "classnames";
 import { Checkbox } from "@material-ui/core";
-import { actions } from "./product.duck";
+import { actions, Pinned } from "./product.duck";
 import { useSelector, useDispatch, shallowEqual } from "../../../store/store";
 import { useOnMount } from "../helpers/hookHelpers";
 import { useGridApi } from "../helpers/agGridHelpers";
 import ProductTableHeader from "./ProductTableHeader";
 import { AgSelect } from "../../../widgets/Common";
-import { Pinned } from "./product.duck.d";
 import styled, { important, theme } from "../../../styles/styled";
 import useColumnDefs from "./useColumnDefs";
 
@@ -35,7 +34,7 @@ const suffixCurrencyCode = {
 
 type ValueWithUnit = {
   prefixUnit: boolean;
-  value: string | number;
+  value: number;
   unit: string;
 };
 
@@ -96,9 +95,12 @@ function actionRenderer() {
     </div>
   );
 }
-function selectRenderer(params: ICellRendererParams) {
-  const options = params.colDef.cellEditorParams!;
-  const value = options.find((o) => o.value === parseInt(params.value, 10));
+function SelectRenderer(params: ICellRendererParams) {
+  const options = useSelector(
+    (state) => state.products.categories,
+    shallowEqual
+  );
+  const value = options.find((o) => o.value === parseInt(params.value.id, 10));
   return (
     <AgSelect
       options={options}
@@ -106,7 +108,8 @@ function selectRenderer(params: ICellRendererParams) {
       defaultValue={value}
       isSearchable={false}
       onChange={(e: any) => {
-        // TODO:
+        // TODO: immer doesn't like products.category being mutated
+        // params.setValue({ id: e.value, name: e.label });
         markAsDirty(params);
       }}
     />
@@ -148,7 +151,7 @@ const columnTypes: Record<string, ColDef> = {
   selector: {
     // remove padding so select's width is the same as container width
     cellClass: "p0",
-    cellRenderer: "selectRenderer",
+    cellRenderer: "SelectRenderer",
   },
   largeText: {
     cellEditor: "agLargeTextCellEditor",
@@ -163,25 +166,10 @@ type ProductTableProps = {
 export default function ProductTable(props: ProductTableProps) {
   const { className, ...rest } = props;
   const products = useSelector<any[]>(
-    (state) =>
-      // TODO: fix category type
-      state.products.products?.map((p) => ({
-        ...p,
-        category: p.category.id.toString(),
-      })),
+    (state) => state.products.products,
     shallowEqual
   );
-  const onGridReadyCb = useCallback(
-    () => () => {
-      document
-        .getElementById("productTableContainer")
-        ?.addEventListener("resize", function() {
-          setTimeout(() => autoSizeColumns());
-        });
-    },
-    []
-  );
-  const [api, onGridReady, autoSizeColumns] = useGridApi(onGridReadyCb);
+  const [api, onGridReady, autoSizeColumns] = useGridApi();
   const [columnDefs] = useColumnDefs(api.column);
   const onFirstDataRendered = () => autoSizeColumns();
   const symbol = useSelector((state) => state.products.currency?.symbol) ?? "";
@@ -241,7 +229,7 @@ export default function ProductTable(props: ProductTableProps) {
         frameworkComponents={{
           checkboxRenderer,
           actionRenderer,
-          selectRenderer,
+          SelectRenderer,
           numberWithUnitRenderer,
           agColumnHeader: ProductTableHeader,
         }}
