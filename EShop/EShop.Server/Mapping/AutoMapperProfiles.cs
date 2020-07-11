@@ -8,6 +8,7 @@ using AutoMapper;
 using EShop.Server.Extension;
 using EShop.Server.InputModel;
 using EShop.Server.ViewModels;
+using static EShop.Server.SchedulerTask.ExchangeRateTask;
 
 namespace EShop.Server.Mapping
 {
@@ -39,6 +40,8 @@ namespace EShop.Server.Mapping
             CreateMap<Product,ProductInput> ();
             CreateMap<ProductVersionInput, ProductVersion>();
             CreateMap<ProductVersion, ProductVersionInput>();
+            CreateMap<Item, ExchangeRateDongA>();
+           
             CreateMap<IEnumerable<ProductVersionViewModel>, IEnumerable<ProductVersion>>();
             CreateMap<IEnumerable<ProductVersion>, IEnumerable<ProductVersionViewModel>>();
          

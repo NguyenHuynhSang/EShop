@@ -4,14 +4,16 @@ using EShop.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EShop.Server.Migrations
 {
     [DbContext(typeof(EShopDbContext))]
-    partial class EShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200711150216_add_table_exchangeRateDongA")]
+    partial class add_table_exchangeRateDongA
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -320,20 +322,20 @@ namespace EShop.Server.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<float>("banck")
-                        .HasColumnType("real");
+                    b.Property<string>("banck")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("bantienmat")
-                        .HasColumnType("real");
+                    b.Property<string>("bantienmat")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("imageurl")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("muack")
-                        .HasColumnType("real");
+                    b.Property<string>("muack")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("muatienmat")
-                        .HasColumnType("real");
+                    b.Property<string>("muatienmat")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("type")
                         .HasColumnType("nvarchar(max)");

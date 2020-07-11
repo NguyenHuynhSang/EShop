@@ -9,7 +9,9 @@ using EShop.Server.Data;
 using EShop.Server.Extension;
 using EShop.Server.FilterModel;
 using EShop.Server.Repository;
+using EShop.Server.SchedulerTask;
 using EShop.Server.Service;
+using EShop.Server.Service.HostService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -23,6 +25,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
+
 
 namespace EShop.Server
 {
@@ -51,6 +54,8 @@ namespace EShop.Server
             services.AddAutoMapper(typeof(Startup));
 
 
+
+
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddTransient<Seed>();
@@ -76,6 +81,14 @@ namespace EShop.Server
             services.AddScoped<IProductAttributeRepository, ProductAttributeRepository>();
             services.AddScoped<IProductAttributeService, ProductAttributeService>();
 
+
+
+            services.AddScoped<IExchangeRateRepository, ExchangeRateRepository>();
+            services.AddScoped<IExchangeRateService, ExchangeRateService>();
+
+
+
+
             services.AddCors();
             services.AddAutoMapper(typeof(Startup));
 
@@ -96,7 +109,15 @@ namespace EShop.Server
                 swagger.DocumentFilter<CustomModelDocumentFilter<ProductFilterModel>>();
             });
 
-      
+            //add scheduled task
+            services.AddSingleton<IScheduledTask, ExchangeRateTask>();
+            services.AddScheduler((sender, args) =>
+            {
+                Console.Write(args.Exception.Message);
+                args.SetObserved();
+            });
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

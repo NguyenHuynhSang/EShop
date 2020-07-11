@@ -14,6 +14,7 @@ namespace EShop.Server.Data
     {
         T Add(T entity);
 
+      
         void Update(T entity);
 
         T Delete(T entity);

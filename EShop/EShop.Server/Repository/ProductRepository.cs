@@ -123,7 +123,7 @@ namespace EShop.Server.Repository
 
         public IEnumerable<ProductViewModel> GetProductViewModels()
         {
-            var querry = from p in DbContext.Products
+            var query = from p in DbContext.Products
                          join c in DbContext.ProductCatalogs
                          on p.CatalogID equals c.ID
                          select new ProductViewModel
@@ -148,7 +148,7 @@ namespace EShop.Server.Repository
 
 
 
-            return querry.ToList();
+            return query.ToList();
         }
     }
 }
