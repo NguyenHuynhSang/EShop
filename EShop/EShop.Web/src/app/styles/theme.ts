@@ -1,3 +1,11 @@
+const spacing = {
+  xl: "3rem",
+  lg: "2rem",
+  md: "1rem",
+  sm: ".5rem",
+  xs: ".25rem",
+};
+
 const theme = {
   color: {
     blue: "#007bff",
@@ -34,13 +42,9 @@ const theme = {
     light: "0 0 50px 0 rgba(82,63,105,.1)",
     normal: "0 0 50px 0 rgba(82,63,105,.15)",
   },
-  spacing: {
-    xl: "3rem",
-    lg: "2rem",
-    md: "1rem",
-    sm: ".5rem",
-    xs: ".25rem",
-  },
+  spacing,
+  space: (topBottom: keyof typeof spacing, leftRight: keyof typeof spacing) =>
+    `${spacing[topBottom]} ${spacing[leftRight]}`,
   tableRowHeight: 40,
 };
 

@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { IconButton } from "@material-ui/core";
 import DeleteIconMaterial from "@material-ui/icons/Delete";
 import EditIconMaterial from "@material-ui/icons/Edit";
+import { Spinner } from "react-bootstrap";
 import { AgGridReact } from "ag-grid-react";
 import has from "lodash/has";
 import {
@@ -12,7 +13,7 @@ import {
   ValueFormatterParams,
 } from "ag-grid-community";
 import classNames from "classnames";
-import { Checkbox } from "@material-ui/core";
+import { Checkbox, Paper } from "@material-ui/core";
 import { actions, Pinned } from "./product.duck";
 import { useSelector, useDispatch, shallowEqual } from "../../../store/store";
 import { useOnMount } from "../helpers/hookHelpers";
@@ -117,7 +118,7 @@ function SelectRenderer(params: ICellRendererParams) {
   );
 }
 
-function numberWithUnitRenderer(params: ICellRendererParams) {
+function NumberWithUnitRenderer(params: ICellRendererParams) {
   const val = params.valueFormatted as ValueWithUnit;
   const comp = [
     val.value,
@@ -130,6 +131,22 @@ function numberWithUnitRenderer(params: ICellRendererParams) {
   return <span>{comp}</span>;
 }
 
+const Loader = styled(Paper)({
+  display: "flex",
+  alignItems: "center",
+  padding: theme.space("md", "lg"),
+});
+function AgCustomLoading() {
+  return (
+    <Loader>
+      <span>Please wait...</span>
+      &nbsp;
+      &nbsp;
+      <Spinner animation="grow" variant="primary" size="sm" />
+    </Loader>
+  );
+}
+
 const columnTypes: Record<string, ColDef> = {
   editable: {
     editable: true,
@@ -138,12 +155,12 @@ const columnTypes: Record<string, ColDef> = {
   currency: {
     // NOTE: type: 'numericColumn' not working here
     cellClass: "ag-right-aligned-cell",
-    cellRenderer: "numberWithUnitRenderer",
+    cellRenderer: "NumberWithUnitRenderer",
     valueFormatter: currencyFormatter,
   },
   weight: {
     cellClass: "ag-right-aligned-cell",
-    cellRenderer: "numberWithUnitRenderer",
+    cellRenderer: "NumberWithUnitRenderer",
     valueFormatter: weightFormatter,
   },
   checkbox: {
@@ -165,8 +182,9 @@ const frameworkComponents = {
   CheckboxRenderer,
   ActionRenderer,
   SelectRenderer,
-  numberWithUnitRenderer,
+  NumberWithUnitRenderer,
   agColumnHeader: ProductTableHeader,
+  AgCustomLoading,
 };
 
 type ProductTableProps = {
@@ -184,6 +202,7 @@ export default function ProductTable(props: ProductTableProps) {
   const dispatch = useDispatch();
   const symbol = useSelector((state) => state.products.currency?.symbol) ?? "";
   const weightUnit = useSelector((state) => state.products.weightUnit);
+  const loading = useSelector((state) => state.products.loading);
 
   useOnMount(() => {
     dispatch(actions.getCategoriesRequest());
@@ -199,6 +218,11 @@ export default function ProductTable(props: ProductTableProps) {
   useEffect(() => {
     WEIGHT_UNIT = weightUnit;
   }, [weightUnit]);
+
+  useEffect(() => {
+    if (loading) api.grid?.showLoadingOverlay();
+    else api.grid?.hideOverlay();
+  }, [api.grid, loading]);
 
   const onColumnPinned = (e: ColumnPinnedEvent) => {
     if (e.columns !== null && e.pinned !== null) {
@@ -237,6 +261,7 @@ export default function ProductTable(props: ProductTableProps) {
         rowData={products}
         // getRowClass={this.getRowClass}
         frameworkComponents={frameworkComponents}
+        loadingOverlayComponent="AgCustomLoading"
         // column virtualization make it very laggy when scrolling horizontally
         suppressColumnVirtualisation
         // you can already toggle show/hide columns. dragging outside to hide

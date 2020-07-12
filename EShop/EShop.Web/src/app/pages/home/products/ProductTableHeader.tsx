@@ -128,6 +128,7 @@ function ColumnMenu(props: ColumnMenuProps) {
   };
   const setWeight = (w: string) => () => {
     dispatch(actions.setWeightUnit(WeightUnit[w]));
+    pressKey("keyup", VKey.Escape);
   };
   const autoSizeThisColumn = () => {
     columnApi.autoSizeColumn(column.getColId(), false);
@@ -157,21 +158,21 @@ function ColumnMenu(props: ColumnMenuProps) {
                     <Button
                       variant="secondary"
                       onClick={setPin("left")}
-                      autoFocus={pinned === "left"}
+                      disabled={pinned === "left"}
                     >
                       Pin Left
                     </Button>
                     <Button
                       variant="secondary"
                       onClick={setPin(undefined)}
-                      autoFocus={pinned === undefined}
+                      disabled={pinned === undefined}
                     >
                       No Pin
                     </Button>
                     <Button
                       variant="secondary"
                       onClick={setPin("right")}
-                      autoFocus={pinned === "right"}
+                      disabled={pinned === "right"}
                     >
                       Pin Right
                     </Button>
@@ -182,9 +183,10 @@ function ColumnMenu(props: ColumnMenuProps) {
                     <SButtonGroup>
                       {Object.keys(WeightUnit).map((w) => (
                         <Button
+                          key={w}
                           variant="secondary"
                           onClick={setWeight(w)}
-                          autoFocus={weightUnit === WeightUnit[w]}
+                          disabled={weightUnit === WeightUnit[w]}
                         >
                           {w}
                         </Button>

@@ -74,6 +74,7 @@ const slice = createSlice({
       if (col) col.pinned = pinned;
     },
     getAllRequest(state, action: PayloadAction<Params | undefined>) {
+      state.loading = true;
       state.params = {
         currency: state.currency?.id,
         ...state.params,
@@ -81,11 +82,13 @@ const slice = createSlice({
       };
     },
     getAllSuccess(state, action: PayloadAction<Product[]>) {
+      state.loading = false;
       state.products = action.payload;
     },
     getAllFailure(state, action: PayloadAction<string>) {
       // TODO: implement
       const error = action.payload;
+      state.loading = false;
     },
     getCategoriesRequest() {},
     getCategoriesSuccess(state, action: PayloadAction<ProductCategory[]>) {
