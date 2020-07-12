@@ -209,6 +209,8 @@ export default function ProductTable(props: ProductTableProps) {
     <div className={classNames("ag-theme-balham table-wrapper", className)}>
       <AgGridReact
         // animateRows
+        // column virtualization make it very laggy when scrolling horizontally
+        suppressColumnVirtualisation
         onDragStopped={onDragStopped}
         onColumnPinned={onColumnPinned}
         rowHeight={theme.tableRowHeight}
