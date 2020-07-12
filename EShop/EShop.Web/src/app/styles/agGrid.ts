@@ -87,7 +87,20 @@ in your cell renderer (e.g. don't use React.Fragment as root component)
     border-radius: 0 !important;
 }
 
-/* styles for pinned columns */
+/* ----- row stylings ----- */
+
+.ag-row {
+    transition: background-color .3s !important;
+}
+
+/* action buttons only show its true color when hovering. We don't want to
+distract user from more important things in the table */
+.ag-row:not(.ag-row-hover) .actions svg {
+    color: ${theme.color.grey2};
+    transition: color .2s;
+}
+
+/* ----- pinned columns ----- */
 
 /* pinned header */
 .ag-pinned-left-header,

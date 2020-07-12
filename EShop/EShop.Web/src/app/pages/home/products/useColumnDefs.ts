@@ -5,7 +5,7 @@ import { ColumnInfo } from "./product.duck";
 import { useForceUpdate } from "../helpers/hookHelpers";
 import { autoSizeColumns } from "../helpers/agGridHelpers";
 
-const colDefs: Record<string, ColDef> = {
+export const colDefs: Record<string, ColDef> = {
   id: {
     headerName: "ID",
     lockPosition: true,
@@ -66,7 +66,7 @@ const colDefs: Record<string, ColDef> = {
   },
   action: {
     headerName: "Tùy chọn",
-    cellRenderer: "actionRenderer",
+    cellRenderer: "ActionRenderer",
     sortable: false,
   },
 };

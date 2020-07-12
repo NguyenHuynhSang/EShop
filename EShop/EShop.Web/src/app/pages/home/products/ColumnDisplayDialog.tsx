@@ -11,7 +11,8 @@ import {
 } from "@material-ui/core";
 import { useDispatch, useSelector, shallowEqual } from "../../../store/store";
 import { actions, ColumnInfo } from "./product.duck";
-import immer from 'immer';
+import { colDefs } from "./useColumnDefs";
+import immer from "immer";
 
 type ColumnDisplayDialogProps = {
   open: boolean;
@@ -30,10 +31,8 @@ export default function ColumnDisplayDialog(props: ColumnDisplayDialogProps) {
   );
 
   React.useEffect(() => {
-    if (!open) {
-      // wait until the close animation finishes to reset unsaved changes
-      setTimeout(() => setDraftColumnInfo(columnInfos), 1000);
-    } else {
+    if (open) {
+      // reset unsaved changes when opening again
       setDraftColumnInfo(columnInfos);
     }
   }, [open, columnInfos]);
@@ -41,14 +40,16 @@ export default function ColumnDisplayDialog(props: ColumnDisplayDialogProps) {
   const onChangeCheckbox = (name: string) => (_: any, checked: boolean) => {
     const hide = !checked;
 
-    setDraftColumnInfo(immer(draftColumnInfo, (draft) => {
-      const column = draft.find((c) => c.field === name);
+    setDraftColumnInfo(
+      immer(draftColumnInfo, (draft) => {
+        const column = draft.find((c) => c.field === name);
 
-      if (column) {
-        column.hide = hide;
-        if (hide) column.pinned = undefined;
-      }
-    }));
+        if (column) {
+          column.hide = hide;
+          if (hide) column.pinned = undefined;
+        }
+      })
+    );
   };
 
   const onSave = () => {
@@ -72,7 +73,7 @@ export default function ColumnDisplayDialog(props: ColumnDisplayDialogProps) {
                     onChange={onChangeCheckbox(c.field)}
                   />
                 }
-                label={c.field}
+                label={colDefs[c.field].headerName}
               />
             );
           })}

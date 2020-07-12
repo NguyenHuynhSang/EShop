@@ -64,7 +64,7 @@ function markAsDirty(params: ICellRendererParams) {
 const CellCheckbox = styled(Checkbox)({
   padding: important(0),
 });
-function checkboxRenderer(params: ICellRendererParams) {
+function CheckboxRenderer(params: ICellRendererParams) {
   return (
     <CellCheckbox
       checked={params.value}
@@ -83,9 +83,9 @@ const EditIcon = styled(EditIconMaterial)({
 const DeleteIcon = styled(DeleteIconMaterial)({
   color: theme.color.danger,
 });
-function actionRenderer() {
+function ActionRenderer() {
   return (
-    <div>
+    <div className="actions">
       <IconButton>
         <EditIcon />
       </IconButton>
@@ -146,7 +146,7 @@ const columnTypes: Record<string, ColDef> = {
     valueFormatter: weightFormatter,
   },
   checkbox: {
-    cellRenderer: "checkboxRenderer",
+    cellRenderer: "CheckboxRenderer",
   },
   selector: {
     // remove padding so select's width is the same as container width
@@ -158,6 +158,14 @@ const columnTypes: Record<string, ColDef> = {
     maxWidth: 250,
     sortable: false,
   },
+};
+
+const frameworkComponents = {
+  CheckboxRenderer,
+  ActionRenderer,
+  SelectRenderer,
+  numberWithUnitRenderer,
+  agColumnHeader: ProductTableHeader,
 };
 
 type ProductTableProps = {
@@ -209,32 +217,26 @@ export default function ProductTable(props: ProductTableProps) {
     <div className={classNames("ag-theme-balham table-wrapper", className)}>
       <AgGridReact
         // animateRows
-        // column virtualization make it very laggy when scrolling horizontally
-        suppressColumnVirtualisation
         onDragStopped={onDragStopped}
         onColumnPinned={onColumnPinned}
         rowHeight={theme.tableRowHeight}
         headerHeight={45}
-        // you can already toggle show/hide columns. dragging outside to hide
-        // column just makes it more confusing
-        suppressDragLeaveHidesColumns
         columnDefs={columnDefs}
         columnTypes={columnTypes}
-        onFirstDataRendered={onFirstDataRendered}
         defaultColDef={{
           sortable: true,
           resizable: true,
         }}
+        onFirstDataRendered={onFirstDataRendered}
         onGridReady={onGridReady}
         rowData={products}
         // getRowClass={this.getRowClass}
-        frameworkComponents={{
-          checkboxRenderer,
-          actionRenderer,
-          SelectRenderer,
-          numberWithUnitRenderer,
-          agColumnHeader: ProductTableHeader,
-        }}
+        frameworkComponents={frameworkComponents}
+        // column virtualization make it very laggy when scrolling horizontally
+        suppressColumnVirtualisation
+        // you can already toggle show/hide columns. dragging outside to hide
+        // column just makes it more confusing
+        suppressDragLeaveHidesColumns
         {...rest}
       />
     </div>

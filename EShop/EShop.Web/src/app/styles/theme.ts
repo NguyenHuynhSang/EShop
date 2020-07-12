@@ -11,7 +11,7 @@ const theme = {
     teal: "#20c997",
     cyan: "#17a2b8",
     white: "#fff",
-    gray: "#6c757d",
+    grey: "#6c757d",
     grey2: "#e4e6ef",
     grayDark: "#343a40",
     primary: "#3699ff",
