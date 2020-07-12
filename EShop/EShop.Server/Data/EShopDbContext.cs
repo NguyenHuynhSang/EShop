@@ -56,6 +56,7 @@ namespace EShop.Server.Data
 
         public DbSet<Photo> Photos { get; set; }
 
+        public DbSet<ExchangeRateDongA> ExchangeRateDongAs { get; set; }
 
 
 
