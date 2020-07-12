@@ -7,15 +7,21 @@ import {
 import productData, { productCategories } from "./product.data";
 import currencies from "../base/currency/currency.data";
 import sortBy from "lodash/sortBy";
+import round from 'lodash/round'
 import Product from "./product.model";
-import { Params } from "./product.duck";
+import { Params, WeightUnit } from "./product.duck";
 import Currency from "../base/currency/currency.model";
 
 const vndCurrency = currencies.find((c) => c.code === "VND")!;
 
-function convert(price: number, currency: Currency) {
+function convertCurrency(price: number, currency: Currency) {
   // use VND currency as base
   return Math.floor((price / vndCurrency.rate) * currency.rate);
+}
+function convertWeight(weight: number, weightUnit: WeightUnit) {
+  if (weightUnit === WeightUnit.Lb) return round(weight * 2.20462, 2);
+  if (weightUnit === WeightUnit.Kg) return weight;
+  throw Error("what dis? " + weightUnit);
 }
 
 function getSortComparator(sortField?: string) {
@@ -30,8 +36,13 @@ function getSortComparator(sortField?: string) {
 export default function mockProduct(mock: MockAdapter) {
   mock.onGet(PRODUCT_GET_URL).reply((config): [number, Product[]] => {
     const params: Params = config.params;
-    const sortComparator = getSortComparator(params?.sortBy);
-    const sort = params?.sort || "none";
+    const {
+      currency: currencyId,
+      sortBy: sortField,
+      sort = "none",
+      weight,
+    } = params;
+    const sortComparator = getSortComparator(sortField);
     let products = productData;
 
     if (sort !== "none") {
@@ -42,15 +53,23 @@ export default function mockProduct(mock: MockAdapter) {
       }
     }
 
-    const currency = currencies.find((c) => c.id === params?.currency);
-
+    const currency = currencies.find((c) => c.id === currencyId);
     if (currency !== undefined) {
       products = products.map((p) => {
         return {
           ...p,
-          price: convert(p.price, currency),
-          originalPrice: convert(p.originalPrice, currency),
-          discountPrice: convert(p.discountPrice, currency),
+          price: convertCurrency(p.price, currency),
+          originalPrice: convertCurrency(p.originalPrice, currency),
+          discountPrice: convertCurrency(p.discountPrice, currency),
+        };
+      });
+    }
+
+    if (weight !== undefined) {
+      products = products.map((p) => {
+        return {
+          ...p,
+          weight: convertWeight(p.weight, weight),
         };
       });
     }

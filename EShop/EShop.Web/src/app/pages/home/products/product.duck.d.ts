@@ -20,7 +20,10 @@ export interface ProductState {
   currencies: Currency[];
 }
 
-export type WeightUnit = "kg" | "lb";
+export enum WeightUnit {
+  Kg = 'kg',
+  Lb = 'lb',
+}
 export type Pinned = "left" | "right" | undefined;
 export type ColumnPinPayload = {
   column: string;
@@ -37,6 +40,7 @@ export type Params = {
   sort?: SortMode;
   sortBy?: string;
   currency?: number;
+  weight?: WeightUnit;
 };
 
 export type ColumnVisiblePayload = { column: string; visible: boolean };

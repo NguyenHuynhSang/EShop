@@ -21,6 +21,7 @@ import ProductTableHeader from "./ProductTableHeader";
 import { AgSelect } from "../../../widgets/Common";
 import styled, { important, theme } from "../../../styles/styled";
 import useColumnDefs from "./useColumnDefs";
+import { WeightUnit } from "./product.duck";
 
 // TODO: use intl https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat
 function formatNumber(number: number) {
@@ -40,13 +41,13 @@ type ValueWithUnit = {
 
 let SYMBOL = "";
 const currencyFormatter = (params: ValueFormatterParams) => {
-  const value = formatNumber(params.data[params.colDef.field!]);
+  const value = formatNumber(params.value);
   const unit = SYMBOL;
   return { value, unit, prefixUnit: !has(suffixCurrencyCode, unit) } as any;
 };
-let WEIGHT_UNIT = "kg";
+let WEIGHT_UNIT = WeightUnit.Kg;
 const weightFormatter = (params: ValueFormatterParams) => {
-  const value = params.data[params.colDef.field!];
+  const { value } = params;
   const unit = WEIGHT_UNIT;
   return { value, unit, prefixUnit: false } as any;
 };
@@ -135,7 +136,7 @@ const columnTypes: Record<string, ColDef> = {
     onCellValueChanged: markAsDirty,
   },
   currency: {
-    // type: 'numericColumn' not working here
+    // NOTE: type: 'numericColumn' not working here
     cellClass: "ag-right-aligned-cell",
     cellRenderer: "numberWithUnitRenderer",
     valueFormatter: currencyFormatter,
@@ -180,8 +181,9 @@ export default function ProductTable(props: ProductTableProps) {
   const [api, onGridReady, autoSizeColumns] = useGridApi();
   const [columnDefs] = useColumnDefs(api.column);
   const onFirstDataRendered = () => autoSizeColumns();
-  const symbol = useSelector((state) => state.products.currency?.symbol) ?? "";
   const dispatch = useDispatch();
+  const symbol = useSelector((state) => state.products.currency?.symbol) ?? "";
+  const weightUnit = useSelector((state) => state.products.weightUnit);
 
   useOnMount(() => {
     dispatch(actions.getCategoriesRequest());
@@ -194,6 +196,9 @@ export default function ProductTable(props: ProductTableProps) {
     // which is referenced by valueFormatter.
     SYMBOL = symbol;
   }, [symbol]);
+  useEffect(() => {
+    WEIGHT_UNIT = weightUnit;
+  }, [weightUnit]);
 
   const onColumnPinned = (e: ColumnPinnedEvent) => {
     if (e.columns !== null && e.pinned !== null) {

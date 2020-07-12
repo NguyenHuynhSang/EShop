@@ -43,7 +43,7 @@ const initialState: ProductState = {
   products: [],
   currencies: [],
   currency: undefined,
-  weightUnit: "kg",
+  weightUnit: WeightUnit.Kg,
   columnInfos,
   columnInfosGen: 0,
 };
@@ -164,5 +164,12 @@ export function* saga() {
     // TODO: error handling
     const currency = action.payload;
     yield put(actions.getAllRequest({ currency }));
+  });
+  yield takeLatest(actions.setWeightUnit.type, function* func(
+    action: ReturnType<typeof actions.setWeightUnit>
+  ) {
+    // TODO: error handling
+    const weight = action.payload;
+    yield put(actions.getAllRequest({ weight }));
   });
 }

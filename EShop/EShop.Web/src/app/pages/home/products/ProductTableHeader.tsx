@@ -14,7 +14,7 @@ import { IconButton } from "@material-ui/core";
 import ThemeProvider from "../../../../_metronic/materialUIThemeProvider/ThemeProvider";
 import MenuIcon from "@material-ui/icons/Menu";
 import { useDispatch, useSelector } from "../../../store/store";
-import { actions, SortMode, Pinned } from "./product.duck";
+import { actions, SortMode, Pinned, WeightUnit } from "./product.duck";
 import pressKey, { VKey } from "../helpers/pressKey";
 import styled from "../../../styles/styled";
 
@@ -36,6 +36,13 @@ const HeaderWrapper = styled<HeaderWrapperProps>((props) => {
 
   "& .fas.fa-thumbtack": {
     marginLeft: "auto",
+  },
+});
+
+const SButtonGroup = styled(ButtonGroup)({
+  display: "flex",
+  "& > *": {
+    flex: 1,
   },
 });
 
@@ -109,13 +116,18 @@ function ColumnMenu(props: ColumnMenuProps) {
   const field = column.getColDef().field!;
   const dispatch = useDispatch();
   const pinned = usePinStatus(field);
-  const setPin = (pinned: Pinned) => {
+  const weightUnit = useSelector((state) => state.products.weightUnit);
+  const isWeight = hasType(column, "weight");
+  const setPin = (pinned: Pinned) => () => {
     columnApi.setColumnPinned(column.getColId(), pinned ?? "");
 
     if (pinned === undefined) {
       // onColumnPinned from ag-grid doesn't fire when unpinning column
       dispatch(actions.setPinned({ column: field, pinned }));
     }
+  };
+  const setWeight = (w: string) => () => {
+    dispatch(actions.setWeightUnit(WeightUnit[w]));
   };
   const autoSizeThisColumn = () => {
     columnApi.autoSizeColumn(column.getColId(), false);
@@ -144,27 +156,42 @@ function ColumnMenu(props: ColumnMenuProps) {
                   <ButtonGroup>
                     <Button
                       variant="secondary"
-                      onClick={() => setPin("left")}
+                      onClick={setPin("left")}
                       autoFocus={pinned === "left"}
                     >
                       Pin Left
                     </Button>
                     <Button
                       variant="secondary"
-                      onClick={() => setPin(undefined)}
+                      onClick={setPin(undefined)}
                       autoFocus={pinned === undefined}
                     >
                       No Pin
                     </Button>
                     <Button
                       variant="secondary"
-                      onClick={() => setPin("right")}
+                      onClick={setPin("right")}
                       autoFocus={pinned === "right"}
                     >
                       Pin Right
                     </Button>
                   </ButtonGroup>
                 </ListGroup.Item>
+                {isWeight && (
+                  <ListGroup.Item>
+                    <SButtonGroup>
+                      {Object.keys(WeightUnit).map((w) => (
+                        <Button
+                          variant="secondary"
+                          onClick={setWeight(w)}
+                          autoFocus={weightUnit === WeightUnit[w]}
+                        >
+                          {w}
+                        </Button>
+                      ))}
+                    </SButtonGroup>
+                  </ListGroup.Item>
+                )}
                 <ActionButton onClick={autoSizeThisColumn}>
                   Autosize this column
                 </ActionButton>
