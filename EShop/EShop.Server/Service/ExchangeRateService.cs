@@ -1,4 +1,5 @@
-﻿using EShop.Server.Models;
+﻿using AutoMapper;
+using EShop.Server.Models;
 using EShop.Server.Repository;
 using System;
 using System.Collections.Generic;
@@ -23,19 +24,22 @@ namespace EShop.Server.Service
     public class ExchangeRateService : IExchangeRateService
     {
         IExchangeRateRepository _exchangeRateRepository;
+        private IMapper _mapper;
 
-
-        public ExchangeRateService(IExchangeRateRepository exchangeRateRepository)
+        public ExchangeRateService(IExchangeRateRepository exchangeRateRepository,IMapper mapper)
         {
             this._exchangeRateRepository = exchangeRateRepository;
-
+            _mapper = mapper;
 
         }
         public void AddOrUpdate(ExchangeRateDongA exchangeRate)
         {
             if (_exchangeRateRepository.CheckContains(x=>x.type== exchangeRate.type))
             {
-                 _exchangeRateRepository.Update(exchangeRate);
+                //ID  must be arrive at the Update Method
+                var entity = _exchangeRateRepository.GetSingleByCondition(x=>x.type==exchangeRate.type);
+                entity = _mapper.Map<ExchangeRateDongA, ExchangeRateDongA>(exchangeRate, entity);
+                _exchangeRateRepository.Update(entity);
             }
             else
             {

@@ -76,6 +76,7 @@ namespace EShop.Server.SchedulerTask
                 foreach (var item in tigia.items)
                 {
                     var enchangeItem = _mapper.Map<ExchangeRateDongA>(item);
+                    
                     _exchangeRateService.AddOrUpdate(enchangeItem);
                     _exchangeRateService.SaveChanges();
                 }

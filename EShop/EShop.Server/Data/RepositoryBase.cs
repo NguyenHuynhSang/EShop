@@ -36,7 +36,8 @@ namespace EShop.Server.Data
 
         public virtual void Update(T entity)
         {
-            _dbContext.Attach(entity);
+
+            dbSet.Attach(entity);
             _dbContext.Entry(entity).State = EntityState.Modified;
         }
 
