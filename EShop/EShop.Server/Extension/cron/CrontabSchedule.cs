@@ -17,7 +17,7 @@ using System.IO;
 //│    └──────────────────── hour(0 - 23)
 //└───────────────────────── min (0 - 59)
 
-namespace AppWithScheduler.Code.Cron
+namespace EShop.Server.Extension.cron
 {
     /// <summary>
     /// Represents a schedule initialized from the crontab expression.

@@ -4,7 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Runtime.Serialization;
 
-namespace AppWithScheduler.Code.Cron
+namespace EShop.Server.Extension.cron
 {
     [Serializable]
     public sealed class CrontabFieldImpl : IObjectReference

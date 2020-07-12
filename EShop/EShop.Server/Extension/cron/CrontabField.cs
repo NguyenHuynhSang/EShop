@@ -3,7 +3,7 @@ using System.Collections;
 using System.Globalization;
 using System.IO;
 
-namespace AppWithScheduler.Code.Cron
+namespace EShop.Server.Extension.cron
 {
     /// <summary>
     /// Represents a single crontab field.

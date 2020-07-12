@@ -1,6 +1,6 @@
 using System;
 
-namespace AppWithScheduler.Code.Cron
+namespace EShop.Server.Extension.cron
 {
     [Serializable]
     public enum CrontabFieldKind

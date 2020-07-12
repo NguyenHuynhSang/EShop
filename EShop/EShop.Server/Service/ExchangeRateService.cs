@@ -37,9 +37,12 @@ namespace EShop.Server.Service
             {
                  _exchangeRateRepository.Update(exchangeRate);
             }
+            else
+            {
+                _exchangeRateRepository.Add(exchangeRate);
+            }    
 
-
-             _exchangeRateRepository.Add(exchangeRate);
+           
         }
 
        

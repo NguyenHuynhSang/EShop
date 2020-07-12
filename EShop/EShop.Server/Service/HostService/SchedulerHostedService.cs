@@ -1,4 +1,4 @@
-﻿using AppWithScheduler.Code.Cron;
+﻿using EShop.Server.Extension.cron;
 using EShop.Server.SchedulerTask;
 using System;
 using System.Collections.Generic;
@@ -57,7 +57,7 @@ namespace EShop.Server.Service.HostService
                 taskThatShouldRun.Increment();
 
                 // what if the task run every minute but never return
-                // or return before 1 minune?
+                // or return after 1 minute?
                 // todo: spawn task outside the scheduled 
                 await taskFactory.StartNew(
                     async () =>
