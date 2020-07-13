@@ -31,6 +31,11 @@ function getContent() {
   return contentGen.generateParagraphs(randomBetween(8, 14));
 }
 
+let id = 0;
+function getId() {
+  return id++;
+}
+
 export const productCategories: ProductCategory[] = [
   { id: 0, name: "Samsung" },
   { id: 1, name: "Huawei" },
@@ -58,7 +63,7 @@ const products: Product[] = [
     applyPromotion: randomBoolean(),
   },
   {
-    id: 1,
+    id: 0,
     name: "Samsung galaxy X",
     description: getDescription(),
     content: getContent(),
@@ -74,7 +79,7 @@ const products: Product[] = [
     applyPromotion: randomBoolean(),
   },
   {
-    id: 2,
+    id: 0,
     name: "IPad Pro 69 XX",
     description: getDescription(),
     content: getContent(),
@@ -90,7 +95,7 @@ const products: Product[] = [
     applyPromotion: randomBoolean(),
   },
   {
-    id: 3,
+    id: 0,
     name: "Macbook Pro 16'",
     description: getDescription(),
     content: getContent(),
@@ -106,7 +111,7 @@ const products: Product[] = [
     applyPromotion: randomBoolean(),
   },
   {
-    id: 4,
+    id: 0,
     name: "HP 15 da0054TU i3 7020U (4ME68PA)",
     description: getDescription(),
     content: getContent(),
@@ -122,7 +127,7 @@ const products: Product[] = [
     applyPromotion: randomBoolean(),
   },
   {
-    id: 5,
+    id: 0,
     name: "Huawei MatePad T8",
     description: getDescription(),
     content: getContent(),
@@ -138,7 +143,7 @@ const products: Product[] = [
     applyPromotion: randomBoolean(),
   },
   {
-    id: 6,
+    id: 0,
     name: "Samsung Galaxy A70",
     description: getDescription(),
     content: getContent(),
@@ -155,4 +160,20 @@ const products: Product[] = [
   },
 ];
 
-export default products;
+const increment = (products: Product[], number: number) => {
+  return products.map((p) => ({
+    ...p,
+    id: getId(),
+    name: p.name + " " + number,
+  }));
+};
+
+export default JSON.parse(
+  JSON.stringify([
+    ...increment(products, 0),
+    ...increment(products, 1),
+    ...increment(products, 2),
+    ...increment(products, 3),
+    ...increment(products, 4),
+  ])
+) as Product[];

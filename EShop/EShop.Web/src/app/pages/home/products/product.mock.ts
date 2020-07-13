@@ -5,10 +5,11 @@ import {
   CURRENCY_GET_URL,
 } from "./products.service";
 import productData, { productCategories } from "./product.data";
+import clamp from "lodash/clamp";
 import currencies from "../base/currency/currency.data";
 import sortBy from "lodash/sortBy";
-import round from 'lodash/round'
-import Product from "./product.model";
+import round from "lodash/round";
+import Product, { ProductResult } from "./product.model";
 import { Params, WeightUnit } from "./product.duck";
 import Currency from "../base/currency/currency.model";
 
@@ -34,13 +35,15 @@ function getSortComparator(sortField?: string) {
 }
 
 export default function mockProduct(mock: MockAdapter) {
-  mock.onGet(PRODUCT_GET_URL).reply((config): [number, Product[]] => {
+  mock.onGet(PRODUCT_GET_URL).reply((config): [number, ProductResult] => {
     const params: Params = config.params;
     const {
       currency: currencyId,
       sortBy: sortField,
       sort = "none",
       weight,
+      page = 1,
+      perPage = 10,
     } = params;
     const sortComparator = getSortComparator(sortField);
     let products = productData;
@@ -55,27 +58,35 @@ export default function mockProduct(mock: MockAdapter) {
 
     const currency = currencies.find((c) => c.id === currencyId);
     if (currency !== undefined) {
-      products = products.map((p) => {
-        return {
-          ...p,
-          price: convertCurrency(p.price, currency),
-          originalPrice: convertCurrency(p.originalPrice, currency),
-          discountPrice: convertCurrency(p.discountPrice, currency),
-        };
-      });
+      products = products.map((p) => ({
+        ...p,
+        price: convertCurrency(p.price, currency),
+        originalPrice: convertCurrency(p.originalPrice, currency),
+        discountPrice: convertCurrency(p.discountPrice, currency),
+      }));
     }
 
     if (weight !== undefined) {
-      products = products.map((p) => {
-        return {
-          ...p,
-          weight: convertWeight(p.weight, weight),
-        };
-      });
+      products = products.map((p) => ({
+        ...p,
+        weight: convertWeight(p.weight, weight),
+      }));
     }
 
     console.log("GET", PRODUCT_GET_URL, params);
-    return [200, products];
+
+    const totalResults = products.length;
+    const lastPage = Math.ceil(totalResults / perPage)
+    const pageIndex = clamp(page, 1, lastPage) - 1;
+    const startResult = pageIndex * perPage;
+    const endResult = startResult + perPage;
+    return [
+      200,
+      {
+        results: products.slice(startResult, endResult),
+        totalResults: products.length,
+      },
+    ];
   });
 
   mock.onGet(PRODUCT_CATEGORY_GET_URL).reply((response) => {

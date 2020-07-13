@@ -20,3 +20,8 @@ export interface ProductCategory {
   id: number;
   name: string;
 }
+
+export interface ProductResult {
+  results: Product[];
+  totalResults: number;
+}

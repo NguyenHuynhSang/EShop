@@ -52,7 +52,9 @@ export const persistor = persistStore(store);
 sagaMiddleware.run(rootSaga);
 
 export type RootState = ReturnType<typeof store.getState>;
-export const useSelector: TypedUseSelectorHook<RootState> = useReduxSelector;
-export { useDispatch, shallowEqual };
+
+const useSelector: TypedUseSelectorHook<RootState> = useReduxSelector;
+
+export { useSelector, useDispatch, shallowEqual };
 
 export default store;

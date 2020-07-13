@@ -3,6 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import { put, takeLatest, select } from "redux-saga/effects";
 import { AxiosResponse } from "axios";
+import clamp from "lodash/clamp";
 import ProductService from "./products.service";
 import {
   ProductState,
@@ -12,7 +13,7 @@ import {
   ColumnVisiblePayload,
   WeightUnit,
 } from "./product.duck.d";
-import Product, { ProductCategory } from "./product.model";
+import { ProductCategory, ProductResult } from "./product.model";
 import Currency from "../base/currency/currency.model";
 
 export * from "./product.duck.d";
@@ -46,6 +47,14 @@ const initialState: ProductState = {
   weightUnit: WeightUnit.Kg,
   columnInfos,
   columnInfosGen: 0,
+  pagination: {
+    startResult: 0,
+    endResult: 0,
+    totalResults: 0,
+    perPage: 10,
+    currentPage: 1,
+    totalPages: 0,
+  },
 };
 
 const slice = createSlice({
@@ -81,9 +90,24 @@ const slice = createSlice({
         ...action?.payload,
       };
     },
-    getAllSuccess(state, action: PayloadAction<Product[]>) {
+    getAllSuccess(state, action: PayloadAction<ProductResult>) {
+      const { results, totalResults } = action.payload;
+      const { pagination } = state;
+      const currentPage = state.params.page ?? pagination.currentPage;
+      const perPage = state.params.perPage ?? pagination.perPage;
+
       state.loading = false;
-      state.products = action.payload;
+      state.products = results;
+
+      pagination.totalPages = Math.ceil(pagination.totalResults / perPage);
+      pagination.currentPage = clamp(currentPage, 1, pagination.totalPages);
+      pagination.startResult = (pagination.currentPage - 1) * perPage + 1;
+      pagination.endResult = Math.min(
+        pagination.startResult + perPage - 1,
+        totalResults
+      );
+      pagination.totalResults = totalResults;
+      pagination.perPage = perPage;
     },
     getAllFailure(state, action: PayloadAction<string>) {
       // TODO: implement
@@ -143,7 +167,7 @@ export function* saga() {
     const params = yield select((state: any) => state.products?.params);
 
     // TODO: if have tests, replace yield Api.fetch('/products') with yield call(Api.fetch, '/products')
-    const response: AxiosResponse<Product[]> = yield ProductService.getAll(
+    const response: AxiosResponse<ProductResult> = yield ProductService.getAll(
       params
     );
     yield put(actions.getAllSuccess(response.data));

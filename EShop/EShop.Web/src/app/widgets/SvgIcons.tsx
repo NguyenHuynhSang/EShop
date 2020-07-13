@@ -4,6 +4,11 @@ import { ReactComponent as PlusSvg } from "../../assets/Add.svg";
 import { ReactComponent as ProductSvg } from "../../assets/Product.svg";
 import { ReactComponent as VisibleSvg } from "../../assets/Visible.svg";
 
+import { ReactComponent as ArrowLeftSvg } from "../../assets/Angle-left.svg";
+import { ReactComponent as ArrowRightSvg } from "../../assets/Angle-right.svg";
+import { ReactComponent as ArrowToLeftSvg } from "../../assets/Arrow-to-left.svg";
+import { ReactComponent as ArrowToRightSvg } from "../../assets/Arrow-to-right.svg";
+
 import { ReactComponent as UsaSvg } from "../../assets/Flags/united-states.svg";
 import { ReactComponent as VietnamSvg } from "../../assets/Flags/vietnam.svg";
 import { ReactComponent as EuSvg } from "../../assets/Flags/european-union.svg";
@@ -85,6 +90,34 @@ export function JapanIcon(props: SvgIconProps) {
   return (
     <SvgIcon {...props}>
       <JapanSvg />
+    </SvgIcon>
+  );
+}
+export function ArrowLeftIcon(props: SvgIconProps) {
+  return (
+    <SvgIcon {...props}>
+      <ArrowLeftSvg />
+    </SvgIcon>
+  );
+}
+export function ArrowRightIcon(props: SvgIconProps) {
+  return (
+    <SvgIcon {...props}>
+      <ArrowRightSvg />
+    </SvgIcon>
+  );
+}
+export function ArrowToLeftIcon(props: SvgIconProps) {
+  return (
+    <SvgIcon {...props}>
+      <ArrowToLeftSvg />
+    </SvgIcon>
+  );
+}
+export function ArrowToRightIcon(props: SvgIconProps) {
+  return (
+    <SvgIcon {...props}>
+      <ArrowToRightSvg />
     </SvgIcon>
   );
 }

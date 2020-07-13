@@ -14,6 +14,7 @@ import {
 import ProductTable from "./ProductTable";
 import CurrencySelector from "./CurrencySelector";
 import ColumnDisplayDialog from "./ColumnDisplayDialog";
+import ProductTablePagination from "./ProductTablePagination";
 import styled, { theme } from "../../../styles/styled";
 
 const StyledProductIcon = styled(ProductIcon)({
@@ -31,6 +32,9 @@ const Toolbar = styled("div")({
 
   "& > :not(:last-child)": {
     marginRight: theme.spacing.md,
+  },
+  "& > .ag-pagination": {
+    marginLeft: "auto",
   },
 });
 
@@ -68,6 +72,7 @@ export default function ProductsPage() {
             &nbsp;&nbsp;Cột hiển thị&nbsp;
           </Button>
           <CurrencySelector />
+          <ProductTablePagination />
         </Toolbar>
         <ProductTable />
       </PortletBody>

@@ -7,6 +7,15 @@ export type ColumnInfo = {
   alwaysVisible?: boolean;
 } & ColDef;
 
+type Pagination = {
+  startResult: number;
+  endResult: number;
+  totalResults: number;
+  perPage: number;
+  currentPage: number;
+  totalPages: number;
+};
+
 export interface ProductState {
   loading: boolean;
   columnInfosGen: number;
@@ -18,11 +27,12 @@ export interface ProductState {
   currency?: Currency;
   weightUnit: WeightUnit;
   currencies: Currency[];
+  pagination: Pagination;
 }
 
 export enum WeightUnit {
-  Kg = 'kg',
-  Lb = 'lb',
+  Kg = "kg",
+  Lb = "lb",
 }
 export type Pinned = "left" | "right" | undefined;
 export type ColumnPinPayload = {
@@ -41,6 +51,8 @@ export type Params = {
   sortBy?: string;
   currency?: number;
   weight?: WeightUnit;
+  page?: number;
+  perPage?: number;
 };
 
 export type ColumnVisiblePayload = { column: string; visible: boolean };

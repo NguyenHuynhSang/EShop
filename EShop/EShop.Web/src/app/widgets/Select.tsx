@@ -4,6 +4,13 @@ import ReactSelect, { StylesConfig, Props as SelectProps } from "react-select";
 import styled, { theme } from "../styles/styled";
 import { Styles } from "react-select/src/styles";
 
+export function toSimpleOption(data: any) {
+  return {
+    label: data as string,
+    value: data as string,
+  };
+}
+
 // https://github.com/JedWatson/react-select/issues/1025#issuecomment-492552567
 const borderColor = theme.color.grey2;
 const focusColor = theme.color.primary;
