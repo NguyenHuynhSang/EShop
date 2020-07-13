@@ -26,6 +26,8 @@ const StyledProductIcon = styled(ProductIcon)({
 const Toolbar = styled("div")({
   marginBottom: theme.spacing.md,
   display: "flex",
+  // fix pinned rows (:before has zIndex: 1) overlapping currency selector
+  zIndex: 2,
 
   "& > :not(:last-child)": {
     marginRight: theme.spacing.md,
