@@ -57,9 +57,15 @@ const selectStyle: StylesConfig = {
       fontWeight: isSelected ? "bold" : "inherit",
     };
   },
+  // autosize select to its content width
   singleValue: (provided) => ({
     ...provided,
     maxWidth: "none",
+    position: "static",
+    transform: "none",
+  }),
+  placeholder: (provided) => ({
+    ...provided,
     position: "static",
     transform: "none",
   }),
@@ -98,8 +104,8 @@ const agSelectStyle: StylesConfig = {
   }),
   menu: (provided, state) => ({
     ...baseStyle.menu(provided, state),
-    marginTop: '2px',
-    marginBottom: '2px',
+    marginTop: "2px",
+    marginBottom: "2px",
     borderRadius: 0,
   }),
   dropdownIndicator: (provided, state) => ({
@@ -116,7 +122,7 @@ export function AgSelect(props: Props) {
       // Minimum height of the menu before flipping
       minMenuHeight={220}
       // flip when there isn't enough space below the control.
-      menuPlacement='auto'
+      menuPlacement="auto"
       {...props}
     />
   );
