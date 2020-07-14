@@ -1,33 +1,65 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core";
+import { makeStyles, Button } from "@material-ui/core";
+import FirstPageIcon from "@material-ui/icons/FirstPage";
+import LastPageIcon from "@material-ui/icons/LastPage";
+import PrevPageIcon from "@material-ui/icons/ChevronLeft";
+import NextPageIcon from "@material-ui/icons/ChevronRight";
 import classNames from "classnames";
 import {
-  ArrowLeftIcon,
-  ArrowRightIcon,
-  ArrowToLeftIcon,
-  ArrowToRightIcon,
-  Button,
+  // Button,
   Select,
+  SelectComps,
   toSimpleOption,
 } from "../../../widgets/Common";
 import { actions } from "./product.duck";
 import { useSelector, useDispatch, shallowEqual } from "../../../store/store";
 import { Pagination } from "./product.duck";
 import theme from "../../../styles/theme";
+import { important } from "../../../styles/styled";
 
 const useStyles = makeStyles({
   pagination: {
-    display: "flex",
+    display: "grid",
     alignItems: "center",
-    "& > :not(:last-child)": {
-      marginRight: theme.spacing.sm,
+    gridTemplateColumns: "repeat(7, max-content)",
+    columnGap: theme.spacing.sm,
+  },
+  rowSummary: {
+    fontSize: "14px",
+  },
+  button: {
+    minWidth: 0,
+    padding: 0,
+    width: "40px",
+    height: "40px",
+  },
+  select: {
+    marginRight: theme.spacing.sm,
+  },
+  selectControl: {
+    borderColor: important("transparent"),
+    transition: important("background-color .25s"),
+    "&:hover": {
+      backgroundColor: important(theme.color.primaryLight),
+      "& > *": {
+        color: important(theme.color.primary),
+      },
     },
+  },
+  selectSingleValue: {
+    color: important("inherit"),
+    transition: important("color .25s"),
+  },
+  pageDescription: {
+    fontSize: "14px",
+    margin: theme.space(0, "md"),
   },
 });
 
-type PageFunc = (page: number) => void;
+type PageFunc = (page: number) => () => void;
+type PerPageFunc = (page: number) => void;
 
-const usePagination = (): [Pagination, PageFunc, PageFunc, PageFunc] => {
+const usePagination = (): [Pagination, PageFunc, PageFunc, PerPageFunc] => {
   const pagination = useSelector(
     (state) => state.products.pagination,
     shallowEqual
@@ -59,46 +91,74 @@ export default function ProductTablePagination() {
 
   return (
     <div className={classNames(styles.pagination, "ag-pagination")}>
-      <span>
-        <strong>{startResult}</strong> to <strong>{endResult}</strong> of{" "}
-        <strong>{totalResults}</strong>
-      </span>
       <Select
+        className={styles.select}
         isSearchable={false}
         defaultValue={toSimpleOption(perPage)}
         onChange={(e: any) => setPerPage(e.value)}
-        options={[5, 10, 20, 50, 100].map(toSimpleOption)}
+        components={{
+          Control: ({ children, className, ...rest }) => (
+            <SelectComps.Control
+              {...rest}
+              className={classNames(className, styles.selectControl)}
+            >
+              {children}
+            </SelectComps.Control>
+          ),
+          SingleValue: ({ children, className, ...rest }) => (
+            <SelectComps.SingleValue
+              {...rest}
+              className={classNames(className, styles.selectSingleValue)}
+            >
+              <span className={styles.rowSummary}>
+                <strong>{startResult}</strong> to <strong>{endResult}</strong>{" "}
+                of <strong>{totalResults}</strong>
+              </span>
+            </SelectComps.SingleValue>
+          ),
+          IndicatorsContainer: () => null,
+        }}
+        options={[
+          {
+            label: "Rows",
+            options: [5, 10, 20, 50, 100].map(toSimpleOption),
+          },
+        ]}
       />
       <Button
-        variant="outline-secondary"
+        className={styles.button}
+        variant="outlined"
         disabled={isFirstPage}
         onClick={changeToPage(1)}
       >
-        <ArrowToLeftIcon />
+        <FirstPageIcon />
       </Button>
       <Button
-        variant="outline-secondary"
+        className={styles.button}
+        variant="outlined"
         disabled={isFirstPage}
         onClick={changePage(-1)}
       >
-        <ArrowLeftIcon />
+        <PrevPageIcon />
       </Button>
-      <span>
+      <span className={styles.pageDescription}>
         Page <strong>{currentPage}</strong> of <strong>{totalPages}</strong>
       </span>
       <Button
-        variant="outline-secondary"
+        className={styles.button}
+        variant="outlined"
         disabled={isLastPage}
         onClick={changePage(1)}
       >
-        <ArrowRightIcon />
+        <NextPageIcon />
       </Button>
       <Button
-        variant="outline-secondary"
+        className={styles.button}
+        variant="outlined"
         disabled={isLastPage}
         onClick={changeToPage(totalPages)}
       >
-        <ArrowToRightIcon />
+        <LastPageIcon />
       </Button>
     </div>
   );

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { IconButton } from "@material-ui/core";
-import DeleteIconMaterial from "@material-ui/icons/Delete";
-import EditIconMaterial from "@material-ui/icons/Edit";
+import DeleteIcon from "@material-ui/icons/Delete";
+import EditIcon from "@material-ui/icons/Edit";
 import { Spinner } from "react-bootstrap";
 import { AgGridReact } from "ag-grid-react";
 import has from "lodash/has";
@@ -79,20 +79,14 @@ function CheckboxRenderer(params: ICellRendererParams) {
   );
 }
 
-const EditIcon = styled(EditIconMaterial)({
-  color: theme.color.blue,
-});
-const DeleteIcon = styled(DeleteIconMaterial)({
-  color: theme.color.danger,
-});
 function ActionRenderer() {
   return (
     <div className="actions">
       <IconButton>
-        <EditIcon />
+        <EditIcon htmlColor={theme.color.blue} />
       </IconButton>
       <IconButton>
-        <DeleteIcon />
+        <DeleteIcon htmlColor={theme.color.danger} />
       </IconButton>
     </div>
   );
@@ -140,8 +134,7 @@ function AgCustomLoading() {
   return (
     <Loader>
       <span>Please wait...</span>
-      &nbsp;
-      &nbsp;
+      &nbsp; &nbsp;
       <Spinner animation="grow" variant="primary" size="sm" />
     </Loader>
   );

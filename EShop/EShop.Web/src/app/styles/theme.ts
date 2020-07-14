@@ -1,10 +1,12 @@
 const spacing = {
+  0: "0",
   xl: "3rem",
   lg: "2rem",
   md: "1rem",
   sm: ".5rem",
   xs: ".25rem",
 };
+export type SpaceSize = keyof typeof spacing
 
 const theme = {
   color: {
@@ -23,6 +25,7 @@ const theme = {
     grey2: "#e4e6ef",
     grayDark: "#343a40",
     primary: "#3699ff",
+    primaryLight: "#E1F0FF",
     secondary: "#ffa800",
     secondaryLight: "#fff4de",
     success: "#1bc5bd",
@@ -43,7 +46,7 @@ const theme = {
     normal: "0 0 50px 0 rgba(82,63,105,.15)",
   },
   spacing,
-  space: (topBottom: keyof typeof spacing, leftRight: keyof typeof spacing) =>
+  space: (topBottom: SpaceSize, leftRight: SpaceSize) =>
     `${spacing[topBottom]} ${spacing[leftRight]}`,
   tableRowHeight: 40,
 };

@@ -93,31 +93,3 @@ export function JapanIcon(props: SvgIconProps) {
     </SvgIcon>
   );
 }
-export function ArrowLeftIcon(props: SvgIconProps) {
-  return (
-    <SvgIcon {...props}>
-      <ArrowLeftSvg />
-    </SvgIcon>
-  );
-}
-export function ArrowRightIcon(props: SvgIconProps) {
-  return (
-    <SvgIcon {...props}>
-      <ArrowRightSvg />
-    </SvgIcon>
-  );
-}
-export function ArrowToLeftIcon(props: SvgIconProps) {
-  return (
-    <SvgIcon {...props}>
-      <ArrowToLeftSvg />
-    </SvgIcon>
-  );
-}
-export function ArrowToRightIcon(props: SvgIconProps) {
-  return (
-    <SvgIcon {...props}>
-      <ArrowToRightSvg />
-    </SvgIcon>
-  );
-}

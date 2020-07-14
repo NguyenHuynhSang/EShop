@@ -1,6 +1,10 @@
 import React from "react";
 import isString from "lodash/isString";
-import ReactSelect, { StylesConfig, Props as SelectProps } from "react-select";
+import ReactSelect, {
+  StylesConfig,
+  Props as SelectProps,
+  components as SelectComps,
+} from "react-select";
 import styled, { theme } from "../styles/styled";
 import { Styles } from "react-select/src/styles";
 
@@ -34,6 +38,7 @@ const selectStyle: StylesConfig = {
       borderColor: isSelected || isFocused ? focusColor : borderColor,
       ":hover": {
         borderColor: focusColor,
+        cursor: "pointer",
       },
     };
   },
@@ -43,6 +48,11 @@ const selectStyle: StylesConfig = {
     ":hover": {
       color: focusColor,
     },
+  }),
+  groupHeading: (provided) => ({
+    ...provided,
+    color: theme.color.primary,
+    marginBottom: "0.5em",
   }),
   // TODO: Add css for auto-width selector if using input
   // https://github.com/JedWatson/react-select/issues/3603#issuecomment-591511367
@@ -95,6 +105,9 @@ export function Select(props: Props) {
 Select.defaultProps = {
   width: "auto",
 } as Partial<Props>;
+
+export { SelectComps };
+export type { SelectProps };
 
 const baseStyle = selectStyle as Required<Styles>;
 const agSelectStyle: StylesConfig = {

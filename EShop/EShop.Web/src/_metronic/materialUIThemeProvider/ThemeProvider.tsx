@@ -6,6 +6,7 @@ import React from "react";
 // eslint-disable-next-line no-restricted-imports
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider as MuiThemeProvider } from "@material-ui/styles";
+import themeConfig from '../../app/styles/theme'
 
 const theme = createMuiTheme(
   /**
@@ -54,6 +55,19 @@ const theme = createMuiTheme(
         elevation: 1,
       },
     },
+
+    overrides: {
+      MuiButton: {
+        root: {
+          '&.MuiButton-outlined': {
+            borderColor: themeConfig.color.grey2,
+          },
+          '&.MuiButton-outlined:hover': {
+            backgroundColor: themeConfig.color.grey2,
+          }
+        }
+      }
+    }
   }
 );
 
