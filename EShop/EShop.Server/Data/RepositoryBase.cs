@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -58,58 +59,53 @@ namespace EShop.Server.Data
             return dbSet.Find(id);
         }
 
-        public virtual T GetSingleByCondition(Expression<Func<T, bool>> filter, string[] includes = null)
+        public virtual T GetSingleByCondition(Expression<Func<T, bool>> filter, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null)
         {
-            if (includes != null && includes.Count() > 0)
+            if (include!=null)
             {
-                var query = _dbContext.Set<T>().Include(includes.First());
-                foreach (var include in includes.Skip(1))
-                    query = query.Include(include);
-                return query.FirstOrDefault(filter);
+                var query = _dbContext.Set<T>();
+              
+                return include(query).FirstOrDefault(filter);
             }
             return _dbContext.Set<T>().FirstOrDefault(filter);
         }
 
-        public virtual IEnumerable<T> GetAll(string[] includes = null)
+        public virtual IEnumerable<T> GetAll(Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null)
         {
             //HANDLE INCLUDES FOR ASSOCIATED OBJECTS IF APPLICABLE
-            if (includes != null && includes.Count() > 0)
+            if (include != null )
             {
-                var query = _dbContext.Set<T>().Include(includes.First());
-                foreach (var include in includes.Skip(1))
-                    query = query.Include(include);
-                return query.AsQueryable();
+                var query = _dbContext.Set<T>();
+                
+                return include(query);
             }
 
             return _dbContext.Set<T>().AsQueryable();
         }
 
-        public virtual IEnumerable<T> GetMulti(Expression<Func<T, bool>> filter, string[] includes = null)
+        public virtual IEnumerable<T> GetMulti(Expression<Func<T, bool>> filter,Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null)
         {
             //HANDLE INCLUDES FOR ASSOCIATED OBJECTS IF APPLICABLE
-            if (includes != null && includes.Count() > 0)
+            if (include != null)
             {
-                var query = _dbContext.Set<T>().Include(includes.First());
-                foreach (var include in includes.Skip(1))
-                    query = query.Include(include);
-                return query.Where<T>(filter).AsQueryable<T>();
+                var query = _dbContext.Set<T>();
+                return filter == null?include(query) : include(query.Where<T>(filter).AsQueryable<T>());
             }
 
-            return _dbContext.Set<T>().Where<T>(filter).AsQueryable<T>();
+            return filter == null ? _dbContext.Set<T>().AsQueryable() : _dbContext.Set<T>().Where<T>(filter).AsQueryable<T>();
         }
 
-        public virtual IEnumerable<T> GetMultiPaging(Expression<Func<T, bool>> filter, out int total, int index = 0, int size = 50, string[] includes = null)
+        public virtual IEnumerable<T> GetMultiPaging(Expression<Func<T, bool>> filter, out int total, int index = 0, int size = 50, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null)
         {
             int skipCount = index * size;
             IQueryable<T> _resetSet;
 
             //HANDLE INCLUDES FOR ASSOCIATED OBJECTS IF APPLICABLE
-            if (includes != null && includes.Count() > 0)
+            if (include != null )
             {
-                var query = _dbContext.Set<T>().Include(includes.First());
-                foreach (var include in includes.Skip(1))
-                    query = query.Include(include);
-                _resetSet = filter != null ? query.Where<T>(filter).AsQueryable() : query.AsQueryable();
+                var query = _dbContext.Set<T>();
+            
+                _resetSet = filter != null ?  include(query).Where<T>(filter) : include(query);
             }
             else
             {
@@ -135,5 +131,7 @@ namespace EShop.Server.Data
         {
             _dbContext.SaveChanges();
         }
+
+     
     }
 }

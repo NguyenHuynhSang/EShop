@@ -20,5 +20,8 @@ namespace EShop.Server.Models
         public int ProductVersionID { set; get; }
 
 
+        [ForeignKey("ProductVersionID")]
+        public ProductVersion ProductVersion{ set; get; }
+
     }
 }

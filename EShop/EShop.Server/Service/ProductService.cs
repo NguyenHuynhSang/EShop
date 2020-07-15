@@ -13,7 +13,7 @@ using EShop.Server.Extension;
 using Newtonsoft.Json;
 using System.Linq.Dynamic.Core;
 using EShop.Server.Extension;
-
+using Microsoft.EntityFrameworkCore;
 
 namespace EShop.Server.Service
 {
@@ -21,6 +21,8 @@ namespace EShop.Server.Service
     {
         Product Add(Product product);
         IEnumerable<Product> GetAll(Params param);
+
+        IEnumerable<Product> GeMulty(Params param);
 
         IEnumerable<ProductViewModel> GetAllProductViewModel(Params param);
 
@@ -57,6 +59,18 @@ namespace EShop.Server.Service
         public Product Delete(Product product)
         {
             return _productRepository.Delete(product);
+        }
+
+        public IEnumerable<Product> GeMulty(Params param)
+        {
+
+            var query = _productRepository.GetMulti(null, q=>q.Include(x=>x.Catalog)
+            .Include(x=>x.ProductVersions)
+                .ThenInclude(y=>y.ProductVersionImages )
+            .Include(x => x.ProductVersions)
+                .ThenInclude(y => y.ProductVersionAttributes)
+                    .ThenInclude(z=>z.AttributeValue)) ;
+            return query;
         }
 
         public IEnumerable<Product> GetAll(Params param)

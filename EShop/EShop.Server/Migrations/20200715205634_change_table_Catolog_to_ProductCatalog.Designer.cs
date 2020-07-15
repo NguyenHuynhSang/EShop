@@ -4,14 +4,16 @@ using EShop.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EShop.Server.Migrations
 {
     [DbContext(typeof(EShopDbContext))]
-    partial class EShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200715205634_change_table_Catolog_to_ProductCatalog")]
+    partial class change_table_Catolog_to_ProductCatalog
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -696,8 +698,6 @@ namespace EShop.Server.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("ProductVersionID");
-
                     b.ToTable("ProductVersionImage");
                 });
 
@@ -797,7 +797,7 @@ namespace EShop.Server.Migrations
             modelBuilder.Entity("EShop.Server.Models.ProductVersion", b =>
                 {
                     b.HasOne("EShop.Server.Models.Product", "Product")
-                        .WithMany("ProductVersions")
+                        .WithMany()
                         .HasForeignKey("ProductID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -813,15 +813,6 @@ namespace EShop.Server.Migrations
 
                     b.HasOne("EShop.Server.Models.ProductVersion", "ProductVersion")
                         .WithMany("ProductVersionAttributes")
-                        .HasForeignKey("ProductVersionID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("EShop.Server.Models.ProductVersionImage", b =>
-                {
-                    b.HasOne("EShop.Server.Models.ProductVersion", "ProductVersion")
-                        .WithMany("ProductVersionImages")
                         .HasForeignKey("ProductVersionID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

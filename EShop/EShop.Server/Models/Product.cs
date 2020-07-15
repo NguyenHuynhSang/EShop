@@ -43,9 +43,9 @@ namespace EShop.Server.Models
 
         public bool Deliver { set; get; }
 
-
-
         public bool ApplyPromotion { set; get; }
+
+        public IEnumerable<ProductVersion> ProductVersions { set; get; }
 
     }
 }

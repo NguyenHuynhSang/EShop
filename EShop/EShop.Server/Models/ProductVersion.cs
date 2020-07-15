@@ -43,7 +43,7 @@ namespace EShop.Server.Models
 
         public  IEnumerable<ProductVersionAttribute> ProductVersionAttributes { set; get; }
 
-
+        public IEnumerable<ProductVersionImage> ProductVersionImages { set; get; }
 
     }
 }

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace EShop.Server.Models
 {
-    [Table("Catalog")]
+    [Table("ProductCatalog")]
     public class ProductCatalog : SeoAndAudit
     {
 
