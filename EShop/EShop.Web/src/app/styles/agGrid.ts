@@ -117,12 +117,8 @@ distract user from more important things in the table */
 }
 
 /* pinned content */
-.ag-pinned-left-cols-container::before,
-.ag-pinned-right-cols-container::before {
-    content: "";
-    position: absolute;
-    height: 100%;
-    width: 100%;
+.ag-pinned-left-cols-container,
+.ag-pinned-right-cols-container {
     z-index: 1;
     box-shadow: ${theme.shadow.light};
 }
