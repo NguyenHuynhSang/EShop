@@ -13,7 +13,7 @@ namespace EShop.Server.Controllers
     [ApiController]
     public class AttributeValueController : ControllerBase
     {
-        private IAttributeValueService _attributeValueService;// service xử dụng
+        private readonly IAttributeValueService _attributeValueService;// service xử dụng
         public AttributeValueController(IAttributeValueService attributeValueService)
            
         {

@@ -24,7 +24,7 @@ namespace EShop.Server.InputModel
 
         public string SKU { set; get; }
         public string Barcode { set; get; }
-        public List<ProductAttributeValue> Attributes { set; get; }
+        public List<AttributeValue> Attributes { set; get; }
         public List<ProductVersionImage> Images { set; get; }
     }
 

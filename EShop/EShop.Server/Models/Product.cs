@@ -15,8 +15,11 @@ namespace EShop.Server.Models
         public int ID { set; get; }
         [MaxLength(500)] //chỉ định độ dài tối đa, nếu k có mặc định là max
 
-        [Required]
-        public long CatalogID { set; get; }
+        
+        public int CatalogID { set; get; }
+
+        [ForeignKey("CatalogID")]
+        public ProductCatalog Catalog { set; get; }
 
 
         [MaxLength(250)]
@@ -26,7 +29,7 @@ namespace EShop.Server.Models
         [Required(ErrorMessage = "Tên sản phẩm không được để trống")]
         public string Name { set; get; }
 
-        [MaxLength(500)]
+        [MaxLength(1000)]
         public string Description { set; get; }
 
         public string Content { set; get; }

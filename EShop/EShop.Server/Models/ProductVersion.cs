@@ -12,7 +12,13 @@ namespace EShop.Server.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { set; get; }
 
+
+        [Required]
         public int ProductID { set; get; }
+
+
+        [ForeignKey("ProductID")]
+        public Product Product { set; get; }
 
         public int WareHouseID { set; get; }
 
@@ -33,6 +39,9 @@ namespace EShop.Server.Models
 
         [MaxLength(250)]
         public string Barcode { set; get; }
+
+
+        public  IEnumerable<ProductVersionAttribute> ProductVersionAttributes { set; get; }
 
 
 

@@ -40,52 +40,7 @@ namespace EShop.Server.Repository
         public void CreateProductByProductInputModel(ProductInput productInput)
         {
 
-            using (var context = DbContext)
-            {
-                using (var dbContextTransaction = context.Database.BeginTransaction())
-                {
-                    try
-                    {
-                        var newProduct = _mapper.Map<Product>(productInput);
-                        newProduct.CreatedDate = DateTime.Now;
-                        var productReturn = DbContext.Products.Add(newProduct).Entity;
-                        DbContext.SaveChanges();
-                        foreach (var item in productInput.Versions)
-                        {
-                            item.ProductID = productReturn.ID;
-                            var newProductVersion = _mapper.Map<ProductVersion>(item);
-                            DbContext.ProductVersions.Add(newProductVersion);
-                            DbContext.SaveChanges();
-                            foreach (var att in item.Attributes)
-                            {
-                                var newProductAtribute = new ProductAttributeValue();
-                                newProductAtribute.ProductVersionID = newProductVersion.ID;
-                                newProductAtribute.AttributeValueID = att.AttributeValueID;
-                                DbContext.ProductAttributeValues.Add(newProductAtribute);
-                                DbContext.SaveChanges();
-                            }
-
-                            foreach (var img in item.Images)
-                            {
-                                var newImage = new ProductVersionImage();
-                                newImage.ProductVersionID = newProductVersion.ID;
-                                newImage.IsMain = img.IsMain;
-                                newImage.Url = img.Url;
-                                DbContext.ProductVersionImages.Add(newImage);
-                                DbContext.SaveChanges();
-                            }
-
-                        }
-                        dbContextTransaction.Commit();
-                    }
-                    catch (Exception ex)
-                    {
-                        //Log, handle or absorbe I don't care ^_^
-                    }
-                }
-            }
-
-
+      
         }
 
         public IEnumerable<Product> GetByAlias(string alias)
@@ -96,28 +51,7 @@ namespace EShop.Server.Repository
         public ProductInput GetProductInputByID(int id)
         {
 
-            var product = DbContext.Products.SingleOrDefault(x => x.ID == id);
-            if (product == null)
-            {
-                return null;
-            }
-            var productInput = _mapper.Map<ProductInput>(product);
-
-            var version = DbContext.ProductVersions.Where(x => x.ProductID == product.ID);
-            List<ProductVersionInput> vers = new List<ProductVersionInput>();
-            foreach (var item in version)
-            {
-                var verInput = _mapper.Map<ProductVersionInput>(item);
-                vers.Add(verInput);
-            }
-            productInput.Versions = vers;
-            foreach (var item in productInput.Versions)
-            {
-                item.Images = DbContext.ProductVersionImages.Where(x => x.ProductVersionID == item.ID).ToList();
-                item.Attributes = DbContext.ProductAttributeValues.Where(x => x.ProductVersionID == item.ID).ToList();
-            }
-
-            return productInput;
+            return new ProductInput();
 
         }
 

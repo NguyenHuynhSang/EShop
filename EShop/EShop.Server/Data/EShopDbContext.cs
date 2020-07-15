@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using EShop.Server.Extension;
+
 namespace EShop.Server.Data
 {
     using ProductAttribute = Server.Models.Attribute;
@@ -51,7 +52,7 @@ namespace EShop.Server.Data
         public DbSet<Image> Images { get; set; }
 
         public DbSet<ProductAttribute> ProductAttributes { get; set; }
-        public DbSet<ProductAttributeValue> ProductAttributeValues { get; set; }
+        public DbSet<ProductVersionAttribute> ProductVersionAttributes { get; set; }
         public DbSet<User> Users { get; set; }
 
         public DbSet<Photo> Photos { get; set; }
@@ -62,6 +63,24 @@ namespace EShop.Server.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) //Một bảng có 2 khóa chính phải sử dụng fluent API
         {
+
+            //use Fluent Api to customize a joining table name and column names
+            // ref: https://www.entityframeworktutorial.net/code-first/configure-many-to-many-relationship-in-code-first.aspx
+
+            //- EF core does not support many-to-many relationships directly.
+            //modelBuilder.Entity<AttributeValue>()
+            //  .HasMany<ProductVersion>(s => s.ProductVersions)
+            //  w .(c => c.ProductVersions)
+            //  .Map(cs =>
+            //  {
+            //      cs.MapLeftKey("StudentRefId");
+            //      cs.MapRightKey("CourseRefId");
+            //      cs.ToTable("ProductVersionAttribute");
+            //  });
+
+            //update
+            modelBuilder.Entity<ProductVersionAttribute>().HasKey(sc => new { sc.AttributeValueID, sc.ProductVersionID });
+
             modelBuilder.Entity<ContentTag>()
                 .HasKey(o => new { o.TagID, o.ContentID });
             // auto increment key

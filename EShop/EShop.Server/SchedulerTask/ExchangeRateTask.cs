@@ -19,13 +19,18 @@ namespace EShop.Server.SchedulerTask
 
     public class ExchangeRateTask : IScheduledTask
     {
-        private IMapper _mapper;
+        private readonly IMapper _mapper;
 
         //Consume Scoped Service inside Hosted Service 
         private readonly IServiceScopeFactory _scopeFactory;
-        //cannot inject service here, dont know why
+
         private static string baseUrl = "http://www.dongabank.com.vn/exchange/export";
 
+        //update after 6 hour
+        //"* */6 * * *" see interface IScheduledTask for more details
+        // chưa load thời gian từ database
+
+        public string Schedule => "* */6 * * *";
         public ExchangeRateTask(IMapper mapper, IServiceScopeFactory scopeFactory)
         {
             _mapper = mapper;
@@ -33,19 +38,12 @@ namespace EShop.Server.SchedulerTask
 
 
         }
-        //update after 6 hour
-        //"* */6 * * *" see interface IScheduledTask for more details
-        // chưa load thời gian từ database
-
-        public string Schedule => "* */6 * * *";
-
-
+   
         ///chưa xử lý async
         public async Task ExecuteAsync(CancellationToken cancellationToken)
         {
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(baseUrl);
-
 
             // với Đông Á Bank phải thêm 2 dòng lệnh này:
             request.Headers["User-Agent"] = "Mozilla/5.0 ( compatible ) ";

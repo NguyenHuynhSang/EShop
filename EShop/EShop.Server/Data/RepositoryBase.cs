@@ -13,7 +13,7 @@ namespace EShop.Server.Data
     /// <typeparam name="T"></typeparam>
     public abstract class RepositoryBase<T> : IRepository<T> where T : class, new()
     {
-        private EShopDbContext _dbContext;
+        private readonly EShopDbContext _dbContext;
         private readonly DbSet<T> dbSet;
 
  

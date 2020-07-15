@@ -19,7 +19,7 @@ namespace EShop.Server.Service
   
     public class AuthService :  IAuthService
     {
-        private IAuthRepository _authRepository;
+        private readonly IAuthRepository _authRepository;
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
             using (var hmac = new System.Security.Cryptography.HMACSHA512())

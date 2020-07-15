@@ -4,18 +4,20 @@ using EShop.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EShop.Server.Migrations
 {
     [DbContext(typeof(EShopDbContext))]
-    partial class EShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200715085049_drop_navigator_property_use_foreignKey_instead")]
+    partial class drop_navigator_property_use_foreignKey_instead
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.6")
+                .HasAnnotation("ProductVersion", "3.1.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -509,6 +511,28 @@ namespace EShop.Server.Migrations
                         });
                 });
 
+            modelBuilder.Entity("EShop.Server.Models.ProductAttributeValue", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AttributeValueID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductVersionID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("AttributeValueID");
+
+                    b.HasIndex("ProductVersionID");
+
+                    b.ToTable("ProductAttribute");
+                });
+
             modelBuilder.Entity("EShop.Server.Models.ProductCatalog", b =>
                 {
                     b.Property<int>("ID")
@@ -663,21 +687,6 @@ namespace EShop.Server.Migrations
                         });
                 });
 
-            modelBuilder.Entity("EShop.Server.Models.ProductVersionAttribute", b =>
-                {
-                    b.Property<int>("AttributeValueID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductVersionID")
-                        .HasColumnType("int");
-
-                    b.HasKey("AttributeValueID", "ProductVersionID");
-
-                    b.HasIndex("ProductVersionID");
-
-                    b.ToTable("ProductVersionAttributes");
-                });
-
             modelBuilder.Entity("EShop.Server.Models.ProductVersionImage", b =>
                 {
                     b.Property<int>("ID")
@@ -792,26 +801,26 @@ namespace EShop.Server.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("EShop.Server.Models.ProductVersion", b =>
-                {
-                    b.HasOne("EShop.Server.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("EShop.Server.Models.ProductVersionAttribute", b =>
+            modelBuilder.Entity("EShop.Server.Models.ProductAttributeValue", b =>
                 {
                     b.HasOne("EShop.Server.Models.AttributeValue", "AttributeValue")
-                        .WithMany("ProductVersionAttributes")
+                        .WithMany()
                         .HasForeignKey("AttributeValueID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("EShop.Server.Models.ProductVersion", "ProductVersion")
-                        .WithMany("ProductVersionAttributes")
+                        .WithMany()
                         .HasForeignKey("ProductVersionID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("EShop.Server.Models.ProductVersion", b =>
+                {
+                    b.HasOne("EShop.Server.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

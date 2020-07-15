@@ -16,8 +16,14 @@ namespace EShop.Server.Models
         [Required]
         public int AttributeID { set; get; }
 
+
+        [ForeignKey("AttributeID")]
+        public Attribute Attribute { set; get; }
+
         [StringLength(500)]
         public string Name { set; get; }
 
+
+        public IEnumerable<ProductVersionAttribute> ProductVersionAttributes { set; get; }
     }
 }
