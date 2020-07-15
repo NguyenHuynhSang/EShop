@@ -1,5 +1,5 @@
 import { ColumnApi, GridApi, GridReadyEvent } from "ag-grid-community";
-import { useRef, useCallback } from "react";
+import { useCallback } from "react";
 
 type GridReadyCb = (api: AgGridApi) => void;
 export type AgGridApi = {
@@ -9,25 +9,29 @@ export type AgGridApi = {
 type GridReadyFunc = (event: GridReadyEvent) => void;
 type AutoSizeFunc = (columns?: string[]) => void;
 
+let api: AgGridApi = {
+  column: undefined,
+  grid: undefined,
+};
+
 export function useGridApi(
   onGridReadyCb?: GridReadyCb
 ): [AgGridApi, GridReadyFunc, AutoSizeFunc] {
-  const apiRef = useRef<AgGridApi>({});
   const onGridReady = useCallback(
     (params: GridReadyEvent) => {
-      apiRef.current.grid = params.api;
-      apiRef.current.column = params.columnApi;
+      api.grid = params.api;
+      api.column = params.columnApi;
 
-      if (onGridReadyCb) onGridReadyCb(apiRef.current);
+      if (onGridReadyCb) onGridReadyCb(api);
     },
     [onGridReadyCb]
   );
   const autoSizeColumnsCb = useCallback<AutoSizeFunc>(
-    (columns) => autoSizeColumns(apiRef.current.column, columns),
+    (columns) => autoSizeColumns(api.column, columns),
     []
   );
 
-  return [apiRef.current, onGridReady, autoSizeColumnsCb];
+  return [api, onGridReady, autoSizeColumnsCb];
 }
 
 export function autoSizeColumns(gridColumnApi?: ColumnApi, columns?: string[]) {

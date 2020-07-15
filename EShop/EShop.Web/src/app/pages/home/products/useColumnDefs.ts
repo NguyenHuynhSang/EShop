@@ -8,9 +8,7 @@ import { autoSizeColumns } from "../helpers/agGridHelpers";
 export const colDefs: Record<string, ColDef> = {
   id: {
     headerName: "ID",
-    lockPosition: true,
-    type: "numericColumn",
-    resizable: false,
+    type: ["id"],
   },
   name: {
     headerName: "Tên",

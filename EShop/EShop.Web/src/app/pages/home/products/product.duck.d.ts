@@ -18,6 +18,7 @@ type Pagination = {
 
 export interface ProductState {
   loading: boolean;
+  rowsSelected: number;
   columnInfosGen: number;
   params: Params;
   products: Product[];

@@ -38,6 +38,7 @@ const columnInfos: ColumnInfo[] = [
 
 const initialState: ProductState = {
   loading: false,
+  rowsSelected: 0,
   productCategories: [],
   categories: [],
   params: {},
@@ -64,6 +65,9 @@ const slice = createSlice({
     setColumnDisplay(state, action: PayloadAction<ColumnInfo[]>) {
       state.columnInfos = action.payload;
       state.columnInfosGen++;
+    },
+    setRowsSelected(state, action: PayloadAction<number>) {
+      state.rowsSelected = action.payload;
     },
     setColumnVisible(state, action: PayloadAction<ColumnVisiblePayload>) {
       const { column, visible } = action.payload;
@@ -153,7 +157,7 @@ const slice = createSlice({
 const persistConfig: PersistConfig<ProductState> = {
   storage,
   key: "products",
-  blacklist: ["loading", "columnInfosGen"],
+  blacklist: ["loading", "columnInfosGen", "rowsSelected"],
 };
 
 export const { actions } = slice;

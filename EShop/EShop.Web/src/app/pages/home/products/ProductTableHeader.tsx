@@ -16,35 +16,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import { useDispatch, useSelector } from "../../../store/store";
 import { actions, SortMode, Pinned, WeightUnit } from "./product.duck";
 import pressKey, { VKey } from "../helpers/pressKey";
-import styled from "../../../styles/styled";
-
-type HeaderWrapperProps = {
-  isNumericColumn: boolean;
-};
-
-const HeaderWrapper = styled<HeaderWrapperProps>((props) => {
-  // TODO: need a better way, props filter is hard to read
-  // https://github.com/styled-components/styled-components/pull/3006
-  const { isNumericColumn, ...rest } = props;
-  return <div {...rest} />;
-})({
-  width: "100%",
-  height: "100%",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: (props) => (props.isNumericColumn ? "end" : "start"),
-
-  "& .fas.fa-thumbtack": {
-    marginLeft: "auto",
-  },
-});
-
-const SButtonGroup = styled(ButtonGroup)({
-  display: "flex",
-  "& > *": {
-    flex: 1,
-  },
-});
+import { theme, makeStyles } from "../../../styles";
 
 type SortFunction = () => void;
 
@@ -107,17 +79,28 @@ function ActionButton(props: ActionButtonProps) {
   );
 }
 
+const useMenuStyles = makeStyles({
+  buttonGroup: {
+    display: "flex",
+    "& > *": {
+      flex: 1,
+    },
+  },
+});
+
 type ColumnMenuProps = {
+  className?: string;
   column: Column;
   columnApi: ColumnApi;
 };
 function ColumnMenu(props: ColumnMenuProps) {
-  const { column, columnApi } = props;
+  const { className, column, columnApi } = props;
   const field = column.getColDef().field!;
   const dispatch = useDispatch();
   const pinned = usePinStatus(field);
   const weightUnit = useSelector((state) => state.products.weightUnit);
   const isWeight = hasType(column, "weight");
+  const styles = useMenuStyles();
   const setPin = (pinned: Pinned) => () => {
     columnApi.setColumnPinned(column.getColId(), pinned ?? "");
 
@@ -144,7 +127,7 @@ function ColumnMenu(props: ColumnMenuProps) {
 
   return (
     // prevent this column from being sorted if clicking this button
-    <div onClick={(e) => e.stopPropagation()}>
+    <div className={className} onClick={(e) => e.stopPropagation()}>
       <ThemeProvider>
         <OverlayTrigger
           trigger="click"
@@ -154,7 +137,7 @@ function ColumnMenu(props: ColumnMenuProps) {
             <Popover id="popover-positioned-top">
               <ListGroup variant="flush">
                 <ListGroup.Item>
-                  <ButtonGroup>
+                  <ButtonGroup className={styles.buttonGroup}>
                     <Button
                       variant="secondary"
                       onClick={setPin("left")}
@@ -180,7 +163,7 @@ function ColumnMenu(props: ColumnMenuProps) {
                 </ListGroup.Item>
                 {isWeight && (
                   <ListGroup.Item>
-                    <SButtonGroup>
+                    <ButtonGroup className={styles.buttonGroup}>
                       {Object.keys(WeightUnit).map((w) => (
                         <Button
                           key={w}
@@ -191,7 +174,7 @@ function ColumnMenu(props: ColumnMenuProps) {
                           {w}
                         </Button>
                       ))}
-                    </SButtonGroup>
+                    </ButtonGroup>
                   </ListGroup.Item>
                 )}
                 <ActionButton onClick={autoSizeThisColumn}>
@@ -219,11 +202,12 @@ function ColumnMenu(props: ColumnMenuProps) {
 const getColumnMenu = (column: Column, columnApi: ColumnApi) => {
   const colDef = column.getColDef();
 
-  // if (hasType(column, "currency")) {
-  if (colDef.field !== "id") {
-    return <ColumnMenu column={column} columnApi={columnApi} />;
+  if (colDef.field === "id") {
+    return null;
   }
-  return null;
+  return (
+    <ColumnMenu className="columnMenu" column={column} columnApi={columnApi} />
+  );
 };
 
 const getSortIndicator = (sortMode: SortMode) => {
@@ -238,23 +222,40 @@ const getSortIndicator = (sortMode: SortMode) => {
   );
 };
 
+type HeaderWrapperProps = {
+  isNumericColumn: boolean;
+};
+const useStyles = makeStyles<HeaderWrapperProps>({
+  root: {
+    width: "100%",
+    height: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: (props) => (props.isNumericColumn ? "end" : "start"),
+
+    "& .fas.fa-thumbtack": {
+      marginLeft: theme.spacing.sm,
+    },
+    "& .columnMenu": {
+      marginRight: "auto",
+    },
+  },
+});
+
 export default function ProductTableHeader(props: IHeaderParams) {
   const { displayName, column, enableSorting, columnApi } = props;
   const colDef = column.getColDef();
   const isNumericColumn = colDef.cellClass === "ag-right-aligned-cell";
   const [sortMode, cycleSort] = useSort(enableSorting, colDef.field);
   const pinned = usePinStatus(colDef.field);
+  const style = useStyles({ isNumericColumn });
 
   return (
-    <HeaderWrapper
-      isNumericColumn={isNumericColumn}
-      role="button"
-      onClick={cycleSort}
-    >
+    <div className={style.root} role="button" onClick={cycleSort}>
       {displayName}
       {getColumnMenu(column, columnApi)}
       {enableSorting && getSortIndicator(sortMode)}
       {pinned && <i className="fas fa-thumbtack fa-sm" />}
-    </HeaderWrapper>
+    </div>
   );
 }

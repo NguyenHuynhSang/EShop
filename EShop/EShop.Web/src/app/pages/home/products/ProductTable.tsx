@@ -5,12 +5,14 @@ import EditIcon from "@material-ui/icons/Edit";
 import { Spinner } from "react-bootstrap";
 import { AgGridReact } from "ag-grid-react";
 import has from "lodash/has";
+import padStart from "lodash/padStart";
 import {
   ICellRendererParams,
   ColumnPinnedEvent,
   ColDef,
   DragStoppedEvent,
   ValueFormatterParams,
+  SelectionChangedEvent,
 } from "ag-grid-community";
 import classNames from "classnames";
 import { Checkbox, Paper } from "@material-ui/core";
@@ -51,6 +53,10 @@ const weightFormatter = (params: ValueFormatterParams) => {
   const { value } = params;
   const unit = WEIGHT_UNIT;
   return { value, unit, prefixUnit: false } as any;
+};
+const idFormatter = (params: ValueFormatterParams) => {
+  const { value } = params;
+  return padStart(value, 4, "0");
 };
 
 function markAsDirty(params: ICellRendererParams) {
@@ -145,6 +151,14 @@ const columnTypes: Record<string, ColDef> = {
     editable: true,
     onCellValueChanged: markAsDirty,
   },
+  id: {
+    valueFormatter: idFormatter,
+    cellClass: "ag-right-aligned-cell",
+    lockPosition: true,
+    checkboxSelection: true,
+    headerCheckboxSelection: true,
+    resizable: false,
+  },
   currency: {
     // NOTE: type: 'numericColumn' not working here
     cellClass: "ag-right-aligned-cell",
@@ -181,10 +195,11 @@ const frameworkComponents = {
 };
 
 type ProductTableProps = {
+  name: string;
   className?: string;
 };
 export default function ProductTable(props: ProductTableProps) {
-  const { className, ...rest } = props;
+  const { name, className, ...rest } = props;
   const products = useSelector<any[]>(
     (state) => state.products.products,
     shallowEqual
@@ -215,7 +230,8 @@ export default function ProductTable(props: ProductTableProps) {
   useEffect(() => {
     if (loading) api.grid?.showLoadingOverlay();
     else api.grid?.hideOverlay();
-  }, [api.grid, loading]);
+    autoSizeColumns();
+  }, [api.grid, autoSizeColumns, loading]);
 
   const onColumnPinned = (e: ColumnPinnedEvent) => {
     if (e.columns !== null && e.pinned !== null) {
@@ -234,24 +250,32 @@ export default function ProductTable(props: ProductTableProps) {
       .map((c) => c.colId.replace(/_[\d]+$/, ""));
     if (columnOrder) dispatch(actions.setColumnOrder(columnOrder));
   };
+  const onSelectionChanged = (e: SelectionChangedEvent) =>
+    dispatch(actions.setRowsSelected(e.api.getSelectedNodes().length));
 
   return (
-    <div className={classNames("ag-theme-balham table-wrapper", className)}>
+    <div
+      key={name}
+      className={classNames("ag-theme-balham table-wrapper", className)}
+    >
       <AgGridReact
         // animateRows
         onDragStopped={onDragStopped}
         onColumnPinned={onColumnPinned}
-        rowHeight={theme.tableRowHeight}
-        headerHeight={45}
         columnDefs={columnDefs}
         columnTypes={columnTypes}
         defaultColDef={{
           sortable: true,
           resizable: true,
         }}
+        rowHeight={theme.tableRowHeight}
+        rowSelection="multiple"
+        suppressRowClickSelection
+        rowData={products}
+        headerHeight={45}
         onFirstDataRendered={onFirstDataRendered}
         onGridReady={onGridReady}
-        rowData={products}
+        onSelectionChanged={onSelectionChanged}
         // getRowClass={this.getRowClass}
         frameworkComponents={frameworkComponents}
         loadingOverlayComponent="AgCustomLoading"

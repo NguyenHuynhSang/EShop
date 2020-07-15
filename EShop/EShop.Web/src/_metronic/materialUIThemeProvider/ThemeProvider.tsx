@@ -6,7 +6,7 @@ import React from "react";
 // eslint-disable-next-line no-restricted-imports
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider as MuiThemeProvider } from "@material-ui/styles";
-import themeConfig from '../../app/styles/theme'
+import themeConfig from "../../app/styles/theme";
 
 const theme = createMuiTheme(
   /**
@@ -21,14 +21,14 @@ const theme = createMuiTheme(
     palette: {
       contrastThreshold: 2,
       primary: {
-        // light: will be calculated from palette.primary.main,
-        main: "#3699ff",
+        light: themeConfig.color.primaryLight,
+        main: themeConfig.color.primary,
         // dark: will be calculated from palette.primary.main,
         // contrastText: will be calculated to contrast with palette.primary.main
       },
       secondary: {
-        // light: will be calculated from palette.primary.main,
-        main: "#0abb87",
+        light: themeConfig.color.secondaryLight,
+        main: themeConfig.color.secondary,
         // dark: will be calculated from palette.primary.main,
         contrastText: "#ffffff",
       },
@@ -44,30 +44,40 @@ const theme = createMuiTheme(
      * @see https://material-ui.com/customization/globals/#default-props
      */
     props: {
-      // Name of the component ⚛️
-      MuiButtonBase: {
-        // The properties to apply
-        disableRipple: true, // No more ripple, on the whole application 💣!
-      },
-
       // Set default elevation to 1 for popovers.
       MuiPopover: {
         elevation: 1,
+      },
+      MuiButton: {
+        disableElevation: true,
       },
     },
 
     overrides: {
       MuiButton: {
         root: {
-          '&.MuiButton-outlined': {
+          // height: 35,
+          color: "#646c9a",
+          "&.MuiButton-outlined": {
             borderColor: themeConfig.color.grey2,
           },
-          '&.MuiButton-outlined:hover': {
+          "&.MuiButton-outlined:hover": {
             backgroundColor: themeConfig.color.grey2,
-          }
-        }
-      }
-    }
+          },
+          "&.MuiButton-outlinedPrimary": {
+            borderColor: themeConfig.color.primaryLight,
+            color: themeConfig.color.primary,
+          },
+          "&.MuiButton-outlinedPrimary:hover": {
+            borderColor: themeConfig.color.primaryLight,
+            backgroundColor: themeConfig.color.primaryLight,
+          },
+          "&.MuiButton-containedPrimary:hover": {
+            backgroundColor: themeConfig.color.primaryDark1,
+          },
+        },
+      },
+    },
   }
 );
 

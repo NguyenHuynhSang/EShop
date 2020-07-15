@@ -14,7 +14,7 @@ import {
 import { actions } from "./product.duck";
 import { useSelector, useDispatch, shallowEqual } from "../../../store/store";
 import { Pagination } from "./product.duck";
-import theme from "../../../styles/theme";
+import { theme } from "../../../styles";
 import { important } from "../../../styles/styled";
 
 const useStyles = makeStyles({

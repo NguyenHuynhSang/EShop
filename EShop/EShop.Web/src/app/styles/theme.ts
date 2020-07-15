@@ -6,7 +6,7 @@ const spacing = {
   sm: ".5rem",
   xs: ".25rem",
 };
-export type SpaceSize = keyof typeof spacing
+export type SpaceSize = keyof typeof spacing;
 
 const theme = {
   color: {
@@ -25,6 +25,7 @@ const theme = {
     grey2: "#e4e6ef",
     grayDark: "#343a40",
     primary: "#3699ff",
+    primaryDark1: "#3089e5",
     primaryLight: "#E1F0FF",
     secondary: "#ffa800",
     secondaryLight: "#fff4de",

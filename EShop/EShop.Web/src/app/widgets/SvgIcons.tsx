@@ -1,13 +1,6 @@
 import React from "react";
 import styled from "../styles/styled";
-import { ReactComponent as PlusSvg } from "../../assets/Add.svg";
 import { ReactComponent as ProductSvg } from "../../assets/Product.svg";
-import { ReactComponent as VisibleSvg } from "../../assets/Visible.svg";
-
-import { ReactComponent as ArrowLeftSvg } from "../../assets/Angle-left.svg";
-import { ReactComponent as ArrowRightSvg } from "../../assets/Angle-right.svg";
-import { ReactComponent as ArrowToLeftSvg } from "../../assets/Arrow-to-left.svg";
-import { ReactComponent as ArrowToRightSvg } from "../../assets/Arrow-to-right.svg";
 
 import { ReactComponent as UsaSvg } from "../../assets/Flags/united-states.svg";
 import { ReactComponent as VietnamSvg } from "../../assets/Flags/vietnam.svg";
@@ -44,24 +37,10 @@ export function SvgIcon(props: SvgIconWrapperProps) {
 
 type SvgIconProps = Omit<SvgIconWrapperProps, "children">;
 
-export function PlusIcon(props: SvgIconProps) {
-  return (
-    <SvgIcon {...props}>
-      <PlusSvg />
-    </SvgIcon>
-  );
-}
 export function ProductIcon(props: SvgIconProps) {
   return (
     <SvgIcon {...props}>
       <ProductSvg />
-    </SvgIcon>
-  );
-}
-export function VisibleIcon(props: SvgIconProps) {
-  return (
-    <SvgIcon {...props}>
-      <VisibleSvg />
     </SvgIcon>
   );
 }
