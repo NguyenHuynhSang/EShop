@@ -1,5 +1,6 @@
 import { ColumnApi, GridApi, GridReadyEvent } from "ag-grid-community";
-import { useCallback } from "react";
+import { useCallback, useRef } from "react";
+import { useEventListener, useOnMount } from "./hookHelpers";
 
 type GridReadyCb = (api: AgGridApi) => void;
 export type AgGridApi = {
@@ -44,3 +45,61 @@ export function autoSizeColumns(gridColumnApi?: ColumnApi, columns?: string[]) {
     gridColumnApi?.autoSizeColumns(allColumnIds, false);
   });
 }
+
+export const useFixedHeader = () => {
+  const headerElementRef = useRef<HTMLDivElement>();
+  const bodyElementRef = useRef<HTMLDivElement>();
+  const stickyRef = useRef(false);
+  const originalStyles = useRef({ position: "", top: "", zIndex: "" });
+
+  useOnMount(() => {
+    headerElementRef.current = document.querySelector(
+      '[ref="headerRoot"]'
+    ) as HTMLDivElement;
+    bodyElementRef.current = document.querySelector(
+      '[ref="eBodyViewport"]'
+    ) as HTMLDivElement;
+
+    const header = headerElementRef.current;
+
+    originalStyles.current.position = header.style.position;
+    originalStyles.current.top = header.style.top;
+    originalStyles.current.zIndex = header.style.zIndex;
+  });
+
+  const onScroll = useCallback(() => {
+    const header = headerElementRef.current;
+    const body = bodyElementRef.current;
+    if (!header || !body) return;
+
+    let shouldStick = false;
+    let shouldUnstick = false;
+
+    if (!stickyRef.current) {
+      shouldStick = header.getBoundingClientRect().top <= 0;
+      if (shouldStick) stickyRef.current = true;
+    } else {
+      shouldUnstick =
+        body.getBoundingClientRect().top -
+          header.getBoundingClientRect().height >
+        0;
+      if (shouldUnstick) stickyRef.current = false;
+    }
+
+    if (shouldStick) {
+      header.style.position = "fixed";
+      header.style.top = "0";
+      header.style.zIndex = "2";
+    }
+    if (shouldUnstick) {
+      const original = originalStyles.current;
+      header.style.position = original.position;
+      header.style.top = original.top;
+      header.style.zIndex = original.zIndex;
+    }
+  }, []);
+
+  useEventListener("scroll", onScroll);
+
+  return stickyRef.current;
+};

@@ -6,20 +6,24 @@ import { animated, useTransition } from "react-spring";
 function KtContent({ children, className, location }) {
   // https://www.react-spring.io/docs/hooks/use-transition
   // https://codesandbox.io/embed/jp1wr1867w
-  const transitions = useTransition(location, location => location.pathname, {
+  const transition = useTransition(location, {
+    key: (location) => location.pathname,
     // Initial element position.
-    from: { opacity: 0, transform: "translate3d(0, -5%, 0)" },
+    from: { opacity: 0, transform: "translate(0, -5%)", display: "relative" },
 
     // Animate element to it's positions
-    enter: { opacity: 1, transform: "translate3d(0, 0%, 0)" },
+    enter: [
+      { opacity: 1, transform: "translate(0, 0%)" },
+      { transform: "none" },
+    ],
 
     // We don't fade out animation, just hide element.
-    leave: { display: "none" }
+    leave: { display: "none" },
   });
 
-  return transitions.map(({ key, props: style }) => (
+  return transition((style, item) => (
     <animated.div
-      key={key}
+      key={item.key}
       style={style}
       id="kt_content"
       className={clsx(

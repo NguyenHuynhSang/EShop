@@ -19,7 +19,7 @@ import { Checkbox, Paper } from "@material-ui/core";
 import { actions, Pinned } from "./product.duck";
 import { useSelector, useDispatch, shallowEqual } from "../../../store/store";
 import { useOnMount } from "../helpers/hookHelpers";
-import { useGridApi } from "../helpers/agGridHelpers";
+import { useGridApi, useFixedHeader } from "../helpers/agGridHelpers";
 import ProductTableHeader from "./ProductTableHeader";
 import { AgSelect } from "../../../widgets/Common";
 import styled, { important, theme } from "../../../styles/styled";
@@ -216,6 +216,7 @@ export default function ProductTable(props: ProductTableProps) {
     dispatch(actions.getCategoriesRequest());
     dispatch(actions.getAllRequest());
   });
+  useFixedHeader();
 
   useEffect(() => {
     // refresh to update valueFormatter to display latest currency format

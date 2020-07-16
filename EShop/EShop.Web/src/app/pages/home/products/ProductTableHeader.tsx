@@ -132,9 +132,9 @@ function ColumnMenu(props: ColumnMenuProps) {
         <OverlayTrigger
           trigger="click"
           rootClose
-          placement="top"
+          flip
           overlay={
-            <Popover id="popover-positioned-top">
+            <Popover id={field + "-column-menu"}>
               <ListGroup variant="flush">
                 <ListGroup.Item>
                   <ButtonGroup className={styles.buttonGroup}>
