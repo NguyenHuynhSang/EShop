@@ -52,7 +52,7 @@ export const initLayoutConfig = {
       width: "fluid", // fixed|fluid
       skin: "light",
       fixed: {
-        desktop: true,
+        desktop: false,
         mobile: true
       }
     },
