@@ -5,6 +5,7 @@ import React from "react";
 // https://stackoverflow.com/a/58467651/9449426
 // eslint-disable-next-line no-restricted-imports
 import { createMuiTheme } from "@material-ui/core/styles";
+import Zoom from "@material-ui/core/Zoom";
 import { ThemeProvider as MuiThemeProvider } from "@material-ui/styles";
 import themeConfig from "../../app/styles/theme";
 
@@ -50,6 +51,9 @@ const theme = createMuiTheme(
       },
       MuiButton: {
         disableElevation: true,
+      },
+      MuiTooltip: {
+        TransitionComponent: Zoom,
       },
     },
 

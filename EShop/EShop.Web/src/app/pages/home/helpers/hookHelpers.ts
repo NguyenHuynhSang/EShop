@@ -1,4 +1,4 @@
-import { useEffect, EffectCallback, useReducer, useRef } from "react";
+import { useEffect, EffectCallback, useReducer, useRef, useState } from "react";
 
 export const useOnMount = (cb: EffectCallback) => useEffect(cb, []);
 
@@ -48,3 +48,13 @@ export function useEventListener<K extends keyof WindowEventMap>(
     [eventName, element] // Re-run if eventName or element changes
   );
 }
+
+export const useDialog = () => {
+  const [open, setOpen] = useState(false);
+
+  return {
+    open,
+    handleOpen: () => setOpen(true),
+    handleClose: () => setOpen(false),
+  };
+};

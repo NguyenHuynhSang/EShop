@@ -7,10 +7,10 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
 import { LastLocationProvider } from "react-router-last-location";
+import { setAutoFreeze } from "@reduxjs/toolkit/node_modules/immer";
 import { Routes } from "./app/router/Routes";
 import { I18nProvider, LayoutSplashScreen, ThemeProvider } from "./_metronic";
 import GlobalStyles from "./app/styles/global";
-import { setAutoFreeze } from "@reduxjs/toolkit/node_modules/immer";
 
 // fucking ag-grid keep messing with my data by mutating it internally.
 setAutoFreeze(false);

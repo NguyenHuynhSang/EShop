@@ -15,7 +15,7 @@ let api: AgGridApi = {
   grid: undefined,
 };
 
-export function useGridApi(
+export function useAgGrid(
   onGridReadyCb?: GridReadyCb
 ): [AgGridApi, GridReadyFunc, AutoSizeFunc] {
   const onGridReady = useCallback(
@@ -35,6 +35,10 @@ export function useGridApi(
   return [api, onGridReady, autoSizeColumnsCb];
 }
 
+export function useGridApi(): AgGridApi {
+  return api;
+}
+
 export function autoSizeColumns(gridColumnApi?: ColumnApi, columns?: string[]) {
   const allColumnIds =
     columns || gridColumnApi?.getAllColumns().map((c) => c.getId()) || [];
@@ -46,7 +50,7 @@ export function autoSizeColumns(gridColumnApi?: ColumnApi, columns?: string[]) {
   });
 }
 
-export const useFixedHeader = () => {
+export const useStickyHeader = () => {
   const headerElementRef = useRef<HTMLDivElement>();
   const bodyElementRef = useRef<HTMLDivElement>();
   const stickyRef = useRef(false);
@@ -101,5 +105,5 @@ export const useFixedHeader = () => {
 
   useEventListener("scroll", onScroll);
 
-  return stickyRef.current;
+  return stickyRef;
 };
