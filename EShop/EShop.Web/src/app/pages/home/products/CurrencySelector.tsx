@@ -9,7 +9,7 @@ import {
   EuIcon,
   JapanIcon,
 } from "../../../widgets/Common";
-import styled, { theme } from "../../../styles/styled";
+import { makeStyles, theme } from "../../../styles";
 import Currency from "../base/currency/currency.model";
 
 const flagIconSize = 20;
@@ -20,13 +20,18 @@ const currencyCodeToFlag = {
   JPY: <JapanIcon size={flagIconSize} />,
 };
 
-const OptionContainer = styled("span")({
-  display: "flex",
-  alignItems: "center",
-  "& > :not(:last-child)": {
-    marginRight: theme.spacing.md,
+const useStyles = makeStyles({
+  root: {
+    display: "flex",
+    alignItems: "center",
+    "& > :not(:last-child)": {
+      marginRight: theme.spacing.md,
+    },
   },
 });
+const OptionContainer = ({ children }) => (
+  <span className={useStyles().root}>{children}</span>
+);
 
 const toOption = (currency: Currency): any => ({
   label: (
@@ -60,6 +65,8 @@ export default function CurrencySelector() {
       placeholder="Currency"
       isSearchable={false}
       defaultValue={defaultValue}
+      // fix pinned rows (has zIndex: 1) overlapping currency selector
+      menuPortalTarget={document.body}
       onChange={(e: any) => dispatch(actions.setCurrency(e.value))}
       options={currencies.map(toOption)}
     />

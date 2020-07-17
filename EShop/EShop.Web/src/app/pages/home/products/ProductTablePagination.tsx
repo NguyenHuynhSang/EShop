@@ -5,12 +5,7 @@ import LastPageIcon from "@material-ui/icons/LastPage";
 import PrevPageIcon from "@material-ui/icons/ChevronLeft";
 import NextPageIcon from "@material-ui/icons/ChevronRight";
 import classNames from "classnames";
-import {
-  // Button,
-  Select,
-  SelectComps,
-  toSimpleOption,
-} from "../../../widgets/Common";
+import { Select, SelectComps, toSimpleOption } from "../../../widgets/Common";
 import { actions } from "./product.duck";
 import { useSelector, useDispatch, shallowEqual } from "../../../store/store";
 import { Pagination } from "./product.duck";

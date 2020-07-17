@@ -163,4 +163,10 @@ ${rootSelector} .ag-checkbox-input-wrapper:focus-within {
 ${rootSelector} .ag-checkbox-input-wrapper.ag-checked::after {
     color: ${theme.color.secondary};
 }
+
+/* ----ag loading overlay---- */
+${rootSelector} .ag-overlay {
+    /* fix pinned columns (have z-index: 1) overlapped this */
+    z-index: 1;
+}
 `;
