@@ -52,7 +52,7 @@ ${rootSelector} .ag-cell.ag-right-aligned-cell {
     justify-content: right;
     font-family: ${theme.font.number};
 }
-${rootSelector} .ag-right-aligned-cell, .ag-right-aligned-cell .ag-react-container {
+${rootSelector} .ag-right-aligned-cell, ${rootSelector} .ag-right-aligned-cell .ag-react-container {
     justify-content: right; /* text-align not working since we use flex here */
 }
 
