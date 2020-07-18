@@ -31,16 +31,13 @@ namespace EShop.Server.Controllers
         }
 
 
-        //[HttpGet]
-        //public PagedList<CatalogViewModel> GetAllPaging(string keyword, string sortBy, string sort = "desc", int pageNumder = 1, int pageSize = 50)
-        //{
-        //    var list = _catalogService.GetAll(keyword);
+        [HttpGet]
+        public PagedListWrapper<CatalogViewModel> GetAllPaging(string keyword, string sortBy, string sort = "desc", int pageNumder = 1, int pageSize = 50)
+        {
+            var list = _catalogService.GetAll(keyword);
 
-
-
-
-        //    return PagedList<CatalogViewModel>.ToPagedList(list, pageNumder, pageSize);
-        //}
+            return PagedList<CatalogViewModel>.ToPagedList(list, pageNumder, pageSize);
+        }
         [HttpGet]
         public IEnumerable<ProductCatalog> GetParent()
         {

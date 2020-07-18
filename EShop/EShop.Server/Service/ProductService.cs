@@ -20,10 +20,9 @@ namespace EShop.Server.Service
 {
     public interface IProductService
     {
-        Product Add(Product product);
-        //  IEnumerable<Product> GetAll(Params param);
+        public Product Add(Product product);
+        public IEnumerable<ProductForListDto> GetAll(Params param);
 
-        IEnumerable<ProductForListDto> GeMulty(Params param);
 
         public Product GetProductById(int id);
         public Product Delete(Product product);
@@ -57,77 +56,76 @@ namespace EShop.Server.Service
             return _productRepository.Delete(product);
         }
 
-        public IEnumerable<ProductForListDto> GeMulty(Params param)
+      
+
+        public IEnumerable<ProductForListDto> GetAll(Params param)
         {
+            ProductFilterModel filterModel = null;
+            if (!String.IsNullOrEmpty(param.filter))
+            {
+
+                if (!string.IsNullOrEmpty(param.filter))
+                {
+                    filterModel = JsonConvert.DeserializeObject<ProductFilterModel>(param.filter);
+                }
+
+            }
 
             var query = _productRepository.GetMulti(null, q => q.Include(x => x.Catalog)
-            .Include(x => x.ProductVersions)
-                .ThenInclude(y => y.ProductVersionImages)
-            .Include(x => x.ProductVersions)
-                .ThenInclude(y => y.ProductVersionAttributes)
-                    .ThenInclude(z => z.AttributeValue)
-                    .ThenInclude(t => t.Attribute));
+           .Include(x => x.ProductVersions)
+               .ThenInclude(y => y.ProductVersionImages)
+           .Include(x => x.ProductVersions)
+               .ThenInclude(y => y.ProductVersionAttributes)
+                   .ThenInclude(z => z.AttributeValue)
+                   .ThenInclude(t => t.Attribute));
 
             var productsReturn = query.Select(x => _mapper.Map<ProductForListDto>(x));
-            return productsReturn;
+         
+
+            if (filterModel != null)
+            {
+
+                if (!filterModel.SearchByMultiKeyword)
+                {
+                    if (!String.IsNullOrEmpty(filterModel.Name))
+                    {
+                        return productsReturn.Where(x => x.Name.Contains(filterModel.Name))
+                            .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
+                    }
+                    else if (filterModel.ID != null)
+                    {
+                        return productsReturn.Where(x => x.ID == filterModel.ID)
+                            .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
+                    }
+                    else if (filterModel.FromWeight != null && filterModel.ToWeight != null)
+                    {
+                        return productsReturn.Where(x => x.Weight >= filterModel.FromWeight && x.Weight <= filterModel.ToWeight)
+                            .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
+                    }
+                    else if (filterModel.FromWeight == null && filterModel.ToWeight != null)
+                    {
+                        return productsReturn.Where(x => x.Weight <= filterModel.ToWeight)
+                            .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
+                    }
+                    else if (filterModel.FromWeight != null && filterModel.ToWeight == null)
+                    {
+                        return productsReturn.Where(x => x.Weight >= filterModel.FromWeight)
+                            .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
+                    }
+                    else if (filterModel.CatalogID != null)
+                    {
+                        return productsReturn.Where(x => x.Catalog.ID == filterModel.CatalogID)
+                            .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
+                    }
+                }
+                else
+                {
+
+                }
+            }
+
+            return productsReturn.AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
         }
-
-        //public IEnumerable<Product> GetAll(Params param)
-        //{
-        //    ProductFilterModel filterModel = null;
-        //    if (!String.IsNullOrEmpty(param.filter))
-        //    {
-
-        //        if (!string.IsNullOrEmpty(param.filter))
-        //        {
-        //            filterModel = JsonConvert.DeserializeObject<ProductFilterModel>(param.filter);
-        //        }
-
-        //    }
-        //    if (filterModel != null)
-        //    {
-
-        //        if (!filterModel.SearchByMultiKeyword)
-        //        {
-        //            if (!String.IsNullOrEmpty(filterModel.Name))
-        //            {
-        //                return _productRepository.GetMulti(x => x.Name.Contains(filterModel.Name))
-        //                    .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
-        //            }
-        //            else if (filterModel.ID != null)
-        //            {
-        //                return _productRepository.GetMulti(x => x.ID == filterModel.ID)
-        //                    .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
-        //            }
-        //            else if (filterModel.FromWeight != null && filterModel.ToWeight != null)
-        //            {
-        //                return _productRepository.GetMulti(x => x.Weight >= filterModel.FromWeight && x.Weight <= filterModel.ToWeight)
-        //                    .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
-        //            }
-        //            else if (filterModel.FromWeight == null && filterModel.ToWeight != null)
-        //            {
-        //                return _productRepository.GetMulti(x => x.Weight <= filterModel.ToWeight)
-        //                    .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
-        //            }
-        //            else if (filterModel.FromWeight != null && filterModel.ToWeight == null)
-        //            {
-        //                return _productRepository.GetMulti(x => x.Weight >= filterModel.FromWeight)
-        //                    .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
-        //            }
-        //            else if (filterModel.CatalogID != null)
-        //            {
-        //                return _productRepository.GetMulti(x => x.CatalogID == filterModel.CatalogID)
-        //                    .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
-        //            }
-        //        }
-        //        else
-        //        {
-
-        //        }
-        //    }
-
-        //    return _productRepository.GetAll().AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
-        //}
 
         //public IEnumerable<ProductViewModel> GetAllProductViewModel(Params param)
         //{

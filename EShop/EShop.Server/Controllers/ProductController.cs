@@ -29,12 +29,20 @@ namespace EShop.Server.Controllers
             this._productService = productService;
         }
 
+
+        [HttpGet]
+        public ActionResult<IEnumerable<ProductForListDto>> GetAll(string productFilterModelJson, string sortBy, string sort = "desc")
+        {
+            Params param = new Params(productFilterModelJson, sort, sortBy);
+            var list = _productService.GetAll(param);
+            return list.ToList();
+        }
         [HttpGet]
         public ActionResult<PagedListWrapper<ProductForListDto>> GetAllPaging(string productFilterModelJson, string sortBy, string sort= "desc", int pageNumder = 1, int pageSize = 50)
         {
 
             Params param = new Params(productFilterModelJson,sort,sortBy,pageNumder,pageSize);
-            var list = _productService.GeMulty(param);
+            var list = _productService.GetAll(param);
             return PagedList<ProductForListDto>.ToPagedList(list, pageNumder, pageSize);
         }
 

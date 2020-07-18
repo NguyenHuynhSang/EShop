@@ -9,11 +9,12 @@ namespace EShop.Server.Extension
     {
         public string filter { set; get; }
         public string sort { set; get; }
-        public string sortBy { set; get; }
-        public int pageNumder { set; get; }
-        public int pageSize { set; get; }
 
-        public Params(string filter, string sort, string sortBy, int pageNumder, int pageSize)
+        public string sortBy { set; get; }
+        public int? pageNumder { set; get; }
+        public int? pageSize { set; get; }
+
+        public Params(string filter, string sort, string sortBy, int? pageNumder = null, int? pageSize = null)
         {
             this.filter = filter;
             this.sort = sort;
