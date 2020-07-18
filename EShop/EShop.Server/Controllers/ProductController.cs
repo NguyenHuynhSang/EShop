@@ -30,12 +30,12 @@ namespace EShop.Server.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<ProductForListDto>> GetAllPaging(string productFilterModelJson, string sortBy, string sort= "desc", int pageNumder = 1, int pageSize = 50)
+        public ActionResult<PagedListWrapper<ProductForListDto>> GetAllPaging(string productFilterModelJson, string sortBy, string sort= "desc", int pageNumder = 1, int pageSize = 50)
         {
 
             Params param = new Params(productFilterModelJson,sort,sortBy,pageNumder,pageSize);
             var list = _productService.GeMulty(param);
-            return list.ToList();
+            return PagedList<ProductForListDto>.ToPagedList(list, pageNumder, pageSize);
         }
 
     
@@ -49,12 +49,7 @@ namespace EShop.Server.Controllers
         }
 
 
-        [HttpPost]
-        public void CreateProductByProductInput()
-        {
-           // _productService.CreateByProductInput(product);
-
-        }
+      
 
         [HttpGet]
         public Product GetById(int id)

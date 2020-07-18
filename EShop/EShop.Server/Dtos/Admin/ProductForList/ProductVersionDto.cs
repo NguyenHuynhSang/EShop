@@ -8,7 +8,6 @@ namespace EShop.Server.Dtos.Admin.ProductForList
 {
     public class ProductVersionDto
     {
-
         public int ID { set; get; }
 
         public int WareHouseID { set; get; }
@@ -16,7 +15,7 @@ namespace EShop.Server.Dtos.Admin.ProductForList
         public string Description { set; get; }
 
         public decimal Price { set; get; }
-
+        public decimal PromotionPrice { set; get; }
         public int Quantum { set; get; }
 
         public int RemainingAmount { set; get; }

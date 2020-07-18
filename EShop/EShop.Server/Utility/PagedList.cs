@@ -18,15 +18,32 @@ public class PagedList<T> : List<T>
 		PageSize = pageSize;
 		CurrentPage = pageNumber;
 		TotalPages = (int)Math.Ceiling(count / (double)pageSize);
-
 		AddRange(items);
 	}
 
-	public static PagedList<T> ToPagedList(IEnumerable<T> source, int pageNumber, int pageSize)
+	public static PagedListWrapper<T> ToPagedList(IEnumerable<T> source, int pageNumber, int pageSize)
 	{
 		var count = source.Count();
 		var items = source.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
 
-		return new PagedList<T>(items, count, pageNumber, pageSize);
+		PagedListWrapper<T> pagedListWapper = new PagedListWrapper<T>();
+		pagedListWapper.Source = new PagedList<T>(items, count, pageNumber, pageSize);
+		pagedListWapper.TotalCount = count;
+		pagedListWapper.TotalPages = (int)Math.Ceiling(count / (double)pageSize);
+		pagedListWapper.CurrentPage = pageNumber;
+		pagedListWapper.PageSize = pageSize;
+		return pagedListWapper;
 	}
+
+
+
+}
+public class PagedListWrapper<T>
+{
+	public PagedList<T> Source { get; set; }
+	public int CurrentPage { get; set; }
+	public int TotalPages { get; set; }
+	public int PageSize { get; set; }
+	public int TotalCount { get; set; }
+
 }
