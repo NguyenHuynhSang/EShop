@@ -5,10 +5,8 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  IconButton,
 } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
-import GetAppIcon from "@material-ui/icons/GetApp";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import "ag-grid-enterprise";
 import { Light as SyntaxHighlighter } from "react-syntax-highlighter";
@@ -19,49 +17,17 @@ import {
   PortletHeaderToolbar,
 } from "../../../partials/content/Portlet";
 import { base16AteliersulphurpoolLight as highlightStyle } from "react-syntax-highlighter/dist/esm/styles/prism";
-import { SelectButton, ProductIcon } from "../../../widgets/Common";
+import { ProductIcon } from "../../../widgets/Common";
 import ProductTable from "./ProductTable";
 import CurrencySelector from "./CurrencySelector";
 import ColumnDisplayDialog from "./ColumnDisplayDialog";
 import ProductTablePagination from "./ProductTablePagination";
+import ExportButton from "./ExportButton";
 import { actions, ExportFormat } from "../base/table.duck";
 import { makeStyles, theme } from "../../../styles";
-import {
-  useGridApi,
-  getExportParams,
-  getDataAsJson,
-  exportDataAsJson,
-} from "../helpers/agGridHelpers";
 import { useDialog } from "../helpers/hookHelpers";
 import { useSelector, useDispatch } from "../../../store/store";
-
-const useExportData = (format: ExportFormat) => {
-  const api = useGridApi();
-  const params = getExportParams(api);
-
-  switch (format) {
-    case ExportFormat.Csv:
-      return () => api.grid?.getDataAsCsv(params);
-    case ExportFormat.Excel:
-      // TODO: write my own excel implementation to reduce extra dependency
-      return () => api.grid?.getDataAsExcel(params);
-    case ExportFormat.Json:
-      return () => getDataAsJson(params, api);
-  }
-};
-const useExportDownload = (format: ExportFormat) => {
-  const api = useGridApi();
-  const params = getExportParams(api);
-
-  switch (format) {
-    case ExportFormat.Csv:
-      return () => api.grid?.exportDataAsCsv(params);
-    case ExportFormat.Excel:
-      return () => api.grid?.exportDataAsExcel(params);
-    case ExportFormat.Json:
-      return () => exportDataAsJson(params, api);
-  }
-};
+import { useExportDownload, useExportData } from "../helpers/agGridHelpers";
 
 function getLanguage(format: ExportFormat) {
   switch (format) {
@@ -114,88 +80,6 @@ function ExportPreviewDialog() {
         </Button>
       </DialogActions>
     </Dialog>
-  );
-}
-
-const useExportOptionStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-  },
-  text: {
-    width: "100%",
-    padding: "8px 15px",
-    transition: "color .25s ease",
-    // left-align text
-    display: "flex",
-    justifyContent: "flex-start",
-    "&:hover": {
-      backgroundColor: "transparent",
-      color: theme.palette.primary.main,
-    },
-  },
-  previewButton: {
-    padding: 0,
-    marginLeft: "auto",
-    width: "35px",
-  },
-}));
-type ExportOptionProps = { children: React.ReactNode; format: ExportFormat };
-function ExportOption({ children, format }: ExportOptionProps) {
-  const download = useExportDownload(format);
-  const dispatch = useDispatch();
-  const styles = useExportOptionStyles();
-
-  return (
-    <div className={styles.root}>
-      <Button
-        className={styles.text}
-        disableRipple
-        disableFocusRipple
-        onClick={download}
-      >
-        {children}
-      </Button>
-      <IconButton
-        className={styles.previewButton}
-        onClick={() => dispatch(actions.setExportDialogOpen(format))}
-      >
-        <VisibilityIcon htmlColor={theme.color.blue} />
-      </IconButton>
-    </div>
-  );
-}
-
-const useExportButtonStyles = makeStyles({
-  root: {
-    "& [class$='-option']": {
-      padding: 0,
-      // remove selection color of the first option when opening
-      backgroundColor: "transparent",
-    },
-  },
-});
-function ExportButton() {
-  const styles = useExportButtonStyles();
-  const selectedRows = useSelector((state) => state.products.rowsSelected);
-  const selectedRowsText = selectedRows > 0 ? "(" + selectedRows + ")" : "";
-
-  return (
-    <SelectButton
-      className={styles.root}
-      startIcon={<GetAppIcon style={{ fontSize: iconSize }} />}
-      variant="contained"
-      color="primary"
-      size="large"
-      options={Object.keys(ExportFormat).map((f) => ({
-        label: <ExportOption format={ExportFormat[f]}>{f}</ExportOption>,
-        value: f,
-        // Disable react-select Option's onClick handler, because we already have one in ExportButton.
-        // This will prevent the error: <button> cannot appear as a descendant of <button>
-        isDisabled: true,
-      }))}
-    >
-      Export {selectedRowsText}
-    </SelectButton>
   );
 }
 
@@ -252,7 +136,7 @@ export default function ProductsPage() {
             >
               Thêm sản phẩm
             </Button>
-            <ExportButton />
+            <ExportButton iconSize={iconSize} />
           </PortletHeaderToolbar>
         }
       />

@@ -8,6 +8,7 @@ import {
 import { useCallback, useRef } from "react";
 import { useEventListener, useOnMount } from "./hookHelpers";
 import download from "./download";
+import { ExportFormat } from "../base/table.duck";
 
 type GridReadyCb = (api: AgGridApi) => void;
 export type AgGridApi = {
@@ -172,4 +173,32 @@ export const exportDataAsJson = (
   api: AgGridApi
 ) => {
   download("export.json", getDataAsJson(params, api));
+};
+
+export const useExportData = (format: ExportFormat) => {
+  const api = useGridApi();
+  const params = getExportParams(api);
+
+  switch (format) {
+    case ExportFormat.Csv:
+      return () => api.grid?.getDataAsCsv(params);
+    case ExportFormat.Excel:
+      // TODO: write my own excel implementation to reduce extra dependency
+      return () => api.grid?.getDataAsExcel(params);
+    case ExportFormat.Json:
+      return () => getDataAsJson(params, api);
+  }
+};
+export const useExportDownload = (format: ExportFormat) => {
+  const api = useGridApi();
+  const params = getExportParams(api);
+
+  switch (format) {
+    case ExportFormat.Csv:
+      return () => api.grid?.exportDataAsCsv(params);
+    case ExportFormat.Excel:
+      return () => api.grid?.exportDataAsExcel(params);
+    case ExportFormat.Json:
+      return () => exportDataAsJson(params, api);
+  }
 };
