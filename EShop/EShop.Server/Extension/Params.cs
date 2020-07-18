@@ -13,8 +13,8 @@ namespace EShop.Server.Extension
         public string sort { set; get; }
 
         public string sortBy { set; get; }
-        public int? pageNumder { set; get; }
-        public int? pageSize { set; get; }
+        public int? page { set; get; }
+        public int? perPage { set; get; }
 
         public decimal? currency { set; get; }
 

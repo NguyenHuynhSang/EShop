@@ -41,7 +41,7 @@ namespace EShop.Server.Controllers
             return list.ToList();
         }
         [HttpGet]
-        public ActionResult<PagedListWrapper<ProductForListDto>> GetAllPaging(string productFilterModelJson, string sortBy, string sort = "desc", decimal? currency=null, string weight="kg", int pageNumder = 1, int pageSize = 50)
+        public ActionResult<PagedListWrapper<ProductForListDto>> GetAllPaging(string productFilterModelJson, string sortBy, string sort = "desc", decimal? currency=null, string weight="kg", int page = 1, int perPage = 50)
         {
 
             Params param = new Params();
@@ -49,11 +49,11 @@ namespace EShop.Server.Controllers
             param.weight = weight;
             param.sortBy = sortBy;
             param.sort = sort;
-            param.pageSize = pageSize;
-            param.pageNumder = pageNumder;
+            param.perPage = perPage;
+            param.page = page;
             param.filter = productFilterModelJson;
             var list = _productService.GetAll(param);
-            return PagedList<ProductForListDto>.ToPagedList(list, pageNumder, pageSize);
+            return PagedList<ProductForListDto>.ToPagedList(list, page, perPage);
         }
 
     
