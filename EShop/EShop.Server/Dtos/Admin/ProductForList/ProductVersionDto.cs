@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EShop.Server.Dtos.Admin.Product
+namespace EShop.Server.Dtos.Admin.ProductForList
 {
     public class ProductVersionDto
     {

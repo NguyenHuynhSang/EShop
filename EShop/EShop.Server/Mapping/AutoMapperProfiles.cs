@@ -8,7 +8,7 @@ using AutoMapper;
 using EShop.Server.Extension;
 using EShop.Server.ViewModels;
 using static EShop.Server.SchedulerTask.ExchangeRateTask;
-using EShop.Server.Dtos.Admin.Product;
+using EShop.Server.Dtos.Admin.ProductForList;
 
 namespace EShop.Server.Mapping
 {
@@ -41,6 +41,7 @@ namespace EShop.Server.Mapping
             CreateMap<Photo, PhotoForReturnDto>();
 
             CreateMap<ProductVersionImage, ProductVersionImageDto>();
+            CreateMap<AttributeValue, AttributeValueDto>();
             CreateMap<ProductVersionAttribute, ProductVersionAttributeDto>()
                  .ForMember(dest => dest.AttributeName, opt =>
                  {
@@ -49,7 +50,17 @@ namespace EShop.Server.Mapping
                  .ForMember(dest => dest.AtributeID, opt =>
                  {
                      opt.MapFrom(src => src.AttributeValue.AttributeID);
+                 })
+                 .ForMember(dest => dest.AttributeValueName, opt =>
+                 {
+                     opt.MapFrom(src => src.AttributeValue.Name);
+                 })
+                 .ForMember(dest => dest.AttributeValueID, opt =>
+                 {
+                     opt.MapFrom(src => src.AttributeValue.ID);
                  });
+               
+
             CreateMap<ProductVersion, ProductVersionDto>()
                  .ForMember(dest => dest.ImageUrl, opt =>
                  {
@@ -59,7 +70,10 @@ namespace EShop.Server.Mapping
                   {
                       opt.MapFrom(src => src.ProductVersionImages.Where(p => !p.IsMain));
                   })
-                 ;
+                   .ForMember(dest => dest.ProductVersionAttributes, opt =>
+                   {
+                       opt.MapFrom(src => src.ProductVersionAttributes);
+                   });
             CreateMap<ProductCatalog, ProductCatalogDto>();
             CreateMap<Product, ProductForListDto>();
 

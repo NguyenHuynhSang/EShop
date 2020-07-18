@@ -11,7 +11,7 @@ using EShop.Server.Models;
 using EShop.Server.ViewModels;
 using EShop.Server.Extension;
 using System;
-using EShop.Server.Dtos.Admin.Product;
+using EShop.Server.Dtos.Admin.ProductForList;
 
 namespace EShop.Server.Controllers
 {

@@ -5,12 +5,9 @@ using System.Threading.Tasks;
 
 namespace EShop.Server.Dtos.Admin.ProductForList
 {
-    public class ProductCatalogDto
+    public class AttributeValueDto
     {
         public int ID { set; get; }
-
         public string Name { set; get; }
-
-
     }
 }

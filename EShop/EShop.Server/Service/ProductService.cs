@@ -14,7 +14,7 @@ using System.Linq.Dynamic.Core;
 using EShop.Server.Extension;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
-using EShop.Server.Dtos.Admin.Product;
+using EShop.Server.Dtos.Admin.ProductForList;
 
 namespace EShop.Server.Service
 {
