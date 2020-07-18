@@ -4,14 +4,16 @@ using EShop.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EShop.Server.Migrations
 {
     [DbContext(typeof(EShopDbContext))]
-    partial class EShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200718135706_add_column_promotionprice_table_productversion")]
+    partial class add_column_promotionprice_table_productversion
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -481,6 +483,32 @@ namespace EShop.Server.Migrations
                     b.HasIndex("CatalogID");
 
                     b.ToTable("Product");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            ApplyPromotion = true,
+                            CatalogID = 1,
+                            Content = "This is an iphone",
+                            Deliver = true,
+                            Description = "no discrip",
+                            Name = "Iphone test",
+                            OriginalPrice = 16000000m,
+                            Weight = 0
+                        },
+                        new
+                        {
+                            ID = 2,
+                            ApplyPromotion = true,
+                            CatalogID = 1,
+                            Content = "This is a samsung",
+                            Deliver = true,
+                            Description = "no discrip",
+                            Name = "samsung galaxy test",
+                            OriginalPrice = 14000000m,
+                            Weight = 0
+                        });
                 });
 
             modelBuilder.Entity("EShop.Server.Models.ProductCatalog", b =>
@@ -600,6 +628,47 @@ namespace EShop.Server.Migrations
                     b.HasIndex("ProductID");
 
                     b.ToTable("ProductVersions");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Barcode = "COC",
+                            Description = "Màu đỏ dl 250",
+                            Price = 19000000m,
+                            ProductID = 1,
+                            PromotionPrice = 0m,
+                            Quantum = 100,
+                            RemainingAmount = 100,
+                            SKU = "Iphone test",
+                            WareHouseID = 0
+                        },
+                        new
+                        {
+                            ID = 2,
+                            Barcode = "COC",
+                            Description = "Màu xanh dl 250",
+                            Price = 18000000m,
+                            ProductID = 1,
+                            PromotionPrice = 0m,
+                            Quantum = 100,
+                            RemainingAmount = 100,
+                            SKU = "Iphone test",
+                            WareHouseID = 0
+                        },
+                        new
+                        {
+                            ID = 3,
+                            Barcode = "COC",
+                            Description = "Màu xanh dl 250",
+                            Price = 16000000m,
+                            ProductID = 2,
+                            PromotionPrice = 0m,
+                            Quantum = 100,
+                            RemainingAmount = 100,
+                            SKU = "Iphone test",
+                            WareHouseID = 0
+                        });
                 });
 
             modelBuilder.Entity("EShop.Server.Models.ProductVersionAttribute", b =>

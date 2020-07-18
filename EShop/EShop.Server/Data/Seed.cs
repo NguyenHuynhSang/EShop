@@ -14,11 +14,14 @@ namespace EShop.Server.Data
         public Seed(EShopDbContext context)
         {
             _context = context;
+              SeedUsers();
+
+             SeedProduct();
         }
 
-        public void SeedUsers()
+        private void SeedUsers()
         {
-            var userData = File.ReadAllText("Data/UserSeedData.json");
+            var userData = File.ReadAllText("Data/user.data.json");
             var users = JsonConvert.DeserializeObject<List<User>>(userData);
 
             foreach (var user in users)
@@ -34,6 +37,22 @@ namespace EShop.Server.Data
 
             _context.SaveChanges();
         }
+
+
+        private void SeedProduct()
+        {
+            var productData = File.ReadAllText("Data/product.data.json");
+            var products = JsonConvert.DeserializeObject<List<Product>>(productData);
+
+            foreach (var product in products)
+            {
+                _context.Products.Add(product);
+            }
+
+            _context.SaveChanges();
+        }
+
+
 
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
