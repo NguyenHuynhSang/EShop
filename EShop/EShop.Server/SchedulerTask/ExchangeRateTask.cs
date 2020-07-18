@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using EShop.Server.Data;
-using EShop.Server.InputModel;
 using EShop.Server.Models;
 using EShop.Server.Service;
 using Microsoft.Extensions.DependencyInjection;

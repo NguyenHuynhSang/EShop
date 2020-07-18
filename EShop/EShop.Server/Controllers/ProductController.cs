@@ -5,13 +5,13 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Net;
 using System.Linq;
-using EShop.Server.InputModel;
 using EShop.Server.FilterModel;
 using Newtonsoft.Json;
 using EShop.Server.Models;
 using EShop.Server.ViewModels;
 using EShop.Server.Extension;
 using System;
+using EShop.Server.Dtos.Admin.Product;
 
 namespace EShop.Server.Controllers
 {
@@ -30,7 +30,7 @@ namespace EShop.Server.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Product>> GetAllPaging(string productFilterModelJson, string sortBy, string sort= "desc", int pageNumder = 1, int pageSize = 50)
+        public ActionResult<IEnumerable<ProductForListDto>> GetAllPaging(string productFilterModelJson, string sortBy, string sort= "desc", int pageNumder = 1, int pageSize = 50)
         {
 
             Params param = new Params(productFilterModelJson,sort,sortBy,pageNumder,pageSize);
@@ -38,14 +38,7 @@ namespace EShop.Server.Controllers
             return list.ToList();
         }
 
-        [HttpGet]
-        public ActionResult<PagedList<ProductViewModel>> GetProductAllVersionsPaging(string productFilterModelJson, string sortBy , string sort = "desc", int pageNumder = 1, int pageSize = 50)
-        {
-            Params param = new Params(productFilterModelJson, sort, sortBy, pageNumder, pageSize);
-            var list = _productService.GetAllProductViewModel(param);
-
-            return PagedList<ProductViewModel>.ToPagedList(list, pageNumder, pageSize);
-        }
+    
 
         [HttpPost]
         public Product CreateProduct(Product product)
@@ -57,9 +50,9 @@ namespace EShop.Server.Controllers
 
 
         [HttpPost]
-        public void CreateProductByProductInput(ProductInput product)
+        public void CreateProductByProductInput()
         {
-            _productService.CreateByProductInput(product);
+           // _productService.CreateByProductInput(product);
 
         }
 
@@ -69,11 +62,7 @@ namespace EShop.Server.Controllers
             return _productService.GetProductById(id);
         }
 
-        [HttpGet]
-        public ProductInput GetProductInputById(int id)
-        {
-            return _productService.GetProductInputByID(id);
-        }
+        
 
 
 

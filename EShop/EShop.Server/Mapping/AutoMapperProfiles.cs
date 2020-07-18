@@ -6,9 +6,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using EShop.Server.Extension;
-using EShop.Server.InputModel;
 using EShop.Server.ViewModels;
 using static EShop.Server.SchedulerTask.ExchangeRateTask;
+using EShop.Server.Dtos.Admin.Product;
 
 namespace EShop.Server.Mapping
 {
@@ -40,10 +40,31 @@ namespace EShop.Server.Mapping
             CreateMap<PhotoForCreationDto, Photo>();
             CreateMap<Photo, PhotoForReturnDto>();
 
-            CreateMap<ProductInput, Product>();
-            CreateMap<Product, ProductInput>();
-            CreateMap<ProductVersionInput, ProductVersion>();
-            CreateMap<ProductVersion, ProductVersionInput>();
+            CreateMap<ProductVersionImage, ProductVersionImageDto>();
+            CreateMap<ProductVersionAttribute, ProductVersionAttributeDto>()
+                 .ForMember(dest => dest.AttributeName, opt =>
+                 {
+                     opt.MapFrom(src => src.AttributeValue.Attribute.Name);
+                 })
+                 .ForMember(dest => dest.AtributeID, opt =>
+                 {
+                     opt.MapFrom(src => src.AttributeValue.AttributeID);
+                 });
+            CreateMap<ProductVersion, ProductVersionDto>()
+                 .ForMember(dest => dest.ImageUrl, opt =>
+                 {
+                     opt.MapFrom(src => src.ProductVersionImages.FirstOrDefault(p => p.IsMain).Url);
+                 })
+                  .ForMember(dest => dest.ProductVersionImages, opt =>
+                  {
+                      opt.MapFrom(src => src.ProductVersionImages.Where(p => !p.IsMain));
+                  })
+                 ;
+            CreateMap<ProductCatalog, ProductCatalogDto>();
+            CreateMap<Product, ProductForListDto>();
+
+
+
             CreateMap<Item, ExchangeRateDongA>()
                 .ForMember(dest => dest.type, opt => opt.NullSubstitute("N/A"))
                 .ForMember(dest => dest.muack, act => act.MapFrom(src => String.IsNullOrEmpty(src.muack) ? 0 : float.Parse(src.muack)))
@@ -52,7 +73,8 @@ namespace EShop.Server.Mapping
                 .ForMember(dest => dest.bantienmat, act => act.MapFrom(src => String.IsNullOrEmpty(src.bantienmat) ? 0 : float.Parse(src.bantienmat)));
 
 
-            //ignore ID 
+            //ignore ID , entity need to get from db and map to update entity
+            // track issue cause by ef core
             CreateMap<ExchangeRateDongA, ExchangeRateDongA>()
                  .ForMember(dest => dest.ID, opt => opt.Ignore());
             CreateMap<IEnumerable<ProductVersionViewModel>, IEnumerable<ProductVersion>>();
