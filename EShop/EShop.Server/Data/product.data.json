@@ -5,7 +5,7 @@
     "name": "Iphone test",
     "description": "no discrip",
     "content": "This is an iphone",
-    "weight": 0,
+    "weight": 500,
     "originalPrice": 16000000,
     "deliver": true,
     "applyPromotion": true,

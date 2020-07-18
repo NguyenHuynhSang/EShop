@@ -33,15 +33,25 @@ namespace EShop.Server.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<ProductForListDto>> GetAll(string productFilterModelJson, string sortBy, string sort = "desc")
         {
-            Params param = new Params(productFilterModelJson, sort, sortBy);
+            Params param = new Params();
+            param.filter = productFilterModelJson;
+            param.sortBy = sortBy;
+            param.sort = sort;
             var list = _productService.GetAll(param);
             return list.ToList();
         }
         [HttpGet]
-        public ActionResult<PagedListWrapper<ProductForListDto>> GetAllPaging(string productFilterModelJson, string sortBy, string sort= "desc", int pageNumder = 1, int pageSize = 50)
+        public ActionResult<PagedListWrapper<ProductForListDto>> GetAllPaging(string productFilterModelJson, string sortBy, string sort = "desc", decimal? currency=null, string weight="kg", int pageNumder = 1, int pageSize = 50)
         {
 
-            Params param = new Params(productFilterModelJson,sort,sortBy,pageNumder,pageSize);
+            Params param = new Params();
+            param.currency = currency;
+            param.weight = weight;
+            param.sortBy = sortBy;
+            param.sort = sort;
+            param.pageSize = pageSize;
+            param.pageNumder = pageNumder;
+            param.filter = productFilterModelJson;
             var list = _productService.GetAll(param);
             return PagedList<ProductForListDto>.ToPagedList(list, pageNumder, pageSize);
         }
@@ -76,5 +86,7 @@ namespace EShop.Server.Controllers
             _productService.SaveChanges();
             return oldEntity;
         }
+
+
     }
 }

@@ -28,7 +28,7 @@ namespace EShop.Server.Dtos.Admin.ProductForList
 
 
 
-        public decimal? OriginalPrice { get; set; }
+        public decimal OriginalPrice { get; set; }
 
         public bool Deliver;
 

@@ -80,7 +80,7 @@ namespace EShop.Server.Service
                    .ThenInclude(t => t.Attribute));
 
             var productsReturn = query.Select(x => _mapper.Map<ProductForListDto>(x));
-         
+
 
             if (filterModel != null)
             {
@@ -89,33 +89,33 @@ namespace EShop.Server.Service
                 {
                     if (!String.IsNullOrEmpty(filterModel.Name))
                     {
-                        return productsReturn.Where(x => x.Name.Contains(filterModel.Name))
-                            .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
+                        return ProductPropertyConverter(productsReturn.Where(x => x.Name.Contains(filterModel.Name))
+                            .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort), param);
                     }
                     else if (filterModel.ID != null)
                     {
-                        return productsReturn.Where(x => x.ID == filterModel.ID)
-                            .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
+                        return ProductPropertyConverter(productsReturn.Where(x => x.ID == filterModel.ID)
+                            .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort), param);
                     }
                     else if (filterModel.FromWeight != null && filterModel.ToWeight != null)
                     {
-                        return productsReturn.Where(x => x.Weight >= filterModel.FromWeight && x.Weight <= filterModel.ToWeight)
-                            .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
+                        return ProductPropertyConverter(productsReturn.Where(x => x.Weight >= filterModel.FromWeight && x.Weight <= filterModel.ToWeight)
+                            .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort),param);
                     }
                     else if (filterModel.FromWeight == null && filterModel.ToWeight != null)
                     {
-                        return productsReturn.Where(x => x.Weight <= filterModel.ToWeight)
-                            .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
+                        return ProductPropertyConverter(productsReturn.Where(x => x.Weight <= filterModel.ToWeight)
+                            .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort),param);
                     }
                     else if (filterModel.FromWeight != null && filterModel.ToWeight == null)
                     {
-                        return productsReturn.Where(x => x.Weight >= filterModel.FromWeight)
-                            .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
+                        return ProductPropertyConverter(productsReturn.Where(x => x.Weight >= filterModel.FromWeight)
+                            .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort),param);
                     }
                     else if (filterModel.CatalogID != null)
                     {
-                        return productsReturn.Where(x => x.Catalog.ID == filterModel.CatalogID)
-                            .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
+                        return ProductPropertyConverter(productsReturn.Where(x => x.Catalog.ID == filterModel.CatalogID)
+                            .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort),param);
                     }
                 }
                 else
@@ -124,110 +124,36 @@ namespace EShop.Server.Service
                 }
             }
 
-            return productsReturn.AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
+            return ProductPropertyConverter(productsReturn.AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort),param);
         }
 
-        //public IEnumerable<ProductViewModel> GetAllProductViewModel(Params param)
-        //{
 
-        //    ProductFilterModel filterModel = null;
-        //    if (!String.IsNullOrEmpty(param.filter))
-        //    {
 
-        //        if (!string.IsNullOrEmpty(param.filter))
-        //        {
-        //            filterModel = JsonConvert.DeserializeObject<ProductFilterModel>(param.filter);
-        //        }
+        private IEnumerable<ProductForListDto> ProductPropertyConverter(IEnumerable<ProductForListDto> source,Params param)
+        {
 
-        //    }
-        //    if (filterModel != null)
-        //    {
+            if (param.currency!=null && param.currency.Value!=0)
+            {
+                source = source.Select(c => { c.OriginalPrice = c.OriginalPrice/param.currency.Value; return c; });
+                source = source.ToList();
+                foreach (var product in source)
+                {
+                    foreach (var productVers in product.ProductVersions)
+                    {
+                        productVers.Price = productVers.Price / param.currency.Value;
+                        productVers.PromotionPrice = productVers.PromotionPrice / param.currency.Value;
+                    }
+                }
+            }
 
-        //        if (!filterModel.SearchByMultiKeyword)
-        //        {
-        //            if (!String.IsNullOrEmpty(filterModel.Name))
-        //            {
-        //                return _productRepository.GetProductViewModels().Where(x => x.Product.Name.Contains(filterModel.Name))
-        //                    .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
-        //            }
-        //            else if (filterModel.ID != null)
-        //            {
-        //                return _productRepository.GetProductViewModels().Where(x => x.Product.ID == filterModel.ID)
-        //                    .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
-        //            }
-        //            else if (filterModel.FromWeight != null && filterModel.ToWeight != null)
-        //            {
-        //                return _productRepository.GetProductViewModels().Where(x => x.Product.Weight >= filterModel.FromWeight && x.Product.Weight <= filterModel.ToWeight)
-        //                    .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
-        //            }
-        //            else if (filterModel.FromWeight == null && filterModel.ToWeight != null)
-        //            {
-        //                return _productRepository.GetProductViewModels().Where(x => x.Product.Weight <= filterModel.ToWeight)
-        //                    .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
-        //            }
-        //            else if (filterModel.FromWeight != null && filterModel.ToWeight == null)
-        //            {
-        //                return _productRepository.GetProductViewModels().Where(x => x.Product.Weight >= filterModel.FromWeight)
-        //                    .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
-        //            }
-        //            else if (filterModel.FromOriginalPrice != null && filterModel.ToOriginaPrice != null)
-        //            {
-        //                return _productRepository.GetProductViewModels().Where(x => x.Product.OriginalPrice >= filterModel.FromOriginalPrice && x.Product.OriginalPrice <= filterModel.ToOriginaPrice)
-        //                    .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
-        //            }
-        //            else if (filterModel.FromOriginalPrice == null && filterModel.ToOriginaPrice != null)
-        //            {
-        //                return _productRepository.GetProductViewModels().Where(x => x.Product.OriginalPrice <= filterModel.ToOriginaPrice)
-        //                    .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
-        //            }
-        //            else if (filterModel.FromOriginalPrice != null && filterModel.ToOriginaPrice == null)
-        //            {
-        //                return _productRepository.GetProductViewModels().Where(x => x.Product.OriginalPrice >= filterModel.FromOriginalPrice)
-        //                    .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
-        //            }
-        //            else if (filterModel.FromNumVersion != null && filterModel.ToNumVersion != null)
-        //            {
-        //                return _productRepository.GetProductViewModels().Where(x => x.ProductVersions.Count() >= filterModel.FromNumVersion && x.ProductVersions.Count() <= filterModel.ToNumVersion)
-        //                    .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
-        //            }
-        //            else if (filterModel.FromNumVersion == null && filterModel.ToNumVersion != null)
-        //            {
-        //                return _productRepository.GetProductViewModels().Where(x => x.ProductVersions.Count() <= filterModel.ToNumVersion)
-        //                    .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
-        //            }
-        //            else if (filterModel.FromNumVersion != null && filterModel.ToNumVersion == null)
-        //            {
-        //                return _productRepository.GetProductViewModels().Where(x => x.ProductVersions.Count() >= filterModel.FromNumVersion)
-        //                    .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
-        //            }
-        //            else if (filterModel.FromPrice != null && filterModel.ToPrice != null)
-        //            {
-        //                return _productRepository.GetProductViewModels().Where(x => x.ProductVersions.Where(y => y.Price >= filterModel.FromPrice.Value).Count() > 0)
-        //                    .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
-        //            }
-        //            else if (filterModel.FromPrice == null && filterModel.ToPrice != null)
-        //            {
-        //                return _productRepository.GetProductViewModels().Where(x => x.ProductVersions.Where(y => y.Price <= filterModel.ToPrice.Value).Count() > 0)
-        //                    .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
-        //            }
-        //            else if (filterModel.FromPrice != null && filterModel.ToPrice == null)
-        //            {
-        //                return _productRepository.GetProductViewModels().Where(x => x.ProductVersions.Where(y => y.Price >= filterModel.FromPrice.Value).Count() > 0)
-        //                    .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
-        //            }
-        //            else if (filterModel.CatalogID != null)
-        //            {
-        //                return _productRepository.GetProductViewModels().Where(x => x.Product.CatalogID == filterModel.CatalogID)
-        //                    .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
-        //            }
-        //        }
-        //        else
-        //        {
+            if (param.weight.ToLower()=="lb")
+            {
+                source = source.Select(c => { c.Weight = (int)Math.Round(c.Weight * 2.20462, 2); return c; }).ToList();
+            }
+            return source;
 
-        //        }
-        //    }
-        //    return _productRepository.GetProductViewModels().AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
-        //}
+        }
+
 
         public Product GetProductById(int id)
         {
