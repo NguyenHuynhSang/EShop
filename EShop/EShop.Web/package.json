@@ -5,7 +5,7 @@
   "homepage": "https://keenthemes.com/metronic/preview/react/demo1",
   "scripts": {
     "serve": "cp-cli build _site/metronic/preview/react && serve",
-    "start": "react-scripts start",
+    "start": "ts-node scripts/start.ts && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
