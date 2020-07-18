@@ -151,7 +151,7 @@ export const SelectButton = (props: SelectButtonProps) => {
       styles={selectStyle}
       className={styles.root}
       isSearchable={false}
-      menuPortalTarget={document.body}
+      // menuPortalTarget={document.body}
       onChange={onChange}
       options={options}
       width="auto"

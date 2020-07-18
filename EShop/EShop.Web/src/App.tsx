@@ -13,7 +13,8 @@ import { Routes } from "./app/router/Routes";
 import { I18nProvider, LayoutSplashScreen, ThemeProvider } from "./_metronic";
 import GlobalStyles from "./app/styles/global";
 
-LicenseManager.setLicenseKey(process.env.REACT_APP_AG_GRID_LICENSE_KEY!);
+if (process.env.REACT_APP_AG_GRID_LICENSE_KEY)
+  LicenseManager.setLicenseKey(process.env.REACT_APP_AG_GRID_LICENSE_KEY);
 
 // fucking ag-grid keep messing with my data by mutating it internally.
 setAutoFreeze(false);

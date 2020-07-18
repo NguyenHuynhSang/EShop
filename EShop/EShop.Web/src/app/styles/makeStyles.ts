@@ -1,5 +1,6 @@
 import { makeStyles as muiMakeStyles } from "@material-ui/core";
-import { Styles, DefaultTheme, ClassNameMap } from "@material-ui/styles";
+import { Styles, ClassNameMap } from "@material-ui/styles";
+import { Theme as DefaultTheme } from "@material-ui/core/styles/createMuiTheme";
 
 // switch Props generic type to first because I use it a lot more than the others
 export default function makeStyles<

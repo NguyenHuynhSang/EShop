@@ -24,6 +24,7 @@ import ProductTable from "./ProductTable";
 import CurrencySelector from "./CurrencySelector";
 import ColumnDisplayDialog from "./ColumnDisplayDialog";
 import ProductTablePagination from "./ProductTablePagination";
+import { actions, ExportFormat } from "../base/table.duck";
 import { makeStyles, theme } from "../../../styles";
 import {
   useGridApi,
@@ -32,20 +33,13 @@ import {
   exportDataAsJson,
 } from "../helpers/agGridHelpers";
 import { useDialog } from "../helpers/hookHelpers";
-import { useSelector } from "../../../store/store";
+import { useSelector, useDispatch } from "../../../store/store";
 
-enum ExportFormat {
-  Csv = "Csv",
-  Json = "Json",
-  Excel = "Excel",
-}
-let exportFormat = ExportFormat.Csv;
-
-const useExportData = () => {
+const useExportData = (format: ExportFormat) => {
   const api = useGridApi();
   const params = getExportParams(api);
 
-  switch (exportFormat) {
+  switch (format) {
     case ExportFormat.Csv:
       return () => api.grid?.getDataAsCsv(params);
     case ExportFormat.Excel:
@@ -55,11 +49,11 @@ const useExportData = () => {
       return () => getDataAsJson(params, api);
   }
 };
-const useExportDownload = () => {
+const useExportDownload = (format: ExportFormat) => {
   const api = useGridApi();
   const params = getExportParams(api);
 
-  switch (exportFormat) {
+  switch (format) {
     case ExportFormat.Csv:
       return () => api.grid?.exportDataAsCsv(params);
     case ExportFormat.Excel:
@@ -69,12 +63,8 @@ const useExportDownload = () => {
   }
 };
 
-type DialogProps = {
-  open: boolean;
-  handleClose: () => void;
-};
-function getLanguage() {
-  switch (exportFormat) {
+function getLanguage(format: ExportFormat) {
+  switch (format) {
     case ExportFormat.Csv:
       return "javascript";
     case ExportFormat.Excel:
@@ -83,16 +73,23 @@ function getLanguage() {
       return "json";
   }
 }
-function PreviewDialog({ open, handleClose }: DialogProps) {
-  const csvData = useExportData();
-  const download = useExportDownload();
+function ExportPreviewDialog() {
+  const isOpen = useSelector((state) => state.table._global.exportDialogOpen);
+  const format = useSelector((state) => state.table._global.exportFormat);
+  const csvData = useExportData(format);
+  const download = useExportDownload(format);
+  const dispatch = useDispatch();
   const data = csvData();
+  const close = () => dispatch(actions.setExportDialogClose());
 
   return (
-    <Dialog open={open} onClose={handleClose}>
-      <DialogTitle>Export Preview ({exportFormat})</DialogTitle>
+    <Dialog open={isOpen} onClose={close}>
+      <DialogTitle>Export Preview ({format})</DialogTitle>
       <DialogContent>
-        <SyntaxHighlighter language={getLanguage()} style={highlightStyle}>
+        <SyntaxHighlighter
+          language={getLanguage(format)}
+          style={highlightStyle}
+        >
           {data}
         </SyntaxHighlighter>
       </DialogContent>
@@ -100,13 +97,19 @@ function PreviewDialog({ open, handleClose }: DialogProps) {
         <Button
           onClick={() => {
             data && navigator.clipboard.writeText(data);
-            handleClose();
+            close();
           }}
           color="primary"
         >
           Copy
         </Button>
-        <Button onClick={download} color="primary">
+        <Button
+          onClick={() => {
+            download();
+            close();
+          }}
+          color="primary"
+        >
           Download
         </Button>
       </DialogActions>
@@ -114,59 +117,77 @@ function PreviewDialog({ open, handleClose }: DialogProps) {
   );
 }
 
-const useExportOptionStyles = makeStyles({
+const useExportOptionStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
   },
   text: {
-    flex: 1,
+    width: "100%",
+    padding: "8px 15px",
+    transition: "color .25s ease",
+    // left-align text
+    display: "flex",
+    justifyContent: "flex-start",
+    "&:hover": {
+      backgroundColor: "transparent",
+      color: theme.palette.primary.main,
+    },
   },
   previewButton: {
     padding: 0,
     marginLeft: "auto",
+    width: "35px",
   },
-});
-function ExportOption({ children, onClick, onClickPreview }) {
+}));
+type ExportOptionProps = { children: React.ReactNode; format: ExportFormat };
+function ExportOption({ children, format }: ExportOptionProps) {
+  const download = useExportDownload(format);
+  const dispatch = useDispatch();
   const styles = useExportOptionStyles();
+
   return (
     <div className={styles.root}>
-      <span className={styles.text} onClick={onClick}>
+      <Button
+        className={styles.text}
+        disableRipple
+        disableFocusRipple
+        onClick={download}
+      >
         {children}
-      </span>
-      <IconButton className={styles.previewButton} onClick={onClickPreview}>
+      </Button>
+      <IconButton
+        className={styles.previewButton}
+        onClick={() => dispatch(actions.setExportDialogOpen(format))}
+      >
         <VisibilityIcon htmlColor={theme.color.blue} />
       </IconButton>
     </div>
   );
 }
 
-function ExportButton({ onClickPreview }) {
-  const download = useExportDownload();
+const useExportButtonStyles = makeStyles({
+  root: {
+    "& [class$='-option']": {
+      padding: 0,
+      // remove selection color of the first option when opening
+      backgroundColor: "transparent",
+    },
+  },
+});
+function ExportButton() {
+  const styles = useExportButtonStyles();
   const selectedRows = useSelector((state) => state.products.rowsSelected);
   const selectedRowsText = selectedRows > 0 ? "(" + selectedRows + ")" : "";
 
   return (
     <SelectButton
+      className={styles.root}
       startIcon={<GetAppIcon style={{ fontSize: iconSize }} />}
       variant="contained"
       color="primary"
       size="large"
       options={Object.keys(ExportFormat).map((f) => ({
-        label: (
-          <ExportOption
-            onClick={(e) => {
-              exportFormat = ExportFormat[f];
-              download();
-            }}
-            onClickPreview={(e) => {
-              // TODO: close menu with custom onClick handler
-              exportFormat = ExportFormat[f];
-              onClickPreview();
-            }}
-          >
-            {f}
-          </ExportOption>
-        ),
+        label: <ExportOption format={ExportFormat[f]}>{f}</ExportOption>,
         value: f,
         // Disable react-select Option's onClick handler, because we already have one in ExportButton.
         // This will prevent the error: <button> cannot appear as a descendant of <button>
@@ -207,7 +228,6 @@ const useStyles = makeStyles({
 export default function ProductsPage() {
   const styles = useStyles();
   const colDialog = useDialog();
-  const previewDialog = useDialog();
 
   return (
     <Portlet id="productTableContainer">
@@ -232,7 +252,7 @@ export default function ProductsPage() {
             >
               Thêm sản phẩm
             </Button>
-            <ExportButton onClickPreview={previewDialog.handleOpen} />
+            <ExportButton />
           </PortletHeaderToolbar>
         }
       />
@@ -255,10 +275,7 @@ export default function ProductsPage() {
         open={colDialog.open}
         handleClose={colDialog.handleClose}
       />
-      <PreviewDialog
-        open={previewDialog.open}
-        handleClose={previewDialog.handleClose}
-      />
+      <ExportPreviewDialog />
     </Portlet>
   );
 }
