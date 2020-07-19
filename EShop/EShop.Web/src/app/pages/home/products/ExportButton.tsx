@@ -1,5 +1,6 @@
 import React from "react";
-import { Button, IconButton } from "@material-ui/core";
+import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
 import GetAppIcon from "@material-ui/icons/GetApp";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import "ag-grid-enterprise";

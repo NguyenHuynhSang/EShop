@@ -9,7 +9,7 @@ import ReactSelect, {
   OptionsType,
 } from "react-select";
 import { Styles } from "react-select/src/styles";
-import { Button, ButtonProps } from "@material-ui/core";
+import Button, { ButtonProps } from "@material-ui/core/Button";
 import { makeStyles, theme } from "../styles";
 
 export * from "react-select";

@@ -1,13 +1,7 @@
 import React from "react";
-// Have to import like this or ThemeProvider only works in some cases instead of
-// import { createMuiTheme } from "@material-ui/core";
-// Otherwise, in some cases the theme is not applied to components
-// https://stackoverflow.com/a/58467651/9449426
-// eslint-disable-next-line no-restricted-imports
 import { createMuiTheme } from "@material-ui/core/styles";
-// eslint-disable-next-line no-restricted-imports
-import Zoom from "@material-ui/core/Zoom";
 import { ThemeProvider as MuiThemeProvider } from "@material-ui/styles";
+import Zoom from "@material-ui/core/Zoom";
 import themeConfig from "../../app/styles/theme";
 
 const theme = createMuiTheme(

@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
-import { IconButton } from "@material-ui/core";
+import Checkbox from "@material-ui/core/Checkbox";
+import Paper from "@material-ui/core/Paper";
+import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
-import { Spinner } from "react-bootstrap";
+import Spinner from "react-bootstrap/Spinner";
 import { AgGridReact } from "ag-grid-react";
 import has from "lodash/has";
 import padStart from "lodash/padStart";
@@ -15,14 +17,13 @@ import {
   SelectionChangedEvent,
 } from "ag-grid-community";
 import classNames from "classnames";
-import { Checkbox, Paper } from "@material-ui/core";
 import { actions, Pinned } from "./product.duck";
 import { useSelector, useDispatch, shallowEqual } from "../../../store/store";
 import { useOnMount } from "../helpers/hookHelpers";
 import { useAgGrid, useStickyHeader } from "../helpers/agGridHelpers";
 import ProductTableHeader from "./ProductTableHeader";
 import { AgSelect } from "../../../widgets/Common";
-import styled, { important, theme } from "../../../styles/styled";
+import { makeStyles, important, theme } from "../../../styles";
 import useColumnDefs from "./useColumnDefs";
 import { WeightUnit } from "./product.duck";
 
@@ -69,12 +70,16 @@ function markAsDirty(params: ICellRendererParams) {
   });
 }
 
-const CellCheckbox = styled(Checkbox)({
-  padding: important(0),
+const useCheckboxStyle = makeStyles({
+  root: {
+    padding: important(0),
+  },
 });
 function CheckboxRenderer(params: ICellRendererParams) {
+  const styles = useCheckboxStyle();
   return (
-    <CellCheckbox
+    <Checkbox
+      className={styles.root}
       checked={params.value}
       onChange={(e) => {
         // mark as dirty visually
@@ -131,18 +136,21 @@ function NumberWithUnitRenderer(params: ICellRendererParams) {
   return <span>{comp}</span>;
 }
 
-const Loader = styled(Paper)({
-  display: "flex",
-  alignItems: "center",
-  padding: theme.space("md", "lg"),
+const useLoaderStyle = makeStyles({
+  root: {
+    display: "flex",
+    alignItems: "center",
+    padding: theme.space("md", "lg"),
+  },
 });
 function AgCustomLoading() {
+  const styles = useLoaderStyle();
   return (
-    <Loader>
+    <Paper className={styles.root}>
       <span>Please wait...</span>
       &nbsp; &nbsp;
       <Spinner animation="grow" variant="primary" size="sm" />
-    </Loader>
+    </Paper>
   );
 }
 

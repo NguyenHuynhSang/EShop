@@ -24,10 +24,6 @@ function styled<Props extends {}, Theme = DefaultTheme>(
     muiStyled(Component)<Theme, Props>(css);
 }
 
-export function important<T extends unknown>(cssValue: T) {
-  return (cssValue + "!important") as T;
-}
-
 export { theme };
 
 export default styled;

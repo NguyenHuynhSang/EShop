@@ -1,18 +1,16 @@
 import React from "react";
 import { IHeaderParams, Column, ColumnApi } from "ag-grid-community";
-import {
-  OverlayTrigger,
-  Popover,
-  ButtonGroup,
-  Button,
-  ListGroup,
-  ListGroupItemProps,
-} from "react-bootstrap";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Popover from "react-bootstrap/Popover";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import Button from "react-bootstrap/Button";
+import ListGroup from "react-bootstrap/ListGroup";
+import { ListGroupItemProps } from "react-bootstrap/ListGroupItem";
 import isArray from "lodash/isArray";
 import isString from "lodash/isString";
-import { IconButton } from "@material-ui/core";
-import ThemeProvider from "../../../../_metronic/materialUIThemeProvider/ThemeProvider";
+import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
+import ThemeProvider from "../../../../_metronic/materialUIThemeProvider/ThemeProvider";
 import { useDispatch, useSelector } from "../../../store/store";
 import { actions, SortMode, Pinned, WeightUnit } from "./product.duck";
 import pressKey, { VKey } from "../helpers/pressKey";

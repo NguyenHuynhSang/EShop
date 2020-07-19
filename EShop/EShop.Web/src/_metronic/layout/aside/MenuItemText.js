@@ -2,7 +2,7 @@ import React from "react";
 import { FormattedMessage } from "react-intl";
 import { makeStyles } from "@material-ui/core";
 import classNames from "classnames";
-import { important } from "../../../app/styles/styled";
+import { important } from "../../../app/styles";
 
 const useStyles = makeStyles({
   menuLinkIcon: {

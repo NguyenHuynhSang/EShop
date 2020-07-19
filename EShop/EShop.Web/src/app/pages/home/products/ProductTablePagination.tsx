@@ -1,16 +1,14 @@
 import React from "react";
-import { makeStyles, Button } from "@material-ui/core";
+import Button from "@material-ui/core/Button";
 import FirstPageIcon from "@material-ui/icons/FirstPage";
 import LastPageIcon from "@material-ui/icons/LastPage";
 import PrevPageIcon from "@material-ui/icons/ChevronLeft";
 import NextPageIcon from "@material-ui/icons/ChevronRight";
 import classNames from "classnames";
 import { Select, SelectComps, toSimpleOption } from "../../../widgets/Common";
-import { actions } from "./product.duck";
 import { useSelector, useDispatch, shallowEqual } from "../../../store/store";
-import { Pagination } from "./product.duck";
-import { theme } from "../../../styles";
-import { important } from "../../../styles/styled";
+import { actions, Pagination } from "./product.duck";
+import { theme, makeStyles, important } from "../../../styles";
 
 const useStyles = makeStyles({
   pagination: {
