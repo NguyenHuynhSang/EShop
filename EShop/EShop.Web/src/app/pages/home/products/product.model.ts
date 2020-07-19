@@ -1,6 +1,7 @@
 export default interface Product {
   id: number;
   name: string;
+  image: string[];
   description: string;
   content: string;
   weight: number;

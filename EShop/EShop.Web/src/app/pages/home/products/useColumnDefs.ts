@@ -14,6 +14,10 @@ export const colDefs: Record<string, ColDef> = {
     headerName: "Tên",
     type: ["editable"],
   },
+  image: {
+    headerName: "Hình",
+    type: ["image"],
+  },
   description: {
     headerName: "Mô tả",
     type: ["editable", "largeText"],

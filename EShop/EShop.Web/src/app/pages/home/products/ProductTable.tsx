@@ -17,6 +17,7 @@ import {
   SelectionChangedEvent,
 } from "ag-grid-community";
 import classNames from "classnames";
+import Carousel from "../../../widgets/Carousel";
 import { actions, Pinned } from "./product.duck";
 import { useSelector, useDispatch, shallowEqual } from "../../../store/store";
 import { useOnMount } from "../helpers/hookHelpers";
@@ -154,6 +155,27 @@ function AgCustomLoading() {
   );
 }
 
+function ImageRenderer(params: ICellRendererParams) {
+  const images = params.value as string[];
+  const name = params.data["name"];
+  const [open, setOpen] = React.useState(false);
+
+  if (images.length > 0) {
+    return (
+      <>
+        <img src={images[0]} alt={name} onClick={() => setOpen(true)} />
+        <Carousel
+          title={name}
+          images={images}
+          open={open}
+          onClose={() => setOpen(false)}
+        />
+      </>
+    );
+  }
+  return null;
+}
+
 const columnTypes: Record<string, ColDef> = {
   editable: {
     editable: true,
@@ -166,6 +188,10 @@ const columnTypes: Record<string, ColDef> = {
     checkboxSelection: true,
     headerCheckboxSelection: true,
     resizable: false,
+  },
+  image: {
+    cellRenderer: "ImageRenderer",
+    editable: false,
   },
   currency: {
     // NOTE: type: 'numericColumn' not working here
@@ -198,6 +224,7 @@ const frameworkComponents = {
   ActionRenderer,
   SelectRenderer,
   NumberWithUnitRenderer,
+  ImageRenderer,
   agColumnHeader: ProductTableHeader,
   AgCustomLoading,
 };

@@ -21,6 +21,7 @@ export * from "./product.duck.d";
 const columnInfos: ColumnInfo[] = [
   { field: "id", alwaysVisible: true, pinned: "left" },
   { field: "name", pinned: "left" },
+  { field: "image", hide: true },
   { field: "description", hide: true },
   { field: "content", hide: true },
   { field: "weight", hide: true },
