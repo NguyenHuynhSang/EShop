@@ -1,5 +1,7 @@
 import { useEffect, EffectCallback, useReducer, useRef, useState } from "react";
 
+export { useSnackbar } from "../../../providers/SnackbarProvider";
+
 export const useOnMount = (cb: EffectCallback) => useEffect(cb, []);
 
 export const useForceUpdate = () => {

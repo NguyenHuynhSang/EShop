@@ -29,10 +29,13 @@ const theme = createMuiTheme(
         contrastText: "#ffffff",
       },
       error: {
-        // light: will be calculated from palette.primary.main,
-        main: "#fd397a",
-        // dark: will be calculated from palette.primary.main,
-        // contrastText: will be calculated to contrast with palette.primary.main
+        main: themeConfig.color.danger,
+      },
+      warning: {
+        main: themeConfig.color.warning,
+      },
+      info: {
+        main: themeConfig.color.info,
       },
     },
 

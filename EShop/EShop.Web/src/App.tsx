@@ -10,6 +10,7 @@ import { LastLocationProvider } from "react-router-last-location";
 import { setAutoFreeze } from "@reduxjs/toolkit/node_modules/immer";
 import { LicenseManager } from "ag-grid-enterprise";
 import { Routes } from "./app/router/Routes";
+import SnackbarProvider from "./app/providers/SnackbarProvider";
 import { I18nProvider, LayoutSplashScreen, ThemeProvider } from "./_metronic";
 import GlobalStyles from "./app/styles/global";
 
@@ -36,8 +37,12 @@ export default function App({ store, Layout, persistor, basename }) {
                 <GlobalStyles />
                 {/* Provide `react-intl` context synchronized with Redux state.  */}
                 <I18nProvider>
-                  {/* Render routes with provided `Layout`. */}
-                  <Routes Layout={Layout} />
+                  {/* My custom SnackbarProvider to enable you to create Snackbar imperatively. The different
+                  between this and notistack is this can only show one Snackbar at a time according to Mui specs */}
+                  <SnackbarProvider>
+                    {/* Render routes with provided `Layout`. */}
+                    <Routes Layout={Layout} />
+                  </SnackbarProvider>
                 </I18nProvider>
               </ThemeProvider>
             </LastLocationProvider>

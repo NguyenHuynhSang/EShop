@@ -22,7 +22,7 @@ import ProductTablePagination from "./ProductTablePagination";
 import ExportButton from "./ExportButton";
 import { actions, ExportFormat } from "../base/table.duck";
 import { makeStyles, theme } from "../../../styles";
-import { useDialog } from "../helpers/hookHelpers";
+import { useDialog, useSnackbar } from "../helpers/hookHelpers";
 import { useSelector, useDispatch } from "../../../store/store";
 import { useExportDownload, useExportData } from "../helpers/agGridHelpers";
 
@@ -44,6 +44,7 @@ function ExportPreviewDialog() {
   const dispatch = useDispatch();
   const data = csvData();
   const close = () => dispatch(actions.setExportDialogClose());
+  const [createSnackbar] = useSnackbar();
 
   return (
     <Dialog open={isOpen} onClose={close}>
@@ -61,6 +62,11 @@ function ExportPreviewDialog() {
           onClick={() => {
             data && navigator.clipboard.writeText(data);
             close();
+            // wait for the dialog's exit animation to finish and the global scrollbar popup again before showing the snackbar
+            // if showing right away, the scrollbar will push the snackbar to the left in the middle of the transition
+            setTimeout(() => {
+              createSnackbar("Copied to your clipboard!", { variant: "info" });
+            }, 300);
           }}
           color="primary"
         >
