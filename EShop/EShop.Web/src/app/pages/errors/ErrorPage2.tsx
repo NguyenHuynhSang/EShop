@@ -2,7 +2,7 @@ import React from "react";
 import { toAbsoluteUrl } from "../../../_metronic";
 import "../../../_metronic/_assets/sass/pages/error/error-2.scss";
 
-export function ErrorPage2() {
+export default function ErrorPage2() {
   return (
     <>
       <div className="kt-grid kt-grid--ver kt-grid--root">
