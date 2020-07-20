@@ -7,13 +7,13 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import AddIcon from "@material-ui/icons/Add";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import { Light as SyntaxHighlighter } from "react-syntax-highlighter";
+import { base16AteliersulphurpoolLight as highlightStyle } from "react-syntax-highlighter/dist/esm/styles/prism";
 import {
   Portlet,
   PortletBody,
   PortletHeader,
   PortletHeaderToolbar,
 } from "../../../partials/content/Portlet";
-import { base16AteliersulphurpoolLight as highlightStyle } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { ProductIcon } from "../../../widgets/Common";
 import ProductTable from "./ProductTable";
 import CurrencySelector from "./CurrencySelector";
