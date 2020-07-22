@@ -11,7 +11,7 @@ import { makeStyles } from "../styles";
 
 type ProviderContext = [
   (message: string, option?: SnackbarOption) => void,
-  (key: string) => void
+  (key?: string) => void
 ];
 
 const SnackbarContext = React.createContext<ProviderContext>([
@@ -38,6 +38,14 @@ const useStyles = makeStyles<SnackbarContainerProps>((theme) => ({
         props.variant
           ? theme.palette[props.variant].main
           : theme.palette.background,
+    },
+    "& button.MuiButton-text": {
+      backgroundColor: (props) =>
+        props.variant ? theme.palette[props.variant].light : "transparent",
+    },
+    "& button": {
+      color: (props) =>
+        props.variant ? theme.palette[props.variant].contrastText : "inherit",
     },
   },
   content: {
@@ -122,11 +130,18 @@ export default function SnackbarProvider({ children }) {
       return immer(qu, (q) => void q.push(snack));
     });
   };
-  const closeSnackbar = (key: string) => {
+  const closeSnackbar = (key?: string) => {
     setSnacks((qu) =>
       immer(qu, (q) => {
-        const snackToClose = q.find((s) => s.key === key);
-        if (snackToClose) snackToClose.open = false;
+        if (key) {
+          const snackToClose = q.find((s) => s.key === key);
+          if (snackToClose) snackToClose.open = false;
+        } else {
+          const [current] = q;
+          if (current) {
+            return [{...current, open: false}]
+          }
+        }
       })
     );
   };
@@ -137,23 +152,20 @@ export default function SnackbarProvider({ children }) {
     createSnackbar,
     closeSnackbar,
   ]);
+  const [snack] = snacks;
+  const handleClose = () => closeSnackbar(snack.key);
+  const handleKill = () => killSnackbar(snack.key);
 
   return (
     <SnackbarContext.Provider value={contextValue.current}>
       {children}
-      {snacks.map(({ key, ...snack }) => {
-        const handleClose = () => closeSnackbar(key);
-        const handleKill = () => killSnackbar(key);
-
-        return (
-          <SnackbarContainer
-            key={key}
-            onClose={handleClose}
-            onKill={handleKill}
-            {...snack}
-          />
-        );
-      })}
+      {snack && (
+        <SnackbarContainer
+          onClose={handleClose}
+          onKill={handleKill}
+          {...snack}
+        />
+      )}
     </SnackbarContext.Provider>
   );
 }

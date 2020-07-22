@@ -1,6 +1,6 @@
 import React from "react";
 import { createMuiTheme } from "@material-ui/core/styles";
-import { ThemeProvider as MuiThemeProvider } from "@material-ui/styles";
+import MuiThemeProvider from "@material-ui/styles/ThemeProvider";
 import Zoom from "@material-ui/core/Zoom";
 import themeConfig from "../../app/styles/theme";
 
