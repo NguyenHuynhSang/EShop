@@ -13,6 +13,7 @@ import { Routes } from "./app/router/Routes";
 import SnackbarProvider from "./app/providers/SnackbarProvider";
 import { I18nProvider, LayoutSplashScreen, ThemeProvider } from "./_metronic";
 import GlobalStyles from "./app/styles/global";
+import ErrorNotificationProvider from "./app/providers/ErrorNotificationProvider";
 
 if (process.env.REACT_APP_AG_GRID_LICENSE_KEY)
   LicenseManager.setLicenseKey(process.env.REACT_APP_AG_GRID_LICENSE_KEY);
@@ -40,6 +41,7 @@ export default function App({ store, Layout, persistor, basename }) {
                   {/* My custom SnackbarProvider to enable you to create Snackbar imperatively. The different
                   between this and notistack is this can only show one Snackbar at a time according to Mui specs */}
                   <SnackbarProvider>
+                    <ErrorNotificationProvider />
                     {/* Render routes with provided `Layout`. */}
                     <Routes Layout={Layout} />
                   </SnackbarProvider>

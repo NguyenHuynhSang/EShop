@@ -28,23 +28,24 @@ type SnackParams = {
   action?: React.ReactNode;
   variant?: Variant;
   autoHideDuration?: number;
+  onClose?: Function;
 };
 type SnackbarOption = Partial<Omit<SnackParams, "open" | "message">>;
 
-const useStyles = makeStyles<SnackbarContainerProps>((theme) => ({
+const useStyles = makeStyles<SnackbarContainerProps>(theme => ({
   root: {
     "& .MuiSnackbarContent-root": {
-      backgroundColor: (props) =>
+      backgroundColor: props =>
         props.variant
           ? theme.palette[props.variant].main
           : theme.palette.background,
     },
     "& button.MuiButton-text": {
-      backgroundColor: (props) =>
+      backgroundColor: props =>
         props.variant ? theme.palette[props.variant].light : "transparent",
     },
     "& button": {
-      color: (props) =>
+      color: props =>
         props.variant ? theme.palette[props.variant].contrastText : "inherit",
     },
   },
@@ -73,8 +74,8 @@ function getIcon(variant?: Variant) {
 }
 
 type SnackbarContainerProps = SnackParams & {
-  onClose: () => void;
-  onKill: () => void;
+  _onClose: () => void;
+  _onKill: () => void;
 };
 function SnackbarContainer(props: SnackbarContainerProps) {
   const styles = useStyles(props);
@@ -85,8 +86,10 @@ function SnackbarContainer(props: SnackbarContainerProps) {
     autoHideDuration = 3000,
     action,
     onClose,
-    onKill,
+    _onClose,
+    _onKill,
   } = props;
+  const handleClose = () => onClose && onClose();
 
   return (
     <Snackbar
@@ -96,8 +99,11 @@ function SnackbarContainer(props: SnackbarContainerProps) {
         horizontal: "right",
       }}
       autoHideDuration={autoHideDuration}
-      onClose={(_, reason) => reason !== "clickaway" && onClose()}
-      onExited={onKill}
+      onClose={(_, reason) => {
+        handleClose();
+        if (reason !== "clickaway") _onClose();
+      }}
+      onExited={_onKill}
       message={
         <div className={styles.content}>
           {getIcon(variant)}
@@ -107,7 +113,14 @@ function SnackbarContainer(props: SnackbarContainerProps) {
       open={open}
       action={
         action ?? (
-          <IconButton color="inherit" size="small" onClick={onClose}>
+          <IconButton
+            color="inherit"
+            size="small"
+            onClick={() => {
+              handleClose();
+              _onClose();
+            }}
+          >
             <CloseIcon />
           </IconButton>
         )
@@ -122,31 +135,31 @@ export default function SnackbarProvider({ children }) {
     const key = option?.key ?? message + "_" + Math.random();
     const snack: SnackParams = { ...option, key, message, open: true };
 
-    setSnacks((qu) => {
+    setSnacks(qu => {
       const isDuplicated =
-        qu.findIndex((s) => s.key === key || s.message === message) !== -1;
+        qu.findIndex(s => s.key === key || s.message === message) !== -1;
 
       if (isDuplicated) return qu;
-      return immer(qu, (q) => void q.push(snack));
+      return immer(qu, q => void q.push(snack));
     });
   };
   const closeSnackbar = (key?: string) => {
-    setSnacks((qu) =>
-      immer(qu, (q) => {
+    setSnacks(qu =>
+      immer(qu, q => {
         if (key) {
-          const snackToClose = q.find((s) => s.key === key);
+          const snackToClose = q.find(s => s.key === key);
           if (snackToClose) snackToClose.open = false;
         } else {
           const [current] = q;
           if (current) {
-            return [{...current, open: false}]
+            return [{ ...current, open: false }];
           }
         }
       })
     );
   };
   const killSnackbar = (key: string) => {
-    setSnacks((qu) => immer(qu, (q) => (q = q.filter((s) => s.key !== key))));
+    setSnacks(qu => immer(qu, q => (q = q.filter(s => s.key !== key))));
   };
   const contextValue = React.useRef<ProviderContext>([
     createSnackbar,
@@ -161,8 +174,8 @@ export default function SnackbarProvider({ children }) {
       {children}
       {snack && (
         <SnackbarContainer
-          onClose={handleClose}
-          onKill={handleKill}
+          _onClose={handleClose}
+          _onKill={handleKill}
           {...snack}
         />
       )}

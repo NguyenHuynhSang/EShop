@@ -1,8 +1,6 @@
 import { persistReducer, PersistConfig } from "redux-persist";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
-import { put, takeLatest, select } from "redux-saga/effects";
-import { AxiosResponse } from "axios";
 import clamp from "lodash/clamp";
 import ProductService from "./products.service";
 import {
@@ -12,9 +10,11 @@ import {
   ColumnInfo,
   ColumnVisiblePayload,
   WeightUnit,
-} from "./product.duck.d";
+} from "./product.duck";
 import { ProductCategory, ProductResult } from "./product.model";
 import Currency from "../base/currency/currency.model";
+import { actions as errorActions } from "../base/errors/error.duck";
+import { put, takeLatest, select, call } from "../../../store/saga";
 
 export * from "./product.duck.d";
 
@@ -72,7 +72,7 @@ const slice = createSlice({
     },
     setColumnVisible(state, action: PayloadAction<ColumnVisiblePayload>) {
       const { column, visible } = action.payload;
-      const col = state.columnInfos.find((c) => c.field === column);
+      const col = state.columnInfos.find(c => c.field === column);
       if (col) col.hide = !visible;
     },
     setColumnOrder(state, action: PayloadAction<string[]>) {
@@ -83,7 +83,7 @@ const slice = createSlice({
     },
     setPinned(state, action: PayloadAction<ColumnPinPayload>) {
       const { column, pinned } = action.payload;
-      const col = state.columnInfos.find((c) => c.field === column);
+      const col = state.columnInfos.find(c => c.field === column);
 
       if (col) col.pinned = pinned;
     },
@@ -114,23 +114,18 @@ const slice = createSlice({
       pagination.totalResults = totalResults;
       pagination.perPage = perPage;
     },
-    getAllFailure(state, action: PayloadAction<string>) {
-      // TODO: implement
-      const error = action.payload;
+    getAllFailure(state) {
       state.loading = false;
     },
     getCategoriesRequest() {},
     getCategoriesSuccess(state, action: PayloadAction<ProductCategory[]>) {
       state.productCategories = action.payload;
-      state.categories = action.payload.map((c) => ({
+      state.categories = action.payload.map(c => ({
         label: c.name,
         value: c.id,
       }));
     },
-    getCategoriesFailure(state, action: PayloadAction<string>) {
-      // TODO: implement
-      const error = action.payload;
-    },
+    getCategoriesFailure() {},
     // TODO: store currency in a seperate shared store
     getCurrenciesRequest() {},
     getCurrenciesSuccess(state, action: PayloadAction<Currency[]>) {
@@ -140,14 +135,11 @@ const slice = createSlice({
         state.currency = state.currencies[0];
       }
     },
-    getCurrenciesFailure(state, action: PayloadAction<string>) {
-      // TODO: implement
-      const error = action.payload;
-    },
+    getCurrenciesFailure() {},
     // TODO: store currency in a seperate shared store
     setCurrency(state, action: PayloadAction<number>) {
       const currencyId = action.payload;
-      state.currency = state.currencies.find((c) => c.id === currencyId);
+      state.currency = state.currencies.find(c => c.id === currencyId);
     },
     setWeightUnit(state, action: PayloadAction<WeightUnit>) {
       state.weightUnit = action.payload;
@@ -164,44 +156,47 @@ const persistConfig: PersistConfig<ProductState> = {
 export const { actions } = slice;
 export const reducer = persistReducer(persistConfig, slice.reducer);
 
-export function* saga() {
-  yield takeLatest(actions.getAllRequest.type, function* func() {
-    // TODO: error handling
-
+function* fetchAll() {
+  try {
     // NOTE: dont get params from action.payload.params, get params from state as it merges all previous applied params
-    const params = yield select((state: any) => state.products?.params);
-
-    // TODO: if have tests, replace yield Api.fetch('/products') with yield call(Api.fetch, '/products')
-    const response: AxiosResponse<ProductResult> = yield ProductService.getAll(
-      params
-    );
-    yield put(actions.getAllSuccess(response.data));
-  });
-
-  yield takeLatest(actions.getCategoriesRequest.type, function* func() {
-    // TODO: error handling
-    const response: AxiosResponse<ProductCategory[]> = yield ProductService.getCategories();
-    yield put(actions.getCategoriesSuccess(response.data));
-  });
-
-  yield takeLatest(actions.getCurrenciesRequest.type, function* func() {
-    // TODO: error handling
-    const response: AxiosResponse<Currency[]> = yield ProductService.getCurrencies();
-    yield put(actions.getCurrenciesSuccess(response.data));
-  });
-
-  yield takeLatest(actions.setCurrency.type, function* func(
-    action: ReturnType<typeof actions.setCurrency>
-  ) {
-    // TODO: error handling
-    const currency = action.payload;
-    yield put(actions.getAllRequest({ currency }));
-  });
-  yield takeLatest(actions.setWeightUnit.type, function* func(
-    action: ReturnType<typeof actions.setWeightUnit>
-  ) {
-    // TODO: error handling
-    const weight = action.payload;
-    yield put(actions.getAllRequest({ weight }));
-  });
+    const params = yield* select(state => state.products.params);
+    const response = yield* call(ProductService.getAll, params);
+    yield* put(actions.getAllSuccess(response.data));
+  } catch (err) {
+    yield* put(errorActions.setError(err));
+    yield* put(actions.getAllFailure());
+  }
+}
+function* fetchCategories() {
+  try {
+    const response = yield* call(ProductService.getCategories);
+    yield* put(actions.getCategoriesSuccess(response.data));
+  } catch (err) {
+    yield* put(errorActions.setError(err));
+    yield* put(actions.getCategoriesFailure());
+  }
+}
+function* fetchCurrencies() {
+  try {
+    const response = yield* call(ProductService.getCurrencies);
+    yield* put(actions.getCurrenciesSuccess(response.data));
+  } catch (err) {
+    yield* put(errorActions.setError(err));
+    yield* put(actions.getCurrenciesFailure());
+  }
+}
+function* fetchCurrency(action: ReturnType<typeof actions.setCurrency>) {
+  const currency = action.payload;
+  yield* put(actions.getAllRequest({ currency }));
+}
+function* fetchWeight(action: ReturnType<typeof actions.setWeightUnit>) {
+  const weight = action.payload;
+  yield* put(actions.getAllRequest({ weight }));
+}
+export function* saga() {
+  yield* takeLatest(actions.getAllRequest.type, fetchAll);
+  yield* takeLatest(actions.getCategoriesRequest.type, fetchCategories);
+  yield* takeLatest(actions.getCurrenciesRequest.type, fetchCurrencies);
+  yield* takeLatest(actions.setCurrency.type, fetchCurrency);
+  yield* takeLatest(actions.setWeightUnit.type, fetchWeight);
 }

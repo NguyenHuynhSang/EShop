@@ -32,6 +32,8 @@ const middleware = [
         PURGE,
         REGISTER,
         "builder/setHtmlClassService",
+        // payload content is not serializable, but the final state after filtering is
+        "errors/setError",
       ],
       ignoredPaths: ["builder.htmlClassServiceObjects"],
     },

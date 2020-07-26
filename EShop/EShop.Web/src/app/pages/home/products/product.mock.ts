@@ -13,7 +13,7 @@ import Product, { ProductResult } from "./product.model";
 import { Params, WeightUnit } from "./product.duck";
 import Currency from "../base/currency/currency.model";
 
-const vndCurrency = currencies.find((c) => c.code === "VND")!;
+const vndCurrency = currencies.find(c => c.code === "VND")!;
 
 function convertCurrency(price: number, currency: Currency) {
   // use VND currency as base
@@ -56,9 +56,9 @@ export default function mockProduct(mock: MockAdapter) {
       }
     }
 
-    const currency = currencies.find((c) => c.id === currencyId);
+    const currency = currencies.find(c => c.id === currencyId);
     if (currency !== undefined) {
-      products = products.map((p) => ({
+      products = products.map(p => ({
         ...p,
         price: convertCurrency(p.price, currency),
         originalPrice: convertCurrency(p.originalPrice, currency),
@@ -67,7 +67,7 @@ export default function mockProduct(mock: MockAdapter) {
     }
 
     if (weight !== undefined) {
-      products = products.map((p) => ({
+      products = products.map(p => ({
         ...p,
         weight: convertWeight(p.weight, weight),
       }));
@@ -76,10 +76,14 @@ export default function mockProduct(mock: MockAdapter) {
     console.log("GET", PRODUCT_GET_URL, params);
 
     const totalResults = products.length;
-    const lastPage = Math.ceil(totalResults / perPage)
+    const lastPage = Math.ceil(totalResults / perPage);
     const pageIndex = clamp(page, 1, lastPage) - 1;
     const startResult = pageIndex * perPage;
     const endResult = startResult + perPage;
+
+    // mock failed request: uncomment this line and select US currency
+    // if (currencyId === 1) return [503, { results: [], totalResults: 0 }];
+
     return [
       200,
       {
@@ -89,13 +93,13 @@ export default function mockProduct(mock: MockAdapter) {
     ];
   });
 
-  mock.onGet(PRODUCT_CATEGORY_GET_URL).reply((response) => {
+  mock.onGet(PRODUCT_CATEGORY_GET_URL).reply(response => {
     console.log("GET", PRODUCT_CATEGORY_GET_URL);
     return [200, productCategories];
   });
 
   // TODO: move to currency.mock
-  mock.onGet(CURRENCY_GET_URL).reply((response) => {
+  mock.onGet(CURRENCY_GET_URL).reply(response => {
     console.log("GET", CURRENCY_GET_URL);
     return [200, currencies];
   });
