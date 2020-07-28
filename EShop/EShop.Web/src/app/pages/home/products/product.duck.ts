@@ -104,7 +104,7 @@ const slice = createSlice({
       state.loading = false;
       state.products = results;
 
-      pagination.totalPages = Math.ceil(pagination.totalResults / perPage);
+      pagination.totalPages = Math.ceil(totalResults / perPage);
       pagination.currentPage = clamp(currentPage, 1, pagination.totalPages);
       pagination.startResult = (pagination.currentPage - 1) * perPage + 1;
       pagination.endResult = Math.min(
