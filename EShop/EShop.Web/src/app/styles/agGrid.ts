@@ -87,7 +87,15 @@ ${rootSelector} .ag-root-wrapper .ag-header {
 }
 
 ${rootSelector} .ag-root-wrapper .ag-header-cell::after {
+    /* remove divider between headers */
     background-color: transparent;
+}
+${rootSelector} .ag-root-wrapper.ag-keyboard-focus .ag-header-cell:focus::after {
+    /* make focus border stretch 100% */
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
 }
 
 ${rootSelector} .ag-root-wrapper .ag-cell.ag-cell-dirty {

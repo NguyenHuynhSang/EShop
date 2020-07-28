@@ -1,5 +1,5 @@
 import React from "react";
-import { IHeaderParams, Column, ColumnApi } from "ag-grid-community";
+import { ColDef, Column, ColumnApi, IHeaderParams } from "ag-grid-community";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
@@ -12,31 +12,34 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import ThemeProvider from "../../../../_metronic/materialUIThemeProvider/ThemeProvider";
 import { useDispatch, useSelector } from "../../../store/store";
-import { actions, SortMode, Pinned, WeightUnit } from "./product.duck";
+import { actions, Pinned, SortMode, WeightUnit } from "./product.duck";
 import pressKey, { VKey } from "../helpers/pressKey";
-import { theme, makeStyles } from "../../../styles";
+import { makeStyles, theme } from "../../../styles";
 
 type SortFunction = () => void;
 
 const sortModes = [SortMode.None, SortMode.Ascending, SortMode.Descending];
 
-const useSort = (
-  enableSorting: boolean,
-  sortBy?: string
-): [SortMode, SortFunction] => {
+const useSort = (colDef: ColDef): [SortMode, SortFunction] => {
   const dispatch = useDispatch();
-  const sortIndexRef = React.useRef<number>(0);
+  const sortBy = colDef.field;
+  const initialSortIndex = useSelector(state =>
+    state.products.params.sortBy === sortBy
+      ? sortModes.findIndex(s => s === state.products.params.sort)
+      : 0
+  );
+  const sortIndexRef = React.useRef<number>(initialSortIndex);
   const [sortMode, setSortMode] = React.useState(
     sortModes[sortIndexRef.current]
   );
 
   const cycleSort = () => {
-    if (!enableSorting) return;
+    if (!colDef.sortable) return;
 
-    sortIndexRef.current =
-      sortIndexRef.current >= sortModes.length - 1
-        ? 0
-        : sortIndexRef.current + 1;
+    sortIndexRef.current++;
+    if (sortIndexRef.current >= sortModes.length) {
+      sortIndexRef.current = 0;
+    }
 
     const nextSortMode = sortModes[sortIndexRef.current];
     setSortMode(nextSortMode);
@@ -47,8 +50,7 @@ const useSort = (
 };
 const usePinStatus = (column?: string) =>
   useSelector(
-    (state) =>
-      state.products.columnInfos.find((c) => c.field === column)?.pinned
+    state => state.products.columnInfos.find(c => c.field === column)?.pinned
   );
 
 export function hasType(column: Column, type: string) {
@@ -63,6 +65,7 @@ type ActionButtonProps = ListGroupItemProps & {
   onClick: () => void;
   children: React.ReactNode;
 };
+
 function ActionButton(props: ActionButtonProps) {
   const { onClick, ...rest } = props;
   return (
@@ -91,12 +94,13 @@ type ColumnMenuProps = {
   column: Column;
   columnApi: ColumnApi;
 };
+
 function ColumnMenu(props: ColumnMenuProps) {
   const { className, column, columnApi } = props;
   const field = column.getColDef().field!;
   const dispatch = useDispatch();
   const pinned = usePinStatus(field);
-  const weightUnit = useSelector((state) => state.products.weightUnit);
+  const weightUnit = useSelector(state => state.products.weightUnit);
   const isWeight = hasType(column, "weight");
   const styles = useMenuStyles();
   const setPin = (pinned: Pinned) => () => {
@@ -115,7 +119,7 @@ function ColumnMenu(props: ColumnMenuProps) {
     columnApi.autoSizeColumn(column.getColId(), false);
   };
   const autoSizeAll = () => {
-    const allColumnIds = columnApi.getAllColumns().map((c) => c.getId());
+    const allColumnIds = columnApi.getAllColumns().map(c => c.getId());
     columnApi.autoSizeColumns(allColumnIds, false);
   };
   const hideThisColumn = () => {
@@ -125,7 +129,7 @@ function ColumnMenu(props: ColumnMenuProps) {
 
   return (
     // prevent this column from being sorted if clicking this button
-    <div className={className} onClick={(e) => e.stopPropagation()}>
+    <div className={className} onClick={e => e.stopPropagation()}>
       <ThemeProvider>
         <OverlayTrigger
           trigger="click"
@@ -162,7 +166,7 @@ function ColumnMenu(props: ColumnMenuProps) {
                 {isWeight && (
                   <ListGroup.Item>
                     <ButtonGroup className={styles.buttonGroup}>
-                      {Object.keys(WeightUnit).map((w) => (
+                      {Object.keys(WeightUnit).map(w => (
                         <Button
                           key={w}
                           variant="secondary"
@@ -229,7 +233,7 @@ const useStyles = makeStyles<HeaderWrapperProps>({
     height: "100%",
     display: "flex",
     alignItems: "center",
-    justifyContent: (props) => (props.isNumericColumn ? "end" : "start"),
+    justifyContent: props => (props.isNumericColumn ? "end" : "start"),
 
     "& .fas.fa-thumbtack": {
       marginLeft: theme.spacing.sm,
@@ -244,7 +248,7 @@ export default function ProductTableHeader(props: IHeaderParams) {
   const { displayName, column, enableSorting, columnApi } = props;
   const colDef = column.getColDef();
   const isNumericColumn = colDef.cellClass === "ag-right-aligned-cell";
-  const [sortMode, cycleSort] = useSort(enableSorting, colDef.field);
+  const [sortMode, cycleSort] = useSort(colDef);
   const pinned = usePinStatus(colDef.field);
   const style = useStyles({ isNumericColumn });
 
