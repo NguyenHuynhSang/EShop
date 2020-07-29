@@ -24,7 +24,6 @@ const slice = createSlice({
     setError(state, action: PayloadAction<any>) {
       const error = action.payload;
       if (isAxiosError(error)) {
-        console.log(error);
         state.errors.push({
           id: ++errorId,
           name: error.name,

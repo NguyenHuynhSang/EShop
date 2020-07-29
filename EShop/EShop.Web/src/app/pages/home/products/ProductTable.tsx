@@ -1,13 +1,13 @@
-import React, { useEffect } from "react";
-import Checkbox from "@material-ui/core/Checkbox";
-import Paper from "@material-ui/core/Paper";
-import IconButton from "@material-ui/core/IconButton";
-import DeleteIcon from "@material-ui/icons/Delete";
-import EditIcon from "@material-ui/icons/Edit";
-import Spinner from "react-bootstrap/Spinner";
-import { AgGridReact } from "ag-grid-react";
-import has from "lodash/has";
-import padStart from "lodash/padStart";
+import React, { useEffect } from 'react';
+import Checkbox from '@material-ui/core/Checkbox';
+import Paper from '@material-ui/core/Paper';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import Spinner from 'react-bootstrap/Spinner';
+import { AgGridReact } from 'ag-grid-react';
+import has from 'lodash/has';
+import padStart from 'lodash/padStart';
 import {
   ICellRendererParams,
   ColumnPinnedEvent,
@@ -15,25 +15,26 @@ import {
   DragStoppedEvent,
   ValueFormatterParams,
   SelectionChangedEvent,
-} from "ag-grid-community";
-import classNames from "classnames";
-import Carousel from "../../../widgets/Carousel";
-import { actions, Pinned } from "./product.duck";
-import { useSelector, useDispatch, shallowEqual } from "../../../store/store";
-import { useOnMount } from "../helpers/hookHelpers";
-import { useAgGrid, useStickyHeader } from "../helpers/agGridHelpers";
-import ProductTableHeader from "./ProductTableHeader";
-import { AgSelect } from "../../../widgets/Common";
-import { makeStyles, important, theme } from "../../../styles";
-import useColumnDefs from "./useColumnDefs";
-import { WeightUnit } from "./product.duck";
+} from 'ag-grid-community';
+import classNames from 'classnames';
+import Carousel from '../../../widgets/Carousel';
+import { actions, Pinned } from './product.duck';
+import { useSelector, useDispatch, shallowEqual } from '../../../store/store';
+import { useOnMount } from '../helpers/hookHelpers';
+import { useAgGrid, useStickyHeader } from '../helpers/agGridHelpers';
+import ProductTableHeader from './ProductTableHeader';
+import { AgSelect } from '../../../widgets/Common';
+import { makeStyles, important, theme } from '../../../styles';
+import useColumnDefs from './useColumnDefs';
+import { WeightUnit } from './product.duck';
 
 // TODO: use intl https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat
 function formatNumber(number: number) {
   return Math.floor(number)
     .toString()
-    .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+    .replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
 }
+
 const suffixCurrencyCode = {
   đ: true,
 };
@@ -44,7 +45,7 @@ type ValueWithUnit = {
   unit: string;
 };
 
-let SYMBOL = "";
+let SYMBOL = '';
 const currencyFormatter = (params: ValueFormatterParams) => {
   const value = formatNumber(params.value);
   const unit = SYMBOL;
@@ -58,12 +59,12 @@ const weightFormatter = (params: ValueFormatterParams) => {
 };
 const idFormatter = (params: ValueFormatterParams) => {
   const { value } = params;
-  return padStart(value, 4, "0");
+  return padStart(value, 4, '0');
 };
 
 function markAsDirty(params: ICellRendererParams) {
-  params.colDef.cellClass = (p) =>
-    p.rowIndex.toString() === params.node.id ? "ag-cell-dirty" : "";
+  params.colDef.cellClass = p =>
+    p.rowIndex.toString() === params.node.id ? 'ag-cell-dirty' : '';
   params.api.refreshCells({
     columns: [params.column.getId()],
     rowNodes: [params.node],
@@ -76,13 +77,14 @@ const useCheckboxStyle = makeStyles({
     padding: important(0),
   },
 });
+
 function CheckboxRenderer(params: ICellRendererParams) {
   const styles = useCheckboxStyle();
   return (
     <Checkbox
       className={styles.root}
       checked={params.value}
-      onChange={(e) => {
+      onChange={e => {
         // mark as dirty visually
         markAsDirty(params);
         params.setValue(e.target.checked);
@@ -93,7 +95,7 @@ function CheckboxRenderer(params: ICellRendererParams) {
 
 function ActionRenderer() {
   return (
-    <div className="actions">
+    <div className='actions'>
       <IconButton>
         <EditIcon htmlColor={theme.color.blue} />
       </IconButton>
@@ -103,16 +105,14 @@ function ActionRenderer() {
     </div>
   );
 }
+
 function SelectRenderer(params: ICellRendererParams) {
-  const options = useSelector(
-    (state) => state.products.categories,
-    shallowEqual
-  );
-  const value = options.find((o) => o.value === parseInt(params.value.id, 10));
+  const options = useSelector(state => state.products.categories, shallowEqual);
+  const value = options.find(o => o.value === parseInt(params.value.id, 10));
   return (
     <AgSelect
       options={options}
-      placeholder="Category"
+      placeholder='Category'
       defaultValue={value}
       isSearchable={false}
       onChange={(e: any) => {
@@ -128,7 +128,7 @@ function NumberWithUnitRenderer(params: ICellRendererParams) {
   const val = params.valueFormatted as ValueWithUnit;
   const comp = [
     val.value,
-    <span key="unit" className="unit">
+    <span key='unit' className='unit'>
       {val.unit}
     </span>,
   ];
@@ -139,31 +139,42 @@ function NumberWithUnitRenderer(params: ICellRendererParams) {
 
 const useLoaderStyle = makeStyles({
   root: {
-    display: "flex",
-    alignItems: "center",
-    padding: theme.space("md", "lg"),
+    display: 'flex',
+    alignItems: 'center',
+    padding: theme.space('md', 'lg'),
   },
 });
+
 function AgCustomLoading() {
   const styles = useLoaderStyle();
   return (
     <Paper className={styles.root}>
       <span>Please wait...</span>
       &nbsp; &nbsp;
-      <Spinner animation="grow" variant="primary" size="sm" />
+      <Spinner animation='grow' variant='primary' size='sm' />
     </Paper>
   );
 }
 
 function ImageRenderer(params: ICellRendererParams) {
   const images = params.value as string[];
-  const name = params.data["name"];
+  const name = params.data['name'];
   const [open, setOpen] = React.useState(false);
+  const [display, setDisplay] = React.useState(false);
 
   if (images.length > 0) {
     return (
       <>
-        <img src={images[0]} alt={name} onClick={() => setOpen(true)} />
+        <img
+          style={{
+            opacity: display ? '100%' : '0',
+            transition: 'opacity .25s ease',
+          }}
+          src={images[0]}
+          alt={name}
+          onClick={() => setOpen(true)}
+          onLoad={() => setDisplay(true)}
+        />
         <Carousel
           title={name}
           images={images}
@@ -183,37 +194,37 @@ const columnTypes: Record<string, ColDef> = {
   },
   id: {
     valueFormatter: idFormatter,
-    cellClass: "ag-right-aligned-cell",
+    cellClass: 'ag-right-aligned-cell',
     lockPosition: true,
     checkboxSelection: true,
     headerCheckboxSelection: true,
     resizable: false,
   },
   image: {
-    cellRenderer: "ImageRenderer",
+    cellRenderer: 'ImageRenderer',
     editable: false,
   },
   currency: {
     // NOTE: type: 'numericColumn' not working here
-    cellClass: "ag-right-aligned-cell",
-    cellRenderer: "NumberWithUnitRenderer",
+    cellClass: 'ag-right-aligned-cell',
+    cellRenderer: 'NumberWithUnitRenderer',
     valueFormatter: currencyFormatter,
   },
   weight: {
-    cellClass: "ag-right-aligned-cell",
-    cellRenderer: "NumberWithUnitRenderer",
+    cellClass: 'ag-right-aligned-cell',
+    cellRenderer: 'NumberWithUnitRenderer',
     valueFormatter: weightFormatter,
   },
   checkbox: {
-    cellRenderer: "CheckboxRenderer",
+    cellRenderer: 'CheckboxRenderer',
   },
   selector: {
     // remove padding so select's width is the same as container width
-    cellClass: "p0",
-    cellRenderer: "SelectRenderer",
+    cellClass: 'p0',
+    cellRenderer: 'SelectRenderer',
   },
   largeText: {
-    cellEditor: "agLargeTextCellEditor",
+    cellEditor: 'agLargeTextCellEditor',
     maxWidth: 250,
     sortable: false,
   },
@@ -236,16 +247,16 @@ type ProductTableProps = {
 export default function ProductTable(props: ProductTableProps) {
   const { name, className, ...rest } = props;
   const products = useSelector<any[]>(
-    (state) => state.products.products,
+    state => state.products.products,
     shallowEqual
   );
   const [api, onGridReady, autoSizeColumns] = useAgGrid();
   const [columnDefs] = useColumnDefs(api.column);
   const onFirstDataRendered = () => autoSizeColumns();
   const dispatch = useDispatch();
-  const symbol = useSelector((state) => state.products.currency?.symbol) ?? "";
-  const weightUnit = useSelector((state) => state.products.weightUnit);
-  const loading = useSelector((state) => state.products.loading);
+  const symbol = useSelector(state => state.products.currency?.symbol) ?? '';
+  const weightUnit = useSelector(state => state.products.weightUnit);
+  const loading = useSelector(state => state.products.loading);
 
   useOnMount(() => {
     dispatch(actions.getCategoriesRequest());
@@ -283,7 +294,7 @@ export default function ProductTable(props: ProductTableProps) {
     const columnOrder = e.columnApi
       ?.getColumnState()
       // remove suffix _[digit]. field: id -> colId: id_1
-      .map((c) => c.colId.replace(/_[\d]+$/, ""));
+      .map(c => c.colId.replace(/_[\d]+$/, ''));
     if (columnOrder) dispatch(actions.setColumnOrder(columnOrder));
   };
   const onSelectionChanged = (e: SelectionChangedEvent) =>
@@ -292,7 +303,7 @@ export default function ProductTable(props: ProductTableProps) {
   return (
     <div
       key={name}
-      className={classNames("ag-theme-balham table-wrapper", className)}
+      className={classNames('ag-theme-balham table-wrapper', className)}
     >
       <AgGridReact
         // animateRows
@@ -305,7 +316,7 @@ export default function ProductTable(props: ProductTableProps) {
           resizable: true,
         }}
         rowHeight={theme.tableRowHeight}
-        rowSelection="multiple"
+        rowSelection='multiple'
         suppressRowClickSelection
         rowData={products}
         headerHeight={45}
@@ -314,7 +325,7 @@ export default function ProductTable(props: ProductTableProps) {
         onSelectionChanged={onSelectionChanged}
         // getRowClass={this.getRowClass}
         frameworkComponents={frameworkComponents}
-        loadingOverlayComponent="AgCustomLoading"
+        loadingOverlayComponent='AgCustomLoading'
         // column virtualization make it very laggy when scrolling horizontally
         suppressColumnVirtualisation
         // you can already toggle show/hide columns. dragging outside to hide

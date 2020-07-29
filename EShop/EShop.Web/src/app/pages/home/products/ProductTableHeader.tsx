@@ -1,20 +1,20 @@
-import React from "react";
-import { ColDef, Column, ColumnApi, IHeaderParams } from "ag-grid-community";
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-import Popover from "react-bootstrap/Popover";
-import ButtonGroup from "react-bootstrap/ButtonGroup";
-import Button from "react-bootstrap/Button";
-import ListGroup from "react-bootstrap/ListGroup";
-import { ListGroupItemProps } from "react-bootstrap/ListGroupItem";
-import isArray from "lodash/isArray";
-import isString from "lodash/isString";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import ThemeProvider from "../../../../_metronic/materialUIThemeProvider/ThemeProvider";
-import { useDispatch, useSelector } from "../../../store/store";
-import { actions, Pinned, SortMode, WeightUnit } from "./product.duck";
-import pressKey, { VKey } from "../helpers/pressKey";
-import { makeStyles, theme } from "../../../styles";
+import React from 'react';
+import { ColDef, Column, ColumnApi, IHeaderParams } from 'ag-grid-community';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Popover from 'react-bootstrap/Popover';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Button from 'react-bootstrap/Button';
+import ListGroup from 'react-bootstrap/ListGroup';
+import { ListGroupItemProps } from 'react-bootstrap/ListGroupItem';
+import isArray from 'lodash/isArray';
+import isString from 'lodash/isString';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import ThemeProvider from '../../../../_metronic/materialUIThemeProvider/ThemeProvider';
+import { useDispatch, useSelector } from '../../../store/store';
+import { actions, Pinned, SortMode, WeightUnit } from './product.duck';
+import pressKey, { VKey } from '../helpers/pressKey';
+import { makeStyles, theme } from '../../../styles';
 
 type SortFunction = () => void;
 
@@ -73,7 +73,7 @@ function ActionButton(props: ActionButtonProps) {
       action
       onClick={() => {
         onClick();
-        pressKey("keyup", VKey.Escape);
+        pressKey('keyup', VKey.Escape);
       }}
       {...rest}
     />
@@ -82,8 +82,8 @@ function ActionButton(props: ActionButtonProps) {
 
 const useMenuStyles = makeStyles({
   buttonGroup: {
-    display: "flex",
-    "& > *": {
+    display: 'flex',
+    '& > *': {
       flex: 1,
     },
   },
@@ -101,10 +101,10 @@ function ColumnMenu(props: ColumnMenuProps) {
   const dispatch = useDispatch();
   const pinned = usePinStatus(field);
   const weightUnit = useSelector(state => state.products.weightUnit);
-  const isWeight = hasType(column, "weight");
+  const isWeight = hasType(column, 'weight');
   const styles = useMenuStyles();
   const setPin = (pinned: Pinned) => () => {
-    columnApi.setColumnPinned(column.getColId(), pinned ?? "");
+    columnApi.setColumnPinned(column.getColId(), pinned ?? '');
 
     if (pinned === undefined) {
       // onColumnPinned from ag-grid doesn't fire when unpinning column
@@ -113,7 +113,7 @@ function ColumnMenu(props: ColumnMenuProps) {
   };
   const setWeight = (w: string) => () => {
     dispatch(actions.setWeightUnit(WeightUnit[w]));
-    pressKey("keyup", VKey.Escape);
+    pressKey('keyup', VKey.Escape);
   };
   const autoSizeThisColumn = () => {
     columnApi.autoSizeColumn(column.getColId(), false);
@@ -132,32 +132,32 @@ function ColumnMenu(props: ColumnMenuProps) {
     <div className={className} onClick={e => e.stopPropagation()}>
       <ThemeProvider>
         <OverlayTrigger
-          trigger="click"
+          trigger='click'
           rootClose
           flip
           overlay={
-            <Popover id={field + "-column-menu"}>
-              <ListGroup variant="flush">
+            <Popover id={field + '-column-menu'}>
+              <ListGroup variant='flush'>
                 <ListGroup.Item>
                   <ButtonGroup className={styles.buttonGroup}>
                     <Button
-                      variant="secondary"
-                      onClick={setPin("left")}
-                      disabled={pinned === "left"}
+                      variant='secondary'
+                      onClick={setPin('left')}
+                      disabled={pinned === 'left'}
                     >
                       Pin Left
                     </Button>
                     <Button
-                      variant="secondary"
+                      variant='secondary'
                       onClick={setPin(undefined)}
                       disabled={pinned === undefined}
                     >
                       No Pin
                     </Button>
                     <Button
-                      variant="secondary"
-                      onClick={setPin("right")}
-                      disabled={pinned === "right"}
+                      variant='secondary'
+                      onClick={setPin('right')}
+                      disabled={pinned === 'right'}
                     >
                       Pin Right
                     </Button>
@@ -169,7 +169,7 @@ function ColumnMenu(props: ColumnMenuProps) {
                       {Object.keys(WeightUnit).map(w => (
                         <Button
                           key={w}
-                          variant="secondary"
+                          variant='secondary'
                           onClick={setWeight(w)}
                           disabled={weightUnit === WeightUnit[w]}
                         >
@@ -192,8 +192,8 @@ function ColumnMenu(props: ColumnMenuProps) {
             </Popover>
           }
         >
-          <IconButton size="small" color="primary">
-            <MenuIcon fontSize="inherit" />
+          <IconButton size='small' color='primary'>
+            <MenuIcon fontSize='inherit' />
           </IconButton>
         </OverlayTrigger>
       </ThemeProvider>
@@ -204,22 +204,26 @@ function ColumnMenu(props: ColumnMenuProps) {
 const getColumnMenu = (column: Column, columnApi: ColumnApi) => {
   const colDef = column.getColDef();
 
-  if (colDef.field === "id") {
+  if (colDef.field === 'id') {
     return null;
   }
   return (
-    <ColumnMenu className="columnMenu" column={column} columnApi={columnApi} />
+    <ColumnMenu className='columnMenu' column={column} columnApi={columnApi} />
   );
 };
 
 const getSortIndicator = (sortMode: SortMode) => {
-  if (sortMode === SortMode.None) return null;
+  let arrowClassModifier = '';
 
-  const arrowClassModifier = sortMode === SortMode.Ascending ? "up" : "down";
+  if (sortMode === SortMode.Ascending) arrowClassModifier = 'up';
+  else arrowClassModifier = 'down';
+
+  // if there is no sorting, make the arrow invisible instead of removing it completely,
+  // so the header width can be the same in all cases
   return (
-    <span>
+    <span style={{ opacity: sortMode === SortMode.None ? '0' : '100%' }}>
       &nbsp;
-      <i className={"fa fa-long-arrow-alt-" + arrowClassModifier} />
+      <i className={'fa fa-long-arrow-alt-' + arrowClassModifier} />
     </span>
   );
 };
@@ -229,17 +233,17 @@ type HeaderWrapperProps = {
 };
 const useStyles = makeStyles<HeaderWrapperProps>({
   root: {
-    width: "100%",
-    height: "100%",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: props => (props.isNumericColumn ? "end" : "start"),
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: props => (props.isNumericColumn ? 'end' : 'start'),
 
-    "& .fas.fa-thumbtack": {
+    '& .fas.fa-thumbtack': {
       marginLeft: theme.spacing.sm,
     },
-    "& .columnMenu": {
-      marginRight: "auto",
+    '& .columnMenu': {
+      marginRight: 'auto',
     },
   },
 });
@@ -247,17 +251,17 @@ const useStyles = makeStyles<HeaderWrapperProps>({
 export default function ProductTableHeader(props: IHeaderParams) {
   const { displayName, column, enableSorting, columnApi } = props;
   const colDef = column.getColDef();
-  const isNumericColumn = colDef.cellClass === "ag-right-aligned-cell";
+  const isNumericColumn = colDef.cellClass === 'ag-right-aligned-cell';
   const [sortMode, cycleSort] = useSort(colDef);
   const pinned = usePinStatus(colDef.field);
   const style = useStyles({ isNumericColumn });
 
   return (
-    <div className={style.root} role="button" onClick={cycleSort}>
+    <div className={style.root} role='button' onClick={cycleSort}>
       {displayName}
       {getColumnMenu(column, columnApi)}
       {enableSorting && getSortIndicator(sortMode)}
-      {pinned && <i className="fas fa-thumbtack fa-sm" />}
+      {pinned && <i className='fas fa-thumbtack fa-sm' />}
     </div>
   );
 }

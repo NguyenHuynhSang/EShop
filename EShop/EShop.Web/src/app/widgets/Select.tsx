@@ -1,5 +1,5 @@
-import React from "react";
-import isString from "lodash/isString";
+import React from 'react';
+import isString from 'lodash/isString';
 import ReactSelect, {
   StylesConfig,
   Props as SelectProps,
@@ -7,12 +7,12 @@ import ReactSelect, {
   ValueType,
   ActionMeta,
   OptionsType,
-} from "react-select";
-import { Styles } from "react-select/src/styles";
-import Button, { ButtonProps } from "@material-ui/core/Button";
-import { makeStyles, theme } from "../styles";
+} from 'react-select';
+import { Styles } from 'react-select/src/styles';
+import Button, { ButtonProps } from '@material-ui/core/Button';
+import { makeStyles, theme } from '../styles';
 
-export * from "react-select";
+export * from 'react-select';
 export { SelectComps };
 
 export function toSimpleOption(data: any) {
@@ -29,72 +29,72 @@ const focusedColor = theme.color.focused;
 const selectStyle: StylesConfig = {
   container: (provided, { selectProps }) => ({
     ...provided,
-    display: "inline-block",
-    ...(selectProps.width === "auto"
+    display: 'inline-block',
+    ...(selectProps.width === 'auto'
       ? {}
       : isString(selectProps.width)
       ? { width: selectProps.width }
-      : { width: selectProps.width + "px" }),
+      : { width: selectProps.width + 'px' }),
   }),
   control: (provided, { isSelected, isFocused }) => {
     // console.log(state);
     return {
       ...provided,
-      height: "40px",
-      boxShadow: "none",
+      height: '40px',
+      boxShadow: 'none',
       borderColor: isSelected || isFocused ? focusColor : borderColor,
-      ":hover": {
+      ':hover': {
         borderColor: focusColor,
-        cursor: "pointer",
+        cursor: 'pointer',
       },
     };
   },
   dropdownIndicator: (provided, { isSelected, isFocused }) => ({
     ...provided,
     color: isSelected || isFocused ? focusColor : borderColor,
-    ":hover": {
+    ':hover': {
       color: focusColor,
     },
   }),
-  groupHeading: (provided) => ({
+  groupHeading: provided => ({
     ...provided,
     color: theme.color.primary,
-    marginBottom: "0.5em",
+    marginBottom: '0.5em',
   }),
   // TODO: Add css for auto-width selector if using input
   // https://github.com/JedWatson/react-select/issues/3603#issuecomment-591511367
-  indicatorSeparator: () => ({ display: "none" }),
-  menu: (provided) => ({
+  indicatorSeparator: () => ({ display: 'none' }),
+  menu: provided => ({
     ...provided,
     boxShadow: theme.shadow.normal,
   }),
   option: (provided, { isSelected, isFocused }) => {
     return {
       ...provided,
-      transition: "background-color .15s ease",
+      transition: 'background-color .15s ease',
       backgroundColor: isSelected
         ? theme.color.secondaryLight
         : isFocused
         ? focusedColor
-        : "transparent",
-      color: isSelected ? theme.color.secondary : "inherit",
-      fontWeight: isSelected ? "bold" : "inherit",
-      ":hover": {
-        cursor: "pointer",
+        : 'transparent',
+      color: isSelected ? theme.color.secondary : 'inherit',
+      fontWeight: isSelected ? 'bold' : 'inherit',
+      ':hover': {
+        cursor: 'pointer',
       },
     };
   },
   // autosize select to its content width
-  singleValue: (provided) => ({
+  singleValue: provided => ({
     ...provided,
-    maxWidth: "none",
-    position: "static",
-    transform: "none",
+    maxWidth: 'none',
+    position: 'static',
+    transform: 'none',
   }),
-  placeholder: (provided) => ({
+  placeholder: provided => ({
     ...provided,
-    position: "static",
-    transform: "none",
+    position: 'static',
+    transform: 'none',
   }),
 };
 
@@ -105,12 +105,12 @@ const useStyles = makeStyles({
   root: {
     // prevent value container from being pushed up when there are no space left
     '& [class$="dummyInput"]': {
-      position: "absolute",
+      position: 'absolute',
     },
   },
 });
 export default function Select(props: Props) {
-  const { width = "auto", ...rest } = props;
+  const { width = 'auto', ...rest } = props;
   const styles = useStyles();
   return (
     <ReactSelect
@@ -124,9 +124,9 @@ export default function Select(props: Props) {
 
 const useSelectButtonStyles = makeStyles<Props>({
   childrenWrapper: {
-    position: "absolute",
-    width: "100%",
-    height: "100%",
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
     '& > [class$="-control"]': {
       opacity: 0,
     },
@@ -154,7 +154,7 @@ export const SelectButton = (props: SelectButtonProps) => {
       // menuPortalTarget={document.body}
       onChange={onChange}
       options={options}
-      width="auto"
+      width='auto'
       components={{
         SelectContainer: ({ children, ...rest }) => (
           <SelectComps.SelectContainer {...rest}>
@@ -179,18 +179,18 @@ const agSelectStyle: StylesConfig = {
   ...baseStyle,
   container: (provided, state) => ({
     ...baseStyle.container(provided, state),
-    width: "100%",
+    width: '100%',
   }),
   control: (provided, state) => ({
     ...baseStyle.control(provided, state),
-    border: "none",
-    backgroundColor: "transparent",
+    border: 'none',
+    backgroundColor: 'transparent',
     borderRadius: 0,
   }),
   menu: (provided, state) => ({
     ...baseStyle.menu(provided, state),
-    marginTop: "2px",
-    marginBottom: "2px",
+    marginTop: '2px',
+    marginBottom: '2px',
     borderRadius: 0,
   }),
   dropdownIndicator: (provided, state) => ({
@@ -198,9 +198,11 @@ const agSelectStyle: StylesConfig = {
     color: focusColor,
   }),
 };
+
 export function AgSelect(props: Props) {
-  const { width = "auto", ...rest } = props;
+  const { width = 'auto', ...rest } = props;
   const styles = useStyles();
+
   return (
     <ReactSelect
       className={styles.root}
@@ -210,7 +212,7 @@ export function AgSelect(props: Props) {
       // Minimum height of the menu before flipping
       minMenuHeight={220}
       // flip when there isn't enough space below the control.
-      menuPlacement="auto"
+      menuPlacement='auto'
       width={width}
       {...rest}
     />
