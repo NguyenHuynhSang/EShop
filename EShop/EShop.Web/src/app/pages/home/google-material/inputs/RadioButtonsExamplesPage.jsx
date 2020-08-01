@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-imports */
-import React from "react";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import React from 'react';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import {
   Radio,
   RadioGroup,
@@ -8,49 +8,49 @@ import {
   FormHelperText,
   FormControlLabel,
   FormControl,
-  FormLabel
-} from "@material-ui/core";
-import { green } from "@material-ui/core/colors";
-import Notice from "../../../../partials/content/Notice";
-import CodeExample from "../../../../partials/content/CodeExample";
-import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
-import RadioButtonCheckedIcon from "@material-ui/icons/RadioButtonChecked";
+  FormLabel,
+} from '@material-ui/core';
+import { green } from '@material-ui/core/colors';
+import Notice from '../../../../partials/content/Notice';
+import CodeExample from '../../../../partials/content/CodeExample';
+import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
+import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 
 // Example 1
 const useStyles = makeStyles(theme => ({
   root: {
-    display: "flex"
+    display: 'flex',
   },
   formControl: {
-    margin: theme.spacing(3)
+    margin: theme.spacing(3),
   },
   group: {
-    margin: theme.spacing(1, 0)
-  }
+    margin: theme.spacing(1, 0),
+  },
 }));
 
 // Example 2
 const GreenRadio = withStyles({
   root: {
     color: green[400],
-    "&$checked": {
-      color: green[600]
-    }
+    '&$checked': {
+      color: green[600],
+    },
   },
-  checked: {}
-})(props => <Radio color="default" {...props} />);
+  checked: {},
+})(props => <Radio color='default' {...props} />);
 
 export default function RadioButtonsExamplesPage() {
   // Example 1
   const classes = useStyles();
-  const [value, setValue] = React.useState("female");
+  const [value, setValue] = React.useState('female');
 
   function handleChange(event) {
     setValue(event.target.value);
   }
 
   // Example 2
-  const [selectedValue, setSelectedValue] = React.useState("a");
+  const [selectedValue, setSelectedValue] = React.useState('a');
   function handleChange2(event) {
     setSelectedValue(event.target.value);
   }
@@ -62,15 +62,15 @@ export default function RadioButtonsExamplesPage() {
 
   return (
     <>
-      <Notice icon="flaticon-warning kt-font-primary">
+      <Notice icon='flaticon-warning kt-font-primary'>
         <p>Radio buttons allow the user to select one option from a set.</p>
         <p>
-          For more info please check the components's official{" "}
+          For more info please check the components's official{' '}
           <a
-            target="_blank"
-            className="kt-link"
-            rel="noopener noreferrer"
-            href="https://material-ui.com/components/radio-buttons/"
+            target='_blank'
+            className='kt-link'
+            rel='noopener noreferrer'
+            href='https://material-ui.com/components/radio-buttons/'
           >
             demos & documentation
           </a>
@@ -89,102 +89,102 @@ export default function RadioButtonsExamplesPage() {
         </p>
       </Notice>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode1} beforeCodeTitle="Radio Group">
-            <div className="kt-section">
-              <span className="kt-section__sub">
-                <code>RadioGroup</code> is a helpful wrapper used to group{" "}
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode1} beforeCodeTitle='Radio Group'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
+                <code>RadioGroup</code> is a helpful wrapper used to group{' '}
                 <code>Radio</code> components that provides an easier API, and
                 proper keyboard accessibility to the group.
               </span>
-              <div className="kt-separator kt-separator--dashed" />
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed' />
+              <div className='kt-section__content'>
                 <div className={classes.root}>
-                  <div className="width-full">
-                    <div className="row">
-                      <div className="col-md-2" />
-                      <div className="col-md-3">
+                  <div className='width-full'>
+                    <div className='row'>
+                      <div className='col-md-2' />
+                      <div className='col-md-3'>
                         <FormControl
-                          component="fieldset"
+                          component='fieldset'
                           className={classes.formControl}
                         >
-                          <FormLabel component="legend">Gender</FormLabel>
+                          <FormLabel component='legend'>Gender</FormLabel>
                           <RadioGroup
-                            aria-label="Gender"
-                            name="gender1"
+                            aria-label='Gender'
+                            name='gender1'
                             className={classes.group}
                             value={value}
                             onChange={handleChange}
                           >
                             <FormControlLabel
-                              value="female"
+                              value='female'
                               control={<Radio />}
-                              label="Female"
+                              label='Female'
                             />
                             <FormControlLabel
-                              value="male"
+                              value='male'
                               control={<Radio />}
-                              label="Male"
+                              label='Male'
                             />
                             <FormControlLabel
-                              value="other"
+                              value='other'
                               control={<Radio />}
-                              label="Other"
+                              label='Other'
                             />
                             <FormControlLabel
-                              value="disabled"
+                              value='disabled'
                               disabled
                               control={<Radio />}
-                              label="(Disabled option)"
+                              label='(Disabled option)'
                             />
                           </RadioGroup>
                         </FormControl>
                       </div>
-                      <div className="col-md-1" />
-                      <div className="col-md-3">
+                      <div className='col-md-1' />
+                      <div className='col-md-3'>
                         <FormControl
-                          component="fieldset"
+                          component='fieldset'
                           className={classes.formControl}
                         >
-                          <FormLabel component="legend">Gender</FormLabel>
+                          <FormLabel component='legend'>Gender</FormLabel>
                           <RadioGroup
-                            aria-label="gender"
-                            name="gender2"
+                            aria-label='gender'
+                            name='gender2'
                             className={classes.group}
                             value={value}
                             onChange={handleChange}
                           >
                             <FormControlLabel
-                              value="female"
-                              control={<Radio color="primary" />}
-                              label="Female"
-                              labelPlacement="start"
+                              value='female'
+                              control={<Radio color='primary' />}
+                              label='Female'
+                              labelPlacement='start'
                             />
                             <FormControlLabel
-                              value="male"
-                              control={<Radio color="primary" />}
-                              label="Male"
-                              labelPlacement="start"
+                              value='male'
+                              control={<Radio color='primary' />}
+                              label='Male'
+                              labelPlacement='start'
                             />
                             <FormControlLabel
-                              value="other"
-                              control={<Radio color="primary" />}
-                              label="Other"
-                              labelPlacement="start"
+                              value='other'
+                              control={<Radio color='primary' />}
+                              label='Other'
+                              labelPlacement='start'
                             />
                             <FormControlLabel
-                              value="disabled"
+                              value='disabled'
                               disabled
                               control={<Radio />}
-                              label="(Disabled option)"
-                              labelPlacement="start"
+                              label='(Disabled option)'
+                              labelPlacement='start'
                             />
                           </RadioGroup>
                           {/*<FormHelperText>labelPlacement start</FormHelperText>*/}
                         </FormControl>
                       </div>
-                      <div className="col-md-3" />
+                      <div className='col-md-3' />
                     </div>
                   </div>
                 </div>
@@ -192,58 +192,58 @@ export default function RadioButtonsExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
+        <div className='col-md-6'>
           <CodeExample
             jsCode={jsCode2}
-            beforeCodeTitle="Standalone Radio Buttons"
+            beforeCodeTitle='Standalone Radio Buttons'
           >
-            <div className="kt-section">
-              <span className="kt-section__sub">
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 <code>Radio</code> can also be used standalone, without the
                 wrapper.
               </span>
-              <div className="kt-separator kt-separator--dashed" />
-              <div className="kt-section__content">
-                <div className="d-flex justify-content-center width-full">
+              <div className='kt-separator kt-separator--dashed' />
+              <div className='kt-section__content'>
+                <div className='d-flex justify-content-center width-full'>
                   <div>
                     <Radio
-                      checked={selectedValue === "a"}
+                      checked={selectedValue === 'a'}
                       onChange={handleChange2}
-                      value="a"
-                      name="radio-button-demo"
-                      inputProps={{ "aria-label": "A" }}
+                      value='a'
+                      name='radio-button-demo'
+                      inputProps={{ 'aria-label': 'A' }}
                     />
                     <Radio
-                      checked={selectedValue === "b"}
+                      checked={selectedValue === 'b'}
                       onChange={handleChange2}
-                      value="b"
-                      name="radio-button-demo"
-                      inputProps={{ "aria-label": "B" }}
+                      value='b'
+                      name='radio-button-demo'
+                      inputProps={{ 'aria-label': 'B' }}
                     />
                     <GreenRadio
-                      checked={selectedValue === "c"}
+                      checked={selectedValue === 'c'}
                       onChange={handleChange2}
-                      value="c"
-                      name="radio-button-demo"
-                      inputProps={{ "aria-label": "C" }}
+                      value='c'
+                      name='radio-button-demo'
+                      inputProps={{ 'aria-label': 'C' }}
                     />
                     <Radio
-                      checked={selectedValue === "d"}
+                      checked={selectedValue === 'd'}
                       onChange={handleChange2}
-                      value="d"
-                      color="default"
-                      name="radio-button-demo"
-                      inputProps={{ "aria-label": "D" }}
+                      value='d'
+                      color='default'
+                      name='radio-button-demo'
+                      inputProps={{ 'aria-label': 'D' }}
                     />
                     <Radio
-                      checked={selectedValue === "e"}
+                      checked={selectedValue === 'e'}
                       onChange={handleChange2}
-                      value="e"
-                      color="default"
-                      name="radio-button-demo"
-                      inputProps={{ "aria-label": "E" }}
-                      icon={<RadioButtonUncheckedIcon fontSize="small" />}
-                      checkedIcon={<RadioButtonCheckedIcon fontSize="small" />}
+                      value='e'
+                      color='default'
+                      name='radio-button-demo'
+                      inputProps={{ 'aria-label': 'E' }}
+                      icon={<RadioButtonUncheckedIcon fontSize='small' />}
+                      checkedIcon={<RadioButtonCheckedIcon fontSize='small' />}
                     />
                   </div>
                 </div>
@@ -251,47 +251,47 @@ export default function RadioButtonsExamplesPage() {
             </div>
           </CodeExample>
 
-          <CodeExample jsCode={jsCode3} beforeCodeTitle="Label placement">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+          <CodeExample jsCode={jsCode3} beforeCodeTitle='Label placement'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 You can change the placement of the label:
               </span>
-              <div className="kt-separator kt-separator--dashed" />
-              <div className="kt-section__content">
-                <div className="d-flex justify-content-center width-full">
+              <div className='kt-separator kt-separator--dashed' />
+              <div className='kt-section__content'>
+                <div className='d-flex justify-content-center width-full'>
                   <div>
-                    <FormControl component="fieldset">
+                    <FormControl component='fieldset'>
                       {/*<FormLabel component="legend">labelPlacement</FormLabel>*/}
                       <RadioGroup
-                        aria-label="position"
-                        name="position"
+                        aria-label='position'
+                        name='position'
                         value={value}
                         onChange={handleChange3}
                         row
                       >
                         <FormControlLabel
-                          value="top"
-                          control={<Radio color="primary" />}
-                          label="Top"
-                          labelPlacement="top"
+                          value='top'
+                          control={<Radio color='primary' />}
+                          label='Top'
+                          labelPlacement='top'
                         />
                         <FormControlLabel
-                          value="start"
-                          control={<Radio color="primary" />}
-                          label="Start"
-                          labelPlacement="start"
+                          value='start'
+                          control={<Radio color='primary' />}
+                          label='Start'
+                          labelPlacement='start'
                         />
                         <FormControlLabel
-                          value="bottom"
-                          control={<Radio color="primary" />}
-                          label="Bottom"
-                          labelPlacement="bottom"
+                          value='bottom'
+                          control={<Radio color='primary' />}
+                          label='Bottom'
+                          labelPlacement='bottom'
                         />
                         <FormControlLabel
-                          value="end"
-                          control={<Radio color="primary" />}
-                          label="End"
-                          labelPlacement="end"
+                          value='end'
+                          control={<Radio color='primary' />}
+                          label='End'
+                          labelPlacement='end'
                         />
                       </RadioGroup>
                     </FormControl>

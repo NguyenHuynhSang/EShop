@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-imports */
-import React from "react";
-import clsx from "clsx";
-import { makeStyles, withStyles, useTheme } from "@material-ui/core/styles";
+import React from 'react';
+import clsx from 'clsx';
+import { makeStyles, withStyles, useTheme } from '@material-ui/core/styles';
 import {
   Input,
   OutlinedInput,
@@ -20,93 +20,93 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-  DialogTitle
-} from "@material-ui/core";
-import Notice from "../../../../partials/content/Notice";
-import CodeExample from "../../../../partials/content/CodeExample";
+  DialogTitle,
+} from '@material-ui/core';
+import Notice from '../../../../partials/content/Notice';
+import CodeExample from '../../../../partials/content/CodeExample';
 
 // Example 1
 const useStyles = makeStyles(theme => ({
   root: {
-    display: "flex",
-    flexWrap: "wrap"
+    display: 'flex',
+    flexWrap: 'wrap',
   },
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 120
+    minWidth: 120,
   },
   selectEmpty: {
-    marginTop: theme.spacing(2)
-  }
+    marginTop: theme.spacing(2),
+  },
 }));
 
 // Example 3
 const BootstrapInput = withStyles(theme => ({
   root: {
-    "label + &": {
-      marginTop: theme.spacing(3)
-    }
+    'label + &': {
+      marginTop: theme.spacing(3),
+    },
   },
   input: {
     borderRadius: 4,
-    position: "relative",
+    position: 'relative',
     backgroundColor: theme.palette.background.paper,
-    border: "1px solid #ced4da",
+    border: '1px solid #ced4da',
     fontSize: 16,
-    padding: "10px 26px 10px 12px",
-    transition: theme.transitions.create(["border-color", "box-shadow"]),
+    padding: '10px 26px 10px 12px',
+    transition: theme.transitions.create(['border-color', 'box-shadow']),
     // Use the system font instead of the default Roboto font.
     fontFamily: [
-      "-apple-system",
-      "BlinkMacSystemFont",
+      '-apple-system',
+      'BlinkMacSystemFont',
       '"Segoe UI"',
-      "Roboto",
+      'Roboto',
       '"Helvetica Neue"',
-      "Arial",
-      "sans-serif",
+      'Arial',
+      'sans-serif',
       '"Apple Color Emoji"',
       '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"'
-    ].join(","),
-    "&:focus": {
+      '"Segoe UI Symbol"',
+    ].join(','),
+    '&:focus': {
       borderRadius: 4,
-      borderColor: "#80bdff",
-      boxShadow: "0 0 0 0.2rem rgba(0,123,255,.25)"
-    }
-  }
+      borderColor: '#80bdff',
+      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+    },
+  },
 }))(InputBase);
 
 const useStyles3 = makeStyles(theme => ({
   root: {
-    display: "flex",
-    flexWrap: "wrap"
+    display: 'flex',
+    flexWrap: 'wrap',
   },
   margin: {
-    margin: theme.spacing(1)
-  }
+    margin: theme.spacing(1),
+  },
 }));
 
 // Example 4
 const useStyles4 = makeStyles(theme => ({
   root: {
-    display: "flex",
-    flexWrap: "wrap"
+    display: 'flex',
+    flexWrap: 'wrap',
   },
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
-    maxWidth: 300
+    maxWidth: 300,
   },
   chips: {
-    display: "flex",
-    flexWrap: "wrap"
+    display: 'flex',
+    flexWrap: 'wrap',
   },
   chip: {
-    margin: 2
+    margin: 2,
   },
   noLabel: {
-    marginTop: theme.spacing(3)
-  }
+    marginTop: theme.spacing(3),
+  },
 }));
 
 const ITEM_HEIGHT = 48;
@@ -115,22 +115,22 @@ const MenuProps = {
   PaperProps: {
     style: {
       maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250
-    }
-  }
+      width: 250,
+    },
+  },
 };
 
 const names = [
-  "Oliver Hansen",
-  "Van Henry",
-  "April Tucker",
-  "Ralph Hubbard",
-  "Omar Alexander",
-  "Carlos Abbott",
-  "Miriam Wagner",
-  "Bradley Wilkerson",
-  "Virginia Andrews",
-  "Kelly Snyder"
+  'Oliver Hansen',
+  'Van Henry',
+  'April Tucker',
+  'Ralph Hubbard',
+  'Omar Alexander',
+  'Carlos Abbott',
+  'Miriam Wagner',
+  'Bradley Wilkerson',
+  'Virginia Andrews',
+  'Kelly Snyder',
 ];
 
 function getStyles(name, personName, theme) {
@@ -138,46 +138,46 @@ function getStyles(name, personName, theme) {
     fontWeight:
       personName.indexOf(name) === -1
         ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium
+        : theme.typography.fontWeightMedium,
   };
 }
 
 // Example 5
 const useStyles5 = makeStyles(theme => ({
   button: {
-    display: "block",
-    marginTop: theme.spacing(2)
+    display: 'block',
+    marginTop: theme.spacing(2),
   },
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 120
-  }
+    minWidth: 120,
+  },
 }));
 
 // Example 6
 const useStyles6 = makeStyles(theme => ({
   container: {
-    display: "flex",
-    flexWrap: "wrap"
+    display: 'flex',
+    flexWrap: 'wrap',
   },
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 120
-  }
+    minWidth: 120,
+  },
 }));
 
 export default function SelectsExamplesPage() {
   // Example 1
   const classes = useStyles();
   const [values, setValues] = React.useState({
-    age: "",
-    name: "hai"
+    age: '',
+    name: 'hai',
   });
 
   // Example 2
   const [state, setState] = React.useState({
-    age: "",
-    name: "hai"
+    age: '',
+    name: 'hai',
   });
 
   const inputLabel = React.useRef(null);
@@ -189,20 +189,20 @@ export default function SelectsExamplesPage() {
   function handleChange(event) {
     setValues(oldValues => ({
       ...oldValues,
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     }));
   }
 
   const handleChange2 = name => event => {
     setState({
       ...state,
-      [name]: event.target.value
+      [name]: event.target.value,
     });
   };
 
   // Example 3
   const classes3 = useStyles3();
-  const [age, setAge] = React.useState("");
+  const [age, setAge] = React.useState('');
   const handleChange3 = event => {
     setAge(event.target.value);
   };
@@ -229,7 +229,7 @@ export default function SelectsExamplesPage() {
 
   // Example 5
   const classes5 = useStyles5();
-  const [age2, setAge2] = React.useState("");
+  const [age2, setAge2] = React.useState('');
   const [open, setOpen] = React.useState(false);
 
   function handleChange5(event) {
@@ -248,7 +248,7 @@ export default function SelectsExamplesPage() {
   const classes6 = useStyles6();
   const [state6, setState6] = React.useState({
     open: false,
-    age: ""
+    age: '',
   });
 
   const handleChange6 = name => event => {
@@ -265,41 +265,41 @@ export default function SelectsExamplesPage() {
 
   return (
     <>
-      <Notice icon="flaticon-warning kt-font-primary">
+      <Notice icon='flaticon-warning kt-font-primary'>
         <p>
           Select components are used for collecting user provided information
           from a list of options.
         </p>
         <p>
-          For more info please check the components's official{" "}
+          For more info please check the components's official{' '}
           <a
-            target="_blank"
-            className="kt-link"
-            rel="noopener noreferrer"
-            href="https://material-ui.com/components/selects/"
+            target='_blank'
+            className='kt-link'
+            rel='noopener noreferrer'
+            href='https://material-ui.com/components/selects/'
           >
             demos & documentation
           </a>
         </p>
       </Notice>
 
-      <CodeExample jsCode={jsCode1} beforeCodeTitle="Simple Select">
-        <div className="kt-section">
-          <span className="kt-section__sub">
+      <CodeExample jsCode={jsCode1} beforeCodeTitle='Simple Select'>
+        <div className='kt-section'>
+          <span className='kt-section__sub'>
             Menus are positioned over their emitting elements such that the
             currently selected menu item appears on top of the emitting element.
           </span>
-          <div className="kt-separator kt-separator--dashed"></div>
-          <div className="kt-section__content">
-            <form className={classes.root} autoComplete="off">
+          <div className='kt-separator kt-separator--dashed'></div>
+          <div className='kt-section__content'>
+            <form className={classes.root} autoComplete='off'>
               <FormControl className={classes.formControl}>
-                <InputLabel htmlFor="age-simple">Age</InputLabel>
+                <InputLabel htmlFor='age-simple'>Age</InputLabel>
                 <Select
                   value={values.age}
                   onChange={handleChange}
                   inputProps={{
-                    name: "age",
-                    id: "age-simple"
+                    name: 'age',
+                    id: 'age-simple',
                   }}
                 >
                   <MenuItem value={10}>Ten</MenuItem>
@@ -308,13 +308,13 @@ export default function SelectsExamplesPage() {
                 </Select>
               </FormControl>
               <FormControl className={classes.formControl}>
-                <InputLabel htmlFor="age-helper">Age</InputLabel>
+                <InputLabel htmlFor='age-helper'>Age</InputLabel>
                 <Select
                   value={values.age}
                   onChange={handleChange}
-                  input={<Input name="age" id="age-helper" />}
+                  input={<Input name='age' id='age-helper' />}
                 >
-                  <MenuItem value="">
+                  <MenuItem value=''>
                     <em>None</em>
                   </MenuItem>
                   <MenuItem value={10}>Ten</MenuItem>
@@ -328,10 +328,10 @@ export default function SelectsExamplesPage() {
                   value={values.age}
                   onChange={handleChange}
                   displayEmpty
-                  name="age"
+                  name='age'
                   className={classes.selectEmpty}
                 >
-                  <MenuItem value="">
+                  <MenuItem value=''>
                     <em>None</em>
                   </MenuItem>
                   <MenuItem value={10}>Ten</MenuItem>
@@ -341,18 +341,18 @@ export default function SelectsExamplesPage() {
                 <FormHelperText>Without label</FormHelperText>
               </FormControl>
               <FormControl className={classes.formControl}>
-                <InputLabel shrink htmlFor="age-label-placeholder">
+                <InputLabel shrink htmlFor='age-label-placeholder'>
                   Age
                 </InputLabel>
                 <Select
                   value={values.age}
                   onChange={handleChange}
-                  input={<Input name="age" id="age-label-placeholder" />}
+                  input={<Input name='age' id='age-label-placeholder' />}
                   displayEmpty
-                  name="age"
+                  name='age'
                   className={classes.selectEmpty}
                 >
-                  <MenuItem value="">
+                  <MenuItem value=''>
                     <em>None</em>
                   </MenuItem>
                   <MenuItem value={10}>Ten</MenuItem>
@@ -362,64 +362,64 @@ export default function SelectsExamplesPage() {
                 <FormHelperText>Label + placeholder</FormHelperText>
               </FormControl>
               <FormControl className={classes.formControl} disabled>
-                <InputLabel htmlFor="name-disabled">Name</InputLabel>
+                <InputLabel htmlFor='name-disabled'>Name</InputLabel>
                 <Select
                   value={values.name}
                   onChange={handleChange}
-                  input={<Input name="name" id="name-disabled" />}
+                  input={<Input name='name' id='name-disabled' />}
                 >
-                  <MenuItem value="">
+                  <MenuItem value=''>
                     <em>None</em>
                   </MenuItem>
-                  <MenuItem value="hai">Hai</MenuItem>
-                  <MenuItem value="olivier">Olivier</MenuItem>
-                  <MenuItem value="kevin">Kevin</MenuItem>
+                  <MenuItem value='hai'>Hai</MenuItem>
+                  <MenuItem value='olivier'>Olivier</MenuItem>
+                  <MenuItem value='kevin'>Kevin</MenuItem>
                 </Select>
                 <FormHelperText>Disabled</FormHelperText>
               </FormControl>
               <FormControl className={classes.formControl} error>
-                <InputLabel htmlFor="name-error">Name</InputLabel>
+                <InputLabel htmlFor='name-error'>Name</InputLabel>
                 <Select
                   value={values.name}
                   onChange={handleChange}
-                  name="name"
+                  name='name'
                   renderValue={value => `! - ${value}`}
-                  input={<Input id="name-error" />}
+                  input={<Input id='name-error' />}
                 >
-                  <MenuItem value="">
+                  <MenuItem value=''>
                     <em>None</em>
                   </MenuItem>
-                  <MenuItem value="hai">Hai</MenuItem>
-                  <MenuItem value="olivier">Olivier</MenuItem>
-                  <MenuItem value="kevin">Kevin</MenuItem>
+                  <MenuItem value='hai'>Hai</MenuItem>
+                  <MenuItem value='olivier'>Olivier</MenuItem>
+                  <MenuItem value='kevin'>Kevin</MenuItem>
                 </Select>
                 <FormHelperText>Error</FormHelperText>
               </FormControl>
               <FormControl className={classes.formControl}>
-                <InputLabel htmlFor="name-readonly">Name</InputLabel>
+                <InputLabel htmlFor='name-readonly'>Name</InputLabel>
                 <Select
                   value={values.name}
                   onChange={handleChange}
-                  input={<Input name="name" id="name-readonly" readOnly />}
+                  input={<Input name='name' id='name-readonly' readOnly />}
                 >
-                  <MenuItem value="">
+                  <MenuItem value=''>
                     <em>None</em>
                   </MenuItem>
-                  <MenuItem value="hai">Hai</MenuItem>
-                  <MenuItem value="olivier">Olivier</MenuItem>
-                  <MenuItem value="kevin">Kevin</MenuItem>
+                  <MenuItem value='hai'>Hai</MenuItem>
+                  <MenuItem value='olivier'>Olivier</MenuItem>
+                  <MenuItem value='kevin'>Kevin</MenuItem>
                 </Select>
                 <FormHelperText>Read only</FormHelperText>
               </FormControl>
               <FormControl className={classes.formControl}>
-                <InputLabel htmlFor="age-auto-width">Age</InputLabel>
+                <InputLabel htmlFor='age-auto-width'>Age</InputLabel>
                 <Select
                   value={values.age}
                   onChange={handleChange}
-                  input={<Input name="age" id="age-auto-width" />}
+                  input={<Input name='age' id='age-auto-width' />}
                   autoWidth
                 >
-                  <MenuItem value="">
+                  <MenuItem value=''>
                     <em>None</em>
                   </MenuItem>
                   <MenuItem value={10}>Ten</MenuItem>
@@ -432,11 +432,11 @@ export default function SelectsExamplesPage() {
                 <Select
                   value={values.age}
                   onChange={handleChange}
-                  name="age"
+                  name='age'
                   displayEmpty
                   className={classes.selectEmpty}
                 >
-                  <MenuItem value="" disabled>
+                  <MenuItem value='' disabled>
                     Placeholder
                   </MenuItem>
                   <MenuItem value={10}>Ten</MenuItem>
@@ -446,17 +446,17 @@ export default function SelectsExamplesPage() {
                 <FormHelperText>Placeholder</FormHelperText>
               </FormControl>
               <FormControl required className={classes.formControl}>
-                <InputLabel htmlFor="age-required">Age</InputLabel>
+                <InputLabel htmlFor='age-required'>Age</InputLabel>
                 <Select
                   value={values.age}
                   onChange={handleChange}
-                  name="age"
+                  name='age'
                   inputProps={{
-                    id: "age-required"
+                    id: 'age-required',
                   }}
                   className={classes.selectEmpty}
                 >
-                  <MenuItem value="">
+                  <MenuItem value=''>
                     <em>None</em>
                   </MenuItem>
                   <MenuItem value={10}>Ten</MenuItem>
@@ -465,8 +465,8 @@ export default function SelectsExamplesPage() {
                 </Select>
                 <FormHelperText>Required</FormHelperText>
               </FormControl>
-              <FormControl variant="outlined" className={classes.formControl}>
-                <InputLabel ref={inputLabel} htmlFor="outlined-age-simple">
+              <FormControl variant='outlined' className={classes.formControl}>
+                <InputLabel ref={inputLabel} htmlFor='outlined-age-simple'>
                   Age
                 </InputLabel>
                 <Select
@@ -475,12 +475,12 @@ export default function SelectsExamplesPage() {
                   input={
                     <OutlinedInput
                       labelWidth={labelWidth}
-                      name="age"
-                      id="outlined-age-simple"
+                      name='age'
+                      id='outlined-age-simple'
                     />
                   }
                 >
-                  <MenuItem value="">
+                  <MenuItem value=''>
                     <em>None</em>
                   </MenuItem>
                   <MenuItem value={10}>Ten</MenuItem>
@@ -488,14 +488,14 @@ export default function SelectsExamplesPage() {
                   <MenuItem value={30}>Thirty</MenuItem>
                 </Select>
               </FormControl>
-              <FormControl variant="filled" className={classes.formControl}>
-                <InputLabel htmlFor="filled-age-simple">Age</InputLabel>
+              <FormControl variant='filled' className={classes.formControl}>
+                <InputLabel htmlFor='filled-age-simple'>Age</InputLabel>
                 <Select
                   value={values.age}
                   onChange={handleChange}
-                  input={<FilledInput name="age" id="filled-age-simple" />}
+                  input={<FilledInput name='age' id='filled-age-simple' />}
                 >
-                  <MenuItem value="">
+                  <MenuItem value=''>
                     <em>None</em>
                   </MenuItem>
                   <MenuItem value={10}>Ten</MenuItem>
@@ -508,40 +508,40 @@ export default function SelectsExamplesPage() {
         </div>
       </CodeExample>
 
-      <CodeExample jsCode={jsCode2} beforeCodeTitle="Native Select">
-        <div className="kt-section">
-          <span className="kt-section__sub">
+      <CodeExample jsCode={jsCode2} beforeCodeTitle='Native Select'>
+        <div className='kt-section'>
+          <span className='kt-section__sub'>
             As the user experience can be improved on mobile using the native
             select of the platform, we allow such pattern.
           </span>
-          <div className="kt-separator kt-separator--dashed"></div>
-          <div className="kt-section__content">
+          <div className='kt-separator kt-separator--dashed'></div>
+          <div className='kt-section__content'>
             <div className={classes.root}>
               <FormControl className={classes.formControl}>
-                <InputLabel htmlFor="age-native-simple">Age</InputLabel>
+                <InputLabel htmlFor='age-native-simple'>Age</InputLabel>
                 <Select
                   native
                   value={state.age}
-                  onChange={handleChange2("age")}
+                  onChange={handleChange2('age')}
                   inputProps={{
-                    name: "age",
-                    id: "age-native-simple"
+                    name: 'age',
+                    id: 'age-native-simple',
                   }}
                 >
-                  <option value="" />
+                  <option value='' />
                   <option value={10}>Ten</option>
                   <option value={20}>Twenty</option>
                   <option value={30}>Thirty</option>
                 </Select>
               </FormControl>
               <FormControl className={classes.formControl}>
-                <InputLabel htmlFor="age-native-helper">Age</InputLabel>
+                <InputLabel htmlFor='age-native-helper'>Age</InputLabel>
                 <NativeSelect
                   value={state.age}
-                  onChange={handleChange2("age")}
-                  input={<Input name="age" id="age-native-helper" />}
+                  onChange={handleChange2('age')}
+                  input={<Input name='age' id='age-native-helper' />}
                 >
-                  <option value="" />
+                  <option value='' />
                   <option value={10}>Ten</option>
                   <option value={20}>Twenty</option>
                   <option value={30}>Thirty</option>
@@ -551,12 +551,12 @@ export default function SelectsExamplesPage() {
               <FormControl className={classes.formControl}>
                 <NativeSelect
                   value={state.age}
-                  onChange={handleChange2("age")}
-                  name="age"
+                  onChange={handleChange2('age')}
+                  name='age'
                   className={classes.selectEmpty}
-                  inputProps={{ "aria-label": "age" }}
+                  inputProps={{ 'aria-label': 'age' }}
                 >
-                  <option value="">None</option>
+                  <option value=''>None</option>
                   <option value={10}>Ten</option>
                   <option value={20}>Twenty</option>
                   <option value={30}>Thirty</option>
@@ -564,15 +564,15 @@ export default function SelectsExamplesPage() {
                 <FormHelperText>With visually hidden label</FormHelperText>
               </FormControl>
               <FormControl className={classes.formControl}>
-                <InputLabel shrink htmlFor="age-native-label-placeholder">
+                <InputLabel shrink htmlFor='age-native-label-placeholder'>
                   Age
                 </InputLabel>
                 <NativeSelect
                   value={state.age}
-                  onChange={handleChange2("age")}
-                  input={<Input name="age" id="age-native-label-placeholder" />}
+                  onChange={handleChange2('age')}
+                  input={<Input name='age' id='age-native-label-placeholder' />}
                 >
-                  <option value="">None</option>
+                  <option value=''>None</option>
                   <option value={10}>Ten</option>
                   <option value={20}>Twenty</option>
                   <option value={30}>Thirty</option>
@@ -580,49 +580,49 @@ export default function SelectsExamplesPage() {
                 <FormHelperText>Label + placeholder</FormHelperText>
               </FormControl>
               <FormControl className={classes.formControl} disabled>
-                <InputLabel htmlFor="name-native-disabled">Name</InputLabel>
+                <InputLabel htmlFor='name-native-disabled'>Name</InputLabel>
                 <NativeSelect
                   value={state.name}
-                  onChange={handleChange2("name")}
-                  input={<Input name="name" id="name-native-disabled" />}
+                  onChange={handleChange2('name')}
+                  input={<Input name='name' id='name-native-disabled' />}
                 >
-                  <option value="" />
-                  <optgroup label="Author">
-                    <option value="hai">Hai</option>
+                  <option value='' />
+                  <optgroup label='Author'>
+                    <option value='hai'>Hai</option>
                   </optgroup>
-                  <optgroup label="Contributors">
-                    <option value="olivier">Olivier</option>
-                    <option value="kevin">Kevin</option>
+                  <optgroup label='Contributors'>
+                    <option value='olivier'>Olivier</option>
+                    <option value='kevin'>Kevin</option>
                   </optgroup>
                 </NativeSelect>
                 <FormHelperText>Disabled</FormHelperText>
               </FormControl>
               <FormControl className={classes.formControl} error>
-                <InputLabel htmlFor="name-native-error">Name</InputLabel>
+                <InputLabel htmlFor='name-native-error'>Name</InputLabel>
                 <NativeSelect
                   value={state.name}
-                  onChange={handleChange2("name")}
-                  name="name"
-                  input={<Input id="name-native-error" />}
+                  onChange={handleChange2('name')}
+                  name='name'
+                  input={<Input id='name-native-error' />}
                 >
-                  <option value="" />
-                  <optgroup label="Author">
-                    <option value="hai">Hai</option>
+                  <option value='' />
+                  <optgroup label='Author'>
+                    <option value='hai'>Hai</option>
                   </optgroup>
-                  <optgroup label="Contributors">
-                    <option value="olivier">Olivier</option>
-                    <option value="kevin">Kevin</option>
+                  <optgroup label='Contributors'>
+                    <option value='olivier'>Olivier</option>
+                    <option value='kevin'>Kevin</option>
                   </optgroup>
                 </NativeSelect>
                 <FormHelperText>Error</FormHelperText>
               </FormControl>
               <FormControl className={classes.formControl}>
-                <InputLabel htmlFor="uncontrolled-native">Name</InputLabel>
+                <InputLabel htmlFor='uncontrolled-native'>Name</InputLabel>
                 <NativeSelect
                   defaultValue={30}
-                  input={<Input name="name" id="uncontrolled-native" />}
+                  input={<Input name='name' id='uncontrolled-native' />}
                 >
-                  <option value="" />
+                  <option value='' />
                   <option value={10}>Ten</option>
                   <option value={20}>Twenty</option>
                   <option value={30}>Thirty</option>
@@ -633,11 +633,11 @@ export default function SelectsExamplesPage() {
                 <NativeSelect
                   className={classes.selectEmpty}
                   value={state.age}
-                  name="age"
-                  onChange={handleChange2("age")}
-                  inputProps={{ "aria-label": "age" }}
+                  name='age'
+                  onChange={handleChange2('age')}
+                  inputProps={{ 'aria-label': 'age' }}
                 >
-                  <option value="" disabled>
+                  <option value='' disabled>
                     Placeholder
                   </option>
                   <option value={10}>Ten</option>
@@ -647,59 +647,59 @@ export default function SelectsExamplesPage() {
                 <FormHelperText>Placeholder</FormHelperText>
               </FormControl>
               <FormControl required className={classes.formControl}>
-                <InputLabel htmlFor="age-native-required">Age</InputLabel>
+                <InputLabel htmlFor='age-native-required'>Age</InputLabel>
                 <Select
                   native
                   value={state.age}
-                  onChange={handleChange2("age")}
-                  name="age"
+                  onChange={handleChange2('age')}
+                  name='age'
                   inputProps={{
-                    id: "age-native-required"
+                    id: 'age-native-required',
                   }}
                 >
-                  <option value="" />
+                  <option value='' />
                   <option value={10}>Ten</option>
                   <option value={20}>Twenty</option>
                   <option value={30}>Thirty</option>
                 </Select>
                 <FormHelperText>Required</FormHelperText>
               </FormControl>
-              <FormControl variant="outlined" className={classes.formControl}>
+              <FormControl variant='outlined' className={classes.formControl}>
                 <InputLabel
                   ref={inputLabel}
-                  htmlFor="outlined-age-native-simple"
+                  htmlFor='outlined-age-native-simple'
                 >
                   Age
                 </InputLabel>
                 <Select
                   native
                   value={state.age}
-                  onChange={handleChange2("age")}
+                  onChange={handleChange2('age')}
                   input={
                     <OutlinedInput
-                      name="age"
+                      name='age'
                       labelWidth={labelWidth}
-                      id="outlined-age-native-simple"
+                      id='outlined-age-native-simple'
                     />
                   }
                 >
-                  <option value="" />
+                  <option value='' />
                   <option value={10}>Ten</option>
                   <option value={20}>Twenty</option>
                   <option value={30}>Thirty</option>
                 </Select>
               </FormControl>
-              <FormControl variant="filled" className={classes.formControl}>
-                <InputLabel htmlFor="filled-age-native-simple">Age</InputLabel>
+              <FormControl variant='filled' className={classes.formControl}>
+                <InputLabel htmlFor='filled-age-native-simple'>Age</InputLabel>
                 <Select
                   native
                   value={state.age}
-                  onChange={handleChange2("age")}
+                  onChange={handleChange2('age')}
                   input={
-                    <FilledInput name="age" id="filled-age-native-simple" />
+                    <FilledInput name='age' id='filled-age-native-simple' />
                   }
                 >
-                  <option value="" />
+                  <option value='' />
                   <option value={10}>Ten</option>
                   <option value={20}>Twenty</option>
                   <option value={30}>Thirty</option>
@@ -710,37 +710,37 @@ export default function SelectsExamplesPage() {
         </div>
       </CodeExample>
 
-      <CodeExample jsCode={jsCode3} beforeCodeTitle="Customized selects">
-        <div className="kt-section">
-          <span className="kt-section__sub">
+      <CodeExample jsCode={jsCode3} beforeCodeTitle='Customized selects'>
+        <div className='kt-section'>
+          <span className='kt-section__sub'>
             The first step is to style the <code>InputBase</code> component.
             Once it's styled, you can either use it directly as a text field or
-            provide it to the select <code>input</code> property to have a{" "}
+            provide it to the select <code>input</code> property to have a{' '}
             <code>select</code> field.
           </span>
-          <div className="kt-separator kt-separator--dashed"></div>
-          <div className="kt-section__content">
-            <form className={classes3.root} autoComplete="off">
-              <div className="d-flex justify-content-center width-full">
+          <div className='kt-separator kt-separator--dashed'></div>
+          <div className='kt-section__content'>
+            <form className={classes3.root} autoComplete='off'>
+              <div className='d-flex justify-content-center width-full'>
                 <div>
                   <FormControl className={classes3.margin}>
-                    <InputLabel htmlFor="age-customized-input">Age</InputLabel>
-                    <BootstrapInput id="age-customized-input" />
+                    <InputLabel htmlFor='age-customized-input'>Age</InputLabel>
+                    <BootstrapInput id='age-customized-input' />
                   </FormControl>
                   <FormControl className={classes3.margin}>
-                    <InputLabel htmlFor="age-customized-select">Age</InputLabel>
+                    <InputLabel htmlFor='age-customized-select'>Age</InputLabel>
                     <Select
                       value={age}
                       onChange={handleChange3}
                       input={
                         <BootstrapInput
-                          name="age"
-                          id="age-customized-select"
-                          className="select_input-h"
+                          name='age'
+                          id='age-customized-select'
+                          className='select_input-h'
                         />
                       }
                     >
-                      <MenuItem value="">
+                      <MenuItem value=''>
                         <em>None</em>
                       </MenuItem>
                       <MenuItem value={10}>Ten</MenuItem>
@@ -749,7 +749,7 @@ export default function SelectsExamplesPage() {
                     </Select>
                   </FormControl>
                   <FormControl className={classes3.margin}>
-                    <InputLabel htmlFor="age-customized-native-simple">
+                    <InputLabel htmlFor='age-customized-native-simple'>
                       Age
                     </InputLabel>
                     <NativeSelect
@@ -757,12 +757,12 @@ export default function SelectsExamplesPage() {
                       onChange={handleChange3}
                       input={
                         <BootstrapInput
-                          name="age"
-                          id="age-customized-native-simple"
+                          name='age'
+                          id='age-customized-native-simple'
                         />
                       }
                     >
-                      <option value="" />
+                      <option value='' />
                       <option value={10}>Ten</option>
                       <option value={20}>Twenty</option>
                       <option value={30}>Thirty</option>
@@ -775,29 +775,29 @@ export default function SelectsExamplesPage() {
         </div>
       </CodeExample>
 
-      <CodeExample jsCode={jsCode4} beforeCodeTitle="Multiple Select">
-        <div className="kt-section">
-          <span className="kt-section__sub">
+      <CodeExample jsCode={jsCode4} beforeCodeTitle='Multiple Select'>
+        <div className='kt-section'>
+          <span className='kt-section__sub'>
             The <code>Select</code> component can handle multiple selections.
             It's enabled with the <code>multiple</code> property.
           </span>
-          <p className="kt-section__sub">
+          <p className='kt-section__sub'>
             Like with the single selection, you can pull out the new value by
-            accessing <code>event.target.value</code> in the{" "}
+            accessing <code>event.target.value</code> in the{' '}
             <code>onChange</code> callback. It's always an array.
           </p>
-          <div className="kt-separator kt-separator--dashed"></div>
-          <div className="kt-section__content">
+          <div className='kt-separator kt-separator--dashed'></div>
+          <div className='kt-section__content'>
             <div className={classes4.root}>
-              <div className="d-flex justify-content-center width-full">
+              <div className='d-flex justify-content-center width-full'>
                 <div>
                   <FormControl className={classes4.formControl}>
-                    <InputLabel htmlFor="select-multiple">Name</InputLabel>
+                    <InputLabel htmlFor='select-multiple'>Name</InputLabel>
                     <Select
                       multiple
                       value={personName}
                       onChange={handleChange4}
-                      input={<Input id="select-multiple" />}
+                      input={<Input id='select-multiple' />}
                       MenuProps={MenuProps}
                     >
                       {names.map(name => (
@@ -812,15 +812,15 @@ export default function SelectsExamplesPage() {
                     </Select>
                   </FormControl>
                   <FormControl className={classes4.formControl}>
-                    <InputLabel htmlFor="select-multiple-checkbox">
+                    <InputLabel htmlFor='select-multiple-checkbox'>
                       Tag
                     </InputLabel>
                     <Select
                       multiple
                       value={personName}
                       onChange={handleChange4}
-                      input={<Input id="select-multiple-checkbox" />}
-                      renderValue={selected => selected.join(", ")}
+                      input={<Input id='select-multiple-checkbox' />}
+                      renderValue={selected => selected.join(', ')}
                       MenuProps={MenuProps}
                     >
                       {names.map(name => (
@@ -832,12 +832,12 @@ export default function SelectsExamplesPage() {
                     </Select>
                   </FormControl>
                   <FormControl className={classes4.formControl}>
-                    <InputLabel htmlFor="select-multiple-chip">Chip</InputLabel>
+                    <InputLabel htmlFor='select-multiple-chip'>Chip</InputLabel>
                     <Select
                       multiple
                       value={personName}
                       onChange={handleChange4}
-                      input={<Input id="select-multiple-chip" />}
+                      input={<Input id='select-multiple-chip' />}
                       renderValue={selected => (
                         <div className={classes4.chips}>
                           {selected.map(value => (
@@ -870,17 +870,17 @@ export default function SelectsExamplesPage() {
                       displayEmpty
                       value={personName}
                       onChange={handleChange4}
-                      input={<Input id="select-multiple-placeholder" />}
+                      input={<Input id='select-multiple-placeholder' />}
                       renderValue={selected => {
                         if (selected.length === 0) {
                           return <em>Placeholder</em>;
                         }
 
-                        return selected.join(", ");
+                        return selected.join(', ');
                       }}
                       MenuProps={MenuProps}
                     >
-                      <MenuItem disabled value="">
+                      <MenuItem disabled value=''>
                         <em>Placeholder</em>
                       </MenuItem>
                       {names.map(name => (
@@ -895,7 +895,7 @@ export default function SelectsExamplesPage() {
                     </Select>
                   </FormControl>
                   <FormControl className={classes4.formControl}>
-                    <InputLabel shrink htmlFor="select-multiple-native">
+                    <InputLabel shrink htmlFor='select-multiple-native'>
                       Native
                     </InputLabel>
                     <Select
@@ -904,7 +904,7 @@ export default function SelectsExamplesPage() {
                       value={personName}
                       onChange={handleChangeMultiple}
                       inputProps={{
-                        id: "select-multiple-native"
+                        id: 'select-multiple-native',
                       }}
                     >
                       {names.map(name => (
@@ -921,22 +921,22 @@ export default function SelectsExamplesPage() {
         </div>
       </CodeExample>
 
-      <div className="row">
-        <div className="col-md-6">
+      <div className='row'>
+        <div className='col-md-6'>
           <CodeExample
             jsCode={jsCode5}
-            beforeCodeTitle="Controlled Open Select"
+            beforeCodeTitle='Controlled Open Select'
           >
-            <div className="kt-section">
-              <div className="kt-section__content">
-                <form autoComplete="off">
+            <div className='kt-section'>
+              <div className='kt-section__content'>
+                <form autoComplete='off'>
                   <Button className={classes5.button} onClick={handleOpen}>
                     Open the select
                   </Button>
-                  <div className="d-flex justify-content-center width-full">
+                  <div className='d-flex justify-content-center width-full'>
                     <div>
                       <FormControl className={classes5.formControl}>
-                        <InputLabel htmlFor="demo-controlled-open-select">
+                        <InputLabel htmlFor='demo-controlled-open-select'>
                           Age
                         </InputLabel>
                         <Select
@@ -946,11 +946,11 @@ export default function SelectsExamplesPage() {
                           value={age2}
                           onChange={handleChange5}
                           inputProps={{
-                            name: "age",
-                            id: "demo-controlled-open-select"
+                            name: 'age',
+                            id: 'demo-controlled-open-select',
                           }}
                         >
-                          <MenuItem value="">
+                          <MenuItem value=''>
                             <em>None</em>
                           </MenuItem>
                           <MenuItem value={10}>Ten</MenuItem>
@@ -965,16 +965,16 @@ export default function SelectsExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode6} beforeCodeTitle="With a Dialog">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode6} beforeCodeTitle='With a Dialog'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 While it's discouraged by the Material Design specification, you
                 can use a select inside a dialog.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
-                <div className="d-flex justify-content-center width-full">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
+                <div className='d-flex justify-content-center width-full'>
                   <div>
                     <Button onClick={handleClickOpen6}>
                       Open select dialog
@@ -989,29 +989,29 @@ export default function SelectsExamplesPage() {
                       <DialogContent>
                         <form className={classes6.container}>
                           <FormControl className={classes6.formControl}>
-                            <InputLabel htmlFor="age-native-simple">
+                            <InputLabel htmlFor='age-native-simple'>
                               Age
                             </InputLabel>
                             <Select
                               native
                               value={state6.age}
-                              onChange={handleChange6("age")}
-                              input={<Input id="age-native-simple" />}
+                              onChange={handleChange6('age')}
+                              input={<Input id='age-native-simple' />}
                             >
-                              <option value="" />
+                              <option value='' />
                               <option value={10}>Ten</option>
                               <option value={20}>Twenty</option>
                               <option value={30}>Thirty</option>
                             </Select>
                           </FormControl>
                           <FormControl className={classes6.formControl}>
-                            <InputLabel htmlFor="age-simple">Age</InputLabel>
+                            <InputLabel htmlFor='age-simple'>Age</InputLabel>
                             <Select
                               value={state6.age}
-                              onChange={handleChange6("age")}
-                              input={<Input id="age-simple" />}
+                              onChange={handleChange6('age')}
+                              input={<Input id='age-simple' />}
                             >
-                              <MenuItem value="">
+                              <MenuItem value=''>
                                 <em>None</em>
                               </MenuItem>
                               <MenuItem value={10}>Ten</MenuItem>
@@ -1022,10 +1022,10 @@ export default function SelectsExamplesPage() {
                         </form>
                       </DialogContent>
                       <DialogActions>
-                        <Button onClick={handleClose6} color="primary">
+                        <Button onClick={handleClose6} color='primary'>
                           Cancel
                         </Button>
-                        <Button onClick={handleClose6} color="primary">
+                        <Button onClick={handleClose6} color='primary'>
                           Ok
                         </Button>
                       </DialogActions>

@@ -1,51 +1,51 @@
-import React from "react";
-import Button from "@material-ui/core/Button";
-import FirstPageIcon from "@material-ui/icons/FirstPage";
-import LastPageIcon from "@material-ui/icons/LastPage";
-import PrevPageIcon from "@material-ui/icons/ChevronLeft";
-import NextPageIcon from "@material-ui/icons/ChevronRight";
-import classNames from "classnames";
-import { Select, SelectComps, toSimpleOption } from "../../../widgets/Common";
-import { useSelector, useDispatch, shallowEqual } from "../../../store/store";
-import { actions, Pagination } from "./product.duck";
-import { theme, makeStyles, important } from "../../../styles";
+import React from 'react';
+import Button from '@material-ui/core/Button';
+import FirstPageIcon from '@material-ui/icons/FirstPage';
+import LastPageIcon from '@material-ui/icons/LastPage';
+import PrevPageIcon from '@material-ui/icons/ChevronLeft';
+import NextPageIcon from '@material-ui/icons/ChevronRight';
+import classNames from 'classnames';
+import { Select, SelectComps, toSimpleOption } from '../../../widgets/Common';
+import { useSelector, useDispatch, shallowEqual } from '../../../store/store';
+import { actions, Pagination } from './product.duck';
+import { theme, makeStyles, important } from '../../../styles';
 
 const useStyles = makeStyles({
   pagination: {
-    display: "grid",
-    alignItems: "center",
-    gridTemplateColumns: "repeat(7, max-content)",
+    display: 'grid',
+    alignItems: 'center',
+    gridTemplateColumns: 'repeat(7, max-content)',
     columnGap: theme.spacing.sm,
   },
   rowSummary: {
-    fontSize: "14px",
+    fontSize: '14px',
   },
   button: {
     minWidth: 0,
     padding: 0,
-    width: "40px",
-    height: "40px",
+    width: '40px',
+    height: '40px',
   },
   select: {
     marginRight: theme.spacing.sm,
   },
   selectControl: {
-    borderColor: important("transparent"),
-    transition: important("background-color .25s"),
-    "&:hover": {
+    borderColor: important('transparent'),
+    transition: important('background-color .25s'),
+    '&:hover': {
       backgroundColor: important(theme.color.primaryLight),
-      "& > *": {
+      '& > *': {
         color: important(theme.color.primary),
       },
     },
   },
   selectSingleValue: {
-    color: important("inherit"),
-    transition: important("color .25s"),
+    color: important('inherit'),
+    transition: important('color .25s'),
   },
   pageDescription: {
-    fontSize: "14px",
-    margin: theme.space(0, "md"),
+    fontSize: '14px',
+    margin: theme.space(0, 'md'),
   },
 });
 
@@ -54,7 +54,7 @@ type PerPageFunc = (page: number) => void;
 
 const usePagination = (): [Pagination, PageFunc, PageFunc, PerPageFunc] => {
   const pagination = useSelector(
-    (state) => state.products.pagination,
+    state => state.products.pagination,
     shallowEqual
   );
   const dispatch = useDispatch();
@@ -83,7 +83,7 @@ export default function ProductTablePagination() {
   const styles = useStyles();
 
   return (
-    <div className={classNames(styles.pagination, "ag-pagination")}>
+    <div className={classNames(styles.pagination, 'ag-pagination')}>
       <Select
         className={styles.select}
         isSearchable={false}
@@ -104,7 +104,7 @@ export default function ProductTablePagination() {
               className={classNames(className, styles.selectSingleValue)}
             >
               <span className={styles.rowSummary}>
-                <strong>{startResult}</strong> to <strong>{endResult}</strong>{" "}
+                <strong>{startResult}</strong> to <strong>{endResult}</strong>{' '}
                 of <strong>{totalResults}</strong>
               </span>
             </SelectComps.SingleValue>
@@ -113,14 +113,14 @@ export default function ProductTablePagination() {
         }}
         options={[
           {
-            label: "Rows",
+            label: 'Rows',
             options: [5, 10, 20, 50, 100].map(toSimpleOption),
           },
         ]}
       />
       <Button
         className={styles.button}
-        variant="outlined"
+        variant='outlined'
         disabled={isFirstPage}
         onClick={changeToPage(1)}
       >
@@ -128,7 +128,7 @@ export default function ProductTablePagination() {
       </Button>
       <Button
         className={styles.button}
-        variant="outlined"
+        variant='outlined'
         disabled={isFirstPage}
         onClick={changePage(-1)}
       >
@@ -139,7 +139,7 @@ export default function ProductTablePagination() {
       </span>
       <Button
         className={styles.button}
-        variant="outlined"
+        variant='outlined'
         disabled={isLastPage}
         onClick={changePage(1)}
       >
@@ -147,7 +147,7 @@ export default function ProductTablePagination() {
       </Button>
       <Button
         className={styles.button}
-        variant="outlined"
+        variant='outlined'
         disabled={isLastPage}
         onClick={changeToPage(totalPages)}
       >

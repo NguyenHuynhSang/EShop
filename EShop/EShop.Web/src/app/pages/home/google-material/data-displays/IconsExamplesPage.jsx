@@ -1,48 +1,48 @@
 /* eslint-disable no-restricted-imports */
-import React from "react";
-import clsx from "clsx";
-import { loadCSS } from "fg-loadcss";
-import Notice from "../../../../partials/content/Notice";
-import CodeExample from "../../../../partials/content/CodeExample";
-import { makeStyles } from "@material-ui/core/styles";
-import { SvgIcon, Grid, Typography, Icon } from "@material-ui/core";
-import { blue, red } from "@material-ui/core/colors";
-import DeleteIcon from "@material-ui/icons/Delete";
-import DeleteOutlinedIcon from "@material-ui/icons/DeleteOutlined";
-import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
-import DeleteTwoToneIcon from "@material-ui/icons/DeleteTwoTone";
-import DeleteSharpIcon from "@material-ui/icons/DeleteSharp";
-import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
-import DeleteForeverOutlinedIcon from "@material-ui/icons/DeleteForeverOutlined";
-import DeleteForeverRoundedIcon from "@material-ui/icons/DeleteForeverRounded";
-import DeleteForeverTwoToneIcon from "@material-ui/icons/DeleteForeverTwoTone";
-import DeleteForeverSharpIcon from "@material-ui/icons/DeleteForeverSharp";
-import ThreeDRotationIcon from "@material-ui/icons/ThreeDRotation";
-import FourKIcon from "@material-ui/icons/FourK";
-import ThreeSixtyIcon from "@material-ui/icons/ThreeSixty";
+import React from 'react';
+import clsx from 'clsx';
+import { loadCSS } from 'fg-loadcss';
+import Notice from '../../../../partials/content/Notice';
+import CodeExample from '../../../../partials/content/CodeExample';
+import { makeStyles } from '@material-ui/core/styles';
+import { SvgIcon, Grid, Typography, Icon } from '@material-ui/core';
+import { blue, red } from '@material-ui/core/colors';
+import DeleteIcon from '@material-ui/icons/Delete';
+import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
+import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
+import DeleteTwoToneIcon from '@material-ui/icons/DeleteTwoTone';
+import DeleteSharpIcon from '@material-ui/icons/DeleteSharp';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import DeleteForeverOutlinedIcon from '@material-ui/icons/DeleteForeverOutlined';
+import DeleteForeverRoundedIcon from '@material-ui/icons/DeleteForeverRounded';
+import DeleteForeverTwoToneIcon from '@material-ui/icons/DeleteForeverTwoTone';
+import DeleteForeverSharpIcon from '@material-ui/icons/DeleteForeverSharp';
+import ThreeDRotationIcon from '@material-ui/icons/ThreeDRotation';
+import FourKIcon from '@material-ui/icons/FourK';
+import ThreeSixtyIcon from '@material-ui/icons/ThreeSixty';
 
 // Example 1
 const useStyles1 = makeStyles(theme => ({
   root: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "flex-end"
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'flex-end',
   },
   icon: {
-    margin: theme.spacing(2)
+    margin: theme.spacing(2),
   },
   iconHover: {
     margin: theme.spacing(2),
-    "&:hover": {
-      color: red[800]
-    }
-  }
+    '&:hover': {
+      color: red[800],
+    },
+  },
 }));
 
 function HomeIcon1(props) {
   return (
     <SvgIcon {...props}>
-      <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+      <path d='M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z' />
     </SvgIcon>
   );
 }
@@ -50,48 +50,48 @@ function HomeIcon1(props) {
 // Example 2
 const useStyles2 = makeStyles(theme => ({
   root: {
-    color: theme.palette.text.primary
+    color: theme.palette.text.primary,
   },
   icon: {
     margin: theme.spacing(1),
-    fontSize: 32
-  }
+    fontSize: 32,
+  },
 }));
 
 // Example 3
 const useStyles3 = makeStyles(theme => ({
   root: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "flex-end"
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'flex-end',
   },
   icon: {
-    margin: theme.spacing(2)
+    margin: theme.spacing(2),
   },
   iconHover: {
     margin: theme.spacing(2),
-    "&:hover": {
-      color: red[800]
-    }
-  }
+    '&:hover': {
+      color: red[800],
+    },
+  },
 }));
 
 // Example 4
 const useStyles4 = makeStyles(theme => ({
   root: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "flex-end"
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'flex-end',
   },
   icon: {
-    margin: theme.spacing(2)
+    margin: theme.spacing(2),
   },
   iconHover: {
     margin: theme.spacing(2),
-    "&:hover": {
-      color: red[800]
-    }
-  }
+    '&:hover': {
+      color: red[800],
+    },
+  },
 }));
 
 export default function IconsExamplesPage() {
@@ -109,71 +109,71 @@ export default function IconsExamplesPage() {
 
   React.useEffect(() => {
     loadCSS(
-      "https://use.fontawesome.com/releases/v5.1.0/css/all.css",
-      document.querySelector("#font-awesome-css")
+      'https://use.fontawesome.com/releases/v5.1.0/css/all.css',
+      document.querySelector('#font-awesome-css')
     );
   }, []);
 
   return (
     <>
-      <Notice icon="flaticon-warning kt-font-primary">
+      <Notice icon='flaticon-warning kt-font-primary'>
         <p>Guidance and suggestions for using icons with Material-UI.</p>
         <p>
-          For more info please check the components's official{" "}
+          For more info please check the components's official{' '}
           <a
-            target="_blank"
-            className="kt-link"
-            rel="noopener noreferrer"
-            href="https://material-ui.com/components/icons/"
+            target='_blank'
+            className='kt-link'
+            rel='noopener noreferrer'
+            href='https://material-ui.com/components/icons/'
           >
             demos & documentation
           </a>
         </p>
       </Notice>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode1} beforeCodeTitle="SVG Icons">
-            <div className="kt-section">
-              <span className="kt-section__sub">
-                The <code>SvgIcon</code> component takes an SVG{" "}
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode1} beforeCodeTitle='SVG Icons'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
+                The <code>SvgIcon</code> component takes an SVG{' '}
                 <code>path</code> element as its child and converts it to a
                 React component that displays the path, and allows the icon to
                 be styled and respond to mouse events. SVG elements should be
                 scaled for a 24x24px viewport.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes1.root}>
                   <HomeIcon1 className={classes1.icon} />
-                  <HomeIcon1 className={classes1.icon} color="primary" />
-                  <HomeIcon1 className={classes1.icon} color="secondary" />
-                  <HomeIcon1 className={classes1.icon} color="action" />
+                  <HomeIcon1 className={classes1.icon} color='primary' />
+                  <HomeIcon1 className={classes1.icon} color='secondary' />
+                  <HomeIcon1 className={classes1.icon} color='action' />
                   <HomeIcon1
                     className={classes1.iconHover}
-                    color="error"
+                    color='error'
                     style={{ fontSize: 30 }}
                   />
                   <HomeIcon1
-                    color="disabled"
+                    color='disabled'
                     className={classes1.icon}
-                    fontSize="large"
+                    fontSize='large'
                   />
                   <HomeIcon1
                     className={classes1.icon}
-                    color="primary"
-                    fontSize="large"
+                    color='primary'
+                    fontSize='large'
                     component={svgProps => {
                       return (
                         <svg {...svgProps}>
                           <defs>
-                            <linearGradient id="gradient1">
-                              <stop offset="30%" stopColor={blue[400]} />
-                              <stop offset="70%" stopColor={red[400]} />
+                            <linearGradient id='gradient1'>
+                              <stop offset='30%' stopColor={blue[400]} />
+                              <stop offset='70%' stopColor={red[400]} />
                             </linearGradient>
                           </defs>
                           {React.cloneElement(svgProps.children[0], {
-                            fill: "url(#gradient1)"
+                            fill: 'url(#gradient1)',
                           })}
                         </svg>
                       );
@@ -184,16 +184,16 @@ export default function IconsExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode2} beforeCodeTitle="Usage">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode2} beforeCodeTitle='Usage'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 You can use material.io/tools/icons to find a specific icon.
                 When importing an icon, keep in mind that the names of the icons
                 are <code>PascalCase</code>.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <Grid container className={classes2.root}>
                   <Grid item xs={4}>
                     <Typography>Filled</Typography>
@@ -245,34 +245,34 @@ export default function IconsExamplesPage() {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode3} beforeCodeTitle="Font Material icons">
-            <div className="kt-section">
-              <span className="kt-section__sub"></span>
-              <div className="kt-section__content">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode3} beforeCodeTitle='Font Material icons'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'></span>
+              <div className='kt-section__content'>
                 <div className={classes3.root}>
                   <Icon className={classes3.icon}>add_circle</Icon>
-                  <Icon className={classes3.icon} color="primary">
+                  <Icon className={classes3.icon} color='primary'>
                     add_circle
                   </Icon>
-                  <Icon className={classes3.icon} color="secondary">
+                  <Icon className={classes3.icon} color='secondary'>
                     add_circle
                   </Icon>
-                  <Icon className={classes3.icon} color="action">
+                  <Icon className={classes3.icon} color='action'>
                     add_circle
                   </Icon>
                   <Icon
                     className={classes3.iconHover}
-                    color="error"
+                    color='error'
                     style={{ fontSize: 30 }}
                   >
                     add_circle
                   </Icon>
                   <Icon
                     className={classes3.icon}
-                    color="disabled"
-                    fontSize="large"
+                    color='disabled'
+                    fontSize='large'
                   >
                     add_circle
                   </Icon>
@@ -281,38 +281,38 @@ export default function IconsExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode4} beforeCodeTitle="Font Awesome">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode4} beforeCodeTitle='Font Awesome'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 Font Awesome can be used with the <code>Icon</code> component as
                 follow:
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes4.root}>
-                  <Icon className={clsx(classes4.icon, "fa fa-plus-circle")} />
+                  <Icon className={clsx(classes4.icon, 'fa fa-plus-circle')} />
                   <Icon
-                    className={clsx(classes4.icon, "fa fa-plus-circle")}
-                    color="primary"
+                    className={clsx(classes4.icon, 'fa fa-plus-circle')}
+                    color='primary'
                   />
                   <Icon
-                    className={clsx(classes4.icon, "fa fa-plus-circle")}
-                    color="secondary"
+                    className={clsx(classes4.icon, 'fa fa-plus-circle')}
+                    color='secondary'
                   />
                   <Icon
-                    className={clsx(classes4.icon, "fa fa-plus-circle")}
-                    color="action"
+                    className={clsx(classes4.icon, 'fa fa-plus-circle')}
+                    color='action'
                   />
                   <Icon
-                    className={clsx(classes4.iconHover, "fa fa-plus-circle")}
-                    color="error"
+                    className={clsx(classes4.iconHover, 'fa fa-plus-circle')}
+                    color='error'
                     style={{ fontSize: 30 }}
                   />
                   <Icon
-                    className={clsx(classes4.icon, "fa fa-plus-circle")}
-                    color="disabled"
-                    fontSize="large"
+                    className={clsx(classes4.icon, 'fa fa-plus-circle')}
+                    color='disabled'
+                    fontSize='large'
                   />
                 </div>
               </div>

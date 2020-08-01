@@ -1,16 +1,16 @@
-import React from "react";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
-import Collapse from "@material-ui/core/Collapse";
-import Paper from "@material-ui/core/Paper";
-import IconButton from "@material-ui/core/IconButton";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { Light as SyntaxHighlighter } from "react-syntax-highlighter";
-import { makeStyles, important } from "../styles";
-import classNames from "classnames";
+import React from 'react';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import Collapse from '@material-ui/core/Collapse';
+import Paper from '@material-ui/core/Paper';
+import IconButton from '@material-ui/core/IconButton';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { makeStyles, important } from '../styles';
+import classNames from 'classnames';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   card: {
     backgroundColor: theme.palette.error.main,
     color: theme.palette.error.contrastText,
@@ -21,20 +21,20 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(2),
   },
   title: {
-    display: "flex",
-    alignItems: "center",
+    display: 'flex',
+    alignItems: 'center',
     padding: theme.spacing(1, 3),
   },
   expand: {
     marginLeft: theme.spacing(1),
     color: theme.palette.error.contrastText,
-    transform: "rotate(0deg)",
-    transition: theme.transitions.create("transform", {
+    transform: 'rotate(0deg)',
+    transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.shortest,
     }),
   },
   expandOpen: {
-    transform: "rotate(180deg)",
+    transform: 'rotate(180deg)',
   },
   body: {
     color: theme.palette.error.contrastText,
@@ -44,9 +44,9 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 0,
     paddingBottom: theme.spacing(2),
     borderRadius: 4,
-    backgroundColor: important("rgba(255,255,255,0.7)"),
-    "& code": {
-      backgroundColor: important("transparent"),
+    backgroundColor: important('rgba(255,255,255,0.7)'),
+    '& code': {
+      backgroundColor: important('transparent'),
       color: theme.palette.error.dark,
     },
     '& [class$="keyword"]': {
@@ -71,7 +71,7 @@ function Fallback({ title, description }: FallbackProps) {
 
   return (
     <Card className={styles.card}>
-      <Typography variant="h3" className={styles.header}>
+      <Typography variant='h3' className={styles.header}>
         Something went wrong.
       </Typography>
       <CardContent>
@@ -89,9 +89,9 @@ function Fallback({ title, description }: FallbackProps) {
               <ExpandMoreIcon />
             </IconButton>
           </div>
-          <Collapse in={expanded} timeout="auto">
+          <Collapse in={expanded} timeout='auto'>
             <SyntaxHighlighter
-              language="javascript"
+              language='javascript'
               className={styles.stacktraces}
             >
               {description}
@@ -122,7 +122,7 @@ export default class ErrorBoundary extends React.Component<
     this.setState({ error, errorInfo });
 
     // TODO: log to reporting service
-    console.log("You have one job!", error, errorInfo);
+    console.log('You have one job!', error, errorInfo);
     // You can also log error messages to an error reporting service here
   }
 

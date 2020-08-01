@@ -1,8 +1,8 @@
 /* eslint-disable no-restricted-imports */
-import React from "react";
-import Notice from "../../../../partials/content/Notice";
-import CodeExample from "../../../../partials/content/CodeExample";
-import { makeStyles } from "@material-ui/core/styles";
+import React from 'react';
+import Notice from '../../../../partials/content/Notice';
+import CodeExample from '../../../../partials/content/CodeExample';
+import { makeStyles } from '@material-ui/core/styles';
 import {
   FormControlLabel,
   Switch,
@@ -11,119 +11,119 @@ import {
   Fade,
   Grow,
   Slide,
-  Zoom
-} from "@material-ui/core";
+  Zoom,
+} from '@material-ui/core';
 
 // Example 1
 const useStyles1 = makeStyles(theme => ({
   root: {
-    height: 180
+    height: 180,
   },
   container: {
-    display: "flex"
+    display: 'flex',
   },
   paper: {
-    margin: theme.spacing(1)
+    margin: theme.spacing(1),
   },
   svg: {
     width: 100,
-    height: 100
+    height: 100,
   },
   polygon: {
     fill: theme.palette.common.white,
     stroke: theme.palette.divider,
-    strokeWidth: 1
-  }
+    strokeWidth: 1,
+  },
 }));
 
 // Example 2
 const useStyles2 = makeStyles(theme => ({
   root: {
-    height: 180
+    height: 180,
   },
   container: {
-    display: "flex"
+    display: 'flex',
   },
   paper: {
-    margin: theme.spacing(1)
+    margin: theme.spacing(1),
   },
   svg: {
     width: 100,
-    height: 100
+    height: 100,
   },
   polygon: {
     fill: theme.palette.common.white,
     stroke: theme.palette.divider,
-    strokeWidth: 1
-  }
+    strokeWidth: 1,
+  },
 }));
 
 // Example 3
 const useStyles3 = makeStyles(theme => ({
   root: {
-    height: 180
+    height: 180,
   },
   container: {
-    display: "flex"
+    display: 'flex',
   },
   paper: {
-    margin: theme.spacing(1)
+    margin: theme.spacing(1),
   },
   svg: {
     width: 100,
-    height: 100
+    height: 100,
   },
   polygon: {
     fill: theme.palette.common.white,
     stroke: theme.palette.divider,
-    strokeWidth: 1
-  }
+    strokeWidth: 1,
+  },
 }));
 
 // Example 4
 const useStyles4 = makeStyles(theme => ({
   root: {
-    height: 180
+    height: 180,
   },
   wrapper: {
-    width: 100 + theme.spacing(2)
+    width: 100 + theme.spacing(2),
   },
   paper: {
     zIndex: 1,
-    position: "relative",
-    margin: theme.spacing(1)
+    position: 'relative',
+    margin: theme.spacing(1),
   },
   svg: {
     width: 100,
-    height: 100
+    height: 100,
   },
   polygon: {
     fill: theme.palette.common.white,
     stroke: theme.palette.divider,
-    strokeWidth: 1
-  }
+    strokeWidth: 1,
+  },
 }));
 
 // Example 5
 const useStyles5 = makeStyles(theme => ({
   root: {
-    height: 180
+    height: 180,
   },
   container: {
-    display: "flex"
+    display: 'flex',
   },
   paper: {
-    margin: theme.spacing(1)
+    margin: theme.spacing(1),
   },
   svg: {
     width: 100,
-    height: 100
+    height: 100,
   },
   polygon: {
     fill: theme.palette.common.white,
     stroke: theme.palette.divider,
-    strokeWidth: 1
-  }
+    strokeWidth: 1,
+  },
 }));
 
 export default function TranstitionsExamplesPage() {
@@ -169,55 +169,55 @@ export default function TranstitionsExamplesPage() {
 
   return (
     <>
-      <Notice icon="flaticon-warning kt-font-primary">
+      <Notice icon='flaticon-warning kt-font-primary'>
         <p>Transition helps make a UI expressive and easy to use.</p>
         <p>
-          For more info please check the components's official{" "}
+          For more info please check the components's official{' '}
           <a
-            target="_blank"
-            className="kt-link"
-            rel="noopener noreferrer"
-            href="https://material-ui.com/components/transitions/"
+            target='_blank'
+            className='kt-link'
+            rel='noopener noreferrer'
+            href='https://material-ui.com/components/transitions/'
           >
             demos & documentation
           </a>
         </p>
       </Notice>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode1} beforeCodeTitle="Collapse">
-            <div className="kt-section">
-              <span className="kt-section__sub">
-                Expand vertically from the top of the child element. The{" "}
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode1} beforeCodeTitle='Collapse'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
+                Expand vertically from the top of the child element. The{' '}
                 <code>collapsedHeight</code> property can be used to set the
                 minimum height when not expanded.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes1.root}>
                   <FormControlLabel
                     control={
                       <Switch checked={checked1} onChange={handleChange1} />
                     }
-                    label="Show"
+                    label='Show'
                   />
                   <div className={classes1.container}>
                     <Collapse in={checked1}>
                       <Paper elevation={4} className={classes1.paper}>
                         <svg className={classes1.svg}>
                           <polygon
-                            points="0,100 50,00, 100,100"
+                            points='0,100 50,00, 100,100'
                             className={classes1.polygon}
                           />
                         </svg>
                       </Paper>
                     </Collapse>
-                    <Collapse in={checked1} collapsedHeight="40px">
+                    <Collapse in={checked1} collapsedHeight='40px'>
                       <Paper elevation={4} className={classes1.paper}>
                         <svg className={classes1.svg}>
                           <polygon
-                            points="0,100 50,00, 100,100"
+                            points='0,100 50,00, 100,100'
                             className={classes1.polygon}
                           />
                         </svg>
@@ -229,27 +229,27 @@ export default function TranstitionsExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode2} beforeCodeTitle="Fade">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode2} beforeCodeTitle='Fade'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 Fade in from transparent to opaque.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes2.root}>
                   <FormControlLabel
                     control={
                       <Switch checked={checked2} onChange={handleChange2} />
                     }
-                    label="Show"
+                    label='Show'
                   />
                   <div className={classes2.container}>
                     <Fade in={checked2}>
                       <Paper elevation={4} className={classes2.paper}>
                         <svg className={classes2.svg}>
                           <polygon
-                            points="0,100 50,00, 100,100"
+                            points='0,100 50,00, 100,100'
                             className={classes2.polygon}
                           />
                         </svg>
@@ -263,34 +263,34 @@ export default function TranstitionsExamplesPage() {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode3} beforeCodeTitle="Grow">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode3} beforeCodeTitle='Grow'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 Expand outwards from the center of the child element, while also
                 fading in from transparent to opaque.
               </span>
-              <p className="kt-section__sub">
-                The second example demonstrates how to change the{" "}
-                <code>transform-origin</code>, and conditionally applies the{" "}
+              <p className='kt-section__sub'>
+                The second example demonstrates how to change the{' '}
+                <code>transform-origin</code>, and conditionally applies the{' '}
                 <code>timeout</code> property to change the entry speed.
               </p>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes3.root}>
                   <FormControlLabel
                     control={
                       <Switch checked={checked3} onChange={handleChange3} />
                     }
-                    label="Show"
+                    label='Show'
                   />
                   <div className={classes3.container}>
                     <Grow in={checked3}>
                       <Paper elevation={4} className={classes3.paper}>
                         <svg className={classes3.svg}>
                           <polygon
-                            points="0,100 50,00, 100,100"
+                            points='0,100 50,00, 100,100'
                             className={classes3.polygon}
                           />
                         </svg>
@@ -299,13 +299,13 @@ export default function TranstitionsExamplesPage() {
                     {/* Conditionally applies the timeout property to change the entry speed. */}
                     <Grow
                       in={checked3}
-                      style={{ transformOrigin: "0 0 0" }}
+                      style={{ transformOrigin: '0 0 0' }}
                       {...(checked3 ? { timeout: 1000 } : {})}
                     >
                       <Paper elevation={4} className={classes3.paper}>
                         <svg className={classes3.svg}>
                           <polygon
-                            points="0,100 50,00, 100,100"
+                            points='0,100 50,00, 100,100'
                             className={classes3.polygon}
                           />
                         </svg>
@@ -317,26 +317,26 @@ export default function TranstitionsExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode4} beforeCodeTitle="Slide">
-            <div className="kt-section">
-              <span className="kt-section__sub">
-                Slide in from the edge of the screen. The <code>direction</code>{" "}
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode4} beforeCodeTitle='Slide'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
+                Slide in from the edge of the screen. The <code>direction</code>{' '}
                 property controls which edge of the screen the transition starts
                 from.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes4.root}>
                   <div className={classes4.wrapper}>
                     <FormControlLabel
                       control={
                         <Switch checked={checked4} onChange={handleChange4} />
                       }
-                      label="Show"
+                      label='Show'
                     />
                     <Slide
-                      direction="up"
+                      direction='up'
                       in={checked4}
                       mountOnEnter
                       unmountOnExit
@@ -344,7 +344,7 @@ export default function TranstitionsExamplesPage() {
                       <Paper elevation={4} className={classes4.paper}>
                         <svg className={classes4.svg}>
                           <polygon
-                            points="0,100 50,00, 100,100"
+                            points='0,100 50,00, 100,100'
                             className={classes4.polygon}
                           />
                         </svg>
@@ -358,32 +358,32 @@ export default function TranstitionsExamplesPage() {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode5} beforeCodeTitle="Zoom">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode5} beforeCodeTitle='Zoom'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 Expand outwards from the center of the child element.
               </span>
-              <p className="kt-section__sub">
+              <p className='kt-section__sub'>
                 This example also demonstrates how to delay the enter
                 transition.
               </p>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes5.root}>
                   <FormControlLabel
                     control={
                       <Switch checked={checked5} onChange={handleChange5} />
                     }
-                    label="Show"
+                    label='Show'
                   />
                   <div className={classes5.container}>
                     <Zoom in={checked5}>
                       <Paper elevation={4} className={classes5.paper}>
                         <svg className={classes5.svg}>
                           <polygon
-                            points="0,100 50,00, 100,100"
+                            points='0,100 50,00, 100,100'
                             className={classes5.polygon}
                           />
                         </svg>
@@ -391,12 +391,12 @@ export default function TranstitionsExamplesPage() {
                     </Zoom>
                     <Zoom
                       in={checked5}
-                      style={{ transitionDelay: checked5 ? "500ms" : "0ms" }}
+                      style={{ transitionDelay: checked5 ? '500ms' : '0ms' }}
                     >
                       <Paper elevation={4} className={classes5.paper}>
                         <svg className={classes5.svg}>
                           <polygon
-                            points="0,100 50,00, 100,100"
+                            points='0,100 50,00, 100,100'
                             className={classes5.polygon}
                           />
                         </svg>

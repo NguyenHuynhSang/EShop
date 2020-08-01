@@ -1,27 +1,27 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import MobileStepper from "@material-ui/core/MobileStepper";
-import Button from "@material-ui/core/Button";
-import ArrowLeftIcon from "@material-ui/icons/KeyboardArrowLeft";
-import ArrowRightIcon from "@material-ui/icons/KeyboardArrowRight";
-import SwipeableViews from "react-swipeable-views";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import Dialog from "@material-ui/core/Dialog";
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import MobileStepper from '@material-ui/core/MobileStepper';
+import Button from '@material-ui/core/Button';
+import ArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
+import ArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
+import SwipeableViews from 'react-swipeable-views';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Dialog from '@material-ui/core/Dialog';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    textAlign: "center",
+    textAlign: 'center',
   },
   header: {
-    display: "flex",
-    alignItems: "center",
+    display: 'flex',
+    alignItems: 'center',
     height: 50,
     paddingLeft: theme.spacing(4),
   },
   img: {
-    maxHeight: "65vh",
-    objectFit: "contain",
+    maxHeight: '65vh',
+    objectFit: 'contain',
   },
 }));
 
@@ -36,8 +36,8 @@ function SwipeableTextMobileStepper({
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const maxSteps = images.length;
-  const handleNext = () => setActiveStep((step) => step + 1);
-  const handleBack = () => setActiveStep((step) => step - 1);
+  const handleNext = () => setActiveStep(step => step + 1);
+  const handleBack = () => setActiveStep(step => step - 1);
   const handleStepChange = (step: number) => setActiveStep(step);
   const isFirstStep = activeStep === 0;
   const isLastStep = activeStep === maxSteps - 1;
@@ -59,17 +59,17 @@ function SwipeableTextMobileStepper({
       </SwipeableViews>
       <MobileStepper
         steps={maxSteps}
-        position="static"
-        variant="dots"
+        position='static'
+        variant='dots'
         activeStep={activeStep}
         nextButton={
-          <Button size="small" onClick={handleNext} disabled={isLastStep}>
+          <Button size='small' onClick={handleNext} disabled={isLastStep}>
             Next
             <ArrowRightIcon />
           </Button>
         }
         backButton={
-          <Button size="small" onClick={handleBack} disabled={isFirstStep}>
+          <Button size='small' onClick={handleBack} disabled={isFirstStep}>
             <ArrowLeftIcon />
             Back
           </Button>

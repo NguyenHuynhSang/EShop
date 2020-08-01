@@ -1,9 +1,9 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { persistReducer, PersistConfig } from "redux-persist";
-import storage from "redux-persist/lib/storage";
-import { put, takeLatest } from "typed-redux-saga";
-import { getUserByToken } from "../../crud/auth.crud";
-import * as routerHelpers from "../../router/RouterHelpers";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { persistReducer, PersistConfig } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import { put, takeLatest } from 'typed-redux-saga';
+import { getUserByToken } from '../../crud/auth.crud';
+import * as routerHelpers from '../../router/RouterHelpers';
 
 export interface AuthState {
   user?: string;
@@ -17,7 +17,7 @@ const initialState: AuthState = {
 
 const slice = createSlice({
   initialState,
-  name: "auth",
+  name: 'auth',
   reducers: {
     login(state, action: PayloadAction<string>) {
       state.authToken = action.payload;
@@ -40,8 +40,8 @@ const slice = createSlice({
 
 const persistConfig: PersistConfig<AuthState> = {
   storage,
-  key: "auth",
-  whitelist: ["user", "authToken"],
+  key: 'auth',
+  whitelist: ['user', 'authToken'],
 };
 
 export const { actions } = slice;

@@ -1,72 +1,72 @@
 /* eslint-disable no-restricted-imports */
-import React from "react";
-import Notice from "../../../../partials/content/Notice";
-import CodeExample from "../../../../partials/content/CodeExample";
-import { makeStyles } from "@material-ui/core/styles";
-import { Chip, Avatar, Paper } from "@material-ui/core";
-import FaceIcon from "@material-ui/icons/Face";
-import DoneIcon from "@material-ui/icons/Done";
-import TagFacesIcon from "@material-ui/icons/TagFaces";
+import React from 'react';
+import Notice from '../../../../partials/content/Notice';
+import CodeExample from '../../../../partials/content/CodeExample';
+import { makeStyles } from '@material-ui/core/styles';
+import { Chip, Avatar, Paper } from '@material-ui/core';
+import FaceIcon from '@material-ui/icons/Face';
+import DoneIcon from '@material-ui/icons/Done';
+import TagFacesIcon from '@material-ui/icons/TagFaces';
 
 // Example 1
 const useStyles1 = makeStyles(theme => ({
   root: {
-    display: "flex",
-    justifyContent: "center",
-    flexWrap: "wrap"
+    display: 'flex',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
   },
   chip: {
-    margin: theme.spacing(1)
-  }
+    margin: theme.spacing(1),
+  },
 }));
 
 // Example 2
 const useStyles2 = makeStyles(theme => ({
   root: {
-    display: "flex",
-    justifyContent: "center",
-    flexWrap: "wrap"
+    display: 'flex',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
   },
   chip: {
-    margin: theme.spacing(1)
-  }
+    margin: theme.spacing(1),
+  },
 }));
 
 // Example 3
 const useStyles3 = makeStyles(theme => ({
   root: {
-    display: "flex",
-    justifyContent: "center",
-    flexWrap: "wrap",
-    padding: theme.spacing(0.5)
+    display: 'flex',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+    padding: theme.spacing(0.5),
   },
   chip: {
-    margin: theme.spacing(0.5)
-  }
+    margin: theme.spacing(0.5),
+  },
 }));
 
 // Example 4
 const useStyles4 = makeStyles(theme => ({
   root: {
-    display: "flex",
-    justifyContent: "center",
-    flexWrap: "wrap"
+    display: 'flex',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
   },
   chip: {
-    margin: theme.spacing(1)
-  }
+    margin: theme.spacing(1),
+  },
 }));
 
 // Example 5
 const useStyles5 = makeStyles(theme => ({
   root: {
-    display: "flex",
-    justifyContent: "center",
-    flexWrap: "wrap"
+    display: 'flex',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
   },
   chip: {
-    margin: theme.spacing(1)
-  }
+    margin: theme.spacing(1),
+  },
 }));
 
 export default function ChipsExamplesPage() {
@@ -74,37 +74,37 @@ export default function ChipsExamplesPage() {
   const classes1 = useStyles1();
 
   function handleDelete1() {
-    alert("You clicked the delete icon.");
+    alert('You clicked the delete icon.');
   }
 
   function handleClick1() {
-    alert("You clicked the Chip.");
+    alert('You clicked the Chip.');
   }
 
   // Example 2
   const classes2 = useStyles2();
 
   function handleDelete2() {
-    alert("You clicked the delete icon.");
+    alert('You clicked the delete icon.');
   }
 
   function handleClick2() {
-    alert("You clicked the Chip.");
+    alert('You clicked the Chip.');
   }
 
   // Example 3
   const classes3 = useStyles3();
   const [chipData3, setChipData3] = React.useState([
-    { key: 0, label: "Angular" },
-    { key: 1, label: "jQuery" },
-    { key: 2, label: "Polymer" },
-    { key: 3, label: "React" },
-    { key: 4, label: "Vue.js" }
+    { key: 0, label: 'Angular' },
+    { key: 1, label: 'jQuery' },
+    { key: 2, label: 'Polymer' },
+    { key: 3, label: 'React' },
+    { key: 4, label: 'Vue.js' },
   ]);
 
   const handleDelete3 = chipToDelete => () => {
-    if (chipToDelete.label === "React") {
-      alert("Why would you want to delete React?! :)");
+    if (chipToDelete.label === 'React') {
+      alert('Why would you want to delete React?! :)');
       return;
     }
 
@@ -115,70 +115,70 @@ export default function ChipsExamplesPage() {
   const classes4 = useStyles4();
 
   function handleDelete4() {
-    alert("You clicked the delete icon.");
+    alert('You clicked the delete icon.');
   }
 
   function handleClick4() {
-    alert("You clicked the Chip.");
+    alert('You clicked the Chip.');
   }
 
   // Example 5
   const classes5 = useStyles5();
 
   function handleDelete5() {
-    alert("You clicked the delete icon.");
+    alert('You clicked the delete icon.');
   }
 
   function handleClick5() {
-    alert("You clicked the Chip.");
+    alert('You clicked the Chip.');
   }
 
   return (
     <>
-      <Notice icon="flaticon-warning kt-font-primary">
+      <Notice icon='flaticon-warning kt-font-primary'>
         <p>
           Chips are compact elements that represent an input, attribute, or
           action
         </p>
         <p>
-          For more info please check the components's official{" "}
+          For more info please check the components's official{' '}
           <a
-            target="_blank"
-            className="kt-link"
-            rel="noopener noreferrer"
-            href="https://material-ui.com/components/chips/"
+            target='_blank'
+            className='kt-link'
+            rel='noopener noreferrer'
+            href='https://material-ui.com/components/chips/'
           >
             demos & documentation
           </a>
         </p>
       </Notice>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode1} beforeCodeTitle="Chip">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode1} beforeCodeTitle='Chip'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 Examples of Chips, using an image Avatar, SVG Icon Avatar,
                 "Letter" and (string) Avatar.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes1.root}>
-                  <Chip label="Basic Chip" className={classes1.chip} />
+                  <Chip label='Basic Chip' className={classes1.chip} />
                   <Chip
                     avatar={<Avatar>MB</Avatar>}
-                    label="Clickable Chip"
+                    label='Clickable Chip'
                     onClick={handleClick1}
                     className={classes1.chip}
                   />
                   <Chip
                     avatar={
                       <Avatar
-                        alt="Natacha"
-                        src="https://material-ui.com//static/images/avatar/1.jpg"
+                        alt='Natacha'
+                        src='https://material-ui.com//static/images/avatar/1.jpg'
                       />
                     }
-                    label="Deletable Chip"
+                    label='Deletable Chip'
                     onDelete={handleDelete1}
                     className={classes1.chip}
                   />
@@ -188,55 +188,55 @@ export default function ChipsExamplesPage() {
                         <FaceIcon />
                       </Avatar>
                     }
-                    label="Clickable Deletable Chip"
+                    label='Clickable Deletable Chip'
                     onClick={handleClick1}
                     onDelete={handleDelete1}
                     className={classes1.chip}
                   />
                   <Chip
                     icon={<FaceIcon />}
-                    label="Clickable Deletable Chip"
+                    label='Clickable Deletable Chip'
                     onClick={handleClick1}
                     onDelete={handleDelete1}
                     className={classes1.chip}
                   />
                   <Chip
-                    label="Custom delete icon Chip"
+                    label='Custom delete icon Chip'
                     onClick={handleClick1}
                     onDelete={handleDelete1}
                     className={classes1.chip}
                     deleteIcon={<DoneIcon />}
                   />
                   <Chip
-                    label="Clickable Link Chip"
+                    label='Clickable Link Chip'
                     className={classes1.chip}
-                    component="a"
-                    href="#chip"
+                    component='a'
+                    href='#chip'
                     clickable
                   />
                   <Chip
                     avatar={<Avatar>MB</Avatar>}
-                    label="Primary Clickable Chip"
+                    label='Primary Clickable Chip'
                     clickable
                     className={classes1.chip}
-                    color="primary"
+                    color='primary'
                     onDelete={handleDelete1}
                     deleteIcon={<DoneIcon />}
                   />
                   <Chip
                     icon={<FaceIcon />}
-                    label="Primary Clickable Chip"
+                    label='Primary Clickable Chip'
                     clickable
                     className={classes1.chip}
-                    color="primary"
+                    color='primary'
                     onDelete={handleDelete1}
                     deleteIcon={<DoneIcon />}
                   />
                   <Chip
-                    label="Deletable Primary Chip"
+                    label='Deletable Primary Chip'
                     onDelete={handleDelete1}
                     className={classes1.chip}
-                    color="primary"
+                    color='primary'
                   />
                   <Chip
                     avatar={
@@ -244,55 +244,55 @@ export default function ChipsExamplesPage() {
                         <FaceIcon />
                       </Avatar>
                     }
-                    label="Deletable Secondary Chip"
+                    label='Deletable Secondary Chip'
                     onDelete={handleDelete1}
                     className={classes1.chip}
-                    color="secondary"
+                    color='secondary'
                   />
                   <Chip
                     icon={<FaceIcon />}
-                    label="Deletable Secondary Chip"
+                    label='Deletable Secondary Chip'
                     onDelete={handleDelete1}
                     className={classes1.chip}
-                    color="secondary"
+                    color='secondary'
                   />
                 </div>
               </div>
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode2} beforeCodeTitle="Outlined Chips">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode2} beforeCodeTitle='Outlined Chips'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 Outlined chips offer an alternative style.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes2.root}>
                   <Chip
-                    label="Basic Chip"
+                    label='Basic Chip'
                     className={classes2.chip}
-                    variant="outlined"
+                    variant='outlined'
                   />
                   <Chip
                     avatar={<Avatar>MB</Avatar>}
-                    label="Clickable Chip"
+                    label='Clickable Chip'
                     onClick={handleClick2}
                     className={classes2.chip}
-                    variant="outlined"
+                    variant='outlined'
                   />
                   <Chip
                     avatar={
                       <Avatar
-                        alt="Natacha"
-                        src="https://material-ui.com/static/images/avatar/1.jpg"
+                        alt='Natacha'
+                        src='https://material-ui.com/static/images/avatar/1.jpg'
                       />
                     }
-                    label="Deletable Chip"
+                    label='Deletable Chip'
                     onDelete={handleDelete2}
                     className={classes2.chip}
-                    variant="outlined"
+                    variant='outlined'
                   />
                   <Chip
                     avatar={
@@ -300,62 +300,62 @@ export default function ChipsExamplesPage() {
                         <FaceIcon />
                       </Avatar>
                     }
-                    label="Clickable Deletable Chip"
+                    label='Clickable Deletable Chip'
                     onClick={handleClick2}
                     onDelete={handleDelete2}
                     className={classes2.chip}
-                    variant="outlined"
+                    variant='outlined'
                   />
                   <Chip
                     icon={<FaceIcon />}
-                    label="Clickable Deletable Chip"
+                    label='Clickable Deletable Chip'
                     onClick={handleClick2}
                     onDelete={handleDelete2}
                     className={classes2.chip}
-                    variant="outlined"
+                    variant='outlined'
                   />
                   <Chip
-                    label="Custom delete icon Chip"
+                    label='Custom delete icon Chip'
                     onClick={handleClick2}
                     onDelete={handleDelete2}
                     className={classes2.chip}
                     deleteIcon={<DoneIcon />}
-                    variant="outlined"
+                    variant='outlined'
                   />
                   <Chip
-                    label="Clickable Link Chip"
+                    label='Clickable Link Chip'
                     className={classes2.chip}
-                    component="a"
-                    href="#chip"
+                    component='a'
+                    href='#chip'
                     clickable
-                    variant="outlined"
+                    variant='outlined'
                   />
                   <Chip
                     avatar={<Avatar>MB</Avatar>}
-                    label="Primary Clickable Chip"
+                    label='Primary Clickable Chip'
                     clickable
                     className={classes2.chip}
-                    color="primary"
+                    color='primary'
                     onDelete={handleDelete2}
                     deleteIcon={<DoneIcon />}
-                    variant="outlined"
+                    variant='outlined'
                   />
                   <Chip
                     icon={<FaceIcon />}
-                    label="Primary Clickable Chip"
+                    label='Primary Clickable Chip'
                     clickable
                     className={classes2.chip}
-                    color="primary"
+                    color='primary'
                     onDelete={handleDelete2}
                     deleteIcon={<DoneIcon />}
-                    variant="outlined"
+                    variant='outlined'
                   />
                   <Chip
-                    label="Deletable Primary Chip"
+                    label='Deletable Primary Chip'
                     onDelete={handleDelete2}
                     className={classes2.chip}
-                    color="primary"
-                    variant="outlined"
+                    color='primary'
+                    variant='outlined'
                   />
                   <Chip
                     avatar={
@@ -363,19 +363,19 @@ export default function ChipsExamplesPage() {
                         <FaceIcon />
                       </Avatar>
                     }
-                    label="Deletable Secondary Chip"
+                    label='Deletable Secondary Chip'
                     onDelete={handleDelete2}
                     className={classes2.chip}
-                    color="secondary"
-                    variant="outlined"
+                    color='secondary'
+                    variant='outlined'
                   />
                   <Chip
                     icon={<FaceIcon />}
-                    label="Deletable Secondary Chip"
+                    label='Deletable Secondary Chip'
                     onDelete={handleDelete2}
                     className={classes2.chip}
-                    color="secondary"
-                    variant="outlined"
+                    color='secondary'
+                    variant='outlined'
                   />
                 </div>
               </div>
@@ -384,23 +384,23 @@ export default function ChipsExamplesPage() {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode3} beforeCodeTitle="Chip array">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode3} beforeCodeTitle='Chip array'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 An example of rendering multiple Chips from an array of values.
-                Deleting a chip removes it from the array. Note that since no{" "}
+                Deleting a chip removes it from the array. Note that since no{' '}
                 <code>onClick</code> property is defined, the Chip can be
                 focused, but does not gain depth while clicked or touched.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <Paper className={classes3.root}>
                   {chipData3.map(data => {
                     let icon;
 
-                    if (data.label === "React") {
+                    if (data.label === 'React') {
                       icon = <TagFacesIcon />;
                     }
 
@@ -421,253 +421,253 @@ export default function ChipsExamplesPage() {
         </div>
       </div>
 
-      <Notice className="notice__paragraph">Small Chip</Notice>
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode4} beforeCodeTitle="Default variant">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+      <Notice className='notice__paragraph'>Small Chip</Notice>
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode4} beforeCodeTitle='Default variant'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 You can use the <code>size</code> prop to define a small Chip.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes4.root}>
                   <Chip
-                    size="small"
-                    label="Basic Chip"
+                    size='small'
+                    label='Basic Chip'
                     className={classes4.chip}
                   />
                   <Chip
-                    size="small"
+                    size='small'
                     avatar={<Avatar>MB</Avatar>}
-                    label="Clickable Chip"
+                    label='Clickable Chip'
                     onClick={handleClick4}
                     className={classes4.chip}
                   />
                   <Chip
-                    size="small"
+                    size='small'
                     avatar={
                       <Avatar
-                        alt="Natacha"
-                        src="https://material-ui.com/static/images/avatar/1.jpg"
+                        alt='Natacha'
+                        src='https://material-ui.com/static/images/avatar/1.jpg'
                       />
                     }
-                    label="Deletable Chip"
+                    label='Deletable Chip'
                     onDelete={handleDelete4}
                     className={classes4.chip}
                   />
                   <Chip
-                    size="small"
+                    size='small'
                     avatar={
                       <Avatar>
                         <FaceIcon />
                       </Avatar>
                     }
-                    label="Clickable Deletable Chip"
+                    label='Clickable Deletable Chip'
                     onClick={handleClick4}
                     onDelete={handleDelete4}
                     className={classes4.chip}
                   />
                   <Chip
-                    size="small"
+                    size='small'
                     icon={<FaceIcon />}
-                    label="Clickable Deletable Chip"
+                    label='Clickable Deletable Chip'
                     onClick={handleClick4}
                     onDelete={handleDelete4}
                     className={classes4.chip}
                   />
                   <Chip
-                    size="small"
-                    label="Custom delete icon Chip"
+                    size='small'
+                    label='Custom delete icon Chip'
                     onClick={handleClick4}
                     onDelete={handleDelete4}
                     className={classes4.chip}
                     deleteIcon={<DoneIcon />}
                   />
                   <Chip
-                    size="small"
-                    label="Clickable Link Chip"
+                    size='small'
+                    label='Clickable Link Chip'
                     className={classes4.chip}
-                    component="a"
-                    href="#chip"
+                    component='a'
+                    href='#chip'
                     clickable
                   />
                   <Chip
-                    size="small"
+                    size='small'
                     avatar={<Avatar>MB</Avatar>}
-                    label="Primary Clickable Chip"
+                    label='Primary Clickable Chip'
                     clickable
                     className={classes4.chip}
-                    color="primary"
+                    color='primary'
                     onDelete={handleDelete4}
                     deleteIcon={<DoneIcon />}
                   />
                   <Chip
-                    size="small"
+                    size='small'
                     icon={<FaceIcon />}
-                    label="Primary Clickable Chip"
+                    label='Primary Clickable Chip'
                     clickable
                     className={classes4.chip}
-                    color="primary"
+                    color='primary'
                     onDelete={handleDelete4}
                     deleteIcon={<DoneIcon />}
                   />
                   <Chip
-                    size="small"
-                    label="Deletable Primary Chip"
+                    size='small'
+                    label='Deletable Primary Chip'
                     onDelete={handleDelete4}
                     className={classes4.chip}
-                    color="primary"
+                    color='primary'
                   />
                   <Chip
-                    size="small"
+                    size='small'
                     avatar={
                       <Avatar>
                         <FaceIcon />
                       </Avatar>
                     }
-                    label="Deletable Secondary Chip"
+                    label='Deletable Secondary Chip'
                     onDelete={handleDelete4}
                     className={classes4.chip}
-                    color="secondary"
+                    color='secondary'
                   />
                   <Chip
-                    size="small"
+                    size='small'
                     icon={<FaceIcon />}
-                    label="Deletable Secondary Chip"
+                    label='Deletable Secondary Chip'
                     onDelete={handleDelete4}
                     className={classes4.chip}
-                    color="secondary"
+                    color='secondary'
                   />
                 </div>
               </div>
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode5} beforeCodeTitle="Outlined variant">
-            <div className="kt-section">
-              <span className="kt-section__sub"></span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode5} beforeCodeTitle='Outlined variant'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'></span>
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes5.root}>
                   <Chip
-                    variant="outlined"
-                    size="small"
-                    label="Basic Chip"
+                    variant='outlined'
+                    size='small'
+                    label='Basic Chip'
                     className={classes5.chip}
                   />
                   <Chip
-                    variant="outlined"
-                    size="small"
+                    variant='outlined'
+                    size='small'
                     avatar={<Avatar>MB</Avatar>}
-                    label="Clickable Chip"
+                    label='Clickable Chip'
                     onClick={handleClick5}
                     className={classes5.chip}
                   />
                   <Chip
-                    size="small"
+                    size='small'
                     avatar={
                       <Avatar
-                        alt="Natacha"
-                        src="https://material-ui.com/static/images/avatar/1.jpg"
+                        alt='Natacha'
+                        src='https://material-ui.com/static/images/avatar/1.jpg'
                       />
                     }
-                    label="Deletable Chip"
+                    label='Deletable Chip'
                     onDelete={handleDelete5}
                     className={classes5.chip}
                   />
                   <Chip
-                    variant="outlined"
-                    size="small"
+                    variant='outlined'
+                    size='small'
                     avatar={
                       <Avatar>
                         <FaceIcon />
                       </Avatar>
                     }
-                    label="Clickable Deletable Chip"
+                    label='Clickable Deletable Chip'
                     onClick={handleClick5}
                     onDelete={handleDelete5}
                     className={classes5.chip}
                   />
                   <Chip
-                    variant="outlined"
-                    size="small"
+                    variant='outlined'
+                    size='small'
                     icon={<FaceIcon />}
-                    label="Clickable Deletable Chip"
+                    label='Clickable Deletable Chip'
                     onClick={handleClick5}
                     onDelete={handleDelete5}
                     className={classes5.chip}
                   />
                   <Chip
-                    variant="outlined"
-                    size="small"
-                    label="Custom delete icon Chip"
+                    variant='outlined'
+                    size='small'
+                    label='Custom delete icon Chip'
                     onClick={handleClick5}
                     onDelete={handleDelete5}
                     className={classes5.chip}
                     deleteIcon={<DoneIcon />}
                   />
                   <Chip
-                    variant="outlined"
-                    size="small"
-                    label="Clickable Link Chip"
+                    variant='outlined'
+                    size='small'
+                    label='Clickable Link Chip'
                     className={classes5.chip}
-                    component="a"
-                    href="#chip"
+                    component='a'
+                    href='#chip'
                     clickable
                   />
                   <Chip
-                    variant="outlined"
-                    size="small"
+                    variant='outlined'
+                    size='small'
                     avatar={<Avatar>MB</Avatar>}
-                    label="Primary Clickable Chip"
+                    label='Primary Clickable Chip'
                     clickable
                     className={classes5.chip}
-                    color="primary"
+                    color='primary'
                     onDelete={handleDelete5}
                     deleteIcon={<DoneIcon />}
                   />
                   <Chip
-                    variant="outlined"
-                    size="small"
+                    variant='outlined'
+                    size='small'
                     icon={<FaceIcon />}
-                    label="Primary Clickable Chip"
+                    label='Primary Clickable Chip'
                     clickable
                     className={classes5.chip}
-                    color="primary"
+                    color='primary'
                     onDelete={handleDelete5}
                     deleteIcon={<DoneIcon />}
                   />
                   <Chip
-                    variant="outlined"
-                    size="small"
-                    label="Deletable Primary Chip"
+                    variant='outlined'
+                    size='small'
+                    label='Deletable Primary Chip'
                     onDelete={handleDelete5}
                     className={classes5.chip}
-                    color="primary"
+                    color='primary'
                   />
                   <Chip
-                    variant="outlined"
-                    size="small"
+                    variant='outlined'
+                    size='small'
                     avatar={
                       <Avatar>
                         <FaceIcon />
                       </Avatar>
                     }
-                    label="Deletable Secondary Chip"
+                    label='Deletable Secondary Chip'
                     onDelete={handleDelete5}
                     className={classes5.chip}
-                    color="secondary"
+                    color='secondary'
                   />
                   <Chip
-                    variant="outlined"
-                    size="small"
+                    variant='outlined'
+                    size='small'
                     icon={<FaceIcon />}
-                    label="Deletable Secondary Chip"
+                    label='Deletable Secondary Chip'
                     onDelete={handleDelete5}
                     className={classes5.chip}
-                    color="secondary"
+                    color='secondary'
                   />
                 </div>
               </div>

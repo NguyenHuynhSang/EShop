@@ -1,9 +1,9 @@
 /* eslint-disable no-restricted-imports */
-import React from "react";
-import clsx from "clsx";
-import Notice from "../../../../partials/content/Notice";
-import CodeExample from "../../../../partials/content/CodeExample";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import React from 'react';
+import clsx from 'clsx';
+import Notice from '../../../../partials/content/Notice';
+import CodeExample from '../../../../partials/content/CodeExample';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import {
   ExpansionPanel,
   ExpansionPanelSummary,
@@ -12,113 +12,113 @@ import {
   Divider,
   Button,
   ExpansionPanelActions,
-  ExpansionPanelDetails
-} from "@material-ui/core";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+  ExpansionPanelDetails,
+} from '@material-ui/core';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 // Example 1
 const useStyles1 = makeStyles(theme => ({
   root: {
-    width: "100%"
+    width: '100%',
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
-    fontWeight: theme.typography.fontWeightRegular
-  }
+    fontWeight: theme.typography.fontWeightRegular,
+  },
 }));
 
 // Example 2
 const useStyles2 = makeStyles(theme => ({
   root: {
-    width: "100%"
+    width: '100%',
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
-    flexBasis: "33.33%",
-    flexShrink: 0
+    flexBasis: '33.33%',
+    flexShrink: 0,
   },
   secondaryHeading: {
     fontSize: theme.typography.pxToRem(15),
-    color: theme.palette.text.secondary
-  }
+    color: theme.palette.text.secondary,
+  },
 }));
 
 // Example 3
 const useStyles3 = makeStyles(theme => ({
   root: {
-    width: "100%"
+    width: '100%',
   },
   heading: {
-    fontSize: theme.typography.pxToRem(15)
+    fontSize: theme.typography.pxToRem(15),
   },
   secondaryHeading: {
     fontSize: theme.typography.pxToRem(15),
-    color: theme.palette.text.secondary
+    color: theme.palette.text.secondary,
   },
   icon: {
-    verticalAlign: "bottom",
+    verticalAlign: 'bottom',
     height: 20,
-    width: 20
+    width: 20,
   },
   details: {
-    alignItems: "center"
+    alignItems: 'center',
   },
   column: {
-    flexBasis: "33.33%"
+    flexBasis: '33.33%',
   },
   helper: {
     borderLeft: `2px solid ${theme.palette.divider}`,
-    padding: theme.spacing(1, 2)
+    padding: theme.spacing(1, 2),
   },
   link: {
     color: theme.palette.primary.main,
-    textDecoration: "none",
-    "&:hover": {
-      textDecoration: "underline"
-    }
-  }
+    textDecoration: 'none',
+    '&:hover': {
+      textDecoration: 'underline',
+    },
+  },
 }));
 
 // Example 4
 const ExpansionPanel4 = withStyles({
   root: {
-    border: "1px solid rgba(0, 0, 0, .125)",
-    boxShadow: "none",
-    "&:not(:last-child)": {
-      borderBottom: 0
+    border: '1px solid rgba(0, 0, 0, .125)',
+    boxShadow: 'none',
+    '&:not(:last-child)': {
+      borderBottom: 0,
     },
-    "&:before": {
-      display: "none"
+    '&:before': {
+      display: 'none',
     },
-    "&$expanded": {
-      margin: "auto"
-    }
+    '&$expanded': {
+      margin: 'auto',
+    },
   },
-  expanded: {}
+  expanded: {},
 })(ExpansionPanel);
 
 const ExpansionPanelSummary4 = withStyles({
   root: {
-    backgroundColor: "rgba(0, 0, 0, .03)",
-    borderBottom: "1px solid rgba(0, 0, 0, .125)",
+    backgroundColor: 'rgba(0, 0, 0, .03)',
+    borderBottom: '1px solid rgba(0, 0, 0, .125)',
     marginBottom: -1,
     minHeight: 56,
-    "&$expanded": {
-      minHeight: 56
-    }
+    '&$expanded': {
+      minHeight: 56,
+    },
   },
   content: {
-    "&$expanded": {
-      margin: "12px 0"
-    }
+    '&$expanded': {
+      margin: '12px 0',
+    },
   },
-  expanded: {}
+  expanded: {},
 })(ExpansionPanelSummary);
 
 const ExpansionPanelDetails4 = withStyles(theme => ({
   root: {
-    padding: theme.spacing(2)
-  }
+    padding: theme.spacing(2),
+  },
 }))(ExpansionPanelDetails);
 
 export default function ExpansionPanelsExamplesPage() {
@@ -137,7 +137,7 @@ export default function ExpansionPanelsExamplesPage() {
   const classes3 = useStyles3();
 
   // Example 4
-  const [expanded4, setExpanded4] = React.useState("panel1");
+  const [expanded4, setExpanded4] = React.useState('panel1');
 
   const handleChange4 = panel => (event, newExpanded) => {
     setExpanded4(newExpanded ? panel : false);
@@ -145,40 +145,40 @@ export default function ExpansionPanelsExamplesPage() {
 
   return (
     <>
-      <Notice icon="flaticon-warning kt-font-primary">
+      <Notice icon='flaticon-warning kt-font-primary'>
         <p>
           Expansion panels contain creation flows and allow lightweight editing
           of an element.
         </p>
         <p>
-          For more info please check the components's official{" "}
+          For more info please check the components's official{' '}
           <a
-            target="_blank"
-            className="kt-link"
-            rel="noopener noreferrer"
-            href="https://material-ui.com/components/expansion-panels/"
+            target='_blank'
+            className='kt-link'
+            rel='noopener noreferrer'
+            href='https://material-ui.com/components/expansion-panels/'
           >
             demos & documentation
           </a>
         </p>
       </Notice>
 
-      <div className="row">
-        <div className="col-md-6">
+      <div className='row'>
+        <div className='col-md-6'>
           <CodeExample
             jsCode={jsCode1}
-            beforeCodeTitle="Simple Expansion Panel"
+            beforeCodeTitle='Simple Expansion Panel'
           >
-            <div className="kt-section">
-              <span className="kt-section__sub"></span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+            <div className='kt-section'>
+              <span className='kt-section__sub'></span>
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes1.root}>
                   <ExpansionPanel4>
                     <ExpansionPanelSummary
                       expandIcon={<ExpandMoreIcon />}
-                      aria-controls="panel1a-content"
-                      id="panel1a-header"
+                      aria-controls='panel1a-content'
+                      id='panel1a-header'
                     >
                       <Typography className={classes1.heading}>
                         Expansion Panel 1
@@ -195,8 +195,8 @@ export default function ExpansionPanelsExamplesPage() {
                   <ExpansionPanel4>
                     <ExpansionPanelSummary
                       expandIcon={<ExpandMoreIcon />}
-                      aria-controls="panel2a-content"
-                      id="panel2a-header"
+                      aria-controls='panel2a-content'
+                      id='panel2a-header'
                     >
                       <Typography className={classes1.heading}>
                         Expansion Panel 2
@@ -213,8 +213,8 @@ export default function ExpansionPanelsExamplesPage() {
                   <ExpansionPanel disabled>
                     <ExpansionPanelSummary
                       expandIcon={<ExpandMoreIcon />}
-                      aria-controls="panel3a-content"
-                      id="panel3a-header"
+                      aria-controls='panel3a-content'
+                      id='panel3a-header'
                     >
                       <Typography className={classes1.heading}>
                         Disabled Expansion Panel
@@ -226,24 +226,24 @@ export default function ExpansionPanelsExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode2} beforeCodeTitle="Controlled Accordion">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode2} beforeCodeTitle='Controlled Accordion'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 Extend the default panel behavior to create an accordion with
                 the <code>ExpansionPanel</code> component.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes2.root}>
                   <ExpansionPanel
-                    expanded={expanded2 === "panel1"}
-                    onChange={handleChange2("panel1")}
+                    expanded={expanded2 === 'panel1'}
+                    onChange={handleChange2('panel1')}
                   >
                     <ExpansionPanelSummary
                       expandIcon={<ExpandMoreIcon />}
-                      aria-controls="panel1bh-content"
-                      id="panel1bh-header"
+                      aria-controls='panel1bh-content'
+                      id='panel1bh-header'
                     >
                       <Typography className={classes2.heading}>
                         General settings
@@ -261,13 +261,13 @@ export default function ExpansionPanelsExamplesPage() {
                     </ExpansionPanelDetails4>
                   </ExpansionPanel>
                   <ExpansionPanel
-                    expanded={expanded2 === "panel2"}
-                    onChange={handleChange2("panel2")}
+                    expanded={expanded2 === 'panel2'}
+                    onChange={handleChange2('panel2')}
                   >
                     <ExpansionPanelSummary
                       expandIcon={<ExpandMoreIcon />}
-                      aria-controls="panel2bh-content"
-                      id="panel2bh-header"
+                      aria-controls='panel2bh-content'
+                      id='panel2bh-header'
                     >
                       <Typography className={classes2.heading}>
                         Users
@@ -285,13 +285,13 @@ export default function ExpansionPanelsExamplesPage() {
                     </ExpansionPanelDetails4>
                   </ExpansionPanel>
                   <ExpansionPanel
-                    expanded={expanded2 === "panel3"}
-                    onChange={handleChange2("panel3")}
+                    expanded={expanded2 === 'panel3'}
+                    onChange={handleChange2('panel3')}
                   >
                     <ExpansionPanelSummary
                       expandIcon={<ExpandMoreIcon />}
-                      aria-controls="panel3bh-content"
-                      id="panel3bh-header"
+                      aria-controls='panel3bh-content'
+                      id='panel3bh-header'
                     >
                       <Typography className={classes2.heading}>
                         Advanced settings
@@ -310,13 +310,13 @@ export default function ExpansionPanelsExamplesPage() {
                     </ExpansionPanelDetails4>
                   </ExpansionPanel>
                   <ExpansionPanel
-                    expanded={expanded2 === "panel4"}
-                    onChange={handleChange2("panel4")}
+                    expanded={expanded2 === 'panel4'}
+                    onChange={handleChange2('panel4')}
                   >
                     <ExpansionPanelSummary
                       expandIcon={<ExpandMoreIcon />}
-                      aria-controls="panel4bh-content"
-                      id="panel4bh-header"
+                      aria-controls='panel4bh-content'
+                      id='panel4bh-header'
                     >
                       <Typography className={classes2.heading}>
                         Personal data
@@ -337,25 +337,25 @@ export default function ExpansionPanelsExamplesPage() {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-6">
+      <div className='row'>
+        <div className='col-md-6'>
           <CodeExample
             jsCode={jsCode3}
-            beforeCodeTitle="Secondary heading and Columns"
+            beforeCodeTitle='Secondary heading and Columns'
           >
-            <div className="kt-section">
-              <span className="kt-section__sub">
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 Multiple columns can be used to structure the content, and a
                 helper text may be added to the panel to assist the user.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes3.root}>
                   <ExpansionPanel defaultExpanded>
                     <ExpansionPanelSummary
                       expandIcon={<ExpandMoreIcon />}
-                      aria-controls="panel1c-content"
-                      id="panel1c-header"
+                      aria-controls='panel1c-content'
+                      id='panel1c-header'
                     >
                       <div className={classes3.column}>
                         <Typography className={classes3.heading}>
@@ -371,14 +371,14 @@ export default function ExpansionPanelsExamplesPage() {
                     <ExpansionPanelDetails className={classes3.details}>
                       <div className={classes3.column} />
                       <div className={classes3.column}>
-                        <Chip label="Barbados" onDelete={() => {}} />
+                        <Chip label='Barbados' onDelete={() => {}} />
                       </div>
                       <div className={clsx(classes3.column, classes3.helper)}>
-                        <Typography variant="caption">
+                        <Typography variant='caption'>
                           Select your destination of choice
                           <br />
                           <a
-                            href="#sub-labels-and-columns"
+                            href='#sub-labels-and-columns'
                             className={classes3.link}
                           >
                             Learn more
@@ -388,8 +388,8 @@ export default function ExpansionPanelsExamplesPage() {
                     </ExpansionPanelDetails>
                     <Divider />
                     <ExpansionPanelActions>
-                      <Button size="small">Cancel</Button>
-                      <Button size="small" color="primary">
+                      <Button size='small'>Cancel</Button>
+                      <Button size='small' color='primary'>
                         Save
                       </Button>
                     </ExpansionPanelActions>
@@ -399,26 +399,26 @@ export default function ExpansionPanelsExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
+        <div className='col-md-6'>
           <CodeExample
             jsCode={jsCode4}
-            beforeCodeTitle="Customized expansion panels"
+            beforeCodeTitle='Customized expansion panels'
           >
-            <div className="kt-section">
-              <span className="kt-section__sub">
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 Here is an example of customizing the component.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div>
                   <ExpansionPanel4
                     square
-                    expanded={expanded4 === "panel1"}
-                    onChange={handleChange4("panel1")}
+                    expanded={expanded4 === 'panel1'}
+                    onChange={handleChange4('panel1')}
                   >
                     <ExpansionPanelSummary4
-                      aria-controls="panel1d-content"
-                      id="panel1d-header"
+                      aria-controls='panel1d-content'
+                      id='panel1d-header'
                     >
                       <Typography>Collapsible Group Item #1</Typography>
                     </ExpansionPanelSummary4>
@@ -434,12 +434,12 @@ export default function ExpansionPanelsExamplesPage() {
                   </ExpansionPanel4>
                   <ExpansionPanel4
                     square
-                    expanded={expanded4 === "panel2"}
-                    onChange={handleChange4("panel2")}
+                    expanded={expanded4 === 'panel2'}
+                    onChange={handleChange4('panel2')}
                   >
                     <ExpansionPanelSummary4
-                      aria-controls="panel2d-content"
-                      id="panel2d-header"
+                      aria-controls='panel2d-content'
+                      id='panel2d-header'
                     >
                       <Typography>Collapsible Group Item #2</Typography>
                     </ExpansionPanelSummary4>
@@ -455,12 +455,12 @@ export default function ExpansionPanelsExamplesPage() {
                   </ExpansionPanel4>
                   <ExpansionPanel4
                     square
-                    expanded={expanded4 === "panel3"}
-                    onChange={handleChange4("panel3")}
+                    expanded={expanded4 === 'panel3'}
+                    onChange={handleChange4('panel3')}
                   >
                     <ExpansionPanelSummary4
-                      aria-controls="panel3d-content"
-                      id="panel3d-header"
+                      aria-controls='panel3d-content'
+                      id='panel3d-header'
                     >
                       <Typography>Collapsible Group Item #3</Typography>
                     </ExpansionPanelSummary4>

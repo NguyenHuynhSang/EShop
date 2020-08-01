@@ -1,13 +1,13 @@
-import React from "react";
-import Snackbar from "@material-ui/core/Snackbar";
-import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from "@material-ui/icons/Close";
-import ErrorIcon from "@material-ui/icons/HighlightOff";
-import WarningIcon from "@material-ui/icons/Warning";
-import InfoIcon from "@material-ui/icons/Info";
-import SuccessIcon from "@material-ui/icons/CheckCircle";
-import immer from "@reduxjs/toolkit/node_modules/immer";
-import { makeStyles } from "../styles";
+import React from 'react';
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+import ErrorIcon from '@material-ui/icons/HighlightOff';
+import WarningIcon from '@material-ui/icons/Warning';
+import InfoIcon from '@material-ui/icons/Info';
+import SuccessIcon from '@material-ui/icons/CheckCircle';
+import immer from '@reduxjs/toolkit/node_modules/immer';
+import { makeStyles } from '../styles';
 
 type ProviderContext = [
   (message: string, option?: SnackbarOption) => void,
@@ -20,7 +20,7 @@ const SnackbarContext = React.createContext<ProviderContext>([
 ]);
 export const useSnackbar = () => React.useContext(SnackbarContext);
 
-type Variant = "success" | "info" | "warning" | "error";
+type Variant = 'success' | 'info' | 'warning' | 'error';
 type SnackParams = {
   message: React.ReactNode;
   open: boolean;
@@ -30,29 +30,29 @@ type SnackParams = {
   autoHideDuration?: number;
   onClose?: Function;
 };
-type SnackbarOption = Partial<Omit<SnackParams, "open" | "message">>;
+type SnackbarOption = Partial<Omit<SnackParams, 'open' | 'message'>>;
 
 const useStyles = makeStyles<SnackbarContainerProps>(theme => ({
   root: {
-    "& .MuiSnackbarContent-root": {
+    '& .MuiSnackbarContent-root': {
       backgroundColor: props =>
         props.variant
           ? theme.palette[props.variant].main
           : theme.palette.background,
     },
-    "& button.MuiButton-text": {
+    '& button.MuiButton-text': {
       backgroundColor: props =>
-        props.variant ? theme.palette[props.variant].light : "transparent",
+        props.variant ? theme.palette[props.variant].light : 'transparent',
     },
-    "& button": {
+    '& button': {
       color: props =>
-        props.variant ? theme.palette[props.variant].contrastText : "inherit",
+        props.variant ? theme.palette[props.variant].contrastText : 'inherit',
     },
   },
   content: {
-    display: "flex",
-    alignItems: "center",
-    "& .MuiSvgIcon-root": {
+    display: 'flex',
+    alignItems: 'center',
+    '& .MuiSvgIcon-root': {
       marginRight: theme.spacing(1),
     },
   },
@@ -60,13 +60,13 @@ const useStyles = makeStyles<SnackbarContainerProps>(theme => ({
 
 function getIcon(variant?: Variant) {
   switch (variant) {
-    case "error":
+    case 'error':
       return <ErrorIcon />;
-    case "warning":
+    case 'warning':
       return <WarningIcon />;
-    case "info":
+    case 'info':
       return <InfoIcon />;
-    case "success":
+    case 'success':
       return <SuccessIcon />;
     default:
       return null;
@@ -95,13 +95,13 @@ function SnackbarContainer(props: SnackbarContainerProps) {
     <Snackbar
       className={styles.root}
       anchorOrigin={{
-        vertical: "bottom",
-        horizontal: "right",
+        vertical: 'bottom',
+        horizontal: 'right',
       }}
       autoHideDuration={autoHideDuration}
       onClose={(_, reason) => {
         handleClose();
-        if (reason !== "clickaway") _onClose();
+        if (reason !== 'clickaway') _onClose();
       }}
       onExited={_onKill}
       message={
@@ -114,8 +114,8 @@ function SnackbarContainer(props: SnackbarContainerProps) {
       action={
         action ?? (
           <IconButton
-            color="inherit"
-            size="small"
+            color='inherit'
+            size='small'
             onClick={() => {
               handleClose();
               _onClose();
@@ -132,7 +132,7 @@ function SnackbarContainer(props: SnackbarContainerProps) {
 export default function SnackbarProvider({ children }) {
   const [snacks, setSnacks] = React.useState<SnackParams[]>([]);
   const createSnackbar = (message: string, option?: SnackbarOption) => {
-    const key = option?.key ?? message + "_" + Math.random();
+    const key = option?.key ?? message + '_' + Math.random();
     const snack: SnackParams = { ...option, key, message, open: true };
 
     setSnacks(qu => {

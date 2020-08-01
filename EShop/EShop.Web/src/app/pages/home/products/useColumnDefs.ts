@@ -1,74 +1,74 @@
-import React, { useCallback } from "react";
-import { ColDef, ColumnApi } from "ag-grid-community";
-import { useSelector, shallowEqual } from "../../../store/store";
-import { ColumnInfo } from "./product.duck";
-import { useForceUpdate } from "../helpers/hookHelpers";
-import { autoSizeColumns } from "../helpers/agGridHelpers";
+import React, { useCallback } from 'react';
+import { ColDef, ColumnApi } from 'ag-grid-community';
+import { useSelector, shallowEqual } from '../../../store/store';
+import { ColumnInfo } from './product.duck';
+import { useForceUpdate } from '../helpers/hookHelpers';
+import { autoSizeColumns } from '../helpers/agGridHelpers';
 
 export const colDefs: Record<string, ColDef> = {
   id: {
-    headerName: "ID",
-    type: ["id"],
+    headerName: 'ID',
+    type: ['id'],
   },
   name: {
-    headerName: "Tên",
-    type: ["editable"],
+    headerName: 'Tên',
+    type: ['editable'],
   },
   image: {
-    headerName: "Hình",
-    type: ["image"],
+    headerName: 'Hình',
+    type: ['image'],
   },
   description: {
-    headerName: "Mô tả",
-    type: ["editable", "largeText"],
+    headerName: 'Mô tả',
+    type: ['editable', 'largeText'],
   },
   content: {
-    headerName: "Nội dung",
-    type: ["editable", "largeText"],
+    headerName: 'Nội dung',
+    type: ['editable', 'largeText'],
   },
   weight: {
-    headerName: "Khối lượng",
-    type: ["editable", "weight"],
+    headerName: 'Khối lượng',
+    type: ['editable', 'weight'],
   },
   category: {
-    headerName: "Loại",
-    type: ["selector"],
+    headerName: 'Loại',
+    type: ['selector'],
   },
   numberOfVersions: {
-    headerName: "Số phiên bản",
-    type: ["editable", "numericColumn"],
+    headerName: 'Số phiên bản',
+    type: ['editable', 'numericColumn'],
   },
   price: {
-    headerName: "Giá",
-    type: ["editable", "currency"],
+    headerName: 'Giá',
+    type: ['editable', 'currency'],
   },
   originalPrice: {
-    headerName: "Giá gốc",
-    type: ["editable", "currency"],
+    headerName: 'Giá gốc',
+    type: ['editable', 'currency'],
   },
   discountPrice: {
-    headerName: "Giá khuyến mãi",
-    type: ["editable", "currency"],
+    headerName: 'Giá khuyến mãi',
+    type: ['editable', 'currency'],
   },
   quantity: {
-    headerName: "Số lượng",
-    type: ["editable", "numericColumn"],
+    headerName: 'Số lượng',
+    type: ['editable', 'numericColumn'],
   },
   display: {
-    headerName: "Hiển thị",
-    type: ["checkbox"],
+    headerName: 'Hiển thị',
+    type: ['checkbox'],
   },
   deliver: {
-    headerName: "Giao hàng",
-    type: ["checkbox"],
+    headerName: 'Giao hàng',
+    type: ['checkbox'],
   },
   applyPromotion: {
-    headerName: "Khuyến mãi",
-    type: ["checkbox"],
+    headerName: 'Khuyến mãi',
+    type: ['checkbox'],
   },
   action: {
-    headerName: "Tùy chọn",
-    cellRenderer: "ActionRenderer",
+    headerName: 'Tùy chọn',
+    cellRenderer: 'ActionRenderer',
     sortable: false,
   },
 };
@@ -82,13 +82,13 @@ export default function useColumnDefs(
   columnApi?: ColumnApi
 ): [ColDef[], ColumnInfo[]] {
   const columnInfos = useSelector(
-    (state) => state.products.columnInfos,
+    state => state.products.columnInfos,
     shallowEqual
   );
-  const columnInfosGen = useSelector((state) => state.products.columnInfosGen);
+  const columnInfosGen = useSelector(state => state.products.columnInfosGen);
   const forceUpdate = useForceUpdate();
   const getColumnDefs = useCallback(
-    () => columnInfos.map((c) => ({ ...colDefs[c.field], ...c })),
+    () => columnInfos.map(c => ({ ...colDefs[c.field], ...c })),
     [columnInfos]
   );
 

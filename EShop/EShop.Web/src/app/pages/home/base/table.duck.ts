@@ -1,11 +1,11 @@
-import { persistReducer, PersistConfig } from "redux-persist";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import storage from "redux-persist/lib/storage";
+import { persistReducer, PersistConfig } from 'redux-persist';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import storage from 'redux-persist/lib/storage';
 
 export enum ExportFormat {
-  Csv = "Csv",
-  Json = "Json",
-  Excel = "Excel",
+  Csv = 'Csv',
+  Json = 'Json',
+  Excel = 'Excel',
 }
 type TableState = {
   _global: {
@@ -23,7 +23,7 @@ const initialState: TableState = {
 
 const slice = createSlice({
   initialState,
-  name: "table",
+  name: 'table',
   reducers: {
     setExportDialogOpen(state, action: PayloadAction<ExportFormat>) {
       state._global.exportDialogOpen = true;
@@ -40,7 +40,7 @@ const slice = createSlice({
 
 const persistConfig: PersistConfig<TableState> = {
   storage,
-  key: "table",
+  key: 'table',
   whitelist: [],
 };
 

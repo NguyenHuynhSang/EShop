@@ -1,25 +1,25 @@
 /* eslint-disable no-restricted-imports */
-import React from "react";
-import PropTypes from "prop-types";
-import Notice from "../../../../partials/content/Notice";
-import CodeExample from "../../../../partials/content/CodeExample";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
-import { NoSsr, Button } from "@material-ui/core";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Notice from '../../../../partials/content/Notice';
+import CodeExample from '../../../../partials/content/CodeExample';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { NoSsr, Button } from '@material-ui/core';
 
 // Example 1
 const styles = theme => ({
   button: {
-    display: "block",
-    margin: theme.spacing(2)
-  }
+    display: 'block',
+    margin: theme.spacing(2),
+  },
 });
 
 // Example 2
 const useStyles = makeStyles({
   container: {
     maxWidth: 300,
-    wordBreak: "break-all"
-  }
+    wordBreak: 'break-all',
+  },
 });
 
 function LargeTree() {
@@ -38,45 +38,45 @@ function NoSSRExamplesPage(props) {
 
   return (
     <>
-      <Notice icon="flaticon-warning kt-font-primary">
+      <Notice icon='flaticon-warning kt-font-primary'>
         <p>
           NoSsr purposely removes components from the subject of Server Side
           Rendering (SSR).
         </p>
         <p>
-          For more info please check the components's official{" "}
+          For more info please check the components's official{' '}
           <a
-            target="_blank"
-            className="kt-link"
-            rel="noopener noreferrer"
-            href="https://material-ui.com/components/no-ssr/"
+            target='_blank'
+            className='kt-link'
+            rel='noopener noreferrer'
+            href='https://material-ui.com/components/no-ssr/'
           >
             demos & documentation
           </a>
         </p>
       </Notice>
 
-      <CodeExample jsCode={jsCode1} beforeCodeTitle="Client side deferring">
-        <div className="kt-section">
-          <span className="kt-section__sub">
+      <CodeExample jsCode={jsCode1} beforeCodeTitle='Client side deferring'>
+        <div className='kt-section'>
+          <span className='kt-section__sub'>
             In it's core, the NoSsr component purpose is to defer rendering. You
             can use it to defer the rendering from the server to the client.
           </span>
-          <div className="kt-separator kt-separator--dashed"></div>
-          <div className="kt-section__content">
+          <div className='kt-separator kt-separator--dashed'></div>
+          <div className='kt-section__content'>
             <div>
               <Button
                 className={classes.button}
-                variant="contained"
-                color="primary"
+                variant='contained'
+                color='primary'
               >
                 Server & Client
               </Button>
               <NoSsr>
                 <Button
                   className={classes.button}
-                  variant="contained"
-                  color="secondary"
+                  variant='contained'
+                  color='secondary'
                 >
                   Client only
                 </Button>
@@ -86,33 +86,33 @@ function NoSSRExamplesPage(props) {
         </div>
       </CodeExample>
 
-      <CodeExample jsCode={jsCode2} beforeCodeTitle="Frame deferring">
-        <div className="kt-section">
-          <span className="kt-section__sub">
+      <CodeExample jsCode={jsCode2} beforeCodeTitle='Frame deferring'>
+        <div className='kt-section'>
+          <span className='kt-section__sub'>
             You can also use it to defer the rendering within the client itself.
             You can wait a screen frame with the <code>defer</code> property to
             render the children. React does 2 commits instead of 1.
           </span>
-          <div className="kt-separator kt-separator--dashed"></div>
-          <div className="kt-section__content">
+          <div className='kt-separator kt-separator--dashed'></div>
+          <div className='kt-section__content'>
             <div>
               <button
-                type="button"
+                type='button'
                 onClick={() =>
                   setState({
                     open: !state.open,
-                    defer: false
+                    defer: false,
                   })
                 }
               >
                 {'Render NoSsr defer="false"'}
               </button>
               <button
-                type="button"
+                type='button'
                 onClick={() =>
                   setState({
                     open: !state.open,
-                    defer: true
+                    defer: true,
                   })
                 }
               >
@@ -136,7 +136,7 @@ function NoSSRExamplesPage(props) {
 }
 
 NoSSRExamplesPage.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(NoSSRExamplesPage);

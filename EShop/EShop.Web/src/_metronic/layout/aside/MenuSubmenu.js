@@ -1,14 +1,14 @@
-import React from "react";
-import MenuSection from "./MenuSection";
-import MenuItemSeparator from "./MenuItemSeparator";
-import MenuItem from "./MenuItem";
+import React from 'react';
+import MenuSection from './MenuSection';
+import MenuItemSeparator from './MenuItemSeparator';
+import MenuItem from './MenuItem';
 
 export default class MenuSubmenu extends React.Component {
   render() {
     const { item, currentUrl, layoutConfig } = this.props;
 
     return (
-      <ul className="kt-menu__subnav">
+      <ul className='kt-menu__subnav'>
         {item.submenu.map((child, index) => (
           <React.Fragment key={index}>
             {child.section && (

@@ -2,9 +2,9 @@ import {
   LOGIN_URL,
   ME_URL,
   REGISTER_URL,
-  REQUEST_PASSWORD_URL
-} from "../../app/crud/auth.crud";
-import userTableMock from "./userTableMock";
+  REQUEST_PASSWORD_URL,
+} from '../../app/crud/auth.crud';
+import userTableMock from './userTableMock';
 
 export default function mockAuth(mock) {
   mock.onPost(LOGIN_URL).reply(({ data }) => {
@@ -12,9 +12,9 @@ export default function mockAuth(mock) {
 
     if (email && password) {
       const user = userTableMock.find(
-          x =>
-              x.email.toLowerCase() === email.toLowerCase() &&
-              x.password === password
+        x =>
+          x.email.toLowerCase() === email.toLowerCase() &&
+          x.password === password
       );
 
       if (user) {
@@ -35,9 +35,9 @@ export default function mockAuth(mock) {
         username,
         password,
         roles: [2], // Manager
-        accessToken: "access-token-" + Math.random(),
-        refreshToken: "access-token-" + Math.random(),
-        pic: process.env.PUBLIC_URL + "/media/users/default.jpg"
+        accessToken: 'access-token-' + Math.random(),
+        refreshToken: 'access-token-' + Math.random(),
+        pic: process.env.PUBLIC_URL + '/media/users/default.jpg',
       };
 
       userTableMock.push(user);
@@ -53,7 +53,7 @@ export default function mockAuth(mock) {
 
     if (email) {
       const user = userTableMock.find(
-          x => x.email.toLowerCase() === email.toLowerCase()
+        x => x.email.toLowerCase() === email.toLowerCase()
       );
 
       if (user) {
@@ -68,9 +68,9 @@ export default function mockAuth(mock) {
 
   mock.onGet(ME_URL).reply(({ headers: { Authorization } }) => {
     const accessToken =
-        Authorization &&
-        Authorization.startsWith("Bearer ") &&
-        Authorization.slice("Bearer ".length);
+      Authorization &&
+      Authorization.startsWith('Bearer ') &&
+      Authorization.slice('Bearer '.length);
 
     if (accessToken) {
       const user = userTableMock.find(x => x.accessToken === accessToken);

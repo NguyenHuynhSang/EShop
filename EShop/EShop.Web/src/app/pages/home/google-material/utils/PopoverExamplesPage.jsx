@@ -1,33 +1,33 @@
 /* eslint-disable no-restricted-imports */
-import React from "react";
-import Notice from "../../../../partials/content/Notice";
-import CodeExample from "../../../../partials/content/CodeExample";
-import { makeStyles } from "@material-ui/core/styles";
-import { Popover, Button, Typography } from "@material-ui/core";
-import PopupState, { bindTrigger, bindPopover } from "material-ui-popup-state";
+import React from 'react';
+import Notice from '../../../../partials/content/Notice';
+import CodeExample from '../../../../partials/content/CodeExample';
+import { makeStyles } from '@material-ui/core/styles';
+import { Popover, Button, Typography } from '@material-ui/core';
+import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
 
 // Example 1
 const useStyles1 = makeStyles(theme => ({
   typography: {
-    padding: theme.spacing(2)
-  }
+    padding: theme.spacing(2),
+  },
 }));
 
 // Example 2
 const useStyles2 = makeStyles(theme => ({
   popover: {
-    pointerEvents: "none"
+    pointerEvents: 'none',
   },
   paper: {
-    padding: theme.spacing(1)
-  }
+    padding: theme.spacing(1),
+  },
 }));
 
 // Example 3
 const useStyles3 = makeStyles(theme => ({
   typography: {
-    margin: theme.spacing(2)
-  }
+    margin: theme.spacing(2),
+  },
 }));
 
 export default function PopoverExamplesPage() {
@@ -44,7 +44,7 @@ export default function PopoverExamplesPage() {
   }
 
   const open1 = Boolean(anchorEl1);
-  const id = open1 ? "simple-popover" : undefined;
+  const id = open1 ? 'simple-popover' : undefined;
 
   // Example 2
   const classes2 = useStyles2();
@@ -65,29 +65,29 @@ export default function PopoverExamplesPage() {
 
   return (
     <>
-      <Notice icon="flaticon-warning kt-font-primary">
+      <Notice icon='flaticon-warning kt-font-primary'>
         <p>A Popover can be used to display some content on top of another</p>
         <p>
-          For more info please check the components's official{" "}
+          For more info please check the components's official{' '}
           <a
-            target="_blank"
-            className="kt-link"
-            rel="noopener noreferrer"
-            href="https://material-ui.com/components/popover/"
+            target='_blank'
+            className='kt-link'
+            rel='noopener noreferrer'
+            href='https://material-ui.com/components/popover/'
           >
             demos & documentation
           </a>
         </p>
       </Notice>
 
-      <CodeExample jsCode={jsCode1} beforeCodeTitle="Simple Popover">
-        <div className="kt-section">
-          <span className="kt-section__sub"></span>
-          <div className="kt-section__content">
+      <CodeExample jsCode={jsCode1} beforeCodeTitle='Simple Popover'>
+        <div className='kt-section'>
+          <span className='kt-section__sub'></span>
+          <div className='kt-section__content'>
             <div>
               <Button
                 aria-describedby={id}
-                variant="contained"
+                variant='contained'
                 onClick={handleClick1}
               >
                 Open Popover
@@ -98,12 +98,12 @@ export default function PopoverExamplesPage() {
                 anchorEl={anchorEl1}
                 onClose={handleClose1}
                 anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "center"
+                  vertical: 'bottom',
+                  horizontal: 'center',
                 }}
                 transformOrigin={{
-                  vertical: "top",
-                  horizontal: "center"
+                  vertical: 'top',
+                  horizontal: 'center',
                 }}
               >
                 <Typography className={classes1.typography}>
@@ -115,38 +115,38 @@ export default function PopoverExamplesPage() {
         </div>
       </CodeExample>
 
-      <CodeExample jsCode={jsCode2} beforeCodeTitle="Mouse over interaction">
-        <div className="kt-section">
-          <span className="kt-section__sub">
+      <CodeExample jsCode={jsCode2} beforeCodeTitle='Mouse over interaction'>
+        <div className='kt-section'>
+          <span className='kt-section__sub'>
             We demonstrate how to use the <code>Popover</code> component to
             implement a popover behavior based on the mouse over event.
           </span>
-          <div className="kt-separator kt-separator--dashed"></div>
-          <div className="kt-section__content">
+          <div className='kt-separator kt-separator--dashed'></div>
+          <div className='kt-section__content'>
             <div>
               <Typography
-                aria-owns={open2 ? "mouse-over-popover" : undefined}
-                aria-haspopup="true"
+                aria-owns={open2 ? 'mouse-over-popover' : undefined}
+                aria-haspopup='true'
                 onMouseEnter={handlePopoverOpen2}
                 onMouseLeave={handlePopoverClose2}
               >
                 Hover with a Popover.
               </Typography>
               <Popover
-                id="mouse-over-popover"
+                id='mouse-over-popover'
                 className={classes2.popover}
                 classes={{
-                  paper: classes2.paper
+                  paper: classes2.paper,
                 }}
                 open={open2}
                 anchorEl={anchorEl2}
                 anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "left"
+                  vertical: 'bottom',
+                  horizontal: 'left',
                 }}
                 transformOrigin={{
-                  vertical: "top",
-                  horizontal: "left"
+                  vertical: 'top',
+                  horizontal: 'left',
                 }}
                 onClose={handlePopoverClose2}
                 disableRestoreFocus
@@ -158,29 +158,29 @@ export default function PopoverExamplesPage() {
         </div>
       </CodeExample>
 
-      <CodeExample jsCode={jsCode3} beforeCodeTitle="PopupState helper">
-        <div className="kt-section">
-          <span className="kt-section__sub">
-            There is a 3rd party package <code>material-ui-popup-state</code>{" "}
+      <CodeExample jsCode={jsCode3} beforeCodeTitle='PopupState helper'>
+        <div className='kt-section'>
+          <span className='kt-section__sub'>
+            There is a 3rd party package <code>material-ui-popup-state</code>{' '}
             that takes care of popover state for you in most cases.
           </span>
-          <div className="kt-separator kt-separator--dashed"></div>
-          <div className="kt-section__content">
-            <PopupState variant="popover" popupId="demo-popup-popover">
+          <div className='kt-separator kt-separator--dashed'></div>
+          <div className='kt-section__content'>
+            <PopupState variant='popover' popupId='demo-popup-popover'>
               {popupState => (
                 <div>
-                  <Button variant="contained" {...bindTrigger(popupState)}>
+                  <Button variant='contained' {...bindTrigger(popupState)}>
                     Open Popover
                   </Button>
                   <Popover
                     {...bindPopover(popupState)}
                     anchorOrigin={{
-                      vertical: "bottom",
-                      horizontal: "center"
+                      vertical: 'bottom',
+                      horizontal: 'center',
                     }}
                     transformOrigin={{
-                      vertical: "top",
-                      horizontal: "center"
+                      vertical: 'top',
+                      horizontal: 'center',
                     }}
                   >
                     <Typography className={classes3.typography}>

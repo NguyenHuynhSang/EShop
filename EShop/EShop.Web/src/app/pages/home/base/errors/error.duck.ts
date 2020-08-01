@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AxiosError } from "axios";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { AxiosError } from 'axios';
 
 export type AppError = Error & {
   id: number;
@@ -19,7 +19,7 @@ function isAxiosError<T>(error: AxiosError | any): error is AxiosError<T> {
 
 const slice = createSlice({
   initialState,
-  name: "errors",
+  name: 'errors',
   reducers: {
     setError(state, action: PayloadAction<any>) {
       const error = action.payload;

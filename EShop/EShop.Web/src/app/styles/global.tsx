@@ -1,10 +1,10 @@
-import React from "react";
-import AgGrid from "./agGrid";
-import createGlobalStyle from "./createGlobalStyle";
-import theme from "./theme";
+import React from 'react';
+import AgGrid from './agGrid';
+import createGlobalStyle from './createGlobalStyle';
+import theme from './theme';
 
 const sbTrackColor = theme.color.background;
-const sbThumbColor = "#a2a5b9";
+const sbThumbColor = '#a2a5b9';
 
 // Why don't I use styled-component? It has way more features than I need and
 // most of them are already available from material-ui's own styled api. But

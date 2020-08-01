@@ -1,12 +1,18 @@
 /* eslint-disable no-restricted-imports */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from "react";
-import Notice from "../../../../partials/content/Notice";
-import CodeExample from "../../../../partials/content/CodeExample";
+import React from 'react';
+import Notice from '../../../../partials/content/Notice';
+import CodeExample from '../../../../partials/content/CodeExample';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
-import { Radio, RadioGroup, FormControlLabel, Switch, FormLabel } from "@material-ui/core";
+import {
+  Radio,
+  RadioGroup,
+  FormControlLabel,
+  Switch,
+  FormLabel,
+} from '@material-ui/core';
 import FileCopyIcon from '@material-ui/icons/FileCopyOutlined';
 import SaveIcon from '@material-ui/icons/Save';
 import PrintIcon from '@material-ui/icons/Print';
@@ -98,116 +104,137 @@ function SpeedDialExamplesPage(props) {
 
   const speedDialClassName1 = clsx(
     classes.speedDial,
-    classes[`direction${capitalize(direction1)}`],
+    classes[`direction${capitalize(direction1)}`]
   );
 
-    return (
-      <>
-        <Notice icon="flaticon-warning kt-font-primary">
-          For more info please check the components's official{" "}
-          <a
-            target="_blank"
-            className="kt-link"
-            rel="noopener noreferrer"
-            href=""
-          >
-            demos & documentation
-          </a>
-        </Notice>
+  return (
+    <>
+      <Notice icon='flaticon-warning kt-font-primary'>
+        For more info please check the components's official{' '}
+        <a
+          target='_blank'
+          className='kt-link'
+          rel='noopener noreferrer'
+          href=''
+        >
+          demos & documentation
+        </a>
+      </Notice>
 
-        <Notice className="notice__paragraph">
-          When pressed, a floating action button can display three to six related actions in the form of a speed dial.
-        </Notice>
+      <Notice className='notice__paragraph'>
+        When pressed, a floating action button can display three to six related
+        actions in the form of a speed dial.
+      </Notice>
 
-        <CodeExample jsCode={jsCode1} beforeCodeTitle="Simple Speed Dial">
-          <div className="kt-section">
-            <span className="kt-section__sub">
-              The floating action button can display related actions.
-            </span>
-            <div className="kt-separator kt-separator--dashed"></div>
-            <div className="kt-section__content">
-              <div className={classes.root}>
-                <div className={classes.controls}>
+      <CodeExample jsCode={jsCode1} beforeCodeTitle='Simple Speed Dial'>
+        <div className='kt-section'>
+          <span className='kt-section__sub'>
+            The floating action button can display related actions.
+          </span>
+          <div className='kt-separator kt-separator--dashed'></div>
+          <div className='kt-section__content'>
+            <div className={classes.root}>
+              <div className={classes.controls}>
+                <FormControlLabel
+                  control={
+                    <Switch
+                      checked={hidden}
+                      onChange={handleHiddenChange1}
+                      value='hidden'
+                      color='primary'
+                    />
+                  }
+                  label='Hidden'
+                />
+                <FormLabel component='legend'>Direction</FormLabel>
+                <RadioGroup
+                  aria-label='Direction'
+                  name='direction'
+                  className={classes.radioGroup}
+                  value={direction1}
+                  onChange={handleDirectionChange1}
+                  row
+                >
+                  <FormControlLabel value='up' control={<Radio />} label='Up' />
                   <FormControlLabel
-                    control={
-                      <Switch
-                        checked={hidden}
-                        onChange={handleHiddenChange1}
-                        value="hidden"
-                        color="primary"
-                      />
-                    }
-                    label="Hidden"
+                    value='right'
+                    control={<Radio />}
+                    label='Right'
                   />
-                  <FormLabel component="legend">Direction</FormLabel>
-                  <RadioGroup
-                    aria-label="Direction"
-                    name="direction"
-                    className={classes.radioGroup}
-                    value={direction1}
-                    onChange={handleDirectionChange1}
-                    row
-                  >
-                    <FormControlLabel value="up" control={<Radio />} label="Up" />
-                    <FormControlLabel value="right" control={<Radio />} label="Right" />
-                    <FormControlLabel value="down" control={<Radio />} label="Down" />
-                    <FormControlLabel value="left" control={<Radio />} label="Left" />
-                  </RadioGroup>
-                </div>
-                <div className={classes.exampleWrapper}>
-                  <SpeedDial
-                    ariaLabel="SpeedDial example"
-                    className={speedDialClassName1}
-                    hidden={hidden}
-                    icon={<SpeedDialIcon />}
-                    onBlur={handleClose}
-                    onClick={handleClick}
-                    onClose={handleClose}
-                    onFocus={handleOpen}
-                    onMouseEnter={handleOpen}
-                    onMouseLeave={handleClose}
-                    open={open1}
-                    direction={direction1}
-                  >
-                    {actions.map(action => (
-                      <SpeedDialAction
-                        key={action.name}
-                        icon={action.icon}
-                        tooltipTitle={action.name}
-                        onClick={handleClick}
-                      />
-                    ))}
-                  </SpeedDial>
-                </div>
+                  <FormControlLabel
+                    value='down'
+                    control={<Radio />}
+                    label='Down'
+                  />
+                  <FormControlLabel
+                    value='left'
+                    control={<Radio />}
+                    label='Left'
+                  />
+                </RadioGroup>
+              </div>
+              <div className={classes.exampleWrapper}>
+                <SpeedDial
+                  ariaLabel='SpeedDial example'
+                  className={speedDialClassName1}
+                  hidden={hidden}
+                  icon={<SpeedDialIcon />}
+                  onBlur={handleClose}
+                  onClick={handleClick}
+                  onClose={handleClose}
+                  onFocus={handleOpen}
+                  onMouseEnter={handleOpen}
+                  onMouseLeave={handleClose}
+                  open={open1}
+                  direction={direction1}
+                >
+                  {actions.map(action => (
+                    <SpeedDialAction
+                      key={action.name}
+                      icon={action.icon}
+                      tooltipTitle={action.name}
+                      onClick={handleClick}
+                    />
+                  ))}
+                </SpeedDial>
               </div>
             </div>
           </div>
-        </CodeExample>
-        
-        <CodeExample jsCode={jsCode2} beforeCodeTitle="Custom close icon">
-          <div className="kt-section">
-            <span className="kt-section__sub">
-              You can provide an alternate icon for the closed and open states using the <code>icon</code> and <code>openIcon</code> props of the <code>SpeedDialIcon</code> component.
-            </span>
-          </div>
-          <div className="kt-section">
-          </div>
-        </CodeExample>
-        
-        <CodeExample jsCode={jsCode3} beforeCodeTitle="Persistent action tooltips">
-          <div className="kt-section">
-            <span className="kt-section__sub">
-              The SpeedDialActions tooltips can be be displayed persistently so that users don't have to long-press in order to see the tooltip on touch devices.
-            </span>
-            <p className="kt-section__sub">It is enabled here across all devices for demo purposes, but in production it could use the <code>isTouch</code> logic to conditionally set the property.</p>
-          </div>
-          <div className="kt-section">
-          </div>
-        </CodeExample>
-      </>
-    );
-  }
+        </div>
+      </CodeExample>
 
+      <CodeExample jsCode={jsCode2} beforeCodeTitle='Custom close icon'>
+        <div className='kt-section'>
+          <span className='kt-section__sub'>
+            You can provide an alternate icon for the closed and open states
+            using the <code>icon</code> and <code>openIcon</code> props of the{' '}
+            <code>SpeedDialIcon</code> component.
+          </span>
+        </div>
+        <div className='kt-section'></div>
+      </CodeExample>
+
+      <CodeExample
+        jsCode={jsCode3}
+        beforeCodeTitle='Persistent action tooltips'
+      >
+        <div className='kt-section'>
+          <span className='kt-section__sub'>
+            The SpeedDialActions tooltips can be be displayed persistently so
+            that users don't have to long-press in order to see the tooltip on
+            touch devices.
+          </span>
+          <p className='kt-section__sub'>
+            It is enabled here across all devices for demo purposes, but in
+            production it could use the <code>isTouch</code> logic to
+            conditionally set the property.
+          </p>
+        </div>
+        <div className='kt-section'></div>
+      </CodeExample>
+    </>
+  );
+}
 
 SpeedDialExamplesPage.propTypes = {
   classes: PropTypes.object.isRequired,

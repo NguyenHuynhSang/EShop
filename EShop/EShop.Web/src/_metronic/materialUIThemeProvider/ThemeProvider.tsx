@@ -1,8 +1,8 @@
-import React from "react";
-import { createMuiTheme } from "@material-ui/core/styles";
-import MuiThemeProvider from "@material-ui/styles/ThemeProvider";
-import Zoom from "@material-ui/core/Zoom";
-import themeConfig from "../../app/styles/theme";
+import React from 'react';
+import { createMuiTheme } from '@material-ui/core/styles';
+import MuiThemeProvider from '@material-ui/styles/ThemeProvider';
+import Zoom from '@material-ui/core/Zoom';
+import themeConfig from '../../app/styles/theme';
 
 const theme = createMuiTheme(
   /**
@@ -11,7 +11,7 @@ const theme = createMuiTheme(
   {
     // direction: "rtl",
     typography: {
-      fontFamily: ["Poppins, Helvetica, sans-serif"].join(","),
+      fontFamily: ['Poppins, Helvetica, sans-serif'].join(','),
     },
 
     palette: {
@@ -26,7 +26,7 @@ const theme = createMuiTheme(
         light: themeConfig.color.secondaryLight,
         main: themeConfig.color.secondary,
         // dark: will be calculated from palette.primary.main,
-        contrastText: "#ffffff",
+        contrastText: '#ffffff',
       },
       error: {
         main: themeConfig.color.danger,
@@ -59,22 +59,22 @@ const theme = createMuiTheme(
       MuiButton: {
         root: {
           // height: 35,
-          color: "#646c9a",
-          "&.MuiButton-outlined": {
+          color: '#646c9a',
+          '&.MuiButton-outlined': {
             borderColor: themeConfig.color.grey2,
           },
-          "&.MuiButton-outlined:hover": {
+          '&.MuiButton-outlined:hover': {
             backgroundColor: themeConfig.color.grey2,
           },
-          "&.MuiButton-outlinedPrimary": {
+          '&.MuiButton-outlinedPrimary': {
             borderColor: themeConfig.color.primaryLight,
             color: themeConfig.color.primary,
           },
-          "&.MuiButton-outlinedPrimary:hover": {
+          '&.MuiButton-outlinedPrimary:hover': {
             borderColor: themeConfig.color.primaryLight,
             backgroundColor: themeConfig.color.primaryLight,
           },
-          "&.MuiButton-containedPrimary:hover": {
+          '&.MuiButton-containedPrimary:hover': {
             backgroundColor: themeConfig.color.primaryDark1,
           },
         },

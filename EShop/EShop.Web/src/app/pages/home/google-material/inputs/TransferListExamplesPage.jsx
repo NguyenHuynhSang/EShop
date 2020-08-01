@@ -1,8 +1,8 @@
 /* eslint-disable no-restricted-imports */
-import React from "react";
-import Notice from "../../../../partials/content/Notice";
-import CodeExample from "../../../../partials/content/CodeExample";
-import { makeStyles } from "@material-ui/core/styles";
+import React from 'react';
+import Notice from '../../../../partials/content/Notice';
+import CodeExample from '../../../../partials/content/CodeExample';
+import { makeStyles } from '@material-ui/core/styles';
 import {
   Paper,
   List,
@@ -14,21 +14,21 @@ import {
   ListItemIcon,
   Card,
   CardHeader,
-  Divider
-} from "@material-ui/core";
+  Divider,
+} from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    margin: "auto"
+    margin: 'auto',
   },
   paper: {
     width: 200,
     height: 230,
-    overflow: "auto"
+    overflow: 'auto',
   },
   button: {
-    margin: theme.spacing(0.5, 0)
-  }
+    margin: theme.spacing(0.5, 0),
+  },
 }));
 
 function not(a, b) {
@@ -42,20 +42,20 @@ function intersection(a, b) {
 // Example 2
 const useStyles2 = makeStyles(theme => ({
   root: {
-    margin: "auto"
+    margin: 'auto',
   },
   cardHeader: {
-    padding: theme.spacing(1, 2)
+    padding: theme.spacing(1, 2),
   },
   list: {
     width: 200,
     height: 230,
     backgroundColor: theme.palette.background.paper,
-    overflow: "auto"
+    overflow: 'auto',
   },
   button: {
-    margin: theme.spacing(0.5, 0)
-  }
+    margin: theme.spacing(0.5, 0),
+  },
 }));
 
 function not2(a, b) {
@@ -117,14 +117,14 @@ export default function TransferListExamplesPage() {
 
   const customList = items => (
     <Paper className={classes.paper}>
-      <List dense component="div" role="list">
+      <List dense component='div' role='list'>
         {items.map(value => {
           const labelId = `transfer-list-item-${value}-label`;
 
           return (
             <ListItem
               key={value}
-              role="listitem"
+              role='listitem'
               button
               onClick={handleToggle(value)}
             >
@@ -133,7 +133,7 @@ export default function TransferListExamplesPage() {
                   checked={checked.indexOf(value) !== -1}
                   tabIndex={-1}
                   disableRipple
-                  inputProps={{ "aria-labelledby": labelId }}
+                  inputProps={{ 'aria-labelledby': labelId }}
                 />
               </ListItemIcon>
               <ListItemText id={labelId} primary={`List item ${value + 1}`} />
@@ -204,21 +204,21 @@ export default function TransferListExamplesPage() {
               numberOfChecked2(items) !== 0
             }
             disabled={items.length === 0}
-            inputProps={{ "aria-label": "all items selected" }}
+            inputProps={{ 'aria-label': 'all items selected' }}
           />
         }
         title={title}
         subheader={`${numberOfChecked2(items)}/${items.length} selected`}
       />
       <Divider />
-      <List className={classes2.list} dense component="div" role="list">
+      <List className={classes2.list} dense component='div' role='list'>
         {items.map(value => {
           const labelId = `transfer-list-all-item-${value}-label`;
 
           return (
             <ListItem
               key={value}
-              role="listitem"
+              role='listitem'
               button
               onClick={handleToggle2(value)}
             >
@@ -227,7 +227,7 @@ export default function TransferListExamplesPage() {
                   checked={checked2.indexOf(value) !== -1}
                   tabIndex={-1}
                   disableRipple
-                  inputProps={{ "aria-labelledby": labelId }}
+                  inputProps={{ 'aria-labelledby': labelId }}
                 />
               </ListItemIcon>
               <ListItemText id={labelId} primary={`List item ${value + 1}`} />
@@ -241,81 +241,81 @@ export default function TransferListExamplesPage() {
 
   return (
     <>
-      <Notice icon="flaticon-warning kt-font-primary">
+      <Notice icon='flaticon-warning kt-font-primary'>
         <p>
           A transfer list (or "shuttle") enables the user to move one or more
           list items between lists.
         </p>
         <p>
-          For more info please check the components's official{" "}
+          For more info please check the components's official{' '}
           <a
-            target="_blank"
-            className="kt-link"
-            rel="noopener noreferrer"
-            href="https://material-ui.com/components/transfer-list/"
+            target='_blank'
+            className='kt-link'
+            rel='noopener noreferrer'
+            href='https://material-ui.com/components/transfer-list/'
           >
             demos & documentation
           </a>
         </p>
       </Notice>
 
-      <CodeExample jsCode={jsCode1} beforeCodeTitle="Simple Transfer List">
-        <div className="kt-section">
-          <span className="kt-section__sub">
+      <CodeExample jsCode={jsCode1} beforeCodeTitle='Simple Transfer List'>
+        <div className='kt-section'>
+          <span className='kt-section__sub'>
             For completeness, this example includes buttons for "move all", but
             not every transfer list needs these.
           </span>
-          <div className="kt-separator kt-separator--dashed" />
-          <div className="kt-section__content">
+          <div className='kt-separator kt-separator--dashed' />
+          <div className='kt-section__content'>
             <Grid
               container
               spacing={2}
-              justify="center"
-              alignItems="center"
+              justify='center'
+              alignItems='center'
               className={classes.root}
             >
               <Grid item>{customList(left)}</Grid>
               <Grid item>
-                <Grid container direction="column" alignItems="center">
+                <Grid container direction='column' alignItems='center'>
                   <Button
-                    variant="outlined"
-                    size="small"
+                    variant='outlined'
+                    size='small'
                     className={classes.button}
                     onClick={handleAllRight}
                     disabled={left.length === 0}
-                    aria-label="move all right"
+                    aria-label='move all right'
                   >
-                    <i className="flaticon2-fast-next" />
+                    <i className='flaticon2-fast-next' />
                   </Button>
                   <Button
-                    variant="outlined"
-                    size="small"
+                    variant='outlined'
+                    size='small'
                     className={classes.button}
                     onClick={handleCheckedRight}
                     disabled={leftChecked.length === 0}
-                    aria-label="move selected right"
+                    aria-label='move selected right'
                   >
-                    <i className="flaticon2-next" />
+                    <i className='flaticon2-next' />
                   </Button>
                   <Button
-                    variant="outlined"
-                    size="small"
+                    variant='outlined'
+                    size='small'
                     className={`${classes.button}`}
                     onClick={handleCheckedLeft}
                     disabled={rightChecked.length === 0}
-                    aria-label="move selected left"
+                    aria-label='move selected left'
                   >
-                    <i className="flaticon2-back" />
+                    <i className='flaticon2-back' />
                   </Button>
                   <Button
-                    variant="outlined"
-                    size="small"
+                    variant='outlined'
+                    size='small'
                     className={classes.button}
                     onClick={handleAllLeft}
                     disabled={right.length === 0}
-                    aria-label="move all left"
+                    aria-label='move all left'
                   >
-                    <i className="flaticon2-fast-back" />
+                    <i className='flaticon2-fast-back' />
                   </Button>
                 </Grid>
               </Grid>
@@ -325,47 +325,47 @@ export default function TransferListExamplesPage() {
         </div>
       </CodeExample>
 
-      <CodeExample jsCode={jsCode2} beforeCodeTitle="Enhanced Transfer List">
-        <div className="kt-section">
-          <span className="kt-section__sub">
+      <CodeExample jsCode={jsCode2} beforeCodeTitle='Enhanced Transfer List'>
+        <div className='kt-section'>
+          <span className='kt-section__sub'>
             This example exchanges the "move all" buttons for a "select all /
             select none" checkbox, and adds a counter.
           </span>
-          <div className="kt-separator kt-separator--dashed" />
-          <div className="kt-section__content">
+          <div className='kt-separator kt-separator--dashed' />
+          <div className='kt-section__content'>
             <Grid
               container
               spacing={2}
-              justify="center"
-              alignItems="center"
+              justify='center'
+              alignItems='center'
               className={classes2.root}
             >
-              <Grid item>{customList2("Choices", left2)}</Grid>
+              <Grid item>{customList2('Choices', left2)}</Grid>
               <Grid item>
-                <Grid container direction="column" alignItems="center">
+                <Grid container direction='column' alignItems='center'>
                   <Button
-                    variant="outlined"
-                    size="small"
+                    variant='outlined'
+                    size='small'
                     className={classes2.button}
                     onClick={handleCheckedRight2}
                     disabled={leftChecked2.length === 0}
-                    aria-label="move selected right"
+                    aria-label='move selected right'
                   >
-                    <i className="flaticon2-next" />
+                    <i className='flaticon2-next' />
                   </Button>
                   <Button
-                    variant="outlined"
-                    size="small"
+                    variant='outlined'
+                    size='small'
                     className={classes2.button}
                     onClick={handleCheckedLeft2}
                     disabled={rightChecked2.length === 0}
-                    aria-label="move selected left"
+                    aria-label='move selected left'
                   >
-                    <i className="flaticon2-back" />
+                    <i className='flaticon2-back' />
                   </Button>
                 </Grid>
               </Grid>
-              <Grid item>{customList2("Chosen", right2)}</Grid>
+              <Grid item>{customList2('Chosen', right2)}</Grid>
             </Grid>
           </div>
         </div>

@@ -1,8 +1,8 @@
-import React from "react";
-import Notice from "../../../../partials/content/Notice";
-import CodeExample from "../../../../partials/content/CodeExample";
+import React from 'react';
+import Notice from '../../../../partials/content/Notice';
+import CodeExample from '../../../../partials/content/CodeExample';
 import { makeStyles } from '@material-ui/core';
-import { Hidden, Paper, Typography, Grid } from "@material-ui/core";
+import { Hidden, Paper, Typography, Grid } from '@material-ui/core';
 
 const jsCode1 = `
 import React from 'react';
@@ -276,18 +276,18 @@ export default function HiddenExamplesPage(props) {
 
   return (
     <>
-      <Notice icon="flaticon-warning kt-font-primary">
+      <Notice icon='flaticon-warning kt-font-primary'>
         <p>
           Quickly and responsively toggle the visibility value of components and
           more with our hidden utilities.
         </p>
         <p>
-          For more info please check the components's official{" "}
+          For more info please check the components's official{' '}
           <a
-            target="_blank"
-            className="kt-link"
-            rel="noopener noreferrer"
-            href="https://material-ui.com/components/hidden/"
+            target='_blank'
+            className='kt-link'
+            rel='noopener noreferrer'
+            href='https://material-ui.com/components/hidden/'
           >
             demos & documentation
           </a>
@@ -301,18 +301,18 @@ export default function HiddenExamplesPage(props) {
         conjunction with our <code>Grid</code> component.
       </Notice>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode1} beforeCodeTitle="Breakpoint up">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode1} beforeCodeTitle='Breakpoint up'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 Using any breakpoint <code>up</code> property, the given
                 children will be hidden at or above the breakpoint.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes1.root}>
-                  <Typography variant="subtitle1">
+                  <Typography variant='subtitle1'>
                     Current width: {width}
                   </Typography>
                   <div className={classes1.container}>
@@ -337,17 +337,17 @@ export default function HiddenExamplesPage(props) {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode2} beforeCodeTitle="Breakpoint down">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode2} beforeCodeTitle='Breakpoint down'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 Using any breakpoint <code>down</code> property, the given
                 children will be hidden at or below the breakpoint.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes1.root}>
-                  <Typography variant="subtitle1">
+                  <Typography variant='subtitle1'>
                     Current width: {width}
                   </Typography>
                   <div className={classes1.container}>
@@ -374,28 +374,28 @@ export default function HiddenExamplesPage(props) {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode3} beforeCodeTitle="Breakpoint only">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode3} beforeCodeTitle='Breakpoint only'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 Using the breakpoint <code>only</code> property, the given
                 children will be hidden at the specified breakpoint(s).
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes1.root}>
-                  <Typography variant="subtitle1">
+                  <Typography variant='subtitle1'>
                     Current width: {width}
                   </Typography>
                   <div className={classes1.container}>
-                    <Hidden only="lg">
+                    <Hidden only='lg'>
                       <Paper className={classes1.paper}>Hidden on lg</Paper>
                     </Hidden>
-                    <Hidden only="sm">
+                    <Hidden only='sm'>
                       <Paper className={classes1.paper}>Hidden on sm</Paper>
                     </Hidden>
-                    <Hidden only={["sm", "lg"]}>
+                    <Hidden only={['sm', 'lg']}>
                       <Paper className={classes1.paper}>
                         Hidden on sm and lg
                       </Paper>
@@ -406,18 +406,18 @@ export default function HiddenExamplesPage(props) {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode4} beforeCodeTitle="Integration with Grid">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode4} beforeCodeTitle='Integration with Grid'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 It is quite common to alter <code>Grid</code> at different
                 responsive breakpoints, and in many cases, you want to hide some
                 of those elements.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes2.root}>
-                  <Typography variant="subtitle1" gutterBottom>
+                  <Typography variant='subtitle1' gutterBottom>
                     Current width: {width}
                   </Typography>
                   <Grid container spacing={3}>

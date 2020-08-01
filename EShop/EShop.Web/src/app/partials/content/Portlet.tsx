@@ -1,6 +1,6 @@
-import React, { forwardRef, useEffect, useState, ReactNode } from "react";
-import clsx from "clsx";
-import { isFragment } from "react-is";
+import React, { forwardRef, useEffect, useState, ReactNode } from 'react';
+import clsx from 'clsx';
+import { isFragment } from 'react-is';
 
 type PortletBaseProps = {
   className?: string;
@@ -11,7 +11,7 @@ export const PortletHeaderIcon = forwardRef(
   (props: PortletBaseProps, ref: React.Ref<HTMLSpanElement>) => (
     <span
       ref={ref}
-      className={clsx("kt-portlet__head-icon", props.className)}
+      className={clsx('kt-portlet__head-icon', props.className)}
     />
   )
 );
@@ -23,7 +23,7 @@ export const PortletHeaderTitle = forwardRef(
       <h3
         {...rest}
         ref={ref}
-        className={clsx("kt-portlet__head-title", className)}
+        className={clsx('kt-portlet__head-title', className)}
       >
         {children}
       </h3>
@@ -39,7 +39,7 @@ export const PortletHeaderToolbar = forwardRef(
       <div
         {...rest}
         ref={ref}
-        className={clsx("kt-portlet__head-toolbar", className)}
+        className={clsx('kt-portlet__head-toolbar', className)}
       />
     );
   }
@@ -67,10 +67,10 @@ export const PortletHeader = forwardRef(
         setWindowHeight(window.innerWidth);
       }
 
-      window.addEventListener("resize", handleResize);
+      window.addEventListener('resize', handleResize);
 
       return () => {
-        window.removeEventListener("resize", handleResize);
+        window.removeEventListener('resize', handleResize);
       };
     });
 
@@ -81,32 +81,32 @@ export const PortletHeader = forwardRef(
       }
 
       const headerElement = document.querySelector(
-        ".kt-header"
+        '.kt-header'
       ) as HTMLDivElement;
       const subheaderElement = document.querySelector(
-        ".kt-subheader"
+        '.kt-subheader'
       ) as HTMLDivElement;
       const headerMobileElement = document.querySelector(
-        ".kt-header-mobile"
+        '.kt-header-mobile'
       ) as HTMLDivElement;
 
       let nextMarginTop = 0;
 
       // mobile header
-      if (window.getComputedStyle(headerElement).height === "0px") {
+      if (window.getComputedStyle(headerElement).height === '0px') {
         nextMarginTop = headerMobileElement.offsetHeight;
       } else {
         // desktop header
-        if (document.body.classList.contains("kt-header--minimize-topbar")) {
+        if (document.body.classList.contains('kt-header--minimize-topbar')) {
           // hardcoded minimized header height
           nextMarginTop = 60;
         } else {
           // normal fixed header
-          if (document.body.classList.contains("kt-header--fixed")) {
+          if (document.body.classList.contains('kt-header--fixed')) {
             nextMarginTop += headerElement.offsetHeight;
           }
 
-          if (document.body.classList.contains("kt-subheader--fixed")) {
+          if (document.body.classList.contains('kt-subheader--fixed')) {
             nextMarginTop += subheaderElement.offsetHeight;
           }
         }
@@ -118,22 +118,22 @@ export const PortletHeader = forwardRef(
     return (
       <div
         ref={ref}
-        className="kt-portlet__head"
+        className='kt-portlet__head'
         style={
           !sticky
             ? undefined
-            : { top, position: "sticky", backgroundColor: "#fff" }
+            : { top, position: 'sticky', backgroundColor: '#fff' }
         }
       >
         {title != null && (
           <div
             ref={labelRef}
-            className={clsx("kt-portlet__head-label", className)}
+            className={clsx('kt-portlet__head-label', className)}
           >
             {icon}
 
             {/* Wrap string and fragments in PortletHeaderTitle */
-            typeof title === "string" || isFragment(title) ? (
+            typeof title === 'string' || isFragment(title) ? (
               <PortletHeaderTitle>{title}</PortletHeaderTitle>
             ) : (
               title
@@ -162,10 +162,10 @@ export const PortletBody = forwardRef(
         {...rest}
         ref={ref}
         className={clsx(
-          "kt-portlet__body",
+          'kt-portlet__body',
           {
-            "kt-portlet__body--fit": fit,
-            "kt-portlet__body--fluid": fluid,
+            'kt-portlet__body--fit': fit,
+            'kt-portlet__body--fluid': fluid,
           },
           className
         )}
@@ -181,7 +181,7 @@ export const PortletFooter = forwardRef(
       <div
         {...rest}
         ref={ref}
-        className={clsx("kt-portlet__foot", className)}
+        className={clsx('kt-portlet__foot', className)}
       />
     );
   }
@@ -202,8 +202,8 @@ export const Portlet = forwardRef(
         {...rest}
         ref={ref}
         className={clsx(
-          "kt-portlet",
-          { "kt-portlet--height-fluid": fluidHeight },
+          'kt-portlet',
+          { 'kt-portlet--height-fluid': fluidHeight },
           className
         )}
       />
@@ -212,14 +212,14 @@ export const Portlet = forwardRef(
 );
 
 // Set display names for debugging.
-if (process.env.NODE_ENV !== "production") {
-  Portlet.displayName = "Portlet";
+if (process.env.NODE_ENV !== 'production') {
+  Portlet.displayName = 'Portlet';
 
-  PortletHeader.displayName = "PortletHeader";
-  PortletHeaderIcon.displayName = "PortletHeaderIcon";
-  PortletHeaderTitle.displayName = "PortletHeaderTitle";
-  PortletHeaderToolbar.displayName = "PortletHeaderToolbar";
+  PortletHeader.displayName = 'PortletHeader';
+  PortletHeaderIcon.displayName = 'PortletHeaderIcon';
+  PortletHeaderTitle.displayName = 'PortletHeaderTitle';
+  PortletHeaderToolbar.displayName = 'PortletHeaderToolbar';
 
-  PortletBody.displayName = "PortletBody";
-  PortletFooter.displayName = "PortletFooter";
+  PortletBody.displayName = 'PortletBody';
+  PortletFooter.displayName = 'PortletFooter';
 }

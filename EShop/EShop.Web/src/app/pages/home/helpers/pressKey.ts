@@ -1,16 +1,16 @@
-import has from "lodash/has";
+import has from 'lodash/has';
 
-type KeyEvent = "keydown" | "keyup" | "keypress";
+type KeyEvent = 'keydown' | 'keyup' | 'keypress';
 
 export const VKey = {
   Escape: 27,
 };
 
 export default function pressKey(keyEvent: KeyEvent, keyCode: number) {
-  const keyboardEvent = document.createEvent("KeyboardEvent");
-  const initMethod = has(keyboardEvent, "initKeyboardEvent")
-    ? "initKeyboardEvent"
-    : "initKeyEvent";
+  const keyboardEvent = document.createEvent('KeyboardEvent');
+  const initMethod = has(keyboardEvent, 'initKeyboardEvent')
+    ? 'initKeyboardEvent'
+    : 'initKeyEvent';
 
   keyboardEvent[initMethod](
     keyEvent,

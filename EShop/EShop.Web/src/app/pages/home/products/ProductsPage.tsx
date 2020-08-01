@@ -1,44 +1,44 @@
-import React from "react";
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import AddIcon from "@material-ui/icons/Add";
-import VisibilityIcon from "@material-ui/icons/Visibility";
-import { Light as SyntaxHighlighter } from "react-syntax-highlighter";
-import { base16AteliersulphurpoolLight as highlightStyle } from "react-syntax-highlighter/dist/esm/styles/prism";
+import React from 'react';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import AddIcon from '@material-ui/icons/Add';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { base16AteliersulphurpoolLight as highlightStyle } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import {
   Portlet,
   PortletBody,
   PortletHeader,
   PortletHeaderToolbar,
-} from "../../../partials/content/Portlet";
-import { ProductIcon } from "../../../widgets/Common";
-import ProductTable from "./ProductTable";
-import CurrencySelector from "./CurrencySelector";
-import ColumnDisplayDialog from "./ColumnDisplayDialog";
-import ProductTablePagination from "./ProductTablePagination";
-import ExportButton from "./ExportButton";
-import { actions, ExportFormat } from "../base/table.duck";
-import { makeStyles, theme } from "../../../styles";
-import { useDialog, useSnackbar } from "../helpers/hookHelpers";
-import { useSelector, useDispatch } from "../../../store/store";
-import { useExportDownload, useExportData } from "../helpers/agGridHelpers";
+} from '../../../partials/content/Portlet';
+import { ProductIcon } from '../../../widgets/Common';
+import ProductTable from './ProductTable';
+import CurrencySelector from './CurrencySelector';
+import ColumnDisplayDialog from './ColumnDisplayDialog';
+import ProductTablePagination from './ProductTablePagination';
+import ExportButton from './ExportButton';
+import { actions, ExportFormat } from '../base/table.duck';
+import { makeStyles, theme } from '../../../styles';
+import { useDialog, useSnackbar } from '../helpers/hookHelpers';
+import { useSelector, useDispatch } from '../../../store/store';
+import { useExportDownload, useExportData } from '../helpers/agGridHelpers';
 
 function getLanguage(format: ExportFormat) {
   switch (format) {
     case ExportFormat.Csv:
-      return "javascript";
+      return 'javascript';
     case ExportFormat.Excel:
-      return "xml";
+      return 'xml';
     case ExportFormat.Json:
-      return "json";
+      return 'json';
   }
 }
 function ExportPreviewDialog() {
-  const isOpen = useSelector((state) => state.table._global.exportDialogOpen);
-  const format = useSelector((state) => state.table._global.exportFormat);
+  const isOpen = useSelector(state => state.table._global.exportDialogOpen);
+  const format = useSelector(state => state.table._global.exportFormat);
   const csvData = useExportData(format);
   const download = useExportDownload(format);
   const dispatch = useDispatch();
@@ -65,10 +65,10 @@ function ExportPreviewDialog() {
             // wait for the dialog's exit animation to finish and the global scrollbar popup again before showing the snackbar
             // if showing right away, the scrollbar will push the snackbar to the left in the middle of the transition
             setTimeout(() => {
-              createSnackbar("Copied to your clipboard!", { variant: "info" });
+              createSnackbar('Copied to your clipboard!', { variant: 'info' });
             }, 300);
           }}
-          color="primary"
+          color='primary'
         >
           Copy
         </Button>
@@ -77,7 +77,7 @@ function ExportPreviewDialog() {
             download();
             close();
           }}
-          color="primary"
+          color='primary'
         >
           Download
         </Button>
@@ -89,25 +89,25 @@ function ExportPreviewDialog() {
 const iconSize = 18;
 const useStyles = makeStyles({
   productIcon: {
-    paddingRight: "0.4rem",
-    "& svg": {
-      marginTop: "-0.2rem",
+    paddingRight: '0.4rem',
+    '& svg': {
+      marginTop: '-0.2rem',
     },
   },
   toolbar: {
-    "& > :not(:last-child)": {
+    '& > :not(:last-child)': {
       marginRight: theme.spacing.md,
     },
   },
   action: {
     marginBottom: theme.spacing.md,
-    display: "flex",
+    display: 'flex',
 
-    "& > :not(:last-child)": {
+    '& > :not(:last-child)': {
       marginRight: theme.spacing.md,
     },
-    "& > .ag-pagination": {
-      marginLeft: "auto",
+    '& > .ag-pagination': {
+      marginLeft: 'auto',
     },
   },
 });
@@ -117,7 +117,7 @@ export default function ProductsPage() {
   const colDialog = useDialog();
 
   return (
-    <Portlet id="productTableContainer">
+    <Portlet id='productTableContainer'>
       <PortletHeader
         title={
           <>
@@ -133,9 +133,9 @@ export default function ProductsPage() {
           <PortletHeaderToolbar className={styles.toolbar}>
             <Button
               startIcon={<AddIcon style={{ fontSize: iconSize }} />}
-              variant="outlined"
-              color="primary"
-              size="large"
+              variant='outlined'
+              color='primary'
+              size='large'
             >
               Thêm sản phẩm
             </Button>
@@ -147,8 +147,8 @@ export default function ProductsPage() {
         <div className={styles.action}>
           <Button
             startIcon={<VisibilityIcon style={{ fontSize: iconSize }} />}
-            variant="outlined"
-            color="primary"
+            variant='outlined'
+            color='primary'
             onClick={colDialog.handleOpen}
           >
             Cột hiển thị
@@ -156,7 +156,7 @@ export default function ProductsPage() {
           <CurrencySelector />
           <ProductTablePagination />
         </div>
-        <ProductTable name="product" />
+        <ProductTable name='product' />
       </PortletBody>
       <ColumnDisplayDialog
         open={colDialog.open}

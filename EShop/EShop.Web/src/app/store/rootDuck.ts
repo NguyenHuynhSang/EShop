@@ -1,10 +1,10 @@
-import { all } from "redux-saga/effects";
+import { all } from 'redux-saga/effects';
 
-import * as auth from "./ducks/auth.duck";
-import * as errors from "../pages/home/base/errors/error.duck";
-import * as table from "../pages/home/base/table.duck";
-import * as products from "../pages/home/products/product.duck";
-import { metronic } from "../../_metronic";
+import * as auth from './ducks/auth.duck';
+import * as errors from '../pages/home/base/errors/error.duck';
+import * as table from '../pages/home/base/table.duck';
+import * as products from '../pages/home/products/product.duck';
+import { metronic } from '../../_metronic';
 
 export const reducer = {
   auth: auth.reducer,

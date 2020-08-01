@@ -1,28 +1,28 @@
-import React, { useEffect, useMemo, useRef } from "react";
-import { Chart } from "chart.js";
-import { useSelector } from "react-redux";
-import { metronic } from "../../_metronic";
+import React, { useEffect, useMemo, useRef } from 'react';
+import { Chart } from 'chart.js';
+import { useSelector } from 'react-redux';
+import { metronic } from '../../_metronic';
 
 export default function OrderStatisticsChart() {
   const ref = useRef();
   const { brandColor, shape2Color, shape3Color } = useSelector(state => ({
     brandColor: metronic.builder.selectors.getConfig(
       state,
-      "colors.state.brand"
+      'colors.state.brand'
     ),
     shape2Color: metronic.builder.selectors.getConfig(
       state,
-      "colors.base.shape.2"
+      'colors.base.shape.2'
     ),
     shape3Color: metronic.builder.selectors.getConfig(
       state,
-      "colors.base.shape.3"
-    )
+      'colors.base.shape.3'
+    ),
   }));
 
   const data = useMemo(
     () => ({
-      labels: ["1 Jan", "2 Jan", "3 Jan", "4 Jan", "5 Jan", "6 Jan", "7 Jan"],
+      labels: ['1 Jan', '2 Jan', '3 Jan', '4 Jan', '5 Jan', '6 Jan', '7 Jan'],
       datasets: [
         {
           fill: true,
@@ -40,20 +40,20 @@ export default function OrderStatisticsChart() {
           pointHoverRadius: 4,
           pointHoverBorderWidth: 12,
           pointBackgroundColor: Chart.helpers
-            .color("#000000")
+            .color('#000000')
             .alpha(0)
             .rgbString(),
           pointBorderColor: Chart.helpers
-            .color("#000000")
+            .color('#000000')
             .alpha(0)
             .rgbString(),
           pointHoverBackgroundColor: brandColor,
           pointHoverBorderColor: Chart.helpers
-            .color("#000000")
+            .color('#000000')
             .alpha(0.1)
             .rgbString(),
 
-          data: [20, 40, 50, 25, 35, 60, 30]
+          data: [20, 40, 50, 25, 35, 60, 30],
         },
         {
           fill: true,
@@ -70,22 +70,22 @@ export default function OrderStatisticsChart() {
           pointHoverRadius: 4,
           pointHoverBorderWidth: 12,
           pointBackgroundColor: Chart.helpers
-            .color("#000000")
+            .color('#000000')
             .alpha(0)
             .rgbString(),
           pointBorderColor: Chart.helpers
-            .color("#000000")
+            .color('#000000')
             .alpha(0)
             .rgbString(),
           pointHoverBackgroundColor: brandColor,
           pointHoverBorderColor: Chart.helpers
-            .color("#000000")
+            .color('#000000')
             .alpha(0.1)
             .rgbString(),
 
-          data: [25, 45, 55, 30, 40, 65, 35]
-        }
-      ]
+          data: [25, 45, 55, 30, 40, 65, 35],
+        },
+      ],
     }),
     [brandColor]
   );
@@ -96,7 +96,7 @@ export default function OrderStatisticsChart() {
 
     const chart = new Chart(ref.current, {
       data,
-      type: "line",
+      type: 'line',
       options: {
         responsive: true,
         maintainAspectRatio: false,
@@ -109,7 +109,7 @@ export default function OrderStatisticsChart() {
               display: true,
               scaleLabel: {
                 display: false,
-                labelString: "Month"
+                labelString: 'Month',
               },
               gridLines: false,
               ticks: {
@@ -117,9 +117,9 @@ export default function OrderStatisticsChart() {
                 beginAtZero: true,
                 fontColor: shape3Color,
                 fontSize: 13,
-                padding: 10
-              }
-            }
+                padding: 10,
+              },
+            },
           ],
           yAxes: [
             {
@@ -128,7 +128,7 @@ export default function OrderStatisticsChart() {
               display: true,
               scaleLabel: {
                 display: false,
-                labelString: "Value"
+                labelString: 'Value',
               },
               gridLines: {
                 color: shape2Color,
@@ -138,7 +138,7 @@ export default function OrderStatisticsChart() {
                 borderDash: [3, 4],
                 zeroLineWidth: 1,
                 zeroLineColor: shape2Color,
-                zeroLineBorderDash: [3, 4]
+                zeroLineBorderDash: [3, 4],
               },
               ticks: {
                 max: 70,
@@ -147,41 +147,41 @@ export default function OrderStatisticsChart() {
                 beginAtZero: true,
                 fontColor: shape3Color,
                 fontSize: 13,
-                padding: 10
-              }
-            }
-          ]
+                padding: 10,
+              },
+            },
+          ],
         },
         title: {
-          display: false
+          display: false,
         },
         hover: {
-          mode: "ErrorsPage.js"
+          mode: 'ErrorsPage.js',
         },
         tooltips: {
           enabled: true,
           intersect: false,
-          mode: "nearest",
+          mode: 'nearest',
           bodySpacing: 5,
           yPadding: 10,
           xPadding: 10,
           caretPadding: 0,
           displayColors: false,
           backgroundColor: brandColor,
-          titleFontColor: "#ffffff",
+          titleFontColor: '#ffffff',
           cornerRadius: 4,
           footerSpacing: 0,
-          titleSpacing: 0
+          titleSpacing: 0,
         },
         layout: {
           padding: {
             left: 0,
             right: 0,
             top: 5,
-            bottom: 5
-          }
-        }
-      }
+            bottom: 5,
+          },
+        },
+      },
     });
 
     return () => {
@@ -190,47 +190,47 @@ export default function OrderStatisticsChart() {
   }, [data, brandColor, shape2Color, shape3Color]);
 
   return (
-    <div className="kt-widget12">
-      <div className="kt-widget12__content">
-        <div className="kt-widget12__item">
-          <div className="kt-widget12__info">
-            <span className="kt-widget12__desc">Annual Taxes EMS</span>
-            <span className="kt-widget12__value">$400,000</span>
+    <div className='kt-widget12'>
+      <div className='kt-widget12__content'>
+        <div className='kt-widget12__item'>
+          <div className='kt-widget12__info'>
+            <span className='kt-widget12__desc'>Annual Taxes EMS</span>
+            <span className='kt-widget12__value'>$400,000</span>
           </div>
-          <div className="kt-widget12__info">
-            <span className="kt-widget12__desc">Finance Review Date</span>
-            <span className="kt-widget12__value">July 24,2019</span>
+          <div className='kt-widget12__info'>
+            <span className='kt-widget12__desc'>Finance Review Date</span>
+            <span className='kt-widget12__value'>July 24,2019</span>
           </div>
         </div>
-        <div className="kt-widget12__item">
-          <div className="kt-widget12__info">
-            <span className="kt-widget12__desc">Avarage Revenue</span>
-            <span className="kt-widget12__value">$60M</span>
+        <div className='kt-widget12__item'>
+          <div className='kt-widget12__info'>
+            <span className='kt-widget12__desc'>Avarage Revenue</span>
+            <span className='kt-widget12__value'>$60M</span>
           </div>
-          <div className="kt-widget12__info">
-            <span className="kt-widget12__desc">Revenue Margin</span>
-            <div className="kt-widget12__progress">
-              <div className="progress kt-progress--sm">
+          <div className='kt-widget12__info'>
+            <span className='kt-widget12__desc'>Revenue Margin</span>
+            <div className='kt-widget12__progress'>
+              <div className='progress kt-progress--sm'>
                 <div
-                  role="progressbar"
+                  role='progressbar'
                   aria-valuemin={0}
                   aria-valuenow={100}
                   aria-valuemax={100}
-                  style={{ width: "40%" }}
-                  className="progress-bar bg-success"
+                  style={{ width: '40%' }}
+                  className='progress-bar bg-success'
                 />
               </div>
-              <span className="kt-widget12__stat">40%</span>
+              <span className='kt-widget12__stat'>40%</span>
             </div>
           </div>
         </div>
       </div>
-      <div className="kt-widget12__chart" style={{ height: "250px" }}>
+      <div className='kt-widget12__chart' style={{ height: '250px' }}>
         <canvas
           ref={ref}
           width={683}
           height={312}
-          id="kt_chart_order_statistics"
+          id='kt_chart_order_statistics'
         />
       </div>
     </div>

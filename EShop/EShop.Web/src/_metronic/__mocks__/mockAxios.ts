@@ -1,7 +1,7 @@
-import MockAdapter from "axios-mock-adapter";
-import mockAuth from "./mockAuth";
-import { AxiosStatic } from "axios";
-import mockProduct from "../../app/pages/home/products/product.mock";
+import MockAdapter from 'axios-mock-adapter';
+import mockAuth from './mockAuth';
+import { AxiosStatic } from 'axios';
+import mockProduct from '../../app/pages/home/products/product.mock';
 
 export default function mockAxios(axios: AxiosStatic) {
   const mock = new MockAdapter(axios, { delayResponse: 750 });

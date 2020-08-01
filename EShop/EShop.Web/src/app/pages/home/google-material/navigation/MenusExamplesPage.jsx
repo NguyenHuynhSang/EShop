@@ -1,8 +1,8 @@
 /* eslint-disable no-restricted-imports */
-import React from "react";
-import Notice from "../../../../partials/content/Notice";
-import CodeExample from "../../../../partials/content/CodeExample";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import React from 'react';
+import Notice from '../../../../partials/content/Notice';
+import CodeExample from '../../../../partials/content/CodeExample';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import {
   Menu,
   Button,
@@ -18,56 +18,56 @@ import {
   ListItemIcon,
   IconButton,
   Typography,
-  Fade
-} from "@material-ui/core";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import DraftsIcon from "@material-ui/icons/Drafts";
-import SendIcon from "@material-ui/icons/Send";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
-import PriorityHighIcon from "@material-ui/icons/PriorityHigh";
+  Fade,
+} from '@material-ui/core';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import DraftsIcon from '@material-ui/icons/Drafts';
+import SendIcon from '@material-ui/icons/Send';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import PriorityHighIcon from '@material-ui/icons/PriorityHigh';
 
 // Example 2
 const useStyles2 = makeStyles(theme => ({
   root: {
-    width: "100%",
+    width: '100%',
     maxWidth: 360,
-    backgroundColor: theme.palette.background.paper
-  }
+    backgroundColor: theme.palette.background.paper,
+  },
 }));
 
 const options = [
-  "Show some love to Material-UI",
-  "Show all notification content",
-  "Hide sensitive notification content",
-  "Hide all notification content"
+  'Show some love to Material-UI',
+  'Show all notification content',
+  'Hide sensitive notification content',
+  'Hide all notification content',
 ];
 
 // Example 3
 const useStyles3 = makeStyles(theme => ({
   root: {
-    display: "flex"
+    display: 'flex',
   },
   paper: {
-    marginRight: theme.spacing(2)
-  }
+    marginRight: theme.spacing(2),
+  },
 }));
 
 // Example 4
 const StyledMenu4 = withStyles({
   paper: {
-    border: "1px solid #d3d4d5"
-  }
+    border: '1px solid #d3d4d5',
+  },
 })(props => (
   <Menu
     elevation={0}
     getContentAnchorEl={null}
     anchorOrigin={{
-      vertical: "bottom",
-      horizontal: "center"
+      vertical: 'bottom',
+      horizontal: 'center',
     }}
     transformOrigin={{
-      vertical: "top",
-      horizontal: "center"
+      vertical: 'top',
+      horizontal: 'center',
     }}
     {...props}
   />
@@ -75,31 +75,31 @@ const StyledMenu4 = withStyles({
 
 const StyledMenuItem4 = withStyles(theme => ({
   root: {
-    "&:focus": {
+    '&:focus': {
       backgroundColor: theme.palette.primary.main,
-      "& .MuiListItemIcon-root, & .MuiListItemText-primary": {
-        color: theme.palette.common.white
-      }
-    }
-  }
+      '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
+        color: theme.palette.common.white,
+      },
+    },
+  },
 }))(MenuItem);
 
 // Example 5
 const options5 = [
-  "None",
-  "Atria",
-  "Callisto",
-  "Dione",
-  "Ganymede",
-  "Hangouts Call",
-  "Luna",
-  "Oberon",
-  "Phobos",
-  "Pyxis",
-  "Sedna",
-  "Titania",
-  "Triton",
-  "Umbriel"
+  'None',
+  'Atria',
+  'Callisto',
+  'Dione',
+  'Ganymede',
+  'Hangouts Call',
+  'Luna',
+  'Oberon',
+  'Phobos',
+  'Pyxis',
+  'Sedna',
+  'Titania',
+  'Triton',
+  'Umbriel',
 ];
 
 const ITEM_HEIGHT = 48;
@@ -107,8 +107,8 @@ const ITEM_HEIGHT = 48;
 // Example 6
 const useStyles6 = makeStyles({
   root: {
-    width: 230
-  }
+    width: 230,
+  },
 });
 
 export default function MenusExamplesPage() {
@@ -198,43 +198,43 @@ export default function MenusExamplesPage() {
 
   return (
     <>
-      <Notice icon="flaticon-warning kt-font-primary">
+      <Notice icon='flaticon-warning kt-font-primary'>
         <p>Menus display a list of choices on temporary surfaces.</p>
         <p>
-          For more info please check the components's official{" "}
+          For more info please check the components's official{' '}
           <a
-            target="_blank"
-            className="kt-link"
-            rel="noopener noreferrer"
-            href="https://material-ui.com/components/menus/"
+            target='_blank'
+            className='kt-link'
+            rel='noopener noreferrer'
+            href='https://material-ui.com/components/menus/'
           >
             demos & documentation
           </a>
         </p>
       </Notice>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode1} beforeCodeTitle="Simple Menu">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode1} beforeCodeTitle='Simple Menu'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 Simple menus open over the anchor element by default (this
                 option can be changed via props). When close to a screen edge,
                 simple menus vertically realign to make sure that all menu items
                 are completely visible.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div>
                   <Button
-                    aria-controls="simple-menu"
-                    aria-haspopup="true"
+                    aria-controls='simple-menu'
+                    aria-haspopup='true'
                     onClick={handleClick1}
                   >
                     Open Menu
                   </Button>
                   <Menu
-                    id="simple-menu"
+                    id='simple-menu'
                     anchorEl={anchorEl1}
                     keepMounted
                     open={Boolean(anchorEl1)}
@@ -249,38 +249,38 @@ export default function MenusExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode2} beforeCodeTitle="Selected menus">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode2} beforeCodeTitle='Selected menus'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 If used for item selection, when opened, simple menus attempt to
                 vertically align the currently selected menu item with the
                 anchor element, and the initial focus will be placed on the
                 selected menu item. The currently selected menu item is set
                 using the <code>selected</code> property (from ListItem). To use
                 a selected menu item without impacting the initial focus or the
-                vertical positioning of the menu, set the <code>variant</code>{" "}
+                vertical positioning of the menu, set the <code>variant</code>{' '}
                 property to <code>menu</code>.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes2.root}>
-                  <List component="nav" aria-label="Device settings">
+                  <List component='nav' aria-label='Device settings'>
                     <ListItem
                       button
-                      aria-haspopup="true"
-                      aria-controls="lock-menu"
-                      aria-label="When device is locked"
+                      aria-haspopup='true'
+                      aria-controls='lock-menu'
+                      aria-label='When device is locked'
                       onClick={handleClickListItem2}
                     >
                       <ListItemText
-                        primary="When device is locked"
+                        primary='When device is locked'
                         secondary={options[selectedIndex2]}
                       />
                     </ListItem>
                   </List>
                   <Menu
-                    id="lock-menu"
+                    id='lock-menu'
                     anchorEl={anchorEl2}
                     keepMounted
                     open={Boolean(anchorEl2)}
@@ -304,19 +304,19 @@ export default function MenusExamplesPage() {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode3} beforeCodeTitle="MenuList composition">
-            <div className="kt-section">
-              <span className="kt-section__sub">
-                The <code>Menu</code> component uses the <code>Popover</code>{" "}
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode3} beforeCodeTitle='MenuList composition'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
+                The <code>Menu</code> component uses the <code>Popover</code>{' '}
                 component internally. However, you might want to use a different
                 positioning strategy, or not blocking the scroll. For answering
                 those needs, we expose a <code>MenuList</code> component that
                 you can compose, with <code>Popper</code> in this example.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes3.root}>
                   <Paper className={classes3.paper}>
                     <MenuList>
@@ -328,8 +328,8 @@ export default function MenusExamplesPage() {
                   <div>
                     <Button
                       ref={anchorRef3}
-                      aria-controls="menu-list-grow"
-                      aria-haspopup="true"
+                      aria-controls='menu-list-grow'
+                      aria-haspopup='true'
                       onClick={handleToggle3}
                     >
                       Toggle Menu Grow
@@ -346,12 +346,12 @@ export default function MenusExamplesPage() {
                           {...TransitionProps}
                           style={{
                             transformOrigin:
-                              placement === "bottom"
-                                ? "center top"
-                                : "center bottom"
+                              placement === 'bottom'
+                                ? 'center top'
+                                : 'center bottom',
                           }}
                         >
-                          <Paper id="menu-list-grow">
+                          <Paper id='menu-list-grow'>
                             <ClickAwayListener onClickAway={handleClose}>
                               <MenuList>
                                 <MenuItem onClick={handleClose}>
@@ -375,26 +375,26 @@ export default function MenusExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode4} beforeCodeTitle="Customized menus">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode4} beforeCodeTitle='Customized menus'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 Here is an example of customizing the component.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div>
                   <Button
-                    aria-controls="customized-menu"
-                    aria-haspopup="true"
-                    variant="contained"
-                    color="primary"
+                    aria-controls='customized-menu'
+                    aria-haspopup='true'
+                    variant='contained'
+                    color='primary'
                     onClick={handleClick4}
                   >
                     Open Menu
                   </Button>
                   <StyledMenu4
-                    id="customized-menu"
+                    id='customized-menu'
                     anchorEl={anchorEl4}
                     keepMounted
                     open={Boolean(anchorEl4)}
@@ -404,19 +404,19 @@ export default function MenusExamplesPage() {
                       <ListItemIcon>
                         <SendIcon />
                       </ListItemIcon>
-                      <ListItemText primary="Sent mail" />
+                      <ListItemText primary='Sent mail' />
                     </StyledMenuItem4>
                     <StyledMenuItem4>
                       <ListItemIcon>
                         <DraftsIcon />
                       </ListItemIcon>
-                      <ListItemText primary="Drafts" />
+                      <ListItemText primary='Drafts' />
                     </StyledMenuItem4>
                     <StyledMenuItem4>
                       <ListItemIcon>
                         <InboxIcon />
                       </ListItemIcon>
-                      <ListItemText primary="Inbox" />
+                      <ListItemText primary='Inbox' />
                     </StyledMenuItem4>
                   </StyledMenu4>
                 </div>
@@ -426,27 +426,27 @@ export default function MenusExamplesPage() {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode5} beforeCodeTitle="Max height menus">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode5} beforeCodeTitle='Max height menus'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 If the height of a menu prevents all menu items from being
                 displayed, the menu can scroll internally.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div>
                   <IconButton
-                    aria-label="More"
-                    aria-controls="long-menu"
-                    aria-haspopup="true"
+                    aria-label='More'
+                    aria-controls='long-menu'
+                    aria-haspopup='true'
                     onClick={handleClick5}
                   >
                     <MoreVertIcon />
                   </IconButton>
                   <Menu
-                    id="long-menu"
+                    id='long-menu'
                     anchorEl={anchorEl5}
                     keepMounted
                     open={open5}
@@ -454,14 +454,14 @@ export default function MenusExamplesPage() {
                     PaperProps={{
                       style: {
                         maxHeight: ITEM_HEIGHT * 4.5,
-                        width: 200
-                      }
+                        width: 200,
+                      },
                     }}
                   >
                     {options5.map(option => (
                       <MenuItem
                         key={option}
-                        selected={option === "Pyxis"}
+                        selected={option === 'Pyxis'}
                         onClick={handleClose5}
                       >
                         {option}
@@ -473,30 +473,30 @@ export default function MenusExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode6} beforeCodeTitle="Limitations">
-            <div className="kt-section">
-              <span className="kt-section__sub">
-                There is a flexbox bug that prevents{" "}
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode6} beforeCodeTitle='Limitations'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
+                There is a flexbox bug that prevents{' '}
                 <code>text-overflow: ellipsis</code> from working in a flexbox
-                layout. You can use the <code>Typography</code> component with{" "}
+                layout. You can use the <code>Typography</code> component with{' '}
                 <code>noWrap</code> to workaround this issue:
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <Paper className={classes6.root}>
                   <MenuList>
                     <MenuItem>
                       <ListItemIcon>
                         <SendIcon />
                       </ListItemIcon>
-                      <Typography variant="inherit">A short message</Typography>
+                      <Typography variant='inherit'>A short message</Typography>
                     </MenuItem>
                     <MenuItem>
                       <ListItemIcon>
                         <PriorityHighIcon />
                       </ListItemIcon>
-                      <Typography variant="inherit">
+                      <Typography variant='inherit'>
                         A very long text that overflows
                       </Typography>
                     </MenuItem>
@@ -504,7 +504,7 @@ export default function MenusExamplesPage() {
                       <ListItemIcon>
                         <DraftsIcon />
                       </ListItemIcon>
-                      <Typography variant="inherit" noWrap>
+                      <Typography variant='inherit' noWrap>
                         A very long text that overflows
                       </Typography>
                     </MenuItem>
@@ -516,25 +516,25 @@ export default function MenusExamplesPage() {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode7} beforeCodeTitle="Change transition">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode7} beforeCodeTitle='Change transition'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 Use a different transition.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div>
                   <Button
-                    aria-controls="fade-menu"
-                    aria-haspopup="true"
+                    aria-controls='fade-menu'
+                    aria-haspopup='true'
                     onClick={handleClick7}
                   >
                     Open with fade transition
                   </Button>
                   <Menu
-                    id="fade-menu"
+                    id='fade-menu'
                     anchorEl={anchorEl7}
                     keepMounted
                     open={open7}

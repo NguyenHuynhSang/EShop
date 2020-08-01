@@ -1,8 +1,8 @@
 /* eslint-disable no-restricted-imports */
-import React from "react";
-import clsx from "clsx";
-import Notice from "../../../../partials/content/Notice";
-import CodeExample from "../../../../partials/content/CodeExample";
+import React from 'react';
+import clsx from 'clsx';
+import Notice from '../../../../partials/content/Notice';
+import CodeExample from '../../../../partials/content/CodeExample';
 import {
   Card,
   CardContent,
@@ -14,95 +14,95 @@ import {
   IconButton,
   CardMedia,
   Collapse,
-  CardActionArea
-} from "@material-ui/core";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-import { red } from "@material-ui/core/colors";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import ShareIcon from "@material-ui/icons/Share";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
-import SkipPreviousIcon from "@material-ui/icons/SkipPrevious";
-import PlayArrowIcon from "@material-ui/icons/PlayArrow";
-import SkipNextIcon from "@material-ui/icons/SkipNext";
+  CardActionArea,
+} from '@material-ui/core';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { red } from '@material-ui/core/colors';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import ShareIcon from '@material-ui/icons/Share';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
+import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+import SkipNextIcon from '@material-ui/icons/SkipNext';
 
 // Example 1
 const useStyles1 = makeStyles({
   card: {
-    minWidth: 275
+    minWidth: 275,
   },
   bullet: {
-    display: "inline-block",
-    margin: "0 2px",
-    transform: "scale(0.8)"
+    display: 'inline-block',
+    margin: '0 2px',
+    transform: 'scale(0.8)',
   },
   title: {
-    fontSize: 14
+    fontSize: 14,
   },
   pos: {
-    marginBottom: 12
-  }
+    marginBottom: 12,
+  },
 });
 
 // Example 2
 const useStyles2 = makeStyles(theme => ({
   card: {
-    maxWidth: 345
+    maxWidth: 345,
   },
   media: {
     height: 0,
-    paddingTop: "56.25%" // 16:9
+    paddingTop: '56.25%', // 16:9
   },
   expand: {
-    transform: "rotate(0deg)",
-    marginLeft: "auto",
-    transition: theme.transitions.create("transform", {
-      duration: theme.transitions.duration.shortest
-    })
+    transform: 'rotate(0deg)',
+    marginLeft: 'auto',
+    transition: theme.transitions.create('transform', {
+      duration: theme.transitions.duration.shortest,
+    }),
   },
   expandOpen: {
-    transform: "rotate(180deg)"
+    transform: 'rotate(180deg)',
   },
   avatar: {
-    backgroundColor: red[500]
-  }
+    backgroundColor: red[500],
+  },
 }));
 
 // Example 3
 const useStyles3 = makeStyles({
   card: {
-    maxWidth: 345
+    maxWidth: 345,
   },
   media: {
-    height: 140
-  }
+    height: 140,
+  },
 });
 
 // Example 4
 const useStyles4 = makeStyles(theme => ({
   card: {
-    display: "flex"
+    display: 'flex',
   },
   details: {
-    display: "flex",
-    flexDirection: "column"
+    display: 'flex',
+    flexDirection: 'column',
   },
   content: {
-    flex: "1 0 auto"
+    flex: '1 0 auto',
   },
   cover: {
-    width: 151
+    width: 151,
   },
   controls: {
-    display: "flex",
-    alignItems: "center",
+    display: 'flex',
+    alignItems: 'center',
     paddingLeft: theme.spacing(1),
-    paddingBottom: theme.spacing(1)
+    paddingBottom: theme.spacing(1),
   },
   playIcon: {
     height: 38,
-    width: 38
-  }
+    width: 38,
+  },
 }));
 
 export default function CardsExamplesPage() {
@@ -127,98 +127,98 @@ export default function CardsExamplesPage() {
 
   return (
     <>
-      <Notice icon="flaticon-warning kt-font-primary">
+      <Notice icon='flaticon-warning kt-font-primary'>
         <p>Cards contain content and actions about a single subject.</p>
         <p>
-          For more info please check the components's official{" "}
+          For more info please check the components's official{' '}
           <a
-            target="_blank"
-            className="kt-link"
-            rel="noopener noreferrer"
-            href="https://material-ui.com/components/cards/"
+            target='_blank'
+            className='kt-link'
+            rel='noopener noreferrer'
+            href='https://material-ui.com/components/cards/'
           >
             demos & documentation
           </a>
         </p>
       </Notice>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode1} beforeCodeTitle="Simple Card">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode1} beforeCodeTitle='Simple Card'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 Although cards can support multiple actions, UI controls, and an
                 overflow menu, use restraint and remember that cards are entry
                 points to more complex and detailed information.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <Card className={classes1.card}>
                   <CardContent>
                     <Typography
                       className={classes1.title}
-                      color="textSecondary"
+                      color='textSecondary'
                       gutterBottom
                     >
                       Word of the Day
                     </Typography>
-                    <Typography variant="h5" component="h2">
+                    <Typography variant='h5' component='h2'>
                       be
                       {bull1}
                       nev
                       {bull1}o{bull1}
                       lent
                     </Typography>
-                    <Typography className={classes1.pos} color="textSecondary">
+                    <Typography className={classes1.pos} color='textSecondary'>
                       adjective
                     </Typography>
-                    <Typography variant="body2" component="p">
+                    <Typography variant='body2' component='p'>
                       well meaning and kindly.
                       <br />
                       {'"a benevolent smile"'}
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small">Learn More</Button>
+                    <Button size='small'>Learn More</Button>
                   </CardActions>
                 </Card>
               </div>
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode2} beforeCodeTitle="Complex Interaction">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode2} beforeCodeTitle='Complex Interaction'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 On desktop, card content can expand.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <Card className={classes2.card}>
                   <CardHeader
                     avatar={
-                      <Avatar aria-label="Recipe" className={classes2.avatar}>
+                      <Avatar aria-label='Recipe' className={classes2.avatar}>
                         R
                       </Avatar>
                     }
                     action={
-                      <IconButton aria-label="Settings">
+                      <IconButton aria-label='Settings'>
                         <MoreVertIcon />
                       </IconButton>
                     }
-                    title="Shrimp and Chorizo Paella"
-                    subheader="September 14, 2016"
+                    title='Shrimp and Chorizo Paella'
+                    subheader='September 14, 2016'
                   />
                   <CardMedia
                     className={classes2.media}
-                    image="https://material-ui.com/static/images/cards/paella.jpg"
-                    title="Paella dish"
+                    image='https://material-ui.com/static/images/cards/paella.jpg'
+                    title='Paella dish'
                   />
                   <CardContent>
                     <Typography
-                      variant="body2"
-                      color="textSecondary"
-                      component="p"
+                      variant='body2'
+                      color='textSecondary'
+                      component='p'
                     >
                       This impressive paella is a perfect party dish and a fun
                       meal to cook together with your guests. Add 1 cup of
@@ -226,24 +226,24 @@ export default function CardsExamplesPage() {
                     </Typography>
                   </CardContent>
                   <CardActions disableSpacing>
-                    <IconButton aria-label="Add to favorites">
+                    <IconButton aria-label='Add to favorites'>
                       <FavoriteIcon />
                     </IconButton>
-                    <IconButton aria-label="Share">
+                    <IconButton aria-label='Share'>
                       <ShareIcon />
                     </IconButton>
                     <IconButton
                       className={clsx(classes2.expand, {
-                        [classes2.expandOpen]: expanded2
+                        [classes2.expandOpen]: expanded2,
                       })}
                       onClick={handleExpandClick2}
                       aria-expanded={expanded2}
-                      aria-label="Show more"
+                      aria-label='Show more'
                     >
                       <ExpandMoreIcon />
                     </IconButton>
                   </CardActions>
-                  <Collapse in={expanded2} timeout="auto" unmountOnExit>
+                  <Collapse in={expanded2} timeout='auto' unmountOnExit>
                     <CardContent>
                       <Typography paragraph>Method:</Typography>
                       <Typography paragraph>
@@ -285,30 +285,30 @@ export default function CardsExamplesPage() {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode3} beforeCodeTitle="Media">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode3} beforeCodeTitle='Media'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 Example of a card using an image to reinforce the content.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <Card className={classes3.card}>
                   <CardActionArea>
                     <CardMedia
                       className={classes3.media}
-                      image="https://material-ui.com/static/images/cards/contemplative-reptile.jpg"
-                      title="Contemplative Reptile"
+                      image='https://material-ui.com/static/images/cards/contemplative-reptile.jpg'
+                      title='Contemplative Reptile'
                     />
                     <CardContent>
-                      <Typography gutterBottom variant="h5" component="h2">
+                      <Typography gutterBottom variant='h5' component='h2'>
                         Lizard
                       </Typography>
                       <Typography
-                        variant="body2"
-                        color="textSecondary"
-                        component="p"
+                        variant='body2'
+                        color='textSecondary'
+                        component='p'
                       >
                         Lizards are a widespread group of squamate reptiles,
                         with over 6,000 species, ranging across all continents
@@ -317,10 +317,10 @@ export default function CardsExamplesPage() {
                     </CardContent>
                   </CardActionArea>
                   <CardActions>
-                    <Button size="small" color="primary">
+                    <Button size='small' color='primary'>
                       Share
                     </Button>
-                    <Button size="small" color="primary">
+                    <Button size='small' color='primary'>
                       Learn More
                     </Button>
                   </CardActions>
@@ -329,39 +329,39 @@ export default function CardsExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode4} beforeCodeTitle="UI Controls">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode4} beforeCodeTitle='UI Controls'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 Supplemental actions within the card are explicitly called out
                 using icons, text, and UI controls, typically placed at the
                 bottom of the card.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <Card className={classes4.card}>
                   <div className={classes4.details}>
                     <CardContent className={classes4.content}>
-                      <Typography component="h5" variant="h5">
+                      <Typography component='h5' variant='h5'>
                         Live From Space
                       </Typography>
-                      <Typography variant="subtitle1" color="textSecondary">
+                      <Typography variant='subtitle1' color='textSecondary'>
                         Mac Miller
                       </Typography>
                     </CardContent>
                     <div className={classes4.controls}>
-                      <IconButton aria-label="Previous">
-                        {theme4.direction === "rtl" ? (
+                      <IconButton aria-label='Previous'>
+                        {theme4.direction === 'rtl' ? (
                           <SkipNextIcon />
                         ) : (
                           <SkipPreviousIcon />
                         )}
                       </IconButton>
-                      <IconButton aria-label="Play/pause">
+                      <IconButton aria-label='Play/pause'>
                         <PlayArrowIcon className={classes4.playIcon} />
                       </IconButton>
-                      <IconButton aria-label="Next">
-                        {theme4.direction === "rtl" ? (
+                      <IconButton aria-label='Next'>
+                        {theme4.direction === 'rtl' ? (
                           <SkipPreviousIcon />
                         ) : (
                           <SkipNextIcon />
@@ -371,8 +371,8 @@ export default function CardsExamplesPage() {
                   </div>
                   <CardMedia
                     className={classes4.cover}
-                    image="https://material-ui.com/static/images/cards/live-from-space.jpg"
-                    title="Live from space album cover"
+                    image='https://material-ui.com/static/images/cards/live-from-space.jpg'
+                    title='Live from space album cover'
                   />
                 </Card>
               </div>

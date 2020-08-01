@@ -1,11 +1,11 @@
-import axios from "axios";
-import { ProductCategory, ProductResult } from "./product.model";
-import { Params } from "./product.duck";
-import Currency from "../base/currency/currency.model";
+import axios from 'axios';
+import { ProductCategory, ProductResult } from './product.model';
+import { Params } from './product.duck';
+import Currency from '../base/currency/currency.model';
 
-export const PRODUCT_GET_URL = "api/products/";
-export const PRODUCT_CATEGORY_GET_URL = "api/product-categories/";
-export const CURRENCY_GET_URL = "api/currencies/";
+export const PRODUCT_GET_URL = 'api/products/';
+export const PRODUCT_CATEGORY_GET_URL = 'api/product-categories/';
+export const CURRENCY_GET_URL = 'api/currencies/';
 
 export default class ProductService {
   //   login(email, password) {

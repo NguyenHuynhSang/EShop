@@ -1,6 +1,6 @@
-import { styled as muiStyled, Theme as DefaultTheme } from "@material-ui/core";
-import { CreateCSSProperties } from "@material-ui/styles";
-import theme from "./theme";
+import { styled as muiStyled, Theme as DefaultTheme } from '@material-ui/core';
+import { CreateCSSProperties } from '@material-ui/styles';
+import theme from './theme';
 
 export type CssInJs<Props extends {} = {}, Theme = DefaultTheme> =
   | CreateCSSProperties<Props>

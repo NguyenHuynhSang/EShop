@@ -1,19 +1,19 @@
-import MockAdapter from "axios-mock-adapter";
+import MockAdapter from 'axios-mock-adapter';
 import {
   PRODUCT_GET_URL,
   PRODUCT_CATEGORY_GET_URL,
   CURRENCY_GET_URL,
-} from "./products.service";
-import productData, { productCategories } from "./product.data";
-import clamp from "lodash/clamp";
-import currencies from "../base/currency/currency.data";
-import sortBy from "lodash/sortBy";
-import round from "lodash/round";
-import Product, { ProductResult } from "./product.model";
-import { Params, WeightUnit } from "./product.duck";
-import Currency from "../base/currency/currency.model";
+} from './products.service';
+import productData, { productCategories } from './product.data';
+import clamp from 'lodash/clamp';
+import currencies from '../base/currency/currency.data';
+import sortBy from 'lodash/sortBy';
+import round from 'lodash/round';
+import Product, { ProductResult } from './product.model';
+import { Params, WeightUnit } from './product.duck';
+import Currency from '../base/currency/currency.model';
 
-const vndCurrency = currencies.find(c => c.code === "VND")!;
+const vndCurrency = currencies.find(c => c.code === 'VND')!;
 
 function convertCurrency(price: number, currency: Currency) {
   // use VND currency as base
@@ -22,12 +22,12 @@ function convertCurrency(price: number, currency: Currency) {
 function convertWeight(weight: number, weightUnit: WeightUnit) {
   if (weightUnit === WeightUnit.Lb) return round(weight * 2.20462, 2);
   if (weightUnit === WeightUnit.Kg) return weight;
-  throw Error("what dis? " + weightUnit);
+  throw Error('what dis? ' + weightUnit);
 }
 
 function getSortComparator(sortField?: string) {
-  if (!sortField) return "name";
-  if (sortField === "category") {
+  if (!sortField) return 'name';
+  if (sortField === 'category') {
     return (product: Product) => product.category.name;
   }
 
@@ -40,7 +40,7 @@ export default function mockProduct(mock: MockAdapter) {
     const {
       currency: currencyId,
       sortBy: sortField,
-      sort = "none",
+      sort = 'none',
       weight,
       page = 1,
       perPage = 10,
@@ -48,10 +48,10 @@ export default function mockProduct(mock: MockAdapter) {
     const sortComparator = getSortComparator(sortField);
     let products = productData;
 
-    if (sort !== "none") {
-      if (sort === "asc") {
+    if (sort !== 'none') {
+      if (sort === 'asc') {
         products = sortBy<Product>(productData, sortComparator);
-      } else if (sort === "desc") {
+      } else if (sort === 'desc') {
         products = sortBy<Product>(productData, sortComparator).reverse();
       }
     }
@@ -73,7 +73,7 @@ export default function mockProduct(mock: MockAdapter) {
       }));
     }
 
-    console.log("GET", PRODUCT_GET_URL, params);
+    console.log('GET', PRODUCT_GET_URL, params);
 
     const totalResults = products.length;
     const lastPage = Math.ceil(totalResults / perPage);
@@ -94,13 +94,13 @@ export default function mockProduct(mock: MockAdapter) {
   });
 
   mock.onGet(PRODUCT_CATEGORY_GET_URL).reply(response => {
-    console.log("GET", PRODUCT_CATEGORY_GET_URL);
+    console.log('GET', PRODUCT_CATEGORY_GET_URL);
     return [200, productCategories];
   });
 
   // TODO: move to currency.mock
   mock.onGet(CURRENCY_GET_URL).reply(response => {
-    console.log("GET", CURRENCY_GET_URL);
+    console.log('GET', CURRENCY_GET_URL);
     return [200, currencies];
   });
 }

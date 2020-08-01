@@ -1,83 +1,83 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
-import Notice from "../../../../partials/content/Notice";
-import CodeExample from "../../../../partials/content/CodeExample";
-import { makeStyles } from "@material-ui/core";
-import StarBorderIcon from "@material-ui/icons/StarBorder";
+import React from 'react';
+import Notice from '../../../../partials/content/Notice';
+import CodeExample from '../../../../partials/content/CodeExample';
+import { makeStyles } from '@material-ui/core';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
 import {
   GridList,
   GridListTile,
   ListSubheader,
   GridListTileBar,
-  IconButton
-} from "@material-ui/core";
+  IconButton,
+} from '@material-ui/core';
 
 const tileData = [
   {
-    img: "https://material-ui.com/static/images/grid-list/breakfast.jpg",
-    title: "Breakfast",
-    author: "jill111",
+    img: 'https://material-ui.com/static/images/grid-list/breakfast.jpg',
+    title: 'Breakfast',
+    author: 'jill111',
     cols: 2,
-    featured: true
+    featured: true,
   },
   {
-    img: "https://material-ui.com/static/images/grid-list/burgers.jpg",
-    title: "Tasty burger",
-    author: "director90"
+    img: 'https://material-ui.com/static/images/grid-list/burgers.jpg',
+    title: 'Tasty burger',
+    author: 'director90',
   },
   {
-    img: "https://material-ui.com/static/images/grid-list/camera.jpg",
-    title: "Camera",
-    author: "Danson67"
+    img: 'https://material-ui.com/static/images/grid-list/camera.jpg',
+    title: 'Camera',
+    author: 'Danson67',
   },
   {
-    img: "https://material-ui.com/static/images/grid-list/morning.jpg",
-    title: "Morning",
-    author: "fancycrave1",
-    featured: true
+    img: 'https://material-ui.com/static/images/grid-list/morning.jpg',
+    title: 'Morning',
+    author: 'fancycrave1',
+    featured: true,
   },
   {
-    img: "https://material-ui.com/static/images/grid-list/hats.jpg",
-    title: "Hats",
-    author: "Hans"
+    img: 'https://material-ui.com/static/images/grid-list/hats.jpg',
+    title: 'Hats',
+    author: 'Hans',
   },
   {
-    img: "https://material-ui.com/static/images/grid-list/honey.jpg",
-    title: "Honey",
-    author: "fancycravel"
+    img: 'https://material-ui.com/static/images/grid-list/honey.jpg',
+    title: 'Honey',
+    author: 'fancycravel',
   },
   {
-    img: "https://material-ui.com/static/images/grid-list/vegetables.jpg",
-    title: "Vegetables",
-    author: "jill111",
-    cols: 2
-  },
-  {
-    img: "https://material-ui.com/static/images/grid-list/plant.jpg",
-    title: "Water plant",
-    author: "BkrmadtyaKarki"
-  },
-  {
-    img: "https://material-ui.com/static/images/grid-list/mushroom.jpg",
-    title: "Mushrooms",
-    author: "PublicDomainPictures"
-  },
-  {
-    img: "https://material-ui.com/static/images/grid-list/olive.jpg",
-    title: "Olive oil",
-    author: "congerdesign"
-  },
-  {
-    img: "https://material-ui.com/static/images/grid-list/star.jpg",
-    title: "Sea star",
+    img: 'https://material-ui.com/static/images/grid-list/vegetables.jpg',
+    title: 'Vegetables',
+    author: 'jill111',
     cols: 2,
-    author: "821292"
   },
   {
-    img: "https://material-ui.com/static/images/grid-list/bike.jpg",
-    title: "Bike",
-    author: "danfador"
-  }
+    img: 'https://material-ui.com/static/images/grid-list/plant.jpg',
+    title: 'Water plant',
+    author: 'BkrmadtyaKarki',
+  },
+  {
+    img: 'https://material-ui.com/static/images/grid-list/mushroom.jpg',
+    title: 'Mushrooms',
+    author: 'PublicDomainPictures',
+  },
+  {
+    img: 'https://material-ui.com/static/images/grid-list/olive.jpg',
+    title: 'Olive oil',
+    author: 'congerdesign',
+  },
+  {
+    img: 'https://material-ui.com/static/images/grid-list/star.jpg',
+    title: 'Sea star',
+    cols: 2,
+    author: '821292',
+  },
+  {
+    img: 'https://material-ui.com/static/images/grid-list/bike.jpg',
+    title: 'Bike',
+    author: 'danfador',
+  },
 ];
 const jsCode1 = `
 import React from 'react';
@@ -366,65 +366,65 @@ export default function AdvancedGridList() {
 
 const useStyles = makeStyles(theme => ({
   root: {
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "space-around",
-    overflow: "hidden",
-    backgroundColor: theme.palette.background.paper
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    overflow: 'hidden',
+    backgroundColor: theme.palette.background.paper,
   },
   gridList: {
     width: 500,
-    height: 450
+    height: 450,
   },
   icon: {
-    color: "rgba(255, 255, 255, 0.54)"
-  }
+    color: 'rgba(255, 255, 255, 0.54)',
+  },
 }));
 
 const useStyles3 = makeStyles(theme => ({
   root: {
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "space-around",
-    overflow: "hidden",
-    backgroundColor: theme.palette.background.paper
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    overflow: 'hidden',
+    backgroundColor: theme.palette.background.paper,
   },
   gridList: {
-    flexWrap: "nowrap",
+    flexWrap: 'nowrap',
     // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
-    transform: "translateZ(0)"
+    transform: 'translateZ(0)',
   },
   title: {
-    color: theme.palette.primary.light
+    color: theme.palette.primary.light,
   },
   titleBar: {
     background:
-      "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)"
-  }
+      'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+  },
 }));
 
 const useStyles4 = makeStyles(theme => ({
   root: {
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "space-around",
-    overflow: "hidden",
-    backgroundColor: theme.palette.background.paper
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    overflow: 'hidden',
+    backgroundColor: theme.palette.background.paper,
   },
   gridList: {
     width: 1200,
     height: 450,
     // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
-    transform: "translateZ(0)"
+    transform: 'translateZ(0)',
   },
   titleBar: {
     background:
-      "linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, " +
-      "rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)"
+      'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' +
+      'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
   },
   icon: {
-    color: "white"
-  }
+    color: 'white',
+  },
 }));
 
 export default function GridListExamplesPage() {
@@ -434,15 +434,15 @@ export default function GridListExamplesPage() {
 
   return (
     <>
-      <Notice icon="flaticon-warning kt-font-primary">
+      <Notice icon='flaticon-warning kt-font-primary'>
         <p>Grid lists display a collection of images in an organized grid.</p>
         <p>
-          For more info please check the components's official{" "}
+          For more info please check the components's official{' '}
           <a
-            target="_blank"
-            className="kt-link"
-            rel="noopener noreferrer"
-            href="https://material-ui.com/components/grid-list/"
+            target='_blank'
+            className='kt-link'
+            rel='noopener noreferrer'
+            href='https://material-ui.com/components/grid-list/'
           >
             demos & documentation
           </a>
@@ -455,15 +455,15 @@ export default function GridListExamplesPage() {
         hold.
       </Notice>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode1} beforeCodeTitle="Image-only grid list">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode1} beforeCodeTitle='Image-only grid list'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 A simple example of a scrollable image <code>GridList</code> .
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes.root}>
                   <GridList
                     cellHeight={160}
@@ -481,29 +481,29 @@ export default function GridListExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
+        <div className='col-md-6'>
           <CodeExample
             jsCode={jsCode2}
-            beforeCodeTitle="Grid list with titlebars"
+            beforeCodeTitle='Grid list with titlebars'
           >
-            <div className="kt-section">
-              <span className="kt-section__sub">
-                This example demonstrates the use of the{" "}
-                <code>GridListTileBar</code> to add an overlay to each{" "}
-                <code>GridListTile</code>. The overlay can accommodate a{" "}
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
+                This example demonstrates the use of the{' '}
+                <code>GridListTileBar</code> to add an overlay to each{' '}
+                <code>GridListTile</code>. The overlay can accommodate a{' '}
                 <code>title</code>, <code>subtitle</code> and secondary action -
                 in this example an <code>IconButton</code>.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes.root}>
                   <GridList cellHeight={180} className={classes.gridList}>
                     <GridListTile
-                      key="Subheader"
+                      key='Subheader'
                       cols={2}
-                      style={{ height: "auto" }}
+                      style={{ height: 'auto' }}
                     >
-                      <ListSubheader component="div">December</ListSubheader>
+                      <ListSubheader component='div'>December</ListSubheader>
                     </GridListTile>
                     {tileData.map(tile => (
                       <GridListTile key={tile.img}>
@@ -516,7 +516,7 @@ export default function GridListExamplesPage() {
                               aria-label={`info about ${tile.title}`}
                               className={classes.icon}
                             >
-                              <i className="flaticon-information"></i>
+                              <i className='flaticon-information'></i>
                             </IconButton>
                           }
                         />
@@ -530,9 +530,9 @@ export default function GridListExamplesPage() {
         </div>
       </div>
 
-      <CodeExample jsCode={jsCode3} beforeCodeTitle="Single line Grid list">
-        <div className="kt-section">
-          <span className="kt-section__sub">
+      <CodeExample jsCode={jsCode3} beforeCodeTitle='Single line Grid list'>
+        <div className='kt-section'>
+          <span className='kt-section__sub'>
             This example demonstrates a horizontal scrollable single-line grid
             list of images. Horizontally scrolling grid lists are discouraged
             because the scrolling interferes with typical reading patterns,
@@ -540,8 +540,8 @@ export default function GridListExamplesPage() {
             horizontally-scrolling, single-line grid list of images, such as a
             gallery.
           </span>
-          <div className="kt-separator kt-separator--dashed"></div>
-          <div className="kt-section__content">
+          <div className='kt-separator kt-separator--dashed'></div>
+          <div className='kt-section__content'>
             <div className={classes3.root}>
               <GridList className={classes3.gridList} cols={2.5}>
                 {tileData.map(tile => (
@@ -551,11 +551,11 @@ export default function GridListExamplesPage() {
                       title={tile.title}
                       classes={{
                         root: classes3.titleBar,
-                        title: classes3.title
+                        title: classes3.title,
                       }}
                       actionIcon={
                         <IconButton aria-label={`star ${tile.title}`}>
-                          <i className="flaticon-star"></i>
+                          <i className='flaticon-star'></i>
                         </IconButton>
                       }
                     />
@@ -566,18 +566,18 @@ export default function GridListExamplesPage() {
           </div>
         </div>
       </CodeExample>
-      <CodeExample jsCode={jsCode4} beforeCodeTitle="Advanced Grid list">
-        <div className="kt-section">
-          <span className="kt-section__sub">
-            This example demonstrates "featured" tiles, using the{" "}
+      <CodeExample jsCode={jsCode4} beforeCodeTitle='Advanced Grid list'>
+        <div className='kt-section'>
+          <span className='kt-section__sub'>
+            This example demonstrates "featured" tiles, using the{' '}
             <code>rows</code> and <code>cols</code> props to adjust the size of
             the tile, and the <code>padding</code> prop to adjust the spacing.
             The tiles have a customized titlebar, positioned at the top and with
-            a custom gradient <code>titleBackground</code>. The secondary action{" "}
+            a custom gradient <code>titleBackground</code>. The secondary action{' '}
             <code>IconButton</code> is positioned on the left.
           </span>
-          <div className="kt-separator kt-separator--dashed"></div>
-          <div className="kt-section__content">
+          <div className='kt-separator kt-separator--dashed'></div>
+          <div className='kt-section__content'>
             <div className={classes4.root}>
               <GridList
                 cellHeight={200}
@@ -593,7 +593,7 @@ export default function GridListExamplesPage() {
                     <img src={tile.img} alt={tile.title} />
                     <GridListTileBar
                       title={tile.title}
-                      titlePosition="top"
+                      titlePosition='top'
                       actionIcon={
                         <IconButton
                           aria-label={`star ${tile.title}`}
@@ -602,7 +602,7 @@ export default function GridListExamplesPage() {
                           <StarBorderIcon />
                         </IconButton>
                       }
-                      actionPosition="left"
+                      actionPosition='left'
                       className={classes4.titleBar}
                     />
                   </GridListTile>

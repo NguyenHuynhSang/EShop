@@ -1,18 +1,18 @@
 /* eslint-disable no-restricted-imports */
-import React from "react";
-import Notice from "../../../../partials/content/Notice";
-import CodeExample from "../../../../partials/content/CodeExample";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import { useTheme } from "@material-ui/core/styles";
-import json2mq from "json2mq";
-import useMediaQueryTheme from "@material-ui/core/useMediaQuery";
-import mediaQuery from "css-mediaquery";
-import { ThemeProvider } from "@material-ui/styles";
-import { createMuiTheme } from "@material-ui/core/styles";
+import React from 'react';
+import Notice from '../../../../partials/content/Notice';
+import CodeExample from '../../../../partials/content/CodeExample';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@material-ui/core/styles';
+import json2mq from 'json2mq';
+import useMediaQueryTheme from '@material-ui/core/useMediaQuery';
+import mediaQuery from 'css-mediaquery';
+import { ThemeProvider } from '@material-ui/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
 
 // Example 4
 function MyComponent4() {
-  const matches = useMediaQueryTheme("@media (min-width:600px)");
+  const matches = useMediaQueryTheme('@media (min-width:600px)');
 
   return <span>{`@media (min-width:600px) matches: ${matches}`}</span>;
 }
@@ -26,7 +26,7 @@ function useWidth5() {
       // eslint-disable-next-line react-hooks/rules-of-hooks
       const matches = useMediaQuery(theme5.breakpoints.only(key));
       return !output && matches ? key : output;
-    }, null) || "xs"
+    }, null) || 'xs'
   );
 }
 
@@ -39,16 +39,16 @@ const theme5 = createMuiTheme();
 
 export default function UseMediaQueryExamplesPage() {
   // Example 1
-  const matches1 = useMediaQuery("(min-width:600px)");
+  const matches1 = useMediaQuery('(min-width:600px)');
 
   // Example 2
   const theme2 = useTheme();
-  const matches2 = useMediaQuery(theme2.breakpoints.up("sm"));
+  const matches2 = useMediaQuery(theme2.breakpoints.up('sm'));
 
   // Example 3
   const matches3 = useMediaQuery(
     json2mq({
-      minWidth: 600
+      minWidth: 600,
     })
   );
 
@@ -59,59 +59,59 @@ export default function UseMediaQueryExamplesPage() {
       // For the sake of this demo, we are using a fixed value.
       // In production, you can look into client-hint https://caniuse.com/#search=client%20hint
       // or user-agent resolution.
-      width: 800
-    })
+      width: 800,
+    }),
   });
 
   return (
     <>
-      <Notice icon="flaticon-warning kt-font-primary">
+      <Notice icon='flaticon-warning kt-font-primary'>
         <p>
           This is a CSS media query hook for React. It listens for matches to a
           CSS media query. It allows the rendering of components based on
           whether the query matches or not.
         </p>
         <p>
-          For more info please check the components's official{" "}
+          For more info please check the components's official{' '}
           <a
-            target="_blank"
-            className="kt-link"
-            rel="noopener noreferrer"
-            href="https://material-ui.com/components/use-media-query/"
+            target='_blank'
+            className='kt-link'
+            rel='noopener noreferrer'
+            href='https://material-ui.com/components/use-media-query/'
           >
             demos & documentation
           </a>
         </p>
       </Notice>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode1} beforeCodeTitle="Simple media query">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode1} beforeCodeTitle='Simple media query'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 You should provide a media query to the first argument of the
                 hook. The media query string can by any valid CSS media query,
                 e.g. <code>'print'</code>.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <span>{`(min-width:600px) matches: ${matches1}`}</span>
               </div>
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
+        <div className='col-md-6'>
           <CodeExample
             jsCode={jsCode2}
             beforeCodeTitle="Using Material-UI's breakpoint helpers"
           >
-            <div className="kt-section">
-              <span className="kt-section__sub">
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 You can use Material-UI's <code>breakpoint helpers</code> as
                 follows:
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <span>{`theme.breakpoints.up('sm') matches: ${matches2}`}</span>
               </div>
             </div>
@@ -119,36 +119,36 @@ export default function UseMediaQueryExamplesPage() {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-6">
+      <div className='row'>
+        <div className='col-md-6'>
           <CodeExample
             jsCode={jsCode3}
-            beforeCodeTitle="Using JavaScript syntax"
+            beforeCodeTitle='Using JavaScript syntax'
           >
-            <div className="kt-section">
-              <span className="kt-section__sub">
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 <code>json2mq</code> is used to generate media query string from
                 a JavaScript object.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <span>{`{ minWidth: 600 } matches: ${matches3}`}</span>
               </div>
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode4} beforeCodeTitle="Server-side rendering">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode4} beforeCodeTitle='Server-side rendering'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 An implementation of matchMedia is required on the server, we
                 recommend using css-mediaquery. We also encourage the usage of
                 the <code>useMediaQueryTheme</code> version of the hook that
-                fetches properties from the theme. This way, you can provide a{" "}
+                fetches properties from the theme. This way, you can provide a{' '}
                 <code>ssrMatchMedia</code> option once for all your React tree.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <ThemeProvider
                   theme={{ props: { MuiUseMediaQuery: { ssrMatchMedia4 } } }}
                 >
@@ -160,20 +160,20 @@ export default function UseMediaQueryExamplesPage() {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-6">
+      <div className='row'>
+        <div className='col-md-6'>
           <CodeExample
             jsCode={jsCode5}
-            beforeCodeTitle="Migrating from withWidth()"
+            beforeCodeTitle='Migrating from withWidth()'
           >
-            <div className="kt-section">
-              <span className="kt-section__sub">
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 The <code>withWidth()</code> higher-order component injects the
                 screen width of the page. You can reproduce the same behavior
                 with a <code>useWidth</code> hook:
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <ThemeProvider theme={theme5}>
                   <MyComponent5 />
                 </ThemeProvider>

@@ -1,7 +1,7 @@
-import React from "react";
-import Notice from "../../../partials/content/Notice";
-import CodeExample from "../../../partials/content/CodeExample";
-import { Pagination } from "react-bootstrap";
+import React from 'react';
+import Notice from '../../../partials/content/Notice';
+import CodeExample from '../../../partials/content/CodeExample';
+import { Pagination } from 'react-bootstrap';
 
 let active = 2;
 let items = [];
@@ -18,10 +18,10 @@ const paginationBasic = (
     <Pagination>{items}</Pagination>
     <br />
 
-    <Pagination size="lg">{items}</Pagination>
+    <Pagination size='lg'>{items}</Pagination>
     <br />
 
-    <Pagination size="sm">{items}</Pagination>
+    <Pagination size='sm'>{items}</Pagination>
   </div>
 );
 
@@ -29,37 +29,37 @@ export default class PaginationExamplesPage extends React.Component {
   render() {
     return (
       <>
-        <Notice icon="flaticon-warning kt-font-primary">
+        <Notice icon='flaticon-warning kt-font-primary'>
           <p>A set of presentational components for building pagination UI.</p>
           <p>
-            For more info please check the components's official{" "}
+            For more info please check the components's official{' '}
             <a
-              target="_blank"
-              className="kt-link"
-              rel="noopener noreferrer"
-              href="https://react-bootstrap.github.io/components/pagination/"
+              target='_blank'
+              className='kt-link'
+              rel='noopener noreferrer'
+              href='https://react-bootstrap.github.io/components/pagination/'
             >
               demos & documentation
             </a>
           </p>
         </Notice>
 
-        <CodeExample jsCode={jsCode1} beforeCodeTitle="Basic Example">
-          <div className="kt-section">
-            <span className="kt-section__sub"></span>
+        <CodeExample jsCode={jsCode1} beforeCodeTitle='Basic Example'>
+          <div className='kt-section'>
+            <span className='kt-section__sub'></span>
             {paginationBasic}
           </div>
         </CodeExample>
 
-        <CodeExample jsCode={jsCode2} beforeCodeTitle="More options">
-          <div className="kt-section">
-            <span className="kt-section__sub">
+        <CodeExample jsCode={jsCode2} beforeCodeTitle='More options'>
+          <div className='kt-section'>
+            <span className='kt-section__sub'>
               For building more complex pagination UI, there are few convenient
               sub-components for adding "First", "Previous", "Next", and "Last"
               buttons, as well as an <code>Ellipsis</code> item for indicating
               previous or continuing results.
             </span>
-            <div className="kt-separator kt-separator--dashed"></div>
+            <div className='kt-separator kt-separator--dashed'></div>
             <Pagination>
               <Pagination.First />
               <Pagination.Prev />

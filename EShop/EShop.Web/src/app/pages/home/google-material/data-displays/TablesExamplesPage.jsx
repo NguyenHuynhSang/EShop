@@ -1,15 +1,15 @@
 /* eslint-disable no-restricted-imports */
-import React from "react";
-import clsx from "clsx";
-import PropTypes from "prop-types";
-import Notice from "../../../../partials/content/Notice";
-import CodeExample from "../../../../partials/content/CodeExample";
+import React from 'react';
+import clsx from 'clsx';
+import PropTypes from 'prop-types';
+import Notice from '../../../../partials/content/Notice';
+import CodeExample from '../../../../partials/content/CodeExample';
 import {
   makeStyles,
   lighten,
   withStyles,
-  useTheme
-} from "@material-ui/core/styles";
+  useTheme,
+} from '@material-ui/core/styles';
 import {
   Paper,
   Table,
@@ -26,24 +26,24 @@ import {
   TablePagination,
   Switch,
   FormControlLabel,
-  TableFooter
-} from "@material-ui/core";
-import DeleteIcon from "@material-ui/icons/Delete";
-import FilterListIcon from "@material-ui/icons/FilterList";
-import FirstPageIcon from "@material-ui/icons/FirstPage";
-import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
-import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
-import LastPageIcon from "@material-ui/icons/LastPage";
+  TableFooter,
+} from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
+import FilterListIcon from '@material-ui/icons/FilterList';
+import FirstPageIcon from '@material-ui/icons/FirstPage';
+import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
+import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
+import LastPageIcon from '@material-ui/icons/LastPage';
 
 const useStyles1 = makeStyles(theme => ({
   root: {
-    width: "100%",
+    width: '100%',
     marginTop: theme.spacing(3),
-    overflowX: "auto"
+    overflowX: 'auto',
   },
   table: {
-    minWidth: 650
-  }
+    minWidth: 650,
+  },
 }));
 
 function createData(name, calories, fat, carbs, protein) {
@@ -51,27 +51,27 @@ function createData(name, calories, fat, carbs, protein) {
 }
 
 const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-  createData("Gingerbread", 356, 16.0, 49, 3.9)
+  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
+  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
+  createData('Eclair', 262, 16.0, 24, 6.0),
+  createData('Cupcake', 305, 3.7, 67, 4.3),
+  createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
 // Example 2
 const useStyles2 = makeStyles(theme => ({
   root: {
-    width: "100%"
+    width: '100%',
   },
   paper: {
     marginTop: theme.spacing(3),
-    width: "100%",
-    overflowX: "auto",
-    marginBottom: theme.spacing(2)
+    width: '100%',
+    overflowX: 'auto',
+    marginBottom: theme.spacing(2),
   },
   table: {
-    minWidth: 650
-  }
+    minWidth: 650,
+  },
 }));
 
 // Example 3
@@ -96,22 +96,22 @@ function stableSort3(array, cmp) {
 }
 
 function getSorting(order, orderBy) {
-  return order === "desc"
+  return order === 'desc'
     ? (a, b) => desc3(a, b, orderBy)
     : (a, b) => -desc3(a, b, orderBy);
 }
 
 const headRows3 = [
   {
-    id: "name",
+    id: 'name',
     numeric: false,
     disablePadding: true,
-    label: "Dessert (100g serving)"
+    label: 'Dessert (100g serving)',
   },
-  { id: "calories", numeric: true, disablePadding: false, label: "Calories" },
-  { id: "fat", numeric: true, disablePadding: false, label: "Fat (g)" },
-  { id: "carbs", numeric: true, disablePadding: false, label: "Carbs (g)" },
-  { id: "protein", numeric: true, disablePadding: false, label: "Protein (g)" }
+  { id: 'calories', numeric: true, disablePadding: false, label: 'Calories' },
+  { id: 'fat', numeric: true, disablePadding: false, label: 'Fat (g)' },
+  { id: 'carbs', numeric: true, disablePadding: false, label: 'Carbs (g)' },
+  { id: 'protein', numeric: true, disablePadding: false, label: 'Protein (g)' },
 ];
 
 function EnhancedTableHead3(props) {
@@ -121,7 +121,7 @@ function EnhancedTableHead3(props) {
     orderBy,
     numSelected,
     rowCount,
-    onRequestSort
+    onRequestSort,
   } = props;
   const createSortHandler = property => event => {
     onRequestSort(event, property);
@@ -130,19 +130,19 @@ function EnhancedTableHead3(props) {
   return (
     <TableHead>
       <TableRow>
-        <TableCell padding="checkbox">
+        <TableCell padding='checkbox'>
           <Checkbox
             indeterminate={numSelected > 0 && numSelected < rowCount}
             checked={numSelected === rowCount}
             onChange={onSelectAllClick}
-            inputProps={{ "aria-label": "Select all desserts" }}
+            inputProps={{ 'aria-label': 'Select all desserts' }}
           />
         </TableCell>
         {headRows3.map(row => (
           <TableCell
             key={row.id}
-            align={row.numeric ? "right" : "left"}
-            padding={row.disablePadding ? "none" : "default"}
+            align={row.numeric ? 'right' : 'left'}
+            padding={row.disablePadding ? 'none' : 'default'}
             sortDirection={orderBy === row.id ? order : false}
           >
             <TableSortLabel
@@ -165,33 +165,33 @@ EnhancedTableHead3.propTypes = {
   onSelectAllClick: PropTypes.func.isRequired,
   order: PropTypes.string.isRequired,
   orderBy: PropTypes.string.isRequired,
-  rowCount: PropTypes.number.isRequired
+  rowCount: PropTypes.number.isRequired,
 };
 
 const useToolbarStyles3 = makeStyles(theme => ({
   root: {
     paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(1)
+    paddingRight: theme.spacing(1),
   },
   highlight:
-    theme.palette.type === "light"
+    theme.palette.type === 'light'
       ? {
           color: theme.palette.secondary.main,
-          backgroundColor: lighten(theme.palette.secondary.light, 0.85)
+          backgroundColor: lighten(theme.palette.secondary.light, 0.85),
         }
       : {
           color: theme.palette.text.primary,
-          backgroundColor: theme.palette.secondary.dark
+          backgroundColor: theme.palette.secondary.dark,
         },
   spacer: {
-    flex: "1 1 100%"
+    flex: '1 1 100%',
   },
   actions: {
-    color: theme.palette.text.secondary
+    color: theme.palette.text.secondary,
   },
   title: {
-    flex: "0 0 auto"
-  }
+    flex: '0 0 auto',
+  },
 }));
 
 const EnhancedTableToolbar3 = props => {
@@ -201,16 +201,16 @@ const EnhancedTableToolbar3 = props => {
   return (
     <Toolbar
       className={clsx(classes.root, {
-        [classes.highlight]: numSelected > 0
+        [classes.highlight]: numSelected > 0,
       })}
     >
       <div className={classes.title}>
         {numSelected > 0 ? (
-          <Typography color="inherit" variant="subtitle1">
+          <Typography color='inherit' variant='subtitle1'>
             {numSelected} selected
           </Typography>
         ) : (
-          <Typography variant="h6" id="tableTitle">
+          <Typography variant='h6' id='tableTitle'>
             Nutrition
           </Typography>
         )}
@@ -218,14 +218,14 @@ const EnhancedTableToolbar3 = props => {
       <div className={classes.spacer} />
       <div className={classes.actions}>
         {numSelected > 0 ? (
-          <Tooltip title="Delete">
-            <IconButton aria-label="Delete">
+          <Tooltip title='Delete'>
+            <IconButton aria-label='Delete'>
               <DeleteIcon />
             </IconButton>
           </Tooltip>
         ) : (
-          <Tooltip title="Filter list">
-            <IconButton aria-label="Filter list">
+          <Tooltip title='Filter list'>
+            <IconButton aria-label='Filter list'>
               <FilterListIcon />
             </IconButton>
           </Tooltip>
@@ -236,76 +236,76 @@ const EnhancedTableToolbar3 = props => {
 };
 
 EnhancedTableToolbar3.propTypes = {
-  numSelected: PropTypes.number.isRequired
+  numSelected: PropTypes.number.isRequired,
 };
 
 const useStyles3 = makeStyles(theme => ({
   root: {
-    width: "100%",
-    marginTop: theme.spacing(3)
+    width: '100%',
+    marginTop: theme.spacing(3),
   },
   paper: {
-    width: "100%",
-    marginBottom: theme.spacing(2)
+    width: '100%',
+    marginBottom: theme.spacing(2),
   },
   table: {
-    minWidth: 750
+    minWidth: 750,
   },
   tableWrapper: {
-    overflowX: "auto"
-  }
+    overflowX: 'auto',
+  },
 }));
 
 // Example 4
 const useStyles4 = makeStyles(theme => ({
   root: {
-    width: "100%",
+    width: '100%',
     marginTop: theme.spacing(3),
-    overflowX: "auto"
+    overflowX: 'auto',
   },
   table: {
-    minWidth: 700
-  }
+    minWidth: 700,
+  },
 }));
 
 const StyledTableCell4 = withStyles(theme => ({
   head: {
     backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white
+    color: theme.palette.common.white,
   },
   body: {
-    fontSize: 14
-  }
+    fontSize: 14,
+  },
 }))(TableCell);
 
 const StyledTableRow4 = withStyles(theme => ({
   root: {
-    "&:nth-of-type(odd)": {
-      backgroundColor: theme.palette.background.default
-    }
-  }
+    '&:nth-of-type(odd)': {
+      backgroundColor: theme.palette.background.default,
+    },
+  },
 }))(TableRow);
 
 // Example 5
 const useStyles52 = makeStyles(theme => ({
   root: {
-    width: "100%",
-    marginTop: theme.spacing(3)
+    width: '100%',
+    marginTop: theme.spacing(3),
   },
   table: {
-    minWidth: 500
+    minWidth: 500,
   },
   tableWrapper: {
-    overflowX: "auto"
-  }
+    overflowX: 'auto',
+  },
 }));
 
 const useStyles51 = makeStyles(theme => ({
   root: {
     flexShrink: 0,
     color: theme.palette.text.secondary,
-    marginLeft: theme.spacing(2.5)
-  }
+    marginLeft: theme.spacing(2.5),
+  },
 }));
 
 function TablePaginationActions5(props) {
@@ -334,16 +334,16 @@ function TablePaginationActions5(props) {
       <IconButton
         onClick={handleFirstPageButtonClick}
         disabled={page === 0}
-        aria-label="First Page"
+        aria-label='First Page'
       >
-        {theme.direction === "rtl" ? <LastPageIcon /> : <FirstPageIcon />}
+        {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
       </IconButton>
       <IconButton
         onClick={handleBackButtonClick}
         disabled={page === 0}
-        aria-label="Previous Page"
+        aria-label='Previous Page'
       >
-        {theme.direction === "rtl" ? (
+        {theme.direction === 'rtl' ? (
           <KeyboardArrowRight />
         ) : (
           <KeyboardArrowLeft />
@@ -352,9 +352,9 @@ function TablePaginationActions5(props) {
       <IconButton
         onClick={handleNextButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="Next Page"
+        aria-label='Next Page'
       >
-        {theme.direction === "rtl" ? (
+        {theme.direction === 'rtl' ? (
           <KeyboardArrowLeft />
         ) : (
           <KeyboardArrowRight />
@@ -363,9 +363,9 @@ function TablePaginationActions5(props) {
       <IconButton
         onClick={handleLastPageButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="Last Page"
+        aria-label='Last Page'
       >
-        {theme.direction === "rtl" ? <FirstPageIcon /> : <LastPageIcon />}
+        {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
       </IconButton>
     </div>
   );
@@ -375,7 +375,7 @@ TablePaginationActions5.propTypes = {
   count: PropTypes.number.isRequired,
   onChangePage: PropTypes.func.isRequired,
   page: PropTypes.number.isRequired,
-  rowsPerPage: PropTypes.number.isRequired
+  rowsPerPage: PropTypes.number.isRequired,
 };
 
 function createData5(name, calories, fat) {
@@ -383,19 +383,19 @@ function createData5(name, calories, fat) {
 }
 
 const rows5 = [
-  createData5("Cupcake", 305, 3.7),
-  createData5("Donut", 452, 25.0),
-  createData5("Eclair", 262, 16.0),
-  createData5("Frozen yoghurt", 159, 6.0),
-  createData5("Gingerbread", 356, 16.0),
-  createData5("Honeycomb", 408, 3.2),
-  createData5("Ice cream sandwich", 237, 9.0),
-  createData5("Jelly Bean", 375, 0.0),
-  createData5("KitKat", 518, 26.0),
-  createData5("Lollipop", 392, 0.2),
-  createData5("Marshmallow", 318, 0),
-  createData5("Nougat", 360, 19.0),
-  createData5("Oreo", 437, 18.0)
+  createData5('Cupcake', 305, 3.7),
+  createData5('Donut', 452, 25.0),
+  createData5('Eclair', 262, 16.0),
+  createData5('Frozen yoghurt', 159, 6.0),
+  createData5('Gingerbread', 356, 16.0),
+  createData5('Honeycomb', 408, 3.2),
+  createData5('Ice cream sandwich', 237, 9.0),
+  createData5('Jelly Bean', 375, 0.0),
+  createData5('KitKat', 518, 26.0),
+  createData5('Lollipop', 392, 0.2),
+  createData5('Marshmallow', 318, 0),
+  createData5('Nougat', 360, 19.0),
+  createData5('Oreo', 437, 18.0),
 ].sort((a, b) => (a.calories < b.calories ? -1 : 1));
 
 // Example 6
@@ -403,13 +403,13 @@ const TAX_RATE = 0.07;
 
 const useStyles6 = makeStyles(theme => ({
   root: {
-    width: "100%",
+    width: '100%',
     marginTop: theme.spacing(3),
-    overflowX: "auto"
+    overflowX: 'auto',
   },
   table: {
-    minWidth: 700
-  }
+    minWidth: 700,
+  },
 }));
 
 function ccyFormat6(num) {
@@ -430,9 +430,9 @@ function subtotal6(items) {
 }
 
 const rows6 = [
-  createRow6("Paperclips (Box)", 100, 1.15),
-  createRow6("Paper (Case)", 10, 45.99),
-  createRow6("Waste Basket", 2, 17.99)
+  createRow6('Paperclips (Box)', 100, 1.15),
+  createRow6('Paper (Case)', 10, 45.99),
+  createRow6('Waste Basket', 2, 17.99),
 ];
 
 const invoiceSubtotal6 = subtotal6(rows6);
@@ -448,16 +448,16 @@ export default function TablesExamplesPage() {
 
   // Example 3
   const classes3 = useStyles3();
-  const [order3, setOrder3] = React.useState("asc");
-  const [orderBy3, setOrderBy3] = React.useState("calories");
+  const [order3, setOrder3] = React.useState('asc');
+  const [orderBy3, setOrderBy3] = React.useState('calories');
   const [selected3, setSelected3] = React.useState([]);
   const [page3, setPage3] = React.useState(0);
   const [dense3, setDense3] = React.useState(false);
   const [rowsPerPage3, setRowsPerPage3] = React.useState(5);
 
   function handleRequestSort3(event, property) {
-    const isDesc = orderBy3 === property && order3 === "desc";
-    setOrder3(isDesc ? "asc" : "desc");
+    const isDesc = orderBy3 === property && order3 === 'desc';
+    setOrder3(isDesc ? 'asc' : 'desc');
     setOrderBy3(property);
   }
 
@@ -531,51 +531,51 @@ export default function TablesExamplesPage() {
 
   return (
     <>
-      <Notice icon="flaticon-warning kt-font-primary">
+      <Notice icon='flaticon-warning kt-font-primary'>
         <p>Data tables display sets of data. They can be fully customized</p>
         <p>
-          For more info please check the components's official{" "}
+          For more info please check the components's official{' '}
           <a
-            target="_blank"
-            className="kt-link"
-            rel="noopener noreferrer"
-            href="https://material-ui.com/components/tables/"
+            target='_blank'
+            className='kt-link'
+            rel='noopener noreferrer'
+            href='https://material-ui.com/components/tables/'
           >
             demos & documentation
           </a>
         </p>
       </Notice>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode1} beforeCodeTitle="Simple Table">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode1} beforeCodeTitle='Simple Table'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 A simple example with no frills.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <Paper className={classes1.root}>
                   <Table className={classes1.table}>
                     <TableHead>
                       <TableRow>
                         <TableCell>Dessert (100g serving)</TableCell>
-                        <TableCell align="right">Calories</TableCell>
-                        <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                        <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                        <TableCell align="right">Protein&nbsp;(g)</TableCell>
+                        <TableCell align='right'>Calories</TableCell>
+                        <TableCell align='right'>Fat&nbsp;(g)</TableCell>
+                        <TableCell align='right'>Carbs&nbsp;(g)</TableCell>
+                        <TableCell align='right'>Protein&nbsp;(g)</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
                       {rows.map(row => (
                         <TableRow key={row.name}>
-                          <TableCell component="th" scope="row">
+                          <TableCell component='th' scope='row'>
                             {row.name}
                           </TableCell>
-                          <TableCell align="right">{row.calories}</TableCell>
-                          <TableCell align="right">{row.fat}</TableCell>
-                          <TableCell align="right">{row.carbs}</TableCell>
-                          <TableCell align="right">{row.protein}</TableCell>
+                          <TableCell align='right'>{row.calories}</TableCell>
+                          <TableCell align='right'>{row.fat}</TableCell>
+                          <TableCell align='right'>{row.carbs}</TableCell>
+                          <TableCell align='right'>{row.protein}</TableCell>
                         </TableRow>
                       ))}
                     </TableBody>
@@ -585,36 +585,36 @@ export default function TablesExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode2} beforeCodeTitle="Dense Table">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode2} beforeCodeTitle='Dense Table'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 A simple example of a dense table with no frills.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes2.root}>
                   <Paper className={classes2.paper}>
-                    <Table className={classes2.table} size="small">
+                    <Table className={classes2.table} size='small'>
                       <TableHead>
                         <TableRow>
                           <TableCell>Dessert (100g serving)</TableCell>
-                          <TableCell align="right">Calories</TableCell>
-                          <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                          <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                          <TableCell align="right">Protein&nbsp;(g)</TableCell>
+                          <TableCell align='right'>Calories</TableCell>
+                          <TableCell align='right'>Fat&nbsp;(g)</TableCell>
+                          <TableCell align='right'>Carbs&nbsp;(g)</TableCell>
+                          <TableCell align='right'>Protein&nbsp;(g)</TableCell>
                         </TableRow>
                       </TableHead>
                       <TableBody>
                         {rows.map(row => (
                           <TableRow key={row.name}>
-                            <TableCell component="th" scope="row">
+                            <TableCell component='th' scope='row'>
                               {row.name}
                             </TableCell>
-                            <TableCell align="right">{row.calories}</TableCell>
-                            <TableCell align="right">{row.fat}</TableCell>
-                            <TableCell align="right">{row.carbs}</TableCell>
-                            <TableCell align="right">{row.protein}</TableCell>
+                            <TableCell align='right'>{row.calories}</TableCell>
+                            <TableCell align='right'>{row.fat}</TableCell>
+                            <TableCell align='right'>{row.carbs}</TableCell>
+                            <TableCell align='right'>{row.protein}</TableCell>
                           </TableRow>
                         ))}
                       </TableBody>
@@ -627,26 +627,26 @@ export default function TablesExamplesPage() {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode3} beforeCodeTitle="Sorting & Selecting">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode3} beforeCodeTitle='Sorting & Selecting'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 This example demonstrates the use of <code>Checkbox</code> and
                 clickable rows for selection, with a custom <code>Toolbar</code>
                 . It uses the <code>TableSortLabel</code> component to help
                 style column headings.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes3.root}>
                   <Paper className={classes3.paper}>
                     <EnhancedTableToolbar3 numSelected={selected3.length} />
                     <div className={classes3.tableWrapper}>
                       <Table
                         className={classes3.table}
-                        aria-labelledby="tableTitle"
-                        size={dense3 ? "small" : "medium"}
+                        aria-labelledby='tableTitle'
+                        size={dense3 ? 'small' : 'medium'}
                       >
                         <EnhancedTableHead3
                           numSelected={selected3.length}
@@ -672,36 +672,36 @@ export default function TablesExamplesPage() {
                                   onClick={event =>
                                     handleClick3(event, row.name)
                                   }
-                                  role="checkbox"
+                                  role='checkbox'
                                   aria-checked={isItemSelected}
                                   tabIndex={-1}
                                   key={row.name}
                                   selected={isItemSelected}
                                 >
-                                  <TableCell padding="checkbox">
+                                  <TableCell padding='checkbox'>
                                     <Checkbox
                                       checked={isItemSelected}
                                       inputProps={{
-                                        "aria-labelledby": labelId
+                                        'aria-labelledby': labelId,
                                       }}
                                     />
                                   </TableCell>
                                   <TableCell
-                                    component="th"
+                                    component='th'
                                     id={labelId}
-                                    scope="row"
-                                    padding="none"
+                                    scope='row'
+                                    padding='none'
                                   >
                                     {row.name}
                                   </TableCell>
-                                  <TableCell align="right">
+                                  <TableCell align='right'>
                                     {row.calories}
                                   </TableCell>
-                                  <TableCell align="right">{row.fat}</TableCell>
-                                  <TableCell align="right">
+                                  <TableCell align='right'>{row.fat}</TableCell>
+                                  <TableCell align='right'>
                                     {row.carbs}
                                   </TableCell>
-                                  <TableCell align="right">
+                                  <TableCell align='right'>
                                     {row.protein}
                                   </TableCell>
                                 </TableRow>
@@ -717,15 +717,15 @@ export default function TablesExamplesPage() {
                     </div>
                     <TablePagination
                       rowsPerPageOptions={[5, 10, 25]}
-                      component="div"
+                      component='div'
                       count={rows.length}
                       rowsPerPage={rowsPerPage3}
                       page={page3}
                       backIconButtonProps={{
-                        "aria-label": "Previous Page"
+                        'aria-label': 'Previous Page',
                       }}
                       nextIconButtonProps={{
-                        "aria-label": "Next Page"
+                        'aria-label': 'Next Page',
                       }}
                       onChangePage={handleChangePage3}
                       onChangeRowsPerPage={handleChangeRowsPerPage3}
@@ -735,21 +735,21 @@ export default function TablesExamplesPage() {
                     control={
                       <Switch checked={dense3} onChange={handleChangeDense3} />
                     }
-                    label="Dense padding"
+                    label='Dense padding'
                   />
                 </div>
               </div>
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode4} beforeCodeTitle="Customized tables">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode4} beforeCodeTitle='Customized tables'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 Here is an example of customizing the component.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <Paper className={classes4.root}>
                   <Table className={classes4.table}>
                     <TableHead>
@@ -757,16 +757,16 @@ export default function TablesExamplesPage() {
                         <StyledTableCell4>
                           Dessert (100g serving)
                         </StyledTableCell4>
-                        <StyledTableCell4 align="right">
+                        <StyledTableCell4 align='right'>
                           Calories
                         </StyledTableCell4>
-                        <StyledTableCell4 align="right">
+                        <StyledTableCell4 align='right'>
                           Fat&nbsp;(g)
                         </StyledTableCell4>
-                        <StyledTableCell4 align="right">
+                        <StyledTableCell4 align='right'>
                           Carbs&nbsp;(g)
                         </StyledTableCell4>
-                        <StyledTableCell4 align="right">
+                        <StyledTableCell4 align='right'>
                           Protein&nbsp;(g)
                         </StyledTableCell4>
                       </TableRow>
@@ -774,19 +774,19 @@ export default function TablesExamplesPage() {
                     <TableBody>
                       {rows.map(row => (
                         <StyledTableRow4 key={row.name}>
-                          <StyledTableCell4 component="th" scope="row">
+                          <StyledTableCell4 component='th' scope='row'>
                             {row.name}
                           </StyledTableCell4>
-                          <StyledTableCell4 align="right">
+                          <StyledTableCell4 align='right'>
                             {row.calories}
                           </StyledTableCell4>
-                          <StyledTableCell4 align="right">
+                          <StyledTableCell4 align='right'>
                             {row.fat}
                           </StyledTableCell4>
-                          <StyledTableCell4 align="right">
+                          <StyledTableCell4 align='right'>
                             {row.carbs}
                           </StyledTableCell4>
-                          <StyledTableCell4 align="right">
+                          <StyledTableCell4 align='right'>
                             {row.protein}
                           </StyledTableCell4>
                         </StyledTableRow4>
@@ -800,20 +800,20 @@ export default function TablesExamplesPage() {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-6">
+      <div className='row'>
+        <div className='col-md-6'>
           <CodeExample
             jsCode={jsCode5}
-            beforeCodeTitle="Custom Table Pagination Action"
+            beforeCodeTitle='Custom Table Pagination Action'
           >
-            <div className="kt-section">
-              <span className="kt-section__sub">
-                The <code>Action</code> property of the{" "}
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
+                The <code>Action</code> property of the{' '}
                 <code>TablePagination</code> component allows the implementation
                 of custom actions.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <Paper className={classes5.root}>
                   <div className={classes5.tableWrapper}>
                     <Table className={classes5.table}>
@@ -825,13 +825,13 @@ export default function TablesExamplesPage() {
                           )
                           .map(row => (
                             <TableRow key={row.name}>
-                              <TableCell component="th" scope="row">
+                              <TableCell component='th' scope='row'>
                                 {row.name}
                               </TableCell>
-                              <TableCell align="right">
+                              <TableCell align='right'>
                                 {row.calories}
                               </TableCell>
-                              <TableCell align="right">{row.fat}</TableCell>
+                              <TableCell align='right'>{row.fat}</TableCell>
                             </TableRow>
                           ))}
 
@@ -850,8 +850,8 @@ export default function TablesExamplesPage() {
                             rowsPerPage={rowsPerPage5}
                             page={page5}
                             SelectProps={{
-                              inputProps: { "aria-label": "Rows per page" },
-                              native: true
+                              inputProps: { 'aria-label': 'Rows per page' },
+                              native: true,
                             }}
                             onChangePage={handleChangePage5}
                             onChangeRowsPerPage={handleChangeRowsPerPage5}
@@ -866,31 +866,31 @@ export default function TablesExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode6} beforeCodeTitle="Spanning Table">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode6} beforeCodeTitle='Spanning Table'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 A simple example with spanning rows & columns.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <Paper className={classes6.root}>
                   <Table className={classes6.table}>
                     <TableHead>
                       <TableRow>
                         <TableCell>Desc</TableCell>
-                        <TableCell align="right">Qty.</TableCell>
-                        <TableCell align="right">@</TableCell>
-                        <TableCell align="right">Price</TableCell>
+                        <TableCell align='right'>Qty.</TableCell>
+                        <TableCell align='right'>@</TableCell>
+                        <TableCell align='right'>Price</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
                       {rows6.map(row => (
                         <TableRow key={row.desc}>
                           <TableCell>{row.desc}</TableCell>
-                          <TableCell align="right">{row.qty}</TableCell>
-                          <TableCell align="right">{row.unit}</TableCell>
-                          <TableCell align="right">
+                          <TableCell align='right'>{row.qty}</TableCell>
+                          <TableCell align='right'>{row.unit}</TableCell>
+                          <TableCell align='right'>
                             {ccyFormat6(row.price)}
                           </TableCell>
                         </TableRow>
@@ -899,22 +899,22 @@ export default function TablesExamplesPage() {
                       <TableRow>
                         <TableCell rowSpan={3} />
                         <TableCell colSpan={2}>Subtotal</TableCell>
-                        <TableCell align="right">
+                        <TableCell align='right'>
                           {ccyFormat6(invoiceSubtotal6)}
                         </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>Tax</TableCell>
-                        <TableCell align="right">{`${(TAX_RATE * 100).toFixed(
+                        <TableCell align='right'>{`${(TAX_RATE * 100).toFixed(
                           0
                         )} %`}</TableCell>
-                        <TableCell align="right">
+                        <TableCell align='right'>
                           {ccyFormat6(invoiceTaxes6)}
                         </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell colSpan={2}>Total</TableCell>
-                        <TableCell align="right">
+                        <TableCell align='right'>
                           {ccyFormat6(invoiceTotal6)}
                         </TableCell>
                       </TableRow>

@@ -1,11 +1,11 @@
-import { useEffect, EffectCallback, useReducer, useRef, useState } from "react";
+import { useEffect, EffectCallback, useReducer, useRef, useState } from 'react';
 
-export { useSnackbar } from "../../../providers/SnackbarProvider";
+export { useSnackbar } from '../../../providers/SnackbarProvider';
 
 export const useOnMount = (cb: EffectCallback) => useEffect(cb, []);
 
 export const useForceUpdate = () => {
-  const [, forceUpdate] = useReducer((x) => x + 1, 0);
+  const [, forceUpdate] = useReducer(x => x + 1, 0);
   return forceUpdate;
 };
 
@@ -37,7 +37,7 @@ export function useEventListener<K extends keyof WindowEventMap>(
       if (!isSupported) return;
 
       // Create event listener that calls handler function stored in ref
-      const eventListener: EventListener = (event) =>
+      const eventListener: EventListener = event =>
         savedHandler.current && savedHandler.current(event);
 
       // Add event listener

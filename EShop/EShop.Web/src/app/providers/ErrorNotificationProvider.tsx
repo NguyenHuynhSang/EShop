@@ -1,8 +1,8 @@
-import React from "react";
-import Button from "@material-ui/core/Button";
-import { useSnackbar } from "./SnackbarProvider";
-import { shallowEqual, useDispatch, useSelector } from "../store/store";
-import { AppError, actions } from "../pages/home/base/errors/error.duck";
+import React from 'react';
+import Button from '@material-ui/core/Button';
+import { useSnackbar } from './SnackbarProvider';
+import { shallowEqual, useDispatch, useSelector } from '../store/store';
+import { AppError, actions } from '../pages/home/base/errors/error.duck';
 
 function useThrow(error?: AppError) {
   const dispatch = useDispatch();
@@ -10,12 +10,12 @@ function useThrow(error?: AppError) {
 
   if (error) {
     setTimeout(() => {
-      const { id, message = "Oops! Something went wrong." } = error;
+      const { id, message = 'Oops! Something went wrong.' } = error;
       const key = id.toString();
 
       createSnackbar(message, {
         key,
-        variant: "error",
+        variant: 'error',
         autoHideDuration: 5000,
         onClose: () => {
           dispatch(actions.removeError(id));

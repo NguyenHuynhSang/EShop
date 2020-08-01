@@ -1,58 +1,58 @@
 /* eslint-disable no-restricted-imports */
-import React from "react";
-import Notice from "../../../../partials/content/Notice";
-import CodeExample from "../../../../partials/content/CodeExample";
-import { makeStyles } from "@material-ui/core/styles";
-import { Grid, Avatar } from "@material-ui/core";
-import { deepOrange, deepPurple, green, pink } from "@material-ui/core/colors";
-import FolderIcon from "@material-ui/icons/Folder";
-import PageviewIcon from "@material-ui/icons/Pageview";
-import AssignmentIcon from "@material-ui/icons/Assignment";
+import React from 'react';
+import Notice from '../../../../partials/content/Notice';
+import CodeExample from '../../../../partials/content/CodeExample';
+import { makeStyles } from '@material-ui/core/styles';
+import { Grid, Avatar } from '@material-ui/core';
+import { deepOrange, deepPurple, green, pink } from '@material-ui/core/colors';
+import FolderIcon from '@material-ui/icons/Folder';
+import PageviewIcon from '@material-ui/icons/Pageview';
+import AssignmentIcon from '@material-ui/icons/Assignment';
 
 // Example 1
 const useStyles1 = makeStyles({
   avatar: {
-    margin: 10
+    margin: 10,
   },
   bigAvatar: {
     margin: 10,
     width: 60,
-    height: 60
-  }
+    height: 60,
+  },
 });
 
 // Example 2
 const useStyles2 = makeStyles({
   avatar: {
-    margin: 10
+    margin: 10,
   },
   orangeAvatar: {
     margin: 10,
-    color: "#fff",
-    backgroundColor: deepOrange[500]
+    color: '#fff',
+    backgroundColor: deepOrange[500],
   },
   purpleAvatar: {
     margin: 10,
-    color: "#fff",
-    backgroundColor: deepPurple[500]
-  }
+    color: '#fff',
+    backgroundColor: deepPurple[500],
+  },
 });
 
 // Example 3
 const useStyles3 = makeStyles({
   avatar: {
-    margin: 10
+    margin: 10,
   },
   pinkAvatar: {
     margin: 10,
-    color: "#fff",
-    backgroundColor: pink[500]
+    color: '#fff',
+    backgroundColor: pink[500],
   },
   greenAvatar: {
     margin: 10,
-    color: "#fff",
-    backgroundColor: green[500]
-  }
+    color: '#fff',
+    backgroundColor: green[500],
+  },
 });
 
 export default function AvatarsExamplesPage() {
@@ -67,41 +67,41 @@ export default function AvatarsExamplesPage() {
 
   return (
     <>
-      <Notice icon="flaticon-warning kt-font-primary">
+      <Notice icon='flaticon-warning kt-font-primary'>
         <p>
           Avatars are found throughout material design with uses in everything
           from tables to dialog menus.
         </p>
         <p>
-          For more info please check the components's official{" "}
+          For more info please check the components's official{' '}
           <a
-            target="_blank"
-            className="kt-link"
-            rel="noopener noreferrer"
-            href="https://material-ui.com/components/avatars/"
+            target='_blank'
+            className='kt-link'
+            rel='noopener noreferrer'
+            href='https://material-ui.com/components/avatars/'
           >
             demos & documentation
           </a>
         </p>
       </Notice>
 
-      <CodeExample jsCode={jsCode1} beforeCodeTitle="Image avatars">
-        <div className="kt-section">
-          <span className="kt-section__sub">
-            Image avatars can be created by passing standard <code>img</code>{" "}
+      <CodeExample jsCode={jsCode1} beforeCodeTitle='Image avatars'>
+        <div className='kt-section'>
+          <span className='kt-section__sub'>
+            Image avatars can be created by passing standard <code>img</code>{' '}
             props <code>src</code> or <code>srcSet</code> into the component.
           </span>
-          <div className="kt-separator kt-separator--dashed"></div>
-          <div className="kt-section__content">
-            <Grid container justify="center" alignItems="center">
+          <div className='kt-separator kt-separator--dashed'></div>
+          <div className='kt-section__content'>
+            <Grid container justify='center' alignItems='center'>
               <Avatar
-                alt="Remy Sharp"
-                src="https://material-ui.com/static/images/avatar/1.jpg"
+                alt='Remy Sharp'
+                src='https://material-ui.com/static/images/avatar/1.jpg'
                 className={classes1.avatar}
               />
               <Avatar
-                alt="Remy Sharp"
-                src="https://material-ui.com/static/images/avatar/1.jpg"
+                alt='Remy Sharp'
+                src='https://material-ui.com/static/images/avatar/1.jpg'
                 className={classes1.bigAvatar}
               />
             </Grid>
@@ -109,15 +109,15 @@ export default function AvatarsExamplesPage() {
         </div>
       </CodeExample>
 
-      <CodeExample jsCode={jsCode2} beforeCodeTitle="Letter avatars">
-        <div className="kt-section">
-          <span className="kt-section__sub">
+      <CodeExample jsCode={jsCode2} beforeCodeTitle='Letter avatars'>
+        <div className='kt-section'>
+          <span className='kt-section__sub'>
             Avatars containing simple characters can be created by passing your
             string as <code>children</code>.
           </span>
-          <div className="kt-separator kt-separator--dashed"></div>
-          <div className="kt-section__content">
-            <Grid container justify="center" alignItems="center">
+          <div className='kt-separator kt-separator--dashed'></div>
+          <div className='kt-section__content'>
+            <Grid container justify='center' alignItems='center'>
               <Avatar className={classes2.avatar}>H</Avatar>
               <Avatar className={classes2.orangeAvatar}>N</Avatar>
               <Avatar className={classes2.purpleAvatar}>OP</Avatar>
@@ -126,15 +126,15 @@ export default function AvatarsExamplesPage() {
         </div>
       </CodeExample>
 
-      <CodeExample jsCode={jsCode3} beforeCodeTitle="Icon avatars">
-        <div className="kt-section">
-          <span className="kt-section__sub">
+      <CodeExample jsCode={jsCode3} beforeCodeTitle='Icon avatars'>
+        <div className='kt-section'>
+          <span className='kt-section__sub'>
             Icon avatars are created by passing an icon as <code>children</code>
             .
           </span>
-          <div className="kt-separator kt-separator--dashed"></div>
-          <div className="kt-section__content">
-            <Grid container justify="center" alignItems="center">
+          <div className='kt-separator kt-separator--dashed'></div>
+          <div className='kt-section__content'>
+            <Grid container justify='center' alignItems='center'>
               <Avatar className={classes3.avatar}>
                 <FolderIcon />
               </Avatar>

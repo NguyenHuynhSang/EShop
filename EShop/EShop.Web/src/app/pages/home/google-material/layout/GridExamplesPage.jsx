@@ -1,22 +1,22 @@
 /* eslint-disable react/jsx-no-target-blank */
-import React from "react";
-import Notice from "../../../../partials/content/Notice";
-import CodeExample from "../../../../partials/content/CodeExample";
-import { makeStyles } from "@material-ui/core";
+import React from 'react';
+import Notice from '../../../../partials/content/Notice';
+import CodeExample from '../../../../partials/content/CodeExample';
+import { makeStyles } from '@material-ui/core';
 import {
   Grid,
   FormLabel,
   FormControlLabel,
   RadioGroup,
-  Radio
-} from "@material-ui/core";
+  Radio,
+} from '@material-ui/core';
 import {
   Paper,
   ButtonBase,
   Typography,
   Avatar,
-  Divider
-} from "@material-ui/core";
+  Divider,
+} from '@material-ui/core';
 
 const jsCode1 = `
 import React from 'react';
@@ -477,104 +477,104 @@ export default function AutoGridNoWrap() {
 
 const useStyles1 = makeStyles(theme => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   paper: {
     height: 140,
-    width: 100
+    width: 100,
   },
   control: {
-    padding: theme.spacing(2)
-  }
+    padding: theme.spacing(2),
+  },
 }));
 const useStyles2 = makeStyles(theme => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   paper: {
     padding: theme.spacing(2),
-    textAlign: "center",
-    color: theme.palette.text.secondary
-  }
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
 }));
 const useStyles3 = makeStyles(theme => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   paper: {
     padding: theme.spacing(2),
-    textAlign: "center",
-    color: theme.palette.text.secondary
-  }
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
 }));
 const useStyles4 = makeStyles(theme => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   paper: {
     padding: theme.spacing(2),
-    textAlign: "center",
-    color: theme.palette.text.secondary
-  }
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
 }));
 const useStyles5 = makeStyles(theme => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   paper: {
     padding: theme.spacing(2),
-    margin: "auto",
-    maxWidth: 500
+    margin: 'auto',
+    maxWidth: 500,
   },
   image: {
     width: 128,
-    height: 128
+    height: 128,
   },
   img: {
-    margin: "auto",
-    display: "block",
-    maxWidth: "100%",
-    maxHeight: "100%"
-  }
+    margin: 'auto',
+    display: 'block',
+    maxWidth: '100%',
+    maxHeight: '100%',
+  },
 }));
 const useStyles6 = makeStyles(theme => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   paper: {
     padding: theme.spacing(1),
-    textAlign: "center",
-    color: theme.palette.text.secondary
-  }
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
 }));
 const useStyles8 = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    overflow: "hidden",
-    padding: theme.spacing(0, 3)
+    overflow: 'hidden',
+    padding: theme.spacing(0, 3),
   },
   paper: {
     maxWidth: 400,
     margin: `${theme.spacing(1)}px auto`,
-    padding: theme.spacing(2)
-  }
+    padding: theme.spacing(2),
+  },
 }));
 const useStyles7 = makeStyles(theme => ({
   container: {
-    display: "grid",
-    gridTemplateColumns: "repeat(12, 1fr)",
-    gridGap: theme.spacing(3)
+    display: 'grid',
+    gridTemplateColumns: 'repeat(12, 1fr)',
+    gridGap: theme.spacing(3),
   },
   paper: {
     padding: theme.spacing(1),
-    textAlign: "center",
+    textAlign: 'center',
     color: theme.palette.text.secondary,
-    whiteSpace: "nowrap",
-    marginBottom: theme.spacing(1)
+    whiteSpace: 'nowrap',
+    marginBottom: theme.spacing(1),
   },
   divider: {
-    margin: theme.spacing(2, 0)
-  }
+    margin: theme.spacing(2, 0),
+  },
 }));
 
 export default function GridExamplesPage() {
@@ -613,40 +613,40 @@ export default function GridExamplesPage() {
 
   return (
     <>
-      <Notice icon="flaticon-warning kt-font-primary">
+      <Notice icon='flaticon-warning kt-font-primary'>
         <p>
           The Material Design responsive layout grid adapts to screen size and
           orientation, ensuring consistency across layouts.
         </p>
         <p>
-          For more info please check the components's official{" "}
+          For more info please check the components's official{' '}
           <a
-            target="_blank"
-            className="kt-link"
-            rel="noopener noreferrer"
-            href="https://material-ui.com/components/grid/"
+            target='_blank'
+            className='kt-link'
+            rel='noopener noreferrer'
+            href='https://material-ui.com/components/grid/'
           >
             demos & documentation
           </a>
         </p>
       </Notice>
 
-      <CodeExample jsCode={jsCode1} beforeCodeTitle="Spacing">
-        <div className="kt-section">
-          <span className="kt-section__sub">
+      <CodeExample jsCode={jsCode1} beforeCodeTitle='Spacing'>
+        <div className='kt-section'>
+          <span className='kt-section__sub'>
             The responsive grid focuses on consistent spacing widths, rather
             than column width. Material Design margins and columns follow an 8px
             square baseline grid. The spacing property is an integer between 0
             and 10 inclusive. By default, the spacing between two grid items
             follows a linear function:
-            <code> output(spacing) = spacing * 8px</code>, e.g.{" "}
+            <code> output(spacing) = spacing * 8px</code>, e.g.{' '}
             <code>spacing={2}</code> creates a 16px wide gap.
           </span>
-          <div className="kt-separator kt-separator--dashed"></div>
-          <div className="kt-section__content">
+          <div className='kt-separator kt-separator--dashed'></div>
+          <div className='kt-section__content'>
             <Grid container className={classes1.root} spacing={2}>
               <Grid item xs={12}>
-                <Grid container justify="center" spacing={spacing}>
+                <Grid container justify='center' spacing={spacing}>
                   {[0, 1, 2].map(value => (
                     <Grid key={value} item>
                       <Paper className={classes1.paper} />
@@ -660,8 +660,8 @@ export default function GridExamplesPage() {
                     <Grid item>
                       <FormLabel>spacing</FormLabel>
                       <RadioGroup
-                        name="spacing"
-                        aria-label="Spacing"
+                        name='spacing'
+                        aria-label='Spacing'
                         value={spacing.toString()}
                         onChange={handleChange}
                         row
@@ -684,23 +684,23 @@ export default function GridExamplesPage() {
         </div>
       </CodeExample>
 
-      <Notice className="notice__paragraph">Fluid grids</Notice>
+      <Notice className='notice__paragraph'>Fluid grids</Notice>
       <Notice>
         Fluid grids use columns that scale and resize content. A fluid grid’s
         layout can use breakpoints to determine if the layout needs to change
         dramatically.
       </Notice>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode2} beforeCodeTitle="Basic Grid">
-            <div className="kt-section">
-              <span className="kt-section__sub">
-                The column widths apply at all breakpoints (i.e. <code>xs</code>{" "}
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode2} beforeCodeTitle='Basic Grid'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
+                The column widths apply at all breakpoints (i.e. <code>xs</code>{' '}
                 and up).
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes2.root}>
                   <Grid container spacing={3}>
                     <Grid item xs={12}>
@@ -730,15 +730,15 @@ export default function GridExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode3} beforeCodeTitle="Grid with breakpoints">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode3} beforeCodeTitle='Grid with breakpoints'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 Some columns have multiple widths defined, causing the layout to
                 change at the defined breakpoint.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes3.root}>
                   <Grid container spacing={3}>
                     <Grid item xs={12}>
@@ -770,16 +770,16 @@ export default function GridExamplesPage() {
         </div>
       </div>
 
-      <CodeExample jsCode={jsCode4} beforeCodeTitle="Auto-layout">
-        <div className="kt-section">
-          <span className="kt-section__sub">
+      <CodeExample jsCode={jsCode4} beforeCodeTitle='Auto-layout'>
+        <div className='kt-section'>
+          <span className='kt-section__sub'>
             The Auto-layout makes the items equitably share the available space.
             That also means you can set the width of one item and the others
             will automatically resize around it.
           </span>
-          <div className="kt-separator kt-separator--dashed"></div>
+          <div className='kt-separator kt-separator--dashed'></div>
         </div>
-        <div className="kt-section">
+        <div className='kt-section'>
           <div className={classes4.root}>
             <Grid container spacing={3}>
               <Grid item xs>
@@ -807,18 +807,18 @@ export default function GridExamplesPage() {
         </div>
       </CodeExample>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode5} beforeCodeTitle="Complex Grid">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode5} beforeCodeTitle='Complex Grid'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 The following demo doesn't follow the Material Design
                 specification, but illustrates how the grid can be used to build
                 complex layouts.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
+              <div className='kt-separator kt-separator--dashed'></div>
 
-              <div className="kt-section__content">
+              <div className='kt-section__content'>
                 <div className={classes5.root}>
                   <Paper className={classes5.paper}>
                     <Grid container spacing={2}>
@@ -826,35 +826,35 @@ export default function GridExamplesPage() {
                         <ButtonBase className={classes5.image}>
                           <img
                             className={classes5.img}
-                            alt="complex"
-                            src="https://material-ui.com/static/images/grid/complex.jpg"
+                            alt='complex'
+                            src='https://material-ui.com/static/images/grid/complex.jpg'
                           />
                         </ButtonBase>
                       </Grid>
                       <Grid item xs={12} sm container>
-                        <Grid item xs container direction="column" spacing={2}>
+                        <Grid item xs container direction='column' spacing={2}>
                           <Grid item xs>
-                            <Typography gutterBottom variant="subtitle1">
+                            <Typography gutterBottom variant='subtitle1'>
                               Standard license
                             </Typography>
-                            <Typography variant="body2" gutterBottom>
+                            <Typography variant='body2' gutterBottom>
                               Full resolution 1920x1080 • JPEG
                             </Typography>
-                            <Typography variant="body2" color="textSecondary">
+                            <Typography variant='body2' color='textSecondary'>
                               ID: 1030114
                             </Typography>
                           </Grid>
                           <Grid item>
                             <Typography
-                              variant="body2"
-                              style={{ cursor: "pointer" }}
+                              variant='body2'
+                              style={{ cursor: 'pointer' }}
                             >
                               Remove
                             </Typography>
                           </Grid>
                         </Grid>
                         <Grid item>
-                          <Typography variant="subtitle1">$19.00</Typography>
+                          <Typography variant='subtitle1'>$19.00</Typography>
                         </Grid>
                       </Grid>
                     </Grid>
@@ -864,22 +864,22 @@ export default function GridExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode6} beforeCodeTitle="Nested Grid">
-            <div className="kt-section">
-              <p className="kt-section__sub">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode6} beforeCodeTitle='Nested Grid'>
+            <div className='kt-section'>
+              <p className='kt-section__sub'>
                 The <code>container</code> and <code>item</code> properties are
                 two independent booleans. They can be combined.
               </p>
-              <p className="kt-section__sub">
+              <p className='kt-section__sub'>
                 A flex container is the box generated by an element with a
-                computed display of <code>flex</code> or{" "}
+                computed display of <code>flex</code> or{' '}
                 <code>inline-flex</code>. In-flow children of a flex container
                 are called flex items and are laid out using the flex layout
                 model.
               </p>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes6.root}>
                   <Grid container spacing={1}>
                     <Grid container item xs={12} spacing={3}>
@@ -899,25 +899,25 @@ export default function GridExamplesPage() {
         </div>
       </div>
 
-      <CodeExample jsCode={jsCode8} beforeCodeTitle="Negative margin">
-        <div className="kt-section">
-          <span className="kt-section__sub">
+      <CodeExample jsCode={jsCode8} beforeCodeTitle='Negative margin'>
+        <div className='kt-section'>
+          <span className='kt-section__sub'>
             There is one limitation with the negative margin we use to implement
             the spacing between items. A horizontal scroll will appear if a
             negative margin goes beyond the <code>&lt;body&gt;</code>. There are
-            3 available workarounds:{" "}
+            3 available workarounds:{' '}
             <a
-              target="_blank"
-              href="https://material-ui.com/components/grid/#limitations"
+              target='_blank'
+              href='https://material-ui.com/components/grid/#limitations'
             >
               see official documentations
             </a>
           </span>
-          <div className="kt-separator kt-separator--dashed"></div>
-          <div className="kt-section__content">
+          <div className='kt-separator kt-separator--dashed'></div>
+          <div className='kt-section__content'>
             <div className={classes8.root}>
               <Paper className={classes8.paper}>
-                <Grid container wrap="nowrap" spacing={2}>
+                <Grid container wrap='nowrap' spacing={2}>
                   <Grid item>
                     <Avatar>W</Avatar>
                   </Grid>
@@ -927,7 +927,7 @@ export default function GridExamplesPage() {
                 </Grid>
               </Paper>
               <Paper className={classes8.paper}>
-                <Grid container wrap="nowrap" spacing={2}>
+                <Grid container wrap='nowrap' spacing={2}>
                   <Grid item>
                     <Avatar>W</Avatar>
                   </Grid>
@@ -937,7 +937,7 @@ export default function GridExamplesPage() {
                 </Grid>
               </Paper>
               <Paper className={classes8.paper}>
-                <Grid container wrap="nowrap" spacing={2}>
+                <Grid container wrap='nowrap' spacing={2}>
                   <Grid item>
                     <Avatar>W</Avatar>
                   </Grid>
@@ -951,16 +951,16 @@ export default function GridExamplesPage() {
         </div>
       </CodeExample>
 
-      <CodeExample jsCode={jsCode7} beforeCodeTitle="CSS Grid Layout">
-        <div className="kt-section">
-          <span className="kt-section__sub">
+      <CodeExample jsCode={jsCode7} beforeCodeTitle='CSS Grid Layout'>
+        <div className='kt-section'>
+          <span className='kt-section__sub'>
             Material-UI doesn't provide any CSS Grid functionality itself, but
             as seen below you can easily use CSS Grid to layout your pages.
           </span>
-          <div className="kt-separator kt-separator--dashed"></div>
-          <div className="kt-section__content">
+          <div className='kt-separator kt-separator--dashed'></div>
+          <div className='kt-section__content'>
             <div>
-              <Typography variant="subtitle1" gutterBottom>
+              <Typography variant='subtitle1' gutterBottom>
                 Material-UI Grid:
               </Typography>
               <Grid container spacing={3}>
@@ -984,26 +984,26 @@ export default function GridExamplesPage() {
                 </Grid>
               </Grid>
               <Divider className={classes7.divider} />
-              <Typography variant="subtitle1" gutterBottom>
+              <Typography variant='subtitle1' gutterBottom>
                 CSS Grid Layout:
               </Typography>
               <div className={classes7.container}>
-                <div style={{ gridColumnEnd: "span 3" }}>
+                <div style={{ gridColumnEnd: 'span 3' }}>
                   <Paper className={classes7.paper}>xs=3</Paper>
                 </div>
-                <div style={{ gridColumnEnd: "span 3" }}>
+                <div style={{ gridColumnEnd: 'span 3' }}>
                   <Paper className={classes7.paper}>xs=3</Paper>
                 </div>
-                <div style={{ gridColumnEnd: "span 3" }}>
+                <div style={{ gridColumnEnd: 'span 3' }}>
                   <Paper className={classes7.paper}>xs=3</Paper>
                 </div>
-                <div style={{ gridColumnEnd: "span 3" }}>
+                <div style={{ gridColumnEnd: 'span 3' }}>
                   <Paper className={classes7.paper}>xs=3</Paper>
                 </div>
-                <div style={{ gridColumnEnd: "span 8" }}>
+                <div style={{ gridColumnEnd: 'span 8' }}>
                   <Paper className={classes7.paper}>xs=8</Paper>
                 </div>
-                <div style={{ gridColumnEnd: "span 4" }}>
+                <div style={{ gridColumnEnd: 'span 4' }}>
                   <Paper className={classes7.paper}>xs=4</Paper>
                 </div>
               </div>

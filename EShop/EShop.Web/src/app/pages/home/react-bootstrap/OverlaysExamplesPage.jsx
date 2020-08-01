@@ -1,14 +1,14 @@
-import React from "react";
-import Notice from "../../../partials/content/Notice";
-import CodeExample from "../../../partials/content/CodeExample";
+import React from 'react';
+import Notice from '../../../partials/content/Notice';
+import CodeExample from '../../../partials/content/CodeExample';
 import {
   Button,
   Overlay,
   Popover,
   OverlayTrigger,
   ButtonToolbar,
-  Tooltip
-} from "react-bootstrap";
+  Tooltip,
+} from 'react-bootstrap';
 
 class Example extends React.Component {
   constructor(...args) {
@@ -16,7 +16,7 @@ class Example extends React.Component {
 
     this.attachRef = target => this.setState({ target });
     this.state = {
-      show: false
+      show: false,
     };
   }
 
@@ -25,13 +25,13 @@ class Example extends React.Component {
     return (
       <>
         <Button
-          variant="danger"
+          variant='danger'
           ref={this.attachRef}
           onClick={() => this.setState({ show: !show })}
         >
           Click me to see
         </Button>
-        <Overlay target={target} show={show} placement="right">
+        <Overlay target={target} show={show} placement='right'>
           {({
             placement,
             scheduleUpdate,
@@ -43,11 +43,11 @@ class Example extends React.Component {
             <div
               {...props}
               style={{
-                backgroundColor: "rgba(255, 100, 100, 0.85)",
-                padding: "2px 10px",
-                color: "white",
+                backgroundColor: 'rgba(255, 100, 100, 0.85)',
+                padding: '2px 10px',
+                color: 'white',
                 borderRadius: 3,
-                ...props.style
+                ...props.style,
               }}
             >
               Simple tooltip
@@ -63,11 +63,11 @@ const renderTooltip = props => (
   <div
     {...props}
     style={{
-      backgroundColor: "rgba(0, 0, 0, 0.85)",
-      padding: "2px 10px",
-      color: "white",
+      backgroundColor: 'rgba(0, 0, 0, 0.85)',
+      padding: '2px 10px',
+      color: 'white',
       borderRadius: 3,
-      ...props.style
+      ...props.style,
     }}
   >
     Simple tooltip
@@ -76,11 +76,11 @@ const renderTooltip = props => (
 
 const Example1 = () => (
   <OverlayTrigger
-    placement="right-start"
+    placement='right-start'
     delay={{ show: 250, hide: 400 }}
     overlay={renderTooltip}
   >
-    <Button variant="success">Hover me to see</Button>
+    <Button variant='success'>Hover me to see</Button>
   </OverlayTrigger>
 );
 
@@ -93,7 +93,7 @@ class Example4 extends React.Component {
     };
 
     this.state = {
-      show: false
+      show: false,
     };
   }
 
@@ -105,11 +105,11 @@ class Example4 extends React.Component {
         <Overlay
           show={this.state.show}
           target={this.state.target}
-          placement="bottom"
+          placement='bottom'
           container={this}
           containerPadding={20}
         >
-          <Popover id="popover-contained" title="Popover bottom">
+          <Popover id='popover-contained' title='Popover bottom'>
             <strong>Holy guacamole!</strong> Check this info.
           </Popover>
         </Overlay>
@@ -121,7 +121,7 @@ class Example4 extends React.Component {
 class UpdatingPopover extends React.Component {
   componentDidUpdate(prevProps) {
     if (prevProps.children !== this.props.children) {
-      console.log("updating!");
+      console.log('updating!');
       this.props.scheduleUpdate();
     }
   }
@@ -136,7 +136,7 @@ const longContent = `
   Multiline content
   that is engaging and what-not
 `;
-const shortContent = "Short and sweet!";
+const shortContent = 'Short and sweet!';
 
 class Example5 extends React.Component {
   constructor(props, context) {
@@ -147,7 +147,7 @@ class Example5 extends React.Component {
   componentDidMount() {
     this.timer = setInterval(() => {
       this.setState(state => ({
-        content: state.content === shortContent ? longContent : shortContent
+        content: state.content === shortContent ? longContent : shortContent,
       }));
     }, 3000);
   }
@@ -157,9 +157,9 @@ class Example5 extends React.Component {
 
     return (
       <OverlayTrigger
-        trigger="click"
+        trigger='click'
         overlay={
-          <UpdatingPopover id="popover-contained">{content}</UpdatingPopover>
+          <UpdatingPopover id='popover-contained'>{content}</UpdatingPopover>
         }
       >
         <Button onClick={this.handleClick}>Holy guacamole!</Button>
@@ -172,72 +172,72 @@ export default class OverlaysExamplesPage extends React.Component {
   render() {
     return (
       <>
-        <Notice icon="flaticon-warning kt-font-primary">
+        <Notice icon='flaticon-warning kt-font-primary'>
           <p>
             A set of components for positioning beautiful overlays, tooltips,
             popovers, and anything else you need.
           </p>
           <p>
-            For more info please check the components's official{" "}
+            For more info please check the components's official{' '}
             <a
-              target="_blank"
-              className="kt-link"
-              rel="noopener noreferrer"
-              href="https://react-bootstrap.github.io/components/overlays/"
+              target='_blank'
+              className='kt-link'
+              rel='noopener noreferrer'
+              href='https://react-bootstrap.github.io/components/overlays/'
             >
               demos & documentation
             </a>
           </p>
         </Notice>
 
-        <div className="row">
-          <div className="col-md-6">
-            <CodeExample jsCode={jsCode1} beforeCodeTitle="Creating an Overlay">
-              <div className="kt-section">
-                <span className="kt-section__sub">
+        <div className='row'>
+          <div className='col-md-6'>
+            <CodeExample jsCode={jsCode1} beforeCodeTitle='Creating an Overlay'>
+              <div className='kt-section'>
+                <span className='kt-section__sub'>
                   Overlays consist of at least two elements, the "overlay", the
                   element to be positioned, as well as a "target", the element
                   the overlay is positioned in relation to. You can also also
                   have an "arrow" element, like the tooltips and popovers, but
                   that is optional.
                 </span>
-                <div className="kt-separator kt-separator--dashed"></div>
+                <div className='kt-separator kt-separator--dashed'></div>
                 <Example />
               </div>
             </CodeExample>
           </div>
-          <div className="col-md-6">
-            <CodeExample jsCode={jsCode2} beforeCodeTitle="OverlayTrigger">
-              <div className="kt-section">
-                <span className="kt-section__sub">
+          <div className='col-md-6'>
+            <CodeExample jsCode={jsCode2} beforeCodeTitle='OverlayTrigger'>
+              <div className='kt-section'>
+                <span className='kt-section__sub'>
                   Since the above pattern is pretty common, but verbose, we've
                   included <code>&lt;OverlayTrigger&gt;</code> component to help
                   with common use-cases. It even has functionality to delayed
                   show or hides, and a few different "trigger" events you can
                   mix and match.
                 </span>
-                <div className="kt-separator kt-separator--dashed"></div>
+                <div className='kt-separator kt-separator--dashed'></div>
                 <Example1 />
               </div>
             </CodeExample>
           </div>
         </div>
 
-        <div className="row">
-          <div className="col-md-6">
-            <CodeExample jsCode={jsCode5} beforeCodeTitle="Disabled elements">
-              <div className="kt-section">
-                <span className="kt-section__sub">
+        <div className='row'>
+          <div className='col-md-6'>
+            <CodeExample jsCode={jsCode5} beforeCodeTitle='Disabled elements'>
+              <div className='kt-section'>
+                <span className='kt-section__sub'>
                   Elements with the <code>disabled</code> attribute aren’t
                   interactive, meaning users cannot hover or click them to
                   trigger a popover (or tooltip).
                 </span>
-                <div className="kt-separator kt-separator--dashed"></div>
+                <div className='kt-separator kt-separator--dashed'></div>
                 <OverlayTrigger
-                  overlay={<Tooltip id="tooltip-disabled">Tooltip!</Tooltip>}
+                  overlay={<Tooltip id='tooltip-disabled'>Tooltip!</Tooltip>}
                 >
-                  <span className="d-inline-block">
-                    <Button disabled style={{ pointerEvents: "none" }}>
+                  <span className='d-inline-block'>
+                    <Button disabled style={{ pointerEvents: 'none' }}>
                       Disabled button
                     </Button>
                   </span>
@@ -245,34 +245,34 @@ export default class OverlaysExamplesPage extends React.Component {
               </div>
             </CodeExample>
           </div>
-          <div className="col-md-6">
-            <CodeExample jsCode={jsCode6} beforeCodeTitle="Changing containers">
-              <div className="kt-section">
-                <span className="kt-section__sub">
+          <div className='col-md-6'>
+            <CodeExample jsCode={jsCode6} beforeCodeTitle='Changing containers'>
+              <div className='kt-section'>
+                <span className='kt-section__sub'>
                   You can specify a <code>container</code> to control the DOM
                   element the overlay is appended to. This is especially useful
                   when styles conflict with your Overlay's.
                 </span>
-                <div className="kt-separator kt-separator--dashed"></div>
+                <div className='kt-separator kt-separator--dashed'></div>
                 <Example4 />
               </div>
             </CodeExample>
           </div>
         </div>
 
-        <div className="row">
-          <div className="col-md-6">
+        <div className='row'>
+          <div className='col-md-6'>
             <CodeExample
               jsCode={jsCode7}
-              beforeCodeTitle="Updating position dynamically"
+              beforeCodeTitle='Updating position dynamically'
             >
-              <div className="kt-section">
-                <span className="kt-section__sub">
+              <div className='kt-section'>
+                <span className='kt-section__sub'>
                   Since we can't know every time your overlay changes size, to
                   reposition it, you need to take manual action if you want to
                   update the position of an Overlay in response to a change.
                 </span>
-                <div className="kt-separator kt-separator--dashed"></div>
+                <div className='kt-separator kt-separator--dashed'></div>
                 <Example5 />
               </div>
             </CodeExample>

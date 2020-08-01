@@ -1,5 +1,5 @@
-import React from "react";
-import KTScrolltop from "../../../_metronic/_assets/js/scrolltop";
+import React from 'react';
+import KTScrolltop from '../../../_metronic/_assets/js/scrolltop';
 
 export default class ScrollTop extends React.Component {
   scrollTopCommonRef = React.createRef();
@@ -7,7 +7,7 @@ export default class ScrollTop extends React.Component {
   componentDidMount() {
     const scrollTopOptions = {
       offset: 300,
-      speed: 600
+      speed: 600,
     };
     // eslint-disable-next-line no-undef
     new KTScrolltop(this.scrollTopCommonRef.current, scrollTopOptions);
@@ -16,11 +16,11 @@ export default class ScrollTop extends React.Component {
   render() {
     return (
       <div
-        id="kt_scrolltop"
-        className="kt-scrolltop"
+        id='kt_scrolltop'
+        className='kt-scrolltop'
         ref={this.scrollTopCommonRef}
       >
-        <i className="la la-arrow-up" />
+        <i className='la la-arrow-up' />
       </div>
     );
   }

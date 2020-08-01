@@ -1,6 +1,6 @@
-import Product, { ProductCategory } from "./product.model";
-import Currency from "../base/currency/currency.model";
-import { ColDef } from "ag-grid-community";
+import Product, { ProductCategory } from './product.model';
+import Currency from '../base/currency/currency.model';
+import { ColDef } from 'ag-grid-community';
 
 export type ColumnInfo = {
   field: string;
@@ -18,7 +18,7 @@ type Pagination = {
 
 export type ProductData = Product & {
   rowIndex: number;
-}
+};
 
 export interface ProductState {
   loading: boolean;
@@ -36,19 +36,19 @@ export interface ProductState {
 }
 
 export enum WeightUnit {
-  Kg = "kg",
-  Lb = "lb",
+  Kg = 'kg',
+  Lb = 'lb',
 }
-export type Pinned = "left" | "right" | undefined;
+export type Pinned = 'left' | 'right' | undefined;
 export type ColumnPinPayload = {
   column: string;
   pinned: Pinned;
 };
 
 export enum SortMode {
-  None = "none",
-  Ascending = "asc",
-  Descending = "desc",
+  None = 'none',
+  Ascending = 'asc',
+  Descending = 'desc',
 }
 
 export type Params = {

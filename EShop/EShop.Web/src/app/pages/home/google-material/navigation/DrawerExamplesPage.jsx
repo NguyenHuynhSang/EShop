@@ -1,8 +1,8 @@
 /* eslint-disable no-restricted-imports */
-import React from "react";
-import Notice from "../../../../partials/content/Notice";
-import CodeExample from "../../../../partials/content/CodeExample";
-import { makeStyles } from "@material-ui/core/styles";
+import React from 'react';
+import Notice from '../../../../partials/content/Notice';
+import CodeExample from '../../../../partials/content/CodeExample';
+import { makeStyles } from '@material-ui/core/styles';
 import {
   List,
   ListItem,
@@ -11,29 +11,29 @@ import {
   ListItemIcon,
   Button,
   Drawer,
-  SwipeableDrawer
-} from "@material-ui/core";
-import MailIcon from "@material-ui/icons/Mail";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
+  SwipeableDrawer,
+} from '@material-ui/core';
+import MailIcon from '@material-ui/icons/Mail';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
 
 // Example 1
 const useStyles1 = makeStyles({
   list: {
-    width: 250
+    width: 250,
   },
   fullList: {
-    width: "auto"
-  }
+    width: 'auto',
+  },
 });
 
 // Example 2
 const useStyles2 = makeStyles({
   list: {
-    width: 250
+    width: 250,
   },
   fullList: {
-    width: "auto"
-  }
+    width: 'auto',
+  },
 });
 
 export default function DrawerExamplesPage(props) {
@@ -43,13 +43,13 @@ export default function DrawerExamplesPage(props) {
     top: false,
     left: false,
     bottom: false,
-    right: false
+    right: false,
   });
 
   const toggleDrawer1 = (side, open) => event => {
     if (
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
     ) {
       return;
     }
@@ -60,12 +60,12 @@ export default function DrawerExamplesPage(props) {
   const sideList1 = side => (
     <div
       className={classes1.list}
-      role="presentation"
+      role='presentation'
       onClick={toggleDrawer1(side, false)}
       onKeyDown={toggleDrawer1(side, false)}
     >
       <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>
               {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -76,7 +76,7 @@ export default function DrawerExamplesPage(props) {
       </List>
       <Divider />
       <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
+        {['All mail', 'Trash', 'Spam'].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>
               {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -91,12 +91,12 @@ export default function DrawerExamplesPage(props) {
   const fullList1 = side => (
     <div
       className={classes1.fullList}
-      role="presentation"
+      role='presentation'
       onClick={toggleDrawer1(side, false)}
       onKeyDown={toggleDrawer1(side, false)}
     >
       <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>
               {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -107,7 +107,7 @@ export default function DrawerExamplesPage(props) {
       </List>
       <Divider />
       <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
+        {['All mail', 'Trash', 'Spam'].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>
               {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -125,14 +125,14 @@ export default function DrawerExamplesPage(props) {
     top: false,
     left: false,
     bottom: false,
-    right: false
+    right: false,
   });
 
   const toggleDrawer2 = (side, open) => event => {
     if (
       event &&
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
     ) {
       return;
     }
@@ -143,12 +143,12 @@ export default function DrawerExamplesPage(props) {
   const sideList2 = side => (
     <div
       className={classes2.list}
-      role="presentation"
+      role='presentation'
       onClick={toggleDrawer2(side, false)}
       onKeyDown={toggleDrawer2(side, false)}
     >
       <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>
               {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -159,7 +159,7 @@ export default function DrawerExamplesPage(props) {
       </List>
       <Divider />
       <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
+        {['All mail', 'Trash', 'Spam'].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>
               {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -174,12 +174,12 @@ export default function DrawerExamplesPage(props) {
   const fullList2 = side => (
     <div
       className={classes2.fullList}
-      role="presentation"
+      role='presentation'
       onClick={toggleDrawer2(side, false)}
       onKeyDown={toggleDrawer2(side, false)}
     >
       <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>
               {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -190,7 +190,7 @@ export default function DrawerExamplesPage(props) {
       </List>
       <Divider />
       <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
+        {['All mail', 'Trash', 'Spam'].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>
               {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -204,132 +204,132 @@ export default function DrawerExamplesPage(props) {
 
   return (
     <>
-      <Notice icon="flaticon-warning kt-font-primary">
+      <Notice icon='flaticon-warning kt-font-primary'>
         <p>
           Navigation drawers provide access to destinations in your app. Side
           sheets are surfaces containing supplementary content that are anchored
           to the left or right edge of the screen.
         </p>
         <p>
-          For more info please check the components's official{" "}
+          For more info please check the components's official{' '}
           <a
-            target="_blank"
-            className="kt-link"
-            rel="noopener noreferrer"
-            href="https://material-ui.com/components/drawers/"
+            target='_blank'
+            className='kt-link'
+            rel='noopener noreferrer'
+            href='https://material-ui.com/components/drawers/'
           >
             demos & documentation
           </a>
         </p>
       </Notice>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode1} beforeCodeTitle="Temporary drawer">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode1} beforeCodeTitle='Temporary drawer'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 Temporary navigation drawers can toggle open or closed. Closed
                 by default, the drawer opens temporarily above all other content
                 until a section is selected.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div>
-                  <Button onClick={toggleDrawer1("left", true)}>
+                  <Button onClick={toggleDrawer1('left', true)}>
                     Open Left
                   </Button>
-                  <Button onClick={toggleDrawer1("right", true)}>
+                  <Button onClick={toggleDrawer1('right', true)}>
                     Open Right
                   </Button>
-                  <Button onClick={toggleDrawer1("top", true)}>Open Top</Button>
-                  <Button onClick={toggleDrawer1("bottom", true)}>
+                  <Button onClick={toggleDrawer1('top', true)}>Open Top</Button>
+                  <Button onClick={toggleDrawer1('bottom', true)}>
                     Open Bottom
                   </Button>
                   <Drawer
                     open={state1.left}
-                    onClose={toggleDrawer1("left", false)}
+                    onClose={toggleDrawer1('left', false)}
                   >
-                    {sideList1("left")}
+                    {sideList1('left')}
                   </Drawer>
                   <Drawer
-                    anchor="top"
+                    anchor='top'
                     open={state1.top}
-                    onClose={toggleDrawer1("top", false)}
+                    onClose={toggleDrawer1('top', false)}
                   >
-                    {fullList1("top")}
+                    {fullList1('top')}
                   </Drawer>
                   <Drawer
-                    anchor="bottom"
+                    anchor='bottom'
                     open={state1.bottom}
-                    onClose={toggleDrawer1("bottom", false)}
+                    onClose={toggleDrawer1('bottom', false)}
                   >
-                    {fullList1("bottom")}
+                    {fullList1('bottom')}
                   </Drawer>
                   <Drawer
-                    anchor="right"
+                    anchor='right'
                     open={state1.right}
-                    onClose={toggleDrawer1("right", false)}
+                    onClose={toggleDrawer1('right', false)}
                   >
-                    {sideList1("right")}
+                    {sideList1('right')}
                   </Drawer>
                 </div>
               </div>
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
+        <div className='col-md-6'>
           <CodeExample
             jsCode={jsCode2}
-            beforeCodeTitle="Swipeable Temporary drawer"
+            beforeCodeTitle='Swipeable Temporary drawer'
           >
-            <div className="kt-section">
-              <span className="kt-section__sub">
-                You can make the drawer swipeable with the{" "}
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
+                You can make the drawer swipeable with the{' '}
                 <code>SwipeableDrawer</code> component.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div>
-                  <Button onClick={toggleDrawer2("left", true)}>
+                  <Button onClick={toggleDrawer2('left', true)}>
                     Open Left
                   </Button>
-                  <Button onClick={toggleDrawer2("right", true)}>
+                  <Button onClick={toggleDrawer2('right', true)}>
                     Open Right
                   </Button>
-                  <Button onClick={toggleDrawer2("top", true)}>Open Top</Button>
-                  <Button onClick={toggleDrawer2("bottom", true)}>
+                  <Button onClick={toggleDrawer2('top', true)}>Open Top</Button>
+                  <Button onClick={toggleDrawer2('bottom', true)}>
                     Open Bottom
                   </Button>
                   <SwipeableDrawer
                     open={state2.left}
-                    onClose={toggleDrawer2("left", false)}
-                    onOpen={toggleDrawer2("left", true)}
+                    onClose={toggleDrawer2('left', false)}
+                    onOpen={toggleDrawer2('left', true)}
                   >
-                    {sideList2("left")}
+                    {sideList2('left')}
                   </SwipeableDrawer>
                   <SwipeableDrawer
-                    anchor="top"
+                    anchor='top'
                     open={state2.top}
-                    onClose={toggleDrawer2("top", false)}
-                    onOpen={toggleDrawer2("top", true)}
+                    onClose={toggleDrawer2('top', false)}
+                    onOpen={toggleDrawer2('top', true)}
                   >
-                    {fullList2("top")}
+                    {fullList2('top')}
                   </SwipeableDrawer>
                   <SwipeableDrawer
-                    anchor="bottom"
+                    anchor='bottom'
                     open={state2.bottom}
-                    onClose={toggleDrawer2("bottom", false)}
-                    onOpen={toggleDrawer2("bottom", true)}
+                    onClose={toggleDrawer2('bottom', false)}
+                    onOpen={toggleDrawer2('bottom', true)}
                   >
-                    {fullList2("bottom")}
+                    {fullList2('bottom')}
                   </SwipeableDrawer>
                   <SwipeableDrawer
-                    anchor="right"
+                    anchor='right'
                     open={state2.right}
-                    onClose={toggleDrawer2("right", false)}
-                    onOpen={toggleDrawer2("right", true)}
+                    onClose={toggleDrawer2('right', false)}
+                    onOpen={toggleDrawer2('right', true)}
                   >
-                    {sideList2("right")}
+                    {sideList2('right')}
                   </SwipeableDrawer>
                 </div>
               </div>
@@ -338,9 +338,9 @@ export default function DrawerExamplesPage(props) {
         </div>
       </div>
 
-      <Notice className="notice__paragraph">
-        See other examples in{" "}
-        <a href="https://material-ui.com/components/drawers/">documentation</a>
+      <Notice className='notice__paragraph'>
+        See other examples in{' '}
+        <a href='https://material-ui.com/components/drawers/'>documentation</a>
       </Notice>
     </>
   );

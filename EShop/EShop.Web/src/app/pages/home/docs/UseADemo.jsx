@@ -1,15 +1,15 @@
-import React from "react";
+import React from 'react';
 import {
   Portlet,
   PortletBody,
-  PortletHeader
-} from "../../../partials/content/Portlet";
-import { CodeBlock } from "../../../partials/content/CodeExample";
+  PortletHeader,
+} from '../../../partials/content/Portlet';
+import { CodeBlock } from '../../../partials/content/CodeExample';
 
 export default function UseADemo() {
   return (
     <Portlet>
-      <PortletHeader title="How to use a demo" />
+      <PortletHeader title='How to use a demo' />
       <PortletBody>
         <p>
           Theme comes with multi-demo app and single app components. For demo
@@ -30,7 +30,7 @@ export default function UseADemo() {
         </p>
 
         <CodeBlock
-          language="diff"
+          language='diff'
           code={`            
             import axios from "axios";
             import React from "react";

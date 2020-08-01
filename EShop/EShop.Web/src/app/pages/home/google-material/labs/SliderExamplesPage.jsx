@@ -1,48 +1,48 @@
 /* eslint-disable no-restricted-imports */
-import React from "react";
-import PropTypes from "prop-types";
-import Notice from "../../../../partials/content/Notice";
-import CodeExample from "../../../../partials/content/CodeExample";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
-import { Typography, Grid, Tooltip, Paper, Input } from "@material-ui/core";
-import VolumeDown from "@material-ui/icons/VolumeDown";
-import VolumeUp from "@material-ui/icons/VolumeUp";
-import Slider from "@material-ui/core/Slider";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Notice from '../../../../partials/content/Notice';
+import CodeExample from '../../../../partials/content/CodeExample';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { Typography, Grid, Tooltip, Paper, Input } from '@material-ui/core';
+import VolumeDown from '@material-ui/icons/VolumeDown';
+import VolumeUp from '@material-ui/icons/VolumeUp';
+import Slider from '@material-ui/core/Slider';
 
 // Example 1
 const useStyles1 = makeStyles({
   root: {
-    width: 200
-  }
+    width: 200,
+  },
 });
 
 // Example 2
 const useStyles2 = makeStyles(theme => ({
   root: {
-    width: 300
+    width: 300,
   },
   margin: {
-    height: theme.spacing(3)
-  }
+    height: theme.spacing(3),
+  },
 }));
 
 const marks2 = [
   {
     value: 0,
-    label: "0°C"
+    label: '0°C',
   },
   {
     value: 20,
-    label: "20°C"
+    label: '20°C',
   },
   {
     value: 37,
-    label: "37°C"
+    label: '37°C',
   },
   {
     value: 100,
-    label: "100°C"
-  }
+    label: '100°C',
+  },
 ];
 
 function valuetext2(value) {
@@ -56,8 +56,8 @@ function valueLabelFormat2(value) {
 // Example 3
 const useStyles3 = makeStyles({
   root: {
-    width: 300
-  }
+    width: 300,
+  },
 });
 
 function valuetext3(value) {
@@ -68,11 +68,11 @@ function valuetext3(value) {
 const useStyles4 = makeStyles(theme => ({
   root: {
     width: 300 + 24 * 2,
-    padding: 24
+    padding: 24,
   },
   margin: {
-    height: theme.spacing(3)
-  }
+    height: theme.spacing(3),
+  },
 }));
 
 function ValueLabelComponent4(props) {
@@ -88,11 +88,11 @@ function ValueLabelComponent4(props) {
   return (
     <Tooltip
       PopperProps={{
-        popperRef
+        popperRef,
       }}
       open={open}
       enterTouchDelay={0}
-      placement="top"
+      placement='top'
       title={value}
     >
       {children}
@@ -103,153 +103,153 @@ function ValueLabelComponent4(props) {
 ValueLabelComponent4.propTypes = {
   children: PropTypes.element.isRequired,
   open: PropTypes.bool.isRequired,
-  value: PropTypes.number.isRequired
+  value: PropTypes.number.isRequired,
 };
 
 const iOSBoxShadow4 =
-  "0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.13),0 0 0 1px rgba(0,0,0,0.02)";
+  '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.13),0 0 0 1px rgba(0,0,0,0.02)';
 
 const marks4 = [
   {
-    value: 0
+    value: 0,
   },
   {
-    value: 20
+    value: 20,
   },
   {
-    value: 37
+    value: 37,
   },
   {
-    value: 100
-  }
+    value: 100,
+  },
 ];
 
 const IOSSlider4 = withStyles({
   root: {
-    color: "#3880ff",
+    color: '#3880ff',
     height: 2,
-    padding: "15px 0"
+    padding: '15px 0',
   },
   thumb: {
     height: 28,
     width: 28,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     boxShadow: iOSBoxShadow4,
     marginTop: -14,
     marginLeft: -14,
-    "&:focus,&:hover,&$active": {
+    '&:focus,&:hover,&$active': {
       boxShadow:
-        "0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.3),0 0 0 1px rgba(0,0,0,0.02)",
+        '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.3),0 0 0 1px rgba(0,0,0,0.02)',
       // Reset on touch devices, it doesn't add specificity
-      "@media (hover: none)": {
-        boxShadow: iOSBoxShadow4
-      }
-    }
+      '@media (hover: none)': {
+        boxShadow: iOSBoxShadow4,
+      },
+    },
   },
   active: {},
   valueLabel: {
-    left: "calc(-50% + 11px)",
+    left: 'calc(-50% + 11px)',
     top: -22,
-    "& *": {
-      background: "transparent",
-      color: "#000"
-    }
+    '& *': {
+      background: 'transparent',
+      color: '#000',
+    },
   },
   track: {
-    height: 2
+    height: 2,
   },
   rail: {
     height: 2,
     opacity: 0.5,
-    backgroundColor: "#bfbfbf"
+    backgroundColor: '#bfbfbf',
   },
   mark: {
-    backgroundColor: "#bfbfbf",
+    backgroundColor: '#bfbfbf',
     height: 8,
     width: 1,
-    marginTop: -3
+    marginTop: -3,
   },
   markActive: {
-    backgroundColor: "currentColor"
-  }
+    backgroundColor: 'currentColor',
+  },
 })(Slider);
 
 const PrettoSlider4 = withStyles({
   root: {
-    color: "#52af77",
-    height: 8
+    color: '#52af77',
+    height: 8,
   },
   thumb: {
     height: 24,
     width: 24,
-    backgroundColor: "#fff",
-    border: "2px solid currentColor",
+    backgroundColor: '#fff',
+    border: '2px solid currentColor',
     marginTop: -8,
     marginLeft: -12,
-    "&:focus,&:hover,&$active": {
-      boxShadow: "inherit"
-    }
+    '&:focus,&:hover,&$active': {
+      boxShadow: 'inherit',
+    },
   },
   active: {},
   valueLabel: {
-    left: "calc(-50% + 4px)"
+    left: 'calc(-50% + 4px)',
   },
   track: {
     height: 8,
-    borderRadius: 4
+    borderRadius: 4,
   },
   rail: {
     height: 8,
-    borderRadius: 4
-  }
+    borderRadius: 4,
+  },
 })(Slider);
 
 const AirbnbSlider4 = withStyles({
   root: {
-    color: "#3a8589",
+    color: '#3a8589',
     height: 3,
-    padding: "13px 0"
+    padding: '13px 0',
   },
   thumb: {
     height: 27,
     width: 27,
-    backgroundColor: "#fff",
-    border: "1px solid currentColor",
+    backgroundColor: '#fff',
+    border: '1px solid currentColor',
     marginTop: -12,
     marginLeft: -13,
-    boxShadow: "#ebebeb 0px 2px 2px",
-    "&:focus,&:hover,&$active": {
-      boxShadow: "#ccc 0px 2px 3px 1px"
+    boxShadow: '#ebebeb 0px 2px 2px',
+    '&:focus,&:hover,&$active': {
+      boxShadow: '#ccc 0px 2px 3px 1px',
     },
-    "& .bar": {
+    '& .bar': {
       // display: inline-block !important;
       height: 9,
       width: 1,
-      backgroundColor: "currentColor",
+      backgroundColor: 'currentColor',
       marginLeft: 1,
-      marginRight: 1
-    }
+      marginRight: 1,
+    },
   },
   active: {},
   valueLabel: {
-    left: "calc(-50% + 4px)"
+    left: 'calc(-50% + 4px)',
   },
   track: {
-    height: 3
+    height: 3,
   },
   rail: {
-    color: "#d8d8d8",
+    color: '#d8d8d8',
     opacity: 1,
-    height: 3
-  }
+    height: 3,
+  },
 })(Slider);
 
 function AirbnbThumbComponent4(props) {
   return (
     <span {...props}>
-      <span className="bar" />
-      <span className="bar" />
-      <span className="bar" />
+      <span className='bar' />
+      <span className='bar' />
+      <span className='bar' />
     </span>
   );
 }
@@ -257,18 +257,18 @@ function AirbnbThumbComponent4(props) {
 // Example 5
 const useStyles5 = makeStyles({
   root: {
-    width: 250
+    width: 250,
   },
   input: {
-    width: 42
-  }
+    width: 42,
+  },
 });
 
 // Example 6
 const useStyles6 = makeStyles({
   root: {
-    height: 300
-  }
+    height: 300,
+  },
 });
 
 function valuetext6(value) {
@@ -278,20 +278,20 @@ function valuetext6(value) {
 const marks6 = [
   {
     value: 0,
-    label: "0°C"
+    label: '0°C',
   },
   {
     value: 20,
-    label: "20°C"
+    label: '20°C',
   },
   {
     value: 37,
-    label: "37°C"
+    label: '37°C',
   },
   {
     value: 100,
-    label: "100°C"
-  }
+    label: '100°C',
+  },
 ];
 
 export default function SliderExamplesPage() {
@@ -326,7 +326,7 @@ export default function SliderExamplesPage() {
   };
 
   const handleInputChange5 = event => {
-    setValue5(event.target.value === "" ? "" : Number(event.target.value));
+    setValue5(event.target.value === '' ? '' : Number(event.target.value));
   };
 
   const handleBlur5 = () => {
@@ -342,34 +342,34 @@ export default function SliderExamplesPage() {
 
   return (
     <>
-      <Notice icon="flaticon-warning kt-font-primary">
-        For more info please check the components's official{" "}
+      <Notice icon='flaticon-warning kt-font-primary'>
+        For more info please check the components's official{' '}
         <a
-          target="_blank"
-          className="kt-link"
-          rel="noopener noreferrer"
-          href="https://material-ui.com/components/slider/"
+          target='_blank'
+          className='kt-link'
+          rel='noopener noreferrer'
+          href='https://material-ui.com/components/slider/'
         >
           demos & documentation
         </a>
       </Notice>
 
-      <Notice className="notice__paragraph">
+      <Notice className='notice__paragraph'>
         Sliders allow users to make selections from a range of values.
       </Notice>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode1} beforeCodeTitle="Continuous sliders">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode1} beforeCodeTitle='Continuous sliders'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 Continuous sliders allow users to select a value along a
                 subjective range.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes1.root}>
-                  <Typography id="continuous-slider" gutterBottom>
+                  <Typography id='continuous-slider' gutterBottom>
                     Volume
                   </Typography>
                   <Grid container spacing={2}>
@@ -380,7 +380,7 @@ export default function SliderExamplesPage() {
                       <Slider
                         value={value1}
                         onChange={handleChange1}
-                        aria-labelledby="continuous-slider"
+                        aria-labelledby='continuous-slider'
                       />
                     </Grid>
                     <Grid item>
@@ -390,72 +390,72 @@ export default function SliderExamplesPage() {
                   <Slider
                     disabled
                     defaultValue={30}
-                    aria-labelledby="continuous-slider"
+                    aria-labelledby='continuous-slider'
                   />
                 </div>
               </div>
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode2} beforeCodeTitle="Discrete sliders">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode2} beforeCodeTitle='Discrete sliders'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 Discrete sliders can be adjusted to a specific value by
                 referencing its value indicator.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes2.root}>
-                  <Typography id="discrete-slider" gutterBottom>
+                  <Typography id='discrete-slider' gutterBottom>
                     Temperature
                   </Typography>
                   <Slider
                     defaultValue={30}
                     getAriaValueText={valuetext2}
-                    aria-labelledby="discrete-slider"
-                    valueLabelDisplay="auto"
+                    aria-labelledby='discrete-slider'
+                    valueLabelDisplay='auto'
                     step={10}
                     marks
                     min={10}
                     max={110}
                   />
                   <div className={classes2.margin} />
-                  <Typography id="discrete-slider-custom" gutterBottom>
+                  <Typography id='discrete-slider-custom' gutterBottom>
                     Custom marks
                   </Typography>
                   <Slider
                     defaultValue={20}
                     getAriaValueText={valuetext2}
-                    aria-labelledby="discrete-slider-custom"
+                    aria-labelledby='discrete-slider-custom'
                     step={10}
-                    valueLabelDisplay="auto"
+                    valueLabelDisplay='auto'
                     marks={marks2}
                   />
                   <div className={classes2.margin} />
-                  <Typography id="discrete-slider-restrict" gutterBottom>
+                  <Typography id='discrete-slider-restrict' gutterBottom>
                     Restricted values
                   </Typography>
                   <Slider
                     defaultValue={20}
                     valueLabelFormat={valueLabelFormat2}
                     getAriaValueText={valuetext2}
-                    aria-labelledby="discrete-slider-restrict"
+                    aria-labelledby='discrete-slider-restrict'
                     step={null}
-                    valueLabelDisplay="auto"
+                    valueLabelDisplay='auto'
                     marks={marks2}
                   />
                   <div className={classes2.margin} />
-                  <Typography id="discrete-slider-always" gutterBottom>
+                  <Typography id='discrete-slider-always' gutterBottom>
                     Always visible
                   </Typography>
                   <Slider
                     defaultValue={80}
                     getAriaValueText={valuetext2}
-                    aria-labelledby="discrete-slider-always"
+                    aria-labelledby='discrete-slider-always'
                     step={10}
                     marks={marks2}
-                    valueLabelDisplay="on"
+                    valueLabelDisplay='on'
                   />
                 </div>
               </div>
@@ -464,21 +464,21 @@ export default function SliderExamplesPage() {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode3} beforeCodeTitle="Range sliders">
-            <div className="kt-section">
-              <span className="kt-section__sub"></span>
-              <div className="kt-section__content">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode3} beforeCodeTitle='Range sliders'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'></span>
+              <div className='kt-section__content'>
                 <div className={classes3.root}>
-                  <Typography id="range-slider" gutterBottom>
+                  <Typography id='range-slider' gutterBottom>
                     Temperature range
                   </Typography>
                   <Slider
                     value={value3}
                     onChange={handleChange3}
-                    valueLabelDisplay="auto"
-                    aria-labelledby="range-slider"
+                    valueLabelDisplay='auto'
+                    aria-labelledby='range-slider'
                     getAriaValueText={valuetext3}
                   />
                 </div>
@@ -486,42 +486,42 @@ export default function SliderExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode4} beforeCodeTitle="Customized sliders">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode4} beforeCodeTitle='Customized sliders'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 Here are some examples of customizing the component. You can
                 learn more about this in the overrides documentation page.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <Paper className={classes4.root}>
                   <Typography gutterBottom>iOS</Typography>
                   <IOSSlider4
-                    aria-label="iOS slider"
+                    aria-label='iOS slider'
                     defaultValue={60}
                     marks={marks4}
-                    valueLabelDisplay="on"
+                    valueLabelDisplay='on'
                   />
                   <div className={classes4.margin} />
                   <Typography gutterBottom>pretto.fr</Typography>
                   <PrettoSlider4
-                    valueLabelDisplay="auto"
-                    aria-label="Pretto slider"
+                    valueLabelDisplay='auto'
+                    aria-label='Pretto slider'
                     defaultValue={20}
                   />
                   <div className={classes4.margin} />
                   <Typography gutterBottom>Tooltip value label</Typography>
                   <Slider
                     ValueLabelComponent={ValueLabelComponent4}
-                    aria-label="Custom thumb label"
+                    aria-label='Custom thumb label'
                     defaultValue={20}
                   />
                   <div className={classes4.margin} />
                   <Typography gutterBottom>Airbnb</Typography>
                   <AirbnbSlider4
                     ThumbComponent={AirbnbThumbComponent4}
-                    aria-label="Airbnb slider"
+                    aria-label='Airbnb slider'
                     defaultValue={[20, 40]}
                   />
                 </Paper>
@@ -531,40 +531,40 @@ export default function SliderExamplesPage() {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode5} beforeCodeTitle="With input field">
-            <div className="kt-section">
-              <span className="kt-section__sub"></span>
-              <div className="kt-section__content">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode5} beforeCodeTitle='With input field'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'></span>
+              <div className='kt-section__content'>
                 <div className={classes5.root}>
-                  <Typography id="input-slider" gutterBottom>
+                  <Typography id='input-slider' gutterBottom>
                     Volume
                   </Typography>
-                  <Grid container spacing={2} alignItems="center">
+                  <Grid container spacing={2} alignItems='center'>
                     <Grid item>
                       <VolumeUp />
                     </Grid>
                     <Grid item xs>
                       <Slider
-                        value={typeof value5 === "number" ? value5 : 0}
+                        value={typeof value5 === 'number' ? value5 : 0}
                         onChange={handleSliderChange5}
-                        aria-labelledby="input-slider"
+                        aria-labelledby='input-slider'
                       />
                     </Grid>
                     <Grid item>
                       <Input
                         className={classes5.input}
                         value={value5}
-                        margin="dense"
+                        margin='dense'
                         onChange={handleInputChange5}
                         onBlur={handleBlur5}
                         inputProps={{
                           step: 10,
                           min: 0,
                           max: 100,
-                          type: "number",
-                          "aria-labelledby": "input-slider"
+                          type: 'number',
+                          'aria-labelledby': 'input-slider',
                         }}
                       />
                     </Grid>
@@ -574,34 +574,34 @@ export default function SliderExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode6} beforeCodeTitle="Vertical sliders">
-            <div className="kt-section">
-              <span className="kt-section__sub"></span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode6} beforeCodeTitle='Vertical sliders'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'></span>
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <React.Fragment>
-                  <Typography id="vertical-slider" gutterBottom>
+                  <Typography id='vertical-slider' gutterBottom>
                     Temperature
                   </Typography>
                   <div className={classes6.root}>
                     <Slider
-                      orientation="vertical"
+                      orientation='vertical'
                       getAriaValueText={valuetext6}
                       defaultValue={30}
-                      aria-labelledby="vertical-slider"
+                      aria-labelledby='vertical-slider'
                     />
                     <Slider
                       disabled
-                      orientation="vertical"
+                      orientation='vertical'
                       getAriaValueText={valuetext6}
                       defaultValue={30}
-                      aria-labelledby="vertical-slider"
+                      aria-labelledby='vertical-slider'
                     />
                     <Slider
-                      orientation="vertical"
+                      orientation='vertical'
                       defaultValue={[20, 37]}
-                      aria-labelledby="vertical-slider"
+                      aria-labelledby='vertical-slider'
                       getAriaValueText={valuetext6}
                       marks={marks6}
                     />

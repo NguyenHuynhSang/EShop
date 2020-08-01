@@ -1,54 +1,54 @@
 /* eslint-disable no-restricted-imports */
-import React from "react";
-import Notice from "../../../../partials/content/Notice";
-import CodeExample from "../../../../partials/content/CodeExample";
-import { makeStyles } from "@material-ui/core/styles";
+import React from 'react';
+import Notice from '../../../../partials/content/Notice';
+import CodeExample from '../../../../partials/content/CodeExample';
+import { makeStyles } from '@material-ui/core/styles';
 import {
   Button,
   Popper,
   Fade,
   Paper,
   Typography,
-  Grid
-} from "@material-ui/core";
-import PopupState, { bindToggle, bindPopper } from "material-ui-popup-state";
+  Grid,
+} from '@material-ui/core';
+import PopupState, { bindToggle, bindPopper } from 'material-ui-popup-state';
 
 // Example 1
 const useStyles1 = makeStyles(theme => ({
   typography: {
-    padding: theme.spacing(2)
-  }
+    padding: theme.spacing(2),
+  },
 }));
 
 // Example 3
 const useStyles3 = makeStyles(theme => ({
   root: {
-    width: 500
+    width: 500,
   },
   typography: {
-    padding: theme.spacing(2)
-  }
+    padding: theme.spacing(2),
+  },
 }));
 
 // Example 4
 const useStyles4 = makeStyles(theme => ({
   typography: {
-    padding: theme.spacing(2)
-  }
+    padding: theme.spacing(2),
+  },
 }));
 
 // Example 5
 const useStyles5 = makeStyles(theme => ({
   typography: {
-    padding: theme.spacing(2)
-  }
+    padding: theme.spacing(2),
+  },
 }));
 
 // Example 6
 const useStyles6 = makeStyles(theme => ({
   typography: {
-    padding: theme.spacing(2)
-  }
+    padding: theme.spacing(2),
+  },
 }));
 
 export default function PopperExamplesPage() {
@@ -61,7 +61,7 @@ export default function PopperExamplesPage() {
   }
 
   const open1 = Boolean(anchorEl1);
-  const id1 = open1 ? "simple-popper" : undefined;
+  const id1 = open1 ? 'simple-popper' : undefined;
 
   // Example 2
   const [anchorEl2, setAnchorEl2] = React.useState(null);
@@ -71,7 +71,7 @@ export default function PopperExamplesPage() {
   }
 
   const open2 = Boolean(anchorEl2);
-  const id2 = open2 ? "simple-popper" : undefined;
+  const id2 = open2 ? 'simple-popper' : undefined;
 
   // Example 3
   const [anchorEl3, setAnchorEl3] = React.useState(null);
@@ -94,7 +94,7 @@ export default function PopperExamplesPage() {
   };
 
   const open4 = Boolean(anchorEl4);
-  const id4 = open4 ? "no-transition-popper" : undefined;
+  const id4 = open4 ? 'no-transition-popper' : undefined;
 
   // Example 5
   const [open5, setOpen5] = React.useState(false);
@@ -121,45 +121,45 @@ export default function PopperExamplesPage() {
     setAnchorEl5({
       clientWidth: getBoundingClientRect().width,
       clientHeight: getBoundingClientRect().height,
-      getBoundingClientRect: getBoundingClientRect
+      getBoundingClientRect: getBoundingClientRect,
     });
   };
 
-  const id5 = open5 ? "faked-reference-popper" : undefined;
+  const id5 = open5 ? 'faked-reference-popper' : undefined;
 
   // Example 6
   const classes6 = useStyles6();
 
   return (
     <>
-      <Notice icon="flaticon-warning kt-font-primary">
+      <Notice icon='flaticon-warning kt-font-primary'>
         <p>
           A Popper can be used to display some content on top of another. It's
           an alternative to react-popper
         </p>
         <p>
-          For more info please check the components's official{" "}
+          For more info please check the components's official{' '}
           <a
-            target="_blank"
-            className="kt-link"
-            rel="noopener noreferrer"
-            href="https://material-ui.com/components/popper/"
+            target='_blank'
+            className='kt-link'
+            rel='noopener noreferrer'
+            href='https://material-ui.com/components/popper/'
           >
             demos & documentation
           </a>
         </p>
       </Notice>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode1} beforeCodeTitle="Simple Popper">
-            <div className="kt-section">
-              <span className="kt-section__sub"></span>
-              <div className="kt-section__content">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode1} beforeCodeTitle='Simple Popper'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'></span>
+              <div className='kt-section__content'>
                 <div>
                   <Button
                     aria-describedby={id1}
-                    variant="contained"
+                    variant='contained'
                     onClick={handleClick1}
                   >
                     Toggle Popper
@@ -180,18 +180,18 @@ export default function PopperExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode2} beforeCodeTitle="Minimalist Popper">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode2} beforeCodeTitle='Minimalist Popper'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 You can use the component with zero extra dependencies.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div>
                   <button
                     aria-describedby={id2}
-                    type="button"
+                    type='button'
                     onClick={handleClick2}
                   >
                     Toggle Popper
@@ -206,13 +206,13 @@ export default function PopperExamplesPage() {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode3} beforeCodeTitle="Positioned Popper">
-            <div className="kt-section">
-              <span className="kt-section__sub"></span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode3} beforeCodeTitle='Positioned Popper'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'></span>
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes3.root}>
                   <Popper
                     open={open3}
@@ -230,24 +230,24 @@ export default function PopperExamplesPage() {
                       </Fade>
                     )}
                   </Popper>
-                  <Grid container justify="center">
+                  <Grid container justify='center'>
                     <Grid item>
-                      <Button onClick={handleClick3("top-start")}>
+                      <Button onClick={handleClick3('top-start')}>
                         top-start
                       </Button>
-                      <Button onClick={handleClick3("top")}>top</Button>
-                      <Button onClick={handleClick3("top-end")}>top-end</Button>
+                      <Button onClick={handleClick3('top')}>top</Button>
+                      <Button onClick={handleClick3('top-end')}>top-end</Button>
                     </Grid>
                   </Grid>
-                  <Grid container justify="center">
+                  <Grid container justify='center'>
                     <Grid item xs={6}>
-                      <Button onClick={handleClick3("left-start")}>
+                      <Button onClick={handleClick3('left-start')}>
                         left-start
                       </Button>
                       <br />
-                      <Button onClick={handleClick3("left")}>left</Button>
+                      <Button onClick={handleClick3('left')}>left</Button>
                       <br />
-                      <Button onClick={handleClick3("left-end")}>
+                      <Button onClick={handleClick3('left-end')}>
                         left-end
                       </Button>
                     </Grid>
@@ -255,31 +255,31 @@ export default function PopperExamplesPage() {
                       item
                       container
                       xs={6}
-                      alignItems="flex-end"
-                      direction="column"
+                      alignItems='flex-end'
+                      direction='column'
                     >
                       <Grid item>
-                        <Button onClick={handleClick3("right-start")}>
+                        <Button onClick={handleClick3('right-start')}>
                           right-start
                         </Button>
                       </Grid>
                       <Grid item>
-                        <Button onClick={handleClick3("right")}>right</Button>
+                        <Button onClick={handleClick3('right')}>right</Button>
                       </Grid>
                       <Grid item>
-                        <Button onClick={handleClick3("right-end")}>
+                        <Button onClick={handleClick3('right-end')}>
                           right-end
                         </Button>
                       </Grid>
                     </Grid>
                   </Grid>
-                  <Grid container justify="center">
+                  <Grid container justify='center'>
                     <Grid item>
-                      <Button onClick={handleClick3("bottom-start")}>
+                      <Button onClick={handleClick3('bottom-start')}>
                         bottom-start
                       </Button>
-                      <Button onClick={handleClick3("bottom")}>bottom</Button>
-                      <Button onClick={handleClick3("bottom-end")}>
+                      <Button onClick={handleClick3('bottom')}>bottom</Button>
+                      <Button onClick={handleClick3('bottom-end')}>
                         bottom-end
                       </Button>
                     </Grid>
@@ -289,18 +289,18 @@ export default function PopperExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
+        <div className='col-md-6'>
           <CodeExample
             jsCode={jsCode4}
-            beforeCodeTitle="Without transition Popper"
+            beforeCodeTitle='Without transition Popper'
           >
-            <div className="kt-section">
-              <span className="kt-section__sub"></span>
-              <div className="kt-section__content">
+            <div className='kt-section'>
+              <span className='kt-section__sub'></span>
+              <div className='kt-section__content'>
                 <div>
                   <Button
                     aria-describedby={id4}
-                    variant="contained"
+                    variant='contained'
                     onClick={handleClick4}
                   >
                     Toggle Popper
@@ -319,23 +319,23 @@ export default function PopperExamplesPage() {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-6">
+      <div className='row'>
+        <div className='col-md-6'>
           <CodeExample
             jsCode={jsCode5}
-            beforeCodeTitle="Faked reference object"
+            beforeCodeTitle='Faked reference object'
           >
-            <div className="kt-section">
-              <span className="kt-section__sub">
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 The <code>anchorEl</code> property can be a reference to a fake
-                DOM element. You just need to create an object shaped like the{" "}
+                DOM element. You just need to create an object shaped like the{' '}
                 <code>ReferenceObject</code>.
               </span>
-              <p className="kt-section__sub">
+              <p className='kt-section__sub'>
                 Highlight part of the text to see the popper:
               </p>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div onMouseLeave={handleClose5}>
                   <Typography aria-describedby={id5} onMouseUp={handleMouseUp5}>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -354,7 +354,7 @@ export default function PopperExamplesPage() {
                     open={open5}
                     anchorEl={anchorEl5}
                     transition
-                    placement="bottom-start"
+                    placement='bottom-start'
                   >
                     {({ TransitionProps }) => (
                       <Fade {...TransitionProps} timeout={350}>
@@ -371,20 +371,20 @@ export default function PopperExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode6} beforeCodeTitle="PopupState helper">
-            <div className="kt-section">
-              <span className="kt-section__sub">
-                There is a 3rd party package{" "}
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode6} beforeCodeTitle='PopupState helper'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
+                There is a 3rd party package{' '}
                 <code>material-ui-popup-state</code> that takes care of popper
                 state for you in most cases.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
-                <PopupState variant="popper" popupId="demo-popup-popper">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
+                <PopupState variant='popper' popupId='demo-popup-popper'>
                   {popupState => (
                     <div>
-                      <Button variant="contained" {...bindToggle(popupState)}>
+                      <Button variant='contained' {...bindToggle(popupState)}>
                         Toggle Popper
                       </Button>
                       <Popper {...bindPopper(popupState)} transition>

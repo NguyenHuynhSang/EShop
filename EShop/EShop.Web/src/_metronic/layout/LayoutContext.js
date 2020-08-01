@@ -3,8 +3,8 @@ import React, {
   useContext,
   useEffect,
   useMemo,
-  useReducer
-} from "react";
+  useReducer,
+} from 'react';
 
 /**
  * Both context used to create inside react `redux`-like global state managed
@@ -22,7 +22,7 @@ const LayoutContext = {
   /**
    * Stores `dispatch` function to update layout state, intended to be internal.
    */
-  Dispatch: createContext(null)
+  Dispatch: createContext(null),
 };
 
 /**
@@ -33,18 +33,18 @@ const actionTypes = {
    * Initializes layout state from provided `{ pathname, menuConfig }` action
    * payload.
    */
-  INIT: "INIT",
+  INIT: 'INIT',
 
   /**
    * Updates current subheader from provided `{ title }` action payload.
    */
-  SET_SUBHEADER: "SET_SUBHEADER",
+  SET_SUBHEADER: 'SET_SUBHEADER',
 
   /**
    * Controls splash screen visibility.
    */
-  SHOW_SPLASH_SCREEN: "SHOW_SPLASH_SCREEN",
-  HIDE_SPLASH_SCREEN: "HIDE_SPLASH_SCREEN"
+  SHOW_SPLASH_SCREEN: 'SHOW_SPLASH_SCREEN',
+  HIDE_SPLASH_SCREEN: 'HIDE_SPLASH_SCREEN',
 };
 
 /**
@@ -110,8 +110,8 @@ function reducer(state, { type, payload }) {
       ...state,
       splashScreen: {
         ...state.splashScreen,
-        refs: { ...state.splashScreen.refs, [payload.id]: true }
-      }
+        refs: { ...state.splashScreen.refs, [payload.id]: true },
+      },
     };
   }
 
@@ -120,7 +120,7 @@ function reducer(state, { type, payload }) {
 
     return {
       ...state,
-      splashScreen: { ...state.splashScreen, refs: nextRefs }
+      splashScreen: { ...state.splashScreen, refs: nextRefs },
     };
   }
 
@@ -144,7 +144,7 @@ export function LayoutContextProvider({ history, children, menuConfig }) {
       history.listen(({ pathname }) => {
         dispatch({
           type: actionTypes.INIT,
-          payload: { pathname, menuConfig }
+          payload: { pathname, menuConfig },
         });
       }),
 
@@ -165,18 +165,18 @@ export function LayoutContextProvider({ history, children, menuConfig }) {
   );
 
   useEffect(() => {
-    const splashScreen = document.getElementById("splash-screen");
+    const splashScreen = document.getElementById('splash-screen');
 
     if (splashScreenVisible) {
-      splashScreen.classList.remove("hidden");
+      splashScreen.classList.remove('hidden');
 
       return () => {
-        splashScreen.classList.add("hidden");
+        splashScreen.classList.add('hidden');
       };
     }
 
     const timeout = setTimeout(() => {
-      splashScreen.classList.add("hidden");
+      splashScreen.classList.add('hidden');
     }, 1000);
 
     return () => {
@@ -224,7 +224,7 @@ export function useLayoutContext() {
   const context = useContext(LayoutContext.State);
 
   if (!context) {
-    throw new Error("");
+    throw new Error('');
   }
 
   return context;
@@ -239,7 +239,7 @@ export function LayoutSubheader({ title, breadcrumb, description }) {
   useEffect(() => {
     dispatch({
       type: actionTypes.SET_SUBHEADER,
-      payload: { title, breadcrumb, description }
+      payload: { title, breadcrumb, description },
     });
   }, [dispatch, title, breadcrumb, description]);
 

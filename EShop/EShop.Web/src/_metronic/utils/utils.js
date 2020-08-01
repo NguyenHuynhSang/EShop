@@ -1,6 +1,6 @@
 export function removeCSSClass(ele, cls) {
-  const reg = new RegExp("(\\s|^)" + cls + "(\\s|$)");
-  ele.className = ele.className.replace(reg, " ");
+  const reg = new RegExp('(\\s|^)' + cls + '(\\s|$)');
+  ele.className = ele.className.replace(reg, ' ');
 }
 
 export function addCSSClass(ele, cls) {
@@ -13,7 +13,7 @@ export function setupAxios(axios, store) {
   axios.interceptors.request.use(
     config => {
       const {
-        auth: { authToken }
+        auth: { authToken },
       } = store.getState();
 
       if (authToken) {
@@ -26,7 +26,6 @@ export function setupAxios(axios, store) {
   );
 }
 
-
 /*  removeStorage: removes a key from localStorage and its sibling expiracy key
     params:
         key <string>     : localStorage key to remove
@@ -35,13 +34,13 @@ export function setupAxios(axios, store) {
  */
 export function removeStorage(key) {
   try {
-    localStorage.setItem(key, "");
-    localStorage.setItem(key + "_expiresIn", "");
+    localStorage.setItem(key, '');
+    localStorage.setItem(key + '_expiresIn', '');
   } catch (e) {
     console.log(
-      "removeStorage: Error removing key [" +
+      'removeStorage: Error removing key [' +
         key +
-        "] from localStorage: " +
+        '] from localStorage: ' +
         JSON.stringify(e)
     );
     return false;
@@ -59,7 +58,7 @@ export function removeStorage(key) {
 export function getStorage(key) {
   const now = Date.now(); //epoch time, lets deal only with integer
   // set expiration for storage
-  let expiresIn = localStorage.getItem(key + "_expiresIn");
+  let expiresIn = localStorage.getItem(key + '_expiresIn');
   if (expiresIn === undefined || expiresIn === null) {
     expiresIn = 0;
   }
@@ -75,9 +74,9 @@ export function getStorage(key) {
       return value;
     } catch (e) {
       console.log(
-        "getStorage: Error reading key [" +
+        'getStorage: Error reading key [' +
           key +
-          "] from localStorage: " +
+          '] from localStorage: ' +
           JSON.stringify(e)
       );
       return null;
@@ -101,12 +100,12 @@ export function setStorage(key, value, expires) {
   const schedule = now + expires * 1000;
   try {
     localStorage.setItem(key, value);
-    localStorage.setItem(key + "_expiresIn", schedule);
+    localStorage.setItem(key + '_expiresIn', schedule);
   } catch (e) {
     console.log(
-      "setStorage: Error setting key [" +
+      'setStorage: Error setting key [' +
         key +
-        "] in localStorage: " +
+        '] in localStorage: ' +
         JSON.stringify(e)
     );
     return false;

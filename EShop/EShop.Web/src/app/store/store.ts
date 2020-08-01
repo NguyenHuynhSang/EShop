@@ -1,5 +1,5 @@
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
-import createSagaMiddleware from "redux-saga";
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import createSagaMiddleware from 'redux-saga';
 import {
   persistStore,
   REGISTER,
@@ -8,14 +8,14 @@ import {
   PAUSE,
   PERSIST,
   PURGE,
-} from "redux-persist";
+} from 'redux-persist';
 import {
   useSelector as useReduxSelector,
   TypedUseSelectorHook,
   useDispatch,
   shallowEqual,
-} from "react-redux";
-import { rootSaga, reducer } from "./rootDuck";
+} from 'react-redux';
+import { rootSaga, reducer } from './rootDuck';
 
 const sagaMiddleware = createSagaMiddleware();
 const middleware = [
@@ -31,14 +31,14 @@ const middleware = [
         PERSIST,
         PURGE,
         REGISTER,
-        "builder/setHtmlClassService",
+        'builder/setHtmlClassService',
         // payload content is not serializable, but the final state after filtering is
-        "errors/setError",
+        'errors/setError',
       ],
-      ignoredPaths: ["builder.htmlClassServiceObjects"],
+      ignoredPaths: ['builder.htmlClassServiceObjects'],
     },
     immutableCheck: {
-      ignoredPaths: ["builder.htmlClassServiceObjects"],
+      ignoredPaths: ['builder.htmlClassServiceObjects'],
     },
   }),
   sagaMiddleware,
