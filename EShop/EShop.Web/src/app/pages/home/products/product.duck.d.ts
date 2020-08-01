@@ -16,12 +16,16 @@ type Pagination = {
   totalPages: number;
 };
 
+export type ProductData = Product & {
+  rowIndex: number;
+}
+
 export interface ProductState {
   loading: boolean;
   rowsSelected: number;
   columnInfosGen: number;
   params: Params;
-  products: Product[];
+  products: ProductData[];
   productCategories: ProductCategory[];
   categories: OptionTypeBase[];
   columnInfos: ColumnInfo[];

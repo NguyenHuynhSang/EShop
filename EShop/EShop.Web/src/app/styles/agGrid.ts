@@ -1,8 +1,8 @@
-import createGlobalStyle from "./createGlobalStyle";
-import { theme } from "./styled";
+import createGlobalStyle from './createGlobalStyle';
+import { theme } from './styled';
 
-const agCustomTheme = "balham";
-const rootSelector = ".ag-theme-" + agCustomTheme + ".table-wrapper";
+const agCustomTheme = 'balham';
+const rootSelector = '.ag-theme-' + agCustomTheme + '.table-wrapper';
 
 export default createGlobalStyle`
 /* copy from https://github.com/ag-grid/ag-grid/blob/e9a157c75e44ac1a88edd6873be6d6852f5726f0/dist/styles/ag-theme-material.css#L10-L11
@@ -49,6 +49,8 @@ ${rootSelector} .ag-cell .ag-react-container {
     width: 100%;
     /* images height should not overflow cell container */
     height: 100%;
+    /* vertical center custom text renderer like ValueWithUnitRenderer */
+    align-items: center;
 }
 ${rootSelector} .ag-cell.ag-right-aligned-cell {
     justify-content: right;

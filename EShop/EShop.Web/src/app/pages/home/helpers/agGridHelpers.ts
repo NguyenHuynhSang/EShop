@@ -4,11 +4,11 @@ import {
   GridReadyEvent,
   ExportParams,
   Column,
-} from "ag-grid-community";
-import { useCallback, useRef } from "react";
-import { useEventListener, useOnMount } from "./hookHelpers";
-import download from "./download";
-import { ExportFormat } from "../base/table.duck";
+} from 'ag-grid-community';
+import { useCallback, useRef } from 'react';
+import { useEventListener, useOnMount } from './hookHelpers';
+import download from './download';
+import { ExportFormat } from '../base/table.duck';
 
 type GridReadyCb = (api: AgGridApi) => void;
 export type AgGridApi = {
@@ -36,7 +36,7 @@ export function useAgGrid(
     [onGridReadyCb]
   );
   const autoSizeColumnsCb = useCallback<AutoSizeFunc>(
-    (columns) => autoSizeColumns(api.column, columns),
+    columns => autoSizeColumns(api.column, columns),
     []
   );
 
@@ -49,8 +49,9 @@ export function useGridApi(): AgGridApi {
 
 export function autoSizeColumns(gridColumnApi?: ColumnApi, columns?: string[]) {
   const allColumnIds =
-    columns || gridColumnApi?.getAllColumns().map((c) => c.getId()) || [];
+    columns || gridColumnApi?.getAllColumns().map(c => c.getId()) || [];
   gridColumnApi?.autoSizeColumns(allColumnIds, false);
+  // TODO: remove this hack
   // when using custom header component, autosize does not work on the first try
   // especially when there too many columns to fit on one screen
   setTimeout(() => {
@@ -62,7 +63,7 @@ export const useStickyHeader = () => {
   const headerElementRef = useRef<HTMLDivElement>();
   const bodyElementRef = useRef<HTMLDivElement>();
   const stickyRef = useRef(false);
-  const originalStyles = useRef({ position: "", top: "", zIndex: "" });
+  const originalStyles = useRef({ position: '', top: '', zIndex: '' });
 
   useOnMount(() => {
     headerElementRef.current = document.querySelector(
@@ -99,9 +100,9 @@ export const useStickyHeader = () => {
     }
 
     if (shouldStick) {
-      header.style.position = "fixed";
-      header.style.top = "0";
-      header.style.zIndex = "2";
+      header.style.position = 'fixed';
+      header.style.top = '0';
+      header.style.zIndex = '2';
     }
     if (shouldUnstick) {
       const original = originalStyles.current;
@@ -111,12 +112,12 @@ export const useStickyHeader = () => {
     }
   }, []);
 
-  useEventListener("scroll", onScroll);
+  useEventListener('scroll', onScroll);
 
   return stickyRef;
 };
 
-export const idToField = (colId: string) => colId.replace(/_[\d]+$/, "");
+export const idToField = (colId: string) => colId.replace(/_[\d]+$/, '');
 
 export const getExportParams = (api: AgGridApi): ExportParams<undefined> => {
   const selectedRows = api.grid?.getSelectedNodes().length || 0;
@@ -124,12 +125,12 @@ export const getExportParams = (api: AgGridApi): ExportParams<undefined> => {
 
   return {
     onlySelected: selectedRows > 0,
-    columnKeys: visibleCols?.filter((c) => c.getColDef().field !== "action"),
-    processCellCallback: (params) => {
+    columnKeys: visibleCols?.filter(c => c.getColDef().field !== 'action'),
+    processCellCallback: params => {
       if (!params.node) return null;
 
       const field = params.column.getColDef().field!;
-      if (field === "category") {
+      if (field === 'category') {
         return params.node.data[field].name;
       }
 
@@ -149,19 +150,19 @@ export const getDataAsJson = (
   const selectedRows: Record<string, boolean> = {};
 
   if (!selectAllRows) {
-    api.grid?.getSelectedNodes().map((n) => (selectedRows[n.id] = true));
+    api.grid?.getSelectedNodes().map(n => (selectedRows[n.id] = true));
   }
 
-  columns.forEach((c) => (columnFields[idToField(c.getId())] = true));
+  columns.forEach(c => (columnFields[idToField(c.getId())] = true));
 
-  api.grid?.forEachNode((rowNode) => {
+  api.grid?.forEachNode(rowNode => {
     if (!selectAllRows && !selectedRows[rowNode.id]) return;
 
     const row = {};
 
     Object.keys(rowNode.data)
-      .filter((field) => columnFields[field])
-      .forEach((field) => (row[field] = rowNode.data[field]));
+      .filter(field => columnFields[field])
+      .forEach(field => (row[field] = rowNode.data[field]));
     result.push(row);
   });
 
@@ -172,7 +173,7 @@ export const exportDataAsJson = (
   params: ExportParams<undefined>,
   api: AgGridApi
 ) => {
-  download("export.json", getDataAsJson(params, api));
+  download('export.json', getDataAsJson(params, api));
 };
 
 export const useExportData = (format: ExportFormat) => {

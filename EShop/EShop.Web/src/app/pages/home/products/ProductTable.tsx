@@ -18,13 +18,18 @@ import {
 } from 'ag-grid-community';
 import classNames from 'classnames';
 import Carousel from '../../../widgets/Carousel';
-import { actions, Pinned } from './product.duck';
-import { useSelector, useDispatch, shallowEqual } from '../../../store/store';
+import { actions, Pinned, ProductData } from './product.duck';
+import {
+  useSelector,
+  useDispatch,
+  shallowEqual,
+  RootState,
+} from '../../../store/store';
 import { useOnMount } from '../helpers/hookHelpers';
 import { useAgGrid, useStickyHeader } from '../helpers/agGridHelpers';
 import ProductTableHeader from './ProductTableHeader';
 import { AgSelect } from '../../../widgets/Common';
-import { makeStyles, important, theme } from '../../../styles';
+import { makeStyles, theme } from '../../../styles';
 import useColumnDefs from './useColumnDefs';
 import { WeightUnit } from './product.duck';
 
@@ -51,6 +56,7 @@ const currencyFormatter = (params: ValueFormatterParams) => {
   const unit = SYMBOL;
   return { value, unit, prefixUnit: !has(suffixCurrencyCode, unit) } as any;
 };
+// TODO: remove module-scope variable by passing to grid's context
 let WEIGHT_UNIT = WeightUnit.Kg;
 const weightFormatter = (params: ValueFormatterParams) => {
   const { value } = params;
@@ -72,25 +78,42 @@ function markAsDirty(params: ICellRendererParams) {
   });
 }
 
-const useCheckboxStyle = makeStyles({
-  root: {
-    padding: important(0),
-  },
-});
+class CheckboxRenderer extends React.Component<
+  ICellRendererParams,
+  { value: any }
+> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: this.props.value,
+    };
+  }
 
-function CheckboxRenderer(params: ICellRendererParams) {
-  const styles = useCheckboxStyle();
-  return (
-    <Checkbox
-      className={styles.root}
-      checked={params.value}
-      onChange={e => {
-        // mark as dirty visually
-        markAsDirty(params);
-        params.setValue(e.target.checked);
-      }}
-    />
-  );
+  refresh(newParams: ICellRendererParams) {
+    if (newParams.value !== this.state.value) {
+      this.setState(state => ({
+        ...state,
+        value: newParams.value,
+      }));
+    }
+    return true;
+  }
+
+  render() {
+    const { value } = this.state;
+    return (
+      <Checkbox
+        // TODO: style
+        // className={styles.root}
+        checked={value}
+        onChange={e => {
+          // mark as dirty visually
+          markAsDirty(this.props);
+          this.props.setValue(e.target.checked);
+        }}
+      />
+    );
+  }
 }
 
 function ActionRenderer() {
@@ -106,35 +129,96 @@ function ActionRenderer() {
   );
 }
 
-function SelectRenderer(params: ICellRendererParams) {
-  const options = useSelector(state => state.products.categories, shallowEqual);
-  const value = options.find(o => o.value === parseInt(params.value.id, 10));
-  return (
-    <AgSelect
-      options={options}
-      placeholder='Category'
-      defaultValue={value}
-      isSearchable={false}
-      onChange={(e: any) => {
-        // TODO: immer doesn't like products.category being mutated
-        // params.setValue({ id: e.value, name: e.label });
-        markAsDirty(params);
-      }}
-    />
-  );
+// TODO: add factory for ag-grid class component
+class SelectRenderer extends React.Component<
+  ICellRendererParams,
+  { value: any }
+> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: this.getValue(props),
+    };
+  }
+
+  getOptions() {
+    return this.props.context.categories;
+  }
+
+  getValue(params: ICellRendererParams) {
+    const { value } = params;
+    const options = this.getOptions();
+    return options.find(o => o.value === parseInt(value.id, 10));
+  }
+
+  refresh(newParams: ICellRendererParams) {
+    if (newParams.value.id !== this.state.value.value) {
+      this.setState(state => ({
+        ...state,
+        value: this.getValue(newParams),
+      }));
+    }
+    return true;
+  }
+
+  render() {
+    const options = this.getOptions();
+    const { value } = this.state;
+
+    return (
+      <AgSelect
+        options={options}
+        placeholder='Category'
+        defaultValue={value}
+        value={value}
+        isSearchable={false}
+        onChange={(e: any) => {
+          // TODO: immer doesn't like products.category being mutated
+          // params.setValue({ id: e.value, name: e.label });
+          markAsDirty(this.props);
+        }}
+      />
+    );
+  }
 }
 
-function NumberWithUnitRenderer(params: ICellRendererParams) {
-  const val = params.valueFormatted as ValueWithUnit;
-  const comp = [
-    val.value,
-    <span key='unit' className='unit'>
-      {val.unit}
-    </span>,
-  ];
+class NumberWithUnitRenderer extends React.Component<
+  ICellRendererParams,
+  { value: any }
+> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: this.getValue(this.props),
+    };
+  }
 
-  if (val.prefixUnit) comp.reverse();
-  return <span>{comp}</span>;
+  getValue(params: ICellRendererParams) {
+    return params.valueFormatted as ValueWithUnit;
+  }
+
+  refresh(newParams: ICellRendererParams) {
+    if (newParams.value !== this.state.value) {
+      this.setState(state => ({
+        ...state,
+        value: this.getValue(newParams),
+      }));
+    }
+    return true;
+  }
+
+  render() {
+    const { value } = this.state;
+    const comp = [
+      value.value,
+      <span key='unit' className='unit'>
+        {value.unit}
+      </span>,
+    ];
+
+    if (value.prefixUnit) comp.reverse();
+    return <span>{comp}</span>;
+  }
 }
 
 const useLoaderStyle = makeStyles({
@@ -156,13 +240,45 @@ function AgCustomLoading() {
   );
 }
 
-function ImageRenderer(params: ICellRendererParams) {
-  const images = params.value as string[];
-  const name = params.data['name'];
-  const [open, setOpen] = React.useState(false);
-  const [display, setDisplay] = React.useState(false);
+// TODO: add cross fade effect when changing images
+class ImageRenderer extends React.Component<
+  ICellRendererParams,
+  { value: string[]; display: boolean; open: boolean }
+> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: this.getValue(props),
+      open: false,
+      display: false,
+    };
+  }
 
-  if (images.length > 0) {
+  getValue(params: ICellRendererParams) {
+    return params.value as string[];
+  }
+
+  refresh(newParams: ICellRendererParams) {
+    if (newParams.value !== this.state.value) {
+      this.setState(state => ({
+        ...state,
+        value: this.getValue(newParams),
+      }));
+    }
+    return true;
+  }
+
+  render() {
+    const { value: images, open, display } = this.state;
+    const setOpen = (open: boolean) =>
+      this.setState(state => ({ ...state, open }));
+    const setDisplay = (display: boolean) =>
+      this.setState(state => ({ ...state, display }));
+    const name = this.props.data['name'];
+
+    if (images.length === 0) {
+      return null;
+    }
     return (
       <>
         <img
@@ -184,7 +300,6 @@ function ImageRenderer(params: ICellRendererParams) {
       </>
     );
   }
-  return null;
 }
 
 const columnTypes: Record<string, ColDef> = {
@@ -246,10 +361,7 @@ type ProductTableProps = {
 };
 export default function ProductTable(props: ProductTableProps) {
   const { name, className, ...rest } = props;
-  const products = useSelector<any[]>(
-    state => state.products.products,
-    shallowEqual
-  );
+  const products = useSelector(state => state.products.products, shallowEqual);
   const [api, onGridReady, autoSizeColumns] = useAgGrid();
   const [columnDefs] = useColumnDefs(api.column);
   const onFirstDataRendered = () => autoSizeColumns();
@@ -257,6 +369,9 @@ export default function ProductTable(props: ProductTableProps) {
   const symbol = useSelector(state => state.products.currency?.symbol) ?? '';
   const weightUnit = useSelector(state => state.products.weightUnit);
   const loading = useSelector(state => state.products.loading);
+  const context = {
+    categories: useSelector(state => state.products.categories, shallowEqual),
+  };
 
   useOnMount(() => {
     dispatch(actions.getCategoriesRequest());
@@ -275,8 +390,23 @@ export default function ProductTable(props: ProductTableProps) {
   }, [weightUnit]);
 
   useEffect(() => {
-    if (loading) api.grid?.showLoadingOverlay();
-    else api.grid?.hideOverlay();
+    if (loading) {
+      // mimic redraw behavior. https://www.ag-grid.com/javascript-grid-data-update/#setting-fresh-row-data.
+      // I do a refresh instead of redraw since refreshing
+      // with immutableData option is more performant because it uses transaction under the hood
+      // which skips the unnecessary remount of the custom react cell renderer on every data changes
+      // when implementing refresh lifecycle correctly
+      // TODO: reset custom pagination
+      api.grid?.deselectAll();
+      // TODO: call this will make select text centered in 1 frame
+      // api.grid?.collapseAll();
+      api.grid?.clearFocusedCell();
+      api.grid?.stopEditing(true);
+
+      api.grid?.showLoadingOverlay();
+    } else {
+      api.grid?.hideOverlay();
+    }
     autoSizeColumns();
   }, [api.grid, autoSizeColumns, loading]);
 
@@ -315,6 +445,11 @@ export default function ProductTable(props: ProductTableProps) {
           sortable: true,
           resizable: true,
         }}
+        // https://www.ag-grid.com/javascript-grid-immutable-data/
+        immutableData
+        // For the Immutable Data Mode to work, you must be providing IDs for the row nodes
+        getRowNodeId={(data: ProductData) => data.rowIndex.toString()}
+        context={context}
         rowHeight={theme.tableRowHeight}
         rowSelection='multiple'
         suppressRowClickSelection
@@ -326,11 +461,15 @@ export default function ProductTable(props: ProductTableProps) {
         // getRowClass={this.getRowClass}
         frameworkComponents={frameworkComponents}
         loadingOverlayComponent='AgCustomLoading'
-        // column virtualization make it very laggy when scrolling horizontally
+        // column virtualization make it very laggy when scrolling horizontally with many custom cell renderer
+        // due to the constant mount/unmount operations when the cell is in/out of the viewport
         suppressColumnVirtualisation
         // you can already toggle show/hide columns. dragging outside to hide
         // column just makes it more confusing
         suppressDragLeaveHidesColumns
+        // By default, the grid will not stop editing the currently editing cell when the grid loses focus.
+        // I have to revert this because it's more sensible this way.
+        stopEditingWhenGridLosesFocus
         {...rest}
       />
     </div>

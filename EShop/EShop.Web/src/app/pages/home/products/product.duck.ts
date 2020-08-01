@@ -1,8 +1,8 @@
-import { persistReducer, PersistConfig } from "redux-persist";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import storage from "redux-persist/lib/storage";
-import clamp from "lodash/clamp";
-import ProductService from "./products.service";
+import { persistReducer, PersistConfig } from 'redux-persist';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import storage from 'redux-persist/lib/storage';
+import clamp from 'lodash/clamp';
+import ProductService from './products.service';
 import {
   ProductState,
   Params,
@@ -10,31 +10,31 @@ import {
   ColumnInfo,
   ColumnVisiblePayload,
   WeightUnit,
-} from "./product.duck";
-import { ProductCategory, ProductResult } from "./product.model";
-import Currency from "../base/currency/currency.model";
-import { actions as errorActions } from "../base/errors/error.duck";
-import { put, takeLatest, select, call } from "../../../store/saga";
+} from './product.duck';
+import { ProductCategory, ProductResult } from './product.model';
+import Currency from '../base/currency/currency.model';
+import { actions as errorActions } from '../base/errors/error.duck';
+import { put, takeLatest, select, call } from '../../../store/saga';
 
-export * from "./product.duck.d";
+export * from './product.duck.d';
 
 const columnInfos: ColumnInfo[] = [
-  { field: "id", alwaysVisible: true, pinned: "left" },
-  { field: "name", pinned: "left" },
-  { field: "image", hide: true },
-  { field: "description", hide: true },
-  { field: "content", hide: true },
-  { field: "weight", hide: true },
-  { field: "category" },
-  { field: "numberOfVersions" },
-  { field: "price" },
-  { field: "originalPrice", hide: true },
-  { field: "discountPrice", hide: true },
-  { field: "quantity" },
-  { field: "display" },
-  { field: "deliver", hide: true },
-  { field: "applyPromotion", hide: true },
-  { field: "action", alwaysVisible: true },
+  { field: 'id', alwaysVisible: true, pinned: 'left' },
+  { field: 'name', pinned: 'left' },
+  { field: 'image', hide: true },
+  { field: 'description', hide: true },
+  { field: 'content', hide: true },
+  { field: 'weight', hide: true },
+  { field: 'category' },
+  { field: 'numberOfVersions' },
+  { field: 'price' },
+  { field: 'originalPrice', hide: true },
+  { field: 'discountPrice', hide: true },
+  { field: 'quantity' },
+  { field: 'display' },
+  { field: 'deliver', hide: true },
+  { field: 'applyPromotion', hide: true },
+  { field: 'action', alwaysVisible: true },
 ];
 
 const initialState: ProductState = {
@@ -61,7 +61,7 @@ const initialState: ProductState = {
 
 const slice = createSlice({
   initialState,
-  name: "product",
+  name: 'product',
   reducers: {
     setColumnDisplay(state, action: PayloadAction<ColumnInfo[]>) {
       state.columnInfos = action.payload;
@@ -102,7 +102,7 @@ const slice = createSlice({
       const perPage = state.params.perPage ?? pagination.perPage;
 
       state.loading = false;
-      state.products = results;
+      state.products = results.map((p, i) => ({ rowIndex: i, ...p }));
 
       pagination.totalPages = Math.ceil(totalResults / perPage);
       pagination.currentPage = clamp(currentPage, 1, pagination.totalPages);
@@ -149,8 +149,8 @@ const slice = createSlice({
 
 const persistConfig: PersistConfig<ProductState> = {
   storage,
-  key: "products",
-  blacklist: ["loading", "columnInfosGen", "rowsSelected"],
+  key: 'products',
+  blacklist: ['loading', 'columnInfosGen', 'rowsSelected'],
 };
 
 export const { actions } = slice;
@@ -167,6 +167,7 @@ function* fetchAll() {
     yield* put(actions.getAllFailure());
   }
 }
+
 function* fetchCategories() {
   try {
     const response = yield* call(ProductService.getCategories);
@@ -176,6 +177,7 @@ function* fetchCategories() {
     yield* put(actions.getCategoriesFailure());
   }
 }
+
 function* fetchCurrencies() {
   try {
     const response = yield* call(ProductService.getCurrencies);
@@ -185,14 +187,17 @@ function* fetchCurrencies() {
     yield* put(actions.getCurrenciesFailure());
   }
 }
+
 function* fetchCurrency(action: ReturnType<typeof actions.setCurrency>) {
   const currency = action.payload;
   yield* put(actions.getAllRequest({ currency }));
 }
+
 function* fetchWeight(action: ReturnType<typeof actions.setWeightUnit>) {
   const weight = action.payload;
   yield* put(actions.getAllRequest({ weight }));
 }
+
 export function* saga() {
   yield* takeLatest(actions.getAllRequest.type, fetchAll);
   yield* takeLatest(actions.getCategoriesRequest.type, fetchCategories);
