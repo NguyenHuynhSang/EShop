@@ -187,5 +187,6 @@ ${rootSelector} .ag-react-container img {
     object-fit: contain;
     max-height: ${theme.tableRowHeight}px;
     cursor: pointer;
+    mix-blend-mode: multiply;
 }
 `;

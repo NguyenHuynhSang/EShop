@@ -468,7 +468,7 @@ export default function ProductTable(props: ProductTableProps) {
         // column just makes it more confusing
         suppressDragLeaveHidesColumns
         // By default, the grid will not stop editing the currently editing cell when the grid loses focus.
-        // I have to revert this because it's more sensible this way.
+        // I revert this because it's more sensible this way.
         stopEditingWhenGridLosesFocus
         {...rest}
       />
