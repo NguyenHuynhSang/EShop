@@ -1,5 +1,11 @@
 import React from 'react';
-import { ColDef, Column, ColumnApi, IHeaderParams } from 'ag-grid-community';
+import {
+  ColDef,
+  Column,
+  ColumnApi,
+  GridApi,
+  IHeaderParams,
+} from 'ag-grid-community';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
@@ -93,10 +99,11 @@ type ColumnMenuProps = {
   className?: string;
   column: Column;
   columnApi: ColumnApi;
+  api: GridApi;
 };
 
 function ColumnMenu(props: ColumnMenuProps) {
-  const { className, column, columnApi } = props;
+  const { className, column, columnApi, api } = props;
   const field = column.getColDef().field!;
   const dispatch = useDispatch();
   const pinned = usePinStatus(field);
@@ -113,6 +120,7 @@ function ColumnMenu(props: ColumnMenuProps) {
   };
   const setWeight = (w: string) => () => {
     dispatch(actions.setWeightUnit(WeightUnit[w]));
+    setTimeout(() => api.refreshCells());
     pressKey('keyup', VKey.Escape);
   };
   const autoSizeThisColumn = () => {
@@ -201,14 +209,19 @@ function ColumnMenu(props: ColumnMenuProps) {
   );
 }
 
-const getColumnMenu = (column: Column, columnApi: ColumnApi) => {
+const getColumnMenu = (column: Column, columnApi: ColumnApi, api: GridApi) => {
   const colDef = column.getColDef();
 
   if (colDef.field === 'id') {
     return null;
   }
   return (
-    <ColumnMenu className='columnMenu' column={column} columnApi={columnApi} />
+    <ColumnMenu
+      className='columnMenu'
+      column={column}
+      columnApi={columnApi}
+      api={api}
+    />
   );
 };
 
@@ -249,7 +262,7 @@ const useStyles = makeStyles<HeaderWrapperProps>({
 });
 
 export default function ProductTableHeader(props: IHeaderParams) {
-  const { displayName, column, enableSorting, columnApi } = props;
+  const { displayName, column, enableSorting, columnApi, api } = props;
   const colDef = column.getColDef();
   const isNumericColumn = colDef.cellClass === 'ag-right-aligned-cell';
   const [sortMode, cycleSort] = useSort(colDef);
@@ -259,7 +272,7 @@ export default function ProductTableHeader(props: IHeaderParams) {
   return (
     <div className={style.root} role='button' onClick={cycleSort}>
       {displayName}
-      {getColumnMenu(column, columnApi)}
+      {getColumnMenu(column, columnApi, api)}
       {enableSorting && getSortIndicator(sortMode)}
       {pinned && <i className='fas fa-thumbtack fa-sm' />}
     </div>

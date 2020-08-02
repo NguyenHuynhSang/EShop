@@ -8,6 +8,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import { AgGridReact } from 'ag-grid-react';
 import has from 'lodash/has';
 import padStart from 'lodash/padStart';
+import round from 'lodash/round';
 import {
   ICellRendererParams,
   ColumnPinnedEvent,
@@ -15,10 +16,11 @@ import {
   DragStoppedEvent,
   ValueFormatterParams,
   SelectionChangedEvent,
+  ValueGetterParams,
 } from 'ag-grid-community';
 import classNames from 'classnames';
 import Carousel from '../../../widgets/Carousel';
-import { actions, Pinned, ProductData } from './product.duck';
+import { actions, Pinned, ProductData, WeightUnit } from './product.duck';
 import { useSelector, useDispatch, shallowEqual } from '../../../store/store';
 import { useOnMount } from '../helpers/hookHelpers';
 import { useAgGrid, useStickyHeader } from '../helpers/agGridHelpers';
@@ -26,8 +28,13 @@ import ProductTableHeader from './ProductTableHeader';
 import { AgSelect, OptionType } from '../../../widgets/Common';
 import { makeStyles, theme } from '../../../styles';
 import useColumnDefs from './useColumnDefs';
-import { WeightUnit } from './product.duck';
 import withRefreshLifecycle from '../helpers/withRefreshLifecycle';
+
+type GridContext = {
+  categories: OptionType[];
+  currency: string;
+  weight: WeightUnit;
+};
 
 // TODO: use intl https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat
 function formatNumber(number: number) {
@@ -36,29 +43,19 @@ function formatNumber(number: number) {
     .replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
 }
 
+// noinspection NonAsciiCharacters
 const suffixCurrencyCode = {
   đ: true,
 };
 
 type ValueWithUnit = {
   prefixUnit: boolean;
-  value: number;
+  value: number | string;
   unit: string;
 };
 
-let SYMBOL = '';
-const currencyFormatter = (params: ValueFormatterParams) => {
-  const value = formatNumber(params.value);
-  const unit = SYMBOL;
-  return { value, unit, prefixUnit: !has(suffixCurrencyCode, unit) } as any;
-};
-// TODO: remove module-scope variable by passing to grid's context
-let WEIGHT_UNIT = WeightUnit.Kg;
-const weightFormatter = (params: ValueFormatterParams) => {
-  const { value } = params;
-  const unit = WEIGHT_UNIT;
-  return { value, unit, prefixUnit: false } as any;
-};
+const getContext = (params: { context: any }) => params.context as GridContext;
+
 const idFormatter = (params: ValueFormatterParams) => {
   const { value } = params;
   return padStart(value, 4, '0');
@@ -109,7 +106,7 @@ const SelectRenderer = withRefreshLifecycle<OptionType>(
         defaultValue={value}
         value={value}
         isSearchable={false}
-        onChange={(e: any) => {
+        onChange={() => {
           // TODO: immer doesn't like products.category being mutated
           // params.setValue({ id: e.value, name: e.label });
           markAsDirty(params);
@@ -124,20 +121,49 @@ const SelectRenderer = withRefreshLifecycle<OptionType>(
   }
 );
 
-const NumberWithUnitRenderer = withRefreshLifecycle<ValueWithUnit>(
-  ({ value }) => {
-    const comp = [
-      value.value,
-      <span key='unit' className='unit'>
-        {value.unit}
-      </span>,
-    ];
+const NumberWithUnitComponent = (props: { value: ValueWithUnit }) => {
+  const { value } = props;
+  const comp = [
+    value.value,
+    <span key='unit' className='unit'>
+      {value.unit}
+    </span>,
+  ];
 
-    if (value.prefixUnit) comp.reverse();
-    return <span>{comp}</span>;
-  },
-  params => params.valueFormatted
+  if (value.prefixUnit) comp.reverse();
+  return <span>{comp}</span>;
+};
+const WeightRenderer = withRefreshLifecycle<ValueWithUnit>(
+  NumberWithUnitComponent,
+  params => {
+    const { value } = params;
+    const { weight } = getContext(params);
+    return { value, unit: weight, prefixUnit: false };
+  }
 );
+const CurrencyRenderer = withRefreshLifecycle<ValueWithUnit>(
+  NumberWithUnitComponent,
+  params => {
+    const value = formatNumber(params.value);
+    const { currency } = getContext(params);
+    return {
+      value,
+      unit: currency,
+      prefixUnit: !has(suffixCurrencyCode, currency),
+    };
+  }
+);
+
+// TODO: write weightParser when implementing form
+function weightGetter(params: ValueGetterParams) {
+  const context = getContext(params);
+  const { weight } = context;
+  const value = params.data[params.colDef.field!];
+
+  if (weight === WeightUnit.Lb) return round(value * 2.20462, 2);
+  if (weight === WeightUnit.Kg) return value;
+  throw Error('what dis? ' + weight);
+}
 
 const useLoaderStyle = makeStyles({
   root: {
@@ -210,19 +236,18 @@ const columnTypes: Record<string, ColDef> = {
   currency: {
     // NOTE: type: 'numericColumn' not working here
     cellClass: 'ag-right-aligned-cell',
-    cellRenderer: 'NumberWithUnitRenderer',
-    valueFormatter: currencyFormatter,
+    cellRenderer: 'CurrencyRenderer',
   },
   weight: {
     cellClass: 'ag-right-aligned-cell',
-    cellRenderer: 'NumberWithUnitRenderer',
-    valueFormatter: weightFormatter,
+    cellRenderer: 'WeightRenderer',
+    valueGetter: weightGetter,
   },
   checkbox: {
     cellRenderer: 'CheckboxRenderer',
   },
   selector: {
-    // remove padding so select's width is the same as container width
+    // remove padding so select width is the same as container width
     cellClass: 'p0',
     cellRenderer: 'SelectRenderer',
   },
@@ -237,7 +262,8 @@ const frameworkComponents = {
   CheckboxRenderer,
   ActionRenderer,
   SelectRenderer,
-  NumberWithUnitRenderer,
+  WeightRenderer,
+  CurrencyRenderer,
   ImageRenderer,
   agColumnHeader: ProductTableHeader,
   AgCustomLoading,
@@ -254,11 +280,11 @@ export default function ProductTable(props: ProductTableProps) {
   const [columnDefs] = useColumnDefs(api.column);
   const onFirstDataRendered = () => autoSizeColumns();
   const dispatch = useDispatch();
-  const symbol = useSelector(state => state.products.currency?.symbol) ?? '';
-  const weightUnit = useSelector(state => state.products.weightUnit);
   const loading = useSelector(state => state.products.loading);
-  const context = {
+  const context: GridContext = {
     categories: useSelector(state => state.products.categories, shallowEqual),
+    currency: useSelector(state => state.products.currency?.symbol) ?? '',
+    weight: useSelector(state => state.products.weightUnit),
   };
 
   useOnMount(() => {
@@ -266,16 +292,6 @@ export default function ProductTable(props: ProductTableProps) {
     dispatch(actions.getAllRequest());
   });
   useStickyHeader();
-
-  useEffect(() => {
-    // refresh to update valueFormatter to display latest currency format
-    // valueFormatter is only registered once on mount so we have to use module-scope variable
-    // which is referenced by valueFormatter.
-    SYMBOL = symbol;
-  }, [symbol]);
-  useEffect(() => {
-    WEIGHT_UNIT = weightUnit;
-  }, [weightUnit]);
 
   useEffect(() => {
     if (loading) {

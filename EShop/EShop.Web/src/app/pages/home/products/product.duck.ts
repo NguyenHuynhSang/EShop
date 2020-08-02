@@ -122,11 +122,11 @@ const slice = createSlice({
       state.productCategories = action.payload;
       state.categories = action.payload.map(c => ({
         label: c.name,
-        value: c.id,
+        value: c.id as any,
       }));
     },
     getCategoriesFailure() {},
-    // TODO: store currency in a seperate shared store
+    // TODO: store currency in a separate shared store
     getCurrenciesRequest() {},
     getCurrenciesSuccess(state, action: PayloadAction<Currency[]>) {
       state.currencies = action.payload;
@@ -136,7 +136,7 @@ const slice = createSlice({
       }
     },
     getCurrenciesFailure() {},
-    // TODO: store currency in a seperate shared store
+    // TODO: store currency in a separate shared store
     setCurrency(state, action: PayloadAction<number>) {
       const currencyId = action.payload;
       state.currency = state.currencies.find(c => c.id === currencyId);
@@ -193,15 +193,9 @@ function* fetchCurrency(action: ReturnType<typeof actions.setCurrency>) {
   yield* put(actions.getAllRequest({ currency }));
 }
 
-function* fetchWeight(action: ReturnType<typeof actions.setWeightUnit>) {
-  const weight = action.payload;
-  yield* put(actions.getAllRequest({ weight }));
-}
-
 export function* saga() {
   yield* takeLatest(actions.getAllRequest.type, fetchAll);
   yield* takeLatest(actions.getCategoriesRequest.type, fetchCategories);
   yield* takeLatest(actions.getCurrenciesRequest.type, fetchCurrencies);
   yield* takeLatest(actions.setCurrency.type, fetchCurrency);
-  yield* takeLatest(actions.setWeightUnit.type, fetchWeight);
 }

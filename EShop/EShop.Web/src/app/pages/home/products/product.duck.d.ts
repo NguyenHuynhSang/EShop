@@ -1,6 +1,7 @@
 import Product, { ProductCategory } from './product.model';
 import Currency from '../base/currency/currency.model';
 import { ColDef } from 'ag-grid-community';
+import { OptionType } from '../../../widgets/Select';
 
 export type ColumnInfo = {
   field: string;
@@ -27,7 +28,7 @@ export interface ProductState {
   params: Params;
   products: ProductData[];
   productCategories: ProductCategory[];
-  categories: OptionTypeBase[];
+  categories: OptionType[];
   columnInfos: ColumnInfo[];
   currency?: Currency;
   weightUnit: WeightUnit;
@@ -55,7 +56,6 @@ export type Params = {
   sort?: SortMode;
   sortBy?: string;
   currency?: number;
-  weight?: WeightUnit;
   page?: number;
   perPage?: number;
 };

@@ -8,9 +8,8 @@ import productData, { productCategories } from './product.data';
 import clamp from 'lodash/clamp';
 import currencies from '../base/currency/currency.data';
 import sortBy from 'lodash/sortBy';
-import round from 'lodash/round';
 import Product, { ProductResult } from './product.model';
-import { Params, WeightUnit } from './product.duck';
+import { Params } from './product.duck';
 import Currency from '../base/currency/currency.model';
 
 const vndCurrency = currencies.find(c => c.code === 'VND')!;
@@ -18,11 +17,6 @@ const vndCurrency = currencies.find(c => c.code === 'VND')!;
 function convertCurrency(price: number, currency: Currency) {
   // use VND currency as base
   return Math.floor((price / vndCurrency.rate) * currency.rate);
-}
-function convertWeight(weight: number, weightUnit: WeightUnit) {
-  if (weightUnit === WeightUnit.Lb) return round(weight * 2.20462, 2);
-  if (weightUnit === WeightUnit.Kg) return weight;
-  throw Error('what dis? ' + weightUnit);
 }
 
 function getSortComparator(sortField?: string) {
@@ -41,7 +35,6 @@ export default function mockProduct(mock: MockAdapter) {
       currency: currencyId,
       sortBy: sortField,
       sort = 'none',
-      weight,
       page = 1,
       perPage = 10,
     } = params;
@@ -63,13 +56,6 @@ export default function mockProduct(mock: MockAdapter) {
         price: convertCurrency(p.price, currency),
         originalPrice: convertCurrency(p.originalPrice, currency),
         discountPrice: convertCurrency(p.discountPrice, currency),
-      }));
-    }
-
-    if (weight !== undefined) {
-      products = products.map(p => ({
-        ...p,
-        weight: convertWeight(p.weight, weight),
       }));
     }
 
