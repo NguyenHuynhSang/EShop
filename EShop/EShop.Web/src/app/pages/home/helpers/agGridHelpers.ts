@@ -10,41 +10,37 @@ import { useEventListener, useOnMount } from './hookHelpers';
 import download from './download';
 import { ExportFormat } from '../base/table.duck';
 
-type GridReadyCb = (api: AgGridApi) => void;
 export type AgGridApi = {
   grid?: GridApi;
   column?: ColumnApi;
 };
 type GridReadyFunc = (event: GridReadyEvent) => void;
-type AutoSizeFunc = (columns?: string[]) => void;
 
 let api: AgGridApi = {
   column: undefined,
   grid: undefined,
 };
 
-export function useAgGrid(
-  onGridReadyCb?: GridReadyCb
-): [AgGridApi, GridReadyFunc, AutoSizeFunc] {
-  const onGridReady = useCallback(
-    (params: GridReadyEvent) => {
-      api.grid = params.api;
-      api.column = params.columnApi;
+export function useAgGrid(): [AgGridApi, GridReadyFunc] {
+  const onGridReady = useCallback((params: GridReadyEvent) => {
+    api.grid = params.api;
+    api.column = params.columnApi;
+  }, []);
 
-      if (onGridReadyCb) onGridReadyCb(api);
-    },
-    [onGridReadyCb]
-  );
-  const autoSizeColumnsCb = useCallback<AutoSizeFunc>(
-    columns => autoSizeColumns(api.column, columns),
-    []
-  );
-
-  return [api, onGridReady, autoSizeColumnsCb];
+  return [api, onGridReady];
 }
 
 export function useGridApi(): AgGridApi {
   return api;
+}
+
+type AutoSizeFunc = (columns?: string[]) => void;
+
+export function useAutosizeColumns(): AutoSizeFunc {
+  return useCallback<AutoSizeFunc>(
+    columns => autoSizeColumns(api.column, columns),
+    []
+  );
 }
 
 export function autoSizeColumns(gridColumnApi?: ColumnApi, columns?: string[]) {
@@ -53,7 +49,8 @@ export function autoSizeColumns(gridColumnApi?: ColumnApi, columns?: string[]) {
   gridColumnApi?.autoSizeColumns(allColumnIds, false);
   // TODO: remove this hack
   // when using custom header component, autosize does not work on the first try
-  // especially when there too many columns to fit on one screen
+  // especially when there too many columns to fit on one screen and you modify
+  // colDef
   setTimeout(() => {
     gridColumnApi?.autoSizeColumns(allColumnIds, false);
   });

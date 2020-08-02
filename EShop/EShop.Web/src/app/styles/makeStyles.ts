@@ -4,7 +4,7 @@ import { Theme as DefaultTheme } from '@material-ui/core/styles';
 
 // switch Props generic type to first because I use it a lot more than the others
 export default function makeStyles<
-  Props extends {} = {},
+  Props extends {} = any,
   Theme = DefaultTheme,
   ClassKey extends string = string
 >(

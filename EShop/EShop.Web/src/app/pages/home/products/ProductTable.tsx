@@ -17,13 +17,17 @@ import {
   ValueFormatterParams,
   SelectionChangedEvent,
   ValueGetterParams,
+  GridApi,
 } from 'ag-grid-community';
-import classNames from 'classnames';
 import Carousel from '../../../widgets/Carousel';
 import { actions, Pinned, ProductData, WeightUnit } from './product.duck';
 import { useSelector, useDispatch, shallowEqual } from '../../../store/store';
 import { useOnMount } from '../helpers/hookHelpers';
-import { useAgGrid, useStickyHeader } from '../helpers/agGridHelpers';
+import {
+  useAgGrid,
+  useAutosizeColumns,
+  useStickyHeader,
+} from '../helpers/agGridHelpers';
 import ProductTableHeader from './ProductTableHeader';
 import { AgSelect, OptionType } from '../../../widgets/Common';
 import { makeStyles, theme } from '../../../styles';
@@ -165,16 +169,93 @@ function weightGetter(params: ValueGetterParams) {
   throw Error('what dis? ' + weight);
 }
 
-const useLoaderStyle = makeStyles({
+const useLoadingOverlayStyles = makeStyles({
+  root: {
+    position: 'relative',
+  },
+  overlay: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: p => (p.display ? 1 : -1),
+  },
+  table: {
+    filter: p => (p.blur ? 'blur(1.5px)' : 'none'),
+    transition: 'filter .25s',
+  },
+});
+type LoadingOverlayProps = {
+  loading: boolean;
+  api?: GridApi;
+  children: React.ReactNode;
+};
+
+function LoadingOverlay({ loading, api, children }: LoadingOverlayProps) {
+  const [display, setDisplay] = React.useState(false);
+  const [blur, setBlur] = React.useState(false);
+  const styles = useLoadingOverlayStyles({ blur, display });
+  const autoSizeColumns = useAutosizeColumns();
+  const onTransitionEnd = () => {
+    if (!loading) {
+      setDisplay(false);
+    }
+  };
+
+  useEffect(() => {
+    if (loading) {
+      // mimic redraw behavior. https://www.ag-grid.com/javascript-grid-data-update/#setting-fresh-row-data.
+      // I do a refresh instead of redraw since refreshing
+      // with immutableData option is more performant because it uses transaction under the hood
+      // which skips the unnecessary remount of the custom react cell renderer on every data changes
+      // when implementing refresh lifecycle correctly
+      // TODO: reset custom pagination
+      // TODO: reset dirty cells
+      api?.deselectAll();
+      // TODO: call this will make select text centered in 1 frame
+      // api?.collapseAll();
+      api?.clearFocusedCell();
+      api?.stopEditing(true);
+      setDisplay(true);
+      setBlur(true);
+    } else {
+      setBlur(false);
+    }
+    autoSizeColumns();
+  }, [api, autoSizeColumns, loading]);
+
+  return (
+    <div className={styles.root}>
+      <div className={styles.overlay}>
+        <LoadingContent display={blur} />
+      </div>
+      <div className={styles.table} onTransitionEnd={onTransitionEnd}>
+        {children}
+      </div>
+    </div>
+  );
+}
+
+const useLoaderStyle = makeStyles<number>({
   root: {
     display: 'flex',
     alignItems: 'center',
     padding: theme.space('md', 'lg'),
+    transition: 'opacity .25s',
+    opacity: opacity => opacity,
   },
 });
 
-function AgCustomLoading() {
-  const styles = useLoaderStyle();
+type LoadingContentProps = {
+  display: boolean;
+};
+
+function LoadingContent(params: LoadingContentProps) {
+  const { display } = params;
+  const styles = useLoaderStyle(display ? 1 : 0);
+
   return (
     <Paper className={styles.root}>
       <span>Please wait...</span>
@@ -266,17 +347,16 @@ const frameworkComponents = {
   CurrencyRenderer,
   ImageRenderer,
   agColumnHeader: ProductTableHeader,
-  AgCustomLoading,
 };
 
 type ProductTableProps = {
   name: string;
-  className?: string;
 };
 export default function ProductTable(props: ProductTableProps) {
-  const { name, className, ...rest } = props;
+  const { name, ...rest } = props;
   const products = useSelector(state => state.products.products, shallowEqual);
-  const [api, onGridReady, autoSizeColumns] = useAgGrid();
+  const [api, onGridReady] = useAgGrid();
+  const autoSizeColumns = useAutosizeColumns();
   const [columnDefs] = useColumnDefs(api.column);
   const onFirstDataRendered = () => autoSizeColumns();
   const dispatch = useDispatch();
@@ -292,27 +372,6 @@ export default function ProductTable(props: ProductTableProps) {
     dispatch(actions.getAllRequest());
   });
   useStickyHeader();
-
-  useEffect(() => {
-    if (loading) {
-      // mimic redraw behavior. https://www.ag-grid.com/javascript-grid-data-update/#setting-fresh-row-data.
-      // I do a refresh instead of redraw since refreshing
-      // with immutableData option is more performant because it uses transaction under the hood
-      // which skips the unnecessary remount of the custom react cell renderer on every data changes
-      // when implementing refresh lifecycle correctly
-      // TODO: reset custom pagination
-      api.grid?.deselectAll();
-      // TODO: call this will make select text centered in 1 frame
-      // api.grid?.collapseAll();
-      api.grid?.clearFocusedCell();
-      api.grid?.stopEditing(true);
-
-      api.grid?.showLoadingOverlay();
-    } else {
-      api.grid?.hideOverlay();
-    }
-    autoSizeColumns();
-  }, [api.grid, autoSizeColumns, loading]);
 
   const onColumnPinned = (e: ColumnPinnedEvent) => {
     if (e.columns !== null && e.pinned !== null) {
@@ -335,47 +394,49 @@ export default function ProductTable(props: ProductTableProps) {
     dispatch(actions.setRowsSelected(e.api.getSelectedNodes().length));
 
   return (
-    <div
-      key={name}
-      className={classNames('ag-theme-balham table-wrapper', className)}
-    >
-      <AgGridReact
-        // animateRows
-        onDragStopped={onDragStopped}
-        onColumnPinned={onColumnPinned}
-        columnDefs={columnDefs}
-        columnTypes={columnTypes}
-        defaultColDef={{
-          sortable: true,
-          resizable: true,
-        }}
-        // https://www.ag-grid.com/javascript-grid-immutable-data/
-        immutableData
-        // For the Immutable Data Mode to work, you must be providing IDs for the row nodes
-        getRowNodeId={(data: ProductData) => data.rowIndex.toString()}
-        context={context}
-        rowHeight={theme.tableRowHeight}
-        rowSelection='multiple'
-        suppressRowClickSelection
-        rowData={products}
-        headerHeight={45}
-        onFirstDataRendered={onFirstDataRendered}
-        onGridReady={onGridReady}
-        onSelectionChanged={onSelectionChanged}
-        // getRowClass={this.getRowClass}
-        frameworkComponents={frameworkComponents}
-        loadingOverlayComponent='AgCustomLoading'
-        // column virtualization make it very laggy when scrolling horizontally with many custom cell renderer
-        // due to the constant mount/unmount operations when the cell is in/out of the viewport
-        suppressColumnVirtualisation
-        // you can already toggle show/hide columns. dragging outside to hide
-        // column just makes it more confusing
-        suppressDragLeaveHidesColumns
-        // By default, the grid will not stop editing the currently editing cell when the grid loses focus.
-        // I revert this because it's more sensible this way.
-        stopEditingWhenGridLosesFocus
-        {...rest}
-      />
-    </div>
+    <LoadingOverlay loading={loading} api={api.grid}>
+      <div key={name} className='ag-theme-balham table-wrapper'>
+        <AgGridReact
+          // animateRows
+          onDragStopped={onDragStopped}
+          onColumnPinned={onColumnPinned}
+          columnDefs={columnDefs}
+          columnTypes={columnTypes}
+          defaultColDef={{
+            sortable: true,
+            resizable: true,
+          }}
+          // https://www.ag-grid.com/javascript-grid-immutable-data/
+          immutableData
+          // For the Immutable Data Mode to work, you must be providing IDs for the row nodes
+          getRowNodeId={(data: ProductData) => data.rowIndex.toString()}
+          context={context}
+          rowHeight={theme.tableRowHeight}
+          rowSelection='multiple'
+          suppressRowClickSelection
+          rowData={products}
+          headerHeight={45}
+          onFirstDataRendered={onFirstDataRendered}
+          onGridReady={onGridReady}
+          onSelectionChanged={onSelectionChanged}
+          // getRowClass={this.getRowClass}
+          frameworkComponents={frameworkComponents}
+          // the reason I have to write my own LoadingOverlay component is because there is no way to
+          // manually hide the overlay as AgGrid manages the overlay automatically. Thus fade-out
+          // animation is unachievable.
+          suppressLoadingOverlay
+          // column virtualization make it very laggy when scrolling horizontally with many custom cell renderer
+          // due to the constant mount/unmount operations when the cell is in/out of the viewport
+          suppressColumnVirtualisation
+          // you can already toggle show/hide columns. dragging outside to hide
+          // column just makes it more confusing
+          suppressDragLeaveHidesColumns
+          // By default, the grid will not stop editing the currently editing cell when the grid loses focus.
+          // I revert this because it's more sensible this way.
+          stopEditingWhenGridLosesFocus
+          {...rest}
+        />
+      </div>
+    </LoadingOverlay>
   );
 }

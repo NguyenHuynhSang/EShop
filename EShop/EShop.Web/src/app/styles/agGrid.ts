@@ -176,12 +176,6 @@ ${rootSelector} .ag-checkbox-input-wrapper.ag-checked::after {
     color: ${theme.color.secondary};
 }
 
-/* ----ag loading overlay---- */
-${rootSelector} .ag-overlay {
-    /* fix pinned columns (have z-index: 1) overlapped this */
-    z-index: 1;
-}
-
 /* ----image cell renderer ---- */
 ${rootSelector} .ag-react-container img {
     object-fit: contain;
