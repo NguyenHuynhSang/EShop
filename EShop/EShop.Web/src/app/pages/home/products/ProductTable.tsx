@@ -19,19 +19,15 @@ import {
 import classNames from 'classnames';
 import Carousel from '../../../widgets/Carousel';
 import { actions, Pinned, ProductData } from './product.duck';
-import {
-  useSelector,
-  useDispatch,
-  shallowEqual,
-  RootState,
-} from '../../../store/store';
+import { useSelector, useDispatch, shallowEqual } from '../../../store/store';
 import { useOnMount } from '../helpers/hookHelpers';
 import { useAgGrid, useStickyHeader } from '../helpers/agGridHelpers';
 import ProductTableHeader from './ProductTableHeader';
-import { AgSelect } from '../../../widgets/Common';
+import { AgSelect, OptionType } from '../../../widgets/Common';
 import { makeStyles, theme } from '../../../styles';
 import useColumnDefs from './useColumnDefs';
 import { WeightUnit } from './product.duck';
+import withRefreshLifecycle from '../helpers/withRefreshLifecycle';
 
 // TODO: use intl https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat
 function formatNumber(number: number) {
@@ -78,43 +74,16 @@ function markAsDirty(params: ICellRendererParams) {
   });
 }
 
-class CheckboxRenderer extends React.Component<
-  ICellRendererParams,
-  { value: any }
-> {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: this.props.value,
-    };
-  }
-
-  refresh(newParams: ICellRendererParams) {
-    if (newParams.value !== this.state.value) {
-      this.setState(state => ({
-        ...state,
-        value: newParams.value,
-      }));
-    }
-    return true;
-  }
-
-  render() {
-    const { value } = this.state;
-    return (
-      <Checkbox
-        // TODO: style
-        // className={styles.root}
-        checked={value}
-        onChange={e => {
-          // mark as dirty visually
-          markAsDirty(this.props);
-          this.props.setValue(e.target.checked);
-        }}
-      />
-    );
-  }
-}
+const CheckboxRenderer = withRefreshLifecycle<boolean>(({ value, params }) => (
+  <Checkbox
+    checked={value}
+    onChange={e => {
+      // mark as dirty visually
+      markAsDirty(params);
+      params.setValue(e.target.checked);
+    }}
+  />
+));
 
 function ActionRenderer() {
   return (
@@ -129,41 +98,9 @@ function ActionRenderer() {
   );
 }
 
-// TODO: add factory for ag-grid class component
-class SelectRenderer extends React.Component<
-  ICellRendererParams,
-  { value: any }
-> {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: this.getValue(props),
-    };
-  }
-
-  getOptions() {
-    return this.props.context.categories;
-  }
-
-  getValue(params: ICellRendererParams) {
-    const { value } = params;
-    const options = this.getOptions();
-    return options.find(o => o.value === parseInt(value.id, 10));
-  }
-
-  refresh(newParams: ICellRendererParams) {
-    if (newParams.value.id !== this.state.value.value) {
-      this.setState(state => ({
-        ...state,
-        value: this.getValue(newParams),
-      }));
-    }
-    return true;
-  }
-
-  render() {
-    const options = this.getOptions();
-    const { value } = this.state;
+const SelectRenderer = withRefreshLifecycle<OptionType>(
+  ({ value, params }) => {
+    const options = params.context.categories;
 
     return (
       <AgSelect
@@ -175,40 +112,20 @@ class SelectRenderer extends React.Component<
         onChange={(e: any) => {
           // TODO: immer doesn't like products.category being mutated
           // params.setValue({ id: e.value, name: e.label });
-          markAsDirty(this.props);
+          markAsDirty(params);
         }}
       />
     );
+  },
+  params => {
+    const { value } = params;
+    const options = params.context.categories;
+    return options.find(o => o.value === parseInt(value.id, 10));
   }
-}
+);
 
-class NumberWithUnitRenderer extends React.Component<
-  ICellRendererParams,
-  { value: any }
-> {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: this.getValue(this.props),
-    };
-  }
-
-  getValue(params: ICellRendererParams) {
-    return params.valueFormatted as ValueWithUnit;
-  }
-
-  refresh(newParams: ICellRendererParams) {
-    if (newParams.value !== this.state.value) {
-      this.setState(state => ({
-        ...state,
-        value: this.getValue(newParams),
-      }));
-    }
-    return true;
-  }
-
-  render() {
-    const { value } = this.state;
+const NumberWithUnitRenderer = withRefreshLifecycle<ValueWithUnit>(
+  ({ value }) => {
     const comp = [
       value.value,
       <span key='unit' className='unit'>
@@ -218,8 +135,9 @@ class NumberWithUnitRenderer extends React.Component<
 
     if (value.prefixUnit) comp.reverse();
     return <span>{comp}</span>;
-  }
-}
+  },
+  params => params.valueFormatted
+);
 
 const useLoaderStyle = makeStyles({
   root: {
@@ -241,66 +159,36 @@ function AgCustomLoading() {
 }
 
 // TODO: add cross fade effect when changing images
-class ImageRenderer extends React.Component<
-  ICellRendererParams,
-  { value: string[]; display: boolean; open: boolean }
-> {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: this.getValue(props),
-      open: false,
-      display: false,
-    };
-  }
+const ImageRenderer = withRefreshLifecycle<string[]>(({ value, params }) => {
+  const images = value;
+  const [open, setOpen] = React.useState(false);
+  const [display, setDisplay] = React.useState(false);
+  const name = params.data['name'];
 
-  getValue(params: ICellRendererParams) {
-    return params.value as string[];
+  if (images.length === 0) {
+    return null;
   }
-
-  refresh(newParams: ICellRendererParams) {
-    if (newParams.value !== this.state.value) {
-      this.setState(state => ({
-        ...state,
-        value: this.getValue(newParams),
-      }));
-    }
-    return true;
-  }
-
-  render() {
-    const { value: images, open, display } = this.state;
-    const setOpen = (open: boolean) =>
-      this.setState(state => ({ ...state, open }));
-    const setDisplay = (display: boolean) =>
-      this.setState(state => ({ ...state, display }));
-    const name = this.props.data['name'];
-
-    if (images.length === 0) {
-      return null;
-    }
-    return (
-      <>
-        <img
-          style={{
-            opacity: display ? '100%' : '0',
-            transition: 'opacity .25s ease',
-          }}
-          src={images[0]}
-          alt={name}
-          onClick={() => setOpen(true)}
-          onLoad={() => setDisplay(true)}
-        />
-        <Carousel
-          title={name}
-          images={images}
-          open={open}
-          onClose={() => setOpen(false)}
-        />
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <img
+        style={{
+          opacity: display ? '100%' : '0',
+          transition: 'opacity .25s ease',
+        }}
+        src={images[0]}
+        alt={name}
+        onClick={() => setOpen(true)}
+        onLoad={() => setDisplay(true)}
+      />
+      <Carousel
+        title={name}
+        images={images}
+        open={open}
+        onClose={() => setOpen(false)}
+      />
+    </>
+  );
+});
 
 const columnTypes: Record<string, ColDef> = {
   editable: {
