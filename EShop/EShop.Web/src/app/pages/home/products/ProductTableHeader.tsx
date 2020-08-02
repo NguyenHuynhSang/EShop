@@ -20,7 +20,7 @@ import ThemeProvider from '../../../../_metronic/materialUIThemeProvider/ThemePr
 import { useDispatch, useSelector } from '../../../store/store';
 import { actions, Pinned, SortMode, WeightUnit } from './product.duck';
 import pressKey, { VKey } from '../helpers/pressKey';
-import { makeStyles, theme } from '../../../styles';
+import { makeStyles } from '../../../styles';
 
 type SortFunction = () => void;
 
@@ -215,30 +215,15 @@ const getColumnMenu = (column: Column, columnApi: ColumnApi, api: GridApi) => {
   if (colDef.field === 'id') {
     return null;
   }
-  return (
-    <ColumnMenu
-      className='columnMenu'
-      column={column}
-      columnApi={columnApi}
-      api={api}
-    />
-  );
+  return <ColumnMenu column={column} columnApi={columnApi} api={api} />;
 };
 
 const getSortIndicator = (sortMode: SortMode) => {
-  let arrowClassModifier = '';
+  if (sortMode === SortMode.None) return null;
 
-  if (sortMode === SortMode.Ascending) arrowClassModifier = 'up';
-  else arrowClassModifier = 'down';
+  const arrowClassModifier = sortMode === SortMode.Ascending ? 'up' : 'down';
 
-  // if there is no sorting, make the arrow invisible instead of removing it completely,
-  // so the header width can be the same in all cases
-  return (
-    <span style={{ opacity: sortMode === SortMode.None ? '0' : '100%' }}>
-      &nbsp;
-      <i className={'fa fa-long-arrow-alt-' + arrowClassModifier} />
-    </span>
-  );
+  return <i className={'fa fa-long-arrow-alt-' + arrowClassModifier} />;
 };
 
 type HeaderWrapperProps = {
@@ -252,11 +237,8 @@ const useStyles = makeStyles<HeaderWrapperProps>({
     alignItems: 'center',
     justifyContent: props => (props.isNumericColumn ? 'end' : 'start'),
 
-    '& .fas.fa-thumbtack': {
-      marginLeft: theme.spacing.sm,
-    },
-    '& .columnMenu': {
-      marginRight: 'auto',
+    '& .fa-thumbtack': {
+      marginLeft: props => (props.isNumericColumn ? '5px' : 'auto'),
     },
   },
 });
