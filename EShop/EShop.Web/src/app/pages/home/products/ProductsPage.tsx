@@ -36,6 +36,7 @@ function getLanguage(format: ExportFormat) {
       return 'json';
   }
 }
+
 function ExportPreviewDialog({ name }: { name: string }) {
   const isOpen = useSelector(state => state.table._global.exportDialogOpen);
   const format = useSelector(state => state.table._global.exportFormat);
@@ -43,11 +44,11 @@ function ExportPreviewDialog({ name }: { name: string }) {
   const download = useExportDownload(name, format);
   const dispatch = useDispatch();
   const data = csvData();
-  const close = () => dispatch(actions.setExportDialogClose());
+  const onClose = () => dispatch(actions.setExportDialogClose());
   const [createSnackbar] = useSnackbar();
 
   return (
-    <Dialog open={isOpen} onClose={close}>
+    <Dialog open={isOpen} onClose={onClose}>
       <DialogTitle>Export Preview ({format})</DialogTitle>
       <DialogContent>
         <SyntaxHighlighter
@@ -60,8 +61,10 @@ function ExportPreviewDialog({ name }: { name: string }) {
       <DialogActions>
         <Button
           onClick={() => {
-            data && navigator.clipboard.writeText(data);
-            close();
+            if (data) {
+              navigator.clipboard.writeText(data);
+            }
+            onClose();
             // wait for the dialog's exit animation to finish and the global scrollbar popup again before showing the snackbar
             // if showing right away, the scrollbar will push the snackbar to the left in the middle of the transition
             setTimeout(() => {
@@ -75,7 +78,7 @@ function ExportPreviewDialog({ name }: { name: string }) {
         <Button
           onClick={() => {
             download();
-            close();
+            onClose();
           }}
           color='primary'
         >

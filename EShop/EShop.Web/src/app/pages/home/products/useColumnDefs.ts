@@ -85,7 +85,9 @@ export default function useColumnDefs(name: string) {
       ...c,
       colId: c.field,
     }));
-  }, [columnSettings]);
+    // we only want to run once at startup to get the column settings from the last session
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return colDefsRef.current;
 }
