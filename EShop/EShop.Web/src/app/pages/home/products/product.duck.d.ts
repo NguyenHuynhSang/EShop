@@ -1,10 +1,10 @@
+import { ColDef } from 'ag-grid-community';
 import Product, { ProductCategory } from './product.model';
 import Currency from '../base/currency/currency.model';
-import { ColDef } from 'ag-grid-community';
 import { OptionType } from '../../../widgets/Select';
 
-export type ColumnInfo = {
-  field: string;
+export type ColumnSettings = {
+  field: string; // field is required here instead of optional
   alwaysVisible?: boolean;
 } & ColDef;
 
@@ -24,12 +24,11 @@ export type ProductData = Product & {
 export interface ProductState {
   loading: boolean;
   rowsSelected: number;
-  columnInfosGen: number;
   params: Params;
   products: ProductData[];
   productCategories: ProductCategory[];
   categories: OptionType[];
-  columnInfos: ColumnInfo[];
+  columnSettings: ColumnSettings[];
   currency?: Currency;
   weightUnit: WeightUnit;
   currencies: Currency[];

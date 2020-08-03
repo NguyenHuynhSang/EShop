@@ -1,9 +1,7 @@
-import React, { useCallback } from 'react';
-import { ColDef, ColumnApi } from 'ag-grid-community';
+import React from 'react';
+import { ColDef } from 'ag-grid-community';
 import { useSelector, shallowEqual } from '../../../store/store';
-import { ColumnInfo } from './product.duck';
-import { useForceUpdate } from '../helpers/hookHelpers';
-import { autoSizeColumns } from '../helpers/agGridHelpers';
+import { ColumnSettings } from './product.duck';
 
 export const colDefs: Record<string, ColDef> = {
   id: {
@@ -73,42 +71,21 @@ export const colDefs: Record<string, ColDef> = {
   },
 };
 
-let COLUMN_DEFS: ColDef[] = [];
-
-// return [columnDefs, columnInfos]
-// columnDefs: is used to initialize column definitions on mount
-// columnInfos: current column states saved in the store
-export default function useColumnDefs(
-  columnApi?: ColumnApi
-): [ColDef[], ColumnInfo[]] {
-  const columnInfos = useSelector(
-    state => state.products.columnInfos,
+export default function useColumnDefs(name: string) {
+  // TODO: use name params as key in redux store
+  const columnSettings = useSelector(
+    state => state.products.columnSettings,
     shallowEqual
   );
-  const columnInfosGen = useSelector(state => state.products.columnInfosGen);
-  const forceUpdate = useForceUpdate();
-  const getColumnDefs = useCallback(
-    () => columnInfos.map(c => ({ ...colDefs[c.field], ...c })),
-    [columnInfos]
-  );
+  const colDefsRef = React.useRef<ColumnSettings[]>([]);
 
   React.useEffect(() => {
-    // columnDefs should not be changed once assigned for the first time or weird
-    // behaviors start to happen when interacting with columns. For example when
-    // moving or pinning column
-    if (COLUMN_DEFS.length === 0) {
-      COLUMN_DEFS = getColumnDefs();
-    }
-  }, [getColumnDefs]);
+    colDefsRef.current = columnSettings.map(c => ({
+      ...colDefs[c.field],
+      ...c,
+      colId: c.field,
+    }));
+  }, [columnSettings]);
 
-  React.useEffect(() => {
-    COLUMN_DEFS = getColumnDefs();
-    forceUpdate();
-    setTimeout(() => {
-      autoSizeColumns(columnApi);
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [columnInfosGen]);
-
-  return [COLUMN_DEFS, columnInfos];
+  return colDefsRef.current;
 }

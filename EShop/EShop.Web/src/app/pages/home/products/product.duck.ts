@@ -7,7 +7,7 @@ import {
   ProductState,
   Params,
   ColumnPinPayload,
-  ColumnInfo,
+  ColumnSettings,
   ColumnVisiblePayload,
   WeightUnit,
 } from './product.duck';
@@ -18,7 +18,7 @@ import { put, takeLatest, select, call } from '../../../store/saga';
 
 export * from './product.duck.d';
 
-const columnInfos: ColumnInfo[] = [
+const columnSettings: ColumnSettings[] = [
   { field: 'id', alwaysVisible: true, pinned: 'left' },
   { field: 'name', pinned: 'left' },
   { field: 'image', hide: true },
@@ -47,8 +47,7 @@ const initialState: ProductState = {
   currencies: [],
   currency: undefined,
   weightUnit: WeightUnit.Kg,
-  columnInfos,
-  columnInfosGen: 0,
+  columnSettings,
   pagination: {
     startResult: 0,
     endResult: 0,
@@ -63,27 +62,26 @@ const slice = createSlice({
   initialState,
   name: 'product',
   reducers: {
-    setColumnDisplay(state, action: PayloadAction<ColumnInfo[]>) {
-      state.columnInfos = action.payload;
-      state.columnInfosGen++;
+    setColumnDisplay(state, action: PayloadAction<ColumnSettings[]>) {
+      state.columnSettings = action.payload;
     },
     setRowsSelected(state, action: PayloadAction<number>) {
       state.rowsSelected = action.payload;
     },
     setColumnVisible(state, action: PayloadAction<ColumnVisiblePayload>) {
       const { column, visible } = action.payload;
-      const col = state.columnInfos.find(c => c.field === column);
+      const col = state.columnSettings.find(c => c.field === column);
       if (col) col.hide = !visible;
     },
     setColumnOrder(state, action: PayloadAction<string[]>) {
       const columns = action.payload;
       const order: Record<string, number> = {};
       columns.forEach((c, i) => (order[c] = i));
-      state.columnInfos.sort((a, b) => order[a.field] - order[b.field]);
+      state.columnSettings.sort((a, b) => order[a.field] - order[b.field]);
     },
     setPinned(state, action: PayloadAction<ColumnPinPayload>) {
       const { column, pinned } = action.payload;
-      const col = state.columnInfos.find(c => c.field === column);
+      const col = state.columnSettings.find(c => c.field === column);
 
       if (col) col.pinned = pinned;
     },
@@ -150,7 +148,7 @@ const slice = createSlice({
 const persistConfig: PersistConfig<ProductState> = {
   storage,
   key: 'products',
-  blacklist: ['loading', 'columnInfosGen', 'rowsSelected'],
+  blacklist: ['loading', 'rowsSelected'],
 };
 
 export const { actions } = slice;

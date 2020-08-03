@@ -1,3 +1,4 @@
+import { useCallback, useEffect, useRef } from 'react';
 import {
   ColumnApi,
   GridApi,
@@ -5,10 +6,10 @@ import {
   ExportParams,
   Column,
 } from 'ag-grid-community';
-import { useCallback, useRef } from 'react';
 import { useEventListener, useOnMount } from './hookHelpers';
 import download from './download';
 import { ExportFormat } from '../base/table.duck';
+import { ColumnSettings } from '../products/product.duck';
 
 export type AgGridApi = {
   grid?: GridApi;
@@ -16,41 +17,55 @@ export type AgGridApi = {
 };
 type GridReadyFunc = (event: GridReadyEvent) => void;
 
-let api: AgGridApi = {
-  column: undefined,
-  grid: undefined,
-};
+let api: Record<string, AgGridApi> = {};
+const emptyApi = Object.freeze({ grid: undefined, column: undefined });
 
-export function useAgGrid(): [AgGridApi, GridReadyFunc] {
-  const onGridReady = useCallback((params: GridReadyEvent) => {
-    api.grid = params.api;
-    api.column = params.columnApi;
+export function useAgGrid(
+  name: string,
+  columnDefs: ColumnSettings[]
+): [AgGridApi, GridReadyFunc] {
+  const onGridReady = useCallback(
+    (params: GridReadyEvent) => {
+      api[name] = {
+        grid: params.api,
+        column: params.columnApi,
+      };
+
+      params.columnApi.setColumnState(
+        columnDefs.map(c => ({ ...c, colId: c.field }))
+      );
+    },
+    [columnDefs, name]
+  );
+
+  useEffect(() => {
+    api[name] = emptyApi;
+    return () => void delete api[name];
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return [api, onGridReady];
 }
 
-export function useGridApi(): AgGridApi {
-  return api;
+export function useGridApi(name: string) {
+  return api[name] ?? emptyApi;
 }
 
 type AutoSizeFunc = (columns?: string[]) => void;
 
-export function useAutosizeColumns(): AutoSizeFunc {
+export function useAutosizeColumns(name: string): AutoSizeFunc {
   return useCallback<AutoSizeFunc>(
-    columns => autoSizeColumns(api.column, columns),
-    []
+    columns => autoSizeColumns(api[name].column, columns),
+    [name]
   );
 }
 
 export function autoSizeColumns(gridColumnApi?: ColumnApi, columns?: string[]) {
   const allColumnIds =
-    columns || gridColumnApi?.getAllColumns().map(c => c.getId()) || [];
+    columns || gridColumnApi?.getAllColumns()?.map(c => c.getId()) || [];
   gridColumnApi?.autoSizeColumns(allColumnIds, false);
-  // TODO: remove this hack
   // when using custom header component, autosize does not work on the first try
-  // especially when there too many columns to fit on one screen and you modify
-  // colDef
+  // especially when there too many columns to fit on one screen
   setTimeout(() => {
     gridColumnApi?.autoSizeColumns(allColumnIds, false);
   });
@@ -173,8 +188,8 @@ export const exportDataAsJson = (
   download('export.json', getDataAsJson(params, api));
 };
 
-export const useExportData = (format: ExportFormat) => {
-  const api = useGridApi();
+export const useExportData = (name: string, format: ExportFormat) => {
+  const api = useGridApi(name);
   const params = getExportParams(api);
 
   switch (format) {
@@ -187,8 +202,8 @@ export const useExportData = (format: ExportFormat) => {
       return () => getDataAsJson(params, api);
   }
 };
-export const useExportDownload = (format: ExportFormat) => {
-  const api = useGridApi();
+export const useExportDownload = (name: string, format: ExportFormat) => {
+  const api = useGridApi(name);
   const params = getExportParams(api);
 
   switch (format) {

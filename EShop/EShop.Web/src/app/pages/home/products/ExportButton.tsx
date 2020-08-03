@@ -32,9 +32,13 @@ const useExportOptionStyles = makeStyles(theme => ({
     width: '35px',
   },
 }));
-type ExportOptionProps = { children: React.ReactNode; format: ExportFormat };
-function ExportOption({ children, format }: ExportOptionProps) {
-  const download = useExportDownload(format);
+type ExportOptionProps = {
+  name: string;
+  children: React.ReactNode;
+  format: ExportFormat;
+};
+function ExportOption({ name, children, format }: ExportOptionProps) {
+  const download = useExportDownload(name, format);
   const dispatch = useDispatch();
   const styles = useExportOptionStyles();
 
@@ -67,7 +71,7 @@ const useExportButtonStyles = makeStyles({
     },
   },
 });
-export default function ExportButton({ iconSize }) {
+export default function ExportButton({ name, iconSize }) {
   const styles = useExportButtonStyles();
   const selectedRows = useSelector(state => state.products.rowsSelected);
   const selectedRowsText = selectedRows > 0 ? '(' + selectedRows + ')' : '';
@@ -80,7 +84,11 @@ export default function ExportButton({ iconSize }) {
       color='primary'
       size='large'
       options={Object.keys(ExportFormat).map(f => ({
-        label: <ExportOption format={ExportFormat[f]}>{f}</ExportOption>,
+        label: (
+          <ExportOption name={name} format={ExportFormat[f]}>
+            {f}
+          </ExportOption>
+        ),
         value: f,
         // Disable react-select Option's onClick handler, because we already have one in ExportButton.
         // This will prevent the error: <button> cannot appear as a descendant of <button>

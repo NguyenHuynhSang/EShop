@@ -197,7 +197,6 @@ function LoadingOverlay({ loading, api, children }: LoadingOverlayProps) {
   const [display, setDisplay] = React.useState(false);
   const [blur, setBlur] = React.useState(false);
   const styles = useLoadingOverlayStyles({ blur, display });
-  const autoSizeColumns = useAutosizeColumns();
   const onTransitionEnd = () => {
     if (!loading) {
       setDisplay(false);
@@ -223,8 +222,7 @@ function LoadingOverlay({ loading, api, children }: LoadingOverlayProps) {
     } else {
       setBlur(false);
     }
-    autoSizeColumns();
-  }, [api, autoSizeColumns, loading]);
+  }, [api, loading]);
 
   return (
     <div className={styles.root}>
@@ -355,9 +353,9 @@ type ProductTableProps = {
 export default function ProductTable(props: ProductTableProps) {
   const { name, ...rest } = props;
   const products = useSelector(state => state.products.products, shallowEqual);
-  const [api, onGridReady] = useAgGrid();
-  const autoSizeColumns = useAutosizeColumns();
-  const [columnDefs] = useColumnDefs(api.column);
+  const columnDefs = useColumnDefs(name);
+  const [api, onGridReady] = useAgGrid(name, columnDefs);
+  const autoSizeColumns = useAutosizeColumns(name);
   const onFirstDataRendered = () => autoSizeColumns();
   const dispatch = useDispatch();
   const loading = useSelector(state => state.products.loading);

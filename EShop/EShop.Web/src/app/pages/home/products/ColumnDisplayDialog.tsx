@@ -8,39 +8,40 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import { useDispatch, useSelector, shallowEqual } from '../../../store/store';
-import { actions, ColumnInfo } from './product.duck';
+import { actions, ColumnSettings } from './product.duck';
 import { colDefs } from './useColumnDefs';
 import immer from 'immer';
+import { useGridApi } from '../helpers/agGridHelpers';
 
 type ColumnDisplayDialogProps = {
+  name: string;
   open: boolean;
   handleClose: () => void;
 };
 
 export default function ColumnDisplayDialog(props: ColumnDisplayDialogProps) {
-  const { open, handleClose } = props;
+  const { name, open, handleClose } = props;
+  const api = useGridApi(name);
   const dispatch = useDispatch();
-  const columnInfos = useSelector(
-    state => state.products.columnInfos,
+  const columnSettings = useSelector(
+    state => state.products.columnSettings,
     shallowEqual
   );
-  const [draftColumnInfo, setDraftColumnInfo] = React.useState<ColumnInfo[]>(
-    []
-  );
+  const [draft, setDraft] = React.useState<ColumnSettings[]>([]);
 
   React.useEffect(() => {
     if (open) {
       // reset unsaved changes when opening again
-      setDraftColumnInfo(columnInfos);
+      setDraft(columnSettings);
     }
-  }, [open, columnInfos]);
+  }, [open, columnSettings]);
 
   const onChangeCheckbox = (name: string) => (_: any, checked: boolean) => {
     const hide = !checked;
 
-    setDraftColumnInfo(
-      immer(draftColumnInfo, draft => {
-        const column = draft.find(c => c.field === name);
+    setDraft(
+      immer(draft, _draft => {
+        const column = _draft.find(c => c.field === name);
 
         if (column) {
           column.hide = hide;
@@ -51,7 +52,9 @@ export default function ColumnDisplayDialog(props: ColumnDisplayDialogProps) {
   };
 
   const onSave = () => {
-    dispatch(actions.setColumnDisplay(draftColumnInfo));
+    dispatch(actions.setColumnDisplay(draft));
+    // change colDef externally, need to notify ag-grid to update the changes
+    api.column?.setColumnState(draft.map(c => ({ ...c, colId: c.field })));
     handleClose();
   };
 
@@ -60,7 +63,7 @@ export default function ColumnDisplayDialog(props: ColumnDisplayDialogProps) {
       <DialogTitle>Chọn những cột cần hiển thị</DialogTitle>
       <DialogContent>
         <FormGroup>
-          {draftColumnInfo.map(c => {
+          {draft.map(c => {
             return (
               <FormControlLabel
                 key={c.field}

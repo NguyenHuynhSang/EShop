@@ -36,11 +36,11 @@ function getLanguage(format: ExportFormat) {
       return 'json';
   }
 }
-function ExportPreviewDialog() {
+function ExportPreviewDialog({ name }: { name: string }) {
   const isOpen = useSelector(state => state.table._global.exportDialogOpen);
   const format = useSelector(state => state.table._global.exportFormat);
-  const csvData = useExportData(format);
-  const download = useExportDownload(format);
+  const csvData = useExportData(name, format);
+  const download = useExportDownload(name, format);
   const dispatch = useDispatch();
   const data = csvData();
   const close = () => dispatch(actions.setExportDialogClose());
@@ -115,6 +115,7 @@ const useStyles = makeStyles({
 export default function ProductsPage() {
   const styles = useStyles();
   const colDialog = useDialog();
+  const name = 'product';
 
   return (
     <Portlet id='productTableContainer'>
@@ -139,7 +140,7 @@ export default function ProductsPage() {
             >
               Thêm sản phẩm
             </Button>
-            <ExportButton iconSize={iconSize} />
+            <ExportButton name={name} iconSize={iconSize} />
           </PortletHeaderToolbar>
         }
       />
@@ -156,13 +157,14 @@ export default function ProductsPage() {
           <CurrencySelector />
           <ProductTablePagination />
         </div>
-        <ProductTable name='product' />
+        <ProductTable name={name} />
       </PortletBody>
       <ColumnDisplayDialog
+        name={name}
         open={colDialog.open}
         handleClose={colDialog.handleClose}
       />
-      <ExportPreviewDialog />
+      <ExportPreviewDialog name={name} />
     </Portlet>
   );
 }
