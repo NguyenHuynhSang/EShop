@@ -1,0 +1,74 @@
+﻿[
+  {
+    "catalogID": 4,
+    "url": null,
+    "name": "Iphone test",
+    "description": "no discrip",
+    "content": "This is an iphone",
+    "weight": 500,
+    "originalPrice": 16000000,
+    "deliver": true,
+    "applyPromotion": true,
+    "createdDate": null,
+    "createdBy": null,
+    "modifiedDate": null,
+    "modifiedBy": null,
+    "seoTitle": null,
+    "seoUrl": null,
+    "seoDescription": null,
+    "productVersions": [
+      {
+        "wareHouseID": 0,
+        "description": "Màu đỏ dl 250",
+        "price": 19000000,
+        "promotionPrice": 18000000,
+        "quantum": 100,
+        "remainingAmount": 100,
+        "sku": "Iphone test",
+        "barcode": "COC",
+        "productVersionImages": [
+          {
+            "isMain": true,
+            "url": "https://cdn.tgdd.vn/Products/Images/42/200533/iphone-11-pro-max-black-400x460.png"
+          },
+          {
+            "isMain": false,
+            "url": "https://cdn.tgdd.vn/Products/Images/42/200533/iphone-11-pro-max-vang-5-180x125.jpg"
+          }
+        ],
+        "productVersionAttributes": [
+          {
+            "AttributeValueID": 1
+          }
+        ]
+
+      },
+      {
+        "wareHouseID": 0,
+        "description": "Màu xanh dl 250",
+        "price": 18000000,
+        "promotionPrice": 18000000,
+        "quantum": 100,
+        "remainingAmount": 100,
+        "sku": "Iphone test",
+        "barcode": "COC",
+        "productVersionImages": [
+          {
+            "isMain": true,
+            "url": "https://cdn.tgdd.vn/Products/Images/42/153856/iphone-11-red-2-400x460-400x460.png"
+          },
+          {
+            "isMain": false,
+            "url": "https://cdn.tgdd.vn/Products/Images/42/153856/iphone-114-1.jpg"
+          }
+        ],
+        "productVersionAttributes": [
+          {
+            "AttributeValueID": 5
+          }
+        ]
+      }
+    ]
+  }
+
+]

@@ -1,0 +1,170 @@
+﻿using EShop.Server.Data;
+using EShop.Server.Repository;
+using EShop.Server.FilterModel;
+using EShop.Server.Models;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using EShop.Server.ViewModels;
+using System.Linq;
+using EShop.Server.Extension;
+using Newtonsoft.Json;
+using System.Linq.Dynamic.Core;
+using EShop.Server.Extension;
+using Microsoft.EntityFrameworkCore;
+using AutoMapper;
+using EShop.Server.Dtos.Admin.ProductForList;
+
+namespace EShop.Server.Service
+{
+    public interface IProductService
+    {
+        public Product Add(Product product);
+        public IEnumerable<ProductForListDto> GetAll(Params param);
+
+
+        public Product GetProductById(int id);
+        public Product Delete(Product product);
+
+        void SaveChanges();
+
+
+
+    }
+    public class ProductService : IProductService
+    {
+        private readonly IProductRepository _productRepository;
+        private readonly IMapper _mapper;
+
+
+        public ProductService(IProductRepository productRepository, IMapper mapper)
+        {
+            this._productRepository = productRepository;
+            this._mapper = mapper;
+
+        }
+        public Product Add(Product product)
+        {
+            return _productRepository.Add(product);
+        }
+
+
+
+        public Product Delete(Product product)
+        {
+            return _productRepository.Delete(product);
+        }
+
+      
+
+        public IEnumerable<ProductForListDto> GetAll(Params param)
+        {
+            ProductFilterModel filterModel = null;
+            if (!String.IsNullOrEmpty(param.filter))
+            {
+
+                if (!string.IsNullOrEmpty(param.filter))
+                {
+                    filterModel = JsonConvert.DeserializeObject<ProductFilterModel>(param.filter);
+                }
+
+            }
+
+            var query = _productRepository.GetMulti(null, q => q.Include(x => x.Catalog)
+           .Include(x => x.ProductVersions)
+               .ThenInclude(y => y.ProductVersionImages)
+           .Include(x => x.ProductVersions)
+               .ThenInclude(y => y.ProductVersionAttributes)
+                   .ThenInclude(z => z.AttributeValue)
+                   .ThenInclude(t => t.Attribute));
+
+            var productsReturn = query.Select(x => _mapper.Map<ProductForListDto>(x));
+
+
+            if (filterModel != null)
+            {
+
+                if (!filterModel.SearchByMultiKeyword)
+                {
+                    if (!String.IsNullOrEmpty(filterModel.Name))
+                    {
+                        return ProductPropertyConverter(productsReturn.Where(x => x.Name.Contains(filterModel.Name))
+                            .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort), param);
+                    }
+                    else if (filterModel.ID != null)
+                    {
+                        return ProductPropertyConverter(productsReturn.Where(x => x.ID == filterModel.ID)
+                            .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort), param);
+                    }
+                    else if (filterModel.FromWeight != null && filterModel.ToWeight != null)
+                    {
+                        return ProductPropertyConverter(productsReturn.Where(x => x.Weight >= filterModel.FromWeight && x.Weight <= filterModel.ToWeight)
+                            .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort),param);
+                    }
+                    else if (filterModel.FromWeight == null && filterModel.ToWeight != null)
+                    {
+                        return ProductPropertyConverter(productsReturn.Where(x => x.Weight <= filterModel.ToWeight)
+                            .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort),param);
+                    }
+                    else if (filterModel.FromWeight != null && filterModel.ToWeight == null)
+                    {
+                        return ProductPropertyConverter(productsReturn.Where(x => x.Weight >= filterModel.FromWeight)
+                            .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort),param);
+                    }
+                    else if (filterModel.CatalogID != null)
+                    {
+                        return ProductPropertyConverter(productsReturn.Where(x => x.Catalog.ID == filterModel.CatalogID)
+                            .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort),param);
+                    }
+                }
+                else
+                {
+
+                }
+            }
+
+            return ProductPropertyConverter(productsReturn.AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort),param);
+        }
+
+
+
+        private IEnumerable<ProductForListDto> ProductPropertyConverter(IEnumerable<ProductForListDto> source,Params param)
+        {
+
+            if (param.currency!=null && param.currency.Value!=0)
+            {
+                source = source.Select(c => { c.OriginalPrice = c.OriginalPrice/param.currency.Value; return c; });
+                source = source.ToList();
+                foreach (var product in source)
+                {
+                    foreach (var productVers in product.ProductVersions)
+                    {
+                        productVers.Price = productVers.Price / param.currency.Value;
+                        productVers.PromotionPrice = productVers.PromotionPrice / param.currency.Value;
+                    }
+                }
+            }
+
+            if (param.weight.ToLower()=="lb")
+            {
+                source = source.Select(c => { c.Weight = (int)Math.Round(c.Weight * 2.20462, 2); return c; }).ToList();
+            }
+            return source;
+
+        }
+
+
+        public Product GetProductById(int id)
+        {
+            return _productRepository.GetSingleById(id);
+        }
+
+
+
+        public void SaveChanges()
+        {
+            _productRepository.Commit();
+        }
+    }
+}
