@@ -8,6 +8,10 @@
 
 ## Getting Started
 
+### Frontend
+
+[EShop Admin](https://eshopadmin.netlify.app) (WIP)
+
 ### Backend
 
 * Tạo file mới tên `ConnectionString.txt` trong `EShop/EShop.Server`. Copy database connection string vào dòng đầu tiên
