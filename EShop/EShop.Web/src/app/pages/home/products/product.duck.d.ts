@@ -40,10 +40,6 @@ export enum WeightUnit {
   Lb = 'lb',
 }
 export type Pinned = 'left' | 'right' | undefined;
-export type ColumnPinPayload = {
-  column: string;
-  pinned: Pinned;
-};
 
 export enum SortMode {
   None = 'none',
@@ -58,5 +54,3 @@ export type Params = {
   page?: number;
   perPage?: number;
 };
-
-export type ColumnVisiblePayload = { column: string; visible: boolean };

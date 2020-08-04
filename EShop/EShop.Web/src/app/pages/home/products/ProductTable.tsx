@@ -11,21 +11,19 @@ import padStart from 'lodash/padStart';
 import round from 'lodash/round';
 import {
   ICellRendererParams,
-  ColumnPinnedEvent,
   ColDef,
-  DragStoppedEvent,
   ValueFormatterParams,
   SelectionChangedEvent,
   ValueGetterParams,
-  GridApi,
 } from 'ag-grid-community';
 import Carousel from '../../../widgets/Carousel';
-import { actions, Pinned, ProductData, WeightUnit } from './product.duck';
+import { actions, ProductData, WeightUnit } from './product.duck';
 import { useSelector, useDispatch, shallowEqual } from '../../../store/store';
 import { useOnMount } from '../helpers/hookHelpers';
 import {
   useAgGrid,
   useAutosizeColumns,
+  useGridApi,
   useStickyHeader,
 } from '../helpers/agGridHelpers';
 import ProductTableHeader from './ProductTableHeader';
@@ -189,13 +187,14 @@ const useLoadingOverlayStyles = makeStyles({
 });
 type LoadingOverlayProps = {
   loading: boolean;
-  api?: GridApi;
+  name: string;
   children: React.ReactNode;
 };
 
-function LoadingOverlay({ loading, api, children }: LoadingOverlayProps) {
+function LoadingOverlay({ loading, name, children }: LoadingOverlayProps) {
   const [display, setDisplay] = React.useState(false);
   const [blur, setBlur] = React.useState(false);
+  const api = useGridApi(name);
   const styles = useLoadingOverlayStyles({ blur, display });
   const onTransitionEnd = () => {
     if (!loading) {
@@ -212,11 +211,11 @@ function LoadingOverlay({ loading, api, children }: LoadingOverlayProps) {
       // when implementing refresh lifecycle correctly
       // TODO: reset custom pagination
       // TODO: reset dirty cells
-      api?.deselectAll();
+      api.grid?.deselectAll();
       // TODO: call this will make select text centered in 1 frame
       // api?.collapseAll();
-      api?.clearFocusedCell();
-      api?.stopEditing(true);
+      api.grid?.clearFocusedCell();
+      api.grid?.stopEditing(true);
       setDisplay(true);
       setBlur(true);
     } else {
@@ -354,7 +353,7 @@ export default function ProductTable(props: ProductTableProps) {
   const { name, ...rest } = props;
   const products = useSelector(state => state.products.products, shallowEqual);
   const columnDefs = useColumnDefs(name);
-  const [api, onGridReady] = useAgGrid(name, columnDefs);
+  const onGridReady = useAgGrid(name, columnDefs);
   const autoSizeColumns = useAutosizeColumns(name);
   const onFirstDataRendered = () => autoSizeColumns();
   const dispatch = useDispatch();
@@ -371,33 +370,14 @@ export default function ProductTable(props: ProductTableProps) {
   });
   useStickyHeader();
 
-  const onColumnPinned = (e: ColumnPinnedEvent) => {
-    if (e.columns !== null && e.pinned !== null) {
-      const pinned = e.pinned as Pinned;
-      for (let col of e.columns) {
-        const column = col.getColDef().field!;
-        dispatch(actions.setPinned({ column, pinned }));
-      }
-    }
-  };
-  // has better performance than onColumnMoved: https://stackoverflow.com/a/57287276/9449426
-  const onDragStopped = (e: DragStoppedEvent) => {
-    const columnOrder = e.columnApi
-      ?.getColumnState()
-      // remove suffix _[digit]. field: id -> colId: id_1
-      .map(c => c.colId.replace(/_[\d]+$/, ''));
-    if (columnOrder) dispatch(actions.setColumnOrder(columnOrder));
-  };
   const onSelectionChanged = (e: SelectionChangedEvent) =>
     dispatch(actions.setRowsSelected(e.api.getSelectedNodes().length));
 
   return (
-    <LoadingOverlay loading={loading} api={api.grid}>
+    <LoadingOverlay loading={loading} name={name}>
       <div key={name} className='ag-theme-balham table-wrapper'>
         <AgGridReact
           // animateRows
-          onDragStopped={onDragStopped}
-          onColumnPinned={onColumnPinned}
           columnDefs={columnDefs}
           columnTypes={columnTypes}
           defaultColDef={{

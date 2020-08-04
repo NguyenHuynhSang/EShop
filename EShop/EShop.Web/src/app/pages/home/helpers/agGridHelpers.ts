@@ -5,11 +5,13 @@ import {
   GridReadyEvent,
   ExportParams,
   Column,
+  AgGridEvent,
 } from 'ag-grid-community';
+import { useDispatch } from 'react-redux';
 import { useEventListener, useOnMount } from './hookHelpers';
 import download from './download';
 import { ExportFormat } from '../base/table.duck';
-import { ColumnSettings } from '../products/product.duck';
+import { actions, ColumnSettings } from '../products/product.duck';
 
 export type AgGridApi = {
   grid?: GridApi;
@@ -20,10 +22,26 @@ type GridReadyFunc = (event: GridReadyEvent) => void;
 let api: Record<string, AgGridApi> = {};
 const emptyApi = Object.freeze({ grid: undefined, column: undefined });
 
+const columnEvents = new Set([
+  // dragStopped has better performance than onColumnMoved: https://stackoverflow.com/a/57287276/9449426
+  'dragStopped',
+  'columnPinned',
+  'columnVisible',
+]);
+
 export function useAgGrid(
   name: string,
   columnDefs: ColumnSettings[]
-): [AgGridApi, GridReadyFunc] {
+): GridReadyFunc {
+  const dispatch = useDispatch();
+  const globalCallback = useCallback(
+    (type: string, e: AgGridEvent) => {
+      if (columnEvents.has(type)) {
+        dispatch(actions.setColumnSettings(e.columnApi.getColumnState()));
+      }
+    },
+    [dispatch]
+  );
   const onGridReady = useCallback(
     (params: GridReadyEvent) => {
       api[name] = {
@@ -31,23 +49,27 @@ export function useAgGrid(
         column: params.columnApi,
       };
 
+      params.api.addGlobalListener(globalCallback);
       params.columnApi.setColumnState(
         columnDefs.map(c => ({ ...c, colId: c.field }))
       );
     },
-    [columnDefs, name]
+    [columnDefs, globalCallback, name]
   );
 
   useEffect(() => {
-    api[name] = emptyApi;
-    return () => void delete api[name];
+    return () => {
+      api[name].grid?.removeGlobalListener(globalCallback);
+      api[name] = emptyApi;
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return [api, onGridReady];
+  return onGridReady;
 }
 
 export function useGridApi(name: string) {
+  // TODO: replace this hack with context
   return api[name] ?? emptyApi;
 }
 

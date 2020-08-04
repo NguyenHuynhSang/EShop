@@ -22,7 +22,6 @@ type ColumnDisplayDialogProps = {
 export default function ColumnDisplayDialog(props: ColumnDisplayDialogProps) {
   const { name, open, handleClose } = props;
   const api = useGridApi(name);
-  const dispatch = useDispatch();
   const columnSettings = useSelector(
     state => state.products.columnSettings,
     shallowEqual
@@ -52,7 +51,6 @@ export default function ColumnDisplayDialog(props: ColumnDisplayDialogProps) {
   };
 
   const onSave = () => {
-    dispatch(actions.setColumnDisplay(draft));
     // change colDef externally, need to notify ag-grid to update the changes
     api.column?.setColumnState(draft.map(c => ({ ...c, colId: c.field })));
     handleClose();

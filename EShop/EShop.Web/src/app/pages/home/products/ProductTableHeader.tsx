@@ -112,11 +112,6 @@ function ColumnMenu(props: ColumnMenuProps) {
   const styles = useMenuStyles();
   const setPin = (pinned: Pinned) => () => {
     columnApi.setColumnPinned(column.getColId(), pinned ?? '');
-
-    if (pinned === undefined) {
-      // onColumnPinned from ag-grid doesn't fire when unpinning column
-      dispatch(actions.setPinned({ column: field, pinned }));
-    }
   };
   const setWeight = (w: string) => () => {
     dispatch(actions.setWeightUnit(WeightUnit[w]));
@@ -132,7 +127,7 @@ function ColumnMenu(props: ColumnMenuProps) {
   };
   const hideThisColumn = () => {
     columnApi.setColumnVisible(column.getColId(), false);
-    dispatch(actions.setColumnVisible({ column: field, visible: false }));
+    // TODO: fix popup menu move to top left before disappearing
   };
 
   return (

@@ -1,14 +1,13 @@
 import { persistReducer, PersistConfig } from 'redux-persist';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
+import { ColumnState } from 'ag-grid-community/dist/lib/columnController/columnController';
 import clamp from 'lodash/clamp';
 import ProductService from './products.service';
 import {
   ProductState,
   Params,
-  ColumnPinPayload,
   ColumnSettings,
-  ColumnVisiblePayload,
   WeightUnit,
 } from './product.duck';
 import { ProductCategory, ProductResult } from './product.model';
@@ -62,28 +61,15 @@ const slice = createSlice({
   initialState,
   name: 'product',
   reducers: {
-    setColumnDisplay(state, action: PayloadAction<ColumnSettings[]>) {
-      state.columnSettings = action.payload;
+    setColumnSettings(state, action: PayloadAction<ColumnState[]>) {
+      // TODO: convert field to colId
+      state.columnSettings = action.payload.map(c => ({
+        ...c,
+        field: c.colId,
+      })) as any;
     },
     setRowsSelected(state, action: PayloadAction<number>) {
       state.rowsSelected = action.payload;
-    },
-    setColumnVisible(state, action: PayloadAction<ColumnVisiblePayload>) {
-      const { column, visible } = action.payload;
-      const col = state.columnSettings.find(c => c.field === column);
-      if (col) col.hide = !visible;
-    },
-    setColumnOrder(state, action: PayloadAction<string[]>) {
-      const columns = action.payload;
-      const order: Record<string, number> = {};
-      columns.forEach((c, i) => (order[c] = i));
-      state.columnSettings.sort((a, b) => order[a.field] - order[b.field]);
-    },
-    setPinned(state, action: PayloadAction<ColumnPinPayload>) {
-      const { column, pinned } = action.payload;
-      const col = state.columnSettings.find(c => c.field === column);
-
-      if (col) col.pinned = pinned;
     },
     getAllRequest(state, action: PayloadAction<Params | undefined>) {
       state.loading = true;
