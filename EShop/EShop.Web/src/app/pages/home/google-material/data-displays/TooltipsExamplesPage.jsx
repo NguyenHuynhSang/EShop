@@ -1,8 +1,8 @@
 /* eslint-disable no-restricted-imports */
-import React from "react";
-import Notice from "../../../../partials/content/Notice";
-import CodeExample from "../../../../partials/content/CodeExample";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import React from 'react';
+import Notice from '../../../../partials/content/Notice';
+import CodeExample from '../../../../partials/content/CodeExample';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import {
   Tooltip,
   Fab,
@@ -12,29 +12,29 @@ import {
   Typography,
   ClickAwayListener,
   Fade,
-  Zoom
-} from "@material-ui/core";
-import AddIcon from "@material-ui/icons/Add";
-import DeleteIcon from "@material-ui/icons/Delete";
-import PropTypes from "prop-types";
+  Zoom,
+} from '@material-ui/core';
+import AddIcon from '@material-ui/icons/Add';
+import DeleteIcon from '@material-ui/icons/Delete';
+import PropTypes from 'prop-types';
 
 // Example 1
 const useStyles1 = makeStyles(theme => ({
   fab: {
-    margin: theme.spacing(2)
+    margin: theme.spacing(2),
   },
   absolute: {
-    position: "absolute",
+    position: 'absolute',
     bottom: theme.spacing(2),
-    right: theme.spacing(3)
-  }
+    right: theme.spacing(3),
+  },
 }));
 
 // Example 2
 const useStyles2 = makeStyles({
   root: {
-    width: 500
-  }
+    width: 500,
+  },
 });
 
 // Example 3
@@ -43,73 +43,73 @@ function arrowGenerator3(color) {
     '&[x-placement*="bottom"] $arrow': {
       top: 0,
       left: 0,
-      marginTop: "-0.95em",
-      width: "3em",
-      height: "1em",
-      "&::before": {
-        borderWidth: "0 1em 1em 1em",
-        borderColor: `transparent transparent ${color} transparent`
-      }
+      marginTop: '-0.95em',
+      width: '3em',
+      height: '1em',
+      '&::before': {
+        borderWidth: '0 1em 1em 1em',
+        borderColor: `transparent transparent ${color} transparent`,
+      },
     },
     '&[x-placement*="top"] $arrow': {
       bottom: 0,
       left: 0,
-      marginBottom: "-0.95em",
-      width: "3em",
-      height: "1em",
-      "&::before": {
-        borderWidth: "1em 1em 0 1em",
-        borderColor: `${color} transparent transparent transparent`
-      }
+      marginBottom: '-0.95em',
+      width: '3em',
+      height: '1em',
+      '&::before': {
+        borderWidth: '1em 1em 0 1em',
+        borderColor: `${color} transparent transparent transparent`,
+      },
     },
     '&[x-placement*="right"] $arrow': {
       left: 0,
-      marginLeft: "-0.95em",
-      height: "3em",
-      width: "1em",
-      "&::before": {
-        borderWidth: "1em 1em 1em 0",
-        borderColor: `transparent ${color} transparent transparent`
-      }
+      marginLeft: '-0.95em',
+      height: '3em',
+      width: '1em',
+      '&::before': {
+        borderWidth: '1em 1em 1em 0',
+        borderColor: `transparent ${color} transparent transparent`,
+      },
     },
     '&[x-placement*="left"] $arrow': {
       right: 0,
-      marginRight: "-0.95em",
-      height: "3em",
-      width: "1em",
-      "&::before": {
-        borderWidth: "1em 0 1em 1em",
-        borderColor: `transparent transparent transparent ${color}`
-      }
-    }
+      marginRight: '-0.95em',
+      height: '3em',
+      width: '1em',
+      '&::before': {
+        borderWidth: '1em 0 1em 1em',
+        borderColor: `transparent transparent transparent ${color}`,
+      },
+    },
   };
 }
 
 const LightTooltip3 = withStyles(theme => ({
   tooltip: {
     backgroundColor: theme.palette.common.white,
-    color: "rgba(0, 0, 0, 0.87)",
+    color: 'rgba(0, 0, 0, 0.87)',
     boxShadow: theme.shadows[1],
-    fontSize: 11
-  }
+    fontSize: 11,
+  },
 }))(Tooltip);
 
 const useStylesArrow3 = makeStyles(theme => ({
   arrow: {
-    position: "absolute",
+    position: 'absolute',
     fontSize: 6,
-    width: "3em",
-    height: "3em",
-    "&::before": {
+    width: '3em',
+    height: '3em',
+    '&::before': {
       content: '""',
-      margin: "auto",
-      display: "block",
+      margin: 'auto',
+      display: 'block',
       width: 0,
       height: 0,
-      borderStyle: "solid"
-    }
+      borderStyle: 'solid',
+    },
   },
-  popper: arrowGenerator3(theme.palette.grey[700])
+  popper: arrowGenerator3(theme.palette.grey[700]),
 }));
 
 function ArrowTooltip3(props) {
@@ -124,10 +124,10 @@ function ArrowTooltip3(props) {
           modifiers: {
             arrow: {
               enabled: Boolean(arrowRef),
-              element: arrowRef
-            }
-          }
-        }
+              element: arrowRef,
+            },
+          },
+        },
       }}
       {...props}
       title={
@@ -141,40 +141,40 @@ function ArrowTooltip3(props) {
 }
 
 ArrowTooltip3.propTypes = {
-  title: PropTypes.node
+  title: PropTypes.node,
 };
 
 const useStylesBootstrap3 = makeStyles(theme => ({
   arrow: {
-    position: "absolute",
+    position: 'absolute',
     fontSize: 6,
-    width: "3em",
-    height: "3em",
-    "&::before": {
+    width: '3em',
+    height: '3em',
+    '&::before': {
       content: '""',
-      margin: "auto",
-      display: "block",
+      margin: 'auto',
+      display: 'block',
       width: 0,
       height: 0,
-      borderStyle: "solid"
-    }
+      borderStyle: 'solid',
+    },
   },
   popper: arrowGenerator3(theme.palette.common.black),
   tooltip: {
-    backgroundColor: theme.palette.common.black
+    backgroundColor: theme.palette.common.black,
   },
   tooltipPlacementLeft: {
-    margin: "0 8px"
+    margin: '0 8px',
   },
   tooltipPlacementRight: {
-    margin: "0 8px"
+    margin: '0 8px',
   },
   tooltipPlacementTop: {
-    margin: "8px 0"
+    margin: '8px 0',
   },
   tooltipPlacementBottom: {
-    margin: "8px 0"
-  }
+    margin: '8px 0',
+  },
 }));
 
 function BootstrapTooltip3(props) {
@@ -189,10 +189,10 @@ function BootstrapTooltip3(props) {
           modifiers: {
             arrow: {
               enabled: Boolean(arrowRef),
-              element: arrowRef
-            }
-          }
-        }
+              element: arrowRef,
+            },
+          },
+        },
       }}
       {...props}
       title={
@@ -206,30 +206,30 @@ function BootstrapTooltip3(props) {
 }
 
 BootstrapTooltip3.propTypes = {
-  title: PropTypes.node
+  title: PropTypes.node,
 };
 
 const HtmlTooltip3 = withStyles(theme => ({
   tooltip: {
-    backgroundColor: "#f5f5f9",
-    color: "rgba(0, 0, 0, 0.87)",
+    backgroundColor: '#f5f5f9',
+    color: 'rgba(0, 0, 0, 0.87)',
     maxWidth: 220,
     fontSize: theme.typography.pxToRem(12),
-    border: "1px solid #dadde9"
-  }
+    border: '1px solid #dadde9',
+  },
 }))(Tooltip);
 
 // Example 6
 const useStyles6 = makeStyles(theme => ({
   button: {
-    margin: theme.spacing(1)
+    margin: theme.spacing(1),
   },
   customWidth: {
-    maxWidth: 500
+    maxWidth: 500,
   },
   noMaxWidth: {
-    maxWidth: "none"
-  }
+    maxWidth: 'none',
+  },
 }));
 
 const longText6 = `
@@ -241,8 +241,8 @@ Nullam eget est sed sem iaculis gravida eget vitae justo.
 // Example 7
 const useStyles7 = makeStyles(theme => ({
   button: {
-    margin: theme.spacing(1)
-  }
+    margin: theme.spacing(1),
+  },
 }));
 
 export default function TooltipsExamplesPage() {
@@ -282,43 +282,43 @@ export default function TooltipsExamplesPage() {
 
   return (
     <>
-      <Notice icon="flaticon-warning kt-font-primary">
+      <Notice icon='flaticon-warning kt-font-primary'>
         <p>
           Tooltips display informative text when users hover over, focus on, or
           tap an element.
         </p>
         <p>
-          For more info please check the components's official{" "}
+          For more info please check the components's official{' '}
           <a
-            target="_blank"
-            className="kt-link"
-            rel="noopener noreferrer"
-            href="https://material-ui.com/components/tooltips/"
+            target='_blank'
+            className='kt-link'
+            rel='noopener noreferrer'
+            href='https://material-ui.com/components/tooltips/'
           >
             demos & documentation
           </a>
         </p>
       </Notice>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode1} beforeCodeTitle="Simple Tooltips">
-            <div className="kt-section">
-              <span className="kt-section__sub"></span>
-              <div className="kt-section__content">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode1} beforeCodeTitle='Simple Tooltips'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'></span>
+              <div className='kt-section__content'>
                 <div>
-                  <Tooltip title="Delete">
-                    <IconButton aria-label="Delete">
+                  <Tooltip title='Delete'>
+                    <IconButton aria-label='Delete'>
                       <DeleteIcon />
                     </IconButton>
                   </Tooltip>
-                  <Tooltip title="Add" aria-label="Add">
-                    <Fab color="primary" className={classes1.fab}>
+                  <Tooltip title='Add' aria-label='Add'>
+                    <Fab color='primary' className={classes1.fab}>
                       <AddIcon />
                     </Fab>
                   </Tooltip>
-                  <Tooltip title="Add" aria-label="Add">
-                    <Fab color="secondary" className={classes1.absolute}>
+                  <Tooltip title='Add' aria-label='Add'>
+                    <Fab color='secondary' className={classes1.absolute}>
                       <AddIcon />
                     </Fab>
                   </Tooltip>
@@ -327,41 +327,41 @@ export default function TooltipsExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode2} beforeCodeTitle="Positioned Tooltips">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode2} beforeCodeTitle='Positioned Tooltips'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 The <code>Tooltip</code> has 12 placements choice. They don’t
                 have directional arrows; instead, they rely on motion emanating
                 from the source to convey direction.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes2.root}>
-                  <Grid container justify="center">
+                  <Grid container justify='center'>
                     <Grid item>
-                      <Tooltip title="Add" placement="top-start">
+                      <Tooltip title='Add' placement='top-start'>
                         <Button>top-start</Button>
                       </Tooltip>
-                      <Tooltip title="Add" placement="top">
+                      <Tooltip title='Add' placement='top'>
                         <Button>top</Button>
                       </Tooltip>
-                      <Tooltip title="Add" placement="top-end">
+                      <Tooltip title='Add' placement='top-end'>
                         <Button>top-end</Button>
                       </Tooltip>
                     </Grid>
                   </Grid>
-                  <Grid container justify="center">
+                  <Grid container justify='center'>
                     <Grid item xs={6}>
-                      <Tooltip title="Add" placement="left-start">
+                      <Tooltip title='Add' placement='left-start'>
                         <Button>left-start</Button>
                       </Tooltip>
                       <br />
-                      <Tooltip title="Add" placement="left">
+                      <Tooltip title='Add' placement='left'>
                         <Button>left</Button>
                       </Tooltip>
                       <br />
-                      <Tooltip title="Add" placement="left-end">
+                      <Tooltip title='Add' placement='left-end'>
                         <Button>left-end</Button>
                       </Tooltip>
                     </Grid>
@@ -369,35 +369,35 @@ export default function TooltipsExamplesPage() {
                       item
                       container
                       xs={6}
-                      alignItems="flex-end"
-                      direction="column"
+                      alignItems='flex-end'
+                      direction='column'
                     >
                       <Grid item>
-                        <Tooltip title="Add" placement="right-start">
+                        <Tooltip title='Add' placement='right-start'>
                           <Button>right-start</Button>
                         </Tooltip>
                       </Grid>
                       <Grid item>
-                        <Tooltip title="Add" placement="right">
+                        <Tooltip title='Add' placement='right'>
                           <Button>right</Button>
                         </Tooltip>
                       </Grid>
                       <Grid item>
-                        <Tooltip title="Add" placement="right-end">
+                        <Tooltip title='Add' placement='right-end'>
                           <Button>right-end</Button>
                         </Tooltip>
                       </Grid>
                     </Grid>
                   </Grid>
-                  <Grid container justify="center">
+                  <Grid container justify='center'>
                     <Grid item>
-                      <Tooltip title="Add" placement="bottom-start">
+                      <Tooltip title='Add' placement='bottom-start'>
                         <Button>bottom-start</Button>
                       </Tooltip>
-                      <Tooltip title="Add" placement="bottom">
+                      <Tooltip title='Add' placement='bottom'>
                         <Button>bottom</Button>
                       </Tooltip>
-                      <Tooltip title="Add" placement="bottom-end">
+                      <Tooltip title='Add' placement='bottom-end'>
                         <Button>bottom-end</Button>
                       </Tooltip>
                     </Grid>
@@ -409,34 +409,34 @@ export default function TooltipsExamplesPage() {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode3} beforeCodeTitle="Customized tooltips">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode3} beforeCodeTitle='Customized tooltips'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 Here are some examples of customizing the component. You can
                 learn more about this in the overrides documentation page.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div>
-                  <LightTooltip3 title="Add">
+                  <LightTooltip3 title='Add'>
                     <Button>Light</Button>
                   </LightTooltip3>
-                  <ArrowTooltip3 title="Add">
+                  <ArrowTooltip3 title='Add'>
                     <Button>Arrow</Button>
                   </ArrowTooltip3>
-                  <BootstrapTooltip3 title="Add">
+                  <BootstrapTooltip3 title='Add'>
                     <Button>Bootstrap</Button>
                   </BootstrapTooltip3>
                   <HtmlTooltip3
                     title={
                       <React.Fragment>
-                        <Typography color="inherit">
+                        <Typography color='inherit'>
                           Tooltip with HTML
                         </Typography>
-                        <em>{"And here's"}</em> <b>{"some"}</b>{" "}
-                        <u>{"amazing content"}</u>.{" "}
+                        <em>{"And here's"}</em> <b>{'some'}</b>{' '}
+                        <u>{'amazing content'}</u>.{' '}
                         {"It's very engaging. Right?"}
                       </React.Fragment>
                     }
@@ -448,23 +448,23 @@ export default function TooltipsExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode4} beforeCodeTitle="Triggers">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode4} beforeCodeTitle='Triggers'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 You can define the types of events that cause a tooltip to show.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div>
-                  <Grid container justify="center">
+                  <Grid container justify='center'>
                     <Grid item>
-                      <Tooltip disableFocusListener title="Add">
+                      <Tooltip disableFocusListener title='Add'>
                         <Button>Hover or touch</Button>
                       </Tooltip>
                     </Grid>
                     <Grid item>
-                      <Tooltip disableHoverListener title="Add">
+                      <Tooltip disableHoverListener title='Add'>
                         <Button>Focus or touch</Button>
                       </Tooltip>
                     </Grid>
@@ -472,7 +472,7 @@ export default function TooltipsExamplesPage() {
                       <Tooltip
                         disableFocusListener
                         disableTouchListener
-                        title="Add"
+                        title='Add'
                       >
                         <Button>Hover</Button>
                       </Tooltip>
@@ -482,14 +482,14 @@ export default function TooltipsExamplesPage() {
                         <div>
                           <Tooltip
                             PopperProps={{
-                              disablePortal: true
+                              disablePortal: true,
                             }}
                             onClose={handleTooltipClose4}
                             open={open4}
                             disableFocusListener
                             disableHoverListener
                             disableTouchListener
-                            title="Add"
+                            title='Add'
                           >
                             <Button onClick={handleTooltipOpen4}>Click</Button>
                           </Tooltip>
@@ -504,22 +504,22 @@ export default function TooltipsExamplesPage() {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode5} beforeCodeTitle="Controlled Tooltips">
-            <div className="kt-section">
-              <span className="kt-section__sub">
-                You can use the <code>open</code>, <code>onOpen</code> and{" "}
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode5} beforeCodeTitle='Controlled Tooltips'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
+                You can use the <code>open</code>, <code>onOpen</code> and{' '}
                 <code>onClose</code> properties to control the behavior of the
                 tooltip.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <Tooltip
                   onClose={handleTooltipClose5}
                   onOpen={handleTooltipOpen5}
                   open={open5}
-                  title="Add"
+                  title='Add'
                 >
                   <Button>Controlled</Button>
                 </Tooltip>
@@ -527,15 +527,15 @@ export default function TooltipsExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode6} beforeCodeTitle="Variable Width">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode6} beforeCodeTitle='Variable Width'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 The <code>Tooltip</code> wraps long text by default to make it
                 readable.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div>
                   <Tooltip title={longText6}>
                     <Button className={classes6.button}>
@@ -563,22 +563,22 @@ export default function TooltipsExamplesPage() {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode7} beforeCodeTitle="Interactive">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode7} beforeCodeTitle='Interactive'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 A tooltip can be interactive. It won't close when the user
                 hovers over the tooltip before the <code>leaveDelay</code> is
                 expired.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div>
-                  <Tooltip title="Add" interactive>
+                  <Tooltip title='Add' interactive>
                     <Button className={classes7.button}>Interactive</Button>
                   </Tooltip>
-                  <Tooltip title="Add">
+                  <Tooltip title='Add'>
                     <Button className={classes7.button}>Non Interactive</Button>
                   </Tooltip>
                 </div>
@@ -586,17 +586,17 @@ export default function TooltipsExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode8} beforeCodeTitle="Disabled Elements">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode8} beforeCodeTitle='Disabled Elements'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 By default disabled elements like <code>&lt;button&gt;</code> do
                 not trigger user interactions so a <code>Tooltip</code> will not
                 activate on normal events like hover. To accommodate disabled
                 elements, add a simple wrapper element like a <code>span</code>.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <Tooltip title="You don't have permission to do this">
                   <span>
                     <Button disabled>A Disabled Button</Button>
@@ -608,27 +608,27 @@ export default function TooltipsExamplesPage() {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode9} beforeCodeTitle="Transitions">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode9} beforeCodeTitle='Transitions'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 Use a different transition.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div>
-                  <Tooltip title="Add">
+                  <Tooltip title='Add'>
                     <Button>Grow</Button>
                   </Tooltip>
                   <Tooltip
                     TransitionComponent={Fade}
                     TransitionProps={{ timeout: 600 }}
-                    title="Add"
+                    title='Add'
                   >
                     <Button>Fade</Button>
                   </Tooltip>
-                  <Tooltip TransitionComponent={Zoom} title="Add">
+                  <Tooltip TransitionComponent={Zoom} title='Add'>
                     <Button>Zoom</Button>
                   </Tooltip>
                 </div>
@@ -636,19 +636,19 @@ export default function TooltipsExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode10} beforeCodeTitle="Showing and hiding">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode10} beforeCodeTitle='Showing and hiding'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 The tooltip is normally shown immediately when the user's mouse
                 hovers over the element, and hides immediately when the user's
                 mouse leaves. A delay in showing or hiding the tooltip can be
-                added through the properties <code>enterDelay</code> and{" "}
+                added through the properties <code>enterDelay</code> and{' '}
                 <code>leaveDelay</code>.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
-                <Tooltip title="Add" enterDelay={500} leaveDelay={200}>
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
+                <Tooltip title='Add' enterDelay={500} leaveDelay={200}>
                   <Button>[500ms, 200ms]</Button>
                 </Tooltip>
               </div>

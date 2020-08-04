@@ -1,33 +1,33 @@
 /* eslint-disable no-restricted-imports */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from "react";
-import Notice from "../../../../partials/content/Notice";
-import CodeExample from "../../../../partials/content/CodeExample";
-import { makeStyles } from "@material-ui/core/styles";
-import { Grid, Typography } from "@material-ui/core";
-import ToggleButton from "@material-ui/lab/ToggleButton";
-import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
-import FormatAlignLeftIcon from "@material-ui/icons/FormatAlignLeft";
-import FormatAlignCenterIcon from "@material-ui/icons/FormatAlignCenter";
-import FormatAlignRightIcon from "@material-ui/icons/FormatAlignRight";
-import FormatAlignJustifyIcon from "@material-ui/icons/FormatAlignJustify";
-import FormatBoldIcon from "@material-ui/icons/FormatBold";
-import FormatItalicIcon from "@material-ui/icons/FormatItalic";
-import FormatUnderlinedIcon from "@material-ui/icons/FormatUnderlined";
-import FormatColorFillIcon from "@material-ui/icons/FormatColorFill";
-import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
+import React from 'react';
+import Notice from '../../../../partials/content/Notice';
+import CodeExample from '../../../../partials/content/CodeExample';
+import { makeStyles } from '@material-ui/core/styles';
+import { Grid, Typography } from '@material-ui/core';
+import ToggleButton from '@material-ui/lab/ToggleButton';
+import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+import FormatAlignLeftIcon from '@material-ui/icons/FormatAlignLeft';
+import FormatAlignCenterIcon from '@material-ui/icons/FormatAlignCenter';
+import FormatAlignRightIcon from '@material-ui/icons/FormatAlignRight';
+import FormatAlignJustifyIcon from '@material-ui/icons/FormatAlignJustify';
+import FormatBoldIcon from '@material-ui/icons/FormatBold';
+import FormatItalicIcon from '@material-ui/icons/FormatItalic';
+import FormatUnderlinedIcon from '@material-ui/icons/FormatUnderlined';
+import FormatColorFillIcon from '@material-ui/icons/FormatColorFill';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
 // Example 1
 const useStyles1 = makeStyles(theme => ({
   toggleContainer: {
-    margin: theme.spacing(2, 0)
-  }
+    margin: theme.spacing(2, 0),
+  },
 }));
 
 export default function ToggleButtonExamplesPage() {
   // Example 1
-  const [alignment1, setAlignment1] = React.useState("left");
-  const [formats1, setFormats1] = React.useState(() => ["bold"]);
+  const [alignment1, setAlignment1] = React.useState('left');
+  const [formats1, setFormats1] = React.useState(() => ['bold']);
 
   const handleFormat1 = (event, newFormats) => {
     setFormats1(newFormats);
@@ -40,57 +40,57 @@ export default function ToggleButtonExamplesPage() {
   const classes1 = useStyles1();
 
   // Example 2
-  const [alignment2, setAlignment2] = React.useState("left");
+  const [alignment2, setAlignment2] = React.useState('left');
 
   const handleChange2 = (event, newAlignment) => {
     setAlignment2(newAlignment);
   };
 
   const children2 = [
-    <ToggleButton key={1} value="left">
+    <ToggleButton key={1} value='left'>
       <FormatAlignLeftIcon />
     </ToggleButton>,
-    <ToggleButton key={2} value="center">
+    <ToggleButton key={2} value='center'>
       <FormatAlignCenterIcon />
     </ToggleButton>,
-    <ToggleButton key={3} value="right">
+    <ToggleButton key={3} value='right'>
       <FormatAlignRightIcon />
     </ToggleButton>,
-    <ToggleButton key={4} value="justify" disabled>
+    <ToggleButton key={4} value='justify' disabled>
       <FormatAlignJustifyIcon />
-    </ToggleButton>
+    </ToggleButton>,
   ];
 
   return (
     <>
-      <Notice icon="flaticon-warning kt-font-primary">
-        For more info please check the components's official{" "}
+      <Notice icon='flaticon-warning kt-font-primary'>
+        For more info please check the components's official{' '}
         <a
-          target="_blank"
-          className="kt-link"
-          rel="noopener noreferrer"
-          href=""
+          target='_blank'
+          className='kt-link'
+          rel='noopener noreferrer'
+          href=''
         >
           demos & documentation
         </a>
       </Notice>
 
-      <Notice className="notice__paragraph">
+      <Notice className='notice__paragraph'>
         Toggle buttons can be used to group related options.
       </Notice>
 
-      <CodeExample jsCode={jsCode1} beforeCodeTitle="Toggle Buttons">
-        <div className="kt-section">
-          <span className="kt-section__sub">
+      <CodeExample jsCode={jsCode1} beforeCodeTitle='Toggle Buttons'>
+        <div className='kt-section'>
+          <span className='kt-section__sub'>
             To emphasize groups of related Toggle buttons, a group should share
             a common container.
           </span>
-          <p className="kt-section__sub">
+          <p className='kt-section__sub'>
             The <code>ToggleButtonGroup</code> will control the selected of its
             child buttons when given its own <code>value</code> prop.
           </p>
-          <div className="kt-separator kt-separator--dashed"></div>
-          <div className="kt-section__content">
+          <div className='kt-separator kt-separator--dashed'></div>
+          <div className='kt-section__content'>
             <Grid container spacing={2}>
               <Grid item sm={12} md={6}>
                 <div className={classes1.toggleContainer}>
@@ -99,16 +99,16 @@ export default function ToggleButtonExamplesPage() {
                     exclusive
                     onChange={handleAlignment1}
                   >
-                    <ToggleButton value="left">
+                    <ToggleButton value='left'>
                       <FormatAlignLeftIcon />
                     </ToggleButton>
-                    <ToggleButton value="center">
+                    <ToggleButton value='center'>
                       <FormatAlignCenterIcon />
                     </ToggleButton>
-                    <ToggleButton value="right">
+                    <ToggleButton value='right'>
                       <FormatAlignRightIcon />
                     </ToggleButton>
-                    <ToggleButton value="justify" disabled>
+                    <ToggleButton value='justify' disabled>
                       <FormatAlignJustifyIcon />
                     </ToggleButton>
                   </ToggleButtonGroup>
@@ -124,16 +124,16 @@ export default function ToggleButtonExamplesPage() {
               <Grid item sm={12} md={6}>
                 <div className={classes1.toggleContainer}>
                   <ToggleButtonGroup value={formats1} onChange={handleFormat1}>
-                    <ToggleButton value="bold">
+                    <ToggleButton value='bold'>
                       <FormatBoldIcon />
                     </ToggleButton>
-                    <ToggleButton value="italic">
+                    <ToggleButton value='italic'>
                       <FormatItalicIcon />
                     </ToggleButton>
-                    <ToggleButton value="underlined">
+                    <ToggleButton value='underlined'>
                       <FormatUnderlinedIcon />
                     </ToggleButton>
-                    <ToggleButton disabled value="color">
+                    <ToggleButton disabled value='color'>
                       <FormatColorFillIcon />
                       <ArrowDropDownIcon />
                     </ToggleButton>
@@ -150,17 +150,17 @@ export default function ToggleButtonExamplesPage() {
         </div>
       </CodeExample>
 
-      <CodeExample jsCode={jsCode2} beforeCodeTitle="Sizes">
-        <div className="kt-section">
-          <span className="kt-section__sub">
+      <CodeExample jsCode={jsCode2} beforeCodeTitle='Sizes'>
+        <div className='kt-section'>
+          <span className='kt-section__sub'>
             Fancy larger or smaller buttons? Use the <code>size</code> property.
           </span>
-          <div className="kt-separator kt-separator--dashed"></div>
-          <div className="kt-section__content">
-            <Grid container spacing={2} direction="column" alignItems="center">
+          <div className='kt-separator kt-separator--dashed'></div>
+          <div className='kt-section__content'>
+            <Grid container spacing={2} direction='column' alignItems='center'>
               <Grid item>
                 <ToggleButtonGroup
-                  size="small"
+                  size='small'
                   value={alignment2}
                   exclusive
                   onChange={handleChange2}
@@ -170,7 +170,7 @@ export default function ToggleButtonExamplesPage() {
               </Grid>
               <Grid item>
                 <ToggleButtonGroup
-                  size="medium"
+                  size='medium'
                   value={alignment2}
                   exclusive
                   onChange={handleChange2}
@@ -180,7 +180,7 @@ export default function ToggleButtonExamplesPage() {
               </Grid>
               <Grid item>
                 <ToggleButtonGroup
-                  size="large"
+                  size='large'
                   value={alignment2}
                   exclusive
                   onChange={handleChange2}

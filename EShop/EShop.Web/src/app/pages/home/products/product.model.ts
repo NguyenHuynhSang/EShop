@@ -1,6 +1,7 @@
 export default interface Product {
   id: number;
   name: string;
+  image: string[];
   description: string;
   content: string;
   weight: number;
@@ -19,4 +20,9 @@ export default interface Product {
 export interface ProductCategory {
   id: number;
   name: string;
+}
+
+export interface ProductResult {
+  results: Product[];
+  totalResults: number;
 }

@@ -1,21 +1,21 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Link, withRouter } from "react-router-dom";
-import objectPath from "object-path";
-import HMenuItem from "./HMenuItem";
-import * as builder from "../../../ducks/builder";
-import { toAbsoluteUrl } from "../../..";
-import KTMenu from "../../../_assets/js/menu";
-import KTOffcanvas from "../../../_assets/js/offcanvas";
+import React from 'react';
+import { connect } from 'react-redux';
+import { Link, withRouter } from 'react-router-dom';
+import objectPath from 'object-path';
+import HMenuItem from './HMenuItem';
+import * as builder from '../../../ducks/builder';
+import { toAbsoluteUrl } from '../../..';
+import KTMenu from '../../../_assets/js/menu';
+import KTOffcanvas from '../../../_assets/js/offcanvas';
 
 const offcanvasOptions = {
   overlay: true,
-  baseClass: "kt-header-menu-wrapper",
-  closeBy: "kt_header_menu_mobile_close_btn",
+  baseClass: 'kt-header-menu-wrapper',
+  closeBy: 'kt_header_menu_mobile_close_btn',
   toggleBy: {
-    target: "kt_header_mobile_toggler",
-    state: "kt-header-mobile__toolbar-toggler--active"
-  }
+    target: 'kt_header_mobile_toggler',
+    state: 'kt-header-mobile__toolbar-toggler--active',
+  },
 };
 
 class HMenu extends React.Component {
@@ -23,10 +23,10 @@ class HMenu extends React.Component {
   ktMenuCommonRef = React.createRef();
 
   getHeaderLogo() {
-    let result = "logo-light.png";
-    console.log("this.props.headerSelfSkin", this.props.headerSelfSkin);
-    if (this.props.headerSelfSkin && this.props.headerSelfSkin !== "dark") {
-      result = "logo-dark.png";
+    let result = 'logo-light.png';
+    console.log('this.props.headerSelfSkin', this.props.headerSelfSkin);
+    if (this.props.headerSelfSkin && this.props.headerSelfSkin !== 'dark') {
+      result = 'logo-dark.png';
     }
     return toAbsoluteUrl(`/media/logos/${result}`);
   }
@@ -50,29 +50,29 @@ class HMenu extends React.Component {
   initKTMenu = () => {
     let menuOptions = {
       submenu: {
-        desktop: "dropdown",
-        tablet: "accordion",
-        mobile: "accordion"
+        desktop: 'dropdown',
+        tablet: 'accordion',
+        mobile: 'accordion',
       },
       accordion: {
         slideSpeed: 200, // accordion toggle slide speed in milliseconds
-        expandAll: false // allow having multiple expanded accordions in the menu
+        expandAll: false, // allow having multiple expanded accordions in the menu
       },
       dropdown: {
-        timeout: 50
-      }
+        timeout: 50,
+      },
     };
 
-    let menuDesktopMode = "accordion";
+    let menuDesktopMode = 'accordion';
     if (
-      this.ktMenuCommonRef.current.getAttribute("data-ktmenu-dropdown") === "1"
+      this.ktMenuCommonRef.current.getAttribute('data-ktmenu-dropdown') === '1'
     ) {
-      menuDesktopMode = "dropdown";
+      menuDesktopMode = 'dropdown';
     }
 
-    if (typeof objectPath.get(menuOptions, "submenu.desktop") === "object") {
+    if (typeof objectPath.get(menuOptions, 'submenu.desktop') === 'object') {
       menuOptions.submenu.desktop = {
-        default: menuDesktopMode
+        default: menuDesktopMode,
       };
     }
 
@@ -85,32 +85,32 @@ class HMenu extends React.Component {
       disabledAsideSelfDisplay,
       ktMenuClasses,
       ulClasses,
-      rootArrowEnabled
+      rootArrowEnabled,
     } = this.props;
     const items = this.props.menuConfig.header.items;
     return (
       <>
         <button
-          className="kt-header-menu-wrapper-close"
-          id="kt_header_menu_mobile_close_btn"
+          className='kt-header-menu-wrapper-close'
+          id='kt_header_menu_mobile_close_btn'
         >
-          <i className="la la-close" />
+          <i className='la la-close' />
         </button>
         <div
-          className="kt-header-menu-wrapper"
-          id="kt_header_menu_wrapper"
+          className='kt-header-menu-wrapper'
+          id='kt_header_menu_wrapper'
           ref={this.offCanvasCommonRef}
         >
           {disabledAsideSelfDisplay && (
-            <div className="kt-header-logo">
-              <Link to="/">
-                <img alt="logo" src={this.getHeaderLogo()} />
+            <div className='kt-header-logo'>
+              <Link to='/'>
+                <img alt='logo' src={this.getHeaderLogo()} />
               </Link>
             </div>
           )}
 
           <div
-            id="kt_header_menu"
+            id='kt_header_menu'
             className={`kt-header-menu kt-header-menu-mobile ${ktMenuClasses}`}
             ref={this.ktMenuCommonRef}
           >
@@ -140,20 +140,20 @@ const mapStateToProps = store => ({
   config: store.builder.layoutConfig,
   menuConfig: store.builder.menuConfig,
   ktMenuClasses: builder.selectors.getClasses(store, {
-    path: "header_menu",
-    toString: true
+    path: 'header_menu',
+    toString: true,
   }),
   rootArrowEnabled: builder.selectors.getConfig(
     store,
-    "header.menu.self.root-arrow"
+    'header.menu.self.root-arrow'
   ),
-  headerSelfSkin: builder.selectors.getConfig(store, "header.self.skin"),
+  headerSelfSkin: builder.selectors.getConfig(store, 'header.self.skin'),
   ulClasses: builder.selectors.getClasses(store, {
-    path: "header_menu_nav",
-    toString: true
+    path: 'header_menu_nav',
+    toString: true,
   }),
   disabledAsideSelfDisplay:
-    objectPath.get(store.builder.layoutConfig, "aside.self.display") === false
+    objectPath.get(store.builder.layoutConfig, 'aside.self.display') === false,
 });
 
 export default withRouter(connect(mapStateToProps)(HMenu));

@@ -1,15 +1,13 @@
-import React from "react";
-import { connect } from "react-redux";
-import objectPath from "object-path";
-import { Link, withRouter } from "react-router-dom";
-import clsx from "clsx";
-import { removeCSSClass } from "../../utils/utils";
-import * as builder from "../../ducks/builder";
-import MenuList from "./MenuList";
-import KTMenu from "../../_assets/js/menu";
-import KTUtil from "../../_assets/js/util";
-
-
+import React from 'react';
+import { connect } from 'react-redux';
+import objectPath from 'object-path';
+import { Link, withRouter } from 'react-router-dom';
+import clsx from 'clsx';
+import { removeCSSClass } from '../../utils/utils';
+import * as builder from '../../ducks/builder';
+import MenuList from './MenuList';
+import KTMenu from '../../_assets/js/menu';
+import KTUtil from '../../_assets/js/util';
 
 class AsideLeft extends React.Component {
   asideMenuRef = React.createRef();
@@ -29,17 +27,17 @@ class AsideLeft extends React.Component {
   initMenu() {
     const { config } = this.props;
     if (
-      objectPath.get(config, "aside.menu.dropdown") !== "true" &&
-      objectPath.get(config, "aside.self.fixed")
+      objectPath.get(config, 'aside.menu.dropdown') !== 'true' &&
+      objectPath.get(config, 'aside.self.fixed')
     ) {
-      this.asideMenuRef.current.setAttribute("data-ktmenu-scroll", "1");
+      this.asideMenuRef.current.setAttribute('data-ktmenu-scroll', '1');
     }
 
-    if (objectPath.get(config, "aside.menu.dropdown") === "true") {
-      this.asideMenuRef.current.setAttribute("data-ktmenu-dropdown", "1");
+    if (objectPath.get(config, 'aside.menu.dropdown') === 'true') {
+      this.asideMenuRef.current.setAttribute('data-ktmenu-dropdown', '1');
       this.asideMenuRef.current.setAttribute(
-        "data-ktmenu-dropdown-timeout",
-        objectPath.get(config, "aside.menu.submenu.dropdown.hover-timeout")
+        'data-ktmenu-dropdown-timeout',
+        objectPath.get(config, 'aside.menu.submenu.dropdown.hover-timeout')
       );
     }
   }
@@ -52,25 +50,27 @@ class AsideLeft extends React.Component {
       submenu: {
         desktop: {
           // by default the menu mode set to accordion in desktop mode
-          default: "dropdown"
+          default: 'dropdown',
         },
-        tablet: "accordion", // menu set to accordion in tablet mode
-        mobile: "accordion" // menu set to accordion in mobile mode
+        tablet: 'accordion', // menu set to accordion in tablet mode
+        mobile: 'accordion', // menu set to accordion in mobile mode
       },
       // accordion setup
       accordion: {
-        expandAll: false // allow having multiple expanded accordions in the menu
-      }
+        expandAll: false, // allow having multiple expanded accordions in the menu
+      },
     };
 
     // init aside menu
-    let menuDesktopMode = "accordion";
-    const dataKtmenuDropdown = this.asideMenuRef.current.getAttribute("data-ktmenu-dropdown");
-    if (dataKtmenuDropdown === "1") {
-      menuDesktopMode = "dropdown";
+    let menuDesktopMode = 'accordion';
+    const dataKtmenuDropdown = this.asideMenuRef.current.getAttribute(
+      'data-ktmenu-dropdown'
+    );
+    if (dataKtmenuDropdown === '1') {
+      menuDesktopMode = 'dropdown';
     }
 
-    if (typeof objectPath.get(menuOptions, "submenu.desktop") === "object") {
+    if (typeof objectPath.get(menuOptions, 'submenu.desktop') === 'object') {
       menuOptions.submenu.desktop.default = menuDesktopMode;
     }
 
@@ -87,7 +87,7 @@ class AsideLeft extends React.Component {
    */
   mouseEnter = e => {
     // check if the left aside menu is fixed
-    if (document.body.classList.contains("kt-aside--fixed")) {
+    if (document.body.classList.contains('kt-aside--fixed')) {
       if (this.outsideTm) {
         clearTimeout(this.outsideTm);
         this.outsideTm = null;
@@ -96,12 +96,12 @@ class AsideLeft extends React.Component {
       this.insideTm = setTimeout(() => {
         // if the left aside menu is minimized
         if (
-          document.body.classList.contains("kt-aside--minimize") &&
+          document.body.classList.contains('kt-aside--minimize') &&
           // eslint-disable-next-line no-undef
-          KTUtil.isInResponsiveRange("desktop")
+          KTUtil.isInResponsiveRange('desktop')
         ) {
-          removeCSSClass(document.body, "kt-aside--minimize");
-          document.body.classList.add("kt-aside--minimize-hover");
+          removeCSSClass(document.body, 'kt-aside--minimize');
+          document.body.classList.add('kt-aside--minimize-hover');
         }
       }, 50);
     }
@@ -112,7 +112,7 @@ class AsideLeft extends React.Component {
    * @param e Event
    */
   mouseLeave = e => {
-    if (document.body.classList.contains("kt-aside--fixed")) {
+    if (document.body.classList.contains('kt-aside--fixed')) {
       if (this.insideTm) {
         clearTimeout(this.insideTm);
         this.insideTm = null;
@@ -121,9 +121,9 @@ class AsideLeft extends React.Component {
       this.outsideTm = setTimeout(() => {
         // if the left aside menu is expand
         /* eslint-disable-next-line  */
-        const kUtilIsResponsiveRange = KTUtil.isInResponsiveRange("desktop");
+        const kUtilIsResponsiveRange = KTUtil.isInResponsiveRange('desktop');
         const hasMinimizeHover = document.body.classList.contains(
-          "kt-aside--minimize-hover"
+          'kt-aside--minimize-hover'
         );
         if (
           hasMinimizeHover &&
@@ -131,8 +131,8 @@ class AsideLeft extends React.Component {
           kUtilIsResponsiveRange
         ) {
           // hide back the left aside menu
-          removeCSSClass(document.body, "kt-aside--minimize-hover");
-          document.body.classList.add("kt-aside--minimize");
+          removeCSSClass(document.body, 'kt-aside--minimize-hover');
+          document.body.classList.add('kt-aside--minimize');
         }
       }, 100);
     }
@@ -144,29 +144,29 @@ class AsideLeft extends React.Component {
       menuConfig,
       layoutConfig,
       asideClassesFromConfig,
-      location: { pathname }
+      location: { pathname },
     } = this.props;
 
     return (
       <>
         <div
-          id="kt_aside_menu"
+          id='kt_aside_menu'
           ref={this.asideMenuRef}
-          style={{ maxHeight: "90vh", position: "relative" }}
+          style={{ maxHeight: '90vh', position: 'relative' }}
           onMouseEnter={this.mouseEnter}
           onMouseLeave={this.mouseLeave}
-          data-ktmenu-vertical="1"
-          className={clsx("kt-aside-menu", asideClassesFromConfig)}
+          data-ktmenu-vertical='1'
+          className={clsx('kt-aside-menu', asideClassesFromConfig)}
           {...this.asideMenuAttr}
         >
           {this.props.disableAsideSelfDisplay && (
-            <div className="kt-header-logo">
-              <Link to="">
-                <img alt="logo" src={this.props.headerLogo} />
+            <div className='kt-header-logo'>
+              <Link to=''>
+                <img alt='logo' src={this.props.headerLogo} />
               </Link>
             </div>
           )}
-          <ul className={clsx("kt-menu__nav", ulClasses)}>
+          <ul className={clsx('kt-menu__nav', ulClasses)}>
             <MenuList
               currentUrl={pathname}
               menuConfig={menuConfig}
@@ -184,17 +184,17 @@ const mapStateToProps = store => ({
   layoutConfig: store.builder.layoutConfig,
   headerLogo: builder.selectors.getLogo(store),
   disableAsideSelfDisplay:
-    builder.selectors.getConfig(store, "aside.self.display") === false,
+    builder.selectors.getConfig(store, 'aside.self.display') === false,
 
   ulClasses: builder.selectors.getClasses(store, {
-    path: "aside_menu_nav",
-    toString: true
+    path: 'aside_menu_nav',
+    toString: true,
   }),
 
   asideClassesFromConfig: builder.selectors.getClasses(store, {
-    path: "aside_menu",
-    toString: true
-  })
+    path: 'aside_menu',
+    toString: true,
+  }),
 });
 
 export default withRouter(connect(mapStateToProps)(AsideLeft));

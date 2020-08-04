@@ -1,34 +1,34 @@
-import React from "react";
+import React from 'react';
 import {
   Portlet,
   PortletBody,
-  PortletHeader
-} from "../../../partials/content/Portlet";
-import { CodeBlock } from "../../../partials/content/CodeExample";
+  PortletHeader,
+} from '../../../partials/content/Portlet';
+import { CodeBlock } from '../../../partials/content/CodeExample';
 
 export default function I18nDocs() {
   return (
     <Portlet>
-      <PortletHeader title="Internationalization (i18n)" />
+      <PortletHeader title='Internationalization (i18n)' />
       <PortletBody>
-        <h3 id="overview">Overview</h3>
+        <h3 id='overview'>Overview</h3>
         <p>
           We're using <code>react-intl</code> for internationalization, check
-          official{" "}
-          <a href="https://github.com/formatjs/react-intl/blob/master/docs/Getting-Started.md">
+          official{' '}
+          <a href='https://github.com/formatjs/react-intl/blob/master/docs/Getting-Started.md'>
             documentation
-          </a>{" "}
-          and{" "}
-          <a href="https://github.com/formatjs/react-intl/tree/master/examples">
+          </a>{' '}
+          and{' '}
+          <a href='https://github.com/formatjs/react-intl/tree/master/examples'>
             examples
           </a>
           .
         </p>
 
-        <h3 id="how-to-add-a-new-language">How to add a new language</h3>
+        <h3 id='how-to-add-a-new-language'>How to add a new language</h3>
         <p>
           <strong>
-            Note: if there are no locale data for your new language in{" "}
+            Note: if there are no locale data for your new language in{' '}
             <code>react-intl/locale-data</code> you will have to manually add
             locale data
           </strong>
@@ -43,7 +43,7 @@ export default function I18nDocs() {
             </p>
 
             <CodeBlock
-              language="diff"
+              language='diff'
               code={`
                 const languages = [
                   {
@@ -66,7 +66,7 @@ export default function I18nDocs() {
             </p>
 
             <CodeBlock
-              language="diff"
+              language='diff'
               code={`
                 + {
                 +    "TRANSLATOR.SELECT": "Dilinizi seçin",
@@ -79,12 +79,12 @@ export default function I18nDocs() {
 
           <li>
             <p>
-              Register messages and locale data in{" "}
+              Register messages and locale data in{' '}
               <code>src/_metronic/i18n/I18nProvider.js</code>
             </p>
 
             <CodeBlock
-              language="diff"
+              language='diff'
               code={`
                 import * as ja from "react-intl/locale-data/ja";
                 import * as zh from "react-intl/locale-data/zh";
@@ -117,15 +117,15 @@ export default function I18nDocs() {
           </li>
         </ol>
 
-        <h4 id="how-to-use">How to use</h4>
+        <h4 id='how-to-use'>How to use</h4>
 
         <p>
-          In the sample React app demo, the core parts like{" "}
+          In the sample React app demo, the core parts like{' '}
           <code>left sided menu</code>, <code>topbar horizontal menu</code>,
           etc. are already implemented with the translation.
         </p>
         <p>
-          The translator understands flat JSON object as defined in{" "}
+          The translator understands flat JSON object as defined in{' '}
           <code>src/_metronic/i18n/messages/en.json</code>. This means that you
           can have a translation that looks like this:
         </p>
@@ -134,7 +134,7 @@ export default function I18nDocs() {
           <li>
             Add translation to <code>src/app/i18n/en.json</code>:
             <CodeBlock
-              language="json"
+              language='json'
               code={`
                 {
                   "HOME.HELLO": "Hello, {name}!"
@@ -146,7 +146,7 @@ export default function I18nDocs() {
           <li>
             <p>Format it with component:</p>
             <CodeBlock
-              language="jsx"
+              language='jsx'
               code={`
                 import { FormattedMessage } from "react-intl";
                 
@@ -157,7 +157,7 @@ export default function I18nDocs() {
             />
             <p>Or with hook:</p>
             <CodeBlock
-              language="jsx"
+              language='jsx'
               code={`
                 import { useIntl } from "react-intl";
                 
@@ -167,10 +167,10 @@ export default function I18nDocs() {
                   return <h3>{intl.formatMessage({ id: "HOME.HELLO" }, { name })}</h3>;
                 }
               `}
-            />{" "}
+            />{' '}
             <p>Or with HOC (Higher order component):</p>
             <CodeBlock
-              language="jsx"
+              language='jsx'
               code={`
                 import { injectIntl } from "react-intl";
                 

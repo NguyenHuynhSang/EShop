@@ -1,16 +1,16 @@
-import React from "react";
-import { useDispatch, useSelector, shallowEqual } from "../../../store/store";
-import { useOnMount } from "../helpers/hookHelpers";
-import { actions } from "./product.duck";
+import React from 'react';
+import { useDispatch, useSelector, shallowEqual } from '../../../store/store';
+import { useOnMount } from '../helpers/hookHelpers';
+import { actions } from './product.duck';
 import {
   Select,
   UsaIcon,
   VietnamIcon,
   EuIcon,
   JapanIcon,
-} from "../../../widgets/Common";
-import styled, { theme } from "../../../styles/styled";
-import Currency from "../base/currency/currency.model";
+} from '../../../widgets/Common';
+import { makeStyles, theme } from '../../../styles';
+import Currency from '../base/currency/currency.model';
 
 const flagIconSize = 20;
 const currencyCodeToFlag = {
@@ -20,13 +20,18 @@ const currencyCodeToFlag = {
   JPY: <JapanIcon size={flagIconSize} />,
 };
 
-const OptionContainer = styled("span")({
-  display: "flex",
-  alignItems: "center",
-  "& > :not(:last-child)": {
-    marginRight: theme.spacing.md,
+const useStyles = makeStyles({
+  root: {
+    display: 'flex',
+    alignItems: 'center',
+    '& > :not(:last-child)': {
+      marginRight: theme.spacing.md,
+    },
   },
 });
+const OptionContainer = ({ children }) => (
+  <span className={useStyles().root}>{children}</span>
+);
 
 const toOption = (currency: Currency): any => ({
   label: (
@@ -40,13 +45,10 @@ const toOption = (currency: Currency): any => ({
 
 export default function CurrencySelector() {
   const dispatch = useDispatch();
-  const currency = useSelector(
-    (state) => state.products.currency,
-    shallowEqual
-  );
+  const currency = useSelector(state => state.products.currency, shallowEqual);
   const defaultValue = currency !== undefined ? toOption(currency) : undefined;
   const currencies = useSelector(
-    (state) => state.products.currencies,
+    state => state.products.currencies,
     shallowEqual
   );
 
@@ -57,9 +59,11 @@ export default function CurrencySelector() {
 
   return (
     <Select
-      placeholder="Currency"
+      placeholder='Currency'
       isSearchable={false}
       defaultValue={defaultValue}
+      // fix pinned rows (has zIndex: 1) overlapping currency selector
+      menuPortalTarget={document.body}
       onChange={(e: any) => dispatch(actions.setCurrency(e.value))}
       options={currencies.map(toOption)}
     />

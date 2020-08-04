@@ -1,24 +1,24 @@
-import React from "react";
-import Notice from "../../../partials/content/Notice";
-import CodeExample from "../../../partials/content/CodeExample";
-import { Tab, Tabs, Nav, Col, Row } from "react-bootstrap";
+import React from 'react';
+import Notice from '../../../partials/content/Notice';
+import CodeExample from '../../../partials/content/CodeExample';
+import { Tab, Tabs, Nav, Col, Row } from 'react-bootstrap';
 
 class ControlledTabs extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      key: "home"
+      key: 'home',
     };
   }
 
   render() {
     return (
       <Tabs
-        id="controlled-tab-example"
+        id='controlled-tab-example'
         activeKey={this.state.key}
         onSelect={key => this.setState({ key })}
       >
-        <Tab eventKey="home" title="Home">
+        <Tab eventKey='home' title='Home'>
           Be wise as thou art cruel; do not press My tongue-tied patience with
           too much disdain; Lest sorrow lend me words, and words express The
           manner of my pity-wanting pain. If I might teach thee wit, better it
@@ -27,7 +27,7 @@ class ControlledTabs extends React.Component {
           physicians know;-- For, if I should despair, I should grow mad, And in
           my madness might speak ill of thee;
         </Tab>
-        <Tab eventKey="profile" title="Profile">
+        <Tab eventKey='profile' title='Profile'>
           For shame! deny that thou bear'st love to any, Who for thy self art so
           unprovident. Grant, if thou wilt, thou art belov'd of many, But that
           thou none lov'st is most evident: For thou art so possess'd with
@@ -36,7 +36,7 @@ class ControlledTabs extends React.Component {
           chief desire. O! change thy thought, that I may change my mind: Shall
           hate be fairer lodg'd than gentle love?
         </Tab>
-        <Tab eventKey="contact" title="Contact" disabled></Tab>
+        <Tab eventKey='contact' title='Contact' disabled></Tab>
       </Tabs>
     );
   }
@@ -46,35 +46,35 @@ export default class TabsExamplesPage extends React.Component {
   render() {
     return (
       <>
-        <Notice icon="flaticon-warning kt-font-primary">
+        <Notice icon='flaticon-warning kt-font-primary'>
           <p>Dynamic tabbed interfaces</p>
           <p>
-            For more info please check the components's official{" "}
+            For more info please check the components's official{' '}
             <a
-              target="_blank"
-              className="kt-link"
-              rel="noopener noreferrer"
-              href="https://react-bootstrap.github.io/components/tabs/"
+              target='_blank'
+              className='kt-link'
+              rel='noopener noreferrer'
+              href='https://react-bootstrap.github.io/components/tabs/'
             >
               demos & documentation
             </a>
           </p>
         </Notice>
 
-        <div className="row">
-          <div className="col-md-6">
-            <CodeExample jsCode={jsCode1} beforeCodeTitle="Basic Example">
-              <div className="kt-section">
-                <span className="kt-section__sub">
+        <div className='row'>
+          <div className='col-md-6'>
+            <CodeExample jsCode={jsCode1} beforeCodeTitle='Basic Example'>
+              <div className='kt-section'>
+                <span className='kt-section__sub'>
                   Create dynamic tabbed interfaces, as described in the WAI ARIA
                   Authoring Practices.
                   <code>Tabs</code> is a higher-level component for quickly
-                  creating a <code>Nav</code> matched with a set of{" "}
+                  creating a <code>Nav</code> matched with a set of{' '}
                   <code>TabPane</code>s.
                 </span>
-                <div className="kt-separator kt-separator--dashed"></div>
-                <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
-                  <Tab eventKey="home" title="Home">
+                <div className='kt-separator kt-separator--dashed'></div>
+                <Tabs defaultActiveKey='profile' id='uncontrolled-tab-example'>
+                  <Tab eventKey='home' title='Home'>
                     How can I then return in happy plight, That am debarre'd the
                     benefit of rest? When day's oppression is not eas'd by
                     night, But day by night and night by day oppress'd, And
@@ -84,7 +84,7 @@ export default class TabsExamplesPage extends React.Component {
                     to please him thou art bright, And dost him grace when
                     clouds do blot the heaven:
                   </Tab>
-                  <Tab eventKey="profile" title="Profile">
+                  <Tab eventKey='profile' title='Profile'>
                     How sweet and lovely dost thou make the shame Which, like a
                     canker in the fragrant rose, Doth spot the beauty of thy
                     budding name! O! in what sweets dost thou thy sins enclose.
@@ -94,39 +94,39 @@ export default class TabsExamplesPage extends React.Component {
                     what a mansion have those vices got Which for their
                     habitation chose out thee,
                   </Tab>
-                  <Tab eventKey="contact" title="Contact" disabled></Tab>
+                  <Tab eventKey='contact' title='Contact' disabled></Tab>
                 </Tabs>
               </div>
             </CodeExample>
           </div>
-          <div className="col-md-6">
-            <CodeExample jsCode={jsCode2} beforeCodeTitle="Controlled">
-              <div className="kt-section">
-                <span className="kt-section__sub">
+          <div className='col-md-6'>
+            <CodeExample jsCode={jsCode2} beforeCodeTitle='Controlled'>
+              <div className='kt-section'>
+                <span className='kt-section__sub'>
                   <code>Tabs</code> can be controlled directly when you want to
                   handle the selection logic personally.
                 </span>
-                <div className="kt-separator kt-separator--dashed"></div>
+                <div className='kt-separator kt-separator--dashed'></div>
                 <ControlledTabs />
               </div>
             </CodeExample>
           </div>
         </div>
 
-        <div className="row">
-          <div className="col-md-6">
-            <CodeExample jsCode={jsCode3} beforeCodeTitle="No animation">
-              <div className="kt-section">
-                <span className="kt-section__sub">
+        <div className='row'>
+          <div className='col-md-6'>
+            <CodeExample jsCode={jsCode3} beforeCodeTitle='No animation'>
+              <div className='kt-section'>
+                <span className='kt-section__sub'>
                   Set the <code>transition</code> prop to <code>false</code>
                 </span>
-                <div className="kt-separator kt-separator--dashed"></div>
+                <div className='kt-separator kt-separator--dashed'></div>
                 <Tabs
-                  defaultActiveKey="home"
+                  defaultActiveKey='home'
                   transition={false}
-                  id="noanim-tab-example"
+                  id='noanim-tab-example'
                 >
-                  <Tab eventKey="home" title="Home">
+                  <Tab eventKey='home' title='Home'>
                     Those parts of thee that the world's eye doth view Want
                     nothing that the thought of hearts can mend; All
                     tongues--the voice of souls--give thee that due, Uttering
@@ -137,7 +137,7 @@ export default class TabsExamplesPage extends React.Component {
                     the beauty of thy mind, And that in guess they measure by
                     thy deeds;
                   </Tab>
-                  <Tab eventKey="profile" title="Profile">
+                  <Tab eventKey='profile' title='Profile'>
                     Being your slave what should I do but tend, Upon the hours,
                     and times of your desire? I have no precious time at all to
                     spend; Nor services to do, till you require. Nor dare I
@@ -147,37 +147,37 @@ export default class TabsExamplesPage extends React.Component {
                     question with my jealous thought Where you may be, or your
                     affairs suppose,
                   </Tab>
-                  <Tab eventKey="contact" title="Contact" disabled></Tab>
+                  <Tab eventKey='contact' title='Contact' disabled></Tab>
                 </Tabs>
               </div>
             </CodeExample>
           </div>
-          <div className="col-md-6">
-            <CodeExample jsCode={jsCode4} beforeCodeTitle="Custom Tab Layout">
-              <div className="kt-section">
-                <span className="kt-section__sub">
-                  For more complex layouts the flexible{" "}
-                  <code>TabContainer</code>, <code>TabContent</code>, and{" "}
-                  <code>TabPane</code> components along with any style of{" "}
+          <div className='col-md-6'>
+            <CodeExample jsCode={jsCode4} beforeCodeTitle='Custom Tab Layout'>
+              <div className='kt-section'>
+                <span className='kt-section__sub'>
+                  For more complex layouts the flexible{' '}
+                  <code>TabContainer</code>, <code>TabContent</code>, and{' '}
+                  <code>TabPane</code> components along with any style of{' '}
                   <code>Nav</code> allow you to quickly piece together your own
                   Tabs component with additional markup needed.
                 </span>
-                <div className="kt-separator kt-separator--dashed"></div>
-                <Tab.Container id="left-tabs-example" defaultActiveKey="first">
+                <div className='kt-separator kt-separator--dashed'></div>
+                <Tab.Container id='left-tabs-example' defaultActiveKey='first'>
                   <Row>
                     <Col sm={3}>
-                      <Nav variant="pills" className="flex-column">
+                      <Nav variant='pills' className='flex-column'>
                         <Nav.Item>
-                          <Nav.Link eventKey="first">Tab 1</Nav.Link>
+                          <Nav.Link eventKey='first'>Tab 1</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                          <Nav.Link eventKey="second">Tab 2</Nav.Link>
+                          <Nav.Link eventKey='second'>Tab 2</Nav.Link>
                         </Nav.Item>
                       </Nav>
                     </Col>
                     <Col sm={9}>
                       <Tab.Content>
-                        <Tab.Pane eventKey="first">
+                        <Tab.Pane eventKey='first'>
                           Let those who are in favour with their stars Of public
                           honour and proud titles boast, Whilst I, whom fortune
                           of such triumph bars Unlook'd for joy in that I honour
@@ -187,7 +187,7 @@ export default class TabsExamplesPage extends React.Component {
                           they in their glory die. The painful warrior famoused
                           for fight, After a thousand victories once foil'd,
                         </Tab.Pane>
-                        <Tab.Pane eventKey="second">
+                        <Tab.Pane eventKey='second'>
                           Thy gift, thy tables, are within my brain Full
                           character'd with lasting memory, Which shall above
                           that idle rank remain, Beyond all date; even to

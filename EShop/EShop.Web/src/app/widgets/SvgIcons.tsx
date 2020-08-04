@@ -1,13 +1,11 @@
-import React from "react";
-import styled from "../styles/styled";
-import { ReactComponent as PlusSvg } from "../../assets/Add.svg";
-import { ReactComponent as ProductSvg } from "../../assets/Product.svg";
-import { ReactComponent as VisibleSvg } from "../../assets/Visible.svg";
+import React from 'react';
+import styled from '../styles/styled';
+import { ReactComponent as ProductSvg } from '../../assets/Product.svg';
 
-import { ReactComponent as UsaSvg } from "../../assets/Flags/united-states.svg";
-import { ReactComponent as VietnamSvg } from "../../assets/Flags/vietnam.svg";
-import { ReactComponent as EuSvg } from "../../assets/Flags/european-union.svg";
-import { ReactComponent as JapanSvg } from "../../assets/Flags/japan.svg";
+import { ReactComponent as UsaSvg } from '../../assets/Flags/united-states.svg';
+import { ReactComponent as VietnamSvg } from '../../assets/Flags/vietnam.svg';
+import { ReactComponent as EuSvg } from '../../assets/Flags/european-union.svg';
+import { ReactComponent as JapanSvg } from '../../assets/Flags/japan.svg';
 
 type SvgIconWrapperProps = {
   color?: string;
@@ -16,13 +14,13 @@ type SvgIconWrapperProps = {
   className?: string;
 };
 
-const SvgIconWrapper = styled<SvgIconWrapperProps>("span")({
-  "& svg": {
-    width: (p) => p.size + "px",
+const SvgIconWrapper = styled<SvgIconWrapperProps>('span')({
+  '& svg': {
+    width: p => p.size + 'px',
 
-    "& g": {
-      "& [fill]": {
-        fill: (p) => p.color,
+    '& g': {
+      '& [fill]': {
+        fill: p => p.color,
       },
     },
   },
@@ -37,26 +35,12 @@ export function SvgIcon(props: SvgIconWrapperProps) {
   );
 }
 
-type SvgIconProps = Omit<SvgIconWrapperProps, "children">;
+type SvgIconProps = Omit<SvgIconWrapperProps, 'children'>;
 
-export function PlusIcon(props: SvgIconProps) {
-  return (
-    <SvgIcon {...props}>
-      <PlusSvg />
-    </SvgIcon>
-  );
-}
 export function ProductIcon(props: SvgIconProps) {
   return (
     <SvgIcon {...props}>
       <ProductSvg />
-    </SvgIcon>
-  );
-}
-export function VisibleIcon(props: SvgIconProps) {
-  return (
-    <SvgIcon {...props}>
-      <VisibleSvg />
     </SvgIcon>
   );
 }

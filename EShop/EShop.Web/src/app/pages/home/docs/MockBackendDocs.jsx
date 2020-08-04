@@ -1,29 +1,29 @@
-import React from "react";
+import React from 'react';
 import {
   Portlet,
   PortletBody,
-  PortletHeader
-} from "../../../partials/content/Portlet";
-import { CodeBlock } from "../../../partials/content/CodeExample";
+  PortletHeader,
+} from '../../../partials/content/Portlet';
+import { CodeBlock } from '../../../partials/content/CodeExample';
 
 export default function MockBackendDocs() {
   return (
     <Portlet>
-      <PortletHeader title="Mock Back-end" />
+      <PortletHeader title='Mock Back-end' />
       <PortletBody>
-        <h3 id="overview">Overview</h3>
+        <h3 id='overview'>Overview</h3>
         <p>
-          We use <code>axios-mock-adapter</code> for demo purpose, it intercepts{" "}
+          We use <code>axios-mock-adapter</code> for demo purpose, it intercepts{' '}
           <code>axios</code> requests and redirects to mocked handlers.
         </p>
         <p>
-          For more info on the library:{" "}
-          <a href="https://github.com/ctimmerm/axios-mock-adapter">
+          For more info on the library:{' '}
+          <a href='https://github.com/ctimmerm/axios-mock-adapter'>
             https://github.com/ctimmerm/axios-mock-adapter
           </a>
           .
         </p>
-        <h3 id="how-switching-to-the-real-rest-api">
+        <h3 id='how-switching-to-the-real-rest-api'>
           How switching to the Real REST API
         </h3>
         <p>
@@ -31,7 +31,7 @@ export default function MockBackendDocs() {
         </p>
 
         <CodeBlock
-          language="diff"
+          language='diff'
           code={`
             -import { mockAxios, setupAxios } from "./_metronic";
             +import { setupAxios } from "./_metronic";

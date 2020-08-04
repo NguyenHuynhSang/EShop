@@ -1,112 +1,93 @@
-import React, { useCallback } from "react";
-import { ColDef, ColumnApi } from "ag-grid-community";
-import { useSelector, shallowEqual } from "../../../store/store";
-import { ColumnInfo } from "./product.duck";
-import { useForceUpdate } from "../helpers/hookHelpers";
-import { autoSizeColumns } from "../helpers/agGridHelpers";
+import React from 'react';
+import { ColDef } from 'ag-grid-community';
+import { useSelector, shallowEqual } from '../../../store/store';
+import { ColumnSettings } from './product.duck';
 
 export const colDefs: Record<string, ColDef> = {
   id: {
-    headerName: "ID",
-    lockPosition: true,
-    type: "numericColumn",
-    resizable: false,
+    headerName: 'ID',
+    type: ['id'],
   },
   name: {
-    headerName: "Tên",
-    type: ["editable"],
+    headerName: 'Tên',
+    type: ['editable'],
+  },
+  image: {
+    headerName: 'Hình',
+    type: ['image'],
   },
   description: {
-    headerName: "Mô tả",
-    type: ["editable", "largeText"],
+    headerName: 'Mô tả',
+    type: ['editable', 'largeText'],
   },
   content: {
-    headerName: "Nội dung",
-    type: ["editable", "largeText"],
+    headerName: 'Nội dung',
+    type: ['editable', 'largeText'],
   },
   weight: {
-    headerName: "Khối lượng",
-    type: ["editable", "weight"],
+    headerName: 'Khối lượng',
+    type: ['editable', 'weight'],
   },
   category: {
-    headerName: "Loại",
-    type: ["selector"],
+    headerName: 'Loại',
+    type: ['selector'],
   },
   numberOfVersions: {
-    headerName: "Số phiên bản",
-    type: ["editable", "numericColumn"],
+    headerName: 'Số phiên bản',
+    type: ['editable', 'numericColumn'],
   },
   price: {
-    headerName: "Giá",
-    type: ["editable", "currency"],
+    headerName: 'Giá',
+    type: ['editable', 'currency'],
   },
   originalPrice: {
-    headerName: "Giá gốc",
-    type: ["editable", "currency"],
+    headerName: 'Giá gốc',
+    type: ['editable', 'currency'],
   },
   discountPrice: {
-    headerName: "Giá khuyến mãi",
-    type: ["editable", "currency"],
+    headerName: 'Giá khuyến mãi',
+    type: ['editable', 'currency'],
   },
   quantity: {
-    headerName: "Số lượng",
-    type: ["editable", "numericColumn"],
+    headerName: 'Số lượng',
+    type: ['editable', 'numericColumn'],
   },
   display: {
-    headerName: "Hiển thị",
-    type: ["checkbox"],
+    headerName: 'Hiển thị',
+    type: ['checkbox'],
   },
   deliver: {
-    headerName: "Giao hàng",
-    type: ["checkbox"],
+    headerName: 'Giao hàng',
+    type: ['checkbox'],
   },
   applyPromotion: {
-    headerName: "Khuyến mãi",
-    type: ["checkbox"],
+    headerName: 'Khuyến mãi',
+    type: ['checkbox'],
   },
   action: {
-    headerName: "Tùy chọn",
-    cellRenderer: "ActionRenderer",
+    headerName: 'Tùy chọn',
+    cellRenderer: 'ActionRenderer',
     sortable: false,
   },
 };
 
-let COLUMN_DEFS: ColDef[] = [];
-
-// return [columnDefs, columnInfos]
-// columnDefs: is used to initialize column definitions on mount
-// columnInfos: current column states saved in the store
-export default function useColumnDefs(
-  columnApi?: ColumnApi
-): [ColDef[], ColumnInfo[]] {
-  const columnInfos = useSelector(
-    (state) => state.products.columnInfos,
+export default function useColumnDefs(name: string) {
+  // TODO: use name params as key in redux store
+  const columnSettings = useSelector(
+    state => state.products.columnSettings,
     shallowEqual
   );
-  const columnInfosGen = useSelector((state) => state.products.columnInfosGen);
-  const forceUpdate = useForceUpdate();
-  const getColumnDefs = useCallback(
-    () => columnInfos.map((c) => ({ ...colDefs[c.field], ...c })),
-    [columnInfos]
-  );
+  const colDefsRef = React.useRef<ColumnSettings[]>([]);
 
   React.useEffect(() => {
-    // columnDefs should not be changed once assigned for the first time or weird
-    // behaviors start to happen when interacting with columns. For example when
-    // moving or pinning column
-    if (COLUMN_DEFS.length === 0) {
-      COLUMN_DEFS = getColumnDefs();
-    }
-  }, [getColumnDefs]);
-
-  React.useEffect(() => {
-    COLUMN_DEFS = getColumnDefs();
-    forceUpdate();
-    setTimeout(() => {
-      autoSizeColumns(columnApi);
-    });
+    colDefsRef.current = columnSettings.map(c => ({
+      ...colDefs[c.colId],
+      ...c,
+      field: c.colId,
+    }));
+    // we only want to run once at startup to get the column settings from the last session
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [columnInfosGen]);
+  }, []);
 
-  return [COLUMN_DEFS, columnInfos];
+  return colDefsRef.current;
 }

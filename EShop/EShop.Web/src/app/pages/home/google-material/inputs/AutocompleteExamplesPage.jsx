@@ -1,12 +1,12 @@
 /* eslint-disable no-restricted-imports */
-import React from "react";
-import Notice from "../../../../partials/content/Notice";
-import CodeExample from "../../../../partials/content/CodeExample";
-import { emphasize, makeStyles, useTheme } from "@material-ui/core/styles";
-import clsx from "clsx";
-import Select from "react-select";
-import deburr from "lodash/deburr";
-import Downshift from "downshift";
+import React from 'react';
+import Notice from '../../../../partials/content/Notice';
+import CodeExample from '../../../../partials/content/CodeExample';
+import { emphasize, makeStyles, useTheme } from '@material-ui/core/styles';
+import clsx from 'clsx';
+import Select from 'react-select';
+import deburr from 'lodash/deburr';
+import Downshift from 'downshift';
 import {
   TextField,
   Popper,
@@ -14,46 +14,46 @@ import {
   MenuItem,
   Chip,
   Typography,
-  NoSsr
-} from "@material-ui/core";
-import PropTypes from "prop-types";
-import CancelIcon from "@material-ui/icons/Cancel";
+  NoSsr,
+} from '@material-ui/core';
+import PropTypes from 'prop-types';
+import CancelIcon from '@material-ui/icons/Cancel';
 
 const suggestions = [
-  { label: "Afghanistan" },
-  { label: "Aland Islands" },
-  { label: "Albania" },
-  { label: "Algeria" },
-  { label: "American Samoa" },
-  { label: "Andorra" },
-  { label: "Angola" },
-  { label: "Anguilla" },
-  { label: "Antarctica" },
-  { label: "Antigua and Barbuda" },
-  { label: "Argentina" },
-  { label: "Armenia" },
-  { label: "Aruba" },
-  { label: "Australia" },
-  { label: "Austria" },
-  { label: "Azerbaijan" },
-  { label: "Bahamas" },
-  { label: "Bahrain" },
-  { label: "Bangladesh" },
-  { label: "Barbados" },
-  { label: "Belarus" },
-  { label: "Belgium" },
-  { label: "Belize" },
-  { label: "Benin" },
-  { label: "Bermuda" },
-  { label: "Bhutan" },
-  { label: "Bolivia, Plurinational State of" },
-  { label: "Bonaire, Sint Eustatius and Saba" },
-  { label: "Bosnia and Herzegovina" },
-  { label: "Botswana" },
-  { label: "Bouvet Island" },
-  { label: "Brazil" },
-  { label: "British Indian Ocean Territory" },
-  { label: "Brunei Darussalam" }
+  { label: 'Afghanistan' },
+  { label: 'Aland Islands' },
+  { label: 'Albania' },
+  { label: 'Algeria' },
+  { label: 'American Samoa' },
+  { label: 'Andorra' },
+  { label: 'Angola' },
+  { label: 'Anguilla' },
+  { label: 'Antarctica' },
+  { label: 'Antigua and Barbuda' },
+  { label: 'Argentina' },
+  { label: 'Armenia' },
+  { label: 'Aruba' },
+  { label: 'Australia' },
+  { label: 'Austria' },
+  { label: 'Azerbaijan' },
+  { label: 'Bahamas' },
+  { label: 'Bahrain' },
+  { label: 'Bangladesh' },
+  { label: 'Barbados' },
+  { label: 'Belarus' },
+  { label: 'Belgium' },
+  { label: 'Belize' },
+  { label: 'Benin' },
+  { label: 'Bermuda' },
+  { label: 'Bhutan' },
+  { label: 'Bolivia, Plurinational State of' },
+  { label: 'Bonaire, Sint Eustatius and Saba' },
+  { label: 'Bosnia and Herzegovina' },
+  { label: 'Botswana' },
+  { label: 'Bouvet Island' },
+  { label: 'Brazil' },
+  { label: 'British Indian Ocean Territory' },
+  { label: 'Brunei Darussalam' },
 ];
 
 // Example first
@@ -66,9 +66,9 @@ function renderInput(inputProps) {
         inputRef: ref,
         classes: {
           root: classes.inputRoot,
-          input: classes.inputInput
+          input: classes.inputInput,
         },
-        ...InputProps
+        ...InputProps,
       }}
       {...other}
     />
@@ -81,19 +81,19 @@ function renderSuggestion(suggestionProps) {
     index,
     itemProps,
     highlightedIndex,
-    selectedItem
+    selectedItem,
   } = suggestionProps;
   const isHighlighted = highlightedIndex === index;
-  const isSelected = (selectedItem || "").indexOf(suggestion.label) > -1;
+  const isSelected = (selectedItem || '').indexOf(suggestion.label) > -1;
 
   return (
     <MenuItem
       {...itemProps}
       key={`suggestion1${suggestion.label}`}
       selected={isHighlighted}
-      component="div"
+      component='div'
       style={{
-        fontWeight: isSelected ? 500 : 400
+        fontWeight: isSelected ? 500 : 400,
       }}
     >
       {suggestion.label}
@@ -106,7 +106,7 @@ renderSuggestion.propTypes = {
   index: PropTypes.number,
   itemProps: PropTypes.object,
   selectedItem: PropTypes.string,
-  suggestion: PropTypes.shape({ label: PropTypes.string }).isRequired
+  suggestion: PropTypes.shape({ label: PropTypes.string }).isRequired,
 };
 
 function getSuggestions(value, { showEmpty = false } = {}) {
@@ -131,14 +131,14 @@ function getSuggestions(value, { showEmpty = false } = {}) {
 
 function DownshiftMultiple(props) {
   const { classes } = props;
-  const [inputValue, setInputValue] = React.useState("");
+  const [inputValue, setInputValue] = React.useState('');
   const [selectedItem, setSelectedItem] = React.useState([]);
 
   function handleKeyDown(event) {
     if (
       selectedItem.length &&
       !inputValue.length &&
-      event.key === "Backspace"
+      event.key === 'Backspace'
     ) {
       setSelectedItem(selectedItem.slice(0, selectedItem.length - 1));
     }
@@ -153,7 +153,7 @@ function DownshiftMultiple(props) {
     if (newSelectedItem.indexOf(item) === -1) {
       newSelectedItem = [...newSelectedItem, item];
     }
-    setInputValue("");
+    setInputValue('');
     setSelectedItem(newSelectedItem);
   }
 
@@ -165,7 +165,7 @@ function DownshiftMultiple(props) {
 
   return (
     <Downshift
-      id="downshift-multiple"
+      id='downshift-multiple'
       inputValue={inputValue}
       onChange={handleChange}
       selectedItem={selectedItem}
@@ -177,11 +177,11 @@ function DownshiftMultiple(props) {
         isOpen,
         inputValue: inputValue2,
         selectedItem: selectedItem2,
-        highlightedIndex
+        highlightedIndex,
       }) => {
         const { onBlur, onChange, onFocus, ...inputProps } = getInputProps({
           onKeyDown: handleKeyDown,
-          placeholder: "Select multiple countries"
+          placeholder: 'Select multiple countries',
         });
 
         return (
@@ -189,7 +189,7 @@ function DownshiftMultiple(props) {
             {renderInput({
               fullWidth: true,
               classes,
-              label: "Countries",
+              label: 'Countries',
               InputLabelProps: getLabelProps(),
               InputProps: {
                 startAdornment: selectedItem.map(item => (
@@ -206,9 +206,9 @@ function DownshiftMultiple(props) {
                   handleInputChange(event);
                   onChange(event);
                 },
-                onFocus
+                onFocus,
               },
-              inputProps
+              inputProps,
             })}
 
             {isOpen ? (
@@ -219,7 +219,7 @@ function DownshiftMultiple(props) {
                     index,
                     itemProps: getItemProps({ item: suggestion.label }),
                     highlightedIndex,
-                    selectedItem: selectedItem2
+                    selectedItem: selectedItem2,
                   })
                 )}
               </Paper>
@@ -232,38 +232,38 @@ function DownshiftMultiple(props) {
 }
 
 DownshiftMultiple.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 };
 
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    height: 250
+    height: 250,
   },
   container: {
     flexGrow: 1,
-    position: "relative"
+    position: 'relative',
   },
   paper: {
-    position: "absolute",
+    position: 'absolute',
     zIndex: 1,
     marginTop: theme.spacing(1),
     left: 0,
-    right: 0
+    right: 0,
   },
   chip: {
-    margin: theme.spacing(0.5, 0.25)
+    margin: theme.spacing(0.5, 0.25),
   },
   inputRoot: {
-    flexWrap: "wrap"
+    flexWrap: 'wrap',
   },
   inputInput: {
-    width: "auto",
-    flexGrow: 1
+    width: 'auto',
+    flexGrow: 1,
   },
   divider: {
-    height: theme.spacing(2)
-  }
+    height: theme.spacing(2),
+  },
 }));
 
 let popperNode;
@@ -272,59 +272,59 @@ let popperNode;
 const useStyles2 = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    height: 250
+    height: 250,
   },
   input: {
-    display: "flex",
+    display: 'flex',
     padding: 0,
-    height: "auto"
+    height: 'auto',
   },
   valueContainer: {
-    display: "flex",
-    flexWrap: "wrap",
+    display: 'flex',
+    flexWrap: 'wrap',
     flex: 1,
-    alignItems: "center",
-    overflow: "hidden"
+    alignItems: 'center',
+    overflow: 'hidden',
   },
   chip: {
-    margin: theme.spacing(0.5, 0.25)
+    margin: theme.spacing(0.5, 0.25),
   },
   chipFocused: {
     backgroundColor: emphasize(
-      theme.palette.type === "light"
+      theme.palette.type === 'light'
         ? theme.palette.grey[300]
         : theme.palette.grey[700],
       0.08
-    )
+    ),
   },
   noOptionsMessage: {
-    padding: theme.spacing(1, 2)
+    padding: theme.spacing(1, 2),
   },
   singleValue: {
-    fontSize: 16
+    fontSize: 16,
   },
   placeholder: {
-    position: "absolute",
+    position: 'absolute',
     left: 2,
     bottom: 6,
-    fontSize: 16
+    fontSize: 16,
   },
   paper: {
-    position: "absolute",
+    position: 'absolute',
     zIndex: 1,
     marginTop: theme.spacing(1),
     left: 0,
-    right: 0
+    right: 0,
   },
   divider: {
-    height: theme.spacing(2)
-  }
+    height: theme.spacing(2),
+  },
 }));
 
 function NoOptionsMessage(props) {
   return (
     <Typography
-      color="textSecondary"
+      color='textSecondary'
       className={props.selectProps.classes.noOptionsMessage}
       {...props.innerProps}
     >
@@ -336,7 +336,7 @@ function NoOptionsMessage(props) {
 NoOptionsMessage.propTypes = {
   children: PropTypes.node,
   innerProps: PropTypes.object,
-  selectProps: PropTypes.object.isRequired
+  selectProps: PropTypes.object.isRequired,
 };
 
 function inputComponent({ inputRef, ...props }) {
@@ -344,7 +344,7 @@ function inputComponent({ inputRef, ...props }) {
 }
 
 inputComponent.propTypes = {
-  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
+  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
 };
 
 function Control(props) {
@@ -352,7 +352,7 @@ function Control(props) {
     children,
     innerProps,
     innerRef,
-    selectProps: { classes, TextFieldProps }
+    selectProps: { classes, TextFieldProps },
   } = props;
 
   return (
@@ -364,8 +364,8 @@ function Control(props) {
           className: classes.input,
           ref: innerRef,
           children,
-          ...innerProps
-        }
+          ...innerProps,
+        },
       }}
       {...TextFieldProps}
     />
@@ -376,7 +376,7 @@ Control.propTypes = {
   children: PropTypes.node,
   innerProps: PropTypes.object,
   innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  selectProps: PropTypes.object.isRequired
+  selectProps: PropTypes.object.isRequired,
 };
 
 function Option(props) {
@@ -384,10 +384,10 @@ function Option(props) {
     <MenuItem
       ref={props.innerRef}
       selected={props.isFocused}
-      component="div"
+      component='div'
       key={`option2${props.children}`}
       style={{
-        fontWeight: props.isSelected ? 500 : 400
+        fontWeight: props.isSelected ? 500 : 400,
       }}
       {...props.innerProps}
     >
@@ -401,13 +401,13 @@ Option.propTypes = {
   innerProps: PropTypes.object,
   innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   isFocused: PropTypes.bool,
-  isSelected: PropTypes.bool
+  isSelected: PropTypes.bool,
 };
 
 function Placeholder(props) {
   return (
     <Typography
-      color="textSecondary"
+      color='textSecondary'
       key={props.children}
       className={props.selectProps.classes.placeholder}
       {...props.innerProps}
@@ -420,7 +420,7 @@ function Placeholder(props) {
 Placeholder.propTypes = {
   children: PropTypes.node,
   innerProps: PropTypes.object,
-  selectProps: PropTypes.object.isRequired
+  selectProps: PropTypes.object.isRequired,
 };
 
 function SingleValue(props) {
@@ -438,7 +438,7 @@ function SingleValue(props) {
 SingleValue.propTypes = {
   children: PropTypes.node,
   innerProps: PropTypes.object,
-  selectProps: PropTypes.object.isRequired
+  selectProps: PropTypes.object.isRequired,
 };
 
 function ValueContainer(props) {
@@ -454,7 +454,7 @@ function ValueContainer(props) {
 
 ValueContainer.propTypes = {
   children: PropTypes.node,
-  selectProps: PropTypes.object.isRequired
+  selectProps: PropTypes.object.isRequired,
 };
 
 function MultiValue(props) {
@@ -464,7 +464,7 @@ function MultiValue(props) {
       label={props.children}
       key={`chip2${props.children}`}
       className={clsx(props.selectProps.classes.chip, {
-        [props.selectProps.classes.chipFocused]: props.isFocused
+        [props.selectProps.classes.chipFocused]: props.isFocused,
       })}
       onDelete={props.removeProps.onClick}
       deleteIcon={<CancelIcon {...props.removeProps} />}
@@ -476,7 +476,7 @@ MultiValue.propTypes = {
   children: PropTypes.node,
   isFocused: PropTypes.bool,
   removeProps: PropTypes.object.isRequired,
-  selectProps: PropTypes.object.isRequired
+  selectProps: PropTypes.object.isRequired,
 };
 
 function Menu(props) {
@@ -495,7 +495,7 @@ function Menu(props) {
 Menu.propTypes = {
   children: PropTypes.node,
   innerProps: PropTypes.object,
-  selectProps: PropTypes.object
+  selectProps: PropTypes.object,
 };
 
 const components = {
@@ -506,7 +506,7 @@ const components = {
   Option,
   Placeholder,
   SingleValue,
-  ValueContainer
+  ValueContainer,
 };
 
 export default function AutocompleteExamplesPage() {
@@ -529,26 +529,26 @@ export default function AutocompleteExamplesPage() {
     input: base => ({
       ...base,
       color: theme.palette.text.primary,
-      "& input": {
-        font: "inherit"
-      }
-    })
+      '& input': {
+        font: 'inherit',
+      },
+    }),
   };
 
   return (
     <>
-      <Notice icon="flaticon-warning kt-font-primary">
+      <Notice icon='flaticon-warning kt-font-primary'>
         <p>
           The autocomplete is a normal text input enhanced by a panel of
           suggested options.
         </p>
         <p>
-          For more info please check the components's official{" "}
+          For more info please check the components's official{' '}
           <a
-            target="_blank"
-            className="kt-link"
-            rel="noopener noreferrer"
-            href="https://material-ui.com/components/autocomplete/"
+            target='_blank'
+            className='kt-link'
+            rel='noopener noreferrer'
+            href='https://material-ui.com/components/autocomplete/'
           >
             demos & documentation
           </a>
@@ -561,25 +561,25 @@ export default function AutocompleteExamplesPage() {
         built.
       </Notice>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode1} beforeCodeTitle="Downshift">
-            <div className="kt-section">
-              <p className="kt-section__sub">
-                In the following example, we demonstrate how to use{" "}
-                <a href="https://github.com/downshift-js/downshift">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode1} beforeCodeTitle='Downshift'>
+            <div className='kt-section'>
+              <p className='kt-section__sub'>
+                In the following example, we demonstrate how to use{' '}
+                <a href='https://github.com/downshift-js/downshift'>
                   <code>downshift</code>
                 </a>
                 .
               </p>
-              <span className="kt-section__sub">
+              <span className='kt-section__sub'>
                 The last demo allow to clear the input and show a number of
                 options on focus.
               </span>
-              <div className="kt-separator kt-separator--dashed" />
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed' />
+              <div className='kt-section__content'>
                 <div className={classes.root}>
-                  <Downshift id="downshift-simple">
+                  <Downshift id='downshift-simple'>
                     {({
                       getInputProps,
                       getItemProps,
@@ -588,10 +588,10 @@ export default function AutocompleteExamplesPage() {
                       highlightedIndex,
                       inputValue,
                       isOpen,
-                      selectedItem
+                      selectedItem,
                     }) => {
                       const { onBlur, onFocus, ...inputProps } = getInputProps({
-                        placeholder: "Search for a country (start with a)"
+                        placeholder: 'Search for a country (start with a)',
                       });
 
                       return (
@@ -599,10 +599,10 @@ export default function AutocompleteExamplesPage() {
                           {renderInput({
                             fullWidth: true,
                             classes,
-                            label: "Country",
+                            label: 'Country',
                             InputLabelProps: getLabelProps({ shrink: true }),
                             InputProps: { onBlur, onFocus },
-                            inputProps
+                            inputProps,
                           })}
 
                           <div {...getMenuProps()}>
@@ -614,10 +614,10 @@ export default function AutocompleteExamplesPage() {
                                       suggestion,
                                       index,
                                       itemProps: getItemProps({
-                                        item: suggestion.label
+                                        item: suggestion.label,
                                       }),
                                       highlightedIndex,
-                                      selectedItem
+                                      selectedItem,
                                     })
                                 )}
                               </Paper>
@@ -630,7 +630,7 @@ export default function AutocompleteExamplesPage() {
                   <div className={classes.divider} />
                   <DownshiftMultiple classes={classes} />
                   <div className={classes.divider} />
-                  <Downshift id="downshift-popper">
+                  <Downshift id='downshift-popper'>
                     {({
                       getInputProps,
                       getItemProps,
@@ -639,10 +639,10 @@ export default function AutocompleteExamplesPage() {
                       highlightedIndex,
                       inputValue,
                       isOpen,
-                      selectedItem
+                      selectedItem,
                     }) => {
                       const { onBlur, onFocus, ...inputProps } = getInputProps({
-                        placeholder: "With Popper"
+                        placeholder: 'With Popper',
                       });
 
                       return (
@@ -650,13 +650,13 @@ export default function AutocompleteExamplesPage() {
                           {renderInput({
                             fullWidth: true,
                             classes,
-                            label: "Country",
+                            label: 'Country',
                             InputProps: { onBlur, onFocus },
                             InputLabelProps: getLabelProps({ shrink: true }),
                             inputProps,
                             ref: node => {
                               popperNode = node;
-                            }
+                            },
                           })}
 
                           <Popper open={isOpen} anchorEl={popperNode}>
@@ -671,7 +671,7 @@ export default function AutocompleteExamplesPage() {
                                   marginTop: 8,
                                   width: popperNode
                                     ? popperNode.clientWidth
-                                    : undefined
+                                    : undefined,
                                 }}
                               >
                                 {getSuggestions(inputValue).map(
@@ -680,10 +680,10 @@ export default function AutocompleteExamplesPage() {
                                       suggestion,
                                       index,
                                       itemProps: getItemProps({
-                                        item: suggestion.label
+                                        item: suggestion.label,
                                       }),
                                       highlightedIndex,
-                                      selectedItem
+                                      selectedItem,
                                     })
                                 )}
                               </Paper>
@@ -694,7 +694,7 @@ export default function AutocompleteExamplesPage() {
                     }}
                   </Downshift>
                   <div className={classes.divider} />
-                  <Downshift id="downshift-options">
+                  <Downshift id='downshift-options'>
                     {({
                       clearSelection,
                       getInputProps,
@@ -705,7 +705,7 @@ export default function AutocompleteExamplesPage() {
                       inputValue,
                       isOpen,
                       openMenu,
-                      selectedItem
+                      selectedItem,
                     }) => {
                       const {
                         onBlur,
@@ -714,12 +714,12 @@ export default function AutocompleteExamplesPage() {
                         ...inputProps
                       } = getInputProps({
                         onChange: event => {
-                          if (event.target.value === "") {
+                          if (event.target.value === '') {
                             clearSelection();
                           }
                         },
                         onFocus: openMenu,
-                        placeholder: "With the clear & show empty options"
+                        placeholder: 'With the clear & show empty options',
                       });
 
                       return (
@@ -727,26 +727,26 @@ export default function AutocompleteExamplesPage() {
                           {renderInput({
                             fullWidth: true,
                             classes,
-                            label: "Countries",
+                            label: 'Countries',
                             InputLabelProps: getLabelProps({ shrink: true }),
                             InputProps: { onBlur, onChange, onFocus },
-                            inputProps
+                            inputProps,
                           })}
 
                           <div {...getMenuProps()}>
                             {isOpen ? (
                               <Paper className={classes.paper} square>
                                 {getSuggestions(inputValue, {
-                                  showEmpty: true
+                                  showEmpty: true,
                                 }).map((suggestion, index) =>
                                   renderSuggestion({
                                     suggestion,
                                     index,
                                     itemProps: getItemProps({
-                                      item: suggestion.label
+                                      item: suggestion.label,
                                     }),
                                     highlightedIndex,
-                                    selectedItem
+                                    selectedItem,
                                   })
                                 )}
                               </Paper>
@@ -761,32 +761,32 @@ export default function AutocompleteExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode2} beforeCodeTitle="React-select">
-            <div className="kt-section">
-              <span className="kt-section__sub">
-                In the following example, we demonstrate how to use{" "}
-                <a href="https://github.com/JedWatson/react-select">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode2} beforeCodeTitle='React-select'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
+                In the following example, we demonstrate how to use{' '}
+                <a href='https://github.com/JedWatson/react-select'>
                   <code>react-select</code>
                 </a>
                 .
               </span>
-              <div className="kt-separator kt-separator--dashed" />
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed' />
+              <div className='kt-section__content'>
                 <div className={classes2.root}>
-                  <NoSsr key="nossr22">
+                  <NoSsr key='nossr22'>
                     <Select
-                      className="react-select"
+                      className='react-select'
                       classes={classes2}
                       styles={selectStyles}
-                      inputId="react-select-single"
+                      inputId='react-select-single'
                       TextFieldProps={{
-                        label: "Country",
+                        label: 'Country',
                         InputLabelProps: {
-                          htmlFor: "react-select-single",
-                          shrink: true
+                          htmlFor: 'react-select-single',
+                          shrink: true,
                         },
-                        placeholder: "Search a country (start with a)"
+                        placeholder: 'Search a country (start with a)',
                       }}
                       options={suggestions}
                       components={components}
@@ -795,18 +795,18 @@ export default function AutocompleteExamplesPage() {
                     />
                     <div className={classes2.divider} />
                     <Select
-                      key={""}
-                      className="react-select"
+                      key={''}
+                      className='react-select'
                       classes={classes2}
                       styles={selectStyles}
-                      inputId="react-select-multiple"
+                      inputId='react-select-multiple'
                       TextFieldProps={{
-                        label: "Countries",
+                        label: 'Countries',
                         InputLabelProps: {
-                          htmlFor: "react-select-multiple",
-                          shrink: true
+                          htmlFor: 'react-select-multiple',
+                          shrink: true,
                         },
-                        placeholder: "Select multiple countries"
+                        placeholder: 'Select multiple countries',
                       }}
                       options={suggestions}
                       components={components}

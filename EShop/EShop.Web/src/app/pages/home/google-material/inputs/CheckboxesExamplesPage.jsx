@@ -1,33 +1,33 @@
 /* eslint-disable no-restricted-imports */
-import React from "react";
+import React from 'react';
 import {
   Checkbox,
   FormControlLabel,
   FormControl,
   FormLabel,
   FormGroup,
-  FormHelperText
-} from "@material-ui/core";
-import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
-import CheckBoxIcon from "@material-ui/icons/CheckBox";
-import Favorite from "@material-ui/icons/Favorite";
-import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
-import { withStyles } from "@material-ui/core/styles";
-import { green } from "@material-ui/core/colors";
-import { makeStyles } from "@material-ui/core/styles";
-import Notice from "../../../../partials/content/Notice";
-import CodeExample from "../../../../partials/content/CodeExample";
+  FormHelperText,
+} from '@material-ui/core';
+import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
+import Favorite from '@material-ui/icons/Favorite';
+import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
+import { withStyles } from '@material-ui/core/styles';
+import { green } from '@material-ui/core/colors';
+import { makeStyles } from '@material-ui/core/styles';
+import Notice from '../../../../partials/content/Notice';
+import CodeExample from '../../../../partials/content/CodeExample';
 
 // Example 2
 const GreenCheckbox = withStyles({
   root: {
     color: green[400],
-    "&$checked": {
-      color: green[600]
-    }
+    '&$checked': {
+      color: green[600],
+    },
   },
-  checked: {}
-})(props => <Checkbox color="default" {...props} />);
+  checked: {},
+})(props => <Checkbox color='default' {...props} />);
 
 export default function CheckboxesExamplesPage() {
   const [state, setState] = React.useState({
@@ -37,7 +37,7 @@ export default function CheckboxesExamplesPage() {
     checkedG: true,
     gilad: true,
     jason: false,
-    antoine: false
+    antoine: false,
   });
 
   const handleChange = name => event => {
@@ -47,11 +47,11 @@ export default function CheckboxesExamplesPage() {
   // Example 3
   const useStyles = makeStyles(theme => ({
     root: {
-      display: "flex"
+      display: 'flex',
     },
     formControl: {
-      margin: theme.spacing(3)
-    }
+      margin: theme.spacing(3),
+    },
   }));
 
   const classes = useStyles();
@@ -62,7 +62,7 @@ export default function CheckboxesExamplesPage() {
   const error = [gilad, jason, antoine].filter(v => v).length !== 2;
 
   // Example 4
-  const [value, setValue] = React.useState("female");
+  const [value, setValue] = React.useState('female');
 
   function handleChange4(event) {
     setValue(event.target.value);
@@ -70,15 +70,15 @@ export default function CheckboxesExamplesPage() {
 
   return (
     <>
-      <Notice icon="flaticon-warning kt-font-primary">
+      <Notice icon='flaticon-warning kt-font-primary'>
         <p>Checkboxes allow the user to select one or more items from a set.</p>
         <p>
-          For more info please check the components's official{" "}
+          For more info please check the components's official{' '}
           <a
-            target="_blank"
-            className="kt-link"
-            rel="noopener noreferrer"
-            href="https://material-ui.com/components/checkboxes/"
+            target='_blank'
+            className='kt-link'
+            rel='noopener noreferrer'
+            href='https://material-ui.com/components/checkboxes/'
           >
             demos & documentation
           </a>
@@ -89,72 +89,72 @@ export default function CheckboxesExamplesPage() {
         <code>Checkboxes</code> can be used to turn an option on or off.
       </Notice>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode3} beforeCodeTitle="Checkboxes">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode3} beforeCodeTitle='Checkboxes'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 If you have multiple options appearing in a list, you can
                 preserve space by using checkboxes instead of on/off switches.
                 If you have a single option, avoid using a checkbox and use an
                 on/off switch instead.
               </span>
-              <div className="kt-separator kt-separator--dashed" />
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed' />
+              <div className='kt-section__content'>
                 <div>
                   <Checkbox
                     checked={state.checkedA}
-                    onChange={handleChange("checkedA")}
-                    value="checkedA"
+                    onChange={handleChange('checkedA')}
+                    value='checkedA'
                     inputProps={{
-                      "aria-label": "primary checkbox"
+                      'aria-label': 'primary checkbox',
                     }}
                   />
                   <Checkbox
                     checked={state.checkedB}
-                    onChange={handleChange("checkedB")}
-                    value="checkedB"
-                    color="primary"
+                    onChange={handleChange('checkedB')}
+                    value='checkedB'
+                    color='primary'
                     inputProps={{
-                      "aria-label": "secondary checkbox"
+                      'aria-label': 'secondary checkbox',
                     }}
                   />
                   <Checkbox
-                    value="checkedC"
+                    value='checkedC'
                     inputProps={{
-                      "aria-label": "uncontrolled-checkbox"
+                      'aria-label': 'uncontrolled-checkbox',
                     }}
                   />
                   <Checkbox
                     disabled
-                    value="checkedD"
+                    value='checkedD'
                     inputProps={{
-                      "aria-label": "disabled checkbox"
+                      'aria-label': 'disabled checkbox',
                     }}
                   />
                   <Checkbox
                     disabled
                     checked
-                    value="checkedE"
+                    value='checkedE'
                     inputProps={{
-                      "aria-label": "disabled checked checkbox"
+                      'aria-label': 'disabled checked checkbox',
                     }}
                   />
                   <Checkbox
                     checked={state.checkedF}
-                    onChange={handleChange("checkedF")}
-                    value="checkedF"
+                    onChange={handleChange('checkedF')}
+                    value='checkedF'
                     indeterminate
                     inputProps={{
-                      "aria-label": "indeterminate checkbox"
+                      'aria-label': 'indeterminate checkbox',
                     }}
                   />
                   <Checkbox
                     defaultChecked
-                    color="default"
-                    value="checkedG"
+                    color='default'
+                    value='checkedG'
                     inputProps={{
-                      "aria-label": "checkbox with default color"
+                      'aria-label': 'checkbox with default color',
                     }}
                   />
                 </div>
@@ -162,91 +162,91 @@ export default function CheckboxesExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode4} beforeCodeTitle="Form Control Label">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode4} beforeCodeTitle='Form Control Label'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 <code>Checkbox</code> can also be used with a label description
                 thanks to the <code>FormControlLabel</code> component.
               </span>
-              <div className="kt-separator kt-separator--dashed" />
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed' />
+              <div className='kt-section__content'>
                 <FormGroup row>
                   <FormControlLabel
                     control={
                       <Checkbox
                         checked={state.checkedA}
-                        onChange={handleChange("checkedA")}
-                        value="checkedA"
+                        onChange={handleChange('checkedA')}
+                        value='checkedA'
                       />
                     }
-                    label="Secondary"
+                    label='Secondary'
                   />
                   <FormControlLabel
                     control={
                       <Checkbox
                         checked={state.checkedB}
-                        onChange={handleChange("checkedB")}
-                        value="checkedB"
-                        color="primary"
+                        onChange={handleChange('checkedB')}
+                        value='checkedB'
+                        color='primary'
                       />
                     }
-                    label="Primary"
+                    label='Primary'
                   />
                   <FormControlLabel
-                    control={<Checkbox value="checkedC" />}
-                    label="Uncontrolled"
-                  />
-                  <FormControlLabel
-                    disabled
-                    control={<Checkbox value="checkedD" />}
-                    label="Disabled"
+                    control={<Checkbox value='checkedC' />}
+                    label='Uncontrolled'
                   />
                   <FormControlLabel
                     disabled
-                    control={<Checkbox checked value="checkedE" />}
-                    label="Disabled"
+                    control={<Checkbox value='checkedD' />}
+                    label='Disabled'
+                  />
+                  <FormControlLabel
+                    disabled
+                    control={<Checkbox checked value='checkedE' />}
+                    label='Disabled'
                   />
                   <FormControlLabel
                     control={
                       <Checkbox
                         checked={state.checkedF}
-                        onChange={handleChange("checkedF")}
-                        value="checkedF"
+                        onChange={handleChange('checkedF')}
+                        value='checkedF'
                         indeterminate
                       />
                     }
-                    label="Indeterminate"
+                    label='Indeterminate'
                   />
                   <FormControlLabel
                     control={
                       <GreenCheckbox
                         checked={state.checkedG}
-                        onChange={handleChange("checkedG")}
-                        value="checkedG"
+                        onChange={handleChange('checkedG')}
+                        value='checkedG'
                       />
                     }
-                    label="Custom color"
+                    label='Custom color'
                   />
                   <FormControlLabel
                     control={
                       <Checkbox
                         icon={<FavoriteBorder />}
                         checkedIcon={<Favorite />}
-                        value="checkedH"
+                        value='checkedH'
                       />
                     }
-                    label="Custom icon"
+                    label='Custom icon'
                   />
                   <FormControlLabel
                     control={
                       <Checkbox
-                        icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
-                        checkedIcon={<CheckBoxIcon fontSize="small" />}
-                        value="checkedI"
+                        icon={<CheckBoxOutlineBlankIcon fontSize='small' />}
+                        checkedIcon={<CheckBoxIcon fontSize='small' />}
+                        value='checkedI'
                       />
                     }
-                    label="Custom size"
+                    label='Custom size'
                   />
                 </FormGroup>
               </div>
@@ -255,25 +255,25 @@ export default function CheckboxesExamplesPage() {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-6">
+      <div className='row'>
+        <div className='col-md-6'>
           <CodeExample
             jsCode={jsCode1}
-            beforeCodeTitle="Checkboxes with FormGroup"
+            beforeCodeTitle='Checkboxes with FormGroup'
           >
-            <div className="kt-section">
-              <span className="kt-section__sub">
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 <code>FormGroup</code> is a helpful wrapper used to group
                 selection controls components that provides an easier API.
               </span>
-              <div className="kt-separator kt-separator--dashed" />
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed' />
+              <div className='kt-section__content'>
                 <div className={classes.root}>
                   <FormControl
-                    component="fieldset"
+                    component='fieldset'
                     className={classes.formControl}
                   >
-                    <FormLabel component="legend">
+                    <FormLabel component='legend'>
                       Assign responsibility
                     </FormLabel>
                     <FormGroup>
@@ -281,31 +281,31 @@ export default function CheckboxesExamplesPage() {
                         control={
                           <Checkbox
                             checked={gilad}
-                            onChange={handleChange3("gilad")}
-                            value="gilad"
+                            onChange={handleChange3('gilad')}
+                            value='gilad'
                           />
                         }
-                        label="Gilad Gray"
+                        label='Gilad Gray'
                       />
                       <FormControlLabel
                         control={
                           <Checkbox
                             checked={jason}
-                            onChange={handleChange3("jason")}
-                            value="jason"
+                            onChange={handleChange3('jason')}
+                            value='jason'
                           />
                         }
-                        label="Jason Killian"
+                        label='Jason Killian'
                       />
                       <FormControlLabel
                         control={
                           <Checkbox
                             checked={antoine}
-                            onChange={handleChange3("antoine")}
-                            value="antoine"
+                            onChange={handleChange3('antoine')}
+                            value='antoine'
                           />
                         }
-                        label="Antoine Llorca"
+                        label='Antoine Llorca'
                       />
                     </FormGroup>
                     <FormHelperText>Be careful</FormHelperText>
@@ -313,40 +313,40 @@ export default function CheckboxesExamplesPage() {
                   <FormControl
                     required
                     error={error}
-                    component="fieldset"
+                    component='fieldset'
                     className={classes.formControl}
                   >
-                    <FormLabel component="legend">Pick two</FormLabel>
+                    <FormLabel component='legend'>Pick two</FormLabel>
                     <FormGroup>
                       <FormControlLabel
                         control={
                           <Checkbox
                             checked={gilad}
-                            onChange={handleChange3("gilad")}
-                            value="gilad"
+                            onChange={handleChange3('gilad')}
+                            value='gilad'
                           />
                         }
-                        label="Gilad Gray"
+                        label='Gilad Gray'
                       />
                       <FormControlLabel
                         control={
                           <Checkbox
                             checked={jason}
-                            onChange={handleChange3("jason")}
-                            value="jason"
+                            onChange={handleChange3('jason')}
+                            value='jason'
                           />
                         }
-                        label="Jason Killian"
+                        label='Jason Killian'
                       />
                       <FormControlLabel
                         control={
                           <Checkbox
                             checked={antoine}
-                            onChange={handleChange3("antoine")}
-                            value="antoine"
+                            onChange={handleChange3('antoine')}
+                            value='antoine'
                           />
                         }
-                        label="Antoine Lorca"
+                        label='Antoine Lorca'
                       />
                     </FormGroup>
                     <FormHelperText>You can display an error</FormHelperText>
@@ -356,46 +356,46 @@ export default function CheckboxesExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode2} beforeCodeTitle="Label placement">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode2} beforeCodeTitle='Label placement'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 You can change the placement of the label:
               </span>
-              <div className="kt-separator kt-separator--dashed" />
-              <div className="kt-section__content">
-                <FormControl component="fieldset">
-                  <FormLabel component="legend">labelPlacement</FormLabel>
+              <div className='kt-separator kt-separator--dashed' />
+              <div className='kt-section__content'>
+                <FormControl component='fieldset'>
+                  <FormLabel component='legend'>labelPlacement</FormLabel>
                   <FormGroup
-                    aria-label="position"
-                    name="position"
+                    aria-label='position'
+                    name='position'
                     value={value}
                     onChange={handleChange4}
                     row
                   >
                     <FormControlLabel
-                      value="top"
-                      control={<Checkbox color="primary" />}
-                      label="Top"
-                      labelPlacement="top"
+                      value='top'
+                      control={<Checkbox color='primary' />}
+                      label='Top'
+                      labelPlacement='top'
                     />
                     <FormControlLabel
-                      value="start"
-                      control={<Checkbox color="primary" />}
-                      label="Start"
-                      labelPlacement="start"
+                      value='start'
+                      control={<Checkbox color='primary' />}
+                      label='Start'
+                      labelPlacement='start'
                     />
                     <FormControlLabel
-                      value="bottom"
-                      control={<Checkbox color="primary" />}
-                      label="Bottom"
-                      labelPlacement="bottom"
+                      value='bottom'
+                      control={<Checkbox color='primary' />}
+                      label='Bottom'
+                      labelPlacement='bottom'
                     />
                     <FormControlLabel
-                      value="end"
-                      control={<Checkbox color="primary" />}
-                      label="End"
-                      labelPlacement="end"
+                      value='end'
+                      control={<Checkbox color='primary' />}
+                      label='End'
+                      labelPlacement='end'
                     />
                   </FormGroup>
                 </FormControl>

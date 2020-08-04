@@ -1,63 +1,63 @@
 /* eslint-disable no-restricted-imports */
-import React from "react";
-import Notice from "../../../../partials/content/Notice";
-import CodeExample from "../../../../partials/content/CodeExample";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
-import { useTheme } from "@material-ui/core/styles";
-import PropTypes from "prop-types";
-import { Tab, AppBar, Tabs, Typography, Paper } from "@material-ui/core";
-import SwipeableViews from "react-swipeable-views";
-import PhoneIcon from "@material-ui/icons/Phone";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import PersonPinIcon from "@material-ui/icons/PersonPin";
-import HelpIcon from "@material-ui/icons/Help";
-import ShoppingBasket from "@material-ui/icons/ShoppingBasket";
-import ThumbDown from "@material-ui/icons/ThumbDown";
-import ThumbUp from "@material-ui/icons/ThumbUp";
+import React from 'react';
+import Notice from '../../../../partials/content/Notice';
+import CodeExample from '../../../../partials/content/CodeExample';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { useTheme } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import { Tab, AppBar, Tabs, Typography, Paper } from '@material-ui/core';
+import SwipeableViews from 'react-swipeable-views';
+import PhoneIcon from '@material-ui/icons/Phone';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import PersonPinIcon from '@material-ui/icons/PersonPin';
+import HelpIcon from '@material-ui/icons/Help';
+import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
+import ThumbDown from '@material-ui/icons/ThumbDown';
+import ThumbUp from '@material-ui/icons/ThumbUp';
 
 function TabContainer1(props) {
   return (
-    <Typography component="div" style={{ padding: 8 * 3 }}>
+    <Typography component='div' style={{ padding: 8 * 3 }}>
       {props.children}
     </Typography>
   );
 }
 
 TabContainer1.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
 };
 
 const useStyles1 = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.paper
-  }
+    backgroundColor: theme.palette.background.paper,
+  },
 }));
 
 // Example 2
 function TabContainer2(props) {
   return (
-    <Typography component="div" style={{ padding: 8 * 3 }}>
+    <Typography component='div' style={{ padding: 8 * 3 }}>
       {props.children}
     </Typography>
   );
 }
 
 TabContainer2.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
 };
 
 const useStyles2 = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.paper
-  }
+    backgroundColor: theme.palette.background.paper,
+  },
 }));
 
 // Example 4
 function TabContainer4({ children, dir }) {
   return (
-    <Typography component="div" dir={dir} style={{ padding: 8 * 3 }}>
+    <Typography component='div' dir={dir} style={{ padding: 8 * 3 }}>
       {children}
     </Typography>
   );
@@ -65,187 +65,187 @@ function TabContainer4({ children, dir }) {
 
 TabContainer4.propTypes = {
   children: PropTypes.node.isRequired,
-  dir: PropTypes.string.isRequired
+  dir: PropTypes.string.isRequired,
 };
 
 const useStyles4 = makeStyles(theme => ({
   root: {
     backgroundColor: theme.palette.background.paper,
-    width: 500
-  }
+    width: 500,
+  },
 }));
 
 // Example 5
 const useStyles5 = makeStyles({
   root: {
-    flexGrow: 1
-  }
+    flexGrow: 1,
+  },
 });
 
 // Example 6
 function TabContainer6(props) {
   return (
-    <Typography component="div" style={{ padding: 8 * 3 }}>
+    <Typography component='div' style={{ padding: 8 * 3 }}>
       {props.children}
     </Typography>
   );
 }
 
 TabContainer6.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
 };
 
 const useStyles6 = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    width: "100%",
-    backgroundColor: theme.palette.background.paper
-  }
+    width: '100%',
+    backgroundColor: theme.palette.background.paper,
+  },
 }));
 
 // Example 7
 function TabContainer7(props) {
   return (
-    <Typography component="div" style={{ padding: 8 * 3 }}>
+    <Typography component='div' style={{ padding: 8 * 3 }}>
       {props.children}
     </Typography>
   );
 }
 
 TabContainer7.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
 };
 
 const useStyles7 = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    width: "100%",
-    backgroundColor: theme.palette.background.paper
-  }
+    width: '100%',
+    backgroundColor: theme.palette.background.paper,
+  },
 }));
 
 // Example 8
 function TabContainer8(props) {
   return (
-    <Typography component="div" style={{ padding: 8 * 3 }}>
+    <Typography component='div' style={{ padding: 8 * 3 }}>
       {props.children}
     </Typography>
   );
 }
 
 TabContainer8.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
 };
 
 const useStyles8 = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    width: "100%",
-    backgroundColor: theme.palette.background.paper
-  }
+    width: '100%',
+    backgroundColor: theme.palette.background.paper,
+  },
 }));
 
 // Example 9
 const AntTabs9 = withStyles({
   root: {
-    borderBottom: "1px solid #e8e8e8"
+    borderBottom: '1px solid #e8e8e8',
   },
   indicator: {
-    backgroundColor: "#1890ff"
-  }
+    backgroundColor: '#1890ff',
+  },
 })(Tabs);
 
 const AntTab9 = withStyles(theme => ({
   root: {
-    textTransform: "none",
+    textTransform: 'none',
     minWidth: 72,
     fontWeight: theme.typography.fontWeightRegular,
     marginRight: theme.spacing(4),
     fontFamily: [
-      "-apple-system",
-      "BlinkMacSystemFont",
+      '-apple-system',
+      'BlinkMacSystemFont',
       '"Segoe UI"',
-      "Roboto",
+      'Roboto',
       '"Helvetica Neue"',
-      "Arial",
-      "sans-serif",
+      'Arial',
+      'sans-serif',
       '"Apple Color Emoji"',
       '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"'
-    ].join(","),
-    "&:hover": {
-      color: "#40a9ff",
-      opacity: 1
+      '"Segoe UI Symbol"',
+    ].join(','),
+    '&:hover': {
+      color: '#40a9ff',
+      opacity: 1,
     },
-    "&$selected": {
-      color: "#1890ff",
-      fontWeight: theme.typography.fontWeightMedium
+    '&$selected': {
+      color: '#1890ff',
+      fontWeight: theme.typography.fontWeightMedium,
     },
-    "&:focus": {
-      color: "#40a9ff"
-    }
+    '&:focus': {
+      color: '#40a9ff',
+    },
   },
-  selected: {}
+  selected: {},
 }))(props => <Tab disableRipple {...props} />);
 
 const StyledTabs9 = withStyles({
   indicator: {
-    display: "flex",
-    justifyContent: "center",
-    backgroundColor: "transparent",
-    "& > div": {
+    display: 'flex',
+    justifyContent: 'center',
+    backgroundColor: 'transparent',
+    '& > div': {
       maxWidth: 40,
-      width: "100%",
-      backgroundColor: "#635ee7"
-    }
-  }
+      width: '100%',
+      backgroundColor: '#635ee7',
+    },
+  },
 })(props => <Tabs {...props} TabIndicatorProps={{ children: <div /> }} />);
 
 const StyledTab9 = withStyles(theme => ({
   root: {
-    textTransform: "none",
-    color: "#fff",
+    textTransform: 'none',
+    color: '#fff',
     fontWeight: theme.typography.fontWeightRegular,
     fontSize: theme.typography.pxToRem(15),
     marginRight: theme.spacing(1),
-    "&:focus": {
-      opacity: 1
-    }
-  }
+    '&:focus': {
+      opacity: 1,
+    },
+  },
 }))(props => <Tab disableRipple {...props} />);
 
 const useStyles9 = makeStyles(theme => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   typography: {
-    padding: theme.spacing(3)
+    padding: theme.spacing(3),
   },
   demo1: {
-    backgroundColor: theme.palette.background.paper
+    backgroundColor: theme.palette.background.paper,
   },
   demo2: {
-    backgroundColor: "#2e1534"
-  }
+    backgroundColor: '#2e1534',
+  },
 }));
 
 // Example 10
 function TabContainer10(props) {
   return (
-    <Typography component="div" style={{ padding: 8 * 3 }}>
+    <Typography component='div' style={{ padding: 8 * 3 }}>
       {props.children}
     </Typography>
   );
 }
 
 TabContainer10.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
 };
 
 function LinkTab10(props) {
   return (
     <Tab
-      component="a"
+      component='a'
       onClick={event => {
         event.preventDefault();
       }}
@@ -257,16 +257,16 @@ function LinkTab10(props) {
 const useStyles10 = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.paper
-  }
+    backgroundColor: theme.palette.background.paper,
+  },
 }));
 
 // Example 11
 const useStyles11 = makeStyles({
   root: {
     flexGrow: 1,
-    maxWidth: 500
-  }
+    maxWidth: 500,
+  },
 });
 
 export default function TabsExamplesPage() {
@@ -280,7 +280,7 @@ export default function TabsExamplesPage() {
 
   // Example 2
   const classes2 = useStyles2();
-  const [value2, setValue2] = React.useState("one");
+  const [value2, setValue2] = React.useState('one');
 
   function handleChange2(event, newValue) {
     setValue2(newValue);
@@ -364,36 +364,36 @@ export default function TabsExamplesPage() {
 
   return (
     <>
-      <Notice icon="flaticon-warning kt-font-primary">
+      <Notice icon='flaticon-warning kt-font-primary'>
         <p>Tabs make it easy to explore and switch between different views.</p>
         <p>
-          For more info please check the components's official{" "}
+          For more info please check the components's official{' '}
           <a
-            target="_blank"
-            className="kt-link"
-            rel="noopener noreferrer"
-            href="https://material-ui.com/components/tabs/"
+            target='_blank'
+            className='kt-link'
+            rel='noopener noreferrer'
+            href='https://material-ui.com/components/tabs/'
           >
             demos & documentation
           </a>
         </p>
       </Notice>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode1} beforeCodeTitle="Simple Tabs">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode1} beforeCodeTitle='Simple Tabs'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 A simple example with no frills.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes1.root}>
-                  <AppBar position="static">
+                  <AppBar position='static'>
                     <Tabs value={value1} onChange={handleChange1}>
-                      <Tab label="Item One" />
-                      <Tab label="Item Two" />
-                      <Tab label="Item Three" />
+                      <Tab label='Item One' />
+                      <Tab label='Item Two' />
+                      <Tab label='Item Three' />
                     </Tabs>
                   </AppBar>
                   {value1 === 0 && <TabContainer1>Item One</TabContainer1>}
@@ -404,24 +404,24 @@ export default function TabsExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode3} beforeCodeTitle="Disabled Tab">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode3} beforeCodeTitle='Disabled Tab'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 A Tab can be disabled by setting <code>disabled</code> property.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <Paper square>
                   <Tabs
                     value={value3}
-                    indicatorColor="primary"
-                    textColor="primary"
+                    indicatorColor='primary'
+                    textColor='primary'
                     onChange={handleChange3}
                   >
-                    <Tab label="Active" />
-                    <Tab label="Disabled" disabled />
-                    <Tab label="Active" />
+                    <Tab label='Active' />
+                    <Tab label='Disabled' disabled />
+                    <Tab label='Active' />
                   </Tabs>
                 </Paper>
               </div>
@@ -430,64 +430,64 @@ export default function TabsExamplesPage() {
         </div>
       </div>
 
-      <CodeExample jsCode={jsCode2} beforeCodeTitle="Wrapped Labels">
-        <div className="kt-section">
-          <span className="kt-section__sub">
+      <CodeExample jsCode={jsCode2} beforeCodeTitle='Wrapped Labels'>
+        <div className='kt-section'>
+          <span className='kt-section__sub'>
             Long labels will automatically wrap on tabs. If the label is too
             long for the tab, it will overflow and the text will not be visible.
           </span>
-          <div className="kt-separator kt-separator--dashed"></div>
-          <div className="kt-section__content">
+          <div className='kt-separator kt-separator--dashed'></div>
+          <div className='kt-section__content'>
             <div className={classes2.root}>
-              <AppBar position="static">
+              <AppBar position='static'>
                 <Tabs value={value2} onChange={handleChange2}>
                   <Tab
-                    value="one"
-                    label="New Arrivals in the Longest Text of Nonfiction"
+                    value='one'
+                    label='New Arrivals in the Longest Text of Nonfiction'
                     wrapped
                   />
-                  <Tab value="two" label="Item Two" />
-                  <Tab value="three" label="Item Three" />
+                  <Tab value='two' label='Item Two' />
+                  <Tab value='three' label='Item Three' />
                 </Tabs>
               </AppBar>
-              {value2 === "one" && <TabContainer2>Item One</TabContainer2>}
-              {value2 === "two" && <TabContainer2>Item Two</TabContainer2>}
-              {value2 === "three" && <TabContainer2>Item Three</TabContainer2>}
+              {value2 === 'one' && <TabContainer2>Item One</TabContainer2>}
+              {value2 === 'two' && <TabContainer2>Item Two</TabContainer2>}
+              {value2 === 'three' && <TabContainer2>Item Three</TabContainer2>}
             </div>
           </div>
         </div>
       </CodeExample>
 
-      <Notice className="notice__paragraph">Fixed Tabs</Notice>
+      <Notice className='notice__paragraph'>Fixed Tabs</Notice>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode4} beforeCodeTitle="Full width">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode4} beforeCodeTitle='Full width'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 The <code>variant="fullWidth"</code> property should be used for
                 smaller views. This demo also uses react-swipeable-views to
                 animate the Tab transition, and allowing tabs to be swiped on
                 touch devices.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes4.root}>
-                  <AppBar position="static" color="default">
+                  <AppBar position='static' color='default'>
                     <Tabs
                       value={value4}
                       onChange={handleChange4}
-                      indicatorColor="primary"
-                      textColor="primary"
-                      variant="fullWidth"
+                      indicatorColor='primary'
+                      textColor='primary'
+                      variant='fullWidth'
                     >
-                      <Tab label="Item One" />
-                      <Tab label="Item Two" />
-                      <Tab label="Item Three" />
+                      <Tab label='Item One' />
+                      <Tab label='Item Two' />
+                      <Tab label='Item Three' />
                     </Tabs>
                   </AppBar>
                   <SwipeableViews
-                    axis={theme4.direction === "rtl" ? "x-reverse" : "x"}
+                    axis={theme4.direction === 'rtl' ? 'x-reverse' : 'x'}
                     index={value4}
                     onChangeIndex={handleChangeIndex4}
                   >
@@ -506,26 +506,26 @@ export default function TabsExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode5} beforeCodeTitle="Centered">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode5} beforeCodeTitle='Centered'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 The <code>centered</code> property should be used for larger
                 views.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <Paper className={classes5.root}>
                   <Tabs
                     value={value5}
                     onChange={handleChange5}
-                    indicatorColor="primary"
-                    textColor="primary"
+                    indicatorColor='primary'
+                    textColor='primary'
                     centered
                   >
-                    <Tab label="Item One" />
-                    <Tab label="Item Two" />
-                    <Tab label="Item Three" />
+                    <Tab label='Item One' />
+                    <Tab label='Item Two' />
+                    <Tab label='Item Three' />
                   </Tabs>
                 </Paper>
               </div>
@@ -534,38 +534,38 @@ export default function TabsExamplesPage() {
         </div>
       </div>
 
-      <Notice className="notice__paragraph">Scrollable Tabs</Notice>
+      <Notice className='notice__paragraph'>Scrollable Tabs</Notice>
 
-      <div className="row">
-        <div className="col-md-6">
+      <div className='row'>
+        <div className='col-md-6'>
           <CodeExample
             jsCode={jsCode6}
-            beforeCodeTitle="Automatic Scroll Buttons"
+            beforeCodeTitle='Automatic Scroll Buttons'
           >
-            <div className="kt-section">
-              <span className="kt-section__sub">
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 Left and right scroll buttons will automatically be presented on
                 desktop and hidden on mobile. (based on viewport width)
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes6.root}>
-                  <AppBar position="static" color="default">
+                  <AppBar position='static' color='default'>
                     <Tabs
                       value={value6}
                       onChange={handleChange6}
-                      indicatorColor="primary"
-                      textColor="primary"
-                      variant="scrollable"
-                      scrollButtons="auto"
+                      indicatorColor='primary'
+                      textColor='primary'
+                      variant='scrollable'
+                      scrollButtons='auto'
                     >
-                      <Tab label="Item One" />
-                      <Tab label="Item Two" />
-                      <Tab label="Item Three" />
-                      <Tab label="Item Four" />
-                      <Tab label="Item Five" />
-                      <Tab label="Item Six" />
-                      <Tab label="Item Seven" />
+                      <Tab label='Item One' />
+                      <Tab label='Item Two' />
+                      <Tab label='Item Three' />
+                      <Tab label='Item Four' />
+                      <Tab label='Item Five' />
+                      <Tab label='Item Six' />
+                      <Tab label='Item Seven' />
                     </Tabs>
                   </AppBar>
                   {value6 === 0 && <TabContainer6>Item One</TabContainer6>}
@@ -580,32 +580,32 @@ export default function TabsExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode7} beforeCodeTitle="Forced Scroll Buttons">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode7} beforeCodeTitle='Forced Scroll Buttons'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 Left and right scroll buttons will be presented regardless of
                 the viewport width.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes7.root}>
-                  <AppBar position="static" color="default">
+                  <AppBar position='static' color='default'>
                     <Tabs
                       value={value7}
                       onChange={handleChange7}
-                      variant="scrollable"
-                      scrollButtons="on"
-                      indicatorColor="primary"
-                      textColor="primary"
+                      variant='scrollable'
+                      scrollButtons='on'
+                      indicatorColor='primary'
+                      textColor='primary'
                     >
-                      <Tab label="Item One" icon={<PhoneIcon />} />
-                      <Tab label="Item Two" icon={<FavoriteIcon />} />
-                      <Tab label="Item Three" icon={<PersonPinIcon />} />
-                      <Tab label="Item Four" icon={<HelpIcon />} />
-                      <Tab label="Item Five" icon={<ShoppingBasket />} />
-                      <Tab label="Item Six" icon={<ThumbDown />} />
-                      <Tab label="Item Seven" icon={<ThumbUp />} />
+                      <Tab label='Item One' icon={<PhoneIcon />} />
+                      <Tab label='Item Two' icon={<FavoriteIcon />} />
+                      <Tab label='Item Three' icon={<PersonPinIcon />} />
+                      <Tab label='Item Four' icon={<HelpIcon />} />
+                      <Tab label='Item Five' icon={<ShoppingBasket />} />
+                      <Tab label='Item Six' icon={<ThumbDown />} />
+                      <Tab label='Item Seven' icon={<ThumbUp />} />
                     </Tabs>
                   </AppBar>
                   {value7 === 0 && <TabContainer7>Item One</TabContainer7>}
@@ -622,35 +622,35 @@ export default function TabsExamplesPage() {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-6">
+      <div className='row'>
+        <div className='col-md-6'>
           <CodeExample
             jsCode={jsCode8}
-            beforeCodeTitle="Prevent Scroll Buttons"
+            beforeCodeTitle='Prevent Scroll Buttons'
           >
-            <div className="kt-section">
-              <span className="kt-section__sub">
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 Left and right scroll buttons will never be presented. All
                 scrolling must be initiated through user agent scrolling
                 mechanisms (e.g. left/right swipe, shift-mousewheel, etc.)
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes8.root}>
-                  <AppBar position="static">
+                  <AppBar position='static'>
                     <Tabs
                       value={value8}
                       onChange={handleChange8}
-                      variant="scrollable"
-                      scrollButtons="off"
+                      variant='scrollable'
+                      scrollButtons='off'
                     >
-                      <Tab icon={<PhoneIcon />} aria-label="Phone" />
-                      <Tab icon={<FavoriteIcon />} aria-label="Favorite" />
-                      <Tab icon={<PersonPinIcon />} aria-label="Person" />
-                      <Tab icon={<HelpIcon />} aria-label="Help" />
-                      <Tab icon={<ShoppingBasket />} aria-label="Shopping" />
-                      <Tab icon={<ThumbDown />} aria-label="Up" />
-                      <Tab icon={<ThumbUp />} aria-label="Down" />
+                      <Tab icon={<PhoneIcon />} aria-label='Phone' />
+                      <Tab icon={<FavoriteIcon />} aria-label='Favorite' />
+                      <Tab icon={<PersonPinIcon />} aria-label='Person' />
+                      <Tab icon={<HelpIcon />} aria-label='Help' />
+                      <Tab icon={<ShoppingBasket />} aria-label='Shopping' />
+                      <Tab icon={<ThumbDown />} aria-label='Up' />
+                      <Tab icon={<ThumbUp />} aria-label='Down' />
                     </Tabs>
                   </AppBar>
                   {value8 === 0 && <TabContainer8>Item One</TabContainer8>}
@@ -667,29 +667,29 @@ export default function TabsExamplesPage() {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode9} beforeCodeTitle="Customized tabs">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode9} beforeCodeTitle='Customized tabs'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 Here is an example of customizing the component.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes9.root}>
                   <div className={classes9.demo1}>
                     <AntTabs9 value={value9} onChange={handleChange9}>
-                      <AntTab9 label="Tab 1" />
-                      <AntTab9 label="Tab 2" />
-                      <AntTab9 label="Tab 3" />
+                      <AntTab9 label='Tab 1' />
+                      <AntTab9 label='Tab 2' />
+                      <AntTab9 label='Tab 3' />
                     </AntTabs9>
                     <Typography className={classes9.typography} />
                   </div>
                   <div className={classes9.demo2}>
                     <StyledTabs9 value={value9} onChange={handleChange9}>
-                      <StyledTab9 label="Workflows" />
-                      <StyledTab9 label="Datasets" />
-                      <StyledTab9 label="Connections" />
+                      <StyledTab9 label='Workflows' />
+                      <StyledTab9 label='Datasets' />
+                      <StyledTab9 label='Connections' />
                     </StyledTabs9>
                     <Typography className={classes9.typography} />
                   </div>
@@ -698,26 +698,26 @@ export default function TabsExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode10} beforeCodeTitle="Nav Tabs">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode10} beforeCodeTitle='Nav Tabs'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 By default tabs use a <code>button</code> element, but you can
                 provide your own custom tag or component. Here's an example of
                 implementing tabbed navigation:
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes10.root}>
-                  <AppBar position="static">
+                  <AppBar position='static'>
                     <Tabs
-                      variant="fullWidth"
+                      variant='fullWidth'
                       value={value10}
                       onChange={handleChange10}
                     >
-                      <LinkTab10 label="Page One" href="/drafts" />
-                      <LinkTab10 label="Page Two" href="/trash" />
-                      <LinkTab10 label="Page Three" href="/spam" />
+                      <LinkTab10 label='Page One' href='/drafts' />
+                      <LinkTab10 label='Page Two' href='/trash' />
+                      <LinkTab10 label='Page Three' href='/spam' />
                     </Tabs>
                   </AppBar>
                   {value10 === 0 && <TabContainer10>Page One</TabContainer10>}
@@ -730,26 +730,26 @@ export default function TabsExamplesPage() {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode11} beforeCodeTitle="Icon Tabs">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode11} beforeCodeTitle='Icon Tabs'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 Tab labels may be either all icons or all text.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <Paper square className={classes11.root}>
                   <Tabs
                     value={value11}
                     onChange={handleChange11}
-                    variant="fullWidth"
-                    indicatorColor="primary"
-                    textColor="primary"
+                    variant='fullWidth'
+                    indicatorColor='primary'
+                    textColor='primary'
                   >
-                    <Tab icon={<PhoneIcon />} aria-label="Phone" />
-                    <Tab icon={<FavoriteIcon />} aria-label="Favorite" />
-                    <Tab icon={<PersonPinIcon />} aria-label="Person" />
+                    <Tab icon={<PhoneIcon />} aria-label='Phone' />
+                    <Tab icon={<FavoriteIcon />} aria-label='Favorite' />
+                    <Tab icon={<PersonPinIcon />} aria-label='Person' />
                   </Tabs>
                 </Paper>
               </div>

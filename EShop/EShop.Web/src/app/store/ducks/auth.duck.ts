@@ -1,9 +1,9 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { persistReducer, PersistConfig } from "redux-persist";
-import storage from "redux-persist/lib/storage";
-import { put, takeLatest } from "redux-saga/effects";
-import { getUserByToken } from "../../crud/auth.crud";
-import * as routerHelpers from "../../router/RouterHelpers";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { persistReducer, PersistConfig } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import { put, takeLatest } from 'typed-redux-saga';
+import { getUserByToken } from '../../crud/auth.crud';
+import * as routerHelpers from '../../router/RouterHelpers';
 
 export interface AuthState {
   user?: string;
@@ -17,7 +17,7 @@ const initialState: AuthState = {
 
 const slice = createSlice({
   initialState,
-  name: "auth",
+  name: 'auth',
   reducers: {
     login(state, action: PayloadAction<string>) {
       state.authToken = action.payload;
@@ -40,25 +40,25 @@ const slice = createSlice({
 
 const persistConfig: PersistConfig<AuthState> = {
   storage,
-  key: "auth",
-  whitelist: ["user", "authToken"],
+  key: 'auth',
+  whitelist: ['user', 'authToken'],
 };
 
 export const { actions } = slice;
 export const reducer = persistReducer(persistConfig, slice.reducer);
 
 export function* saga() {
-  yield takeLatest(actions.login.type, function* loginSaga() {
-    yield put(actions.userRequested());
+  yield* takeLatest(actions.login.type, function* loginSaga() {
+    yield* put(actions.userRequested());
   });
 
-  yield takeLatest(actions.register.type, function* registerSaga() {
-    yield put(actions.userRequested());
+  yield* takeLatest(actions.register.type, function* registerSaga() {
+    yield* put(actions.userRequested());
   });
 
-  yield takeLatest(actions.userRequested.type, function* userRequested() {
+  yield* takeLatest(actions.userRequested.type, function* userRequested() {
     const { data: user } = yield getUserByToken();
 
-    yield put(actions.userLoaded(user));
+    yield* put(actions.userLoaded(user));
   });
 }

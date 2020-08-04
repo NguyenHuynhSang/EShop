@@ -1,6 +1,6 @@
-import { styled as muiStyled, Theme as DefaultTheme } from "@material-ui/core";
-import { CreateCSSProperties } from "@material-ui/styles";
-import theme from "./theme";
+import { styled as muiStyled, Theme as DefaultTheme } from '@material-ui/core';
+import { CreateCSSProperties } from '@material-ui/styles';
+import theme from './theme';
 
 export type CssInJs<Props extends {} = {}, Theme = DefaultTheme> =
   | CreateCSSProperties<Props>
@@ -22,10 +22,6 @@ function styled<Props extends {}, Theme = DefaultTheme>(
 ) {
   return (css: CssInJs<Props, Theme>) =>
     muiStyled(Component)<Theme, Props>(css);
-}
-
-export function important<T extends unknown>(cssValue: T) {
-  return (cssValue + "!important") as T;
 }
 
 export { theme };

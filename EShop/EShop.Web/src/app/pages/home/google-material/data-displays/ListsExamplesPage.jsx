@@ -1,9 +1,9 @@
 /* eslint-disable no-restricted-imports */
-import React from "react";
-import PropTypes from "prop-types";
-import Notice from "../../../../partials/content/Notice";
-import CodeExample from "../../../../partials/content/CodeExample";
-import { makeStyles } from "@material-ui/core/styles";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Notice from '../../../../partials/content/Notice';
+import CodeExample from '../../../../partials/content/CodeExample';
+import { makeStyles } from '@material-ui/core/styles';
 import {
   ListItem,
   List,
@@ -21,77 +21,77 @@ import {
   FormControlLabel,
   ListItemSecondaryAction,
   IconButton,
-  Switch
-} from "@material-ui/core";
-import InboxIcon from "@material-ui/icons/Inbox";
-import DraftsIcon from "@material-ui/icons/Drafts";
-import SendIcon from "@material-ui/icons/Send";
-import ExpandLess from "@material-ui/icons/ExpandLess";
-import ExpandMore from "@material-ui/icons/ExpandMore";
-import StarBorder from "@material-ui/icons/StarBorder";
-import ImageIcon from "@material-ui/icons/Image";
-import WorkIcon from "@material-ui/icons/Work";
-import BeachAccessIcon from "@material-ui/icons/BeachAccess";
-import FolderIcon from "@material-ui/icons/Folder";
-import DeleteIcon from "@material-ui/icons/Delete";
-import CommentIcon from "@material-ui/icons/Comment";
-import WifiIcon from "@material-ui/icons/Wifi";
-import BluetoothIcon from "@material-ui/icons/Bluetooth";
-import StarIcon from "@material-ui/icons/Star";
-import { FixedSizeList } from "react-window";
+  Switch,
+} from '@material-ui/core';
+import InboxIcon from '@material-ui/icons/Inbox';
+import DraftsIcon from '@material-ui/icons/Drafts';
+import SendIcon from '@material-ui/icons/Send';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+import StarBorder from '@material-ui/icons/StarBorder';
+import ImageIcon from '@material-ui/icons/Image';
+import WorkIcon from '@material-ui/icons/Work';
+import BeachAccessIcon from '@material-ui/icons/BeachAccess';
+import FolderIcon from '@material-ui/icons/Folder';
+import DeleteIcon from '@material-ui/icons/Delete';
+import CommentIcon from '@material-ui/icons/Comment';
+import WifiIcon from '@material-ui/icons/Wifi';
+import BluetoothIcon from '@material-ui/icons/Bluetooth';
+import StarIcon from '@material-ui/icons/Star';
+import { FixedSizeList } from 'react-window';
 
 // Example 1
 const useStyles1 = makeStyles(theme => ({
   root: {
-    width: "100%",
+    width: '100%',
     maxWidth: 360,
-    backgroundColor: theme.palette.background.paper
-  }
+    backgroundColor: theme.palette.background.paper,
+  },
 }));
 
 function ListItemLink1(props) {
-  return <ListItem button component="a" {...props} />;
+  return <ListItem button component='a' {...props} />;
 }
 
 // Exanple 2
 const useStyles2 = makeStyles(theme => ({
   root: {
-    width: "100%",
+    width: '100%',
     maxWidth: 360,
-    backgroundColor: theme.palette.background.paper
+    backgroundColor: theme.palette.background.paper,
   },
   nested: {
-    paddingLeft: theme.spacing(4)
-  }
+    paddingLeft: theme.spacing(4),
+  },
 }));
 
 // Example 3
 const useStyles3 = makeStyles(theme => ({
   root: {
-    width: "100%",
+    width: '100%',
     maxWidth: 360,
-    backgroundColor: theme.palette.background.paper
-  }
+    backgroundColor: theme.palette.background.paper,
+  },
 }));
 
 // Example 4
 const useStyles4 = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    maxWidth: 752
+    maxWidth: 752,
   },
   demo: {
-    backgroundColor: theme.palette.background.paper
+    backgroundColor: theme.palette.background.paper,
   },
   title: {
-    margin: theme.spacing(4, 0, 2)
-  }
+    margin: theme.spacing(4, 0, 2),
+  },
 }));
 
 function generate(element) {
   return [0, 1, 2].map(value =>
     React.cloneElement(element, {
-      key: value
+      key: value,
     })
   );
 }
@@ -99,87 +99,87 @@ function generate(element) {
 // Example 5
 const useStyles5 = makeStyles(theme => ({
   root: {
-    width: "100%",
+    width: '100%',
     maxWidth: 360,
-    backgroundColor: theme.palette.background.paper
-  }
+    backgroundColor: theme.palette.background.paper,
+  },
 }));
 
 // Example 6
 const useStyles6 = makeStyles(theme => ({
   root: {
-    width: "100%",
+    width: '100%',
     maxWidth: 360,
-    backgroundColor: theme.palette.background.paper
+    backgroundColor: theme.palette.background.paper,
   },
   inline: {
-    display: "inline"
-  }
+    display: 'inline',
+  },
 }));
 
 // Example 7
 const useStyles7 = makeStyles(theme => ({
   root: {
-    width: "100%",
+    width: '100%',
     maxWidth: 360,
-    backgroundColor: theme.palette.background.paper
-  }
+    backgroundColor: theme.palette.background.paper,
+  },
 }));
 
 // Exanple 8
 const useStyles8 = makeStyles(theme => ({
   root: {
-    width: "100%",
+    width: '100%',
     maxWidth: 360,
-    backgroundColor: theme.palette.background.paper
-  }
+    backgroundColor: theme.palette.background.paper,
+  },
 }));
 
 // Example 9
 const useStyles9 = makeStyles(theme => ({
   root: {
-    width: "100%",
+    width: '100%',
     maxWidth: 360,
-    backgroundColor: theme.palette.background.paper
-  }
+    backgroundColor: theme.palette.background.paper,
+  },
 }));
 
 // Example 10
 const useStyles10 = makeStyles(theme => ({
   root: {
-    width: "100%",
+    width: '100%',
     maxWidth: 360,
     backgroundColor: theme.palette.background.paper,
-    position: "relative",
-    overflow: "auto",
-    maxHeight: 300
+    position: 'relative',
+    overflow: 'auto',
+    maxHeight: 300,
   },
   listSection: {
-    backgroundColor: "inherit"
+    backgroundColor: 'inherit',
   },
   ul: {
-    backgroundColor: "inherit",
-    padding: 0
-  }
+    backgroundColor: 'inherit',
+    padding: 0,
+  },
 }));
 
 // Example 11
 const useStyles11 = makeStyles(theme => ({
   root: {
-    width: "100%",
+    width: '100%',
     maxWidth: 360,
-    backgroundColor: theme.palette.background.paper
-  }
+    backgroundColor: theme.palette.background.paper,
+  },
 }));
 
 // Example 12
 const useStyles12 = makeStyles(theme => ({
   root: {
-    width: "100%",
+    width: '100%',
     height: 400,
     maxWidth: 360,
-    backgroundColor: theme.palette.background.paper
-  }
+    backgroundColor: theme.palette.background.paper,
+  },
 }));
 
 function Row12(props) {
@@ -194,7 +194,7 @@ function Row12(props) {
 
 Row12.propTypes = {
   index: PropTypes.number,
-  style: PropTypes.object
+  style: PropTypes.object,
 };
 
 export default function ListsExamplesPage() {
@@ -264,7 +264,7 @@ export default function ListsExamplesPage() {
 
   // Example 9
   const classes9 = useStyles9();
-  const [checked9, setChecked9] = React.useState(["wifi"]);
+  const [checked9, setChecked9] = React.useState(['wifi']);
 
   const handleToggle9 = value => () => {
     const currentIndex = checked9.indexOf(value);
@@ -290,49 +290,49 @@ export default function ListsExamplesPage() {
 
   return (
     <>
-      <Notice icon="flaticon-warning kt-font-primary">
+      <Notice icon='flaticon-warning kt-font-primary'>
         <p>Lists are continuous, vertical indexes of text or images</p>
         <p>
-          For more info please check the components's official{" "}
+          For more info please check the components's official{' '}
           <a
-            target="_blank"
-            className="kt-link"
-            rel="noopener noreferrer"
-            href="https://material-ui.com/components/lists/"
+            target='_blank'
+            className='kt-link'
+            rel='noopener noreferrer'
+            href='https://material-ui.com/components/lists/'
           >
             demos & documentation
           </a>
         </p>
       </Notice>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode1} beforeCodeTitle="Simple List">
-            <div className="kt-section">
-              <span className="kt-section__sub"></span>
-              <div className="kt-section__content">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode1} beforeCodeTitle='Simple List'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'></span>
+              <div className='kt-section__content'>
                 <div className={classes1.root}>
-                  <List component="nav" aria-label="Main mailbox folders">
+                  <List component='nav' aria-label='Main mailbox folders'>
                     <ListItem button>
                       <ListItemIcon>
                         <InboxIcon />
                       </ListItemIcon>
-                      <ListItemText primary="Inbox" />
+                      <ListItemText primary='Inbox' />
                     </ListItem>
                     <ListItem button>
                       <ListItemIcon>
                         <DraftsIcon />
                       </ListItemIcon>
-                      <ListItemText primary="Drafts" />
+                      <ListItemText primary='Drafts' />
                     </ListItem>
                   </List>
                   <Divider />
-                  <List component="nav" aria-label="Secondary mailbox folders">
+                  <List component='nav' aria-label='Secondary mailbox folders'>
                     <ListItem button>
-                      <ListItemText primary="Trash" />
+                      <ListItemText primary='Trash' />
                     </ListItem>
-                    <ListItemLink1 href="#simple-list">
-                      <ListItemText primary="Spam" />
+                    <ListItemLink1 href='#simple-list'>
+                      <ListItemText primary='Spam' />
                     </ListItemLink1>
                   </List>
                 </div>
@@ -340,16 +340,16 @@ export default function ListsExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode2} beforeCodeTitle="Nested List">
-            <div className="kt-section">
-              <span className="kt-section__sub"></span>
-              <div className="kt-section__content">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode2} beforeCodeTitle='Nested List'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'></span>
+              <div className='kt-section__content'>
                 <List
-                  component="nav"
-                  aria-labelledby="nested-list-subheader"
+                  component='nav'
+                  aria-labelledby='nested-list-subheader'
                   subheader={
-                    <ListSubheader component="div" id="nested-list-subheader">
+                    <ListSubheader component='div' id='nested-list-subheader'>
                       Nested List Items
                     </ListSubheader>
                   }
@@ -359,28 +359,28 @@ export default function ListsExamplesPage() {
                     <ListItemIcon>
                       <SendIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Sent mail" />
+                    <ListItemText primary='Sent mail' />
                   </ListItem>
                   <ListItem button>
                     <ListItemIcon>
                       <DraftsIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Drafts" />
+                    <ListItemText primary='Drafts' />
                   </ListItem>
                   <ListItem button onClick={handleClick2}>
                     <ListItemIcon>
                       <InboxIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Inbox" />
+                    <ListItemText primary='Inbox' />
                     {open2 ? <ExpandLess /> : <ExpandMore />}
                   </ListItem>
-                  <Collapse in={open2} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
+                  <Collapse in={open2} timeout='auto' unmountOnExit>
+                    <List component='div' disablePadding>
                       <ListItem button className={classes2.nested}>
                         <ListItemIcon>
                           <StarBorder />
                         </ListItemIcon>
-                        <ListItemText primary="Starred" />
+                        <ListItemText primary='Starred' />
                       </ListItem>
                     </List>
                   </Collapse>
@@ -391,12 +391,12 @@ export default function ListsExamplesPage() {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode3} beforeCodeTitle="Folder List">
-            <div className="kt-section">
-              <span className="kt-section__sub"></span>
-              <div className="kt-section__content">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode3} beforeCodeTitle='Folder List'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'></span>
+              <div className='kt-section__content'>
                 <List className={classes3.root}>
                   <ListItem>
                     <ListItemAvatar>
@@ -404,7 +404,7 @@ export default function ListsExamplesPage() {
                         <ImageIcon />
                       </Avatar>
                     </ListItemAvatar>
-                    <ListItemText primary="Photos" secondary="Jan 9, 2014" />
+                    <ListItemText primary='Photos' secondary='Jan 9, 2014' />
                   </ListItem>
                   <ListItem>
                     <ListItemAvatar>
@@ -412,7 +412,7 @@ export default function ListsExamplesPage() {
                         <WorkIcon />
                       </Avatar>
                     </ListItemAvatar>
-                    <ListItemText primary="Work" secondary="Jan 7, 2014" />
+                    <ListItemText primary='Work' secondary='Jan 7, 2014' />
                   </ListItem>
                   <ListItem>
                     <ListItemAvatar>
@@ -421,8 +421,8 @@ export default function ListsExamplesPage() {
                       </Avatar>
                     </ListItemAvatar>
                     <ListItemText
-                      primary="Vacation"
-                      secondary="July 20, 2014"
+                      primary='Vacation'
+                      secondary='July 20, 2014'
                     />
                   </ListItem>
                 </List>
@@ -430,15 +430,15 @@ export default function ListsExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode4} beforeCodeTitle="Interactive">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode4} beforeCodeTitle='Interactive'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 Below is an interactive demo that lets you explore the visual
                 results of the different settings:
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes4.root}>
                   <FormGroup row>
                     <FormControlLabel
@@ -446,10 +446,10 @@ export default function ListsExamplesPage() {
                         <Checkbox
                           checked={dense4}
                           onChange={event => setDense4(event.target.checked)}
-                          value="dense"
+                          value='dense'
                         />
                       }
-                      label="Enable dense"
+                      label='Enable dense'
                     />
                     <FormControlLabel
                       control={
@@ -458,15 +458,15 @@ export default function ListsExamplesPage() {
                           onChange={event =>
                             setSecondary4(event.target.checked)
                           }
-                          value="secondary"
+                          value='secondary'
                         />
                       }
-                      label="Enable secondary text"
+                      label='Enable secondary text'
                     />
                   </FormGroup>
                   <Grid container spacing={2}>
                     <Grid item xs={12} md={6}>
-                      <Typography variant="h6" className={classes4.title}>
+                      <Typography variant='h6' className={classes4.title}>
                         Text only
                       </Typography>
                       <div className={classes4.demo}>
@@ -474,8 +474,8 @@ export default function ListsExamplesPage() {
                           {generate(
                             <ListItem>
                               <ListItemText
-                                primary="Single-line item"
-                                secondary={secondary4 ? "Secondary text" : null}
+                                primary='Single-line item'
+                                secondary={secondary4 ? 'Secondary text' : null}
                               />
                             </ListItem>
                           )}
@@ -483,7 +483,7 @@ export default function ListsExamplesPage() {
                       </div>
                     </Grid>
                     <Grid item xs={12} md={6}>
-                      <Typography variant="h6" className={classes4.title}>
+                      <Typography variant='h6' className={classes4.title}>
                         Icon with text
                       </Typography>
                       <div className={classes4.demo}>
@@ -494,8 +494,8 @@ export default function ListsExamplesPage() {
                                 <FolderIcon />
                               </ListItemIcon>
                               <ListItemText
-                                primary="Single-line item"
-                                secondary={secondary4 ? "Secondary text" : null}
+                                primary='Single-line item'
+                                secondary={secondary4 ? 'Secondary text' : null}
                               />
                             </ListItem>
                           )}
@@ -505,7 +505,7 @@ export default function ListsExamplesPage() {
                   </Grid>
                   <Grid container spacing={2}>
                     <Grid item xs={12} md={6}>
-                      <Typography variant="h6" className={classes4.title}>
+                      <Typography variant='h6' className={classes4.title}>
                         Avatar with text
                       </Typography>
                       <div className={classes4.demo}>
@@ -518,8 +518,8 @@ export default function ListsExamplesPage() {
                                 </Avatar>
                               </ListItemAvatar>
                               <ListItemText
-                                primary="Single-line item"
-                                secondary={secondary4 ? "Secondary text" : null}
+                                primary='Single-line item'
+                                secondary={secondary4 ? 'Secondary text' : null}
                               />
                             </ListItem>
                           )}
@@ -527,7 +527,7 @@ export default function ListsExamplesPage() {
                       </div>
                     </Grid>
                     <Grid item xs={12} md={6}>
-                      <Typography variant="h6" className={classes4.title}>
+                      <Typography variant='h6' className={classes4.title}>
                         Avatar with text and icon
                       </Typography>
                       <div className={classes4.demo}>
@@ -540,11 +540,11 @@ export default function ListsExamplesPage() {
                                 </Avatar>
                               </ListItemAvatar>
                               <ListItemText
-                                primary="Single-line item"
-                                secondary={secondary4 ? "Secondary text" : null}
+                                primary='Single-line item'
+                                secondary={secondary4 ? 'Secondary text' : null}
                               />
                               <ListItemSecondaryAction>
-                                <IconButton edge="end" aria-label="Delete">
+                                <IconButton edge='end' aria-label='Delete'>
                                   <DeleteIcon />
                                 </IconButton>
                               </ListItemSecondaryAction>
@@ -561,14 +561,14 @@ export default function ListsExamplesPage() {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode5} beforeCodeTitle="Selected ListItem">
-            <div className="kt-section">
-              <span className="kt-section__sub"></span>
-              <div className="kt-section__content">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode5} beforeCodeTitle='Selected ListItem'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'></span>
+              <div className='kt-section__content'>
                 <div className={classes5.root}>
-                  <List component="nav" aria-label="Main mailbox folders">
+                  <List component='nav' aria-label='Main mailbox folders'>
                     <ListItem
                       button
                       selected={selectedIndex5 === 0}
@@ -577,7 +577,7 @@ export default function ListsExamplesPage() {
                       <ListItemIcon>
                         <InboxIcon />
                       </ListItemIcon>
-                      <ListItemText primary="Inbox" />
+                      <ListItemText primary='Inbox' />
                     </ListItem>
                     <ListItem
                       button
@@ -587,24 +587,24 @@ export default function ListsExamplesPage() {
                       <ListItemIcon>
                         <DraftsIcon />
                       </ListItemIcon>
-                      <ListItemText primary="Drafts" />
+                      <ListItemText primary='Drafts' />
                     </ListItem>
                   </List>
                   <Divider />
-                  <List component="nav" aria-label="Secondary mailbox folder">
+                  <List component='nav' aria-label='Secondary mailbox folder'>
                     <ListItem
                       button
                       selected={selectedIndex5 === 2}
                       onClick={event => handleListItemClick5(event, 2)}
                     >
-                      <ListItemText primary="Trash" />
+                      <ListItemText primary='Trash' />
                     </ListItem>
                     <ListItem
                       button
                       selected={selectedIndex5 === 3}
                       onClick={event => handleListItemClick5(event, 3)}
                     >
-                      <ListItemText primary="Spam" />
+                      <ListItemText primary='Spam' />
                     </ListItem>
                   </List>
                 </div>
@@ -612,33 +612,33 @@ export default function ListsExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode6} beforeCodeTitle="Align list items">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode6} beforeCodeTitle='Align list items'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 You should change the list item alignment when displaying 3
-                lines or more, set the <code>alignItems="flex-start"</code>{" "}
+                lines or more, set the <code>alignItems="flex-start"</code>{' '}
                 property.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <List className={classes6.root}>
-                  <ListItem alignItems="flex-start">
+                  <ListItem alignItems='flex-start'>
                     <ListItemAvatar>
                       <Avatar
-                        alt="Remy Sharp"
-                        src="https://material-ui.com/static/images/avatar/1.jpg"
+                        alt='Remy Sharp'
+                        src='https://material-ui.com/static/images/avatar/1.jpg'
                       />
                     </ListItemAvatar>
                     <ListItemText
-                      primary="Brunch this weekend?"
+                      primary='Brunch this weekend?'
                       secondary={
                         <React.Fragment>
                           <Typography
-                            component="span"
-                            variant="body2"
+                            component='span'
+                            variant='body2'
                             className={classes6.inline}
-                            color="textPrimary"
+                            color='textPrimary'
                           >
                             Ali Connors
                           </Typography>
@@ -649,23 +649,23 @@ export default function ListsExamplesPage() {
                       }
                     />
                   </ListItem>
-                  <Divider variant="inset" component="li" />
-                  <ListItem alignItems="flex-start">
+                  <Divider variant='inset' component='li' />
+                  <ListItem alignItems='flex-start'>
                     <ListItemAvatar>
                       <Avatar
-                        alt="Remy Sharp"
-                        src="https://material-ui.com/static/images/avatar/2.jpg"
+                        alt='Remy Sharp'
+                        src='https://material-ui.com/static/images/avatar/2.jpg'
                       />
                     </ListItemAvatar>
                     <ListItemText
-                      primary="Summer BBQ"
+                      primary='Summer BBQ'
                       secondary={
                         <React.Fragment>
                           <Typography
-                            component="span"
-                            variant="body2"
+                            component='span'
+                            variant='body2'
                             className={classes6.inline}
-                            color="textPrimary"
+                            color='textPrimary'
                           >
                             to Scott, Alex, Jennifer
                           </Typography>
@@ -674,28 +674,28 @@ export default function ListsExamplesPage() {
                       }
                     />
                   </ListItem>
-                  <Divider variant="inset" component="li" />
-                  <ListItem alignItems="flex-start">
+                  <Divider variant='inset' component='li' />
+                  <ListItem alignItems='flex-start'>
                     <ListItemAvatar>
                       <Avatar
-                        alt="Remy Sharp"
-                        src="https://material-ui.com/static/images/avatar/3.jpg"
+                        alt='Remy Sharp'
+                        src='https://material-ui.com/static/images/avatar/3.jpg'
                       />
                     </ListItemAvatar>
                     <ListItemText
-                      primary="Oui Oui"
+                      primary='Oui Oui'
                       secondary={
                         <React.Fragment>
                           <Typography
-                            component="span"
-                            variant="body2"
+                            component='span'
+                            variant='body2'
                             className={classes6.inline}
-                            color="textPrimary"
+                            color='textPrimary'
                           >
                             Sandra Adams
                           </Typography>
                           {
-                            " — Do you have Paris recommendations? Have you ever…"
+                            ' — Do you have Paris recommendations? Have you ever…'
                           }
                         </React.Fragment>
                       }
@@ -708,21 +708,21 @@ export default function ListsExamplesPage() {
         </div>
       </div>
 
-      <Notice className="notice__paragraph">List Controls</Notice>
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode7} beforeCodeTitle="Checkbox">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+      <Notice className='notice__paragraph'>List Controls</Notice>
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode7} beforeCodeTitle='Checkbox'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 A checkbox can either be a primary action or a secondary action.
               </span>
-              <p className="kt-section__sub">
+              <p className='kt-section__sub'>
                 The checkbox is the primary action and the state indicator for
                 the list item. The comment button is a secondary action and a
                 separate target.
               </p>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <List className={classes7.root}>
                   {[0, 1, 2, 3].map(value => {
                     const labelId = `checkbox-list-label-${value}`;
@@ -737,11 +737,11 @@ export default function ListsExamplesPage() {
                       >
                         <ListItemIcon>
                           <Checkbox
-                            edge="start"
+                            edge='start'
                             checked={checked7.indexOf(value) !== -1}
                             tabIndex={-1}
                             disableRipple
-                            inputProps={{ "aria-labelledby": labelId }}
+                            inputProps={{ 'aria-labelledby': labelId }}
                           />
                         </ListItemIcon>
                         <ListItemText
@@ -749,7 +749,7 @@ export default function ListsExamplesPage() {
                           primary={`Line item ${value + 1}`}
                         />
                         <ListItemSecondaryAction>
-                          <IconButton edge="end" aria-label="Comments">
+                          <IconButton edge='end' aria-label='Comments'>
                             <CommentIcon />
                           </IconButton>
                         </ListItemSecondaryAction>
@@ -761,15 +761,15 @@ export default function ListsExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode8} beforeCodeTitle="Checkbox">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode8} beforeCodeTitle='Checkbox'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 The checkbox is the secondary action for the list item and a
                 separate target.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <List dense className={classes8.root}>
                   {[0, 1, 2, 3].map(value => {
                     const labelId = `checkbox-list-secondary-label-${value}`;
@@ -788,10 +788,10 @@ export default function ListsExamplesPage() {
                         />
                         <ListItemSecondaryAction>
                           <Checkbox
-                            edge="end"
+                            edge='end'
                             onChange={handleToggle8(value)}
                             checked={checked8.indexOf(value) !== -1}
-                            inputProps={{ "aria-labelledby": labelId }}
+                            inputProps={{ 'aria-labelledby': labelId }}
                           />
                         </ListItemSecondaryAction>
                       </ListItem>
@@ -804,15 +804,15 @@ export default function ListsExamplesPage() {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode9} beforeCodeTitle="Switch">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode9} beforeCodeTitle='Switch'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 The switch is the secondary action and a separate target.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <List
                   subheader={<ListSubheader>Settings</ListSubheader>}
                   className={classes9.root}
@@ -821,14 +821,14 @@ export default function ListsExamplesPage() {
                     <ListItemIcon>
                       <WifiIcon />
                     </ListItemIcon>
-                    <ListItemText id="switch-list-label-wifi" primary="Wi-Fi" />
+                    <ListItemText id='switch-list-label-wifi' primary='Wi-Fi' />
                     <ListItemSecondaryAction>
                       <Switch
-                        edge="end"
-                        onChange={handleToggle9("wifi")}
-                        checked={checked9.indexOf("wifi") !== -1}
+                        edge='end'
+                        onChange={handleToggle9('wifi')}
+                        checked={checked9.indexOf('wifi') !== -1}
                         inputProps={{
-                          "aria-labelledby": "switch-list-label-wifi"
+                          'aria-labelledby': 'switch-list-label-wifi',
                         }}
                       />
                     </ListItemSecondaryAction>
@@ -838,16 +838,16 @@ export default function ListsExamplesPage() {
                       <BluetoothIcon />
                     </ListItemIcon>
                     <ListItemText
-                      id="switch-list-label-bluetooth"
-                      primary="Bluetooth"
+                      id='switch-list-label-bluetooth'
+                      primary='Bluetooth'
                     />
                     <ListItemSecondaryAction>
                       <Switch
-                        edge="end"
-                        onChange={handleToggle9("bluetooth")}
-                        checked={checked9.indexOf("bluetooth") !== -1}
+                        edge='end'
+                        onChange={handleToggle9('bluetooth')}
+                        checked={checked9.indexOf('bluetooth') !== -1}
                         inputProps={{
-                          "aria-labelledby": "switch-list-label-bluetooth"
+                          'aria-labelledby': 'switch-list-label-bluetooth',
                         }}
                       />
                     </ListItemSecondaryAction>
@@ -857,18 +857,18 @@ export default function ListsExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
+        <div className='col-md-6'>
           <CodeExample
             jsCode={jsCode10}
-            beforeCodeTitle="Pinned Subheader List"
+            beforeCodeTitle='Pinned Subheader List'
           >
-            <div className="kt-section">
-              <span className="kt-section__sub">
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 Upon scrolling, subheaders remain pinned to the top of the
                 screen until pushed off screen by the next subheader.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <List className={classes10.root} subheader={<li />}>
                   {[0, 1, 2, 3, 4].map(sectionId => (
                     <li
@@ -892,42 +892,42 @@ export default function ListsExamplesPage() {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode11} beforeCodeTitle="Inset List">
-            <div className="kt-section">
-              <span className="kt-section__sub"></span>
-              <div className="kt-section__content">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode11} beforeCodeTitle='Inset List'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'></span>
+              <div className='kt-section__content'>
                 <List
-                  component="nav"
+                  component='nav'
                   className={classes11.root}
-                  aria-label="Contacts"
+                  aria-label='Contacts'
                 >
                   <ListItem button>
                     <ListItemIcon>
                       <StarIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Chelsea Otakan" />
+                    <ListItemText primary='Chelsea Otakan' />
                   </ListItem>
                   <ListItem button>
-                    <ListItemText inset primary="Eric Hoffman" />
+                    <ListItemText inset primary='Eric Hoffman' />
                   </ListItem>
                 </List>
               </div>
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode12} beforeCodeTitle="Virtualized List">
-            <div className="kt-section">
-              <span className="kt-section__sub">
-                In the following example, we demonstrate how to use{" "}
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode12} beforeCodeTitle='Virtualized List'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
+                In the following example, we demonstrate how to use{' '}
                 <code>react-window</code> with the <code>List</code> component.
                 It renders 200 rows and can easily handle more. Virtualization
                 helps with performance issues.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes12.root}>
                   <FixedSizeList
                     height={400}

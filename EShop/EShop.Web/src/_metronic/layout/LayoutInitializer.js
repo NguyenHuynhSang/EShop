@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import * as builder from "../ducks/builder";
-import { LayoutSplashScreen } from "./LayoutContext";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import * as builder from '../ducks/builder';
+import { LayoutSplashScreen } from './LayoutContext';
 
 function loadCss(href, anchor) {
   return new Promise((resolve, reject) => {
-    const link = document.createElement("link");
+    const link = document.createElement('link');
 
-    link.setAttribute("rel", "stylesheet");
-    link.setAttribute("type", "text/css");
+    link.setAttribute('rel', 'stylesheet');
+    link.setAttribute('type', 'text/css');
 
     link.onload = resolve;
     link.onerror = reject;
 
-    link.setAttribute("href", href);
+    link.setAttribute('href', href);
 
     anchor.parentNode.insertBefore(link, anchor.nextSibling);
 
@@ -30,7 +30,7 @@ export default function LayoutInitializer({
   children,
   menuConfig,
   layoutConfig,
-  htmlClassService
+  htmlClassService,
 }) {
   const dispatch = useDispatch();
   const [loadedStyles, setLoadedStyles] = useState();
@@ -57,7 +57,7 @@ export default function LayoutInitializer({
       return;
     }
 
-    const anchor = document.getElementById("layout-styles-anchor");
+    const anchor = document.getElementById('layout-styles-anchor');
 
     Promise.all([...styles].reverse().map(href => loadCss(href, anchor))).then(
       () => {

@@ -1,14 +1,14 @@
-import React from "react";
-import Notice from "../../../partials/content/Notice";
-import CodeExample from "../../../partials/content/CodeExample";
+import React from 'react';
+import Notice from '../../../partials/content/Notice';
+import CodeExample from '../../../partials/content/CodeExample';
 import {
   Button,
   Modal,
   ButtonToolbar,
   Col,
   Container,
-  Row
-} from "react-bootstrap";
+  Row,
+} from 'react-bootstrap';
 
 class Example extends React.Component {
   constructor(props, context) {
@@ -18,7 +18,7 @@ class Example extends React.Component {
     this.handleClose = this.handleClose.bind(this);
 
     this.state = {
-      show: false
+      show: false,
     };
   }
 
@@ -33,7 +33,7 @@ class Example extends React.Component {
   render() {
     return (
       <>
-        <Button variant="primary" onClick={this.handleShow}>
+        <Button variant='primary' onClick={this.handleShow}>
           Launch demo modal
         </Button>
 
@@ -43,10 +43,10 @@ class Example extends React.Component {
           </Modal.Header>
           <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={this.handleClose}>
+            <Button variant='secondary' onClick={this.handleClose}>
               Close
             </Button>
-            <Button variant="primary" onClick={this.handleClose}>
+            <Button variant='primary' onClick={this.handleClose}>
               Save Changes
             </Button>
           </Modal.Footer>
@@ -61,12 +61,12 @@ class MyVerticallyCenteredModal extends React.Component {
     return (
       <Modal
         {...this.props}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
+        size='lg'
+        aria-labelledby='contained-modal-title-vcenter'
         centered
       >
         <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
+          <Modal.Title id='contained-modal-title-vcenter'>
             Modal heading
           </Modal.Title>
         </Modal.Header>
@@ -99,7 +99,7 @@ class App extends React.Component {
     return (
       <ButtonToolbar>
         <Button
-          variant="primary"
+          variant='primary'
           onClick={() => this.setState({ modalShow: true })}
         >
           Launch vertically centered modal
@@ -117,15 +117,15 @@ class App extends React.Component {
 class MydModalWithGrid extends React.Component {
   render() {
     return (
-      <Modal {...this.props} aria-labelledby="contained-modal-title-vcenter">
+      <Modal {...this.props} aria-labelledby='contained-modal-title-vcenter'>
         <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
+          <Modal.Title id='contained-modal-title-vcenter'>
             Using Grid in Modal
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Container>
-            <Row className="show-grid">
+            <Row className='show-grid'>
               <Col xs={12} md={8}>
                 <code>.col-xs-12 .col-md-8</code>
               </Col>
@@ -134,7 +134,7 @@ class MydModalWithGrid extends React.Component {
               </Col>
             </Row>
 
-            <Row className="show-grid">
+            <Row className='show-grid'>
               <Col xs={6} md={4}>
                 <code>.col-xs-6 .col-md-4</code>
               </Col>
@@ -168,7 +168,7 @@ class App1 extends React.Component {
     return (
       <ButtonToolbar>
         <Button
-          variant="primary"
+          variant='primary'
           onClick={() => this.setState({ modalShow: true })}
         >
           Launch modal with grid
@@ -186,7 +186,7 @@ class Example1 extends React.Component {
 
     this.state = {
       smShow: false,
-      lgShow: false
+      lgShow: false,
     };
   }
 
@@ -204,13 +204,13 @@ class Example1 extends React.Component {
         </Button>
 
         <Modal
-          size="sm"
+          size='sm'
           show={this.state.smShow}
           onHide={smClose}
-          aria-labelledby="example-modal-sizes-title-sm"
+          aria-labelledby='example-modal-sizes-title-sm'
         >
           <Modal.Header closeButton>
-            <Modal.Title id="example-modal-sizes-title-sm">
+            <Modal.Title id='example-modal-sizes-title-sm'>
               Small Modal
             </Modal.Title>
           </Modal.Header>
@@ -218,13 +218,13 @@ class Example1 extends React.Component {
         </Modal>
 
         <Modal
-          size="lg"
+          size='lg'
           show={this.state.lgShow}
           onHide={lgClose}
-          aria-labelledby="example-modal-sizes-title-lg"
+          aria-labelledby='example-modal-sizes-title-lg'
         >
           <Modal.Header closeButton>
-            <Modal.Title id="example-modal-sizes-title-lg">
+            <Modal.Title id='example-modal-sizes-title-lg'>
               Large Modal
             </Modal.Title>
           </Modal.Header>
@@ -240,7 +240,7 @@ class Example2 extends React.Component {
     super(props, context);
 
     this.state = {
-      show: false
+      show: false,
     };
 
     this.handleShow = () => {
@@ -255,18 +255,18 @@ class Example2 extends React.Component {
   render() {
     return (
       <>
-        <Button variant="primary" onClick={this.handleShow}>
+        <Button variant='primary' onClick={this.handleShow}>
           Custom Width Modal
         </Button>
 
         <Modal
           show={this.state.show}
           onHide={this.handleHide}
-          dialogClassName="modal-90w"
-          aria-labelledby="example-custom-modal-styling-title"
+          dialogClassName='modal-90w'
+          aria-labelledby='example-custom-modal-styling-title'
         >
           <Modal.Header closeButton>
-            <Modal.Title id="example-custom-modal-styling-title">
+            <Modal.Title id='example-custom-modal-styling-title'>
               Custom Modal Styling
             </Modal.Title>
           </Modal.Header>
@@ -291,33 +291,33 @@ export default class ModalExamplesPage extends React.Component {
   render() {
     return (
       <>
-        <Notice icon="flaticon-warning kt-font-primary">
+        <Notice icon='flaticon-warning kt-font-primary'>
           <p>
             Add dialogs to your site for lightboxes, user notifications, or
             completely custom content.
           </p>
           <p>
-            For more info please check the components's official{" "}
+            For more info please check the components's official{' '}
             <a
-              target="_blank"
-              className="kt-link"
-              rel="noopener noreferrer"
-              href="https://react-bootstrap.github.io/components/modal/"
+              target='_blank'
+              className='kt-link'
+              rel='noopener noreferrer'
+              href='https://react-bootstrap.github.io/components/modal/'
             >
               demos & documentation
             </a>
           </p>
         </Notice>
 
-        <div className="row">
-          <div className="col-md-6">
-            <CodeExample jsCode={jsCode1} beforeCodeTitle="Static Markup">
-              <div className="kt-section">
-                <span className="kt-section__sub">
+        <div className='row'>
+          <div className='col-md-6'>
+            <CodeExample jsCode={jsCode1} beforeCodeTitle='Static Markup'>
+              <div className='kt-section'>
+                <span className='kt-section__sub'>
                   Below is a static modal dialog (without the positioning) to
                   demostrate the look and feel of the Modal.
                 </span>
-                <div className="kt-separator kt-separator--dashed"></div>
+                <div className='kt-separator kt-separator--dashed'></div>
                 <Modal.Dialog>
                   <Modal.Header closeButton>
                     <Modal.Title>Modal title</Modal.Title>
@@ -328,76 +328,76 @@ export default class ModalExamplesPage extends React.Component {
                   </Modal.Body>
 
                   <Modal.Footer>
-                    <Button variant="secondary">Close</Button>
-                    <Button variant="primary">Save changes</Button>
+                    <Button variant='secondary'>Close</Button>
+                    <Button variant='primary'>Save changes</Button>
                   </Modal.Footer>
                 </Modal.Dialog>
               </div>
             </CodeExample>
           </div>
-          <div className="col-md-6">
-            <CodeExample jsCode={jsCode2} beforeCodeTitle="Live demo">
-              <div className="kt-section">
-                <span className="kt-section__sub">
+          <div className='col-md-6'>
+            <CodeExample jsCode={jsCode2} beforeCodeTitle='Live demo'>
+              <div className='kt-section'>
+                <span className='kt-section__sub'>
                   A modal with header, body, and set of actions in the footer.
                 </span>
-                <div className="kt-separator kt-separator--dashed"></div>
+                <div className='kt-separator kt-separator--dashed'></div>
                 <Example />
               </div>
             </CodeExample>
-            <CodeExample jsCode={jsCode5} beforeCodeTitle="Optional Sizes">
-              <div className="kt-section">
-                <span className="kt-section__sub">
+            <CodeExample jsCode={jsCode5} beforeCodeTitle='Optional Sizes'>
+              <div className='kt-section'>
+                <span className='kt-section__sub'>
                   You can specify a bootstrap large or small modal by using the
                   "size" prop.
                 </span>
-                <div className="kt-separator kt-separator--dashed"></div>
+                <div className='kt-separator kt-separator--dashed'></div>
                 <Example1 />
               </div>
             </CodeExample>
           </div>
         </div>
 
-        <div className="row">
-          <div className="col-md-6">
-            <CodeExample jsCode={jsCode3} beforeCodeTitle="Vertically centered">
-              <div className="kt-section">
-                <span className="kt-section__sub">
+        <div className='row'>
+          <div className='col-md-6'>
+            <CodeExample jsCode={jsCode3} beforeCodeTitle='Vertically centered'>
+              <div className='kt-section'>
+                <span className='kt-section__sub'>
                   You can vertically center a modal by passing the "centered"
                   prop.
                 </span>
-                <div className="kt-separator kt-separator--dashed"></div>
+                <div className='kt-separator kt-separator--dashed'></div>
                 <App />
               </div>
             </CodeExample>
           </div>
-          <div className="col-md-6">
-            <CodeExample jsCode={jsCode4} beforeCodeTitle="Using the grid">
-              <div className="kt-section">
-                <span className="kt-section__sub">
+          <div className='col-md-6'>
+            <CodeExample jsCode={jsCode4} beforeCodeTitle='Using the grid'>
+              <div className='kt-section'>
+                <span className='kt-section__sub'>
                   You can use grid layouts within a model using regular grid
                   components inside the modal content.
                 </span>
-                <div className="kt-separator kt-separator--dashed"></div>
+                <div className='kt-separator kt-separator--dashed'></div>
                 <App1 />
               </div>
             </CodeExample>
           </div>
         </div>
 
-        <div className="row">
-          <div className="col-md-6">
+        <div className='row'>
+          <div className='col-md-6'>
             <CodeExample
               jsCode={jsCode6}
-              beforeCodeTitle="Sizing modals using custom CSS"
+              beforeCodeTitle='Sizing modals using custom CSS'
             >
-              <div className="kt-section">
-                <span className="kt-section__sub">
+              <div className='kt-section'>
+                <span className='kt-section__sub'>
                   You can apply custom css to the modal dialog div using the
                   "dialogClassName" prop. Example is using a custom css class
                   with width set to 90%.
                 </span>
-                <div className="kt-separator kt-separator--dashed"></div>
+                <div className='kt-separator kt-separator--dashed'></div>
                 <Example2 />
               </div>
             </CodeExample>

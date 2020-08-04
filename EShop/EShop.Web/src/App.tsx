@@ -2,15 +2,21 @@
  * Entry application component used to compose providers and render Routes.
  * */
 
-import React from "react";
-import { Provider } from "react-redux";
-import { BrowserRouter } from "react-router-dom";
-import { PersistGate } from "redux-persist/integration/react";
-import { LastLocationProvider } from "react-router-last-location";
-import { Routes } from "./app/router/Routes";
-import { I18nProvider, LayoutSplashScreen, ThemeProvider } from "./_metronic";
-import GlobalStyles from "./app/styles/global";
-import { setAutoFreeze } from "@reduxjs/toolkit/node_modules/immer";
+import React from 'react';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+import { PersistGate } from 'redux-persist/integration/react';
+import { LastLocationProvider } from 'react-router-last-location';
+import { setAutoFreeze } from '@reduxjs/toolkit/node_modules/immer';
+import { LicenseManager } from 'ag-grid-enterprise';
+import { Routes } from './app/router/Routes';
+import SnackbarProvider from './app/providers/SnackbarProvider';
+import { I18nProvider, LayoutSplashScreen, ThemeProvider } from './_metronic';
+import GlobalStyles from './app/styles/global';
+import ErrorNotificationProvider from './app/providers/ErrorNotificationProvider';
+
+if (process.env.REACT_APP_AG_GRID_LICENSE_KEY)
+  LicenseManager.setLicenseKey(process.env.REACT_APP_AG_GRID_LICENSE_KEY);
 
 // fucking ag-grid keep messing with my data by mutating it internally.
 setAutoFreeze(false);
@@ -32,8 +38,13 @@ export default function App({ store, Layout, persistor, basename }) {
                 <GlobalStyles />
                 {/* Provide `react-intl` context synchronized with Redux state.  */}
                 <I18nProvider>
-                  {/* Render routes with provided `Layout`. */}
-                  <Routes Layout={Layout} />
+                  {/* My custom SnackbarProvider to enable you to create Snackbar imperatively. The different
+                  between this and notistack is this can only show one Snackbar at a time according to Mui specs */}
+                  <SnackbarProvider>
+                    <ErrorNotificationProvider />
+                    {/* Render routes with provided `Layout`. */}
+                    <Routes Layout={Layout} />
+                  </SnackbarProvider>
                 </I18nProvider>
               </ThemeProvider>
             </LastLocationProvider>

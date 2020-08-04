@@ -1,8 +1,8 @@
 /* eslint-disable no-restricted-imports */
-import React from "react";
-import Notice from "../../../../partials/content/Notice";
-import CodeExample from "../../../../partials/content/CodeExample";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import React from 'react';
+import Notice from '../../../../partials/content/Notice';
+import CodeExample from '../../../../partials/content/CodeExample';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import {
   Badge,
   IconButton,
@@ -14,67 +14,67 @@ import {
   FormGroup,
   FormControlLabel,
   Divider,
-  Switch
-} from "@material-ui/core";
-import MailIcon from "@material-ui/icons/Mail";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+  Switch,
+} from '@material-ui/core';
+import MailIcon from '@material-ui/icons/Mail';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 // Example 1
 const useStyles1 = makeStyles(theme => ({
   margin: {
-    margin: theme.spacing(2)
+    margin: theme.spacing(2),
   },
   padding: {
-    padding: theme.spacing(0, 2)
-  }
+    padding: theme.spacing(0, 2),
+  },
 }));
 
 // Example 2
 const useStyles2 = makeStyles(theme => ({
   margin: {
     margin: theme.spacing(2),
-    marginRight: theme.spacing(3)
-  }
+    marginRight: theme.spacing(3),
+  },
 }));
 
 // Example 3
 const useStyles3 = makeStyles(theme => ({
   margin: {
-    margin: theme.spacing(2)
-  }
+    margin: theme.spacing(2),
+  },
 }));
 
 // Example 4
 const useStyles4 = makeStyles(theme => ({
   root: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    width: "100%"
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    width: '100%',
   },
   margin: {
-    margin: theme.spacing(1)
+    margin: theme.spacing(1),
   },
   divider: {
-    width: "100%"
+    width: '100%',
   },
   row: {
-    marginTop: theme.spacing(2)
-  }
+    marginTop: theme.spacing(2),
+  },
 }));
 
 // Example 5
 const StyledBadge = withStyles(theme => ({
   badge: {
-    top: "50%",
+    top: '50%',
     right: -3,
     // The border color match the background color.
     border: `2px solid ${
-      theme.palette.type === "light"
+      theme.palette.type === 'light'
         ? theme.palette.grey[200]
         : theme.palette.grey[900]
-    }`
-  }
+    }`,
+  },
 }))(Badge);
 
 export default function BadgesExamplesPage() {
@@ -97,75 +97,75 @@ export default function BadgesExamplesPage() {
 
   return (
     <>
-      <Notice icon="flaticon-warning kt-font-primary">
+      <Notice icon='flaticon-warning kt-font-primary'>
         <p>Badge generates a small badge to the top-right of its child(ren).</p>
         <p>
-          For more info please check the components's official{" "}
+          For more info please check the components's official{' '}
           <a
-            target="_blank"
-            className="kt-link"
-            rel="noopener noreferrer"
-            href="https://material-ui.com/components/badges/"
+            target='_blank'
+            className='kt-link'
+            rel='noopener noreferrer'
+            href='https://material-ui.com/components/badges/'
           >
             demos & documentation
           </a>
         </p>
       </Notice>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode1} beforeCodeTitle="Simple Badges">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode1} beforeCodeTitle='Simple Badges'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 Examples of badges containing text, using primary and secondary
                 colors. The badge is applied to its children.
               </span>
-              <div className="kt-separator kt-separator--dashed" />
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed' />
+              <div className='kt-section__content'>
                 <div>
                   <div>
                     <Badge
                       className={classes1.margin}
                       badgeContent={4}
-                      color="primary"
+                      color='primary'
                     >
                       <MailIcon />
                     </Badge>
                     <Badge
                       className={classes1.margin}
                       badgeContent={10}
-                      color="secondary"
+                      color='secondary'
                     >
                       <MailIcon />
                     </Badge>
                     <IconButton
-                      aria-label="4 pending messages"
+                      aria-label='4 pending messages'
                       className={classes1.margin}
                     >
-                      <Badge badgeContent={4} color="primary">
+                      <Badge badgeContent={4} color='primary'>
                         <MailIcon />
                       </Badge>
                     </IconButton>
                   </div>
-                  <AppBar position="static" className={classes1.margin}>
+                  <AppBar position='static' className={classes1.margin}>
                     <Tabs value={0}>
                       <Tab
                         label={
                           <Badge
                             className={classes1.padding}
-                            color="secondary"
+                            color='secondary'
                             badgeContent={4}
                           >
                             Item One
                           </Badge>
                         }
                       />
-                      <Tab label="Item Two" />
-                      <Tab label="Item Three" />
+                      <Tab label='Item Two' />
+                      <Tab label='Item Three' />
                     </Tabs>
                   </AppBar>
                   <Badge
-                    color="primary"
+                    color='primary'
                     badgeContent={4}
                     className={classes1.margin}
                   >
@@ -174,38 +174,38 @@ export default function BadgesExamplesPage() {
                     </Typography>
                   </Badge>
                   <Badge
-                    color="primary"
+                    color='primary'
                     badgeContent={4}
                     className={classes1.margin}
                   >
-                    <Button variant="contained">Button</Button>
+                    <Button variant='contained'>Button</Button>
                   </Badge>
                 </div>
               </div>
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode2} beforeCodeTitle="Maximum Value">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode2} beforeCodeTitle='Maximum Value'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 You can use the <code>max</code> property to cap the value of
                 the badge content.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <React.Fragment>
                   <Badge
                     className={classes2.margin}
                     badgeContent={99}
-                    color="primary"
+                    color='primary'
                   >
                     <MailIcon />
                   </Badge>
                   <Badge
                     className={classes2.margin}
                     badgeContent={100}
-                    color="primary"
+                    color='primary'
                   >
                     <MailIcon />
                   </Badge>
@@ -213,7 +213,7 @@ export default function BadgesExamplesPage() {
                     className={classes2.margin}
                     badgeContent={1000}
                     max={999}
-                    color="primary"
+                    color='primary'
                   >
                     <MailIcon />
                   </Badge>
@@ -224,38 +224,38 @@ export default function BadgesExamplesPage() {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode3} beforeCodeTitle="Dot Badge">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode3} beforeCodeTitle='Dot Badge'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 The <code>dot</code> property changes a badge into a small dot.
                 This can be used as a notification that something has changed
                 without giving a count.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div>
                   <div>
                     <Badge
                       className={classes3.margin}
-                      color="primary"
-                      variant="dot"
+                      color='primary'
+                      variant='dot'
                     >
                       <MailIcon />
                     </Badge>
                     <Badge
                       className={classes3.margin}
-                      color="secondary"
-                      variant="dot"
+                      color='secondary'
+                      variant='dot'
                     >
                       <MailIcon />
                     </Badge>
                   </div>
                   <Badge
-                    color="primary"
+                    color='primary'
                     className={classes3.margin}
-                    variant="dot"
+                    variant='dot'
                   >
                     <Typography>Typography</Typography>
                   </Badge>
@@ -264,23 +264,23 @@ export default function BadgesExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode4} beforeCodeTitle="Badge visibility">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode4} beforeCodeTitle='Badge visibility'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 The visibility of badges can be controlled using the invisible
                 property.
               </span>
-              <p className="kt-section__sub">
+              <p className='kt-section__sub'>
                 The badge auto hides with badgeContent is zero. You can override
                 this with the <code>showZero</code> property.
               </p>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes4.root}>
                   <div className={classes4.row}>
                     <Badge
-                      color="secondary"
+                      color='secondary'
                       badgeContent={4}
                       invisible={invisible4}
                       className={classes4.margin}
@@ -288,8 +288,8 @@ export default function BadgesExamplesPage() {
                       <MailIcon />
                     </Badge>
                     <Badge
-                      color="secondary"
-                      variant="dot"
+                      color='secondary'
+                      variant='dot'
                       invisible={invisible4}
                       className={classes4.margin}
                     >
@@ -300,25 +300,25 @@ export default function BadgesExamplesPage() {
                     <FormControlLabel
                       control={
                         <Switch
-                          color="primary"
+                          color='primary'
                           checked={!invisible4}
                           onChange={handleBadgeVisibility4}
                         />
                       }
-                      label="Show Badge"
+                      label='Show Badge'
                     />
                   </FormGroup>
                   <Divider className={classes4.divider} />
                   <div className={classes4.row}>
                     <Badge
-                      color="secondary"
+                      color='secondary'
                       badgeContent={0}
                       className={classes4.margin}
                     >
                       <MailIcon />
                     </Badge>
                     <Badge
-                      color="secondary"
+                      color='secondary'
                       badgeContent={0}
                       showZero
                       className={classes4.margin}
@@ -333,17 +333,17 @@ export default function BadgesExamplesPage() {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode5} beforeCodeTitle="Customized badges">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode5} beforeCodeTitle='Customized badges'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 Here is an example of customizing the component.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
-                <IconButton aria-label="Cart">
-                  <StyledBadge badgeContent={4} color="primary">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
+                <IconButton aria-label='Cart'>
+                  <StyledBadge badgeContent={4} color='primary'>
                     <ShoppingCartIcon />
                   </StyledBadge>
                 </IconButton>

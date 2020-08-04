@@ -1,18 +1,18 @@
-import React from "react";
+import React from 'react';
 import {
   Portlet,
   PortletBody,
-  PortletHeader
-} from "../../../partials/content/Portlet";
-import { CodeBlock } from "../../../partials/content/CodeExample";
+  PortletHeader,
+} from '../../../partials/content/Portlet';
+import { CodeBlock } from '../../../partials/content/CodeExample';
 
 export default function CreateAPageDocs() {
   return (
     <Portlet>
-      <PortletHeader title="How to create a custom page" />
+      <PortletHeader title='How to create a custom page' />
       <PortletBody>
         <div>
-          <h2 id="how-to-create-a-custom-page">How to create a custom page</h2>
+          <h2 id='how-to-create-a-custom-page'>How to create a custom page</h2>
           <p>
             Here is the example on how to create your own page and add it to the
             left side menu and breadcrumbs.
@@ -24,7 +24,7 @@ export default function CreateAPageDocs() {
               </p>
 
               <CodeBlock
-                language="jsx"
+                language='jsx'
                 code={`
                   import React from "react";
                   
@@ -40,7 +40,7 @@ export default function CreateAPageDocs() {
                 Update <code>src/app/pages/home/HomePage.js</code>
               </p>
               <CodeBlock
-                language="diff"
+                language='diff'
                 code={`
                   import React from "react";
                   import { Redirect, Route, Switch } from "react-router-dom";
@@ -71,12 +71,12 @@ export default function CreateAPageDocs() {
 
             <li>
               <p>
-                Register page in{" "}
+                Register page in{' '}
                 <code>src/_metronic/layouts/demo1/MenuConfig.js</code>
               </p>
 
               <CodeBlock
-                language="diff"
+                language='diff'
                 code={`
                   aside: {
                    self: {},

@@ -1,13 +1,13 @@
-import React from "react";
-import Notice from "../../../partials/content/Notice";
-import CodeExample from "../../../partials/content/CodeExample";
+import React from 'react';
+import Notice from '../../../partials/content/Notice';
+import CodeExample from '../../../partials/content/CodeExample';
 import {
   Button,
   Overlay,
   Tooltip,
   OverlayTrigger,
-  ButtonToolbar
-} from "react-bootstrap";
+  ButtonToolbar,
+} from 'react-bootstrap';
 
 class Example extends React.Component {
   constructor(...args) {
@@ -27,9 +27,9 @@ class Example extends React.Component {
         >
           Click me!
         </Button>
-        <Overlay target={target} show={show} placement="right">
+        <Overlay target={target} show={show} placement='right'>
           {props => (
-            <Tooltip id="overlay-example" {...props}>
+            <Tooltip id='overlay-example' {...props}>
               My Tooltip
             </Tooltip>
           )}
@@ -43,43 +43,43 @@ export default class TooltipsExamplesPage extends React.Component {
   render() {
     return (
       <>
-        <Notice icon="flaticon-warning kt-font-primary">
+        <Notice icon='flaticon-warning kt-font-primary'>
           <p>
             A tooltip component for a more stylish alternative to that anchor
             tag <code>title</code> attribute.
           </p>
           <p>
-            For more info please check the components's official{" "}
+            For more info please check the components's official{' '}
             <a
-              target="_blank"
-              className="kt-link"
-              rel="noopener noreferrer"
-              href="https://react-bootstrap.github.io/components/overlays/#tooltips"
+              target='_blank'
+              className='kt-link'
+              rel='noopener noreferrer'
+              href='https://react-bootstrap.github.io/components/overlays/#tooltips'
             >
               demos & documentation
             </a>
           </p>
         </Notice>
 
-        <CodeExample jsCode={jsCode1} beforeCodeTitle="Basic Example">
-          <div className="kt-section">
-            <span className="kt-section__sub">
+        <CodeExample jsCode={jsCode1} beforeCodeTitle='Basic Example'>
+          <div className='kt-section'>
+            <span className='kt-section__sub'>
               You can pass the <code>Overlay</code> injected props directly to
               the Tooltip component.
             </span>
-            <div className="kt-separator kt-separator--dashed"></div>
+            <div className='kt-separator kt-separator--dashed'></div>
             <Example />
           </div>
         </CodeExample>
 
-        <CodeExample jsCode={jsCode2} beforeCodeTitle="Trigger">
-          <div className="kt-section">
-            <span className="kt-section__sub">
+        <CodeExample jsCode={jsCode2} beforeCodeTitle='Trigger'>
+          <div className='kt-section'>
+            <span className='kt-section__sub'>
               Or pass a Tooltip element to <code>OverlayTrigger</code> instead.
             </span>
-            <div className="kt-separator kt-separator--dashed"></div>
+            <div className='kt-separator kt-separator--dashed'></div>
             <ButtonToolbar>
-              {["top", "right", "bottom", "left"].map(placement => (
+              {['top', 'right', 'bottom', 'left'].map(placement => (
                 <OverlayTrigger
                   key={placement}
                   placement={placement}
@@ -89,7 +89,7 @@ export default class TooltipsExamplesPage extends React.Component {
                     </Tooltip>
                   }
                 >
-                  <Button variant="secondary">Tooltip on {placement}</Button>
+                  <Button variant='secondary'>Tooltip on {placement}</Button>
                 </OverlayTrigger>
               ))}
             </ButtonToolbar>

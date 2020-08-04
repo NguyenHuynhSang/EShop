@@ -1,11 +1,15 @@
-import React, { Component } from "react";
-import { Formik } from "formik";
-import { connect } from "react-redux";
-import { TextField } from "@material-ui/core";
-import { Link, Redirect } from "react-router-dom";
-import { FormattedMessage, injectIntl, WrappedComponentProps } from "react-intl";
-import * as auth from "../../store/ducks/auth.duck";
-import { requestPassword } from "../../crud/auth.crud";
+import React, { Component } from 'react';
+import { Formik } from 'formik';
+import { connect } from 'react-redux';
+import { TextField } from '@material-ui/core';
+import { Link, Redirect } from 'react-router-dom';
+import {
+  FormattedMessage,
+  injectIntl,
+  WrappedComponentProps,
+} from 'react-intl';
+import * as auth from '../../store/ducks/auth.duck';
+import { requestPassword } from '../../crud/auth.crud';
 
 class ForgotPassword extends Component<{} & WrappedComponentProps> {
   state = { isRequested: false };
@@ -15,33 +19,33 @@ class ForgotPassword extends Component<{} & WrappedComponentProps> {
     const { isRequested } = this.state;
 
     if (isRequested) {
-      return <Redirect to="/auth" />;
+      return <Redirect to='/auth' />;
     }
 
     return (
-      <div className="kt-grid__item kt-grid__item--fluid  kt-grid__item--order-tablet-and-mobile-1  kt-login__wrapper">
-        <div className="kt-login__body">
-          <div className="kt-login__form">
-            <div className="kt-login__title">
+      <div className='kt-grid__item kt-grid__item--fluid  kt-grid__item--order-tablet-and-mobile-1  kt-login__wrapper'>
+        <div className='kt-login__body'>
+          <div className='kt-login__form'>
+            <div className='kt-login__title'>
               <h3>
-                <FormattedMessage id="AUTH.FORGOT.TITLE" />
+                <FormattedMessage id='AUTH.FORGOT.TITLE' />
               </h3>
             </div>
 
             <Formik
-              initialValues={{ email: "" }}
+              initialValues={{ email: '' }}
               validate={values => {
                 const errors = { email: '' };
 
                 if (!values.email) {
                   errors.email = intl.formatMessage({
-                    id: "AUTH.VALIDATION.REQUIRED_FIELD"
+                    id: 'AUTH.VALIDATION.REQUIRED_FIELD',
                   });
                 } else if (
                   !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
                 ) {
                   errors.email = intl.formatMessage({
-                    id: "AUTH.VALIDATION.INVALID_FIELD"
+                    id: 'AUTH.VALIDATION.INVALID_FIELD',
                   });
                 }
 
@@ -56,7 +60,7 @@ class ForgotPassword extends Component<{} & WrappedComponentProps> {
                     setSubmitting(false);
                     setStatus(
                       intl.formatMessage(
-                        { id: "AUTH.VALIDATION.NOT_FOUND" },
+                        { id: 'AUTH.VALIDATION.NOT_FOUND' },
                         { name: values.email }
                       )
                     );
@@ -71,22 +75,22 @@ class ForgotPassword extends Component<{} & WrappedComponentProps> {
                 handleChange,
                 handleBlur,
                 handleSubmit,
-                isSubmitting
+                isSubmitting,
               }) => (
-                <form onSubmit={handleSubmit} className="kt-form">
+                <form onSubmit={handleSubmit} className='kt-form'>
                   {status && (
-                    <div role="alert" className="alert alert-danger">
-                      <div className="alert-text">{status}</div>
+                    <div role='alert' className='alert alert-danger'>
+                      <div className='alert-text'>{status}</div>
                     </div>
                   )}
 
-                  <div className="form-group">
+                  <div className='form-group'>
                     <TextField
-                      type="email"
-                      label="Email"
-                      margin="normal"
+                      type='email'
+                      label='Email'
+                      margin='normal'
                       fullWidth={true}
-                      name="email"
+                      name='email'
                       onBlur={handleBlur}
                       onChange={handleChange}
                       value={values.email}
@@ -95,17 +99,17 @@ class ForgotPassword extends Component<{} & WrappedComponentProps> {
                     />
                   </div>
 
-                  <div className="kt-login__actions">
+                  <div className='kt-login__actions'>
                     <Link
-                      to="/auth"
-                      className="btn btn-secondary btn-elevate kt-login__btn-secondary"
+                      to='/auth'
+                      className='btn btn-secondary btn-elevate kt-login__btn-secondary'
                     >
                       Back
                     </Link>
 
                     <button
-                      type="submit"
-                      className="btn btn-primary btn-elevate kt-login__btn-primary"
+                      type='submit'
+                      className='btn btn-primary btn-elevate kt-login__btn-primary'
                       disabled={isSubmitting}
                     >
                       Submit
@@ -121,9 +125,4 @@ class ForgotPassword extends Component<{} & WrappedComponentProps> {
   }
 }
 
-export default injectIntl(
-  connect(
-    null,
-    auth.actions
-  )(ForgotPassword)
-);
+export default injectIntl(connect(null, auth.actions)(ForgotPassword));

@@ -1,8 +1,8 @@
 /* eslint-disable no-restricted-imports */
-import React from "react";
-import Notice from "../../../../partials/content/Notice";
-import CodeExample from "../../../../partials/content/CodeExample";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import React from 'react';
+import Notice from '../../../../partials/content/Notice';
+import CodeExample from '../../../../partials/content/CodeExample';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import {
   Stepper,
   Typography,
@@ -13,200 +13,200 @@ import {
   StepContent,
   Paper,
   StepConnector,
-  MobileStepper
-} from "@material-ui/core";
-import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
-import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
-import { autoPlay } from "react-swipeable-views-utils";
-import SwipeableViews from "react-swipeable-views";
+  MobileStepper,
+} from '@material-ui/core';
+import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
+import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
+import { autoPlay } from 'react-swipeable-views-utils';
+import SwipeableViews from 'react-swipeable-views';
 
 // Example 1
 const useStyles1 = makeStyles(theme => ({
   root: {
-    width: "90%"
+    width: '90%',
   },
   button: {
-    marginRight: theme.spacing(1)
+    marginRight: theme.spacing(1),
   },
   instructions: {
     marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1)
-  }
+    marginBottom: theme.spacing(1),
+  },
 }));
 
 function getSteps1() {
-  return ["Select campaign settings", "Create an ad group", "Create an ad"];
+  return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
 }
 
 function getStepContent1(step) {
   switch (step) {
     case 0:
-      return "Select campaign settings...";
+      return 'Select campaign settings...';
     case 1:
-      return "What is an ad group anyways?";
+      return 'What is an ad group anyways?';
     case 2:
-      return "This is the bit I really care about!";
+      return 'This is the bit I really care about!';
     default:
-      return "Unknown step";
+      return 'Unknown step';
   }
 }
 
 // Example 2
 const useStyles2 = makeStyles(theme => ({
   root: {
-    width: "90%"
+    width: '90%',
   },
   button: {
-    marginRight: theme.spacing(1)
+    marginRight: theme.spacing(1),
   },
   completed: {
-    display: "inline-block"
+    display: 'inline-block',
   },
   instructions: {
     marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1)
-  }
+    marginBottom: theme.spacing(1),
+  },
 }));
 
 function getSteps2() {
-  return ["Select campaign settings", "Create an ad group", "Create an ad"];
+  return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
 }
 
 function getStepContent2(step) {
   switch (step) {
     case 0:
-      return "Step 1: Select campaign settings...";
+      return 'Step 1: Select campaign settings...';
     case 1:
-      return "Step 2: What is an ad group anyways?";
+      return 'Step 2: What is an ad group anyways?';
     case 2:
-      return "Step 3: This is the bit I really care about!";
+      return 'Step 3: This is the bit I really care about!';
     default:
-      return "Unknown step";
+      return 'Unknown step';
   }
 }
 
 // Example 3
 const useStyles3 = makeStyles(theme => ({
   root: {
-    width: "90%"
+    width: '90%',
   },
   backButton: {
-    marginRight: theme.spacing(1)
+    marginRight: theme.spacing(1),
   },
   instructions: {
     marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1)
-  }
+    marginBottom: theme.spacing(1),
+  },
 }));
 
 function getSteps3() {
   return [
-    "Select master blaster campaign settings",
-    "Create an ad group",
-    "Create an ad"
+    'Select master blaster campaign settings',
+    'Create an ad group',
+    'Create an ad',
   ];
 }
 
 function getStepContent3(stepIndex) {
   switch (stepIndex) {
     case 0:
-      return "Select campaign settings...";
+      return 'Select campaign settings...';
     case 1:
-      return "What is an ad group anyways?";
+      return 'What is an ad group anyways?';
     case 2:
-      return "This is the bit I really care about!";
+      return 'This is the bit I really care about!';
     default:
-      return "Uknown stepIndex";
+      return 'Uknown stepIndex';
   }
 }
 
 // Example 4
 const useStyles4 = makeStyles(theme => ({
   root: {
-    width: "90%"
+    width: '90%',
   },
   button: {
-    marginRight: theme.spacing(1)
+    marginRight: theme.spacing(1),
   },
   backButton: {
-    marginRight: theme.spacing(1)
+    marginRight: theme.spacing(1),
   },
   completed: {
-    display: "inline-block"
+    display: 'inline-block',
   },
   instructions: {
     marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1)
-  }
+    marginBottom: theme.spacing(1),
+  },
 }));
 
 function getSteps4() {
-  return ["Select campaign settings", "Create an ad group", "Create an ad"];
+  return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
 }
 
 function getStepContent4(step) {
   switch (step) {
     case 0:
-      return "Step 1: Select campaign settings...";
+      return 'Step 1: Select campaign settings...';
     case 1:
-      return "Step 2: What is an ad group anyways?";
+      return 'Step 2: What is an ad group anyways?';
     case 2:
-      return "Step 3: This is the bit I really care about!";
+      return 'Step 3: This is the bit I really care about!';
     default:
-      return "Unknown step";
+      return 'Unknown step';
   }
 }
 
 // Example 5
 const useStyles5 = makeStyles(theme => ({
   root: {
-    width: "90%"
+    width: '90%',
   },
   button: {
-    marginRight: theme.spacing(1)
+    marginRight: theme.spacing(1),
   },
   instructions: {
     marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1)
-  }
+    marginBottom: theme.spacing(1),
+  },
 }));
 
 function getSteps5() {
-  return ["Select campaign settings", "Create an ad group", "Create an ad"];
+  return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
 }
 
 function getStepContent5(step) {
   switch (step) {
     case 0:
-      return "Select campaign settings...";
+      return 'Select campaign settings...';
     case 1:
-      return "What is an ad group anyways?";
+      return 'What is an ad group anyways?';
     case 2:
-      return "This is the bit I really care about!";
+      return 'This is the bit I really care about!';
     default:
-      return "Unknown step";
+      return 'Unknown step';
   }
 }
 
 // Example 6
 const useStyles6 = makeStyles(theme => ({
   root: {
-    width: "90%"
+    width: '90%',
   },
   button: {
     marginTop: theme.spacing(1),
-    marginRight: theme.spacing(1)
+    marginRight: theme.spacing(1),
   },
   actionsContainer: {
-    marginBottom: theme.spacing(2)
+    marginBottom: theme.spacing(2),
   },
   resetContainer: {
-    padding: theme.spacing(3)
-  }
+    padding: theme.spacing(3),
+  },
 }));
 
 function getSteps6() {
-  return ["Select campaign settings", "Create an ad group", "Create an ad"];
+  return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
 }
 
 function getStepContent6(step) {
@@ -216,114 +216,114 @@ function getStepContent6(step) {
               you're willing to spend on clicks and conversions, which networks
               and geographical locations you want your ads to show on, and more.`;
     case 1:
-      return "An ad group contains one or more ads which target a shared set of keywords.";
+      return 'An ad group contains one or more ads which target a shared set of keywords.';
     case 2:
       return `Try out different ad text to see what brings in the most customers,
               and learn how to enhance your ads using features like ad extensions.
               If you run into any problems with your ads, find out how to tell if
               they're running and how to resolve approval issues.`;
     default:
-      return "Unknown step";
+      return 'Unknown step';
   }
 }
 
 // Example 7
 const useStyles7 = makeStyles(theme => ({
   root: {
-    width: "90%"
+    width: '90%',
   },
   button: {
-    marginRight: theme.spacing(1)
+    marginRight: theme.spacing(1),
   },
   instructions: {
     marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1)
+    marginBottom: theme.spacing(1),
   },
   connectorActive: {
-    "& $connectorLine": {
-      borderColor: theme.palette.secondary.main
-    }
+    '& $connectorLine': {
+      borderColor: theme.palette.secondary.main,
+    },
   },
   connectorCompleted: {
-    "& $connectorLine": {
-      borderColor: theme.palette.primary.main
-    }
+    '& $connectorLine': {
+      borderColor: theme.palette.primary.main,
+    },
   },
   connectorDisabled: {
-    "& $connectorLine": {
-      borderColor: theme.palette.grey[100]
-    }
+    '& $connectorLine': {
+      borderColor: theme.palette.grey[100],
+    },
   },
   connectorLine: {
-    transition: theme.transitions.create("border-color")
-  }
+    transition: theme.transitions.create('border-color'),
+  },
 }));
 
 function getSteps7() {
-  return ["Select campaign settings", "Create an ad group", "Create an ad"];
+  return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
 }
 
 function getStepContent7(step) {
   switch (step) {
     case 0:
-      return "Select campaign settings...";
+      return 'Select campaign settings...';
     case 1:
-      return "What is an ad group anyways?";
+      return 'What is an ad group anyways?';
     case 2:
-      return "This is the bit I really care about!";
+      return 'This is the bit I really care about!';
     default:
-      return "Unknown step";
+      return 'Unknown step';
   }
 }
 
 // Example 8
 const tutorialSteps8 = [
   {
-    label: "San Francisco – Oakland Bay Bridge, United States",
+    label: 'San Francisco – Oakland Bay Bridge, United States',
     imgPath:
-      "https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60"
+      'https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60',
   },
   {
-    label: "Bird",
+    label: 'Bird',
     imgPath:
-      "https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60"
+      'https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60',
   },
   {
-    label: "Bali, Indonesia",
+    label: 'Bali, Indonesia',
     imgPath:
-      "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250&q=80"
+      'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250&q=80',
   },
   {
-    label: "NeONBRAND Digital Marketing, Las Vegas, United States",
+    label: 'NeONBRAND Digital Marketing, Las Vegas, United States',
     imgPath:
-      "https://images.unsplash.com/photo-1518732714860-b62714ce0c59?auto=format&fit=crop&w=400&h=250&q=60"
+      'https://images.unsplash.com/photo-1518732714860-b62714ce0c59?auto=format&fit=crop&w=400&h=250&q=60',
   },
   {
-    label: "Goč, Serbia",
+    label: 'Goč, Serbia',
     imgPath:
-      "https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60"
-  }
+      'https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60',
+  },
 ];
 
 const useStyles8 = makeStyles(theme => ({
   root: {
     maxWidth: 400,
-    flexGrow: 1
+    flexGrow: 1,
   },
   header: {
-    display: "flex",
-    alignItems: "center",
+    display: 'flex',
+    alignItems: 'center',
     height: 50,
     paddingLeft: theme.spacing(4),
-    backgroundColor: theme.palette.background.default
+    backgroundColor: theme.palette.background.default,
   },
   img: {
     height: 255,
     maxWidth: 400,
-    overflow: "hidden",
-    display: "block",
-    width: "100%"
-  }
+    overflow: 'hidden',
+    display: 'block',
+    width: '100%',
+  },
 }));
 
 // Example 9
@@ -331,67 +331,67 @@ const AutoPlaySwipeableViews9 = autoPlay(SwipeableViews);
 
 const tutorialSteps9 = [
   {
-    label: "San Francisco – Oakland Bay Bridge, United States",
+    label: 'San Francisco – Oakland Bay Bridge, United States',
     imgPath:
-      "https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60"
+      'https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60',
   },
   {
-    label: "Bird",
+    label: 'Bird',
     imgPath:
-      "https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60"
+      'https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60',
   },
   {
-    label: "Bali, Indonesia",
+    label: 'Bali, Indonesia',
     imgPath:
-      "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250&q=80"
+      'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250&q=80',
   },
   {
-    label: "NeONBRAND Digital Marketing, Las Vegas, United States",
+    label: 'NeONBRAND Digital Marketing, Las Vegas, United States',
     imgPath:
-      "https://images.unsplash.com/photo-1518732714860-b62714ce0c59?auto=format&fit=crop&w=400&h=250&q=60"
+      'https://images.unsplash.com/photo-1518732714860-b62714ce0c59?auto=format&fit=crop&w=400&h=250&q=60',
   },
   {
-    label: "Goč, Serbia",
+    label: 'Goč, Serbia',
     imgPath:
-      "https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60"
-  }
+      'https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60',
+  },
 ];
 
 const useStyles9 = makeStyles(theme => ({
   root: {
     maxWidth: 400,
-    flexGrow: 1
+    flexGrow: 1,
   },
   header: {
-    display: "flex",
-    alignItems: "center",
+    display: 'flex',
+    alignItems: 'center',
     height: 50,
     paddingLeft: theme.spacing(4),
-    backgroundColor: theme.palette.background.default
+    backgroundColor: theme.palette.background.default,
   },
   img: {
     height: 255,
-    display: "block",
+    display: 'block',
     maxWidth: 400,
-    overflow: "hidden",
-    width: "100%"
-  }
+    overflow: 'hidden',
+    width: '100%',
+  },
 }));
 
 // Example 10
 const useStyles10 = makeStyles({
   root: {
     maxWidth: 400,
-    flexGrow: 1
-  }
+    flexGrow: 1,
+  },
 });
 
 // Example 11
 const useStyles11 = makeStyles({
   root: {
     maxWidth: 400,
-    flexGrow: 1
-  }
+    flexGrow: 1,
+  },
 });
 
 export default function SteppersExamplesPage() {
@@ -698,7 +698,7 @@ export default function SteppersExamplesPage() {
         active: classes7.connectorActive,
         completed: classes7.connectorCompleted,
         disabled: classes7.connectorDisabled,
-        line: classes7.connectorLine
+        line: classes7.connectorLine,
       }}
     />
   );
@@ -763,37 +763,37 @@ export default function SteppersExamplesPage() {
 
   return (
     <>
-      <Notice icon="flaticon-warning kt-font-primary">
+      <Notice icon='flaticon-warning kt-font-primary'>
         <p>
           Steppers convey progress through numbered steps. It provides a
           wizard-like workflow.
         </p>
         <p>
-          For more info please check the components's official{" "}
+          For more info please check the components's official{' '}
           <a
-            target="_blank"
-            className="kt-link"
-            rel="noopener noreferrer"
-            href="https://material-ui.com/components/steppers/"
+            target='_blank'
+            className='kt-link'
+            rel='noopener noreferrer'
+            href='https://material-ui.com/components/steppers/'
           >
             demos & documentation
           </a>
         </p>
       </Notice>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode1} beforeCodeTitle="Horizontal Linear">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode1} beforeCodeTitle='Horizontal Linear'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 The <code>Stepper</code> can be controlled by passing the
-                current step index (zero-based) as the <code>activeStep</code>{" "}
+                current step index (zero-based) as the <code>activeStep</code>{' '}
                 property.
-                <code>Stepper</code> orientation is set using the{" "}
+                <code>Stepper</code> orientation is set using the{' '}
                 <code>orientation</code> property.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes1.root}>
                   <Stepper activeStep={activeStep1}>
                     {steps1.map((label, index) => {
@@ -801,7 +801,7 @@ export default function SteppersExamplesPage() {
                       const labelProps1 = {};
                       if (isStepOptional1(index)) {
                         labelProps1.optional = (
-                          <Typography variant="caption">Optional</Typography>
+                          <Typography variant='caption'>Optional</Typography>
                         );
                       }
                       if (isStepSkipped1(index)) {
@@ -842,8 +842,8 @@ export default function SteppersExamplesPage() {
                           </Button>
                           {isStepOptional1(activeStep1) && (
                             <Button
-                              variant="contained"
-                              color="primary"
+                              variant='contained'
+                              color='primary'
                               onClick={handleSkip1}
                               className={classes1.button}
                             >
@@ -852,14 +852,14 @@ export default function SteppersExamplesPage() {
                           )}
 
                           <Button
-                            variant="contained"
-                            color="primary"
+                            variant='contained'
+                            color='primary'
                             onClick={handleNext1}
                             className={classes1.button}
                           >
                             {activeStep1 === steps1.length - 1
-                              ? "Finish"
-                              : "Next"}
+                              ? 'Finish'
+                              : 'Next'}
                           </Button>
                         </div>
                       </div>
@@ -870,15 +870,15 @@ export default function SteppersExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode2} beforeCodeTitle="Horizontal Non-linear">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode2} beforeCodeTitle='Horizontal Non-linear'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 Non-linear steppers allow users to enter a multi-step flow at
                 any point.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes2.root}>
                   <Stepper nonLinear activeStep={activeStep2}>
                     {steps2.map((label, index) => (
@@ -914,8 +914,8 @@ export default function SteppersExamplesPage() {
                             Back
                           </Button>
                           <Button
-                            variant="contained"
-                            color="primary"
+                            variant='contained'
+                            color='primary'
                             onClick={handleNext2}
                             className={classes2.button}
                           >
@@ -924,20 +924,20 @@ export default function SteppersExamplesPage() {
                           {activeStep2 !== steps2.length &&
                             (completed2[activeStep2] ? (
                               <Typography
-                                variant="caption"
+                                variant='caption'
                                 className={classes2.completed}
                               >
                                 Step {activeStep2 + 1} already completed
                               </Typography>
                             ) : (
                               <Button
-                                variant="contained"
-                                color="primary"
+                                variant='contained'
+                                color='primary'
                                 onClick={handleComplete2}
                               >
                                 {completedSteps2() === totalSteps2() - 1
-                                  ? "Finish"
-                                  : "Complete Step"}
+                                  ? 'Finish'
+                                  : 'Complete Step'}
                               </Button>
                             ))}
                         </div>
@@ -951,20 +951,20 @@ export default function SteppersExamplesPage() {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-6">
+      <div className='row'>
+        <div className='col-md-6'>
           <CodeExample
             jsCode={jsCode3}
-            beforeCodeTitle="Horizontal Linear - Alternative Label"
+            beforeCodeTitle='Horizontal Linear - Alternative Label'
           >
-            <div className="kt-section">
-              <span className="kt-section__sub">
-                Labels can be placed below the step icon by setting the{" "}
-                <code>alternativeLabel</code> property on the{" "}
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
+                Labels can be placed below the step icon by setting the{' '}
+                <code>alternativeLabel</code> property on the{' '}
                 <code>Stepper</code> component.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes3.root}>
                   <Stepper activeStep={activeStep3} alternativeLabel>
                     {steps3.map(label => (
@@ -995,13 +995,13 @@ export default function SteppersExamplesPage() {
                             Back
                           </Button>
                           <Button
-                            variant="contained"
-                            color="primary"
+                            variant='contained'
+                            color='primary'
                             onClick={handleNext3}
                           >
                             {activeStep3 === steps3.length - 1
-                              ? "Finish"
-                              : "Next"}
+                              ? 'Finish'
+                              : 'Next'}
                           </Button>
                         </div>
                       </div>
@@ -1012,15 +1012,15 @@ export default function SteppersExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
+        <div className='col-md-6'>
           <CodeExample
             jsCode={jsCode4}
-            beforeCodeTitle="Horizontal Non Linear - Alternative Label"
+            beforeCodeTitle='Horizontal Non Linear - Alternative Label'
           >
-            <div className="kt-section">
-              <span className="kt-section__sub"></span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+            <div className='kt-section'>
+              <span className='kt-section__sub'></span>
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes4.root}>
                   <Stepper alternativeLabel nonLinear activeStep={activeStep4}>
                     {steps4.map((label, index) => {
@@ -1028,7 +1028,7 @@ export default function SteppersExamplesPage() {
                       const buttonProps = {};
                       if (isStepOptional4(index)) {
                         buttonProps.optional = (
-                          <Typography variant="caption">Optional</Typography>
+                          <Typography variant='caption'>Optional</Typography>
                         );
                       }
                       if (isStepSkipped4(index)) {
@@ -1069,8 +1069,8 @@ export default function SteppersExamplesPage() {
                             Back
                           </Button>
                           <Button
-                            variant="contained"
-                            color="primary"
+                            variant='contained'
+                            color='primary'
                             onClick={handleNext4}
                             className={classes4.button}
                           >
@@ -1079,8 +1079,8 @@ export default function SteppersExamplesPage() {
                           {isStepOptional4(activeStep4) &&
                             !completed4.has(activeStep4) && (
                               <Button
-                                variant="contained"
-                                color="primary"
+                                variant='contained'
+                                color='primary'
                                 onClick={handleSkip4}
                                 className={classes4.button}
                               >
@@ -1091,20 +1091,20 @@ export default function SteppersExamplesPage() {
                           {activeStep4 !== steps4.length &&
                             (completed4.has(activeStep4) ? (
                               <Typography
-                                variant="caption"
+                                variant='caption'
                                 className={classes4.completed}
                               >
                                 Step {activeStep4 + 1} already completed
                               </Typography>
                             ) : (
                               <Button
-                                variant="contained"
-                                color="primary"
+                                variant='contained'
+                                color='primary'
                                 onClick={handleComplete4}
                               >
                                 {completedSteps4() === totalSteps4() - 1
-                                  ? "Finish"
-                                  : "Complete Step"}
+                                  ? 'Finish'
+                                  : 'Complete Step'}
                               </Button>
                             ))}
                         </div>
@@ -1118,16 +1118,16 @@ export default function SteppersExamplesPage() {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-6">
+      <div className='row'>
+        <div className='col-md-6'>
           <CodeExample
             jsCode={jsCode5}
-            beforeCodeTitle="Horizontal Non Linear - Error Step"
+            beforeCodeTitle='Horizontal Non Linear - Error Step'
           >
-            <div className="kt-section">
-              <span className="kt-section__sub"></span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+            <div className='kt-section'>
+              <span className='kt-section__sub'></span>
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes5.root}>
                   <Stepper activeStep={activeStep5}>
                     {steps5.map((label, index) => {
@@ -1135,7 +1135,7 @@ export default function SteppersExamplesPage() {
                       const labelProps = {};
                       if (isStepOptional5(index)) {
                         labelProps.optional = (
-                          <Typography variant="caption" color="error">
+                          <Typography variant='caption' color='error'>
                             Alert message
                           </Typography>
                         );
@@ -1181,8 +1181,8 @@ export default function SteppersExamplesPage() {
                           </Button>
                           {isStepOptional5(activeStep5) && (
                             <Button
-                              variant="contained"
-                              color="primary"
+                              variant='contained'
+                              color='primary'
                               onClick={handleSkip5}
                               className={classes5.button}
                             >
@@ -1191,14 +1191,14 @@ export default function SteppersExamplesPage() {
                           )}
 
                           <Button
-                            variant="contained"
-                            color="primary"
+                            variant='contained'
+                            color='primary'
                             onClick={handleNext5}
                             className={classes5.button}
                           >
                             {activeStep5 === steps5.length - 1
-                              ? "Finish"
-                              : "Next"}
+                              ? 'Finish'
+                              : 'Next'}
                           </Button>
                         </div>
                       </div>
@@ -1209,13 +1209,13 @@ export default function SteppersExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode6} beforeCodeTitle="Vertical Stepper">
-            <div className="kt-section">
-              <span className="kt-section__sub"></span>
-              <div className="kt-section__content">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode6} beforeCodeTitle='Vertical Stepper'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'></span>
+              <div className='kt-section__content'>
                 <div className={classes6.root}>
-                  <Stepper activeStep={activeStep6} orientation="vertical">
+                  <Stepper activeStep={activeStep6} orientation='vertical'>
                     {steps6.map((label, index) => (
                       <Step key={label}>
                         <StepLabel>{label}</StepLabel>
@@ -1231,14 +1231,14 @@ export default function SteppersExamplesPage() {
                                 Back
                               </Button>
                               <Button
-                                variant="contained"
-                                color="primary"
+                                variant='contained'
+                                color='primary'
                                 onClick={handleNext6}
                                 className={classes6.button}
                               >
                                 {activeStep6 === steps6.length - 1
-                                  ? "Finish"
-                                  : "Next"}
+                                  ? 'Finish'
+                                  : 'Next'}
                               </Button>
                             </div>
                           </div>
@@ -1270,11 +1270,11 @@ export default function SteppersExamplesPage() {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode7} beforeCodeTitle="Customized Stepper">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode7} beforeCodeTitle='Customized Stepper'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 Here is an example of customizing the component.
               </span>
               <div className={classes7.root}>
@@ -1323,14 +1323,14 @@ export default function SteppersExamplesPage() {
                           Back
                         </Button>
                         <Button
-                          variant="contained"
-                          color="primary"
+                          variant='contained'
+                          color='primary'
                           onClick={handleNext7}
                           className={classes7.button}
                         >
                           {activeStep7 === steps7.length - 1
-                            ? "Finish"
-                            : "Next"}
+                            ? 'Finish'
+                            : 'Next'}
                         </Button>
                       </div>
                     </div>
@@ -1342,19 +1342,19 @@ export default function SteppersExamplesPage() {
         </div>
       </div>
 
-      <Notice className="notice__paragraph">Mobile Stepper</Notice>
+      <Notice className='notice__paragraph'>Mobile Stepper</Notice>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode8} beforeCodeTitle="Mobile Stepper - Text">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode8} beforeCodeTitle='Mobile Stepper - Text'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 This is essentially a back/next button positioned correctly. You
                 must implement the textual description yourself, however, an
                 example is provided below for reference.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes8.root}>
                   <Paper square elevation={0} className={classes8.header}>
                     <Typography>{tutorialSteps8[activeStep8].label}</Typography>
@@ -1366,17 +1366,17 @@ export default function SteppersExamplesPage() {
                   />
                   <MobileStepper
                     steps={maxSteps8}
-                    position="static"
-                    variant="text"
+                    position='static'
+                    variant='text'
                     activeStep={activeStep8}
                     nextButton={
                       <Button
-                        size="small"
+                        size='small'
                         onClick={handleNext8}
                         disabled={activeStep8 === maxSteps8 - 1}
                       >
                         Next
-                        {theme8.direction === "rtl" ? (
+                        {theme8.direction === 'rtl' ? (
                           <KeyboardArrowLeft />
                         ) : (
                           <KeyboardArrowRight />
@@ -1385,11 +1385,11 @@ export default function SteppersExamplesPage() {
                     }
                     backButton={
                       <Button
-                        size="small"
+                        size='small'
                         onClick={handleBack8}
                         disabled={activeStep8 === 0}
                       >
-                        {theme8.direction === "rtl" ? (
+                        {theme8.direction === 'rtl' ? (
                           <KeyboardArrowRight />
                         ) : (
                           <KeyboardArrowLeft />
@@ -1403,24 +1403,24 @@ export default function SteppersExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
+        <div className='col-md-6'>
           <CodeExample
             jsCode={jsCode9}
-            beforeCodeTitle="Mobile Stepper - Text with Carousel effect"
+            beforeCodeTitle='Mobile Stepper - Text with Carousel effect'
           >
-            <div className="kt-section">
-              <span className="kt-section__sub">
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 This demo is very similar to the previous, the difference is the
                 usage of react-swipeable-views to make the transition of steps.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes9.root}>
                   <Paper square elevation={0} className={classes9.header}>
                     <Typography>{tutorialSteps9[activeStep9].label}</Typography>
                   </Paper>
                   <AutoPlaySwipeableViews9
-                    axis={theme9.direction === "rtl" ? "x-reverse" : "x"}
+                    axis={theme9.direction === 'rtl' ? 'x-reverse' : 'x'}
                     index={activeStep9}
                     onChangeIndex={handleStepChange9}
                     enableMouseEvents
@@ -1439,17 +1439,17 @@ export default function SteppersExamplesPage() {
                   </AutoPlaySwipeableViews9>
                   <MobileStepper
                     steps={maxSteps9}
-                    position="static"
-                    variant="text"
+                    position='static'
+                    variant='text'
                     activeStep={activeStep9}
                     nextButton={
                       <Button
-                        size="small"
+                        size='small'
                         onClick={handleNext9}
                         disabled={activeStep9 === maxSteps9 - 1}
                       >
                         Next
-                        {theme9.direction === "rtl" ? (
+                        {theme9.direction === 'rtl' ? (
                           <KeyboardArrowLeft />
                         ) : (
                           <KeyboardArrowRight />
@@ -1458,11 +1458,11 @@ export default function SteppersExamplesPage() {
                     }
                     backButton={
                       <Button
-                        size="small"
+                        size='small'
                         onClick={handleBack9}
                         disabled={activeStep9 === 0}
                       >
-                        {theme9.direction === "rtl" ? (
+                        {theme9.direction === 'rtl' ? (
                           <KeyboardArrowRight />
                         ) : (
                           <KeyboardArrowLeft />
@@ -1478,32 +1478,32 @@ export default function SteppersExamplesPage() {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-6">
+      <div className='row'>
+        <div className='col-md-6'>
           <CodeExample
             jsCode={jsCode10}
-            beforeCodeTitle="Mobile Stepper - Dots"
+            beforeCodeTitle='Mobile Stepper - Dots'
           >
-            <div className="kt-section">
-              <span className="kt-section__sub">
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 Use dots when the number of steps isn’t large.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <MobileStepper
-                  variant="dots"
+                  variant='dots'
                   steps={6}
-                  position="static"
+                  position='static'
                   activeStep={activeStep10}
                   className={classes10.root}
                   nextButton={
                     <Button
-                      size="small"
+                      size='small'
                       onClick={handleNext10}
                       disabled={activeStep10 === 5}
                     >
                       Next
-                      {theme10.direction === "rtl" ? (
+                      {theme10.direction === 'rtl' ? (
                         <KeyboardArrowLeft />
                       ) : (
                         <KeyboardArrowRight />
@@ -1512,11 +1512,11 @@ export default function SteppersExamplesPage() {
                   }
                   backButton={
                     <Button
-                      size="small"
+                      size='small'
                       onClick={handleBack10}
                       disabled={activeStep10 === 0}
                     >
-                      {theme10.direction === "rtl" ? (
+                      {theme10.direction === 'rtl' ? (
                         <KeyboardArrowRight />
                       ) : (
                         <KeyboardArrowLeft />
@@ -1529,33 +1529,33 @@ export default function SteppersExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
+        <div className='col-md-6'>
           <CodeExample
             jsCode={jsCode11}
-            beforeCodeTitle="Mobile Stepper - Progress"
+            beforeCodeTitle='Mobile Stepper - Progress'
           >
-            <div className="kt-section">
-              <span className="kt-section__sub">
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 Use a progress bar when there are many steps, or if there are
                 steps that need to be inserted during the process (based on
                 responses to earlier steps).
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <MobileStepper
-                  variant="progress"
+                  variant='progress'
                   steps={6}
-                  position="static"
+                  position='static'
                   activeStep={activeStep11}
                   className={classes11.root}
                   nextButton={
                     <Button
-                      size="small"
+                      size='small'
                       onClick={handleNext11}
                       disabled={activeStep11 === 5}
                     >
                       Next
-                      {theme11.direction === "rtl" ? (
+                      {theme11.direction === 'rtl' ? (
                         <KeyboardArrowLeft />
                       ) : (
                         <KeyboardArrowRight />
@@ -1564,11 +1564,11 @@ export default function SteppersExamplesPage() {
                   }
                   backButton={
                     <Button
-                      size="small"
+                      size='small'
                       onClick={handleBack11}
                       disabled={activeStep11 === 0}
                     >
-                      {theme11.direction === "rtl" ? (
+                      {theme11.direction === 'rtl' ? (
                         <KeyboardArrowRight />
                       ) : (
                         <KeyboardArrowLeft />

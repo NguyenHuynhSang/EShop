@@ -1,12 +1,12 @@
 /* eslint-disable no-func-assign */
 /* eslint-disable no-undef */
 /* eslint-disable no-restricted-imports */
-import React from "react";
-import PropTypes from "prop-types";
-import clsx from "clsx";
-import Notice from "../../../../partials/content/Notice";
-import CodeExample from "../../../../partials/content/CodeExample";
-import { makeStyles } from "@material-ui/core/styles";
+import React from 'react';
+import PropTypes from 'prop-types';
+import clsx from 'clsx';
+import Notice from '../../../../partials/content/Notice';
+import CodeExample from '../../../../partials/content/CodeExample';
+import { makeStyles } from '@material-ui/core/styles';
 import {
   Button,
   Snackbar,
@@ -15,19 +15,19 @@ import {
   Fade,
   Slide,
   Grow,
-} from "@material-ui/core";
-import CloseIcon from "@material-ui/icons/Close";
-import WarningIcon from "@material-ui/icons/Warning";
-import CheckCircleIcon from "@material-ui/icons/CheckCircle";
-import ErrorIcon from "@material-ui/icons/Error";
-import InfoIcon from "@material-ui/icons/Info";
-import { amber, green } from "@material-ui/core/colors";
+} from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
+import WarningIcon from '@material-ui/icons/Warning';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import ErrorIcon from '@material-ui/icons/Error';
+import InfoIcon from '@material-ui/icons/Info';
+import { amber, green } from '@material-ui/core/colors';
 
 // Example 1
 const useStyles1 = makeStyles(theme => ({
   close: {
-    padding: theme.spacing(0.5)
-  }
+    padding: theme.spacing(0.5),
+  },
 }));
 
 // Example 2
@@ -35,33 +35,33 @@ const variantIcon = {
   success: CheckCircleIcon,
   warning: WarningIcon,
   error: ErrorIcon,
-  info: InfoIcon
+  info: InfoIcon,
 };
 
 const useStyles21 = makeStyles(theme => ({
   success: {
-    backgroundColor: green[600]
+    backgroundColor: green[600],
   },
   error: {
-    backgroundColor: theme.palette.error.dark
+    backgroundColor: theme.palette.error.dark,
   },
   info: {
-    backgroundColor: theme.palette.primary.main
+    backgroundColor: theme.palette.primary.main,
   },
   warning: {
-    backgroundColor: amber[700]
+    backgroundColor: amber[700],
   },
   icon: {
-    fontSize: 20
+    fontSize: 20,
   },
   iconVariant: {
     opacity: 0.9,
-    marginRight: theme.spacing(1)
+    marginRight: theme.spacing(1),
   },
   message: {
-    display: "flex",
-    alignItems: "center"
-  }
+    display: 'flex',
+    alignItems: 'center',
+  },
 }));
 
 function MySnackbarContentWrapper2(props) {
@@ -72,22 +72,22 @@ function MySnackbarContentWrapper2(props) {
   return (
     <SnackbarContent
       className={clsx(classes[variant], className)}
-      aria-describedby="client-snackbar"
+      aria-describedby='client-snackbar'
       message={
-        <span id="client-snackbar" className={classes.message}>
+        <span id='client-snackbar' className={classes.message}>
           <Icon className={clsx(classes.icon, classes.iconVariant)} />
           {message}
         </span>
       }
       action={[
         <IconButton
-          key="close"
-          aria-label="Close"
-          color="inherit"
+          key='close'
+          aria-label='Close'
+          color='inherit'
           onClick={onClose}
         >
           <CloseIcon className={classes.icon} />
-        </IconButton>
+        </IconButton>,
       ]}
       {...other}
     />
@@ -98,34 +98,34 @@ MySnackbarContentWrapper2.propTypes = {
   className: PropTypes.string,
   message: PropTypes.node,
   onClose: PropTypes.func,
-  variant: PropTypes.oneOf(["success", "warning", "error", "info"]).isRequired
+  variant: PropTypes.oneOf(['success', 'warning', 'error', 'info']).isRequired,
 };
 
 const useStyles22 = makeStyles(theme => ({
   margin: {
-    margin: theme.spacing(1)
-  }
+    margin: theme.spacing(1),
+  },
 }));
 
 // Example 4
 const action4 = (
-  <Button color="secondary" size="small">
+  <Button color='secondary' size='small'>
     lorem ipsum dolorem
   </Button>
 );
 
 const useStyles4 = makeStyles(theme => ({
   root: {
-    maxWidth: 600
+    maxWidth: 600,
   },
   snackbar: {
-    margin: theme.spacing(1)
-  }
+    margin: theme.spacing(1),
+  },
 }));
 
 // Example 7
 function SlideTransition7(props) {
-  return <Slide {...props} direction="up" />;
+  return <Slide {...props} direction='up' />;
 }
 
 function GrowTransition7(props) {
@@ -134,19 +134,19 @@ function GrowTransition7(props) {
 
 // Example 8
 function TransitionLeft(props) {
-  return <Slide {...props} direction="left" />;
+  return <Slide {...props} direction='left' />;
 }
 
 function TransitionUp(props) {
-  return <Slide {...props} direction="up" />;
+  return <Slide {...props} direction='up' />;
 }
 
 function TransitionRight(props) {
-  return <Slide {...props} direction="right" />;
+  return <Slide {...props} direction='right' />;
 }
 
 function TransitionDown(props) {
-  return <Slide {...props} direction="down" />;
+  return <Slide {...props} direction='down' />;
 }
 
 export default function SnackbarsExamplesPage() {
@@ -159,7 +159,7 @@ export default function SnackbarsExamplesPage() {
   }
 
   function handleClose1(event, reason) {
-    if (reason === "clickaway") {
+    if (reason === 'clickaway') {
       return;
     }
 
@@ -175,7 +175,7 @@ export default function SnackbarsExamplesPage() {
   }
 
   function handleClose2(event, reason) {
-    if (reason === "clickaway") {
+    if (reason === 'clickaway') {
       return;
     }
 
@@ -185,8 +185,8 @@ export default function SnackbarsExamplesPage() {
   // Example 3
   const [state, setState] = React.useState({
     open: false,
-    vertical: "top",
-    horizontal: "center"
+    vertical: 'top',
+    horizontal: 'center',
   });
 
   const { vertical, horizontal, open } = state;
@@ -205,26 +205,26 @@ export default function SnackbarsExamplesPage() {
   // Example 7
   const [state7, setState7] = React.useState({
     open7: false,
-    Transition7: Fade
+    Transition7: Fade,
   });
 
   const handleClick7 = Transition => () => {
     setState7({
       open7: true,
-      Transition7: Transition
+      Transition7: Transition,
     });
   };
 
   function handleClose7() {
     setState7({
       ...state7,
-      open7: false
+      open7: false,
     });
   }
 
   // Example 8
   const [state8, setState8] = React.useState({
-    open8: false
+    open8: false,
   });
 
   const handleClick8 = Transition => {
@@ -239,66 +239,66 @@ export default function SnackbarsExamplesPage() {
 
   return (
     <>
-      <Notice icon="flaticon-warning kt-font-primary">
+      <Notice icon='flaticon-warning kt-font-primary'>
         <p>
           Snackbars provide brief messages about app processes - typically at
           the bottom of the screen.
         </p>
         <p>
-          For more info please check the components's official{" "}
+          For more info please check the components's official{' '}
           <a
-            target="_blank"
-            className="kt-link"
-            rel="noopener noreferrer"
-            href="https://material-ui.com/components/snackbars/"
+            target='_blank'
+            className='kt-link'
+            rel='noopener noreferrer'
+            href='https://material-ui.com/components/snackbars/'
           >
             demos & documentation
           </a>
         </p>
       </Notice>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode1} beforeCodeTitle="Simple snackbars">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode1} beforeCodeTitle='Simple snackbars'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 A basic snackbar that aims to reproduce Google Keep's snackbar
                 behavior.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div>
                   <Button onClick={handleClick1}>Open simple snackbar</Button>
                   <Snackbar
                     anchorOrigin={{
-                      vertical: "bottom",
-                      horizontal: "left"
+                      vertical: 'bottom',
+                      horizontal: 'left',
                     }}
                     open={open1}
                     autoHideDuration={6000}
                     onClose={handleClose1}
                     ContentProps={{
-                      "aria-describedby": "message-id"
+                      'aria-describedby': 'message-id',
                     }}
-                    message={<span id="message-id">Note archived</span>}
+                    message={<span id='message-id'>Note archived</span>}
                     action={[
                       <Button
-                        key="undo"
-                        color="secondary"
-                        size="small"
+                        key='undo'
+                        color='secondary'
+                        size='small'
                         onClick={handleClose1}
                       >
                         UNDO
                       </Button>,
                       <IconButton
-                        key="close"
-                        aria-label="Close"
-                        color="inherit"
+                        key='close'
+                        aria-label='Close'
+                        color='inherit'
                         className={classes1.close}
                         onClick={handleClose1}
                       >
                         <CloseIcon />
-                      </IconButton>
+                      </IconButton>,
                     ]}
                   />
                 </div>
@@ -306,17 +306,17 @@ export default function SnackbarsExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode2} beforeCodeTitle="Customized snackbars">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode2} beforeCodeTitle='Customized snackbars'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 Here are some examples of customizing the component.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div>
                   <Button
-                    variant="outlined"
+                    variant='outlined'
                     className={classes2.margin}
                     onClick={handleClick2}
                   >
@@ -324,8 +324,8 @@ export default function SnackbarsExamplesPage() {
                   </Button>
                   <Snackbar
                     anchorOrigin={{
-                      vertical: "bottom",
-                      horizontal: "left"
+                      vertical: 'bottom',
+                      horizontal: 'left',
                     }}
                     open={open2}
                     autoHideDuration={6000}
@@ -333,29 +333,29 @@ export default function SnackbarsExamplesPage() {
                   >
                     <MySnackbarContentWrapper2
                       onClose={handleClose2}
-                      variant="success"
-                      message="This is a success message!"
+                      variant='success'
+                      message='This is a success message!'
                     />
                   </Snackbar>
                   <MySnackbarContentWrapper2
-                    variant="error"
+                    variant='error'
                     className={classes2.margin}
-                    message="This is an error message!"
+                    message='This is an error message!'
                   />
                   <MySnackbarContentWrapper2
-                    variant="warning"
+                    variant='warning'
                     className={classes2.margin}
-                    message="This is a warning message!"
+                    message='This is a warning message!'
                   />
                   <MySnackbarContentWrapper2
-                    variant="info"
+                    variant='info'
                     className={classes2.margin}
-                    message="This is an information message!"
+                    message='This is an information message!'
                   />
                   <MySnackbarContentWrapper2
-                    variant="success"
+                    variant='success'
                     className={classes2.margin}
-                    message="This is a success message!"
+                    message='This is a success message!'
                   />
                 </div>
               </div>
@@ -364,61 +364,61 @@ export default function SnackbarsExamplesPage() {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode3} beforeCodeTitle="Positioned snackbars">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode3} beforeCodeTitle='Positioned snackbars'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 There may be circumstances when the placement of the snackbar
                 needs to be more flexible.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div>
                   <Button
                     onClick={handleClick({
-                      vertical: "top",
-                      horizontal: "center"
+                      vertical: 'top',
+                      horizontal: 'center',
                     })}
                   >
                     Top-Center
                   </Button>
                   <Button
                     onClick={handleClick({
-                      vertical: "top",
-                      horizontal: "right"
+                      vertical: 'top',
+                      horizontal: 'right',
                     })}
                   >
                     Top-Right
                   </Button>
                   <Button
                     onClick={handleClick({
-                      vertical: "bottom",
-                      horizontal: "right"
+                      vertical: 'bottom',
+                      horizontal: 'right',
                     })}
                   >
                     Bottom-Right
                   </Button>
                   <Button
                     onClick={handleClick({
-                      vertical: "bottom",
-                      horizontal: "center"
+                      vertical: 'bottom',
+                      horizontal: 'center',
                     })}
                   >
                     Bottom-Center
                   </Button>
                   <Button
                     onClick={handleClick({
-                      vertical: "bottom",
-                      horizontal: "left"
+                      vertical: 'bottom',
+                      horizontal: 'left',
                     })}
                   >
                     Bottom-Left
                   </Button>
                   <Button
                     onClick={handleClick({
-                      vertical: "top",
-                      horizontal: "left"
+                      vertical: 'top',
+                      horizontal: 'left',
                     })}
                   >
                     Top-Left
@@ -429,46 +429,46 @@ export default function SnackbarsExamplesPage() {
                     open={open}
                     onClose={handleClose}
                     ContentProps={{
-                      "aria-describedby": "message-id"
+                      'aria-describedby': 'message-id',
                     }}
-                    message={<span id="message-id">I love snacks</span>}
+                    message={<span id='message-id'>I love snacks</span>}
                   />
                 </div>
               </div>
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode4} beforeCodeTitle="Message Length">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode4} beforeCodeTitle='Message Length'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 Some snackbars with varying message length.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes4.root}>
                   <SnackbarContent
                     className={classes4.snackbar}
-                    message="I love snacks."
+                    message='I love snacks.'
                     action={action4}
                   />
                   <SnackbarContent
                     className={classes4.snackbar}
                     message={
-                      "I love candy. I love cookies. I love cupcakes. \
-                      I love cheesecake. I love chocolate."
+                      'I love candy. I love cookies. I love cupcakes. \
+                      I love cheesecake. I love chocolate.'
                     }
                   />
                   <SnackbarContent
                     className={classes4.snackbar}
-                    message="I love candy. I love cookies. I love cupcakes."
+                    message='I love candy. I love cookies. I love cupcakes.'
                     action={action4}
                   />
                   <SnackbarContent
                     className={classes4.snackbar}
                     message={
-                      "I love candy. I love cookies. I love cupcakes. \
-                      I love cheesecake. I love chocolate."
+                      'I love candy. I love cookies. I love cupcakes. \
+                      I love cheesecake. I love chocolate.'
                     }
                     action={action4}
                   />
@@ -479,16 +479,16 @@ export default function SnackbarsExamplesPage() {
         </div>
       </div>
 
-      <Notice className="notice__paragraph">Transitions</Notice>
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode7} beforeCodeTitle="Change Transition">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+      <Notice className='notice__paragraph'>Transitions</Notice>
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode7} beforeCodeTitle='Change Transition'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 Grow is the default transition but you can use a different one.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div>
                   <Button onClick={handleClick7(GrowTransition7)}>
                     Grow Transition
@@ -502,26 +502,26 @@ export default function SnackbarsExamplesPage() {
                     onClose={handleClose7}
                     TransitionComponent={state7.Transition7}
                     ContentProps={{
-                      "aria-describedby": "message-id"
+                      'aria-describedby': 'message-id',
                     }}
-                    message={<span id="message-id">I love snacks</span>}
+                    message={<span id='message-id'>I love snacks</span>}
                   />
                 </div>
               </div>
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
+        <div className='col-md-6'>
           <CodeExample
             jsCode={jsCode8}
-            beforeCodeTitle="Control Slide direction"
+            beforeCodeTitle='Control Slide direction'
           >
-            <div className="kt-section">
-              <span className="kt-section__sub">
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 You can change the direction of the Slide transition.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div>
                   <Button onClick={handleClick8(TransitionLeft)}>Right</Button>
                   <Button onClick={handleClick8(TransitionUp)}>Up</Button>
@@ -532,9 +532,9 @@ export default function SnackbarsExamplesPage() {
                     onClose={handleClose8}
                     TransitionComponent={state8.Transition}
                     ContentProps={{
-                      "aria-describedby": "message-id"
+                      'aria-describedby': 'message-id',
                     }}
-                    message={<span id="message-id">I love snacks</span>}
+                    message={<span id='message-id'>I love snacks</span>}
                   />
                 </div>
               </div>

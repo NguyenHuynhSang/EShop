@@ -1,15 +1,15 @@
 /* eslint-disable no-script-url,jsx-a11y/anchor-is-valid */
-import React from "react";
-import { connect } from "react-redux";
-import objectPath from "object-path";
-import { withRouter } from "react-router-dom";
-import { QuickActions } from "./quick-actions/QuickActions";
-import { LayoutContextConsumer } from "../LayoutContext";
-import Typography from "@material-ui/core/Typography";
-import Breadcrumbs from "@material-ui/core/Breadcrumbs";
-import Link from "@material-ui/core/Link";
-import { capitalize } from "lodash";
-import { ReactComponent as SortNum1Icon } from "../../../_metronic/layout/assets/layout-svg-icons/SortNum1.svg";
+import React from 'react';
+import { connect } from 'react-redux';
+import objectPath from 'object-path';
+import { withRouter } from 'react-router-dom';
+import { QuickActions } from './quick-actions/QuickActions';
+import { LayoutContextConsumer } from '../LayoutContext';
+import Typography from '@material-ui/core/Typography';
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import Link from '@material-ui/core/Link';
+import { capitalize } from 'lodash';
+import { ReactComponent as SortNum1Icon } from '../../../_metronic/layout/assets/layout-svg-icons/SortNum1.svg';
 
 class SubHeader extends React.Component {
   subheaderCssClasses = this.props.htmlClassService.classes.subheader;
@@ -18,19 +18,19 @@ class SubHeader extends React.Component {
 
   render() {
     const { pathname } = this.props.location;
-    const pathSegments = pathname.split("/").filter((p) => !!p);
+    const pathSegments = pathname.split('/').filter(p => !!p);
 
     return (
       <div
-        id="kt_subheader"
+        id='kt_subheader'
         className={`kt-subheader ${this.subheaderCssClasses} kt-grid__item`}
       >
         <div className={`kt-container ${this.subheaderContainerCssClasses}`}>
-          <div className="kt-subheader__main">
+          <div className='kt-subheader__main'>
             {this.props.subheaderMobileToggle && (
               <button
-                className="kt-subheader__mobile-toggle kt-subheader__mobile-toggle--left"
-                id="kt_subheader_mobile_toggle"
+                className='kt-subheader__mobile-toggle kt-subheader__mobile-toggle--left'
+                id='kt_subheader_mobile_toggle'
               >
                 <span />
               </button>
@@ -38,23 +38,23 @@ class SubHeader extends React.Component {
 
             <LayoutContextConsumer>
               {({ subheader: { title } }) => (
-                <h3 className="kt-subheader__title">{title}</h3>
+                <h3 className='kt-subheader__title'>{title}</h3>
               )}
             </LayoutContextConsumer>
 
-            <span className="kt-subheader__separator kt-subheader__separator--v" />
+            <span className='kt-subheader__separator kt-subheader__separator--v' />
 
-            <Breadcrumbs aria-label="Breadcrumb">
+            <Breadcrumbs aria-label='Breadcrumb'>
               {pathSegments.map((p, i) => {
                 return i === pathSegments.length - 1 ? (
-                  <Typography key={i} color="textPrimary">
+                  <Typography key={i} color='textPrimary'>
                     {capitalize(p)}
                   </Typography>
                 ) : (
                   <Link
                     key={i}
-                    color="inherit"
-                    href={"/" + pathSegments.slice(0, i + 1).join("/")}
+                    color='inherit'
+                    href={'/' + pathSegments.slice(0, i + 1).join('/')}
                   >
                     {capitalize(p)}
                   </Link>
@@ -71,11 +71,11 @@ class SubHeader extends React.Component {
             </a> */}
           </div>
 
-          <div className="kt-subheader__toolbar">
-            <div className="kt-subheader__wrapper">
-              <button type="button" className="btn kt-subheader__btn-primary">
+          <div className='kt-subheader__toolbar'>
+            <div className='kt-subheader__wrapper'>
+              <button type='button' className='btn kt-subheader__btn-primary'>
                 Actions &nbsp;
-                <SortNum1Icon className="kt-svg-icon kt-svg-icon--sm" />
+                <SortNum1Icon className='kt-svg-icon kt-svg-icon--sm' />
               </button>
               <QuickActions />
             </div>
@@ -86,12 +86,12 @@ class SubHeader extends React.Component {
   }
 }
 
-const mapStateToProps = (store) => ({
+const mapStateToProps = store => ({
   config: store.builder.layoutConfig,
   menuConfig: store.builder.menuConfig,
   subheaderMobileToggle: objectPath.get(
     store.builder.layoutConfig,
-    "subheader.mobile-toggle"
+    'subheader.mobile-toggle'
   ),
 });
 

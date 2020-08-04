@@ -1,14 +1,14 @@
-import React from "react";
+import React from 'react';
 import {
   Portlet,
   PortletBody,
-  PortletHeader
-} from "../../../partials/content/Portlet";
+  PortletHeader,
+} from '../../../partials/content/Portlet';
 
 export default function OverviewDocs() {
   return (
     <Portlet>
-      <PortletHeader title="Overview" />
+      <PortletHeader title='Overview' />
       <PortletBody>
         <p>
           React makes it painless to create interactive UIs. Design simple views
@@ -23,9 +23,9 @@ export default function OverviewDocs() {
           your app and keep state out of the DOM.
         </p>
 
-        <h5 id="files-structure">Files Structure</h5>
+        <h5 id='files-structure'>Files Structure</h5>
 
-        <table className="table">
+        <table className='table'>
           <thead>
             <tr>
               <th>Path</th>
@@ -47,7 +47,7 @@ export default function OverviewDocs() {
                 /<strong>_site</strong>
               </td>
               <td>
-                The build output copied to serve on local machine. Created by{" "}
+                The build output copied to serve on local machine. Created by{' '}
                 <code>yarn serve</code> command.
               </td>
             </tr>
@@ -66,11 +66,11 @@ export default function OverviewDocs() {
                 /<strong>public</strong>
               </td>
               <td>
-                Сontains the HTML file so you can tweak it, Change{" "}
-                <code>&lt;title&gt;</code>, insert additional{" "}
+                Сontains the HTML file so you can tweak it, Change{' '}
+                <code>&lt;title&gt;</code>, insert additional{' '}
                 <code>&lt;link&gt;</code> and <code>&lt;script&gt;</code> tags.
-                For more details check{" "}
-                <a href="https://facebook.github.io/create-react-app/docs/using-the-public-folder#docsNav">
+                For more details check{' '}
+                <a href='https://facebook.github.io/create-react-app/docs/using-the-public-folder#docsNav'>
                   official documentation
                 </a>
                 .
@@ -111,7 +111,7 @@ export default function OverviewDocs() {
                 /src/app/<strong>i18n</strong>
               </td>
               <td>
-                Used by <code>I18nProvider</code> to override{" "}
+                Used by <code>I18nProvider</code> to override{' '}
                 <code>react-intl</code> messages.
               </td>
             </tr>
@@ -132,7 +132,7 @@ export default function OverviewDocs() {
                 /src/app/<strong>store</strong>
               </td>
               <td>
-                Contains <code>redux</code> store configurations and it's{" "}
+                Contains <code>redux</code> store configurations and it's{' '}
                 <code>ducks</code>.
               </td>
             </tr>
@@ -152,7 +152,7 @@ export default function OverviewDocs() {
             <tr>
               <td>serve.json</td>
               <td>
-                Used by <code>serve-handler</code> runned by command{" "}
+                Used by <code>serve-handler</code> runned by command{' '}
                 <code>yarn serve</code>.
               </td>
             </tr>

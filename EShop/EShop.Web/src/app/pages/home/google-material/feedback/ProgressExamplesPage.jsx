@@ -1,144 +1,144 @@
 /* eslint-disable no-restricted-imports */
-import React from "react";
-import clsx from "clsx";
-import Notice from "../../../../partials/content/Notice";
-import CodeExample from "../../../../partials/content/CodeExample";
-import { makeStyles, withStyles, lighten } from "@material-ui/core/styles";
+import React from 'react';
+import clsx from 'clsx';
+import Notice from '../../../../partials/content/Notice';
+import CodeExample from '../../../../partials/content/CodeExample';
+import { makeStyles, withStyles, lighten } from '@material-ui/core/styles';
 import {
   CircularProgress,
   Fab,
   Button,
   LinearProgress,
   Fade,
-  Typography
-} from "@material-ui/core";
-import CheckIcon from "@material-ui/icons/Check";
-import SaveIcon from "@material-ui/icons/Save";
-import { green } from "@material-ui/core/colors";
+  Typography,
+} from '@material-ui/core';
+import CheckIcon from '@material-ui/icons/Check';
+import SaveIcon from '@material-ui/icons/Save';
+import { green } from '@material-ui/core/colors';
 
 // Example 1
 const useStyles1 = makeStyles(theme => ({
   progress: {
-    margin: theme.spacing(2)
-  }
+    margin: theme.spacing(2),
+  },
 }));
 
 // Example 2
 const useStyles2 = makeStyles(theme => ({
   root: {
-    display: "flex",
-    alignItems: "center"
+    display: 'flex',
+    alignItems: 'center',
   },
   wrapper: {
     margin: theme.spacing(1),
-    position: "relative"
+    position: 'relative',
   },
   buttonSuccess: {
     backgroundColor: green[500],
-    "&:hover": {
-      backgroundColor: green[700]
-    }
+    '&:hover': {
+      backgroundColor: green[700],
+    },
   },
   fabProgress: {
     color: green[500],
-    position: "absolute",
+    position: 'absolute',
     top: -6,
     left: -6,
-    zIndex: 1
+    zIndex: 1,
   },
   buttonProgress: {
     color: green[500],
-    position: "absolute",
-    top: "50%",
-    left: "50%",
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
     marginTop: -12,
-    marginLeft: -12
-  }
+    marginLeft: -12,
+  },
 }));
 
 // Example 3
 const useStyles3 = makeStyles(theme => ({
   progress: {
-    margin: theme.spacing(2)
-  }
+    margin: theme.spacing(2),
+  },
 }));
 
 // Example 4
 const useStyles4 = makeStyles(theme => ({
   progress: {
-    margin: theme.spacing(2)
-  }
+    margin: theme.spacing(2),
+  },
 }));
 
 // Example 5
 const useStyles5 = makeStyles({
   root: {
-    flexGrow: 1
-  }
+    flexGrow: 1,
+  },
 });
 
 // Example 6
 const useStyles6 = makeStyles({
   root: {
-    flexGrow: 1
-  }
+    flexGrow: 1,
+  },
 });
 
 // Example 7
 const useStyles7 = makeStyles({
   root: {
-    flexGrow: 1
-  }
+    flexGrow: 1,
+  },
 });
 
 // Example 8
 const useStyles8 = makeStyles({
   root: {
-    flexGrow: 1
-  }
+    flexGrow: 1,
+  },
 });
 
 // Example 9
 const ColorCircularProgress9 = withStyles({
   root: {
-    color: "#00695c"
-  }
+    color: '#00695c',
+  },
 })(CircularProgress);
 
 const ColorLinearProgress9 = withStyles({
   colorPrimary: {
-    backgroundColor: "#b2dfdb"
+    backgroundColor: '#b2dfdb',
   },
   barColorPrimary: {
-    backgroundColor: "#00695c"
-  }
+    backgroundColor: '#00695c',
+  },
 })(LinearProgress);
 
 const BorderLinearProgress9 = withStyles({
   root: {
     height: 10,
-    backgroundColor: lighten("#ff6c5c", 0.5)
+    backgroundColor: lighten('#ff6c5c', 0.5),
   },
   bar: {
     borderRadius: 20,
-    backgroundColor: "#ff6c5c"
-  }
+    backgroundColor: '#ff6c5c',
+  },
 })(LinearProgress);
 
 // Inspired by the Facebook spinners.
 const useStylesFacebook9 = makeStyles({
   root: {
-    position: "relative"
+    position: 'relative',
   },
   top: {
-    color: "#eef3fd"
+    color: '#eef3fd',
   },
   bottom: {
-    color: "#6798e5",
-    animationDuration: "550ms",
-    position: "absolute",
-    left: 0
-  }
+    color: '#6798e5',
+    animationDuration: '550ms',
+    position: 'absolute',
+    left: 0,
+  },
 });
 
 function FacebookProgress9(props) {
@@ -147,7 +147,7 @@ function FacebookProgress9(props) {
   return (
     <div className={classes.root}>
       <CircularProgress
-        variant="determinate"
+        variant='determinate'
         value={100}
         className={classes.top}
         size={24}
@@ -155,7 +155,7 @@ function FacebookProgress9(props) {
         {...props}
       />
       <CircularProgress
-        variant="indeterminate"
+        variant='indeterminate'
         disableShrink
         className={classes.bottom}
         size={24}
@@ -168,26 +168,26 @@ function FacebookProgress9(props) {
 
 const useStyles9 = makeStyles(theme => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   margin: {
-    margin: theme.spacing(1)
-  }
+    margin: theme.spacing(1),
+  },
 }));
 
 // Example 10
 const useStyles10 = makeStyles(theme => ({
   root: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center"
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
   button: {
-    margin: theme.spacing(2)
+    margin: theme.spacing(2),
   },
   placeholder: {
-    height: 40
-  }
+    height: 40,
+  },
 }));
 
 export default function ProgressExamplesPage() {
@@ -201,7 +201,7 @@ export default function ProgressExamplesPage() {
   const timer2 = React.useRef();
 
   const buttonClassname2 = clsx({
-    [classes2.buttonSuccess]: success2
+    [classes2.buttonSuccess]: success2,
   });
 
   React.useEffect(() => {
@@ -318,7 +318,7 @@ export default function ProgressExamplesPage() {
   // Example 10
   const classes10 = useStyles10();
   const [loading10, setLoading10] = React.useState(false);
-  const [query10, setQuery10] = React.useState("idle");
+  const [query10, setQuery10] = React.useState('idle');
   const timerRef10 = React.useRef();
 
   React.useEffect(
@@ -335,74 +335,74 @@ export default function ProgressExamplesPage() {
   function handleClickQuery10() {
     clearTimeout(timerRef10.current);
 
-    if (query10 !== "idle") {
-      setQuery10("idle");
+    if (query10 !== 'idle') {
+      setQuery10('idle');
       return;
     }
 
-    setQuery10("progress");
+    setQuery10('progress');
     timerRef10.current = setTimeout(() => {
-      setQuery10("success");
+      setQuery10('success');
     }, 2000);
   }
 
   return (
     <>
-      <Notice icon="flaticon-warning kt-font-primary">
+      <Notice icon='flaticon-warning kt-font-primary'>
         <p>
           Progress indicators commonly known as spinners, express an unspecified
           wait time or display the length of a process. The animation works with
           CSS, not JavaScript
         </p>
         <p>
-          For more info please check the components's official{" "}
+          For more info please check the components's official{' '}
           <a
-            target="_blank"
-            className="kt-link"
-            rel="noopener noreferrer"
-            href="https://material-ui.com/components/progress/"
+            target='_blank'
+            className='kt-link'
+            rel='noopener noreferrer'
+            href='https://material-ui.com/components/progress/'
           >
             demos & documentation
           </a>
         </p>
       </Notice>
 
-      <Notice className="notice__paragraph">Circular</Notice>
-      <div className="row">
-        <div className="col-md-6">
+      <Notice className='notice__paragraph'>Circular</Notice>
+      <div className='row'>
+        <div className='col-md-6'>
           <CodeExample
             jsCode={jsCode1}
-            beforeCodeTitle="Circular Indeterminate"
+            beforeCodeTitle='Circular Indeterminate'
           >
-            <div className="kt-section">
-              <span className="kt-section__sub"></span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+            <div className='kt-section'>
+              <span className='kt-section__sub'></span>
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div>
                   <CircularProgress className={classes1.progress} />
                   <CircularProgress
                     className={classes1.progress}
-                    color="secondary"
+                    color='secondary'
                   />
                 </div>
               </div>
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
+        <div className='col-md-6'>
           <CodeExample
             jsCode={jsCode2}
-            beforeCodeTitle="Interactive Integration"
+            beforeCodeTitle='Interactive Integration'
           >
-            <div className="kt-section">
-              <span className="kt-section__sub"></span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+            <div className='kt-section'>
+              <span className='kt-section__sub'></span>
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes2.root}>
                   <div className={classes2.wrapper}>
                     <Fab
-                      aria-label="Save"
-                      color="primary"
+                      aria-label='Save'
+                      color='primary'
                       className={buttonClassname2}
                       onClick={handleButtonClick2}
                     >
@@ -417,8 +417,8 @@ export default function ProgressExamplesPage() {
                   </div>
                   <div className={classes2.wrapper}>
                     <Button
-                      variant="contained"
-                      color="primary"
+                      variant='contained'
+                      color='primary'
                       className={buttonClassname2}
                       disabled={loading2}
                       onClick={handleButtonClick2}
@@ -439,65 +439,65 @@ export default function ProgressExamplesPage() {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode3} beforeCodeTitle="Circular Determinate">
-            <div className="kt-section">
-              <span className="kt-section__sub"></span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode3} beforeCodeTitle='Circular Determinate'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'></span>
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div>
                   <CircularProgress
                     className={classes3.progress}
-                    variant="determinate"
+                    variant='determinate'
                     value={progress3}
                   />
                   <CircularProgress
                     className={classes3.progress}
-                    variant="determinate"
+                    variant='determinate'
                     value={progress3}
-                    color="secondary"
+                    color='secondary'
                   />
                 </div>
               </div>
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode4} beforeCodeTitle="Circular Static">
-            <div className="kt-section">
-              <span className="kt-section__sub"></span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode4} beforeCodeTitle='Circular Static'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'></span>
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div>
                   <CircularProgress
                     className={classes4.progress}
-                    variant="static"
+                    variant='static'
                     value={5}
                   />
                   <CircularProgress
                     className={classes4.progress}
-                    variant="static"
+                    variant='static'
                     value={25}
                   />
                   <CircularProgress
                     className={classes4.progress}
-                    variant="static"
+                    variant='static'
                     value={50}
                   />
                   <CircularProgress
                     className={classes4.progress}
-                    variant="static"
+                    variant='static'
                     value={75}
                   />
                   <CircularProgress
                     className={classes4.progress}
-                    variant="static"
+                    variant='static'
                     value={100}
                   />
                   <CircularProgress
                     className={classes4.progress}
-                    variant="static"
+                    variant='static'
                     value={completed4}
                   />
                 </div>
@@ -507,36 +507,36 @@ export default function ProgressExamplesPage() {
         </div>
       </div>
 
-      <Notice className="notice__paragraph">Linear</Notice>
+      <Notice className='notice__paragraph'>Linear</Notice>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode5} beforeCodeTitle="Linear Indeterminate">
-            <div className="kt-section">
-              <span className="kt-section__sub"></span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode5} beforeCodeTitle='Linear Indeterminate'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'></span>
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes5.root}>
                   <LinearProgress />
                   <br />
-                  <LinearProgress color="secondary" />
+                  <LinearProgress color='secondary' />
                 </div>
               </div>
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode6} beforeCodeTitle="Linear Determinate">
-            <div className="kt-section">
-              <span className="kt-section__sub"></span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode6} beforeCodeTitle='Linear Determinate'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'></span>
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes6.root}>
-                  <LinearProgress variant="determinate" value={completed6} />
+                  <LinearProgress variant='determinate' value={completed6} />
                   <br />
                   <LinearProgress
-                    color="secondary"
-                    variant="determinate"
+                    color='secondary'
+                    variant='determinate'
                     value={completed6}
                   />
                 </div>
@@ -546,23 +546,23 @@ export default function ProgressExamplesPage() {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode7} beforeCodeTitle="Linear Buffer">
-            <div className="kt-section">
-              <span className="kt-section__sub"></span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode7} beforeCodeTitle='Linear Buffer'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'></span>
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes7.root}>
                   <LinearProgress
-                    variant="buffer"
+                    variant='buffer'
                     value={completed7}
                     valueBuffer={buffer7}
                   />
                   <br />
                   <LinearProgress
-                    color="secondary"
-                    variant="buffer"
+                    color='secondary'
+                    variant='buffer'
                     value={completed7}
                     valueBuffer={buffer7}
                   />
@@ -571,16 +571,16 @@ export default function ProgressExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode8} beforeCodeTitle="Linear Query">
-            <div className="kt-section">
-              <span className="kt-section__sub"></span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode8} beforeCodeTitle='Linear Query'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'></span>
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes8.root}>
-                  <LinearProgress variant="query" />
+                  <LinearProgress variant='query' />
                   <br />
-                  <LinearProgress color="secondary" variant="query" />
+                  <LinearProgress color='secondary' variant='query' />
                 </div>
               </div>
             </div>
@@ -588,25 +588,25 @@ export default function ProgressExamplesPage() {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-6">
+      <div className='row'>
+        <div className='col-md-6'>
           <CodeExample
             jsCode={jsCode9}
-            beforeCodeTitle="Customized progress bars"
+            beforeCodeTitle='Customized progress bars'
           >
-            <div className="kt-section">
-              <span className="kt-section__sub">
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 Here are some examples of customizing the component.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes9.root}>
                   <ColorCircularProgress9 size={30} thickness={5} />
                   <ColorLinearProgress9 className={classes9.margin} />
                   <BorderLinearProgress9
                     className={classes9.margin}
-                    variant="determinate"
-                    color="secondary"
+                    variant='determinate'
+                    color='secondary'
                     value={50}
                   />
                   <FacebookProgress9 />
@@ -615,10 +615,10 @@ export default function ProgressExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode10} beforeCodeTitle="Delaying appearance">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode10} beforeCodeTitle='Delaying appearance'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 There are 3 important limits to know around response time. The
                 ripple effect of the <code>ButtonBase</code> component ensures
                 that the user feels that the system is reacting instantaneously.
@@ -626,14 +626,14 @@ export default function ProgressExamplesPage() {
                 than 0.1 but less than 1.0 second. After 1.0 second, you can
                 display a loader to keep user's flow of thought uninterrupted.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <div className={classes10.root}>
                   <div className={classes10.placeholder}>
                     <Fade
                       in={loading10}
                       style={{
-                        transitionDelay: loading10 ? "800ms" : "0ms"
+                        transitionDelay: loading10 ? '800ms' : '0ms',
                       }}
                       unmountOnExit
                     >
@@ -644,17 +644,17 @@ export default function ProgressExamplesPage() {
                     onClick={handleClickLoading10}
                     className={classes10.button}
                   >
-                    {loading10 ? "Stop loading" : "Loading"}
+                    {loading10 ? 'Stop loading' : 'Loading'}
                   </Button>
                   <div className={classes10.placeholder}>
-                    {query10 === "success" ? (
+                    {query10 === 'success' ? (
                       <Typography>Success!</Typography>
                     ) : (
                       <Fade
-                        in={query10 === "progress"}
+                        in={query10 === 'progress'}
                         style={{
                           transitionDelay:
-                            query10 === "progress" ? "800ms" : "0ms"
+                            query10 === 'progress' ? '800ms' : '0ms',
                         }}
                         unmountOnExit
                       >
@@ -666,7 +666,7 @@ export default function ProgressExamplesPage() {
                     onClick={handleClickQuery10}
                     className={classes10.button}
                   >
-                    {query10 !== "idle" ? "Reset" : "Simulate a load"}
+                    {query10 !== 'idle' ? 'Reset' : 'Simulate a load'}
                   </Button>
                 </div>
               </div>
@@ -675,22 +675,22 @@ export default function ProgressExamplesPage() {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode11} beforeCodeTitle="Limitations">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode11} beforeCodeTitle='Limitations'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 Under heavy load, you might lose the stroke dash animation or
                 see random CircularProgress ring widths. You should run
                 processor intensive operations in a web worker or by batch in
                 order not to block the main rendering thread.
               </span>
-              <p className="kt-section__sub">
-                When it's not possible, you can leverage the{" "}
+              <p className='kt-section__sub'>
+                When it's not possible, you can leverage the{' '}
                 <code>disableShrink</code> property to mitigate the issue.
               </p>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <CircularProgress disableShrink />
               </div>
             </div>

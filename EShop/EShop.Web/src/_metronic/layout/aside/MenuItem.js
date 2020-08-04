@@ -1,20 +1,20 @@
-import React from "react";
-import objectPath from "object-path";
-import { Link } from "react-router-dom";
-import MenuItemText from "./MenuItemText";
-import MenuSubmenu from "./MenuSubmenu";
-import clsx from "clsx";
+import React from 'react';
+import objectPath from 'object-path';
+import { Link } from 'react-router-dom';
+import MenuItemText from './MenuItemText';
+import MenuSubmenu from './MenuSubmenu';
+import clsx from 'clsx';
 
 export default class MenuItem extends React.Component {
   asideLeftLIRef = React.createRef();
-  isDropdown =  document.body.classList.contains("kt-aside-menu--dropdown");
+  isDropdown = document.body.classList.contains('kt-aside-menu--dropdown');
 
   submenuToggle =
-    this.props.item.toggle === "click"
-      ? "click"
-      : objectPath.get(this.props.item, "submenu.type") === "tabs"
-      ? "tabs"
-      : "hover";
+    this.props.item.toggle === 'click'
+      ? 'click'
+      : objectPath.get(this.props.item, 'submenu.type') === 'tabs'
+      ? 'tabs'
+      : 'hover';
 
   /**
    * Use for fixed left aside menu, to show menu on mouseenter event.
@@ -26,9 +26,9 @@ export default class MenuItem extends React.Component {
     }
 
     if (this.props.item.submenu) {
-      this.asideLeftLIRef.current.classList.add("kt-menu__item--hover");
+      this.asideLeftLIRef.current.classList.add('kt-menu__item--hover');
       this.asideLeftLIRef.current.setAttribute(
-        "data-ktmenu-submenu-toggle",
+        'data-ktmenu-submenu-toggle',
         this.submenuToggle
       );
     }
@@ -43,9 +43,9 @@ export default class MenuItem extends React.Component {
       return;
     }
 
-    if (this.props.item.submenu && this.submenuToggle === "hover") {
-      this.asideLeftLIRef.current.classList.remove("kt-menu__item--hover");
-      this.asideLeftLIRef.current.removeAttribute("data-ktmenu-submenu-toggle");
+    if (this.props.item.submenu && this.submenuToggle === 'hover') {
+      this.asideLeftLIRef.current.classList.remove('kt-menu__item--hover');
+      this.asideLeftLIRef.current.removeAttribute('data-ktmenu-submenu-toggle');
     }
   };
 
@@ -78,43 +78,43 @@ export default class MenuItem extends React.Component {
     return (
       <li
         ref={this.asideLeftLIRef}
-        aria-haspopup="true"
-        data-placement="right"
+        aria-haspopup='true'
+        data-placement='right'
         data-ktmenu-submenu-mode={item.mode}
         onMouseEnter={this.mouseEnter}
         onMouseLeave={this.mouseLeave}
         className={clsx(
-          "kt-menu__item",
+          'kt-menu__item',
           {
-            "kt-menu__item--submenu": item.submenu,
-            "kt-menu__item--open kt-menu__item--here": isActive && item.submenu,
-            "kt-menu__item--active kt-menu__item--here":
+            'kt-menu__item--submenu': item.submenu,
+            'kt-menu__item--open kt-menu__item--here': isActive && item.submenu,
+            'kt-menu__item--active kt-menu__item--here':
               isActive && !item.submenu,
-            "kt-menu__item--icon-only": item["icon-only"]
+            'kt-menu__item--icon-only': item['icon-only'],
           },
-          item["custom-class"]
+          item['custom-class']
         )}
-        data-ktmenu-dropdown-toggle-class={item["dropdown-toggle-class"]}
+        data-ktmenu-dropdown-toggle-class={item['dropdown-toggle-class']}
       >
         {!item.submenu && (
-          <Link to={`/${item.page}`} className="kt-menu__link kt-menu__toggle">
+          <Link to={`/${item.page}`} className='kt-menu__link kt-menu__toggle'>
             <MenuItemText item={item} parentItem={parentItem} />
           </Link>
         )}
 
         {item.submenu && (
           // eslint-disable-next-line jsx-a11y/anchor-is-valid
-          <a className="kt-menu__link kt-menu__toggle">
+          <a className='kt-menu__link kt-menu__toggle'>
             <MenuItemText item={item} parentItem={parentItem} />
           </a>
         )}
 
         {item.submenu && (
-          <div className="kt-menu__submenu">
-            <span className="kt-menu__arrow" />
+          <div className='kt-menu__submenu'>
+            <span className='kt-menu__arrow' />
 
-            {item["custom-class"] === "kt-menu__item--submenu-fullheight" && (
-              <div className="kt-menu__wrapper">
+            {item['custom-class'] === 'kt-menu__item--submenu-fullheight' && (
+              <div className='kt-menu__wrapper'>
                 <MenuSubmenu
                   item={item}
                   parentItem={item}
@@ -123,7 +123,7 @@ export default class MenuItem extends React.Component {
               </div>
             )}
 
-            {item["custom-class"] !== "kt-menu__item--submenu-fullheight" && (
+            {item['custom-class'] !== 'kt-menu__item--submenu-fullheight' && (
               <MenuSubmenu
                 item={item}
                 parentItem={item}

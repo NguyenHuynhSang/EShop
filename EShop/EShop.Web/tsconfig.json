@@ -17,6 +17,9 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    // needed when use typed-redux-saga package
+    // https://stackoverflow.com/a/49221814/9449426
+    "downlevelIteration": true,
     "noEmit": true,
     "jsx": "react"
   },

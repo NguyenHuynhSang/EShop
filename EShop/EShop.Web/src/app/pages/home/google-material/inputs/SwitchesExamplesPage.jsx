@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-restricted-imports */
-import React from "react";
+import React from 'react';
 import {
   Switch,
   FormGroup,
@@ -9,10 +9,10 @@ import {
   FormLabel,
   FormHelperText,
   Grid,
-  Typography
-} from "@material-ui/core";
-import Notice from "../../../../partials/content/Notice";
-import CodeExample from "../../../../partials/content/CodeExample";
+  Typography,
+} from '@material-ui/core';
+import Notice from '../../../../partials/content/Notice';
+import CodeExample from '../../../../partials/content/CodeExample';
 import { withStyles } from '@material-ui/core/styles';
 import { purple } from '@material-ui/core/colors';
 
@@ -122,7 +122,7 @@ export default function SwitchesExamplesPage() {
   // Example 1
   const [state, setState] = React.useState({
     checkedA: true,
-    checkedB: true
+    checkedB: true,
   });
 
   const handleChange = name => event => {
@@ -132,7 +132,7 @@ export default function SwitchesExamplesPage() {
   // Example 2
   const [state2, setState2] = React.useState({
     checkedA: true,
-    checkedB: true
+    checkedB: true,
   });
 
   const handleChange2 = name => event => {
@@ -143,7 +143,7 @@ export default function SwitchesExamplesPage() {
   const [state3, setState3] = React.useState({
     gilad: true,
     jason: false,
-    antoine: true
+    antoine: true,
   });
 
   const handleChange3 = name => event => {
@@ -170,144 +170,144 @@ export default function SwitchesExamplesPage() {
 
   return (
     <>
-      <Notice icon="flaticon-warning kt-font-primary">
+      <Notice icon='flaticon-warning kt-font-primary'>
         <p>Switches toggle the state of a single setting on or off.</p>
         <p>
-          For more info please check the components's official{" "}
+          For more info please check the components's official{' '}
           <a
-            target="_blank"
-            className="kt-link"
-            rel="noopener noreferrer"
-            href="https://material-ui.com/components/switches/"
+            target='_blank'
+            className='kt-link'
+            rel='noopener noreferrer'
+            href='https://material-ui.com/components/switches/'
           >
             demos & documentation
           </a>
         </p>
       </Notice>
 
-      <CodeExample jsCode={jsCode1} beforeCodeTitle="Swithces">
-        <div className="kt-section">
-          <span className="kt-section__sub">
+      <CodeExample jsCode={jsCode1} beforeCodeTitle='Swithces'>
+        <div className='kt-section'>
+          <span className='kt-section__sub'>
             <code>Switches</code> toggle the state of a single setting on or
             off.
           </span>
-          <p className="kt-section__sub">
+          <p className='kt-section__sub'>
             Switches are the preferred way to adjust settings on mobile. The
             option that the switch controls, as well as the state it’s in,
             should be made clear from the corresponding inline label.
           </p>
-          <div className="kt-separator kt-separator--dashed"></div>
-          <div className="kt-section__content">
+          <div className='kt-separator kt-separator--dashed'></div>
+          <div className='kt-section__content'>
             <div>
               <Switch
                 checked={state.checkedA}
-                onChange={handleChange("checkedA")}
-                value="checkedA"
-                inputProps={{ "aria-label": "secondary checkbox" }}
+                onChange={handleChange('checkedA')}
+                value='checkedA'
+                inputProps={{ 'aria-label': 'secondary checkbox' }}
               />
               <Switch
                 checked={state.checkedB}
-                onChange={handleChange("checkedB")}
-                value="checkedB"
-                color="primary"
-                inputProps={{ "aria-label": "primary checkbox" }}
+                onChange={handleChange('checkedB')}
+                value='checkedB'
+                color='primary'
+                inputProps={{ 'aria-label': 'primary checkbox' }}
               />
               <Switch
-                value="checkedC"
-                inputProps={{ "aria-label": "primary checkbox" }}
+                value='checkedC'
+                inputProps={{ 'aria-label': 'primary checkbox' }}
               />
               <Switch
                 disabled
-                value="checkedD"
-                inputProps={{ "aria-label": "disabled checkbox" }}
+                value='checkedD'
+                inputProps={{ 'aria-label': 'disabled checkbox' }}
               />
               <Switch
                 disabled
                 checked
-                value="checkedE"
-                inputProps={{ "aria-label": "primary checkbox" }}
+                value='checkedE'
+                inputProps={{ 'aria-label': 'primary checkbox' }}
               />
               <Switch
                 defaultChecked
-                value="checkedF"
-                color="default"
-                inputProps={{ "aria-label": "checkbox with default color" }}
+                value='checkedF'
+                color='default'
+                inputProps={{ 'aria-label': 'checkbox with default color' }}
               />
             </div>
           </div>
         </div>
       </CodeExample>
 
-      <div className="row">
-        <div className="col-md-6">
+      <div className='row'>
+        <div className='col-md-6'>
           <CodeExample
             jsCode={jsCode2}
-            beforeCodeTitle="Switches with FormControlLabel"
+            beforeCodeTitle='Switches with FormControlLabel'
           >
-            <div className="kt-section">
-              <span className="kt-section__sub">
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 <code>Switch</code> can also be used with a label description
                 thanks to the <code>FormControlLabel</code> component.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <FormGroup row>
                   <FormControlLabel
                     control={
                       <Switch
                         checked={state2.checkedA}
-                        onChange={handleChange2("checkedA")}
-                        value="checkedA"
+                        onChange={handleChange2('checkedA')}
+                        value='checkedA'
                       />
                     }
-                    label="Secondary"
+                    label='Secondary'
                   />
                   <FormControlLabel
                     control={
                       <Switch
                         checked={state2.checkedB}
-                        onChange={handleChange2("checkedB")}
-                        value="checkedB"
-                        color="primary"
+                        onChange={handleChange2('checkedB')}
+                        value='checkedB'
+                        color='primary'
                       />
                     }
-                    label="Primary"
+                    label='Primary'
                   />
                   <FormControlLabel
-                    control={<Switch value="checkedC" />}
-                    label="Uncontrolled"
-                  />
-                  <FormControlLabel
-                    disabled
-                    control={<Switch value="checkedD" />}
-                    label="Disabled"
+                    control={<Switch value='checkedC' />}
+                    label='Uncontrolled'
                   />
                   <FormControlLabel
                     disabled
-                    control={<Switch checked value="checkedE" />}
-                    label="Disabled"
+                    control={<Switch value='checkedD' />}
+                    label='Disabled'
+                  />
+                  <FormControlLabel
+                    disabled
+                    control={<Switch checked value='checkedE' />}
+                    label='Disabled'
                   />
                 </FormGroup>
               </div>
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
+        <div className='col-md-6'>
           <CodeExample
             jsCode={jsCode3}
-            beforeCodeTitle="Switches with FormGroup"
+            beforeCodeTitle='Switches with FormGroup'
           >
-            <div className="kt-section">
-              <span className="kt-section__sub">
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 <code>FormGroup</code> is a helpful wrapper used to group
                 selection controls components that provides an easier API.
-                However, we encourage you to use a <code>checkbox</code>{" "}
+                However, we encourage you to use a <code>checkbox</code>{' '}
                 instead.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
-                <FormControl component="fieldset">
-                  <FormLabel component="legend">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
+                <FormControl component='fieldset'>
+                  <FormLabel component='legend'>
                     Assign responsibility
                   </FormLabel>
                   <FormGroup>
@@ -315,31 +315,31 @@ export default function SwitchesExamplesPage() {
                       control={
                         <Switch
                           checked={state3.gilad}
-                          onChange={handleChange3("gilad")}
-                          value="gilad"
+                          onChange={handleChange3('gilad')}
+                          value='gilad'
                         />
                       }
-                      label="Gilad Gray"
+                      label='Gilad Gray'
                     />
                     <FormControlLabel
                       control={
                         <Switch
                           checked={state3.jason}
-                          onChange={handleChange3("jason")}
-                          value="jason"
+                          onChange={handleChange3('jason')}
+                          value='jason'
                         />
                       }
-                      label="Jason Killian"
+                      label='Jason Killian'
                     />
                     <FormControlLabel
                       control={
                         <Switch
                           checked={state3.antoine}
-                          onChange={handleChange3("antoine")}
-                          value="antoine"
+                          onChange={handleChange3('antoine')}
+                          value='antoine'
                         />
                       }
-                      label="Antoine Llorca"
+                      label='Antoine Llorca'
                     />
                   </FormGroup>
                   <FormHelperText>Be careful</FormHelperText>
@@ -350,50 +350,50 @@ export default function SwitchesExamplesPage() {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode4} beforeCodeTitle="Customized switches">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+      <div className='row'>
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode4} beforeCodeTitle='Customized switches'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 Here are some examples of customizing the component. You can
                 learn more about this in the overrides documentation page.
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
                 <FormGroup>
                   <FormControlLabel
                     control={
                       <PurpleSwitch
                         checked={state4.checkedA}
-                        onChange={handleChange4("checkedA")}
-                        value="checkedA"
+                        onChange={handleChange4('checkedA')}
+                        value='checkedA'
                       />
                     }
-                    label="Custom color"
+                    label='Custom color'
                   />
                   <FormControlLabel
                     control={
                       <IOSSwitch
                         checked={state4.checkedB}
-                        onChange={handleChange4("checkedB")}
-                        value="checkedB"
+                        onChange={handleChange4('checkedB')}
+                        value='checkedB'
                       />
                     }
-                    label="iOS style"
+                    label='iOS style'
                   />
-                  <Typography component="div">
+                  <Typography component='div'>
                     <Grid
-                      component="label"
+                      component='label'
                       container
-                      alignItems="center"
+                      alignItems='center'
                       spacing={1}
                     >
                       <Grid item>Off</Grid>
                       <Grid item>
                         <AntSwitch
                           checked={state4.checkedC}
-                          onChange={handleChange4("checkedC")}
-                          value="checkedC"
+                          onChange={handleChange4('checkedC')}
+                          value='checkedC'
                         />
                       </Grid>
                       <Grid item>On</Grid>
@@ -404,46 +404,46 @@ export default function SwitchesExamplesPage() {
             </div>
           </CodeExample>
         </div>
-        <div className="col-md-6">
-          <CodeExample jsCode={jsCode5} beforeCodeTitle="Label placement">
-            <div className="kt-section">
-              <span className="kt-section__sub">
+        <div className='col-md-6'>
+          <CodeExample jsCode={jsCode5} beforeCodeTitle='Label placement'>
+            <div className='kt-section'>
+              <span className='kt-section__sub'>
                 You can change the placement of the label:
               </span>
-              <div className="kt-separator kt-separator--dashed"></div>
-              <div className="kt-section__content">
-                <FormControl component="fieldset">
-                  <FormLabel component="legend">labelPlacement</FormLabel>
+              <div className='kt-separator kt-separator--dashed'></div>
+              <div className='kt-section__content'>
+                <FormControl component='fieldset'>
+                  <FormLabel component='legend'>labelPlacement</FormLabel>
                   <FormGroup
-                    aria-label="position"
-                    name="position"
+                    aria-label='position'
+                    name='position'
                     value={value}
                     onChange={handleChange5}
                     row
                   >
                     <FormControlLabel
-                      value="top"
-                      control={<Switch color="primary" />}
-                      label="Top"
-                      labelPlacement="top"
+                      value='top'
+                      control={<Switch color='primary' />}
+                      label='Top'
+                      labelPlacement='top'
                     />
                     <FormControlLabel
-                      value="start"
-                      control={<Switch color="primary" />}
-                      label="Start"
-                      labelPlacement="start"
+                      value='start'
+                      control={<Switch color='primary' />}
+                      label='Start'
+                      labelPlacement='start'
                     />
                     <FormControlLabel
-                      value="bottom"
-                      control={<Switch color="primary" />}
-                      label="Bottom"
-                      labelPlacement="bottom"
+                      value='bottom'
+                      control={<Switch color='primary' />}
+                      label='Bottom'
+                      labelPlacement='bottom'
                     />
                     <FormControlLabel
-                      value="end"
-                      control={<Switch color="primary" />}
-                      label="End"
-                      labelPlacement="end"
+                      value='end'
+                      control={<Switch color='primary' />}
+                      label='End'
+                      labelPlacement='end'
                     />
                   </FormGroup>
                 </FormControl>
