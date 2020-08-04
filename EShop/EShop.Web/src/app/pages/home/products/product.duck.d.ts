@@ -4,7 +4,7 @@ import Currency from '../base/currency/currency.model';
 import { OptionType } from '../../../widgets/Select';
 
 export type ColumnSettings = {
-  field: string; // field is required here instead of optional
+  colId: string; // required here instead of optional
   alwaysVisible?: boolean;
 } & ColDef;
 

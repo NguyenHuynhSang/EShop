@@ -7,8 +7,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
-import { useDispatch, useSelector, shallowEqual } from '../../../store/store';
-import { actions, ColumnSettings } from './product.duck';
+import { useSelector, shallowEqual } from '../../../store/store';
+import { ColumnSettings } from './product.duck';
 import { colDefs } from './useColumnDefs';
 import immer from 'immer';
 import { useGridApi } from '../helpers/agGridHelpers';
@@ -40,7 +40,7 @@ export default function ColumnDisplayDialog(props: ColumnDisplayDialogProps) {
 
     setDraft(
       immer(draft, _draft => {
-        const column = _draft.find(c => c.field === name);
+        const column = _draft.find(c => c.colId === name);
 
         if (column) {
           column.hide = hide;
@@ -52,7 +52,7 @@ export default function ColumnDisplayDialog(props: ColumnDisplayDialogProps) {
 
   const onSave = () => {
     // change colDef externally, need to notify ag-grid to update the changes
-    api.column?.setColumnState(draft.map(c => ({ ...c, colId: c.field })));
+    api.column?.setColumnState(draft);
     handleClose();
   };
 
@@ -64,15 +64,15 @@ export default function ColumnDisplayDialog(props: ColumnDisplayDialogProps) {
           {draft.map(c => {
             return (
               <FormControlLabel
-                key={c.field}
+                key={c.colId}
                 disabled={c.alwaysVisible || false}
                 control={
                   <Checkbox
                     checked={!c.hide}
-                    onChange={onChangeCheckbox(c.field)}
+                    onChange={onChangeCheckbox(c.colId)}
                   />
                 }
-                label={colDefs[c.field].headerName}
+                label={colDefs[c.colId].headerName}
               />
             );
           })}

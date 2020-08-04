@@ -14,26 +14,27 @@ import { ProductCategory, ProductResult } from './product.model';
 import Currency from '../base/currency/currency.model';
 import { actions as errorActions } from '../base/errors/error.duck';
 import { put, takeLatest, select, call } from '../../../store/saga';
+import { idToField } from '../helpers/agGridHelpers';
 
 export * from './product.duck.d';
 
 const columnSettings: ColumnSettings[] = [
-  { field: 'id', alwaysVisible: true, pinned: 'left' },
-  { field: 'name', pinned: 'left' },
-  { field: 'image', hide: true },
-  { field: 'description', hide: true },
-  { field: 'content', hide: true },
-  { field: 'weight', hide: true },
-  { field: 'category' },
-  { field: 'numberOfVersions' },
-  { field: 'price' },
-  { field: 'originalPrice', hide: true },
-  { field: 'discountPrice', hide: true },
-  { field: 'quantity' },
-  { field: 'display' },
-  { field: 'deliver', hide: true },
-  { field: 'applyPromotion', hide: true },
-  { field: 'action', alwaysVisible: true },
+  { colId: 'id', alwaysVisible: true, pinned: 'left' },
+  { colId: 'name', pinned: 'left' },
+  { colId: 'image', hide: true },
+  { colId: 'description', hide: true },
+  { colId: 'content', hide: true },
+  { colId: 'weight', hide: true },
+  { colId: 'category' },
+  { colId: 'numberOfVersions' },
+  { colId: 'price' },
+  { colId: 'originalPrice', hide: true },
+  { colId: 'discountPrice', hide: true },
+  { colId: 'quantity' },
+  { colId: 'display' },
+  { colId: 'deliver', hide: true },
+  { colId: 'applyPromotion', hide: true },
+  { colId: 'action', alwaysVisible: true },
 ];
 
 const initialState: ProductState = {
@@ -62,10 +63,10 @@ const slice = createSlice({
   name: 'product',
   reducers: {
     setColumnSettings(state, action: PayloadAction<ColumnState[]>) {
-      // TODO: convert field to colId
+      // undefined | null !== undefined. No thanks.
       state.columnSettings = action.payload.map(c => ({
         ...c,
-        field: c.colId,
+        colId: idToField(c.colId),
       })) as any;
     },
     setRowsSelected(state, action: PayloadAction<number>) {

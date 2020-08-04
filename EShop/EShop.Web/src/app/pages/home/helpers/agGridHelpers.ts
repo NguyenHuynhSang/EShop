@@ -50,9 +50,7 @@ export function useAgGrid(
       };
 
       params.api.addGlobalListener(globalCallback);
-      params.columnApi.setColumnState(
-        columnDefs.map(c => ({ ...c, colId: c.field }))
-      );
+      params.columnApi.setColumnState(columnDefs);
     },
     [columnDefs, globalCallback, name]
   );

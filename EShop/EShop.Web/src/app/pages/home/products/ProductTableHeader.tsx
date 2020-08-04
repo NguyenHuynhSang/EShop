@@ -56,7 +56,7 @@ const useSort = (colDef: ColDef): [SortMode, SortFunction] => {
 };
 const usePinStatus = (column?: string) =>
   useSelector(
-    state => state.products.columnSettings.find(c => c.field === column)?.pinned
+    state => state.products.columnSettings.find(c => c.colId === column)?.pinned
   );
 
 export function hasType(column: Column, type: string) {

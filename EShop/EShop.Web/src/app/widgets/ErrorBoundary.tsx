@@ -122,7 +122,7 @@ export default class ErrorBoundary extends React.Component<
     this.setState({ error, errorInfo });
 
     // TODO: log to reporting service
-    console.log('You have one job!', error, errorInfo);
+    // console.log('You have one job!', error, errorInfo);
     // You can also log error messages to an error reporting service here
   }
 

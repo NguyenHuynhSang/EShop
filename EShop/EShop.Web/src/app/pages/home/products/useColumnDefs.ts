@@ -81,9 +81,9 @@ export default function useColumnDefs(name: string) {
 
   React.useEffect(() => {
     colDefsRef.current = columnSettings.map(c => ({
-      ...colDefs[c.field],
+      ...colDefs[c.colId],
       ...c,
-      colId: c.field,
+      field: c.colId,
     }));
     // we only want to run once at startup to get the column settings from the last session
     // eslint-disable-next-line react-hooks/exhaustive-deps
