@@ -56,7 +56,7 @@ namespace EShop.Server.Service
             return _productRepository.Delete(product);
         }
 
-      
+
 
         public IEnumerable<ProductForListDto> GetAll(Params param)
         {
@@ -82,59 +82,29 @@ namespace EShop.Server.Service
             var productsReturn = query.Select(x => _mapper.Map<ProductForListDto>(x));
 
 
+            ;
             if (filterModel != null)
             {
 
-                if (!filterModel.SearchByMultiKeyword)
-                {
-                    if (!String.IsNullOrEmpty(filterModel.Name))
-                    {
-                        return ProductPropertyConverter(productsReturn.Where(x => x.Name.Contains(filterModel.Name))
-                            .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort), param);
-                    }
-                    else if (filterModel.ID != null)
-                    {
-                        return ProductPropertyConverter(productsReturn.Where(x => x.ID == filterModel.ID)
-                            .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort), param);
-                    }
-                    else if (filterModel.FromWeight != null && filterModel.ToWeight != null)
-                    {
-                        return ProductPropertyConverter(productsReturn.Where(x => x.Weight >= filterModel.FromWeight && x.Weight <= filterModel.ToWeight)
-                            .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort),param);
-                    }
-                    else if (filterModel.FromWeight == null && filterModel.ToWeight != null)
-                    {
-                        return ProductPropertyConverter(productsReturn.Where(x => x.Weight <= filterModel.ToWeight)
-                            .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort),param);
-                    }
-                    else if (filterModel.FromWeight != null && filterModel.ToWeight == null)
-                    {
-                        return ProductPropertyConverter(productsReturn.Where(x => x.Weight >= filterModel.FromWeight)
-                            .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort),param);
-                    }
-                    else if (filterModel.CatalogID != null)
-                    {
-                        return ProductPropertyConverter(productsReturn.Where(x => x.Catalog.ID == filterModel.CatalogID)
-                            .AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort),param);
-                    }
-                }
-                else
-                {
-
-                }
+                productsReturn = productsReturn.WhereIf(!String.IsNullOrEmpty(filterModel.Name), (x => x.Name.Contains(filterModel.Name)))
+                       .WhereIf(filterModel.ID.HasValue, x => x.ID == filterModel.ID)
+                       .WhereIf(filterModel.CatalogID.HasValue, x => x.Catalog.ID == filterModel.CatalogID)
+                       .WhereIf(filterModel.FromWeight != null && filterModel.ToWeight != null, x => x.Weight >= filterModel.FromWeight && x.Weight <= filterModel.ToWeight)
+                       .WhereIf(filterModel.FromWeight == null && filterModel.ToWeight != null, (x => x.Weight <= filterModel.ToWeight))
+                       .WhereIf(filterModel.FromWeight != null && filterModel.ToWeight == null, (x => x.Weight >= filterModel.FromWeight));
             }
 
-            return ProductPropertyConverter(productsReturn.AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort),param);
+            return ProductPropertyConverter(productsReturn.AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort), param);
         }
 
 
 
-        private IEnumerable<ProductForListDto> ProductPropertyConverter(IEnumerable<ProductForListDto> source,Params param)
+        private IEnumerable<ProductForListDto> ProductPropertyConverter(IEnumerable<ProductForListDto> source, Params param)
         {
 
-            if (param.currency!=null && param.currency.Value!=0)
+            if (param.currency != null && param.currency.Value != 0)
             {
-                source = source.Select(c => { c.OriginalPrice = c.OriginalPrice/param.currency.Value; return c; });
+                source = source.Select(c => { c.OriginalPrice = c.OriginalPrice / param.currency.Value; return c; });
                 source = source.ToList();
                 foreach (var product in source)
                 {
@@ -146,7 +116,7 @@ namespace EShop.Server.Service
                 }
             }
 
-            if (param.weight.ToLower()=="lb")
+            if (!String.IsNullOrEmpty(param.weight) &&param.weight.ToLower() == "lb")
             {
                 source = source.Select(c => { c.Weight = (int)Math.Round(c.Weight * 2.20462, 2); return c; }).ToList();
             }
