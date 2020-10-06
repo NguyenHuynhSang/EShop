@@ -10,7 +10,7 @@ namespace EShop.Server.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class ExchangeRateController : ControllerBase
+    public class ExchangeRateController : ApiControllerBase
     {
         private IExchangeRateService _exchangeRateService;// service xử dụng
 
@@ -19,10 +19,19 @@ namespace EShop.Server.Controllers
             this._exchangeRateService = exchangeRateService;
         }
         [HttpGet]
-        public IEnumerable<ExchangeRateDongA> GetAll(string keyword)
+        public ActionResult<IEnumerable<ExchangeRateDongA>> GetAll(string keyword)
         {
-            var list = _exchangeRateService.GetAll(keyword);
-            return list;
+            try
+            {
+                var list = _exchangeRateService.GetAll(keyword);
+                return list.ToList();
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+                return StatusCode(500);
+            }
+        
         }
 
 

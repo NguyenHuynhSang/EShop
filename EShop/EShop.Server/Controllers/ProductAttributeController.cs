@@ -11,21 +11,30 @@ namespace EShop.Server.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class ProductAttributeController : ControllerBase
+    public class ProductAttributeController : ApiControllerBase
     {
         private IProductAttributeService _productAttbuteService;// service xử dụng
         public ProductAttributeController(IProductAttributeService productAttributeService)
-           
+
         {
             _productAttbuteService = productAttributeService;
         }
 
         [HttpGet]
-        public IEnumerable<EShop.Server.Models.Attribute> GetAll(string keyword)
+        public ActionResult<IEnumerable<EShop.Server.Models.Attribute>> GetAll(string keyword)
         {
-            var list = _productAttbuteService.GetAll(keyword);
+            try
+            {
+                var list = _productAttbuteService.GetAll(keyword);
 
-            return list;
+                return list.ToList();
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+                return StatusCode(500);
+            }
+          
         }
 
     }

@@ -19,7 +19,8 @@ namespace EShop.Server.Controllers
     [Route("api/[controller]/[action]")]
 
     [ApiController]
-    public class ProductController : ControllerBase
+
+    public class ProductController : ApiControllerBase
     {
         private IProductService _productService;// service xử dụng
 
@@ -33,46 +34,81 @@ namespace EShop.Server.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<ProductForListDto>> GetAll(string productFilterModelJson, string sortBy, string sort = "desc")
         {
-            Params param = new Params();
-            param.filter = productFilterModelJson;
-            param.sortBy = sortBy;
-            param.sort = sort;
-            var list = _productService.GetAll(param);
-            return list.ToList();
+          
+            try
+            {
+                Params param = new Params();
+                param.filter = productFilterModelJson;
+                param.sortBy = sortBy;
+                param.sort = sort;
+                var list = _productService.GetAll(param);
+                return list.ToList();
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+                return StatusCode(500);
+            }
         }
         [HttpGet]
         public ActionResult<PagedListWrapper<ProductForListDto>> GetAllPaging(string productFilterModelJson, string sortBy, string sort = "desc", decimal? currency=null, string weight="kg", int page = 1, int perPage = 50)
         {
 
-            Params param = new Params();
-            param.currency = currency;
-            param.weight = weight;
-            param.sortBy = sortBy;
-            param.sort = sort;
-            param.perPage = perPage;
-            param.page = page;
-            param.filter = productFilterModelJson;
-            var list = _productService.GetAll(param);
-            return PagedList<ProductForListDto>.ToPagedList(list, page, perPage);
+            try
+            {
+                Params param = new Params();
+                param.currency = currency;
+                param.weight = weight;
+                param.sortBy = sortBy;
+                param.sort = sort;
+                param.perPage = perPage;
+                param.page = page;
+                param.filter = productFilterModelJson;
+                var list = _productService.GetAll(param);
+                return PagedList<ProductForListDto>.ToPagedList(list, page, perPage);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+                return StatusCode(500);
+            }
+       
         }
 
     
 
         [HttpPost]
-        public Product CreateProduct(Product product)
+        public ActionResult<Product> CreateProduct(Product product)
         {
-            var newProduct = _productService.Add(product);
-            _productService.SaveChanges();
-            return newProduct;
+            try
+            {
+                var newProduct = _productService.Add(product);
+                _productService.SaveChanges();
+                return newProduct;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+                return StatusCode(500);
+            }
         }
 
 
       
 
         [HttpGet]
-        public Product GetById(int id)
+        public ActionResult<Product> GetById(int id)
         {
-            return _productService.GetProductById(id);
+            try
+            {
+                return _productService.GetProductById(id);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+                return StatusCode(500);
+            }
+          
         }
 
         
@@ -80,11 +116,19 @@ namespace EShop.Server.Controllers
 
 
         [HttpDelete]
-        public Product Delete(Product product)
+        public ActionResult<Product> Delete(Product product)
         {
-            var oldEntity = _productService.Delete(product);
-            _productService.SaveChanges();
-            return oldEntity;
+            try
+            {
+                var oldEntity = _productService.Delete(product);
+                _productService.SaveChanges();
+                return oldEntity;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+                return StatusCode(500);
+            }
         }
 
 

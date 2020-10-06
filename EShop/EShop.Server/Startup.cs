@@ -124,7 +124,7 @@ namespace EShop.Server
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, Seed seeder,ILoggerFactory loggerFactory)
         {
             loggerFactory.AddLog4Net();
-
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

@@ -13,7 +13,7 @@ namespace EShop.Server.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class ProductCatalogController : ControllerBase
+    public class ProductCatalogController : ApiControllerBase
     {
         private ICatalogService _catalogService;// service xử dụng
         public ProductCatalogController(ICatalogService catalogService)
@@ -23,54 +23,102 @@ namespace EShop.Server.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<CatalogViewModel> GetAll(string keyword)
+        public ActionResult<IEnumerable<CatalogViewModel>> GetAll(string keyword)
         {
-            var list = _catalogService.GetAll(keyword);
-
-            return list;
+            try
+            {
+                var list = _catalogService.GetAll(keyword);
+                return list.ToList();
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+                return StatusCode(500);
+            }
+         
         }
 
 
         [HttpGet]
-        public PagedListWrapper<CatalogViewModel> GetAllPaging(string keyword, string sortBy, string sort = "desc", int page = 1, int perPage = 50)
+        public ActionResult<PagedListWrapper<CatalogViewModel>> GetAllPaging(string keyword, string sortBy, string sort = "desc", int page = 1, int perPage = 50)
         {
-            var list = _catalogService.GetAll(keyword);
+            try
+            {
+                var list = _catalogService.GetAll(keyword);
 
-            return PagedList<CatalogViewModel>.ToPagedList(list, page, perPage);
+                return PagedList<CatalogViewModel>.ToPagedList(list, page, perPage);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+                return StatusCode(500);
+            }
+          
         }
         [HttpGet]
-        public IEnumerable<ProductCatalog> GetParent()
+        public ActionResult<IEnumerable<ProductCatalog>> GetParent()
         {
-            var list = _catalogService.GetParent();
+          
+            try
+            {
+                var list = _catalogService.GetParent();
 
-            return list;
+                return list.ToList();
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+                return StatusCode(500);
+            }
         }
 
         [HttpGet]
-        public IEnumerable<ProductCatalog> GetChild()
+        public ActionResult<IEnumerable<ProductCatalog>> GetChild()
         {
-            var list = _catalogService.GetChild();
-
-            return list;
+            try
+            {
+                var list = _catalogService.GetChild();
+                return list.ToList();
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+                return StatusCode(500);
+            }
+           
         }
 
         [HttpGet]
-        public IEnumerable<CatalogTreeModel> GetTree()
+        public ActionResult<IEnumerable<CatalogTreeModel>> GetTree()
         {
-            var list = _catalogService.GetCatalogTree();
-
-            return list;
+        
+            try
+            {
+                var list = _catalogService.GetCatalogTree();
+                return list.ToList();
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+                return StatusCode(500);
+            }
         }
         [HttpPost]
-        public ProductCatalog Create(ProductCatalog catalog)
+        public ActionResult<ProductCatalog> Create(ProductCatalog catalog)
         {
-            var newCatalog = _catalogService.Add(catalog);
-            _catalogService.SaveChanges();
-            return newCatalog;
+         
+            try
+            {
+                var newCatalog = _catalogService.Add(catalog);
+                _catalogService.SaveChanges();
+                return newCatalog;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+                return StatusCode(500);
+            }
         }
-
-
-       
 
 
     }

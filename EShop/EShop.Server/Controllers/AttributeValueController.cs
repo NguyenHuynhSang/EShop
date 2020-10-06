@@ -11,43 +11,79 @@ namespace EShop.Server.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class AttributeValueController : ControllerBase
+    public class AttributeValueController : ApiControllerBase
     {
         private readonly IAttributeValueService _attributeValueService;// service xử dụng
         public AttributeValueController(IAttributeValueService attributeValueService)
-           
+
         {
             _attributeValueService = attributeValueService;
         }
 
         [HttpGet]
-        public IEnumerable<AttributeValue> GetAll(string atributeId)
+        public ActionResult<IEnumerable<AttributeValue>> GetAll(string atributeId)
         {
-            var list = _attributeValueService.GetAll(atributeId);
+            try
+            {
+                var list = _attributeValueService.GetAll(atributeId);
 
-            return list;
+                return list.ToList();
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+                return StatusCode(500);
+            }
+
         }
 
         [HttpPost]
-        public AttributeValue Create(AttributeValue attr)
+        public ActionResult<AttributeValue> Create(AttributeValue attr)
         {
-            var att = _attributeValueService.Add(attr);
-            _attributeValueService.SaveChanges();
-            return att;
+
+            try
+            {
+                var att = _attributeValueService.Add(attr);
+                _attributeValueService.SaveChanges();
+                return att;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+                return StatusCode(500);
+            }
         }
 
         [HttpGet]
-        public AttributeValue GetById(int id)
+        public ActionResult<AttributeValue> GetById(int id)
         {
-            return _attributeValueService.GetAttributeValueById(id);
+            try
+            {
+                return _attributeValueService.GetAttributeValueById(id);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+                return StatusCode(500);
+            }
+
         }
 
         [HttpDelete]
-        public AttributeValue Delete(AttributeValue attribute)
+        public ActionResult<AttributeValue> Delete(AttributeValue attribute)
         {
-            var oldEntity= _attributeValueService.Delete(attribute);
-            _attributeValueService.SaveChanges();
-            return oldEntity;
+
+            try
+            {
+                var oldEntity = _attributeValueService.Delete(attribute);
+                _attributeValueService.SaveChanges();
+                return oldEntity;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+                return StatusCode(500);
+            }
         }
 
     }
