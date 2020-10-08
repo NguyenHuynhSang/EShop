@@ -16,6 +16,7 @@ using EShop.Server.Extension;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using EShop.Server.Dtos.Admin.ProductForList;
+using System.Text.Encodings.Web;
 
 namespace EShop.Server.Service
 {
@@ -83,12 +84,9 @@ namespace EShop.Server.Service
             var productsReturn = query.Select(x => _mapper.Map<ProductForListDto>(x));
 
 
-            ;
             if (!String.IsNullOrEmpty(param.filterProperty))
             {
-                var operatorSyntax= FilterExtension.NumberFilterOperator[param.filterOperator];
-                var predicate = param.filterProperty + operatorSyntax;
-                productsReturn = productsReturn.AsQueryable().Where(predicate, param.filterValue);
+                productsReturn = productsReturn.AsQueryable().WhereTo(param);
             }
 
             return ProductPropertyConverter(productsReturn.AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort), param);
