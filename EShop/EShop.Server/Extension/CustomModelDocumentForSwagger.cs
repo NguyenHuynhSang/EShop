@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EShop.Server.Extension
 {
-    public class CustomModelDocumentFilter<T> : IDocumentFilter where T : class
+    public class CustomModelDocumentForSwagger<T> : IDocumentFilter where T : class
     {
 
         public void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context)

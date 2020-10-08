@@ -32,7 +32,7 @@ namespace EShop.Server.Controllers
 
 
         [HttpGet]
-        public ActionResult<IEnumerable<ProductForListDto>> GetAll(string productFilterModelJson, string sortBy, string sort = "desc")
+        public ActionResult<IEnumerable<ProductForListDto>> GetAll(string productFilterModelJson,string filterProperty,string filterOperator,string filterValue, string sortBy, string sort = "desc")
         {
           
             try
@@ -41,6 +41,9 @@ namespace EShop.Server.Controllers
                 param.filter = productFilterModelJson;
                 param.sortBy = sortBy;
                 param.sort = sort;
+                param.filterProperty = filterProperty;
+                param.filterOperator = filterOperator;
+                param.filterValue= filterValue;
                 var list = _productService.GetAll(param);
                 return list.ToList();
             }

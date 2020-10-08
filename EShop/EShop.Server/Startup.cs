@@ -106,7 +106,7 @@ namespace EShop.Server
             services.AddSwaggerGen(swagger =>
             {
                 swagger.SwaggerDoc("v1", new OpenApiInfo { Title = "My API" });
-                swagger.DocumentFilter<CustomModelDocumentFilter<ProductFilterModel>>();
+                swagger.DocumentFilter<CustomModelDocumentForSwagger<ProductFilterModel>>();
             });
 
             //add scheduled task

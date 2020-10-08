@@ -9,6 +9,7 @@ using System.Text;
 using EShop.Server.ViewModels;
 using System.Linq;
 using EShop.Server.Extension;
+using System.Linq.Dynamic.Core;
 using Newtonsoft.Json;
 using System.Linq.Dynamic.Core;
 using EShop.Server.Extension;
@@ -83,15 +84,11 @@ namespace EShop.Server.Service
 
 
             ;
-            if (filterModel != null)
+            if (!String.IsNullOrEmpty(param.filterProperty))
             {
-
-                productsReturn = productsReturn.WhereIf(!String.IsNullOrEmpty(filterModel.Name), (x => x.Name.Contains(filterModel.Name)))
-                       .WhereIf(filterModel.ID.HasValue, x => x.ID == filterModel.ID)
-                       .WhereIf(filterModel.CatalogID.HasValue, x => x.Catalog.ID == filterModel.CatalogID)
-                       .WhereIf(filterModel.FromWeight != null && filterModel.ToWeight != null, x => x.Weight >= filterModel.FromWeight && x.Weight <= filterModel.ToWeight)
-                       .WhereIf(filterModel.FromWeight == null && filterModel.ToWeight != null, (x => x.Weight <= filterModel.ToWeight))
-                       .WhereIf(filterModel.FromWeight != null && filterModel.ToWeight == null, (x => x.Weight >= filterModel.FromWeight));
+                var operatorSyntax= FilterExtension.NumberFilterOperator[param.filterOperator];
+                var predicate = param.filterProperty + operatorSyntax;
+                productsReturn = productsReturn.AsQueryable().Where(predicate, param.filterValue);
             }
 
             return ProductPropertyConverter(productsReturn.AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort), param);

@@ -19,6 +19,10 @@ namespace EShop.Server.Extension
         public decimal? currency { set; get; }
 
         public string weight { set; get; }
+        public string filterProperty { set; get; }
+        public string filterOperator { set; get; }
+        public string filterValue { get; set; }
+
         public Params()
         {
         }
