@@ -11,6 +11,31 @@ namespace EShop.Server.Extension
         public static Dictionary<string, string> NumberFilterOperator
             = new Dictionary<string, string>
         {
+           { "equal","{0}= @0" },
+           { "notequal","{0}!= @0" },
+           { "greaterthan","{0}> @0" },
+           { "greaterthanorequal","{0}>= @0" },
+           { "lessthan","{0}< @0" },
+           { "lessthanorequal","{0}<= @0" },
+           { "inrange","{0}>= @0 and {1}<=@1" },
+        };
+
+        public static Dictionary<string, string> TextFilterOperator
+           = new Dictionary<string, string>
+       {
+           { "partialmatch","{0}.ToLower().Contains(@0)" },
+           { "notpartialmatch","!{0}.ToLower().Contains(@0)" },
+           { "equals","{0}.Equals(@0)" },
+           { "notequal","!{0}.Equals(@0)" },
+           { "contains","{0}.ToLower().Contains(@0)" },
+           { "notcontains","!{0}.ToLower().Contains(@0)" },
+           { "startswith","{0}.StartsWith(@0)" },
+           { "endswith","{0}.EndsWith(@0)" },
+       };
+
+        public static Dictionary<string, string> DateFilterOperator
+        = new Dictionary<string, string>
+    {
            { "equal","= @0" },
            { "notequal","!= @0" },
            { "greaterthan","> @0" },
@@ -18,12 +43,31 @@ namespace EShop.Server.Extension
            { "lessthan","< @0" },
            { "lessthanorequal","<= @0" },
            { "inrange","{0}>= @0 and {1}<=@1" },
-
-        };
+           { "inrangeexclusive","{0}> @0 and {1}<@1" },
+    };
 
         public static IQueryable<TSource> WhereTo<TSource>(this IQueryable<TSource> source, Params param)
         {
-            var operatorSyntax = FilterExtension.NumberFilterOperator[param.filterOperator.ToLower()];
+
+            var typeOfSource = source.First().GetType();
+            string operatorSyntax = "";
+            foreach (var item in typeOfSource.GetProperties())
+            {
+                
+                if (item.Name.ToLower()==param.filterProperty.ToLower())
+                {
+                    if (item.PropertyType==typeof(int))
+                    {
+                         operatorSyntax = FilterExtension.NumberFilterOperator[param.filterOperator.ToLower()];
+                    }
+                    else if (item.PropertyType == typeof(String))
+                    {
+                        operatorSyntax = FilterExtension.TextFilterOperator[param.filterOperator.ToLower()];
+                    }
+                    break;
+                }
+            }
+        
 
             var decodeValue = System.Web.HttpUtility.UrlDecode(param.filterValue);
             var values = decodeValue.Split(',');
@@ -34,7 +78,7 @@ namespace EShop.Server.Extension
                 ///SMELL-CODE
                 return source.Where(predicate, values[0], values[1]);
             }
-            predicate = param.filterProperty + operatorSyntax;
+            predicate = String.Format(operatorSyntax, param.filterProperty);
             return source.Where(predicate, values[0]);
 
 

@@ -9,32 +9,32 @@ namespace EShop.Server.Dtos.Admin.ProductForList
     public class ProductForListDto
     {
 
-        public int ID;
+        public int ID { get; set; }
 
 
-        public ProductCatalogDto Catalog;
+        public ProductCatalogDto Catalog { get; set; }
 
 
-        public string Url;
+        public string Url { get; set; }
 
-        public string Name;
+        public string Name { get; set; }
 
-        public string Description;
+        public string Description { get; set; }
 
-        public string Content;
+        public string Content { get; set; }
 
 
-        public int Weight;
+        public int Weight { get; set; }
 
 
 
         public decimal OriginalPrice { get; set; }
 
-        public bool Deliver;
+        public bool Deliver { get; set; }
 
-        public bool ApplyPromotion;
+        public bool ApplyPromotion { get; set; }
 
-        public IEnumerable<ProductVersionDto> ProductVersions;
+        public IEnumerable<ProductVersionDto> ProductVersions { get; set; }
 
 
 
