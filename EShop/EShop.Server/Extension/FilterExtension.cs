@@ -43,7 +43,7 @@ namespace EShop.Server.Extension
         public static Dictionary<string, string> DateFilterOperator
         = new Dictionary<string, string>
     {
-           { "today","DateTime.ParseExact(DateTime.Now,\"yyyy-MM-dd\", System.Globalization.CultureInfo.InvariantCulture)==@0" },
+           { "today","{0}==@0" },
            { "lessthan","{0}< @0" },
            { "greaterthan","{0}> @0" },
     };
@@ -53,6 +53,11 @@ namespace EShop.Server.Extension
    
             var typeOfSource = source.First().GetType();
             string operatorSyntax = "";
+
+            var decodeValue = System.Web.HttpUtility.UrlDecode(param.filterValue);
+            var values = decodeValue.Split(',');
+
+
             foreach (var item in typeOfSource.GetProperties())
             {
                 
@@ -69,6 +74,8 @@ namespace EShop.Server.Extension
                     else if (item.PropertyType == typeof(DateTime?))
                     {
                         operatorSyntax = FilterExtension.DateFilterOperator[param.filterOperator.ToLower()];
+                        var formattedPredicate = String.Format(operatorSyntax,param.filterProperty);
+                        return source.Where(formattedPredicate, DateTime.ParseExact(values[0], "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture));
                     }
                    
                     break;
@@ -76,8 +83,7 @@ namespace EShop.Server.Extension
             }
            
 
-            var decodeValue = System.Web.HttpUtility.UrlDecode(param.filterValue);
-            var values = decodeValue.Split(',');
+           
             string predicate = operatorSyntax;
             //if (values.Length > 1)
             //{
