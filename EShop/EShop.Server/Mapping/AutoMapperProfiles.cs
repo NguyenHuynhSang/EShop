@@ -76,7 +76,8 @@ namespace EShop.Server.Mapping
                    });
             CreateMap<ProductCatalog, ProductCatalogDto>();
             CreateMap<Product, ProductForListDto>();
-
+            CreateMap<Product, ProductForListDto>()
+                .ForMember(dest => dest.ID, opt => opt.Ignore()); 
 
 
             CreateMap<Item, ExchangeRateDongA>()
@@ -91,6 +92,7 @@ namespace EShop.Server.Mapping
             // track issue cause by ef core
             CreateMap<ExchangeRateDongA, ExchangeRateDongA>()
                  .ForMember(dest => dest.ID, opt => opt.Ignore());
+
             CreateMap<IEnumerable<ProductVersionViewModel>, IEnumerable<ProductVersion>>();
             CreateMap<IEnumerable<ProductVersion>, IEnumerable<ProductVersionViewModel>>();
 

@@ -35,11 +35,12 @@ namespace EShop.Server.Data
             return dbSet.Add(entity).Entity;
         }
 
-        public virtual void Update(T entity)
+        public virtual T Update(T entity)
         {
 
             dbSet.Attach(entity);
             _dbContext.Entry(entity).State = EntityState.Modified;
+            return entity;
         }
 
         public virtual T Delete(T entity)

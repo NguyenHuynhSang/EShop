@@ -85,6 +85,7 @@ namespace EShop.Server.Controllers
         {
             try
             {
+             
                 var newProduct = _productService.Add(product);
                 _productService.SaveChanges();
                 return newProduct;
@@ -97,7 +98,25 @@ namespace EShop.Server.Controllers
         }
 
 
-      
+        [HttpPut]
+        public ActionResult<Product> UpdateProduct(int id)
+        {
+            try
+            {
+                //TEST
+               var product= _productService.GetProductById(id); 
+                var updatedProduct = _productService.Update(product);
+                _productService.SaveChanges();
+                return updatedProduct;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+                return StatusCode(500);
+            }
+        }
+
+
 
         [HttpGet]
         public ActionResult<Product> GetById(int id)

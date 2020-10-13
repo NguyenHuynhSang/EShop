@@ -23,6 +23,7 @@ namespace EShop.Server.Service
     public interface IProductService
     {
         public Product Add(Product product);
+        public Product Update(Product product);
         public IEnumerable<ProductForListDto> GetAll(Params param);
 
 
@@ -48,6 +49,7 @@ namespace EShop.Server.Service
         }
         public Product Add(Product product)
         {
+            product.CreatedDate = DateTime.Now;
             return _productRepository.Add(product);
         }
 
@@ -56,6 +58,12 @@ namespace EShop.Server.Service
         public Product Delete(Product product)
         {
             return _productRepository.Delete(product);
+        }
+
+        public Product Update(Product product)
+        {
+            product.ModifiedDate = DateTime.Now;
+            return _productRepository.Update(product);
         }
 
 

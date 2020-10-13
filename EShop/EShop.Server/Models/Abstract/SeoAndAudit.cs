@@ -17,5 +17,6 @@ namespace EShop.Server.Abstract
 
         [StringLength(50)]
         public string ModifiedBy { get; set; }
+    
     }
 }
