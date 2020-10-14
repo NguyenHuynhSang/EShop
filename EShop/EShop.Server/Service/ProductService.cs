@@ -94,6 +94,7 @@ namespace EShop.Server.Service
 
             if (!String.IsNullOrEmpty(param.filterProperty))
             {
+           
                 productsReturn = productsReturn.AsQueryable().WhereTo(param);
             }
 

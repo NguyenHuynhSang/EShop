@@ -9,6 +9,9 @@ namespace EShop.Server.Extension
 {
     public static class FilterExtension
     {
+
+
+
         public static string[] formats = {"M/d/yyyy h:mm:ss tt", "M/d/yyyy h:mm tt",
                    "MM/dd/yyyy hh:mm:ss", "M/d/yyyy h:mm:ss",
                    "M/d/yyyy hh:mm tt", "M/d/yyyy hh tt",
@@ -42,57 +45,58 @@ namespace EShop.Server.Extension
 
         public static Dictionary<string, string> DateFilterOperator
         = new Dictionary<string, string>
-    {
-           { "today","{0}==@0" },
-           { "lessthan","{0}< @0" },
-           { "greaterthan","{0}> @0" },
-    };
+            {
+                   { "today","{0}==@0" },
+                   { "lessthan","{0}< @0" },
+                   { "greaterthan","{0}> @0" },
+            };
+
+        private enum FilterType
+        {
+            Number=1,
+            Text=2,
+            Date=3,
+            Set=4
+        }
 
         public static IQueryable<TSource> WhereTo<TSource>(this IQueryable<TSource> source, Params param)
         {
-   
+
             var typeOfSource = source.First().GetType();
             string operatorSyntax = "";
-
-            var decodeValue = System.Web.HttpUtility.UrlDecode(param.filterValue);
-            var values = decodeValue.Split(',');
-
-
-            foreach (var item in typeOfSource.GetProperties())
+            switch ((FilterType)param.filterType)
             {
-                
-                if (item.Name.ToLower()==param.filterProperty.ToLower())
-                {
-                    if (item.PropertyType==typeof(int))
-                    {
-                         operatorSyntax = FilterExtension.NumberFilterOperator[param.filterOperator.ToLower()];
-                    }
-                    else if (item.PropertyType == typeof(String))
-                    {
-                        operatorSyntax = FilterExtension.TextFilterOperator[param.filterOperator.ToLower()];
-                    }
-                    else if (item.PropertyType == typeof(DateTime?))
-                    {
-                        operatorSyntax = FilterExtension.DateFilterOperator[param.filterOperator.ToLower()];
-                        var formattedPredicate = String.Format(operatorSyntax,param.filterProperty);
-                        return source.Where(formattedPredicate, DateTime.ParseExact(values[0], "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture));
-                    }
-                   
+                case FilterType.Number:
+                    operatorSyntax = FilterExtension.NumberFilterOperator[param.filterOperator.ToLower()];
                     break;
-                }
-            }
-           
+                case FilterType.Text:
+                    operatorSyntax = FilterExtension.TextFilterOperator[param.filterOperator.ToLower()];
+                    break;
+                case FilterType.Date:
+                    operatorSyntax = FilterExtension.DateFilterOperator[param.filterOperator.ToLower()];
+                    var formattedPredicate = String.Format(operatorSyntax, param.filterProperty);
+                    return source.Where(formattedPredicate, DateTime.ParseExact(param.filterValue, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture));
+                    break;
+                case FilterType.Set:
+                    var properties = param.filterProperty.Split('.');
 
-           
+                    break;
+                default:
+                    break;
+            }
+
+
             string predicate = operatorSyntax;
-            //if (values.Length > 1)
-            //{
-            //    predicate = String.Format(operatorSyntax, param.filterProperty, param.filterProperty);
-            //    ///SMELL-CODE
-            //    return source.Where(predicate, values[0], values[1]);
-            //}
-            predicate = String.Format(operatorSyntax, param.filterProperty);
-            return source.Where(predicate, values[0]);
+            if (!String.IsNullOrEmpty(param.filterValue1))
+            {
+                predicate = String.Format(operatorSyntax, param.filterProperty, param.filterProperty);
+                return source.Where(predicate, param.filterValue, param.filterValue1);
+            }
+            else
+            {
+                predicate = String.Format(operatorSyntax, param.filterProperty);
+            }   
+            return source.Where(predicate, param.filterValue);
 
 
         }

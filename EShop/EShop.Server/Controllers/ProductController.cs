@@ -32,24 +32,27 @@ namespace EShop.Server.Controllers
 
 
         [HttpGet]
-        public ActionResult<IEnumerable<ProductForListDto>> GetAll(string productFilterModelJson,string filterProperty,string filterOperator,string filterValue, string sortBy, string sort = "desc")
+        public ActionResult<IEnumerable<ProductForListDto>> GetAll(string filterProperty,string filterOperator, int filterType,string filterValue, string filterValue1,string sortBy, string sort = "desc")
         {
           
             try
             {
                 Params param = new Params();
-                param.filter = productFilterModelJson;
                 param.sortBy = sortBy;
                 param.sort = sort;
                 param.filterProperty = filterProperty;
                 param.filterOperator = filterOperator;
+                param.filterValue1 = filterValue1;
                 param.filterValue= filterValue;
+                param.filterType = filterType;
+                
                 var list = _productService.GetAll(param);
                 return list.ToList();
             }
             catch (Exception ex)
             {
                 logger.Error(ex);
+                logger.Debug(ex);
                 return StatusCode(500);
             }
         }

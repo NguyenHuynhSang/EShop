@@ -22,6 +22,8 @@ namespace EShop.Server.Extension
         public string filterProperty { set; get; }
         public string filterOperator { set; get; }
         public string filterValue { get; set; }
+        public string filterValue1 { get; set; } // use for range
+        public int filterType { get; set; }// number, string, set...
 
         public Params()
         {
