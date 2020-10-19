@@ -90,10 +90,11 @@ namespace EShop.Server.Service
                    .ThenInclude(t => t.Attribute));
 
             var productsReturn = query.Select(x => _mapper.Map<ProductForListDto>(x));
-
+          
 
             if (!String.IsNullOrEmpty(param.filterProperty))
             {
+              
            
                 productsReturn = productsReturn.AsQueryable().WhereTo(param);
             }

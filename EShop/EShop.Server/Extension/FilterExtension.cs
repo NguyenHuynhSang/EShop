@@ -1,8 +1,10 @@
-﻿using Microsoft.Net.Http.Headers;
+﻿using EShop.Server.Dtos.Admin.ProductForList;
+using Microsoft.Net.Http.Headers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic.Core;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace EShop.Server.Extension
@@ -51,12 +53,20 @@ namespace EShop.Server.Extension
                    { "greaterthan","{0}> @0" },
             };
 
+
+        public static Dictionary<string, string> SetFilterOperator
+       = new Dictionary<string, string>
+           {
+                   { "equal","==@0" },
+                   { "notequal","!= @0" },
+           };
+
         private enum FilterType
         {
-            Number=1,
-            Text=2,
-            Date=3,
-            Set=4
+            Number = 1,
+            Text = 2,
+            Date = 3,
+            Set = 4
         }
 
         public static IQueryable<TSource> WhereTo<TSource>(this IQueryable<TSource> source, Params param)
@@ -78,8 +88,29 @@ namespace EShop.Server.Extension
                     return source.Where(formattedPredicate, DateTime.ParseExact(param.filterValue, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture));
                     break;
                 case FilterType.Set:
+                    operatorSyntax = FilterExtension.SetFilterOperator[param.filterOperator.ToLower()];
                     var properties = param.filterProperty.Split('.');
+                    var collection = typeOfSource;
+                    var syntaxExtend = "";
+                    for (int i = 0; i < properties.Length; i++)
+                    {
+                        if (i < properties.Length - 1)
+                        {   
+                            var prop = collection.GetProperty(properties[i], BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
+                            if (prop.PropertyType.Name==typeof(IEnumerable<>).Name)
+                            {
+                                syntaxExtend += properties[i]+ ".Any(x=>x.";
+                            }
 
+                        }
+                        else
+                        {
+                            syntaxExtend +=properties[i]+ operatorSyntax+")";
+                        }
+
+                    }
+                    //careful with child list when using Any
+                    return source.Where(syntaxExtend,param.filterValue);
                     break;
                 default:
                     break;
@@ -95,15 +126,12 @@ namespace EShop.Server.Extension
             else
             {
                 predicate = String.Format(operatorSyntax, param.filterProperty);
-            }   
+            }
             return source.Where(predicate, param.filterValue);
 
 
         }
     }
-
-
-
 
 
 }
