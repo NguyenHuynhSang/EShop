@@ -90,12 +90,12 @@ namespace EShop.Server.Service
                    .ThenInclude(t => t.Attribute));
 
             var productsReturn = query.Select(x => _mapper.Map<ProductForListDto>(x));
-          
+           
 
             if (!String.IsNullOrEmpty(param.filterProperty))
             {
-              
-           
+
+
                 productsReturn = productsReturn.AsQueryable().WhereTo(param);
             }
 
@@ -121,7 +121,7 @@ namespace EShop.Server.Service
                 }
             }
 
-            if (!String.IsNullOrEmpty(param.weight) &&param.weight.ToLower() == "lb")
+            if (!String.IsNullOrEmpty(param.weight) && param.weight.ToLower() == "lb")
             {
                 source = source.Select(c => { c.Weight = (int)Math.Round(c.Weight * 2.20462, 2); return c; }).ToList();
             }

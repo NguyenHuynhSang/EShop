@@ -57,7 +57,7 @@ namespace EShop.Server.Extension
         public static Dictionary<string, string> SetFilterOperator
        = new Dictionary<string, string>
            {
-                   { "equal","==@0" },
+                   { "equal","==2" },
                    { "notequal","!= @0" },
            };
 
@@ -67,6 +67,11 @@ namespace EShop.Server.Extension
             Text = 2,
             Date = 3,
             Set = 4
+        }
+
+        public static Type GetItemType<T>(this IEnumerable<T> enumerable)
+        {
+            return typeof(T);
         }
 
         public static IQueryable<TSource> WhereTo<TSource>(this IQueryable<TSource> source, Params param)
@@ -92,25 +97,39 @@ namespace EShop.Server.Extension
                     var properties = param.filterProperty.Split('.');
                     var collection = typeOfSource;
                     var syntaxExtend = "";
+                    int counter = 0;
                     for (int i = 0; i < properties.Length; i++)
                     {
+
                         if (i < properties.Length - 1)
-                        {   
+                        {
                             var prop = collection.GetProperty(properties[i], BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
-                            if (prop.PropertyType.Name==typeof(IEnumerable<>).Name)
+                            if (prop.PropertyType.Name == typeof(IEnumerable<>).Name)
                             {
-                                syntaxExtend += properties[i]+ ".Any(x=>x.";
+                                counter++;
+                                syntaxExtend += properties[i] + ".Any(x=>x.";
+                                collection = prop.PropertyType.GetGenericArguments()[0];
+                            }
+                            else
+                            {
+                                syntaxExtend += properties[i] + ".";
                             }
 
                         }
                         else
                         {
-                            syntaxExtend +=properties[i]+ operatorSyntax+")";
+                            string extend = "";
+                            for (int j = 0; j < counter; j++)
+                            {
+                                extend += ")";
+                            }
+                            syntaxExtend += properties[i] + operatorSyntax + extend;
                         }
 
                     }
                     //careful with child list when using Any
-                    return source.Where(syntaxExtend,param.filterValue);
+                    return source.Where(syntaxExtend);
+                    // productsReturn.Where(x => x.ProductVersions.Any(x => x.ProductVersionAttributes.Any(x => x.AtributeID == 1)));
                     break;
                 default:
                     break;

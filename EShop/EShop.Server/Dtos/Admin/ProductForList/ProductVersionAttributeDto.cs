@@ -9,10 +9,10 @@ namespace EShop.Server.Dtos.Admin.ProductForList
 {
     public class ProductVersionAttributeDto
     {
-        public string AttributeName;
-        public int AtributeID;
-        public String AttributeValueName;
-        public int AttributeValueID;
+        public string AttributeName { get; set; }
+        public int AtributeID { get; set; }
+        public String AttributeValueName { get; set; }
+        public int AttributeValueID { get; set; }
 
 
 
