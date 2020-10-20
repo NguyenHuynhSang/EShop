@@ -57,7 +57,7 @@ namespace EShop.Server.Extension
         public static Dictionary<string, string> SetFilterOperator
        = new Dictionary<string, string>
            {
-                   { "equal","==2" },
+                   { "equal","==@0" },
                    { "notequal","!= @0" },
            };
 
@@ -107,7 +107,7 @@ namespace EShop.Server.Extension
                             if (prop.PropertyType.Name == typeof(IEnumerable<>).Name)
                             {
                                 counter++;
-                                syntaxExtend += properties[i] + ".Any(x=>x.";
+                                syntaxExtend += properties[i] + ".Any(";
                                 collection = prop.PropertyType.GetGenericArguments()[0];
                             }
                             else
@@ -128,7 +128,7 @@ namespace EShop.Server.Extension
 
                     }
                     //careful with child list when using Any
-                    return source.Where(syntaxExtend);
+                    return source.Where(syntaxExtend,param.filterValue);
                     // productsReturn.Where(x => x.ProductVersions.Any(x => x.ProductVersionAttributes.Any(x => x.AtributeID == 1)));
                     break;
                 default:
