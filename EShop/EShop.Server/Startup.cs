@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using AutoMapper;
 using EShop.Server.Data;
 using EShop.Server.Extension;
-using EShop.Server.FilterModel;
 using EShop.Server.Repository;
 using EShop.Server.SchedulerTask;
 using EShop.Server.Service;
@@ -103,11 +102,11 @@ namespace EShop.Server
                 };
             });
 
-            services.AddSwaggerGen(swagger =>
-            {
-                swagger.SwaggerDoc("v1", new OpenApiInfo { Title = "My API" });
-                swagger.DocumentFilter<CustomModelDocumentForSwagger<ProductFilterModel>>();
-            });
+            //services.AddSwaggerGen(swagger =>
+            //{
+            //    swagger.SwaggerDoc("v1", new OpenApiInfo { Title = "My API" });
+            //    swagger.DocumentFilter<CustomModelDocumentForSwagger<ProductFilterModel>>();
+            //});
 
             //add scheduled task
             services.AddSingleton<IScheduledTask, ExchangeRateTask>();

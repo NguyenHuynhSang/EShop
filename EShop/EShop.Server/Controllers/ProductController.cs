@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Net;
 using System.Linq;
-using EShop.Server.FilterModel;
 using Newtonsoft.Json;
 using EShop.Server.Models;
 using EShop.Server.ViewModels;
@@ -45,7 +44,6 @@ namespace EShop.Server.Controllers
                 param.filterValue1 = filterValue1;
                 param.filterValue= filterValue;
                 param.filterType = filterType;
-                
                 var list = _productService.GetAll(param);
                 return list.ToList();
             }
@@ -69,7 +67,6 @@ namespace EShop.Server.Controllers
                 param.sort = sort;
                 param.perPage = perPage;
                 param.page = page;
-                param.filter = productFilterModelJson;
                 var list = _productService.GetAll(param);
                 return PagedList<ProductForListDto>.ToPagedList(list, page, perPage);
             }

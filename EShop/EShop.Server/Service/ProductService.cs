@@ -1,6 +1,5 @@
 ﻿using EShop.Server.Data;
 using EShop.Server.Repository;
-using EShop.Server.FilterModel;
 using EShop.Server.Models;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
@@ -25,6 +24,7 @@ namespace EShop.Server.Service
         public Product Add(Product product);
         public Product Update(Product product);
         public IEnumerable<ProductForListDto> GetAll(Params param);
+
 
 
         public Product GetProductById(int id);
@@ -70,36 +70,31 @@ namespace EShop.Server.Service
 
         public IEnumerable<ProductForListDto> GetAll(Params param)
         {
-            ProductFilterModel filterModel = null;
-            if (!String.IsNullOrEmpty(param.filter))
-            {
+            var query = _productRepository.GetMulti(null, q => q.Include(x => x.Catalog)
+                             .Include(x => x.ProductVersions)
+                                 .ThenInclude(y => y.ProductVersionImages)
+                             .Include(x => x.ProductVersions)
+                                 .ThenInclude(y => y.ProductVersionAttributes)
+                                     .ThenInclude(z => z.AttributeValue)
+                                     .ThenInclude(t => t.Attribute));
 
-                if (!string.IsNullOrEmpty(param.filter))
+            var productsReturn = query.Select(x => _mapper.Map<ProductForListDto>(x));
+
+            try
+            {
+                if (!String.IsNullOrEmpty(param.filterProperty))
                 {
-                    filterModel = JsonConvert.DeserializeObject<ProductFilterModel>(param.filter);
+                    productsReturn = productsReturn.AsQueryable().WhereTo(param);
                 }
 
             }
-
-            var query = _productRepository.GetMulti(null, q => q.Include(x => x.Catalog)
-           .Include(x => x.ProductVersions)
-               .ThenInclude(y => y.ProductVersionImages)
-           .Include(x => x.ProductVersions)
-               .ThenInclude(y => y.ProductVersionAttributes)
-                   .ThenInclude(z => z.AttributeValue)
-                   .ThenInclude(t => t.Attribute));
-
-            var productsReturn = query.Select(x => _mapper.Map<ProductForListDto>(x));
-           
-
-            if (!String.IsNullOrEmpty(param.filterProperty))
+            catch (Exception e)
             {
-
-
-                productsReturn = productsReturn.AsQueryable().WhereTo(param);
+                
+                return ProductPropertyConverter(productsReturn.AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort), param);
             }
-
             return ProductPropertyConverter(productsReturn.AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort), param);
+
         }
 
 
@@ -121,10 +116,13 @@ namespace EShop.Server.Service
                 }
             }
 
-            if (!String.IsNullOrEmpty(param.weight) && param.weight.ToLower() == "lb")
-            {
-                source = source.Select(c => { c.Weight = (int)Math.Round(c.Weight * 2.20462, 2); return c; }).ToList();
-            }
+
+
+            //convert in front end
+            //if (!String.IsNullOrEmpty(param.weight) && param.weight.ToLower() == "lb")
+            //{
+            //    source = source.Select(c => { c.Weight = (int)Math.Round(c.Weight * 2.20462, 2); return c; }).ToList();
+            //}
             return source;
 
         }

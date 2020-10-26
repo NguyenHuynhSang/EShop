@@ -20,6 +20,9 @@ namespace EShop.Server.Models
         [StringLength(500)]
         public string Name { set; get; }
 
+        public string Image { set; get; }
+
+
       
 
 
