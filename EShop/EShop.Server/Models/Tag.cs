@@ -14,6 +14,6 @@ namespace EShop.Server.Models
 
         public String ID { set; get; }
         [MaxLength(50)] //chỉ định độ dài tối đa, nếu k có mặc định là max
-        public string TagtName { set; get; }
+        public string TagName { set; get; }
     }
 }

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Linq.Dynamic.Core;
 using System.Threading.Tasks;
 
 namespace EShop.Server.Data
@@ -14,9 +15,19 @@ namespace EShop.Server.Data
         public Seed(EShopDbContext context)
         {
             _context = context;
-              SeedUsers();
+            var seedVersion = _context.SeedLogs.Count();
+            if (seedVersion==0)
+            {
+                SeedUsers();
+                SeedProduct();
 
-             SeedProduct();
+                var seedLog = new SeedLog();
+                seedLog.DataVersion = 1;
+                _context.SeedLogs.Add(seedLog);
+                _context.SaveChanges();
+
+            }
+            
         }
 
         private void SeedUsers()

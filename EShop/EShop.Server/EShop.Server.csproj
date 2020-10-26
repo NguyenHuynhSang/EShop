@@ -18,6 +18,8 @@
     <Compile Remove="Migrations\20200614103652_rename_table_category_toBlogCategory_catalog_toProductCatalog.Designer.cs" />
     <Compile Remove="Migrations\20200715145122_test.cs" />
     <Compile Remove="Migrations\20200715145122_test.Designer.cs" />
+    <Compile Remove="Migrations\20201026141358_add_table_seedlog.cs" />
+    <Compile Remove="Migrations\20201026141358_add_table_seedlog.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

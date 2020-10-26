@@ -59,7 +59,7 @@ namespace EShop.Server.Data
 
         public DbSet<ExchangeRateDongA> ExchangeRateDongAs { get; set; }
 
-
+        public DbSet<SeedLog> SeedLogs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) //Một bảng có 2 khóa chính phải sử dụng fluent API
         {
