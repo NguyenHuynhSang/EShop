@@ -42,10 +42,10 @@ namespace EShop.Server
         {
 
             //Read connection from ConnectionString.txt
-            var connectionString = File.ReadAllText("ConnectionString.txt");
+            //var connectionString = File.ReadAllText("ConnectionString.txt");
 
-            services.AddDbContext<EShopDbContext>(x => x.UseSqlServer(connectionString));
-            //services.AddDbContext<EShopDbContext>(x => x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            //services.AddDbContext<EShopDbContext>(x => x.UseSqlServer(connectionString));
+            services.AddDbContext<EShopDbContext>(x => x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllers().AddNewtonsoftJson(opt => {
                 opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             });
