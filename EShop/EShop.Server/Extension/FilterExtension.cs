@@ -5,68 +5,98 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Reflection;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace EShop.Server.Extension
 {
     public static class FilterExtension
     {
+        [JsonConverter(typeof(JsonStringEnumConverter))]
+        public enum FilterOperator
+        {
+            /// <summary>
+            /// num filter
+            /// </summary>
+            num_equal = 1,
+            num_notEqual = 2,
+            num_greaterthan = 3,
+            num_greaterThanOrEqual = 4,
+            num_lessThan = 5,
+            num_lessThanOrEqual = 6,
+            num_range = 7,
+
+            /// <summary>
+            /// Text filter
+            /// </summary>
+            text_partialmatch = 100,
+            text_notpartialmatch = 101,
+            text_equals = 102,
+            text_notequal = 103,
+            text_contains = 104,
+            text_notcontains = 105,
+            text_startswith = 106,
+            text_endswith = 107,
 
 
+        }
 
-        public static string[] formats = {"M/d/yyyy h:mm:ss tt", "M/d/yyyy h:mm tt",
+        private static string[] formats = {"M/d/yyyy h:mm:ss tt", "M/d/yyyy h:mm tt",
                    "MM/dd/yyyy hh:mm:ss", "M/d/yyyy h:mm:ss",
                    "M/d/yyyy hh:mm tt", "M/d/yyyy hh tt",
                    "M/d/yyyy h:mm", "M/d/yyyy h:mm",
                    "MM/dd/yyyy hh:mm", "M/dd/yyyy hh:mm"};
 
-        public static Dictionary<string, string> NumberFilterOperator
-            = new Dictionary<string, string>
+        private static Dictionary<int, string> NumberFilterOperator
+            = new Dictionary<int, string>
         {
-           { "equal","{0}= @0" },
-           { "notequal","{0}!= @0" },
-           { "greaterthan","{0}> @0" },
-           { "greaterthanorequal","{0}>= @0" },
-           { "lessthan","{0}< @0" },
-           { "lessthanorequal","{0}<= @0" },
-           { "inrange","{0}>= @0 and {1}<=@1" },
+           { 1,"{0}= @0" },
+           { 2,"{0}!= @0" },
+           { 3,"{0}> @0" },
+           { 4,"{0}>= @0" },
+           { 5,"{0}< @0" },
+           { 6,"{0}<= @0" },
+           { 7,"{0}>= @0 and {1}<=@1" },
         };
 
-        public static Dictionary<string, string> TextFilterOperator
-           = new Dictionary<string, string>
+        private static Dictionary<int, string> TextFilterOperator
+           = new Dictionary<int, string>
        {
-           { "partialmatch","{0}.ToLower().Contains(@0)" },
-           { "notpartialmatch","!{0}.ToLower().Contains(@0)" },
-           { "equals","{0}.Equals(@0)" },
-           { "notequal","!{0}.Equals(@0)" },
-           { "contains","{0}.ToLower().Contains(@0)" },
-           { "notcontains","!{0}.ToLower().Contains(@0)" },
-           { "startswith","{0}.StartsWith(@0)" },
-           { "endswith","{0}.EndsWith(@0)" },
+           { 100,"{0}.ToLower().Contains(@0)" },
+           { 101,"!{0}.ToLower().Contains(@0)" },
+           { 102,"{0}.Equals(@0)" },
+           { 103,"!{0}.Equals(@0)" },
+           { 104,"{0}.ToLower().Contains(@0)" },
+           { 105,"!{0}.ToLower().Contains(@0)" },
+           { 106,"{0}.StartsWith(@0)" },
+           { 107,"{0}.EndsWith(@0)" },
        };
 
-        public static Dictionary<string, string> DateFilterOperator
-        = new Dictionary<string, string>
+        private static Dictionary<int, string> DateFilterOperator
+        = new Dictionary<int, string>
             {
-                   { "today","{0}==@0" },
-                   { "lessthan","{0}< @0" },
-                   { "greaterthan","{0}> @0" },
+                   { 200,"{0}==@0" },
+                   { 201,"{0}< @0" },
+                   { 202,"{0}> @0" },
             };
 
 
-        public static Dictionary<string, string> SetFilterOperator
-       = new Dictionary<string, string>
+        private static Dictionary<int, string> SetFilterOperator
+       = new Dictionary<int, string>
            {
-                   { "equal","==@0" },
-                   { "notequal","!= @0" },
+                   { 200,"==@0" },
+                   { 201,"!= @0" },
            };
 
-        private enum FilterType
+
+        [JsonConverter(typeof(JsonStringEnumConverter))]
+
+        public enum FilterType
         {
-            Number = 1,
-            Text = 2,
-            Date = 3,
-            Set = 4
+            num = 1,
+            text = 2,
+            date = 3,
+            set = 4
         }
 
         public static Type GetItemType<T>(this IEnumerable<T> enumerable)
@@ -81,19 +111,19 @@ namespace EShop.Server.Extension
             string operatorSyntax = "";
             switch ((FilterType)param.filterType)
             {
-                case FilterType.Number:
-                    operatorSyntax = FilterExtension.NumberFilterOperator[param.filterOperator.ToLower()];
+                case FilterType.num:
+                    operatorSyntax = FilterExtension.NumberFilterOperator[(int)param.filterOperator];
                     break;
-                case FilterType.Text:
-                    operatorSyntax = FilterExtension.TextFilterOperator[param.filterOperator.ToLower()];
+                case FilterType.text:
+                    operatorSyntax = FilterExtension.TextFilterOperator[(int)param.filterOperator];
                     break;
-                case FilterType.Date:
-                    operatorSyntax = FilterExtension.DateFilterOperator[param.filterOperator.ToLower()];
+                case FilterType.date:
+                    operatorSyntax = FilterExtension.DateFilterOperator[(int)param.filterOperator];
                     var formattedPredicate = String.Format(operatorSyntax, param.filterProperty);
                     return source.Where(formattedPredicate, DateTime.ParseExact(param.filterValue, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture));
                     break;
-                case FilterType.Set:
-                    operatorSyntax = FilterExtension.SetFilterOperator[param.filterOperator.ToLower()];
+                case FilterType.set:
+                    operatorSyntax = FilterExtension.SetFilterOperator[(int)param.filterOperator];
                     var properties = param.filterProperty.Split('.');
                     var collection = typeOfSource;
                     var syntaxExtend = "";
@@ -128,7 +158,7 @@ namespace EShop.Server.Extension
 
                     }
                     //careful with child list when using Any
-                    return source.Where(syntaxExtend,param.filterValue);
+                    return source.Where(syntaxExtend, param.filterValue);
                     // productsReturn.Where(x => x.ProductVersions.Any(x => x.ProductVersionAttributes.Any(x => x.AtributeID == 1)));
                     break;
                 default:

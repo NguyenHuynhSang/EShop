@@ -105,6 +105,7 @@ namespace EShop.Server
             services.AddSwaggerGen(swagger =>
             {
                 swagger.SwaggerDoc("v1", new OpenApiInfo { Title = "My API" });
+                swagger.DescribeAllEnumsAsStrings();
                 //swagger.DocumentFilter<CustomModelDocumentForSwagger<ProductFilterModel>>();
             });
 
@@ -145,6 +146,7 @@ namespace EShop.Server
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API");
+
                 //  c.RoutePrefix = string.Empty;
             });
         }

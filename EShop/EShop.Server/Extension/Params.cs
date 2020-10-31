@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
-
+using static EShop.Server.Extension.FilterExtension;
 
 namespace EShop.Server.Extension
 {
@@ -20,10 +19,10 @@ namespace EShop.Server.Extension
 
         public string weight { set; get; }
         public string filterProperty { set; get; }
-        public string filterOperator { set; get; }
+        public FilterOperator filterOperator { set; get; }
         public string filterValue { get; set; }
         public string filterValue1 { get; set; } // use for range
-        public int filterType { get; set; }// number, string, set...
+        public FilterType filterType { get; set; }// number, string, set...
 
         public Params()
         {

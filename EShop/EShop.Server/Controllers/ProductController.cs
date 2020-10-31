@@ -11,6 +11,7 @@ using EShop.Server.ViewModels;
 using EShop.Server.Extension;
 using System;
 using EShop.Server.Dtos.Admin.ProductForList;
+using static EShop.Server.Extension.FilterExtension;
 
 namespace EShop.Server.Controllers
 {
@@ -31,7 +32,7 @@ namespace EShop.Server.Controllers
 
 
         [HttpGet]
-        public ActionResult<IEnumerable<ProductForListDto>> GetAll(string filterProperty,string filterOperator, int filterType,string filterValue, string filterValue1,string sortBy, string sort = "desc")
+        public ActionResult<IEnumerable<ProductForListDto>> GetAll(string filterProperty, FilterOperator filterOperator, FilterType filterType,string filterValue, string filterValue1,string sortBy, string sort = "desc")
         {
           
             try
