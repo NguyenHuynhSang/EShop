@@ -3,26 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Linq.Dynamic.Core;
+using Microsoft.Net.Http.Headers;
+using EShop.Server.Extension;
+
 public static class SortExtension
 {
     public static IOrderedQueryable<TSource> OrderByWithDirection<TSource>
         (this IQueryable<TSource> source,
          string keySelector,
-         string sort)
+         SortType  sort)
     {
-
-        sort = sort.ToLower();
         try
         {
-            if (sort=="desc")
+            switch (sort)
             {
-                return source.OrderBy(keySelector == null ? "0" : keySelector + " descending");
+                case SortType.desc:
+                    return source.OrderBy(keySelector == null ? "0" : keySelector + " descending");
+                    break;
+                case SortType.esc:
+                    return source.OrderBy(keySelector == null ? "0" : keySelector);
+                    break;
+                default:
+                    return source.OrderBy("0");
             }
-            else if (sort=="asc")
-            {
-                return source.OrderBy(keySelector == null ? "0" : keySelector);
-            }
-            return source.OrderBy("0");
+          
 
         }
         catch (Exception)

@@ -1,15 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using static EShop.Server.Extension.FilterExtension;
 
 namespace EShop.Server.Extension
 {
+
+    [JsonConverter(typeof(JsonStringEnumConverter))]
+    public enum SortType
+    {
+        desc=0,
+        esc=1
+    }
     public class Params
     {
         public string filter { set; get; }
-        public string sort { set; get; }
+        public SortType sort { set; get; }
 
         public string sortBy { set; get; }
         public int? page { set; get; }

@@ -8,6 +8,7 @@ using EShop.Server.Service;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using EShop.Server.Extension;
 
 namespace EShop.Server.Controllers
 {
@@ -40,7 +41,7 @@ namespace EShop.Server.Controllers
 
 
         [HttpGet]
-        public ActionResult<PagedListWrapper<CatalogViewModel>> GetAllPaging(string keyword, string sortBy, string sort = "desc", int page = 1, int perPage = 50)
+        public ActionResult<PagedListWrapper<CatalogViewModel>> GetAllPaging(string keyword, string sortBy, SortType sort=SortType.desc, int page = 1, int perPage = 50)
         {
             try
             {

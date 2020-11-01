@@ -32,7 +32,7 @@ namespace EShop.Server.Controllers
 
 
         [HttpGet]
-        public ActionResult<IEnumerable<ProductForListDto>> GetAll(string filterProperty, FilterOperator filterOperator, FilterType filterType,string filterValue, string filterValue1,string sortBy, string sort = "desc")
+        public ActionResult<IEnumerable<ProductForListDto>> GetAll(string filterProperty, FilterOperator filterOperator, FilterType filterType,string filterValue, string filterValue1,string sortBy, SortType sort=SortType.desc)
         {
           
             try
@@ -56,9 +56,9 @@ namespace EShop.Server.Controllers
             }
         }
         [HttpGet]
-        public ActionResult<PagedListWrapper<ProductForListDto>> GetAllPaging(string productFilterModelJson, string sortBy, string sort = "desc", decimal? currency=null, string weight="kg", int page = 1, int perPage = 50)
+        public ActionResult<PagedListWrapper<ProductForListDto>> GetAllPaging(string filterProperty, FilterOperator filterOperator, FilterType filterType, string filterValue, string filterValue1, string sortBy, SortType sort=SortType.desc, decimal? currency=null, string weight="kg", int page = 1, int perPage = 50)
         {
-
+            
             try
             {
                 Params param = new Params();
