@@ -4,14 +4,16 @@ using EShop.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EShop.Server.Migrations
 {
     [DbContext(typeof(EShopDbContext))]
-    partial class EShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201103143517_remove_seed_data")]
+    partial class remove_seed_data
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,13 +35,6 @@ namespace EShop.Server.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Attribute");
-
-                    b.HasData(
-                        new
-                        {
-                            ID = 1,
-                            Name = "Kích cỡ"
-                        });
                 });
 
             modelBuilder.Entity("EShop.Server.Models.AttributeValue", b =>
@@ -61,44 +56,6 @@ namespace EShop.Server.Migrations
                     b.HasIndex("AttributeID");
 
                     b.ToTable("AttributeValue");
-
-                    b.HasData(
-                        new
-                        {
-                            ID = 1,
-                            AttributeID = 1,
-                            Name = "Đỏ"
-                        },
-                        new
-                        {
-                            ID = 10,
-                            AttributeID = 1,
-                            Name = "S"
-                        },
-                        new
-                        {
-                            ID = 11,
-                            AttributeID = 1,
-                            Name = "M"
-                        },
-                        new
-                        {
-                            ID = 12,
-                            AttributeID = 1,
-                            Name = "L"
-                        },
-                        new
-                        {
-                            ID = 13,
-                            AttributeID = 1,
-                            Name = "XL"
-                        },
-                        new
-                        {
-                            ID = 14,
-                            AttributeID = 1,
-                            Name = "XXL"
-                        });
                 });
 
             modelBuilder.Entity("EShop.Server.Models.BlogCategory", b =>
@@ -562,36 +519,42 @@ namespace EShop.Server.Migrations
                         new
                         {
                             ID = 7,
+                            Name = "Áo khoác",
+                            ParentID = 1
+                        },
+                        new
+                        {
+                            ID = 8,
                             Name = "Quần tây",
                             ParentID = 2
                         },
                         new
                         {
-                            ID = 8,
+                            ID = 9,
                             Name = "Quần jean",
                             ParentID = 2
                         },
                         new
                         {
-                            ID = 9,
+                            ID = 10,
                             Name = "Quần kari",
                             ParentID = 2
                         },
                         new
                         {
-                            ID = 10,
+                            ID = 11,
                             Name = "Quần short",
                             ParentID = 2
                         },
                         new
                         {
-                            ID = 11,
+                            ID = 12,
                             Name = "Váy toàn thân",
                             ParentID = 3
                         },
                         new
                         {
-                            ID = 12,
+                            ID = 13,
                             Name = "Váy quần",
                             ParentID = 3
                         });

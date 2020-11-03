@@ -4,14 +4,16 @@ using EShop.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EShop.Server.Migrations
 {
     [DbContext(typeof(EShopDbContext))]
-    partial class EShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201103132411_update_seed_data")]
+    partial class update_seed_data
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,6 +40,11 @@ namespace EShop.Server.Migrations
                         new
                         {
                             ID = 1,
+                            Name = "Màu sắc"
+                        },
+                        new
+                        {
+                            ID = 2,
                             Name = "Kích cỡ"
                         });
                 });
@@ -67,37 +74,37 @@ namespace EShop.Server.Migrations
                         {
                             ID = 1,
                             AttributeID = 1,
-                            Name = "Đỏ"
+                            Name = "Nam"
                         },
                         new
                         {
-                            ID = 10,
+                            ID = 2,
                             AttributeID = 1,
+                            Name = "Nữ"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            AttributeID = 2,
                             Name = "S"
                         },
                         new
                         {
-                            ID = 11,
-                            AttributeID = 1,
+                            ID = 4,
+                            AttributeID = 2,
                             Name = "M"
                         },
                         new
                         {
-                            ID = 12,
-                            AttributeID = 1,
+                            ID = 5,
+                            AttributeID = 2,
                             Name = "L"
                         },
                         new
                         {
-                            ID = 13,
-                            AttributeID = 1,
+                            ID = 6,
+                            AttributeID = 2,
                             Name = "XL"
-                        },
-                        new
-                        {
-                            ID = 14,
-                            AttributeID = 1,
-                            Name = "XXL"
                         });
                 });
 
@@ -539,7 +546,8 @@ namespace EShop.Server.Migrations
                         new
                         {
                             ID = 3,
-                            Name = "Váy"
+                            Name = "Áo khoác",
+                            ParentID = 1
                         },
                         new
                         {
@@ -558,42 +566,6 @@ namespace EShop.Server.Migrations
                             ID = 6,
                             Name = "Áo khoác",
                             ParentID = 1
-                        },
-                        new
-                        {
-                            ID = 7,
-                            Name = "Quần tây",
-                            ParentID = 2
-                        },
-                        new
-                        {
-                            ID = 8,
-                            Name = "Quần jean",
-                            ParentID = 2
-                        },
-                        new
-                        {
-                            ID = 9,
-                            Name = "Quần kari",
-                            ParentID = 2
-                        },
-                        new
-                        {
-                            ID = 10,
-                            Name = "Quần short",
-                            ParentID = 2
-                        },
-                        new
-                        {
-                            ID = 11,
-                            Name = "Váy toàn thân",
-                            ParentID = 3
-                        },
-                        new
-                        {
-                            ID = 12,
-                            Name = "Váy quần",
-                            ParentID = 3
                         });
                 });
 

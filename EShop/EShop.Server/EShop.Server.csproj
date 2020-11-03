@@ -21,6 +21,10 @@
     <Compile Remove="Migrations\20200715145122_test.Designer.cs" />
     <Compile Remove="Migrations\20201026141358_add_table_seedlog.cs" />
     <Compile Remove="Migrations\20201026141358_add_table_seedlog.Designer.cs" />
+    <Compile Remove="Migrations\20201103141243_product_change_ID.cs" />
+    <Compile Remove="Migrations\20201103141243_product_change_ID.Designer.cs" />
+    <Compile Remove="Migrations\20201103142048_product_change_ID.cs" />
+    <Compile Remove="Migrations\20201103142048_product_change_ID.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

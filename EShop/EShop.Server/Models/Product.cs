@@ -8,10 +8,13 @@ using System.Text;
 namespace EShop.Server.Models
 {
     [Table("Product")] // map class với table trong csdl
+   
+
     public class Product:SeoAndAudit
     {
        
         [Key] // chỉ định    khóa chính
+     
         public int ID { set; get; }
         [MaxLength(500)] //chỉ định độ dài tối đa, nếu k có mặc định là max
 

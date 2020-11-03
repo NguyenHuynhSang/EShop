@@ -1,0 +1,62 @@
+﻿[
+  {
+    "ID": 1,
+    "ParentID": null,
+    "Name": "Áo"
+  },
+  {
+    "ID": 2,
+    "ParentID": null,
+    "Name": "Quần"
+  },
+  {
+    "ID": 3,
+    "ParentID": null,
+    "Name": "Váy"
+  },
+  {
+    "ID": 4,
+    "ParentID": 1,
+    "Name": "Áo thun"
+  },
+  {
+    "ID": 5,
+    "ParentID": 1,
+    "Name": "Áo sơ mi"
+  },
+  {
+    "ID": 6,
+    "ParentID": 1,
+    "Name": "Áo khoác"
+  },
+  {
+    "ID": 7,
+    "ParentID": 2,
+    "Name": "Quần tây"
+  },
+  {
+    "ID": 8,
+    "ParentID": 2,
+    "Name": "Quần jean"
+  },
+  {
+    "ID": 9,
+    "ParentID": 2,
+    "Name": "Quần kari"
+  },
+  {
+    "ID": 10,
+    "ParentID": 2,
+    "Name": "Quần short"
+  },
+  {
+    "ID": 11,
+    "ParentID": 3,
+    "Name": "Váy toàn thân"
+  },
+  {
+    "ID": 12,
+    "ParentID": 3,
+    "Name": "Váy quần"
+  }
+]

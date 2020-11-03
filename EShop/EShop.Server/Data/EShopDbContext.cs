@@ -88,24 +88,12 @@ namespace EShop.Server.Data
 
 
 
-            modelBuilder.Entity<ProductCatalog>().HasData(new ProductCatalog { ID = 1, ParentID = null, Name = "Áo" },
-                                                 new ProductCatalog { ID = 2, ParentID = null, Name = "Quần" },
-                                                 new ProductCatalog { ID = 3, ParentID = 1, Name = "Áo khoác" },
-                                                 new ProductCatalog { ID = 4, ParentID = 1, Name = "Áo thun" },
-                                                 new ProductCatalog { ID = 5, ParentID = 1, Name = "Áo sơ mi" });
 
+            modelBuilder.Entity<AttributeValue>().HasData(new AttributeValue { ID = 1, AttributeID = 1, Name = "Đỏ" });
 
-
-
-            modelBuilder.Entity<EShop.Server.Models.Attribute>().HasData(new ProductAttribute { ID = 1, Name = "Màu sắc" },
-                                                                           new ProductAttribute { ID = 2, Name = "Kích cỡ" });
-
-            modelBuilder.Entity<AttributeValue>().HasData(new AttributeValue { ID = 1, AttributeID = 1, Name = "Đỏ" },
-                                                            new AttributeValue { ID = 2, AttributeID = 1, Name = "Xanh" },
-                                                            new AttributeValue { ID = 3, AttributeID = 2, Name = "S" },
-                                                            new AttributeValue { ID = 4, AttributeID = 2, Name = "M" },
-                                                            new AttributeValue { ID = 5, AttributeID = 2, Name = "L" },
-                                                            new AttributeValue { ID = 6, AttributeID = 2, Name = "XL" });
+            SeedProductAttribute(modelBuilder);
+            SeedAttributeValue(modelBuilder);
+            SeedProductCatalog(modelBuilder);
 
 
 
@@ -113,11 +101,36 @@ namespace EShop.Server.Data
 
 
 
+        }
 
 
+        ///Seed product attribute from file
+        ///
+        private void SeedProductAttribute(ModelBuilder modelBuilder)
+        {
+
+            var dataJson = File.ReadAllText("Data/product.attribute.data.json");
+            var attrobutes = JsonConvert.DeserializeObject<List<Models.Attribute>>(dataJson);
+            modelBuilder.Entity<Models.Attribute>().HasData(attrobutes);
+        }
 
 
+        ///Seed Attribute value from file
+        ///
+        private void SeedAttributeValue(ModelBuilder modelBuilder)
+        {
 
+            var dataJson = File.ReadAllText("Data/attribute.value.data.json");
+            var data = JsonConvert.DeserializeObject<List<Models.AttributeValue>>(dataJson);
+            modelBuilder.Entity<Models.AttributeValue>().HasData(data);
+        }
+        private void SeedProductCatalog(ModelBuilder modelBuilder)
+        {
+
+
+            var dataJson = File.ReadAllText("Data/product.catalog.data.json");
+            var data = JsonConvert.DeserializeObject<List<Models.ProductCatalog>>(dataJson);
+            modelBuilder.Entity<ProductCatalog>().HasData(data);
         }
 
 

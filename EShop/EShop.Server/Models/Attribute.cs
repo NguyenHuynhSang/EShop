@@ -10,7 +10,8 @@ namespace EShop.Server.Models
     public class Attribute
     {
         
-        [Key] // chỉ định    khóa chính
+        [Key] // chỉ định    khóa 
+
         public int ID { set; get; }
 
         [StringLength(500)]
