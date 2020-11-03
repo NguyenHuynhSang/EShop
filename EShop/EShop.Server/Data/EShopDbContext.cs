@@ -87,25 +87,29 @@ namespace EShop.Server.Data
 
 
 
-           
-            modelBuilder.Entity<ProductCatalog>().HasData(new ProductCatalog { ID = 1, ParentID = null, Name = "Điện thoại" },
-                                                 new ProductCatalog { ID = 2, ParentID = null, Name = "Laptop" },
-                                                 new ProductCatalog { ID = 3, ParentID = 1, Name = "Samsung" },
-                                                 new ProductCatalog { ID = 4, ParentID = 1, Name = "Apple" },
-                                                 new ProductCatalog { ID = 5, ParentID = 2, Name = "Macbook" });
+
+            modelBuilder.Entity<ProductCatalog>().HasData(new ProductCatalog { ID = 1, ParentID = null, Name = "Áo" },
+                                                 new ProductCatalog { ID = 2, ParentID = null, Name = "Quần" },
+                                                 new ProductCatalog { ID = 3, ParentID = 1, Name = "Áo khoác" },
+                                                 new ProductCatalog { ID = 4, ParentID = 1, Name = "Áo thun" },
+                                                 new ProductCatalog { ID = 5, ParentID = 1, Name = "Áo sơ mi" });
 
 
 
-        
+
             modelBuilder.Entity<EShop.Server.Models.Attribute>().HasData(new ProductAttribute { ID = 1, Name = "Màu sắc" },
-                                                 new ProductAttribute { ID = 2, Name = "Dung lượng" });
+                                                                           new ProductAttribute { ID = 2, Name = "Kích cỡ" });
 
             modelBuilder.Entity<AttributeValue>().HasData(new AttributeValue { ID = 1, AttributeID = 1, Name = "Đỏ" },
-                                                new AttributeValue { ID = 2, AttributeID = 1, Name = "Xanh" },
-                                                new AttributeValue { ID = 3, AttributeID = 1, Name = "Tím" },
-                                                new AttributeValue { ID = 4, AttributeID = 2, Name = "16gb" },
-                                                new AttributeValue { ID = 5, AttributeID = 2, Name = "32gb" },
-                                                new AttributeValue { ID = 6, AttributeID = 2, Name = "64gb" });
+                                                            new AttributeValue { ID = 2, AttributeID = 1, Name = "Xanh" },
+                                                            new AttributeValue { ID = 3, AttributeID = 2, Name = "S" },
+                                                            new AttributeValue { ID = 4, AttributeID = 2, Name = "M" },
+                                                            new AttributeValue { ID = 5, AttributeID = 2, Name = "L" },
+                                                            new AttributeValue { ID = 6, AttributeID = 2, Name = "XL" });
+
+
+
+
 
 
 

@@ -14,7 +14,7 @@ namespace EShop.Server.Controllers
 
 
         [HttpGet]
-        public bool IsUserLoggedIn(int userId)
+        protected bool IsUserLoggedIn(int userId)
         {
             return userId == int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
         }

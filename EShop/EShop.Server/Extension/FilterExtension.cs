@@ -20,7 +20,7 @@ namespace EShop.Server.Extension
             /// </summary>
             num_equal = 1,
             num_notEqual = 2,
-            num_greaterthan = 3,
+            num_greaterThan = 3,
             num_greaterThanOrEqual = 4,
             num_lessThan = 5,
             num_lessThanOrEqual = 6,
@@ -29,14 +29,14 @@ namespace EShop.Server.Extension
             /// <summary>
             /// Text filter
             /// </summary>
-            text_partialmatch = 100,
-            text_notpartialmatch = 101,
+            text_partialMatch = 100,
+            text_notPartialMatch = 101,
             text_equals = 102,
-            text_notequal = 103,
+            text_notEqual = 103,
             text_contains = 104,
-            text_notcontains = 105,
-            text_startswith = 106,
-            text_endswith = 107,
+            text_notContains = 105,
+            text_startsWith = 106,
+            text_endsWith = 107,
 
 
         }

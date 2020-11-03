@@ -1,4 +1,5 @@
 ﻿using EShop.Server.Models;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace EShop.Server.Data
         {
             _context = context;
             var seedVersion = _context.SeedLogs.Count();
-            if (seedVersion==0)
+            if (seedVersion == 0)
             {
                 SeedUsers();
                 SeedProduct();
@@ -27,8 +28,20 @@ namespace EShop.Server.Data
                 _context.SaveChanges();
 
             }
-            
+            CleanAllData();
+
         }
+
+
+        private void CleanAllData()
+        {
+       
+            _context.RemoveRange(_context.ProductCatalogs);
+            _context.SaveChanges();
+        }
+
+
+       
 
         private void SeedUsers()
         {

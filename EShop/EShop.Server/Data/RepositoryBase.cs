@@ -133,6 +133,9 @@ namespace EShop.Server.Data
             _dbContext.SaveChanges();
         }
 
-     
+        public void ClearAllData()
+        {
+            dbSet.RemoveRange(dbSet);
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Query;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,7 +45,7 @@ namespace EShop.Server.Data
 
         bool CheckContains(Expression<Func<T, bool>> filter);
 
-
+        public void ClearAllData();
         void Commit();
 
     }
