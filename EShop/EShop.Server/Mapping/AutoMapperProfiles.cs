@@ -96,6 +96,10 @@ namespace EShop.Server.Mapping
 
             CreateMap<ExchangeRateDongA, ExchangeRateDongA>()
                .ForMember(dest => dest.ID, opt => opt.Ignore());
+            CreateMap<ProductCatalog, ProductCatalog>()
+               .ForMember(dest => dest.ID, opt => opt.Ignore());
+
+
             CreateMap<IEnumerable<ProductVersionViewModel>, IEnumerable<ProductVersion>>();
             CreateMap<IEnumerable<ProductVersion>, IEnumerable<ProductVersionViewModel>>();
 

@@ -9,6 +9,7 @@ using EShop.Server.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using EShop.Server.Extension;
+using AutoMapper;
 
 namespace EShop.Server.Controllers
 {
@@ -16,11 +17,13 @@ namespace EShop.Server.Controllers
     [ApiController]
     public class ProductCatalogController : ApiControllerBase
     {
-        private ICatalogService _catalogService;// service xử dụng
-        public ProductCatalogController(ICatalogService catalogService)
+        private readonly ICatalogService _catalogService;// service xử dụng
+        private readonly IMapper _mapper;
+        public ProductCatalogController(ICatalogService catalogService,IMapper mapper)
            
         {
             _catalogService = catalogService;
+            this._mapper = mapper;
         }
 
         [HttpGet]
@@ -119,6 +122,47 @@ namespace EShop.Server.Controllers
                 logger.Error(ex);
                 return StatusCode(500);
             }
+        }
+
+
+        [HttpPut]
+        public ActionResult<ProductCatalog> Update(ProductCatalog catalog)
+        {
+            try
+            {
+                //TEST
+             
+                var updatedProductCatalog = _catalogService.Update(catalog);
+                _catalogService.SaveChanges();
+                return updatedProductCatalog;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+                return StatusCode(500);
+            }
+
+
+        }
+
+
+        [HttpPut]
+        public ActionResult<ProductCatalog> Active(int ID)
+        {
+            try
+            {
+                //TEST
+                var updatedProductCatalog = _catalogService.Active(ID);
+                _catalogService.SaveChanges();
+                return updatedProductCatalog;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+                return StatusCode(500);
+            }
+
+
         }
 
 

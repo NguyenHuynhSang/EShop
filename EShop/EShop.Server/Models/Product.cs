@@ -38,8 +38,7 @@ namespace EShop.Server.Models
         public string Content { set; get; }
 
  
-        public int Weight { set; get; }
-
+        
 
         [Column(TypeName = "decimal(18,0)")]
         public decimal? OriginalPrice { get; set; }

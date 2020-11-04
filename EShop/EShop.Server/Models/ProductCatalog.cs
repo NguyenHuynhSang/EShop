@@ -22,8 +22,9 @@ namespace EShop.Server.Models
 
         public string Image { set; get; }
 
+        public bool IsActive { set; get; }
 
-      
+
 
 
     }

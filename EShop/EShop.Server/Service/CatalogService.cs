@@ -11,7 +11,8 @@ namespace EShop.Server.Service
     public interface ICatalogService
     {
         ProductCatalog Add(ProductCatalog productAttribute);
-        void Update(ProductCatalog productAttribute);
+        ProductCatalog Update(ProductCatalog productAttribute);
+        ProductCatalog Active(int ID);
 
         IEnumerable<CatalogViewModel> GetAll(string keyword);
 
@@ -30,6 +31,7 @@ namespace EShop.Server.Service
     public class CatalogService : ICatalogService
     {
         ICatalogRepository _catalogRepository;
+
        
 
         public CatalogService(ICatalogRepository catalogRepository)
@@ -38,6 +40,16 @@ namespace EShop.Server.Service
            
 
         }
+
+        public ProductCatalog Active(int ID)
+        {
+            var catalog = _catalogRepository.GetSingleById(ID);
+            catalog.IsActive = catalog.IsActive == null ? false : catalog.IsActive;
+            catalog.IsActive = !catalog.IsActive;
+            _catalogRepository.Update(catalog);
+            return catalog;
+        }
+
         public ProductCatalog Add(ProductCatalog catalog)
         {
             return _catalogRepository.Add(catalog);
@@ -79,9 +91,10 @@ namespace EShop.Server.Service
             _catalogRepository.Commit();
         }
 
-        public void Update(ProductCatalog catalog)
+        public ProductCatalog Update(ProductCatalog catalog)
         {
-            _catalogRepository.Update(catalog);
+       
+            return  _catalogRepository.Update(catalog);
         }
     }
 }

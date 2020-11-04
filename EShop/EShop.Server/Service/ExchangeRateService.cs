@@ -24,7 +24,7 @@ namespace EShop.Server.Service
     public class ExchangeRateService : IExchangeRateService
     {
         IExchangeRateRepository _exchangeRateRepository;
-        private IMapper _mapper;
+        private readonly IMapper _mapper;
 
         public ExchangeRateService(IExchangeRateRepository exchangeRateRepository,IMapper mapper)
         {

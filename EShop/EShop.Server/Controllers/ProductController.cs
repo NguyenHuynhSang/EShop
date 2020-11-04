@@ -82,7 +82,7 @@ namespace EShop.Server.Controllers
     
 
         [HttpPost]
-        public ActionResult<Product> CreateProduct(Product product)
+        public ActionResult<Product> Create(Product product)
         {
             try
             {
@@ -100,7 +100,7 @@ namespace EShop.Server.Controllers
 
 
         [HttpPut]
-        public ActionResult<Product> UpdateProduct(Product product)
+        public ActionResult<Product> Update(Product product)
         {
             try
             {
