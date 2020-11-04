@@ -37,7 +37,7 @@ namespace EShop.Server.Models
 
         public string Content { set; get; }
 
-
+ 
         public int Weight { set; get; }
 
 

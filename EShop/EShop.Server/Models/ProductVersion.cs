@@ -20,7 +20,7 @@ namespace EShop.Server.Models
         [ForeignKey("ProductID")]
         public Product Product { set; get; }
 
-        public int WareHouseID { set; get; }
+        
 
         [MaxLength(500)]
         public string Description { set; get; }

@@ -100,12 +100,11 @@ namespace EShop.Server.Controllers
 
 
         [HttpPut]
-        public ActionResult<Product> UpdateProduct(int id)
+        public ActionResult<Product> UpdateProduct(Product product)
         {
             try
             {
                 //TEST
-               var product= _productService.GetProductById(id); 
                 var updatedProduct = _productService.Update(product);
                 _productService.SaveChanges();
                 return updatedProduct;
