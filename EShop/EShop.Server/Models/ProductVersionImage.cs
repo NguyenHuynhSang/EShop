@@ -11,17 +11,17 @@ namespace EShop.Server.Models
     {
         [Key] // chỉ định    khóa chính
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { set; get; }
+        public int ID { private set; get; }
 
 
         public String Url { set; get; }
 
         public bool IsMain { set; get; }
-        public int ProductVersionID { set; get; }
+        public int ProductVersionID { private set; get; }
 
 
         [ForeignKey("ProductVersionID")]
-        public ProductVersion ProductVersion{ set; get; }
+        public ProductVersion ProductVersion{ private set; get; }
 
     }
 }

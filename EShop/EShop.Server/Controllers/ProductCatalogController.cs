@@ -146,8 +146,7 @@ namespace EShop.Server.Controllers
         {
             try
             {
-                //TEST
-             
+                
                 var updatedProductCatalog = _catalogService.Update(catalog);
                 _catalogService.SaveChanges();
                 return updatedProductCatalog;

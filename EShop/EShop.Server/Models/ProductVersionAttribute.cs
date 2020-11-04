@@ -11,12 +11,12 @@ namespace EShop.Server.Models
         public int AttributeValueID { get; set; }
 
         [ForeignKey("AttributeValueID")]
-        public AttributeValue AttributeValue { get; set; }
+        public AttributeValue AttributeValue { get; private set; }
 
-        public int ProductVersionID { get; set; }
+        public int ProductVersionID { get; private set; }
 
         [ForeignKey("ProductVersionID")]
-        public ProductVersion ProductVersion { get; set; }
+        public ProductVersion ProductVersion { get; private set; }
 
     }
 }

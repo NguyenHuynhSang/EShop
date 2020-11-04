@@ -69,6 +69,29 @@ namespace EShop.Server.Controllers
             }
         }
 
+
+        [HttpPut]
+
+        public ActionResult<ProductAttribute> Update(Models.Attribute attribute)
+        {
+            try
+            {
+
+                var updatedProductCatalog = _attributeService.Update(attribute);
+                _attributeService.SaveChanges();
+                return updatedProductCatalog;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+                return StatusCode(500);
+            }
+
+
+
+        }
+
+
         [HttpDelete]
         public ActionResult<ProductAttribute> Delete(ProductAttribute attribute)
         {

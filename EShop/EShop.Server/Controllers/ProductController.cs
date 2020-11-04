@@ -12,6 +12,8 @@ using EShop.Server.Extension;
 using System;
 using EShop.Server.Dtos.Admin.ProductForList;
 using static EShop.Server.Extension.FilterExtension;
+using EShop.Server.Dtos.Admin;
+using AutoMapper;
 
 namespace EShop.Server.Controllers
 {
@@ -23,10 +25,11 @@ namespace EShop.Server.Controllers
     public class ProductController : ApiControllerBase
     {
         private IProductService _productService;// service xử dụng
-
-        public ProductController(IProductService productService)
+        private readonly IMapper _mapper;
+        public ProductController(IProductService productService,IMapper mapper)
 
         {
+            _mapper = mapper;
             this._productService = productService;
         }
 
@@ -82,12 +85,12 @@ namespace EShop.Server.Controllers
     
 
         [HttpPost]
-        public ActionResult<Product> Create(Product product)
+        public ActionResult<Product> Create(ProductForCreateDto product)
         {
             try
             {
-             
-                var newProduct = _productService.Add(product);
+                var productForCreate = _mapper.Map<Product>(product);
+                var newProduct = _productService.Add(productForCreate);
                 _productService.SaveChanges();
                 return newProduct;
             }

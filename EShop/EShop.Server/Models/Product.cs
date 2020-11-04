@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Serialization;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace EShop.Server.Models
 {
@@ -22,6 +24,8 @@ namespace EShop.Server.Models
         public int CatalogID { set; get; }
 
         [ForeignKey("CatalogID")]
+  
+
         public ProductCatalog Catalog { set; get; }
 
 
@@ -38,7 +42,6 @@ namespace EShop.Server.Models
         public string Content { set; get; }
 
  
-        
 
         [Column(TypeName = "decimal(18,0)")]
         public decimal? OriginalPrice { get; set; }

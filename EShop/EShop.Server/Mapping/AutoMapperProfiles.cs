@@ -9,6 +9,7 @@ using EShop.Server.Extension;
 using EShop.Server.ViewModels;
 using static EShop.Server.SchedulerTask.ExchangeRateTask;
 using EShop.Server.Dtos.Admin.ProductForList;
+using EShop.Server.Dtos.Admin;
 
 namespace EShop.Server.Mapping
 {
@@ -60,7 +61,7 @@ namespace EShop.Server.Mapping
                      opt.MapFrom(src => src.AttributeValue.ID);
                  });
 
-
+           
             CreateMap<ProductVersion, ProductVersionDto>()
                  .ForMember(dest => dest.ImageUrl, opt =>
                  {
@@ -88,6 +89,14 @@ namespace EShop.Server.Mapping
                 .ForMember(dest => dest.bantienmat, act => act.MapFrom(src => String.IsNullOrEmpty(src.bantienmat) ? 0 : float.Parse(src.bantienmat)));
 
 
+            ///product dto block
+            ///
+            CreateMap<ProductVesionForCreateDto, ProductVersion>();
+            CreateMap<ProductForCreateDto, Product>()
+                .ForMember(dest=>dest.ProductVersions,opt=>opt.MapFrom(src=>src.ProductVersions));
+          
+              
+
             //ignore ID , entity need to get from db and map to update entity
             // track issue cause by ef core
             CreateMap<ExchangeRateDongA, ExchangeRateDongA>()
@@ -101,7 +110,8 @@ namespace EShop.Server.Mapping
 
 
             CreateMap<IEnumerable<ProductVersionViewModel>, IEnumerable<ProductVersion>>();
-            CreateMap<IEnumerable<ProductVersion>, IEnumerable<ProductVersionViewModel>>();
+            CreateMap<IEnumerable<ProductVersion>, IEnumerable<ProductVersionViewModel>>()
+                ;
 
 
 

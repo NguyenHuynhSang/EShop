@@ -16,6 +16,9 @@ namespace EShop.Server.Service
 
         public EShop.Server.Models.Attribute Delete(EShop.Server.Models.Attribute attribute);
 
+
+        public Models.Attribute Update(Models.Attribute attribute);
+
         void SaveChanges();
 
     }
@@ -57,6 +60,11 @@ namespace EShop.Server.Service
         public void SaveChanges()
         {
              _attributeRepository.Commit();
+        }
+
+        public Models.Attribute Update(Models.Attribute attribute)
+        {
+            return _attributeRepository.Update(attribute);
         }
     }
 }

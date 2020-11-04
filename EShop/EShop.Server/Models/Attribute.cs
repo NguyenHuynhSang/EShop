@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace EShop.Server.Models
 {
@@ -11,6 +12,7 @@ namespace EShop.Server.Models
     {
         
         [Key] // chỉ định    khóa 
+       
 
         public int ID { set; get; }
 
