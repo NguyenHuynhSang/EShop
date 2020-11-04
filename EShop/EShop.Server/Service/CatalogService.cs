@@ -5,6 +5,8 @@ using EShop.Server.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using EShop.Server.Extension;
+using System.Linq;
 
 namespace EShop.Server.Service
 {
@@ -14,7 +16,8 @@ namespace EShop.Server.Service
         ProductCatalog Update(ProductCatalog productAttribute);
         ProductCatalog Active(int ID);
 
-        IEnumerable<CatalogViewModel> GetAll(string keyword);
+
+        IEnumerable<CatalogViewModel> GetAll(Params param);
 
         IEnumerable<CatalogTreeModel> GetCatalogTree();
 
@@ -60,9 +63,9 @@ namespace EShop.Server.Service
             return _catalogRepository.Delete(catalog);
         }
 
-        public IEnumerable<CatalogViewModel> GetAll(string keyword)
+        public IEnumerable<CatalogViewModel> GetAll(Params param)
         {
-            return _catalogRepository.GetAllCatalogForView();
+            return _catalogRepository.GetAllCatalogForView().AsQueryable().WhereTo(param);
         }
 
         public ProductCatalog GetCatalogById(int id)

@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using EShop.Server.Extension;
 using AutoMapper;
+using static EShop.Server.Extension.FilterExtension;
 
 namespace EShop.Server.Controllers
 {
@@ -27,11 +28,19 @@ namespace EShop.Server.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<CatalogViewModel>> GetAll(string keyword)
+        public ActionResult<IEnumerable<CatalogViewModel>> GetAll(string filterProperty, FilterOperator filterOperator, FilterType filterType, string filterValue, string filterValue1, string sortBy, SortType sort = SortType.desc)
         {
             try
             {
-                var list = _catalogService.GetAll(keyword);
+                Params param = new Params();
+                param.sortBy = sortBy;
+                param.sort = sort;
+                param.filterProperty = filterProperty;
+                param.filterOperator = filterOperator;
+                param.filterValue1 = filterValue1;
+                param.filterValue = filterValue;
+                param.filterType = filterType;
+                var list = _catalogService.GetAll(param);
                 return list.ToList();
             }
             catch (Exception ex)
@@ -44,12 +53,19 @@ namespace EShop.Server.Controllers
 
 
         [HttpGet]
-        public ActionResult<PagedListWrapper<CatalogViewModel>> GetAllPaging(string keyword, string sortBy, SortType sort=SortType.desc, int page = 1, int perPage = 50)
+        public ActionResult<PagedListWrapper<CatalogViewModel>> GetAllPaging(string filterProperty, FilterOperator filterOperator, FilterType filterType, string filterValue, string filterValue1, string sortBy, SortType sort = SortType.desc, decimal? currency = null, string weight = "kg", int page = 1, int perPage = 50)
         {
             try
             {
-                var list = _catalogService.GetAll(keyword);
-
+                Params param = new Params();
+                param.sortBy = sortBy;
+                param.sort = sort;
+                param.filterProperty = filterProperty;
+                param.filterOperator = filterOperator;
+                param.filterValue1 = filterValue1;
+                param.filterValue = filterValue;
+                param.filterType = filterType;
+                var list = _catalogService.GetAll(param);
                 return PagedList<CatalogViewModel>.ToPagedList(list, page, perPage);
             }
             catch (Exception ex)
