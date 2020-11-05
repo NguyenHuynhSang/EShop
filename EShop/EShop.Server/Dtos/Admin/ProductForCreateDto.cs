@@ -8,9 +8,6 @@ namespace EShop.Server.Dtos.Admin
 {
     public class ProductForCreateDto
     {
-        public int ID { set; get; }
-
-
         public int CatalogID { set; get; }
 
         public string Url { set; get; }

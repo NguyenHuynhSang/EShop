@@ -95,7 +95,7 @@ namespace EShop.Server.Mapping
 
             CreateMap<ProductVersionAttributeForCreateDto, Models.ProductVersionAttribute>();
             //     CreateMap<ProductVersionImageDto, Models.ProductVersionImage>();
-            CreateMap<ProductVersionImageDto, Models.ProductVersionImage>();
+            CreateMap<ProductVersionImagesForCreateDto, Models.ProductVersionImage>();
             CreateMap<ProductVesionForCreateDto, ProductVersion>()
                .ForMember(dest => dest.ProductVersionImages, opt => opt.MapFrom(src => src.ProductVersionImages))
                .ForMember(dest => dest.ProductVersionAttributes, opt => opt.MapFrom(src => src.ProductVersionAttributes));
