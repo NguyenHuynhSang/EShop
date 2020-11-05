@@ -7,8 +7,10 @@ namespace EShop.Server.Dtos.Admin.ProductForList
 {
     public class ProductVersionImageDto
     {
-       
+
         public String Url { set; get; }
+
+        public bool IsMain { set; get; }
 
     }
 }

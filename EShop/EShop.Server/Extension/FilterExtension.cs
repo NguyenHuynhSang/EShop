@@ -106,7 +106,10 @@ namespace EShop.Server.Extension
 
         public static IQueryable<TSource> WhereTo<TSource>(this IQueryable<TSource> source, Params param)
         {
-
+            if (String.IsNullOrEmpty(param.filterProperty))
+            {
+                return source;
+            }
             var typeOfSource = source.First().GetType();
             string operatorSyntax = "";
             switch ((FilterType)param.filterType)

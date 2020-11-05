@@ -58,7 +58,7 @@ namespace EShop.Server.Controllers
             catch (Exception ex)
             {
                 logger.Error(ex);
-                return StatusCode(500);
+                return NotFound();
 
             }
            
@@ -102,7 +102,7 @@ namespace EShop.Server.Controllers
             catch (Exception ex)
             {
                 logger.Error(ex);
-                return StatusCode(500);
+                return NotFound();
             }
 
         }

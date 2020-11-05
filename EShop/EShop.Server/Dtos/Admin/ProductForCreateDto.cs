@@ -53,9 +53,9 @@ namespace EShop.Server.Dtos.Admin
 
        
 
-        //public IEnumerable<ProductVersionAttributeForCreateDto> ProductVersionAttributes { set; get; }
+        public IEnumerable<ProductVersionAttributeForCreateDto> ProductVersionAttributes { set; get; }
 
-        //public IEnumerable<ProductVersionImagesForCreateDto> ProductVersionImages { set; get; }
+        public IEnumerable<ProductVersionImagesForCreateDto> ProductVersionImages { set; get; }
 
 
     }

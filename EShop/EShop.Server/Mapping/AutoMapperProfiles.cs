@@ -61,7 +61,7 @@ namespace EShop.Server.Mapping
                      opt.MapFrom(src => src.AttributeValue.ID);
                  });
 
-           
+
             CreateMap<ProductVersion, ProductVersionDto>()
                  .ForMember(dest => dest.ImageUrl, opt =>
                  {
@@ -91,11 +91,17 @@ namespace EShop.Server.Mapping
 
             ///product dto block
             ///
-            CreateMap<ProductVesionForCreateDto, ProductVersion>();
+
+
+            CreateMap<ProductVersionAttributeForCreateDto, Models.ProductVersionAttribute>();
+            //     CreateMap<ProductVersionImageDto, Models.ProductVersionImage>();
+            CreateMap<ProductVersionImageDto, Models.ProductVersionImage>();
+            CreateMap<ProductVesionForCreateDto, ProductVersion>()
+               .ForMember(dest => dest.ProductVersionImages, opt => opt.MapFrom(src => src.ProductVersionImages))
+               .ForMember(dest => dest.ProductVersionAttributes, opt => opt.MapFrom(src => src.ProductVersionAttributes));
             CreateMap<ProductForCreateDto, Product>()
-                .ForMember(dest=>dest.ProductVersions,opt=>opt.MapFrom(src=>src.ProductVersions));
-          
-              
+                .ForMember(dest => dest.ProductVersions, opt => opt.MapFrom(src => src.ProductVersions));
+       
 
             //ignore ID , entity need to get from db and map to update entity
             // track issue cause by ef core

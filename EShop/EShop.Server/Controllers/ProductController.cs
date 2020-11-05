@@ -55,7 +55,7 @@ namespace EShop.Server.Controllers
             {
                 logger.Error(ex);
                 logger.Debug(ex);
-                return StatusCode(500);
+                return NotFound();
             }
         }
         [HttpGet]
@@ -77,7 +77,7 @@ namespace EShop.Server.Controllers
             catch (Exception ex)
             {
                 logger.Error(ex);
-                return StatusCode(500);
+                return NotFound();
             }
        
         }
@@ -88,7 +88,7 @@ namespace EShop.Server.Controllers
         public ActionResult<Product> Create(ProductForCreateDto product)
         {
             try
-            {
+                {
                 var productForCreate = _mapper.Map<Product>(product);
                 var newProduct = _productService.Add(productForCreate);
                 _productService.SaveChanges();
@@ -97,7 +97,7 @@ namespace EShop.Server.Controllers
             catch (Exception ex)
             {
                 logger.Error(ex);
-                return StatusCode(500);
+                return NotFound();
             }
         }
 
@@ -115,7 +115,7 @@ namespace EShop.Server.Controllers
             catch (Exception ex)
             {
                 logger.Error(ex);
-                return StatusCode(500);
+                return NotFound();
             }
         }
 
@@ -131,7 +131,7 @@ namespace EShop.Server.Controllers
             catch (Exception ex)
             {
                 logger.Error(ex);
-                return StatusCode(500);
+                return NotFound();
             }
           
         }
@@ -152,7 +152,7 @@ namespace EShop.Server.Controllers
             catch (Exception ex)
             {
                 logger.Error(ex);
-                return StatusCode(500);
+                return NotFound();
             }
         }
 
