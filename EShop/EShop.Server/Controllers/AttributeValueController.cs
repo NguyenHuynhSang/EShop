@@ -27,7 +27,7 @@ namespace EShop.Server.Controllers
             {
                 var list = _attributeValueService.GetAll(atributeId);
 
-                return list.ToList();
+                return Ok(list);
             }
             catch (Exception ex)
             {
@@ -45,7 +45,7 @@ namespace EShop.Server.Controllers
             {
                 var att = _attributeValueService.Add(attr);
                 _attributeValueService.SaveChanges();
-                return att;
+                return Ok(att);
             }
             catch (Exception ex)
             {
@@ -59,7 +59,7 @@ namespace EShop.Server.Controllers
         {
             try
             {
-                return _attributeValueService.GetAttributeValueById(id);
+                return Ok(_attributeValueService.GetAttributeValueById(id));
             }
             catch (Exception ex)
             {
@@ -77,7 +77,7 @@ namespace EShop.Server.Controllers
             {
                 var oldEntity = _attributeValueService.Delete(attribute);
                 _attributeValueService.SaveChanges();
-                return oldEntity;
+                return Ok(oldEntity);
             }
             catch (Exception ex)
             {

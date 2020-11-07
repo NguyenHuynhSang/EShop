@@ -41,7 +41,7 @@ namespace EShop.Server.Controllers
                 param.filterValue = filterValue;
                 param.filterType = filterType;
                 var list = _catalogService.GetAll(param);
-                return list.ToList();
+                return Ok(list);
             }
             catch (Exception ex)
             {
@@ -66,7 +66,7 @@ namespace EShop.Server.Controllers
                 param.filterValue = filterValue;
                 param.filterType = filterType;
                 var list = _catalogService.GetAll(param);
-                return PagedList<CatalogViewModel>.ToPagedList(list, page, perPage);
+                return Ok(PagedList<CatalogViewModel>.ToPagedList(list, page, perPage));
             }
             catch (Exception ex)
             {
@@ -83,7 +83,7 @@ namespace EShop.Server.Controllers
             {
                 var list = _catalogService.GetParent();
 
-                return list.ToList();
+                return Ok(list);
             }
             catch (Exception ex)
             {
@@ -98,7 +98,7 @@ namespace EShop.Server.Controllers
             try
             {
                 var list = _catalogService.GetChild();
-                return list.ToList();
+                return Ok(list);
             }
             catch (Exception ex)
             {
@@ -115,7 +115,7 @@ namespace EShop.Server.Controllers
             try
             {
                 var list = _catalogService.GetCatalogTree();
-                return list.ToList();
+                return Ok(list);
             }
             catch (Exception ex)
             {
@@ -131,7 +131,7 @@ namespace EShop.Server.Controllers
             {
                 var newCatalog = _catalogService.Add(catalog);
                 _catalogService.SaveChanges();
-                return newCatalog;
+                return Ok(newCatalog);
             }
             catch (Exception ex)
             {
@@ -149,7 +149,7 @@ namespace EShop.Server.Controllers
                 
                 var updatedProductCatalog = _catalogService.Update(catalog);
                 _catalogService.SaveChanges();
-                return updatedProductCatalog;
+                return Ok(updatedProductCatalog);
             }
             catch (Exception ex)
             {
@@ -169,7 +169,7 @@ namespace EShop.Server.Controllers
                 //TEST
                 var updatedProductCatalog = _catalogService.Active(ID);
                 _catalogService.SaveChanges();
-                return updatedProductCatalog;
+                return Ok(updatedProductCatalog);
             }
             catch (Exception ex)
             {

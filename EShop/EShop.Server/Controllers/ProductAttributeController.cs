@@ -26,7 +26,7 @@ namespace EShop.Server.Controllers
             try
             {
                 var list = _productAttbuteService.GetAll(keyword);
-                return list.ToList();
+                return Ok(list);
             }
             catch (Exception ex)
             {

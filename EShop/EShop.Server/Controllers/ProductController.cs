@@ -49,7 +49,7 @@ namespace EShop.Server.Controllers
                 param.filterValue= filterValue;
                 param.filterType = filterType;
                 var list = _productService.GetAll(param);
-                return list.ToList();
+                return Ok(list);
             }
             catch (Exception ex)
             {
@@ -72,7 +72,7 @@ namespace EShop.Server.Controllers
                 param.perPage = perPage;
                 param.page = page;
                 var list = _productService.GetAll(param);
-                return PagedList<ProductForListDto>.ToPagedList(list, page, perPage);
+                return Ok(PagedList<ProductForListDto>.ToPagedList(list, page, perPage));
             }
             catch (Exception ex)
             {
@@ -92,7 +92,7 @@ namespace EShop.Server.Controllers
                 var productForCreate = _mapper.Map<Product>(product);
                 var newProduct = _productService.Add(productForCreate);
                 _productService.SaveChanges();
-                return newProduct;
+                return Ok(newProduct);
             }
             catch (Exception ex)
             {
@@ -110,7 +110,7 @@ namespace EShop.Server.Controllers
                 //TEST
                 var updatedProduct = _productService.Update(product);
                 _productService.SaveChanges();
-                return updatedProduct;
+                return Ok(updatedProduct);
             }
             catch (Exception ex)
             {
@@ -126,7 +126,7 @@ namespace EShop.Server.Controllers
         {
             try
             {
-                return _productService.GetProductById(id);
+                return Ok(_productService.GetProductById(id));
             }
             catch (Exception ex)
             {

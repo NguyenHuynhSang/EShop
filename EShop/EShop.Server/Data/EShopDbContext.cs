@@ -61,6 +61,9 @@ namespace EShop.Server.Data
 
         public DbSet<SeedLog> SeedLogs { get; set; }
 
+
+        public DbSet<Slide> Slides { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder) //Một bảng có 2 khóa chính phải sử dụng fluent API
         {
 
@@ -83,24 +86,10 @@ namespace EShop.Server.Data
 
             modelBuilder.Entity<ContentTag>()
                 .HasKey(o => new { o.TagID, o.ContentID });
-            // auto increment key
-
-
-
-
-
-            modelBuilder.Entity<AttributeValue>().HasData(new AttributeValue { ID = 1, AttributeID = 1, Name = "Đỏ" });
-
+            // auto increment 
             SeedProductAttribute(modelBuilder);
             SeedAttributeValue(modelBuilder);
             SeedProductCatalog(modelBuilder);
-
-
-
-
-
-
-
         }
 
 

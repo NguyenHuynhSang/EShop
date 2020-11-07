@@ -24,7 +24,7 @@ namespace EShop.Server.Controllers
             try
             {
                 var list = _exchangeRateService.GetAll(keyword);
-                return list.ToList();
+                return Ok(list);
             }
             catch (Exception ex)
             {
