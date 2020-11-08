@@ -47,5 +47,63 @@ namespace EShop.Server.Dtos.Admin.ProductForList
 
     }
 
-    
+    public class ProductVersionAttributeDto
+    {
+        public string AttributeName { get; set; }
+        public int AtributeID { get; set; }
+        public String AttributeValueName { get; set; }
+        public int AttributeValueID { get; set; }
+
+
+
+    }
+    public class ProductVersionDto
+    {
+        public int Id { set; get; }
+
+        public int WareHouseID { set; get; }
+
+        public string Description { set; get; }
+
+        public decimal Price { set; get; }
+        public decimal PromotionPrice { set; get; }
+        public int Quantum { set; get; }
+
+        public int RemainingAmount { set; get; }
+
+
+        public string SKU { set; get; }
+
+        public string Barcode { set; get; }
+
+
+        public string ImageUrl { set; get; }
+
+        public IEnumerable<ProductVersionAttributeDto> ProductVersionAttributes { set; get; }
+
+        public IEnumerable<ProductVersionImageDto> ProductVersionImages { set; get; }
+    }
+    public class ProductVersionImageDto
+    {
+
+        public String Url { set; get; }
+
+        public bool IsMain { set; get; }
+
+    }
+
+    public class AttributeValueDto
+    {
+        public int Id { set; get; }
+        public string Name { set; get; }
+    }
+
+    public class ProductCatalogDto
+    {
+        public int Id { set; get; }
+
+        public string Name { set; get; }
+
+
+    }
 }

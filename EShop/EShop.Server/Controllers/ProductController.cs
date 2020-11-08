@@ -85,7 +85,7 @@ namespace EShop.Server.Controllers
     
 
         [HttpPost]
-        public ActionResult<Product> Create(ProductForCreateDto product)
+        public ActionResult<Product> Create(ProductForInputDto product)
         {
             try
                 {

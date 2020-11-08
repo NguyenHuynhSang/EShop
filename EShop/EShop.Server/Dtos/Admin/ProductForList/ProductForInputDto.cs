@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace EShop.Server.Dtos.Admin
 {
-    public class ProductForCreateDto
+    public class ProductForInputDto
     {
+        public int Id { get; set; }
+
         public int CatalogID { set; get; }
 
         public string Url { set; get; }
