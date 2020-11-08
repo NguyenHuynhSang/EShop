@@ -288,11 +288,11 @@ namespace EShop.Server.Migrations
 
             migrationBuilder.InsertData(
                 table: "Product",
-                columns: new[] { "Id", "ApplyPromotion", "CatalogID", "Content", "CreatedBy", "CreatedDate", "Deliver", "Description", "ModifiedBy", "ModifiedDate", "Name", "OriginalPrice", "SEODescription", "SEOTitle", "SEOUrl", "Url", "Weight" },
+                columns: new[] { "Id", "ApplyPromotion", "CatalogID", "Content", "CreatedBy", "CreatedDate", "Deliver", "Description", "ModifiedBy", "ModifiedDate", "Name", "OriginalPrice", "SEODescription", "SEOTitle", "SEOUrl", "Url" },
                 values: new object[,]
                 {
-                    { 1, true, 0L, "This is an iphone", null, null, true, "no discrip", null, null, "Iphone test", null, null, null, null, null, 0 },
-                    { 2, true, 0L, "This is a samsung", null, null, true, "no discrip", null, null, "samsung galaxy test", null, null, null, null, null, 0 }
+                    { 1, true, 0L, "This is an iphone", null, null, true, "no discrip", null, null, "Iphone test", null, null, null, null, null},
+                    { 2, true, 0L, "This is a samsung", null, null, true, "no discrip", null, null, "samsung galaxy test", null, null, null, null, null }
                 });
         }
 

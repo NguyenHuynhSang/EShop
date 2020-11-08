@@ -39,6 +39,9 @@ namespace EShop.Server.Models
         public int RemainingAmount { set; get; }
 
 
+        
+
+
         [MaxLength(250)]
         public string SKU { set; get; }
 
