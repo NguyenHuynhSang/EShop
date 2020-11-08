@@ -77,9 +77,7 @@ namespace EShop.Server.Mapping
                    });
             CreateMap<ProductCatalog, ProductCatalogDto>();
             CreateMap<Product, ProductForListDto>();
-            CreateMap<Product, ProductForListDto>()
-                .ForMember(dest => dest.Id, opt => opt.Ignore());
-
+   
 
             CreateMap<Item, ExchangeRateDongA>()
                 .ForMember(dest => dest.type, opt => opt.NullSubstitute("N/A"))

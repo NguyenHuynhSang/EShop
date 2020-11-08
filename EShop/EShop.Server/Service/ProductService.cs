@@ -26,7 +26,7 @@ namespace EShop.Server.Service
         public IEnumerable<ProductForListDto> GetAll(Params param);
 
         public Product GetProductById(int id);
-        public Product Delete(Product product);
+        public Product Delete(int id);
 
         void SaveChanges();
 
@@ -53,8 +53,9 @@ namespace EShop.Server.Service
 
 
 
-        public Product Delete(Product product)
+        public Product Delete(int id)
         {
+            var product = _productRepository.GetSingleById(id);
             return _productRepository.Delete(product);
         }
 

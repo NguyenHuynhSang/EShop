@@ -140,12 +140,12 @@ namespace EShop.Server.Controllers
 
 
 
-        [HttpDelete]
-        public ActionResult<Product> Delete(Product product)
+        [HttpDelete("{id}")]
+        public ActionResult<Product> Delete(int id)
         {
             try
             {
-                var oldEntity = _productService.Delete(product);
+                var oldEntity = _productService.Delete(id);
                 _productService.SaveChanges();
                 return oldEntity;
             }
