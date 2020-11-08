@@ -1,0 +1,17 @@
+D:\Git\CoreAngular\EShop\EShop\Crawler\obj\Debug\netcoreapp3.1\Crawler.csprojAssemblyReference.cache
+D:\Git\CoreAngular\EShop\EShop\Crawler\obj\Debug\netcoreapp3.1\Crawler.csproj.CoreCompileInputs.cache
+D:\Git\CoreAngular\EShop\EShop\Crawler\obj\Debug\netcoreapp3.1\Crawler.AssemblyInfoInputs.cache
+D:\Git\CoreAngular\EShop\EShop\Crawler\obj\Debug\netcoreapp3.1\Crawler.AssemblyInfo.cs
+D:\Git\CoreAngular\EShop\EShop\Crawler\bin\Debug\netcoreapp3.1\Crawler.exe
+D:\Git\CoreAngular\EShop\EShop\Crawler\bin\Debug\netcoreapp3.1\RestSharp.dll
+D:\Git\CoreAngular\EShop\EShop\Crawler\obj\Debug\netcoreapp3.1\Crawler.csproj.CopyComplete
+D:\Git\CoreAngular\EShop\EShop\Crawler\bin\Debug\netcoreapp3.1\Crawler.deps.json
+D:\Git\CoreAngular\EShop\EShop\Crawler\bin\Debug\netcoreapp3.1\Crawler.runtimeconfig.json
+D:\Git\CoreAngular\EShop\EShop\Crawler\bin\Debug\netcoreapp3.1\Crawler.runtimeconfig.dev.json
+D:\Git\CoreAngular\EShop\EShop\Crawler\bin\Debug\netcoreapp3.1\Crawler.dll
+D:\Git\CoreAngular\EShop\EShop\Crawler\bin\Debug\netcoreapp3.1\Crawler.pdb
+D:\Git\CoreAngular\EShop\EShop\Crawler\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+D:\Git\CoreAngular\EShop\EShop\Crawler\bin\Debug\netcoreapp3.1\WebDriver.dll
+D:\Git\CoreAngular\EShop\EShop\Crawler\obj\Debug\netcoreapp3.1\Crawler.dll
+D:\Git\CoreAngular\EShop\EShop\Crawler\obj\Debug\netcoreapp3.1\Crawler.pdb
+D:\Git\CoreAngular\EShop\EShop\Crawler\obj\Debug\netcoreapp3.1\Crawler.genruntimeconfig.cache
