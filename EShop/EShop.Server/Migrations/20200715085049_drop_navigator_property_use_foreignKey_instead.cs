@@ -27,14 +27,14 @@ namespace EShop.Server.Migrations
 
             migrationBuilder.UpdateData(
                 table: "Product",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 1,
                 column: "CatalogID",
                 value: 1);
 
             migrationBuilder.UpdateData(
                 table: "Product",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 2,
                 column: "CatalogID",
                 value: 1);
@@ -69,7 +69,7 @@ namespace EShop.Server.Migrations
                 table: "AttributeValue",
                 column: "AttributeID",
                 principalTable: "Attribute",
-                principalColumn: "ID",
+                principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
@@ -77,7 +77,7 @@ namespace EShop.Server.Migrations
                 table: "Product",
                 column: "CatalogID",
                 principalTable: "Catalog",
-                principalColumn: "ID",
+                principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
@@ -85,7 +85,7 @@ namespace EShop.Server.Migrations
                 table: "ProductAttribute",
                 column: "AttributeValueID",
                 principalTable: "AttributeValue",
-                principalColumn: "ID",
+                principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
@@ -93,7 +93,7 @@ namespace EShop.Server.Migrations
                 table: "ProductAttribute",
                 column: "ProductVersionID",
                 principalTable: "ProductVersions",
-                principalColumn: "ID",
+                principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
@@ -101,7 +101,7 @@ namespace EShop.Server.Migrations
                 table: "ProductVersions",
                 column: "ProductID",
                 principalTable: "Product",
-                principalColumn: "ID",
+                principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
         }
 
@@ -168,14 +168,14 @@ namespace EShop.Server.Migrations
 
             migrationBuilder.UpdateData(
                 table: "Product",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 1,
                 column: "CatalogID",
                 value: 1L);
 
             migrationBuilder.UpdateData(
                 table: "Product",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 2,
                 column: "CatalogID",
                 value: 1L);

@@ -75,49 +75,49 @@ namespace EShop.Server.Migrations
 
             migrationBuilder.UpdateData(
                 table: "Catalog",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 1,
                 column: "CreatedDate",
                 value: new DateTime(2020, 6, 12, 19, 55, 29, 422, DateTimeKind.Local).AddTicks(9995));
 
             migrationBuilder.UpdateData(
                 table: "Catalog",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 2,
                 column: "CreatedDate",
                 value: new DateTime(2020, 6, 12, 19, 55, 29, 424, DateTimeKind.Local).AddTicks(388));
 
             migrationBuilder.UpdateData(
                 table: "Catalog",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 3,
                 column: "CreatedDate",
                 value: new DateTime(2020, 6, 12, 19, 55, 29, 424, DateTimeKind.Local).AddTicks(449));
 
             migrationBuilder.UpdateData(
                 table: "Catalog",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 4,
                 column: "CreatedDate",
                 value: new DateTime(2020, 6, 12, 19, 55, 29, 424, DateTimeKind.Local).AddTicks(453));
 
             migrationBuilder.UpdateData(
                 table: "Catalog",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 5,
                 column: "CreatedDate",
                 value: new DateTime(2020, 6, 12, 19, 55, 29, 424, DateTimeKind.Local).AddTicks(456));
 
             migrationBuilder.UpdateData(
                 table: "Product",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 1,
                 column: "CreatedDate",
                 value: new DateTime(2020, 6, 12, 19, 55, 29, 424, DateTimeKind.Local).AddTicks(1371));
 
             migrationBuilder.UpdateData(
                 table: "Product",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 2,
                 column: "CreatedDate",
                 value: new DateTime(2020, 6, 12, 19, 55, 29, 424, DateTimeKind.Local).AddTicks(5748));
@@ -186,49 +186,49 @@ namespace EShop.Server.Migrations
 
             migrationBuilder.UpdateData(
                 table: "Catalog",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 1,
                 column: "CreatedDate",
                 value: null);
 
             migrationBuilder.UpdateData(
                 table: "Catalog",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 2,
                 column: "CreatedDate",
                 value: null);
 
             migrationBuilder.UpdateData(
                 table: "Catalog",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 3,
                 column: "CreatedDate",
                 value: null);
 
             migrationBuilder.UpdateData(
                 table: "Catalog",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 4,
                 column: "CreatedDate",
                 value: null);
 
             migrationBuilder.UpdateData(
                 table: "Catalog",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 5,
                 column: "CreatedDate",
                 value: null);
 
             migrationBuilder.UpdateData(
                 table: "Product",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 1,
                 column: "CreatedDate",
                 value: null);
 
             migrationBuilder.UpdateData(
                 table: "Product",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 2,
                 column: "CreatedDate",
                 value: null);

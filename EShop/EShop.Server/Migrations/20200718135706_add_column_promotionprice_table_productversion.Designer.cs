@@ -23,7 +23,7 @@ namespace EShop.Server.Migrations
 
             modelBuilder.Entity("EShop.Server.Models.Attribute", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -32,26 +32,26 @@ namespace EShop.Server.Migrations
                         .HasColumnType("nvarchar(500)")
                         .HasMaxLength(500);
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("Attribute");
 
                     b.HasData(
                         new
                         {
-                            ID = 1,
+                            Id = 1,
                             Name = "Màu sắc"
                         },
                         new
                         {
-                            ID = 2,
+                            Id = 2,
                             Name = "Dung lượng"
                         });
                 });
 
             modelBuilder.Entity("EShop.Server.Models.AttributeValue", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -63,7 +63,7 @@ namespace EShop.Server.Migrations
                         .HasColumnType("nvarchar(500)")
                         .HasMaxLength(500);
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.HasIndex("AttributeID");
 
@@ -72,37 +72,37 @@ namespace EShop.Server.Migrations
                     b.HasData(
                         new
                         {
-                            ID = 1,
+                            Id = 1,
                             AttributeID = 1,
                             Name = "Đỏ"
                         },
                         new
                         {
-                            ID = 2,
+                            Id = 2,
                             AttributeID = 1,
                             Name = "Xanh"
                         },
                         new
                         {
-                            ID = 3,
+                            Id = 3,
                             AttributeID = 1,
                             Name = "Tím"
                         },
                         new
                         {
-                            ID = 4,
+                            Id = 4,
                             AttributeID = 2,
                             Name = "16gb"
                         },
                         new
                         {
-                            ID = 5,
+                            Id = 5,
                             AttributeID = 2,
                             Name = "32gb"
                         },
                         new
                         {
-                            ID = 6,
+                            Id = 6,
                             AttributeID = 2,
                             Name = "64gb"
                         });
@@ -110,7 +110,7 @@ namespace EShop.Server.Migrations
 
             modelBuilder.Entity("EShop.Server.Models.BlogCategory", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -118,14 +118,14 @@ namespace EShop.Server.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("BlogCategories");
                 });
 
             modelBuilder.Entity("EShop.Server.Models.Content", b =>
                 {
-                    b.Property<long>("ID")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -207,14 +207,14 @@ namespace EShop.Server.Migrations
                     b.Property<int>("Warranty")
                         .HasColumnType("int");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("Content");
                 });
 
             modelBuilder.Entity("EShop.Server.Models.ContentCategory", b =>
                 {
-                    b.Property<long>("ID")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -277,7 +277,7 @@ namespace EShop.Server.Migrations
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("ContentCategory");
                 });
@@ -298,7 +298,7 @@ namespace EShop.Server.Migrations
 
             modelBuilder.Entity("EShop.Server.Models.Error", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -312,14 +312,14 @@ namespace EShop.Server.Migrations
                     b.Property<string>("StackTrace")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("Error");
                 });
 
             modelBuilder.Entity("EShop.Server.Models.ExchangeRateDongA", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -342,14 +342,14 @@ namespace EShop.Server.Migrations
                     b.Property<string>("type")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("ExchangeRateDongAs");
                 });
 
             modelBuilder.Entity("EShop.Server.Models.Image", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -358,14 +358,14 @@ namespace EShop.Server.Migrations
                         .HasColumnType("nvarchar(500)")
                         .HasMaxLength(500);
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("Image");
                 });
 
             modelBuilder.Entity("EShop.Server.Models.News", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -376,7 +376,7 @@ namespace EShop.Server.Migrations
                     b.Property<int>("categoryID")
                         .HasColumnType("int");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("News");
                 });
@@ -415,7 +415,7 @@ namespace EShop.Server.Migrations
 
             modelBuilder.Entity("EShop.Server.Models.Product", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -478,7 +478,7 @@ namespace EShop.Server.Migrations
                     b.Property<int>("Weight")
                         .HasColumnType("int");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.HasIndex("CatalogID");
 
@@ -487,7 +487,7 @@ namespace EShop.Server.Migrations
                     b.HasData(
                         new
                         {
-                            ID = 1,
+                            Id = 1,
                             ApplyPromotion = true,
                             CatalogID = 1,
                             Content = "This is an iphone",
@@ -499,7 +499,7 @@ namespace EShop.Server.Migrations
                         },
                         new
                         {
-                            ID = 2,
+                            Id = 2,
                             ApplyPromotion = true,
                             CatalogID = 1,
                             Content = "This is a samsung",
@@ -513,7 +513,7 @@ namespace EShop.Server.Migrations
 
             modelBuilder.Entity("EShop.Server.Models.ProductCatalog", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -551,36 +551,36 @@ namespace EShop.Server.Migrations
                         .HasColumnType("nvarchar(500)")
                         .HasMaxLength(500);
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("ProductCatalog");
 
                     b.HasData(
                         new
                         {
-                            ID = 1,
+                            Id = 1,
                             Name = "Điện thoại"
                         },
                         new
                         {
-                            ID = 2,
+                            Id = 2,
                             Name = "Laptop"
                         },
                         new
                         {
-                            ID = 3,
+                            Id = 3,
                             Name = "Samsung",
                             ParentID = 1
                         },
                         new
                         {
-                            ID = 4,
+                            Id = 4,
                             Name = "Apple",
                             ParentID = 1
                         },
                         new
                         {
-                            ID = 5,
+                            Id = 5,
                             Name = "Macbook",
                             ParentID = 2
                         });
@@ -588,7 +588,7 @@ namespace EShop.Server.Migrations
 
             modelBuilder.Entity("EShop.Server.Models.ProductVersion", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -623,7 +623,7 @@ namespace EShop.Server.Migrations
                     b.Property<int>("WareHouseID")
                         .HasColumnType("int");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.HasIndex("ProductID");
 
@@ -632,7 +632,7 @@ namespace EShop.Server.Migrations
                     b.HasData(
                         new
                         {
-                            ID = 1,
+                            Id = 1,
                             Barcode = "COC",
                             Description = "Màu đỏ dl 250",
                             Price = 19000000m,
@@ -645,7 +645,7 @@ namespace EShop.Server.Migrations
                         },
                         new
                         {
-                            ID = 2,
+                            Id = 2,
                             Barcode = "COC",
                             Description = "Màu xanh dl 250",
                             Price = 18000000m,
@@ -658,7 +658,7 @@ namespace EShop.Server.Migrations
                         },
                         new
                         {
-                            ID = 3,
+                            Id = 3,
                             Barcode = "COC",
                             Description = "Màu xanh dl 250",
                             Price = 16000000m,
@@ -688,7 +688,7 @@ namespace EShop.Server.Migrations
 
             modelBuilder.Entity("EShop.Server.Models.ProductVersionImage", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -702,7 +702,7 @@ namespace EShop.Server.Migrations
                     b.Property<string>("Url")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.HasIndex("ProductVersionID");
 
@@ -711,7 +711,7 @@ namespace EShop.Server.Migrations
 
             modelBuilder.Entity("EShop.Server.Models.Tag", b =>
                 {
-                    b.Property<string>("ID")
+                    b.Property<string>("Id")
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
@@ -719,7 +719,7 @@ namespace EShop.Server.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("Tag");
                 });

@@ -1,4 +1,4 @@
-﻿using EShop.Server.Abstract;
+﻿using EShop.Server.Interface;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,11 +8,11 @@ using System.Text;
 namespace EShop.Server.Models
 {
     [Table("Content")]
-    public class Content:SeoAndAudit
+    public class Content
     {
         [Key]
      
-        public long ID { get; set; }
+        public long Id { get; set; }
         [MaxLength(250, ErrorMessage = "Tên tin tức không vượt quá 250 ký tự"), MinLength(1, ErrorMessage = "Độ dài tối thiểu 1 ký tự")]
         [Required(ErrorMessage = "Tên tin tức không được để trống")]
         public string Name { get; set; }

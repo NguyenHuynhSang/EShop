@@ -8,21 +8,21 @@ namespace EShop.Server.Migrations
         {
             migrationBuilder.UpdateData(
                 table: "Product",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 1,
                 columns: new[] { "CatalogID", "OriginalPrice" },
                 values: new object[] { 1L, 16000000m });
 
             migrationBuilder.UpdateData(
                 table: "Product",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 2,
                 columns: new[] { "CatalogID", "OriginalPrice" },
                 values: new object[] { 1L, 14000000m });
 
             migrationBuilder.InsertData(
                 table: "ProductVersions",
-                columns: new[] { "ID", "Barcode", "Description", "Price", "ProductID", "Quantum", "RemainingAmount", "SKU", "WareHouseID" },
+                columns: new[] { "Id", "Barcode", "Description", "Price", "ProductID", "Quantum", "RemainingAmount", "SKU", "WareHouseID" },
                 values: new object[,]
                 {
                     { 1, "COC", "Màu đỏ dl 250", 19000000m, 1, 100, 100, "Iphone test", 0 },
@@ -35,29 +35,29 @@ namespace EShop.Server.Migrations
         {
             migrationBuilder.DeleteData(
                 table: "ProductVersions",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 1);
 
             migrationBuilder.DeleteData(
                 table: "ProductVersions",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 2);
 
             migrationBuilder.DeleteData(
                 table: "ProductVersions",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 3);
 
             migrationBuilder.UpdateData(
                 table: "Product",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 1,
                 columns: new[] { "CatalogID", "OriginalPrice" },
                 values: new object[] { 0L, null });
 
             migrationBuilder.UpdateData(
                 table: "Product",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 2,
                 columns: new[] { "CatalogID", "OriginalPrice" },
                 values: new object[] { 0L, null });

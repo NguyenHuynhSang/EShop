@@ -25,8 +25,6 @@ namespace EShop.Server.Service
         public Product Update(Product product);
         public IEnumerable<ProductForListDto> GetAll(Params param);
 
-
-
         public Product GetProductById(int id);
         public Product Delete(Product product);
 

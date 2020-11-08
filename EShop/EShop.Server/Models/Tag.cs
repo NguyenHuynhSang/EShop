@@ -12,7 +12,7 @@ namespace EShop.Server.Models
         [Key] // chỉ định    khóa chính
         [MaxLength(50)]
 
-        public String ID { set; get; }
+        public String Id { set; get; }
         [MaxLength(50)] //chỉ định độ dài tối đa, nếu k có mặc định là max
         public string TagName { set; get; }
     }

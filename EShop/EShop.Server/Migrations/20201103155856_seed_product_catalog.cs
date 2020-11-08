@@ -8,7 +8,7 @@ namespace EShop.Server.Migrations
         {
             migrationBuilder.InsertData(
                 table: "ProductCatalog",
-                columns: new[] { "ID", "CreatedBy", "CreatedDate", "Image", "ModifiedBy", "ModifiedDate", "Name", "ParentID", "SEODescription", "SEOTitle", "SEOUrl" },
+                columns: new[] { "Id", "CreatedBy", "CreatedDate", "Image", "ModifiedBy", "ModifiedDate", "Name", "ParentID", "SEODescription", "SEOTitle", "SEOUrl" },
                 values: new object[,]
                 {
                     { 1, null, null, null, null, null, "Áo", null, null, null, null },
@@ -30,62 +30,62 @@ namespace EShop.Server.Migrations
         {
             migrationBuilder.DeleteData(
                 table: "ProductCatalog",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 1);
 
             migrationBuilder.DeleteData(
                 table: "ProductCatalog",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 2);
 
             migrationBuilder.DeleteData(
                 table: "ProductCatalog",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 3);
 
             migrationBuilder.DeleteData(
                 table: "ProductCatalog",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 4);
 
             migrationBuilder.DeleteData(
                 table: "ProductCatalog",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 5);
 
             migrationBuilder.DeleteData(
                 table: "ProductCatalog",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 6);
 
             migrationBuilder.DeleteData(
                 table: "ProductCatalog",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 7);
 
             migrationBuilder.DeleteData(
                 table: "ProductCatalog",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 8);
 
             migrationBuilder.DeleteData(
                 table: "ProductCatalog",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 9);
 
             migrationBuilder.DeleteData(
                 table: "ProductCatalog",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 10);
 
             migrationBuilder.DeleteData(
                 table: "ProductCatalog",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 11);
 
             migrationBuilder.DeleteData(
                 table: "ProductCatalog",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 12);
         }
     }

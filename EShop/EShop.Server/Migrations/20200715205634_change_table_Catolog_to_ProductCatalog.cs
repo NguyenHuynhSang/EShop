@@ -21,14 +21,14 @@ namespace EShop.Server.Migrations
             migrationBuilder.AddPrimaryKey(
                 name: "PK_ProductCatalog",
                 table: "ProductCatalog",
-                column: "ID");
+                column: "Id");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Product_ProductCatalog_CatalogID",
                 table: "Product",
                 column: "CatalogID",
                 principalTable: "ProductCatalog",
-                principalColumn: "ID",
+                principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
         }
 
@@ -49,14 +49,14 @@ namespace EShop.Server.Migrations
             migrationBuilder.AddPrimaryKey(
                 name: "PK_Catalog",
                 table: "Catalog",
-                column: "ID");
+                column: "Id");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Product_Catalog_CatalogID",
                 table: "Product",
                 column: "CatalogID",
                 principalTable: "Catalog",
-                principalColumn: "ID",
+                principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
         }
     }

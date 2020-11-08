@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace EShop.Server.Abstract
+namespace EShop.Server.Interface
 {
-   public abstract class Auditable
+   public interface  IAuditAble
     {
         public DateTime? CreatedDate { get; set; }
 

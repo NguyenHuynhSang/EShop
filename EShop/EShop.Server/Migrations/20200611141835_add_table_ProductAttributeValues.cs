@@ -10,14 +10,14 @@ namespace EShop.Server.Migrations
                 name: "ProductAttribute",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     AttributeValueID = table.Column<int>(nullable: false),
                     ProductVersionID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductAttribute", x => x.ID);
+                    table.PrimaryKey("PK_ProductAttribute", x => x.Id);
                 });
         }
 

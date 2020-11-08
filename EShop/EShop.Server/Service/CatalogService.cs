@@ -14,7 +14,7 @@ namespace EShop.Server.Service
     {
         ProductCatalog Add(ProductCatalog productAttribute);
         ProductCatalog Update(ProductCatalog productAttribute);
-        ProductCatalog Active(int ID);
+        ProductCatalog Active(int Id);
 
 
         IEnumerable<CatalogViewModel> GetAll(Params param);
@@ -44,9 +44,9 @@ namespace EShop.Server.Service
 
         }
 
-        public ProductCatalog Active(int ID)
+        public ProductCatalog Active(int Id)
         {
-            var catalog = _catalogRepository.GetSingleById(ID);
+            var catalog = _catalogRepository.GetSingleById(Id);
             catalog.IsActive = catalog.IsActive == null ? false : catalog.IsActive;
             catalog.IsActive = !catalog.IsActive;
             _catalogRepository.Update(catalog);

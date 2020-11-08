@@ -1,4 +1,5 @@
-﻿using EShop.Server.Abstract;
+﻿using EShop.Server.Interface;
+using EShop.Server.Models.Interface;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,14 +11,14 @@ using System.Text.Json.Serialization;
 namespace EShop.Server.Models
 {
     [Table("Product")] // map class với table trong csdl
-   
 
-    public class Product:SeoAndAudit
+
+    public class Product : ISeoAble, IAuditAble, IActiveAble
     {
        
         [Key] // chỉ định    khóa chính
      
-        public int ID { set; get; }
+        public int Id { set; get; }
         [MaxLength(500)] //chỉ định độ dài tối đa, nếu k có mặc định là max
 
         
@@ -51,6 +52,13 @@ namespace EShop.Server.Models
         public bool ApplyPromotion { set; get; }
 
         public IEnumerable<ProductVersion> ProductVersions { set; get; }
-
+        public DateTime? CreatedDate { get  ; set  ; }
+        public string CreatedBy { get  ; set  ; }
+        public DateTime? ModifiedDate { get  ; set  ; }
+        public string ModifiedBy { get  ; set  ; }
+        public string SEOTitle { get  ; set  ; }
+        public string SEOUrl { get  ; set  ; }
+        public string SEODescription { get  ; set  ; }
+        public bool IsActive { get  ; set  ; }
     }
 }

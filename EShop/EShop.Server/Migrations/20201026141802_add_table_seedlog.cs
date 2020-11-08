@@ -20,13 +20,13 @@ namespace EShop.Server.Migrations
                 name: "SeedLog",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DataVersion = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SeedLog", x => x.ID);
+                    table.PrimaryKey("PK_SeedLog", x => x.Id);
                 });
         }
 

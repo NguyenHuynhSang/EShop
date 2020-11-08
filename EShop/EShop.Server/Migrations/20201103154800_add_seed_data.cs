@@ -8,12 +8,12 @@ namespace EShop.Server.Migrations
         {
             migrationBuilder.InsertData(
                 table: "Attribute",
-                columns: new[] { "ID", "Name" },
+                columns: new[] { "Id", "Name" },
                 values: new object[] { 1, "Kích cỡ" });
 
             migrationBuilder.InsertData(
                 table: "AttributeValue",
-                columns: new[] { "ID", "AttributeID", "Name" },
+                columns: new[] { "Id", "AttributeID", "Name" },
                 values: new object[] { 1, 1, "Đỏ" });
         }
 
@@ -21,12 +21,12 @@ namespace EShop.Server.Migrations
         {
             migrationBuilder.DeleteData(
                 table: "AttributeValue",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 1);
 
             migrationBuilder.DeleteData(
                 table: "Attribute",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 1);
         }
     }

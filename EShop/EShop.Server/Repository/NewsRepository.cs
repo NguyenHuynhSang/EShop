@@ -24,7 +24,7 @@ namespace EShop.Server.Repository
         {
             var querry = from n in DbContext.News
                          join c in DbContext.BlogCategories
-                         on n.categoryID equals c.ID
+                         on n.categoryID equals c.Id
                          select new NewsViewmodel
                          {
                              News = n,

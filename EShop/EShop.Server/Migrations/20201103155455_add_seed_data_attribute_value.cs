@@ -8,7 +8,7 @@ namespace EShop.Server.Migrations
         {
             migrationBuilder.InsertData(
                 table: "AttributeValue",
-                columns: new[] { "ID", "AttributeID", "Name" },
+                columns: new[] { "Id", "AttributeID", "Name" },
                 values: new object[,]
                 {
                     { 10, 1, "S" },
@@ -23,27 +23,27 @@ namespace EShop.Server.Migrations
         {
             migrationBuilder.DeleteData(
                 table: "AttributeValue",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 10);
 
             migrationBuilder.DeleteData(
                 table: "AttributeValue",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 11);
 
             migrationBuilder.DeleteData(
                 table: "AttributeValue",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 12);
 
             migrationBuilder.DeleteData(
                 table: "AttributeValue",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 13);
 
             migrationBuilder.DeleteData(
                 table: "AttributeValue",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 14);
         }
     }

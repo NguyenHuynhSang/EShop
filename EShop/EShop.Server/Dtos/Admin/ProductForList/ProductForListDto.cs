@@ -9,7 +9,7 @@ namespace EShop.Server.Dtos.Admin.ProductForList
     public class ProductForListDto
     {
 
-        public int ID { get; set; }
+        public int Id { get; set; }
 
 
         public ProductCatalogDto Catalog { get; set; }

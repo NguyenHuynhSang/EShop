@@ -14,7 +14,7 @@ namespace EShop.Server.Models
         [Key] // chỉ định    khóa 
        
 
-        public int ID { set; get; }
+        public int Id { set; get; }
 
         [StringLength(500)]
         public string Name { set; get; }

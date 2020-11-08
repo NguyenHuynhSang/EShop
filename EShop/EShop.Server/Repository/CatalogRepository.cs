@@ -33,13 +33,13 @@ namespace EShop.Server.Repository
             var parentList = DbContext.ProductCatalogs.Where(x => x.ParentID == null);
             var querry = from c in DbContext.ProductCatalogs
                          join p in DbContext.ProductCatalogs
-                         on c.ParentID equals p.ID
+                         on c.ParentID equals p.Id
                          into ps
                          from p in ps.DefaultIfEmpty()
                          select new CatalogViewModel
                          {
                              Catalog = c,
-                             ParentName = p.ID == null ? "(GỐC)" : p.Name
+                             ParentName = p.Id == null ? "(GỐC)" : p.Name
                          };
 
             return querry.ToList();
@@ -64,7 +64,7 @@ namespace EShop.Server.Repository
                          select new CatalogTreeModel
                          {
                              Parent = p,
-                             Childs = DbContext.ProductCatalogs.Where(x => x.ParentID == p.ID)
+                             Childs = DbContext.ProductCatalogs.Where(x => x.ParentID == p.Id)
                          };
             return querry.OrderBy(x => x.Parent.CreatedDate).ToList();
         }

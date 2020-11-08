@@ -11,7 +11,7 @@ namespace EShop.Server.Models
     public class SeedLog
     {
         [Key] // chỉ định    khóa chính
-        public int ID { set; get; }
+        public int Id { set; get; }
         public int DataVersion { set; get; }
 
     }

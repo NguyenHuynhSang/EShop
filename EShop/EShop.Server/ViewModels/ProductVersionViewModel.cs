@@ -10,7 +10,7 @@ namespace EShop.Server.ViewModels
     {
 
     
-        public int ID { set; get; }
+        public int Id { set; get; }
 
         public int ProductID { set; get; }
 

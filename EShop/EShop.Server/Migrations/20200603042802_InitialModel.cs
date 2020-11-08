@@ -11,34 +11,34 @@ namespace EShop.Server.Migrations
                 name: "Attribute",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(maxLength: 500, nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Attribute", x => x.ID);
+                    table.PrimaryKey("PK_Attribute", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "AttributeValue",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     AttributeID = table.Column<int>(nullable: false),
                     Name = table.Column<string>(maxLength: 500, nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AttributeValue", x => x.ID);
+                    table.PrimaryKey("PK_AttributeValue", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Catalog",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ParentID = table.Column<int>(nullable: true),
                     Name = table.Column<string>(maxLength: 500, nullable: true),
@@ -52,27 +52,27 @@ namespace EShop.Server.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Catalog", x => x.ID);
+                    table.PrimaryKey("PK_Catalog", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Categories",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Categories", x => x.ID);
+                    table.PrimaryKey("PK_Categories", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Content",
                 columns: table => new
                 {
-                    ID = table.Column<long>(nullable: false)
+                    Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(maxLength: 250, nullable: false),
                     MetaTitle = table.Column<string>(maxLength: 250, nullable: true),
@@ -95,14 +95,14 @@ namespace EShop.Server.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Content", x => x.ID);
+                    table.PrimaryKey("PK_Content", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "ContentCategory",
                 columns: table => new
                 {
-                    ID = table.Column<long>(nullable: false)
+                    Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(maxLength: 250, nullable: true),
                     MetaTitle = table.Column<string>(maxLength: 250, nullable: true),
@@ -121,7 +121,7 @@ namespace EShop.Server.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ContentCategory", x => x.ID);
+                    table.PrimaryKey("PK_ContentCategory", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -140,7 +140,7 @@ namespace EShop.Server.Migrations
                 name: "Error",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Message = table.Column<string>(nullable: true),
                     StackTrace = table.Column<string>(nullable: true),
@@ -148,41 +148,41 @@ namespace EShop.Server.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Error", x => x.ID);
+                    table.PrimaryKey("PK_Error", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Image",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Url = table.Column<string>(maxLength: 500, nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Image", x => x.ID);
+                    table.PrimaryKey("PK_Image", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "News",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Content = table.Column<string>(nullable: true),
                     categoryID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_News", x => x.ID);
+                    table.PrimaryKey("PK_News", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Product",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CatalogID = table.Column<long>(maxLength: 500, nullable: false),
                     Url = table.Column<string>(maxLength: 250, nullable: true),
@@ -203,28 +203,28 @@ namespace EShop.Server.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Product", x => x.ID);
+                    table.PrimaryKey("PK_Product", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "ProductVersionImage",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ImageID = table.Column<int>(nullable: false),
                     ProductVersionID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductVersionImage", x => x.ID);
+                    table.PrimaryKey("PK_ProductVersionImage", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "ProductVersions",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProductID = table.Column<int>(nullable: false),
                     WareHouseID = table.Column<int>(nullable: false),
@@ -237,24 +237,24 @@ namespace EShop.Server.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductVersions", x => x.ID);
+                    table.PrimaryKey("PK_ProductVersions", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Tag",
                 columns: table => new
                 {
-                    ID = table.Column<string>(maxLength: 50, nullable: false),
+                    Id = table.Column<string>(maxLength: 50, nullable: false),
                     TagtName = table.Column<string>(maxLength: 50, nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tag", x => x.ID);
+                    table.PrimaryKey("PK_Tag", x => x.Id);
                 });
 
             migrationBuilder.InsertData(
                 table: "Attribute",
-                columns: new[] { "ID", "Name" },
+                columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
                     { 1, "Màu sắc" },
@@ -263,7 +263,7 @@ namespace EShop.Server.Migrations
 
             migrationBuilder.InsertData(
                 table: "AttributeValue",
-                columns: new[] { "ID", "AttributeID", "Name" },
+                columns: new[] { "Id", "AttributeID", "Name" },
                 values: new object[,]
                 {
                     { 1, 1, "Đỏ" },
@@ -276,7 +276,7 @@ namespace EShop.Server.Migrations
 
             migrationBuilder.InsertData(
                 table: "Catalog",
-                columns: new[] { "ID", "CreatedBy", "CreatedDate", "ModifiedBy", "ModifiedDate", "Name", "ParentID", "SEODescription", "SEOTitle", "SEOUrl" },
+                columns: new[] { "Id", "CreatedBy", "CreatedDate", "ModifiedBy", "ModifiedDate", "Name", "ParentID", "SEODescription", "SEOTitle", "SEOUrl" },
                 values: new object[,]
                 {
                     { 1, null, null, null, null, "Điện thoại", null, null, null, null },
@@ -288,7 +288,7 @@ namespace EShop.Server.Migrations
 
             migrationBuilder.InsertData(
                 table: "Product",
-                columns: new[] { "ID", "ApplyPromotion", "CatalogID", "Content", "CreatedBy", "CreatedDate", "Deliver", "Description", "ModifiedBy", "ModifiedDate", "Name", "OriginalPrice", "SEODescription", "SEOTitle", "SEOUrl", "Url", "Weight" },
+                columns: new[] { "Id", "ApplyPromotion", "CatalogID", "Content", "CreatedBy", "CreatedDate", "Deliver", "Description", "ModifiedBy", "ModifiedDate", "Name", "OriginalPrice", "SEODescription", "SEOTitle", "SEOUrl", "Url", "Weight" },
                 values: new object[,]
                 {
                     { 1, true, 0L, "This is an iphone", null, null, true, "no discrip", null, null, "Iphone test", null, null, null, null, null, 0 },

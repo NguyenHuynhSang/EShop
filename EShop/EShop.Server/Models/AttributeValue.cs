@@ -11,7 +11,7 @@ namespace EShop.Server.Models
     {
        
         [Key] // chỉ định    khóa chính
-        public int ID { set; get; }
+        public int Id { set; get; }
 
         [Required]
         public int AttributeID { set; get; }

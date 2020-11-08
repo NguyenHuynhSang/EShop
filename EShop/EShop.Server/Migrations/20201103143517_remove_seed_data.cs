@@ -8,37 +8,37 @@ namespace EShop.Server.Migrations
         {
             migrationBuilder.DeleteData(
                 table: "Attribute",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 1);
 
             migrationBuilder.DeleteData(
                 table: "AttributeValue",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 3);
 
             migrationBuilder.DeleteData(
                 table: "AttributeValue",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 4);
 
             migrationBuilder.DeleteData(
                 table: "AttributeValue",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 5);
 
             migrationBuilder.DeleteData(
                 table: "AttributeValue",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 6);
 
             migrationBuilder.DeleteData(
                 table: "AttributeValue",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 7);
 
             migrationBuilder.DeleteData(
                 table: "Attribute",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 2);
         }
 
@@ -46,17 +46,17 @@ namespace EShop.Server.Migrations
         {
             migrationBuilder.InsertData(
                 table: "Attribute",
-                columns: new[] { "ID", "Name" },
+                columns: new[] { "Id", "Name" },
                 values: new object[] { 1, "Màu sắc" });
 
             migrationBuilder.InsertData(
                 table: "Attribute",
-                columns: new[] { "ID", "Name" },
+                columns: new[] { "Id", "Name" },
                 values: new object[] { 2, "Kích cỡ" });
 
             migrationBuilder.InsertData(
                 table: "AttributeValue",
-                columns: new[] { "ID", "AttributeID", "Name" },
+                columns: new[] { "Id", "AttributeID", "Name" },
                 values: new object[,]
                 {
                     { 3, 2, "S" },

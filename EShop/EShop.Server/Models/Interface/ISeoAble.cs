@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace EShop.Server.Abstract
+namespace EShop.Server.Interface
 {
-    public abstract class Seoable
+    public interface  ISeoAble
     {
         [StringLength(500)]
         public string SEOTitle { set; get; }

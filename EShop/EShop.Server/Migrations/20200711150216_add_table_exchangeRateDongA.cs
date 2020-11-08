@@ -10,7 +10,7 @@ namespace EShop.Server.Migrations
                 name: "ExchangeRateDongAs",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     type = table.Column<string>(nullable: true),
                     imageurl = table.Column<string>(nullable: true),
@@ -21,7 +21,7 @@ namespace EShop.Server.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ExchangeRateDongAs", x => x.ID);
+                    table.PrimaryKey("PK_ExchangeRateDongAs", x => x.Id);
                 });
         }
 

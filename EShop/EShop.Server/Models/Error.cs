@@ -13,7 +13,7 @@ namespace EShop.Server.Models
         [Key]
     
 
-        public int ID { set; get; }
+        public int Id { set; get; }
         public string Message { set; get; }
 
         public string StackTrace { set; get; }

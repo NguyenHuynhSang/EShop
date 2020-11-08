@@ -87,14 +87,14 @@ namespace EShop.Server.Data
 
             foreach (var item in data)
             {
-                var count = _context.ProductCatalogs.Count(x => x.ID == item.ID);
+                var count = _context.ProductCatalogs.Count(x => x.Id == item.Id);
                 if (count > 0)
                 {
                     _context.ProductCatalogs.AddOrUpdate(item);
                 }
                 else
                 {
-                    // item.ID = 0;// set lại giá trị cho ID
+                    // item.Id = 0;// set lại giá trị cho Id
                     _context.ProductCatalogs.Add(item);
                 }
 
@@ -128,14 +128,14 @@ namespace EShop.Server.Data
 
             foreach (var product in products)
             {
-                var count = _context.Products.Count(x => x.ID == product.ID);
+                var count = _context.Products.Count(x => x.Id == product.Id);
                 if (count > 0)
                 {
                     _context.Products.Update(product);
                 }
                 else
                 {
-                    product.ID = 0;// set lại giá trị cho ID
+                    product.Id = 0;// set lại giá trị cho Id
                     _context.Products.Add(product);
 
                 }

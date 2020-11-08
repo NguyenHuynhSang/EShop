@@ -58,7 +58,7 @@ namespace EShop.Server.Mapping
                  })
                  .ForMember(dest => dest.AttributeValueID, opt =>
                  {
-                     opt.MapFrom(src => src.AttributeValue.ID);
+                     opt.MapFrom(src => src.AttributeValue.Id);
                  });
 
 
@@ -78,7 +78,7 @@ namespace EShop.Server.Mapping
             CreateMap<ProductCatalog, ProductCatalogDto>();
             CreateMap<Product, ProductForListDto>();
             CreateMap<Product, ProductForListDto>()
-                .ForMember(dest => dest.ID, opt => opt.Ignore());
+                .ForMember(dest => dest.Id, opt => opt.Ignore());
 
 
             CreateMap<Item, ExchangeRateDongA>()
@@ -103,16 +103,16 @@ namespace EShop.Server.Mapping
                 .ForMember(dest => dest.ProductVersions, opt => opt.MapFrom(src => src.ProductVersions));
        
 
-            //ignore ID , entity need to get from db and map to update entity
+            //ignore Id , entity need to get from db and map to update entity
             // track issue cause by ef core
             CreateMap<ExchangeRateDongA, ExchangeRateDongA>()
-                 .ForMember(dest => dest.ID, opt => opt.Ignore());
+                 .ForMember(dest => dest.Id, opt => opt.Ignore());
 
 
             CreateMap<ExchangeRateDongA, ExchangeRateDongA>()
-               .ForMember(dest => dest.ID, opt => opt.Ignore());
+               .ForMember(dest => dest.Id, opt => opt.Ignore());
             CreateMap<ProductCatalog, ProductCatalog>()
-               .ForMember(dest => dest.ID, opt => opt.Ignore());
+               .ForMember(dest => dest.Id, opt => opt.Ignore());
 
 
             CreateMap<IEnumerable<ProductVersionViewModel>, IEnumerable<ProductVersion>>();
@@ -122,7 +122,7 @@ namespace EShop.Server.Mapping
 
 
             CreateMap<Models.Attribute, Models.Attribute>()
-                  .ForMember(dest => dest.ID, opt => opt.Ignore());
+                  .ForMember(dest => dest.Id, opt => opt.Ignore());
 
 
 

@@ -36,7 +36,7 @@ namespace EShop.Server.Service
         {
             if (_exchangeRateRepository.CheckContains(x=>x.type== exchangeRate.type))
             {
-                //ID  must be arrive at the Update Method
+                //Id  must be arrive at the Update Method
                 var entity = _exchangeRateRepository.GetSingleByCondition(x=>x.type==exchangeRate.type);
                 entity = _mapper.Map<ExchangeRateDongA, ExchangeRateDongA>(exchangeRate, entity);
                 _exchangeRateRepository.Update(entity);

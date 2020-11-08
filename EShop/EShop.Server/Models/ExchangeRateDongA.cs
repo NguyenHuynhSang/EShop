@@ -9,7 +9,7 @@ namespace EShop.Server.Models
     public class ExchangeRateDongA
     {
         [Key]
-        public int ID { set; get; }
+        public int Id { set; get; }
         public string type { get; set; }
         public string imageurl { get; set; }
         public float muatienmat { get; set; }

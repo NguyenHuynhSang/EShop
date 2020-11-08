@@ -10,7 +10,7 @@ namespace EShop.Server.Models
     {
         [Key] // chỉ định    khóa chính
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { set; get; }
+        public int Id { set; get; }
 
 
         [Required]

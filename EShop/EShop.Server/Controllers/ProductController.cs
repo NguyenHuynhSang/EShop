@@ -26,7 +26,7 @@ namespace EShop.Server.Controllers
     {
         private IProductService _productService;// service xử dụng
         private readonly IMapper _mapper;
-        public ProductController(IProductService productService,IMapper mapper)
+        public ProductController(IProductService productService, IMapper mapper)
 
         {
             _mapper = mapper;
@@ -121,7 +121,7 @@ namespace EShop.Server.Controllers
 
 
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public ActionResult<Product> GetById(int id)
         {
             try

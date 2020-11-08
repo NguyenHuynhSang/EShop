@@ -16,7 +16,7 @@ namespace EShop.Server.Migrations
                 table: "ProductVersionImage",
                 column: "ProductVersionID",
                 principalTable: "ProductVersions",
-                principalColumn: "ID",
+                principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
         }
 

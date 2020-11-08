@@ -162,12 +162,12 @@ namespace EShop.Server.Controllers
 
 
         [HttpPut]
-        public ActionResult<ProductCatalog> Active(int ID)
+        public ActionResult<ProductCatalog> Active(int Id)
         {
             try
             {
                 //TEST
-                var updatedProductCatalog = _catalogService.Active(ID);
+                var updatedProductCatalog = _catalogService.Active(Id);
                 _catalogService.SaveChanges();
                 return Ok(updatedProductCatalog);
             }

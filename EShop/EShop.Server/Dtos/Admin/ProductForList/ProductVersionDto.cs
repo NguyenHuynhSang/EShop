@@ -8,7 +8,7 @@ namespace EShop.Server.Dtos.Admin.ProductForList
 {
     public class ProductVersionDto
     {
-        public int ID { set; get; }
+        public int Id { set; get; }
 
         public int WareHouseID { set; get; }
 

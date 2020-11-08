@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EShop.Server.Migrations
 {
     [DbContext(typeof(EShopDbContext))]
-    [Migration("20201104024302_clean_up_product_table")]
-    partial class clean_up_product_table
+    [Migration("20201108091242_refactor_model")]
+    partial class refactor_model
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -65,12 +65,6 @@ namespace EShop.Server.Migrations
                     b.ToTable("AttributeValue");
 
                     b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AttributeID = 1,
-                            Name = "Đỏ"
-                        },
                         new
                         {
                             Id = 10,
@@ -128,13 +122,6 @@ namespace EShop.Server.Migrations
                     b.Property<long>("CategoryID")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
-
-                    b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(500)")
                         .HasMaxLength(500);
@@ -162,29 +149,10 @@ namespace EShop.Server.Migrations
                         .HasColumnType("nvarchar(250)")
                         .HasMaxLength(250);
 
-                    b.Property<string>("ModifiedBy")
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
-
-                    b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(250)")
                         .HasMaxLength(250);
-
-                    b.Property<string>("SEODescription")
-                        .HasColumnType("nvarchar(500)")
-                        .HasMaxLength(500);
-
-                    b.Property<string>("SEOTitle")
-                        .HasColumnType("nvarchar(500)")
-                        .HasMaxLength(500);
-
-                    b.Property<string>("SEOUrl")
-                        .HasColumnType("nvarchar(500)")
-                        .HasMaxLength(500);
 
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
@@ -214,13 +182,6 @@ namespace EShop.Server.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
-
-                    b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("DisplayOrder")
                         .HasColumnType("int");
 
@@ -240,31 +201,12 @@ namespace EShop.Server.Migrations
                         .HasColumnType("nvarchar(250)")
                         .HasMaxLength(250);
 
-                    b.Property<string>("ModifiedBy")
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
-
-                    b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(250)")
                         .HasMaxLength(250);
 
                     b.Property<long>("ParentID")
                         .HasColumnType("bigint");
-
-                    b.Property<string>("SEODescription")
-                        .HasColumnType("nvarchar(500)")
-                        .HasMaxLength(500);
-
-                    b.Property<string>("SEOTitle")
-                        .HasColumnType("nvarchar(500)")
-                        .HasMaxLength(500);
-
-                    b.Property<string>("SEOUrl")
-                        .HasColumnType("nvarchar(500)")
-                        .HasMaxLength(500);
 
                     b.Property<bool>("ShowOnHome")
                         .HasColumnType("bit");
@@ -426,8 +368,7 @@ namespace EShop.Server.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -439,9 +380,11 @@ namespace EShop.Server.Migrations
                         .HasColumnType("nvarchar(1000)")
                         .HasMaxLength(1000);
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<string>("ModifiedBy")
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
@@ -455,23 +398,17 @@ namespace EShop.Server.Migrations
                         .HasColumnType("decimal(18,0)");
 
                     b.Property<string>("SEODescription")
-                        .HasColumnType("nvarchar(500)")
-                        .HasMaxLength(500);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SEOTitle")
-                        .HasColumnType("nvarchar(500)")
-                        .HasMaxLength(500);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SEOUrl")
-                        .HasColumnType("nvarchar(500)")
-                        .HasMaxLength(500);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Url")
                         .HasColumnType("nvarchar(250)")
                         .HasMaxLength(250);
-
-                    b.Property<int>("Weight")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -488,8 +425,7 @@ namespace EShop.Server.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -497,9 +433,11 @@ namespace EShop.Server.Migrations
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<string>("ModifiedBy")
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
@@ -512,16 +450,13 @@ namespace EShop.Server.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("SEODescription")
-                        .HasColumnType("nvarchar(500)")
-                        .HasMaxLength(500);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SEOTitle")
-                        .HasColumnType("nvarchar(500)")
-                        .HasMaxLength(500);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SEOUrl")
-                        .HasColumnType("nvarchar(500)")
-                        .HasMaxLength(500);
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -531,69 +466,81 @@ namespace EShop.Server.Migrations
                         new
                         {
                             Id = 1,
+                            IsActive = false,
                             Name = "Áo"
                         },
                         new
                         {
                             Id = 2,
+                            IsActive = false,
                             Name = "Quần"
                         },
                         new
                         {
                             Id = 3,
+                            IsActive = false,
                             Name = "Váy"
                         },
                         new
                         {
                             Id = 4,
+                            IsActive = false,
                             Name = "Áo thun",
                             ParentID = 1
                         },
                         new
                         {
                             Id = 5,
+                            IsActive = false,
                             Name = "Áo sơ mi",
                             ParentID = 1
                         },
                         new
                         {
                             Id = 6,
+                            IsActive = false,
                             Name = "Áo khoác",
                             ParentID = 1
                         },
                         new
                         {
                             Id = 7,
+                            IsActive = false,
                             Name = "Quần tây",
                             ParentID = 2
                         },
                         new
                         {
                             Id = 8,
+                            IsActive = false,
                             Name = "Quần jean",
                             ParentID = 2
                         },
                         new
                         {
                             Id = 9,
+                            IsActive = false,
                             Name = "Quần kari",
                             ParentID = 2
                         },
                         new
                         {
                             Id = 10,
+                            IsActive = false,
                             Name = "Quần short",
                             ParentID = 2
                         },
                         new
                         {
                             Id = 11,
+                            IsActive = false,
                             Name = "Váy toàn thân",
                             ParentID = 3
                         },
                         new
                         {
                             Id = 12,
+                            IsActive = false,
                             Name = "Váy quần",
                             ParentID = 3
                         });
@@ -691,6 +638,39 @@ namespace EShop.Server.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SeedLog");
+                });
+
+            modelBuilder.Entity("EShop.Server.Models.Slide", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("URL")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Slides");
                 });
 
             modelBuilder.Entity("EShop.Server.Models.Tag", b =>

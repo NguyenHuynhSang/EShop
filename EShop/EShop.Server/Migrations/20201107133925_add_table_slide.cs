@@ -9,14 +9,14 @@ namespace EShop.Server.Migrations
         {
             migrationBuilder.DeleteData(
                 table: "AttributeValue",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 1);
 
             migrationBuilder.CreateTable(
                 name: "Slides",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedDate = table.Column<DateTime>(nullable: true),
                     CreatedBy = table.Column<string>(maxLength: 50, nullable: true),
@@ -28,7 +28,7 @@ namespace EShop.Server.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Slides", x => x.ID);
+                    table.PrimaryKey("PK_Slides", x => x.Id);
                 });
         }
 
@@ -39,7 +39,7 @@ namespace EShop.Server.Migrations
 
             migrationBuilder.InsertData(
                 table: "AttributeValue",
-                columns: new[] { "ID", "AttributeID", "Name" },
+                columns: new[] { "Id", "AttributeID", "Name" },
                 values: new object[] { 1, 1, "Đỏ" });
         }
     }

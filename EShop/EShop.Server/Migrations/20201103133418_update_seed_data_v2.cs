@@ -8,36 +8,36 @@ namespace EShop.Server.Migrations
         {
             migrationBuilder.DeleteData(
                 table: "AttributeValue",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 1);
 
             migrationBuilder.DeleteData(
                 table: "AttributeValue",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 2);
 
             migrationBuilder.UpdateData(
                 table: "AttributeValue",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 6,
                 column: "Name",
                 value: "XXL");
 
             migrationBuilder.InsertData(
                 table: "AttributeValue",
-                columns: new[] { "ID", "AttributeID", "Name" },
+                columns: new[] { "Id", "AttributeID", "Name" },
                 values: new object[] { 7, 2, "XL" });
 
             migrationBuilder.UpdateData(
                 table: "ProductCatalog",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 3,
                 columns: new[] { "Name", "ParentID" },
                 values: new object[] { "Váy", null });
 
             migrationBuilder.InsertData(
                 table: "ProductCatalog",
-                columns: new[] { "ID", "CreatedBy", "CreatedDate", "Image", "ModifiedBy", "ModifiedDate", "Name", "ParentID", "SEODescription", "SEOTitle", "SEOUrl" },
+                columns: new[] { "Id", "CreatedBy", "CreatedDate", "Image", "ModifiedBy", "ModifiedDate", "Name", "ParentID", "SEODescription", "SEOTitle", "SEOUrl" },
                 values: new object[,]
                 {
                     { 7, null, null, null, null, null, "Áo khoác", 1, null, null, null },
@@ -54,54 +54,54 @@ namespace EShop.Server.Migrations
         {
             migrationBuilder.DeleteData(
                 table: "AttributeValue",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 7);
 
             migrationBuilder.DeleteData(
                 table: "ProductCatalog",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 7);
 
             migrationBuilder.DeleteData(
                 table: "ProductCatalog",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 8);
 
             migrationBuilder.DeleteData(
                 table: "ProductCatalog",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 9);
 
             migrationBuilder.DeleteData(
                 table: "ProductCatalog",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 10);
 
             migrationBuilder.DeleteData(
                 table: "ProductCatalog",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 11);
 
             migrationBuilder.DeleteData(
                 table: "ProductCatalog",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 12);
 
             migrationBuilder.DeleteData(
                 table: "ProductCatalog",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 13);
 
             migrationBuilder.UpdateData(
                 table: "AttributeValue",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 6,
                 column: "Name",
                 value: "XL");
 
             migrationBuilder.InsertData(
                 table: "AttributeValue",
-                columns: new[] { "ID", "AttributeID", "Name" },
+                columns: new[] { "Id", "AttributeID", "Name" },
                 values: new object[,]
                 {
                     { 1, 1, "Nam" },
@@ -110,7 +110,7 @@ namespace EShop.Server.Migrations
 
             migrationBuilder.UpdateData(
                 table: "ProductCatalog",
-                keyColumn: "ID",
+                keyColumn: "Id",
                 keyValue: 3,
                 columns: new[] { "Name", "ParentID" },
                 values: new object[] { "Áo khoác", 1 });
