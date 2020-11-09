@@ -7,12 +7,14 @@ using System.Linq;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
+using System.Xml.XPath;
 
 namespace Crawler
 {
     public class Program
     {
-        public static string base_curl_path = @"../../../Curl/vietnamwork_it_en.curl";
+        public static string base_curl_path = @"../../../Curl/totoshop.curl";
         public static HttpClient httpClient;
         public static RestClient restClient;
         public static IWebDriver webDriver;
@@ -44,16 +46,29 @@ namespace Crawler
         public static void CrawlDataFromApi(string path)
         {
             var cUrl = File.OpenText(path).ReadToEnd();
-            restClient = new RestClient(cUrl);
-       
+
             List<string> headers = new List<string>();
-            string url= Regex.Match(cUrl, @"(?<=curl ')(.*?)(?=' \\)", RegexOptions.Singleline).Value;
-            var headerList= Regex.Matches(cUrl, @"(?<=-H ')(.*?)(?=' \\)", RegexOptions.Singleline).Select(x=>x.Value.ToString());
+            string url = Regex.Match(cUrl, @"(?<=curl ')(.*?)(?=' \\)", RegexOptions.Singleline).Value;
+            var request = new RestRequest();
+            var client = new RestClient(url);
+
+            request.Method = Method.GET;
+            var headerList = Regex.Matches(cUrl, @"(?<=-H ')(.*?)(?=' \\)", RegexOptions.Singleline).Select(x => x.Value.ToString());
             foreach (var item in headerList)
             {
-                restClient.AddDefaultHeader("Header",item);
+                var headerName = Regex.Match(item, @"^.*?(?=:)", RegexOptions.Singleline).Value;
+                var headerValue = Regex.Match(item, @"(?<=: ).*?(.*)", RegexOptions.Singleline).Value;
+                request.AddHeader(headerName, headerValue);
 
             }
+            request.RequestFormat = DataFormat.Xml;
+
+
+
+            var response = client.Execute(request);
+            var pageSource = response.Content;
+            File.WriteAllText(@"../../../OutPut/result.xml", pageSource);
+
            
 
 

@@ -1,0 +1,15 @@
+﻿curl 'https://totoshop.vn/san-pham-pc377966.html' \
+  -H 'authority: totoshop.vn' \
+  -H 'pragma: no-cache' \
+  -H 'cache-control: no-cache' \
+  -H 'upgrade-insecure-requests: 1' \
+  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36' \
+  -H 'accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9' \
+  -H 'sec-fetch-site: same-origin' \
+  -H 'sec-fetch-mode: navigate' \
+  -H 'sec-fetch-user: ?1' \
+  -H 'sec-fetch-dest: document' \
+  -H 'referer: https://totoshop.vn/' \
+  -H 'accept-language: en-US,en;q=0.9,vi;q=0.8' \
+  -H 'cookie: s9mku2o10dabo5cp=cpjedm5ldt8tco3v287tuhhu2d; size=1920; PRODUCT_HISTORY_NEW=%7B%22p26211521%22%3A%2226211521%22%7D' \
+  --compressed
