@@ -15,6 +15,56 @@
 
 * Tạo file mới tên `ConnectionString.txt` trong `EShop/EShop.Server`. Copy database connection string vào dòng đầu tiên
 
+### dynamic Filter param
+<table style="width: 464px;">
+<tbody>
+<tr style="height: 23px;">
+<td style="width: 107px; height: 23px;">Params</td>
+<td style="width: 121px; height: 23px;">Kiểu&nbsp;</td>
+<td style="width: 234px; height: 23px;">diễn giải</td>
+</tr>
+<tr style="height: 23px;">
+<td style="width: 107px; height: 23px;">filterProperty</td>
+<td style="width: 121px; height: 23px;">string</td>
+<td style="width: 234px; height: 23px;">
+<p>* vd:&nbsp; để filter id =&gt; truyền filterProperty= id</p>
+<p>* để filter catalog name truyền filterProperty= calalog.name</p>
+<p>* với mỗi list con trong object, muốn filter phải truyền đ&uacute;ng đường dẫn như vd về catalog name ở tr&ecirc;n</p>
+<pre class=" microlight"> "id": 4,
+    "catalog": {
+      "id": 5,
+      "name": "&Aacute;o sơ mi"
+    }</pre>
+</td>
+</tr>
+<tr style="height: 23px;">
+<td style="width: 107px; height: 23px;">filterOperator</td>
+<td style="width: 121px; height: 23px;">enum string</td>
+<td style="width: 234px; height: 23px;">dựa v&agrave;o kiểu của filterProperty đầu v&agrave;o chọn đ&uacute;ng gi&aacute; trị vd: id(int)=&gt; chọn num_equals...</td>
+</tr>
+<tr style="height: 23px;">
+<td style="width: 107px; height: 23px;">filterType</td>
+<td style="width: 121px; height: 23px;">enum string</td>
+<td style="width: 234px; height: 23px;">loại filter vd: num,text,date...</td>
+</tr>
+<tr style="height: 23px;">
+<td style="width: 107px; height: 23px;">filterValue</td>
+<td style="width: 121px; height: 23px;">string</td>
+<td style="width: 234px; height: 23px;">gi&aacute; trị filter, c&oacute; thể l&agrave; data, int...</td>
+</tr>
+<tr style="height: 23px;">
+<td style="width: 107px; height: 23px;">filterValue1</td>
+<td style="width: 121px; height: 23px;">string</td>
+<td style="width: 234px; height: 23px;">gi&aacute; trị filter 2, d&ugrave;ng cho trường hợp range, nếu k phải range bỏ trống</td>
+</tr>
+</tbody>
+</table>
+
+HIỆN TẠI CHƯA HỖ TRỢ FILTER  AND hoặc OR
+
+
+## Config
+
 ```
 data source=VT-CNTT-NGUYENN\MSSQLSERVER01;initial catalog=Bt2;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework 
 ```
