@@ -62,6 +62,109 @@
 
 HIỆN TẠI CHƯA HỖ TRỢ FILTER  AND hoặc OR
 
+### dynamic sorting param
+
+<table style="width: 439px;">
+<tbody>
+<tr>
+<td style="width: 123px;">param</td>
+<td style="width: 210px;">kiểu</td>
+<td style="width: 105px;">diễn giải</td>
+</tr>
+<tr>
+<td style="width: 123px;">sortBy</td>
+<td style="width: 210px;">string</td>
+<td style="width: 105px;">
+<pre class=" microlight">"id": 14,
+    "catalog": {
+      "id": 10,
+      "name": "Quần short"
+    },</pre>
+<p>&nbsp;vd: để&nbsp;sort&nbsp;theo id truyền&nbsp;</p>
+<p>sortBy= id</p>
+<p>để sort theo catalog name truyền</p>
+<p>sortBy=catalog.name</p>
+<p>&nbsp;Kh&ocirc;ng hỗ trợ sort c&aacute;c phần tử của 1 list con trong object ban đầu(nếu c&oacute; vd: List&lt;ProductVersion&gt;) chỉ hỗ trợ nếu l&agrave; object con như catalog ở tr&ecirc;n</p>
+</td>
+</tr>
+<tr>
+<td style="width: 123px;">sort</td>
+<td style="width: 210px;">enum string&nbsp;</td>
+<td style="width: 105px;">c&oacute; 2 kiểu : esc v&agrave; desc, mặc định l&agrave; desc</td>
+</tr>
+</tbody>
+</table>
+
+### Paging
+<table style="width: 462px;">
+<tbody>
+<tr style="height: 23px;">
+<td style="width: 87px; height: 23px;">param</td>
+<td style="width: 99px; height: 23px;">kiểu</td>
+<td style="width: 123px; height: 23px;">mặc định</td>
+<td style="width: 152px; height: 23px;">diễn giải</td>
+</tr>
+<tr style="height: 23px;">
+<td style="width: 87px; height: 23px;">page</td>
+<td style="width: 99px; height: 23px;">int</td>
+<td style="width: 123px; height: 23px;">1</td>
+<td style="width: 152px; height: 23px;">trang hiện tại</td>
+</tr>
+<tr style="height: 23px;">
+<td style="width: 87px; height: 23px;">perPage</td>
+<td style="width: 99px; height: 23px;">int&nbsp;</td>
+<td style="width: 123px; height: 23px;">50</td>
+<td style="width: 152px; height: 23px;">số item tối đa trong 1 trang</td>
+</tr>
+</tbody>
+</table>
+<p><br />Respose format</p>
+<p>&nbsp;</p>
+<table style="width: 452px;">
+<tbody>
+<tr>
+<td style="width: 155px;">biến</td>
+<td style="width: 126px;">kiểu</td>
+<td style="width: 170px;">diễn giải</td>
+</tr>
+<tr>
+<td style="width: 155px;">source</td>
+<td style="width: 126px;">list model&nbsp;</td>
+<td style="width: 170px;">trả về danh s&aacute;ch model tr&ecirc;n trang hiện tại</td>
+</tr>
+<tr>
+<td style="width: 155px;">
+<pre class="example microlight">currentPage</pre>
+</td>
+<td style="width: 126px;">int</td>
+<td style="width: 170px;">trang hiện tại</td>
+</tr>
+<tr>
+<td style="width: 155px;">
+<pre class="example microlight">totalPages</pre>
+</td>
+<td style="width: 126px;">int</td>
+<td style="width: 170px;">Tổng số trang đ&atilde; ph&acirc;n ra</td>
+</tr>
+<tr>
+<td style="width: 155px;">
+<pre class="example microlight">pageSize</pre>
+</td>
+<td style="width: 126px;">int</td>
+<td style="width: 170px;">tổng số item tr&ecirc;n 1 trang</td>
+</tr>
+<tr>
+<td style="width: 155px;">
+<pre class="example microlight">totalCount</pre>
+</td>
+<td style="width: 126px;">int</td>
+<td style="width: 170px;">tổng số item tr&ecirc;n tất cả trang</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+
+
 
 ## Config
 
