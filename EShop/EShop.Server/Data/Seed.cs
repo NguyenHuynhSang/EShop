@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using EShop.Server.Migrations;
 using EShop.Server.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -29,7 +30,16 @@ namespace EShop.Server.Data
             //SeedProductAttribute();
             //SeedAttributeValue();
             //SeedProductCatalog();
-            //SeedProduct();
+            if (_context.SeedLogs.Count()==0)
+            {
+                SeedProduct();
+                SeedLog log = new SeedLog();
+                log.DataVersion = 1;
+                context.SeedLogs.Add(log);
+                context.SaveChanges();
+            }
+        
+          
           
 
         }

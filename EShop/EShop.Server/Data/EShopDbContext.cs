@@ -90,6 +90,7 @@ namespace EShop.Server.Data
             SeedProductAttribute(modelBuilder);
             SeedAttributeValue(modelBuilder);
             SeedProductCatalog(modelBuilder);
+           // SeedProduct(modelBuilder);
         }
 
 
@@ -124,14 +125,14 @@ namespace EShop.Server.Data
 
 
 
-        private void SeedProduct(ModelBuilder modelBuilder)
-        {
-            var dataJson = File.ReadAllText("Data/product.data.json");
-            var data = JsonConvert.DeserializeObject<List<Models.Product>>(dataJson);
-            modelBuilder.Entity<Product>().HasData(data);
+        //private void SeedProduct(ModelBuilder modelBuilder)
+        //{
+        //    var dataJson = File.ReadAllText("Data/product.data.json");
+        //    var data = JsonConvert.DeserializeObject<List<Models.Product>>(dataJson);
+        //    modelBuilder.Entity<Product>().HasData(data);
 
 
-        }
+        //}
 
 
 
