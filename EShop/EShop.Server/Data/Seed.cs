@@ -30,9 +30,10 @@ namespace EShop.Server.Data
             //SeedProductAttribute();
             //SeedAttributeValue();
             //SeedProductCatalog();
+            SeedProduct();
             if (_context.SeedLogs.Count()==0)
             {
-                SeedProduct();
+              
                 SeedLog log = new SeedLog();
                 log.DataVersion = 1;
                 context.SeedLogs.Add(log);

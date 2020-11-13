@@ -10,6 +10,7 @@ using EShop.Server.Extension;
 using EShop.Server.Repository;
 using EShop.Server.SchedulerTask;
 using EShop.Server.Service;
+using EShop.Server.global;
 using EShop.Server.Service.HostService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -30,12 +31,16 @@ namespace EShop.Server
 {
     public class Startup
     {
+       
+
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
+        
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -46,10 +51,27 @@ namespace EShop.Server
 
             //services.AddDbContext<EShopDbContext>(x => x.UseSqlServer(connectionString));
             services.AddDbContext<EShopDbContext>(x => x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddControllers().AddNewtonsoftJson(opt => {
+            services.AddControllers().AddNewtonsoftJson(opt =>
+            {
                 opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             });
 
+
+            services.AddCors(op =>
+           {
+               op.AddPolicy(name: global.global.ApiCorsPolicy,
+                   builder =>
+                   {
+                       builder.WithOrigins(global.global.Origins)
+                                            .AllowAnyHeader()
+                                            .AllowAnyMethod(); 
+                   });
+
+
+           }
+
+
+            );
             services.AddAutoMapper(typeof(Startup));
 
 
@@ -87,11 +109,8 @@ namespace EShop.Server
 
 
 
-
-            services.AddCors();
-            services.AddAutoMapper(typeof(Startup));
-
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer((options) => {
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer((options) =>
+            {
                 Console.WriteLine(Configuration.GetSection("AppSettings:Token").Value);
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
@@ -121,10 +140,11 @@ namespace EShop.Server
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, Seed seeder,ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, Seed seeder, ILoggerFactory loggerFactory)
         {
+          
             loggerFactory.AddLog4Net();
-            
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -134,8 +154,11 @@ namespace EShop.Server
 
             app.UseRouting();
 
+            app.UseCors(global.global.ApiCorsPolicy);
+
+
             app.UseAuthorization();
-            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+
 
             app.UseEndpoints(endpoints =>
             {

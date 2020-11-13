@@ -14,6 +14,7 @@ using EShop.Server.Dtos.Admin.ProductForList;
 using static EShop.Server.Extension.FilterExtension;
 using EShop.Server.Dtos.Admin;
 using AutoMapper;
+using Microsoft.AspNetCore.Cors;
 
 namespace EShop.Server.Controllers
 {
@@ -35,6 +36,7 @@ namespace EShop.Server.Controllers
 
 
         [HttpGet]
+        [EnableCors("ApiCorsPolicy")]
         public ActionResult<IEnumerable<ProductForListDto>> GetAll(string filterProperty, FilterOperator filterOperator, FilterType filterType,string filterValue, string filterValue1,string sortBy, SortType sort=SortType.desc)
         {
           
