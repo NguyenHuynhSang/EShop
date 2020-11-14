@@ -16,7 +16,7 @@
 * Tạo file mới tên `ConnectionString.txt` trong `EShop/EShop.Server`. Copy database connection string vào dòng đầu tiên
 
 ### dynamic Filter param
-<table style="width: 464px;">
+<table style="width: 100%;">
 <tbody>
 <tr style="height: 23px;">
 <td style="width: 107px; height: 23px;">Params</td>
@@ -61,6 +61,20 @@
 </table>
 
 HIỆN TẠI CHƯA HỖ TRỢ FILTER  AND hoặc OR
+
+## Module ESHop
+![module](https://user-images.githubusercontent.com/35994204/99152306-9da93880-26d3-11eb-94ac-b82e7631672b.png)
+  ### Quản lý sản phẩm 
+![image](https://user-images.githubusercontent.com/35994204/99153042-81f46100-26d8-11eb-984a-3cd3431db192.png)
+  ### Diễn giải dữ liệu  
+
+![image](https://user-images.githubusercontent.com/35994204/99153426-0ba52e00-26db-11eb-9b32-30865295e80e.png)
+![image](https://user-images.githubusercontent.com/35994204/99153463-3f805380-26db-11eb-87f0-43d9f443bd8d.png)
+![image](https://user-images.githubusercontent.com/35994204/99153476-4a3ae880-26db-11eb-8da2-453d20b869b0.png)
+![image](https://user-images.githubusercontent.com/35994204/99153485-59ba3180-26db-11eb-8b46-5e7f37336f97.png)
+![image](https://user-images.githubusercontent.com/35994204/99153490-60e13f80-26db-11eb-93eb-1f841d2cf511.png)
+
+
 
 ### dynamic sorting param
 
