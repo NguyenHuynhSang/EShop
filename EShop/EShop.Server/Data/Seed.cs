@@ -26,18 +26,25 @@ namespace EShop.Server.Data
             _context = context;
             this._mapper = mapper;
             //   CleanAllData();
-            // SeedUsers();
+
+         //   SeedUsers();
             //SeedProductAttribute();
             //SeedAttributeValue();
             //SeedProductCatalog();
             SeedProduct();
             if (_context.SeedLogs.Count()==0)
             {
+
               
+
                 SeedLog log = new SeedLog();
                 log.DataVersion = 1;
                 context.SeedLogs.Add(log);
                 context.SaveChanges();
+            }
+            else
+            {
+              
             }
         
           

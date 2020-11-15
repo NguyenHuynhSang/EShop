@@ -27,16 +27,16 @@ namespace EShop.Server.Models
 
 
         [Column(TypeName = "decimal(18,0)")]
+        [Required]
         public decimal Price { set; get; }
 
 
         [Column(TypeName = "decimal(18,0)")]
-        public decimal PromotionPrice { set; get; }
+        public decimal? PromotionPrice { set; get; }
 
         
-        public int Quantum { set; get; }
+        public int Quantity { set; get; }
 
-        public int RemainingAmount { set; get; }
 
 
         

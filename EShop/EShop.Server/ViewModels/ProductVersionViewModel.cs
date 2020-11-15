@@ -20,10 +20,9 @@ namespace EShop.Server.ViewModels
 
         public decimal Price { set; get; }
 
-        public int Quantum { set; get; }
+        public int Quantity { set; get; }
 
-        public int RemainingAmount { set; get; }
-     
+      
         public string SKU { set; get; }
         public string Barcode { set; get; }
 

@@ -591,7 +591,7 @@ namespace EShop.Server.Migrations
                     b.Property<int>("ProductID")
                         .HasColumnType("int");
 
-                    b.Property<int>("Quantum")
+                    b.Property<int>("Quantity")
                         .HasColumnType("int");
 
                     b.Property<int>("RemainingAmount")
@@ -608,43 +608,40 @@ namespace EShop.Server.Migrations
 
                     b.ToTable("ProductVersions");
 
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Barcode = "COC",
-                            Description = "Màu đỏ dl 250",
-                            Price = 19000000m,
-                            ProductID = 1,
-                            Quantum = 100,
-                            RemainingAmount = 100,
-                            SKU = "Iphone test",
-                            WareHouseID = 0
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Barcode = "COC",
-                            Description = "Màu xanh dl 250",
-                            Price = 18000000m,
-                            ProductID = 1,
-                            Quantum = 100,
-                            RemainingAmount = 100,
-                            SKU = "Iphone test",
-                            WareHouseID = 0
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Barcode = "COC",
-                            Description = "Màu xanh dl 250",
-                            Price = 16000000m,
-                            ProductID = 2,
-                            Quantum = 100,
-                            RemainingAmount = 100,
-                            SKU = "Iphone test",
-                            WareHouseID = 0
-                        });
+                    //b.HasData(
+                    //    new
+                    //    {
+                    //        Id = 1,
+                    //        Barcode = "COC",
+                    //        Description = "Màu đỏ dl 250",
+                    //        Price = 19000000m,
+                    //        ProductID = 1,
+                    //        Quantity = 100,
+                    //        SKU = "Iphone test",
+                    //        WareHouseID = 0
+                    //    },
+                    //    new
+                    //    {
+                    //        Id = 2,
+                    //        Barcode = "COC",
+                    //        Description = "Màu xanh dl 250",
+                    //        Price = 18000000m,
+                    //        ProductID = 1,
+                    //        Quantity = 100,
+                    //        SKU = "Iphone test",
+                    //        WareHouseID = 0
+                    //    },
+                    //    new
+                    //    {
+                    //        Id = 3,
+                    //        Barcode = "COC",
+                    //        Description = "Màu xanh dl 250",
+                    //        Price = 16000000m,
+                    //        ProductID = 2,
+                    //        Quantity = 100,
+                    //        SKU = "Iphone test",
+                    //        WareHouseID = 0
+                    //    });
                 });
 
             modelBuilder.Entity("EShop.Server.Models.ProductVersionImage", b =>

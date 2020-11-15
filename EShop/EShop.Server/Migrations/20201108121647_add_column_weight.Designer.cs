@@ -573,7 +573,7 @@ namespace EShop.Server.Migrations
                     b.Property<decimal>("PromotionPrice")
                         .HasColumnType("decimal(18,0)");
 
-                    b.Property<int>("Quantum")
+                    b.Property<int>("Quantity")
                         .HasColumnType("int");
 
                     b.Property<int>("RemainingAmount")

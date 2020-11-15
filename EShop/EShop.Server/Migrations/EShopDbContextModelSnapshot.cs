@@ -362,9 +362,6 @@ namespace EShop.Server.Migrations
                         .HasColumnType("int")
                         .HasMaxLength(500);
 
-                    b.Property<string>("Content")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
@@ -375,8 +372,7 @@ namespace EShop.Server.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(1000)")
-                        .HasMaxLength(1000);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -392,7 +388,7 @@ namespace EShop.Server.Migrations
                         .HasColumnType("nvarchar(500)")
                         .HasMaxLength(500);
 
-                    b.Property<decimal?>("OriginalPrice")
+                    b.Property<decimal>("OriginalPrice")
                         .HasColumnType("decimal(18,0)");
 
                     b.Property<string>("SEODescription")
@@ -403,6 +399,10 @@ namespace EShop.Server.Migrations
 
                     b.Property<string>("SEOUrl")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Summary")
+                        .HasColumnType("nvarchar(1000)")
+                        .HasMaxLength(1000);
 
                     b.Property<string>("Url")
                         .HasColumnType("nvarchar(250)")
@@ -568,13 +568,10 @@ namespace EShop.Server.Migrations
                     b.Property<int>("ProductID")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("PromotionPrice")
+                    b.Property<decimal?>("PromotionPrice")
                         .HasColumnType("decimal(18,0)");
 
-                    b.Property<int>("Quantum")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RemainingAmount")
+                    b.Property<int>("Quantity")
                         .HasColumnType("int");
 
                     b.Property<string>("SKU")

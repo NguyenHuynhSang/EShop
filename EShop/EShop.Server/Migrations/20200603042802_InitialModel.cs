@@ -230,7 +230,7 @@ namespace EShop.Server.Migrations
                     WareHouseID = table.Column<int>(nullable: false),
                     Description = table.Column<string>(maxLength: 500, nullable: true),
                     Price = table.Column<decimal>(type: "decimal(18,0)", nullable: false),
-                    Quantum = table.Column<int>(nullable: false),
+                    Quantity = table.Column<int>(nullable: false),
                     RemainingAmount = table.Column<int>(nullable: false),
                     SKU = table.Column<string>(maxLength: 250, nullable: true),
                     Barcode = table.Column<string>(maxLength: 250, nullable: true)
@@ -286,14 +286,14 @@ namespace EShop.Server.Migrations
                     { 5, null, null, null, null, "Macbook", 2, null, null, null }
                 });
 
-            migrationBuilder.InsertData(
-                table: "Product",
-                columns: new[] { "Id", "ApplyPromotion", "CatalogID", "Content", "CreatedBy", "CreatedDate", "Deliver", "Description", "ModifiedBy", "ModifiedDate", "Name", "OriginalPrice", "SEODescription", "SEOTitle", "SEOUrl", "Url" },
-                values: new object[,]
-                {
-                    { 1, true, 0L, "This is an iphone", null, null, true, "no discrip", null, null, "Iphone test", null, null, null, null, null},
-                    { 2, true, 0L, "This is a samsung", null, null, true, "no discrip", null, null, "samsung galaxy test", null, null, null, null, null }
-                });
+            //migrationBuilder.InsertData(
+            //    table: "Product",
+            //    columns: new[] { "Id", "ApplyPromotion", "CatalogID", "Content", "CreatedBy", "CreatedDate", "Deliver", "Description", "ModifiedBy", "ModifiedDate", "Name", "OriginalPrice", "SEODescription", "SEOTitle", "SEOUrl", "Url" },
+            //    values: new object[,]
+            //    {
+            //        { 1, true, 0L, "This is an iphone", null, null, true, "no discrip", null, null, "Iphone test", null, null, null, null, null},
+            //        { 2, true, 0L, "This is a samsung", null, null, true, "no discrip", null, null, "samsung galaxy test", null, null, null, null, null }
+            //    });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -19,9 +19,9 @@ namespace EShop.Server.Dtos.Admin.ProductForList
 
         public string Name { get; set; }
 
-        public string Description { get; set; }
+        public string Summary { get; set; }
 
-        public string Content { get; set; }
+        public string Description { get; set; }
 
 
         public int Weight { get; set; }
@@ -66,11 +66,8 @@ namespace EShop.Server.Dtos.Admin.ProductForList
         public string Description { set; get; }
 
         public decimal Price { set; get; }
-        public decimal PromotionPrice { set; get; }
-        public int Quantum { set; get; }
-
-        public int RemainingAmount { set; get; }
-
+        public decimal? PromotionPrice { set; get; }
+        public int Quantity { set; get; }
 
         public string SKU { set; get; }
 

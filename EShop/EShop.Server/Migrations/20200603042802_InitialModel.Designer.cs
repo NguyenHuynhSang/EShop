@@ -519,7 +519,7 @@ namespace EShop.Server.Migrations
                     b.Property<int>("ProductID")
                         .HasColumnType("int");
 
-                    b.Property<int>("Quantum")
+                    b.Property<int>("Quantity")
                         .HasColumnType("int");
 
                     b.Property<int>("RemainingAmount")

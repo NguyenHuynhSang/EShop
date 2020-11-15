@@ -38,18 +38,20 @@ namespace EShop.Server.Models
         public string Name { set; get; }
 
         [MaxLength(1000)]
-        public string Description { set; get; }
+        public string Summary { set; get; }
 
-        public string Content { set; get; }
+        public string Description { set; get; }
 
         public int Weight { set; get; }
 
         [Column(TypeName = "decimal(18,0)")]
-        public decimal? OriginalPrice { get; set; }
+        [Required]
+        public decimal OriginalPrice { get; set; }
 
         public bool Deliver { set; get; }
 
         public bool ApplyPromotion { set; get; }
+
 
         public IEnumerable<ProductVersion> ProductVersions { set; get; }
         public DateTime? CreatedDate { get  ; set  ; }

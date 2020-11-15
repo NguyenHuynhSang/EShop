@@ -27,6 +27,8 @@
     <Compile Remove="Migrations\20201103142048_product_change_ID.Designer.cs" />
     <Compile Remove="Migrations\20201107133604_add_table_slide.cs" />
     <Compile Remove="Migrations\20201107133604_add_table_slide.Designer.cs" />
+    <Compile Remove="Migrations\20201115062740_fix_migration.cs" />
+    <Compile Remove="Migrations\20201115062740_fix_migration.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

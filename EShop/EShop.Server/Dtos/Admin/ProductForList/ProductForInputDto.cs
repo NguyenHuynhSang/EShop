@@ -17,13 +17,13 @@ namespace EShop.Server.Dtos.Admin
 
         public string Name { set; get; }
 
+        public string Summary { set; get; }
+
         public string Description { set; get; }
 
-        public string Content { set; get; }
 
 
-
-        public decimal? OriginalPrice { get; set; }
+        public decimal OriginalPrice { get; set; }
 
         public bool Deliver { set; get; }
 
@@ -40,12 +40,10 @@ namespace EShop.Server.Dtos.Admin
 
         public decimal Price { set; get; }
 
-        public decimal PromotionPrice { set; get; }
+        public decimal? PromotionPrice { set; get; }
 
 
-        public int Quantum { set; get; }
-
-        public int RemainingAmount { set; get; }
+        public int Quantity { set; get; }
 
         public string SKU { set; get; }
         public string Barcode { set; get; }
