@@ -25,30 +25,30 @@ namespace EShop.Server.Data
         {
             _context = context;
             this._mapper = mapper;
-            //   CleanAllData();
+            //CleanAllData();
 
-         //   SeedUsers();
+            //   SeedUsers();
             //SeedProductAttribute();
             //SeedAttributeValue();
             //SeedProductCatalog();
-            SeedProduct();
-            if (_context.SeedLogs.Count()==0)
-            {
+           
+            //if (_context.SeedLogs.Count() == 0)
+            //{
 
-              
 
-                SeedLog log = new SeedLog();
-                log.DataVersion = 1;
-                context.SeedLogs.Add(log);
-                context.SaveChanges();
-            }
-            else
-            {
-              
-            }
-        
-          
-          
+
+            //    SeedLog log = new SeedLog();
+            //    log.DataVersion = 1;
+            //    context.SeedLogs.Add(log);
+            //    context.SaveChanges();
+            //}
+            //else
+            //{
+
+            //}
+
+
+
 
         }
 
@@ -56,13 +56,9 @@ namespace EShop.Server.Data
         private void CleanAllData()
         {
 
-            _context.RemoveRange(_context.ProductCatalogs);
+
             _context.RemoveRange(_context.Products);
-            _context.RemoveRange(_context.ProductAttributes);
-            _context.RemoveRange(_context.ProductCatalogs);
-            _context.RemoveRange(_context.ProductVersionAttributes);
-            _context.RemoveRange(_context.ProductVersions);
-            _context.RemoveRange(_context.ProductVersionImages);
+
             _context.SaveChanges();
         }
 
@@ -96,7 +92,7 @@ namespace EShop.Server.Data
 
 
 
-     
+
 
         private void SeedProductCatalog()
         {
@@ -146,21 +142,16 @@ namespace EShop.Server.Data
 
             foreach (var product in products)
             {
-                var count = _context.Products.Count(x => x.Id == product.Id);
-                if (count > 0)
-                {
-                    _context.Products.Update(product);
-                }
-                else
-                {
-                    product.Id = 0;// set lại giá trị cho Id
-                    _context.Products.Add(product);
 
-                }
+
+         
+                _context.Products.Add(product);
+
+                _context.SaveChanges();
 
             }
 
-            _context.SaveChanges();
+
         }
 
 
@@ -172,7 +163,7 @@ namespace EShop.Server.Data
             foreach (var item in data)
             {
                 _context.Attributes.AddOrUpdate(item);
-               
+
             }
 
             _context.SaveChanges();

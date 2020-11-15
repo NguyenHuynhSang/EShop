@@ -15,7 +15,7 @@ using static EShop.Server.Extension.FilterExtension;
 using EShop.Server.Dtos.Admin;
 using AutoMapper;
 using Microsoft.AspNetCore.Cors;
-
+using System.IO;
 namespace EShop.Server.Controllers
 {
 
@@ -103,6 +103,24 @@ namespace EShop.Server.Controllers
             }
         }
 
+
+        [HttpGet]
+        public ActionResult Seed()
+        {
+            try
+            {
+                _productService.Seed();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+                return NotFound(ex.ToString());
+
+            }
+          
+        }
+      
 
         [HttpPut]
         public ActionResult<Product> Update(Product product)

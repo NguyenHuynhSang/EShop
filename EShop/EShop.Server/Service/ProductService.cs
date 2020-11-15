@@ -16,6 +16,7 @@ using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using EShop.Server.Dtos.Admin.ProductForList;
 using System.Text.Encodings.Web;
+using System.IO;
 
 namespace EShop.Server.Service
 {
@@ -27,6 +28,8 @@ namespace EShop.Server.Service
 
         public Product GetProductById(int id);
         public Product Delete(int id);
+
+        public void Seed();
 
         void SaveChanges();
 
@@ -138,5 +141,20 @@ namespace EShop.Server.Service
         {
             _productRepository.Commit();
         }
+
+        public void Seed()
+        {
+            var productData = File.ReadAllText("Data/product.data.json");
+            var products = JsonConvert.DeserializeObject<List<Product>>(productData);
+
+            foreach (var product in products)
+            {
+                _productRepository.Add(product);
+                _productRepository.Commit();
+
+            }
+
+        }
+
     }
 }
