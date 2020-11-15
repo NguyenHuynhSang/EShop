@@ -14,6 +14,18 @@
 ### Backend
 
 * Tạo file mới tên `ConnectionString.txt` trong `EShop/EShop.Server`. Copy database connection string vào dòng đầu tiên
+### SSMS connect to Azure SQL SERVER
+ ![image](https://user-images.githubusercontent.com/35994204/99186660-68105800-2784-11eb-88c1-39696b259cc6.png)
+  * Mở SSMS điền những thông tin sau
+    - Server name: tcp:eshopserver20201027210423dbserver.database.windows.net
+    - Authentication: SQL Server Authentication
+    - Login: eshop123456
+    - Password: Admin123123
+  * Thông tin server sau khi connect  
+ ![image](https://user-images.githubusercontent.com/35994204/99186702-bf162d00-2784-11eb-8644-bcba9e7ed136.png)
+
+
+
 
 ### dynamic Filter param
 <table style="width: 100%;">
