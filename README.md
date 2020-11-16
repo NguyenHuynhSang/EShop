@@ -6,7 +6,7 @@
 
 ## Getting Started
 ### Backend
-[EShop Server] (https://eshopserverlinux.azurewebsites.net/swagger/index.html)
+[EShop Server] (https://eshopserver2020.azurewebsites.net/swagger/index.html)
 ### Frontend
 
 [EShop Admin](https://eshopadmin.netlify.app) (WIP)
