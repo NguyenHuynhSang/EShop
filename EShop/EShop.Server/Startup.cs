@@ -135,6 +135,8 @@ namespace EShop.Server
                 Console.Write(args.Exception.Message);
                 args.SetObserved();
             });
+            services.AddRouting(options => options.LowercaseUrls = true);
+
 
 
         }
