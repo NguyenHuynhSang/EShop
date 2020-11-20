@@ -34,7 +34,7 @@ namespace EShop.Server.Controllers
             catch (Exception ex)
             {
                 logger.Error(ex);
-                return NotFound();
+                return StatusCode(500);
             }
         }
         [HttpPost]
@@ -50,7 +50,7 @@ namespace EShop.Server.Controllers
             catch (Exception ex)
             {
                 logger.Error(ex);
-                return NotFound();
+              return StatusCode(500);
             }
         }
 

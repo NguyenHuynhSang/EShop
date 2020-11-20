@@ -46,7 +46,7 @@ namespace EShop.Server.Controllers
             catch (Exception ex)
             {
                 logger.Error(ex);
-                return NotFound();
+                return StatusCode(500);
             }
          
         }
@@ -71,7 +71,7 @@ namespace EShop.Server.Controllers
             catch (Exception ex)
             {
                 logger.Error(ex);
-                return NotFound();
+                return StatusCode(500);
             }
           
         }
@@ -88,22 +88,25 @@ namespace EShop.Server.Controllers
             catch (Exception ex)
             {
                 logger.Error(ex);
-                return NotFound();
+                return StatusCode(500);
             }
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<ProductCatalog>> GetChild()
+        public ActionResult<IEnumerable<ProductCatalog>> GetChild(string sortBy, SortType sort = SortType.desc)
         {
             try
             {
-                var list = _catalogService.GetChild();
+                var param = new Params();
+                param.sortBy = sortBy;
+                param.sort = sort;
+                var list = _catalogService.GetChild(param).AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
                 return Ok(list);
             }
             catch (Exception ex)
             {
                 logger.Error(ex);
-                return NotFound();
+                return StatusCode(500);
             }
            
         }
@@ -120,7 +123,7 @@ namespace EShop.Server.Controllers
             catch (Exception ex)
             {
                 logger.Error(ex);
-                return NotFound();
+                return StatusCode(500);
             }
         }
         [HttpPost]
@@ -136,7 +139,7 @@ namespace EShop.Server.Controllers
             catch (Exception ex)
             {
                 logger.Error(ex);
-                return NotFound();
+                return StatusCode(500);
             }
         }
 

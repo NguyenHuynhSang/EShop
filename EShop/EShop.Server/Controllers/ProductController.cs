@@ -17,6 +17,8 @@ using AutoMapper;
 using Microsoft.AspNetCore.Cors;
 using System.IO;
 using Swashbuckle.AspNetCore.Annotations;
+using System.Configuration;
+using System.ComponentModel;
 
 namespace EShop.Server.Controllers
 {
@@ -24,6 +26,7 @@ namespace EShop.Server.Controllers
     [Route("api/[controller]/[action]")]
 
     [ApiController]
+
 
     public class ProductController : ApiControllerBase
     {
@@ -39,7 +42,9 @@ namespace EShop.Server.Controllers
 
         [HttpGet]
         [EnableCors("ApiCorsPolicy")]
-        [SwaggerOperation("Write your summary here")]
+
+        [SwaggerOperation(Summary = "Lấy ra tất cả các product không phân trang")]
+   
         public ActionResult<IEnumerable<ProductForListDto>> GetAll(string filterProperty, FilterOperator filterOperator, FilterType filterType,string filterValue, string filterValue1,string sortBy, SortType sort=SortType.desc)
         {
           
@@ -64,6 +69,7 @@ namespace EShop.Server.Controllers
             }
         }
         [HttpGet]
+        [SwaggerOperation(Summary = "Lấy ra tất cả các product có phân trang")]
         public ActionResult<PagedListWrapper<ProductForListDto>> GetAllPaging(string filterProperty, FilterOperator filterOperator, FilterType filterType, string filterValue, string filterValue1, string sortBy, SortType sort=SortType.desc, decimal? currency=null, string weight="kg", int page = 1, int perPage = 50)
         {
             
@@ -82,13 +88,13 @@ namespace EShop.Server.Controllers
             catch (Exception ex)
             {
                 logger.Error(ex);
-                return NotFound();
+                return StatusCode(500);
             }
        
         }
 
-    
 
+        [SwaggerOperation(Summary = "Tạo sản phẩm, khi load page gọi api/productcatalog/getchild để lấy ds catalog thuộc các danh mục gốc, gọi /api/attributevalue/getall  để lấy các giá trị attributeValue, có các khóa ngoại là phải truyền catalogID , attributeValueID có sẵn trong database")]
         [HttpPost]
         public ActionResult<Product> Create(ProductForInputDto product)
         {
@@ -102,7 +108,7 @@ namespace EShop.Server.Controllers
             catch (Exception ex)
             {
                 logger.Error(ex);
-                return NotFound(ex.ToString());
+                return StatusCode(500);
             }
         }
 
@@ -118,7 +124,7 @@ namespace EShop.Server.Controllers
             catch (Exception ex)
             {
                 logger.Error(ex);
-                return NotFound(ex.ToString());
+                return StatusCode(500);
 
             }
           
@@ -138,7 +144,7 @@ namespace EShop.Server.Controllers
             catch (Exception ex)
             {
                 logger.Error(ex);
-                return NotFound();
+                return StatusCode(500);
             }
         }
 

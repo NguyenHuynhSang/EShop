@@ -4,6 +4,8 @@ using EShop.Server.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using EShop.Server.Extension;
+using System.Linq;
 
 namespace EShop.Server.Service
 {
@@ -11,7 +13,7 @@ namespace EShop.Server.Service
     public interface IAttributeValueService
     {
         AttributeValue Add(AttributeValue attributeValue);
-        IEnumerable<AttributeValue> GetAll(string keyword);
+        IEnumerable<AttributeValue> GetAll(Params param);
 
         public AttributeValue GetAttributeValueById(int id);
 
@@ -23,12 +25,12 @@ namespace EShop.Server.Service
     public class AttributeValueService : IAttributeValueService
     {
         IAttributeValueRepository _attributeValueRepository;
-       
+
 
         public AttributeValueService(IAttributeValueRepository attributeValueRepository)
         {
             this._attributeValueRepository = attributeValueRepository;
-           
+
 
         }
         public AttributeValue Add(AttributeValue attributeValue)
@@ -41,16 +43,13 @@ namespace EShop.Server.Service
             return _attributeValueRepository.Delete(attributeValue);
         }
 
-        public IEnumerable<AttributeValue> GetAll(string atributeId)
+        public IEnumerable<AttributeValue> GetAll(Params param)
         {
-            if (String.IsNullOrEmpty(atributeId))
-            {
-                return _attributeValueRepository.GetAll();
-            }
-            else
-            {
-                return _attributeValueRepository.GetMulti(x => x.AttributeID== Int32.Parse(atributeId));
-            }
+
+            var result= _attributeValueRepository.GetAll().AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
+
+            return result;
+
 
         }
 

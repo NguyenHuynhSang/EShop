@@ -28,7 +28,7 @@ namespace EShop.Server.Service
         void SaveChanges();
 
         IEnumerable<ProductCatalog> GetParent();
-        IEnumerable<ProductCatalog> GetChild();
+        IEnumerable<ProductCatalog> GetChild(Params param);
 
     }
     public class CatalogService : ICatalogService
@@ -78,9 +78,10 @@ namespace EShop.Server.Service
             return _catalogRepository.GetTreeCatalog();
         }
 
-        public IEnumerable<ProductCatalog> GetChild()
+        public IEnumerable<ProductCatalog> GetChild(Params param)
         {
-            return _catalogRepository.GetChildCatalog();
+            var result = _catalogRepository.GetChildCatalog().AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort); 
+            return result;
         }
 
         public IEnumerable<ProductCatalog> GetParent()

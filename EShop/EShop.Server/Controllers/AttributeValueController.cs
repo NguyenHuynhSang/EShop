@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EShop.Server.Extension;
 using EShop.Server.Models;
 using EShop.Server.Service;
 
@@ -21,18 +22,22 @@ namespace EShop.Server.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<AttributeValue>> GetAll(string atributeId)
+        public ActionResult<IEnumerable<AttributeValue>> GetAll(string sortBy, SortType sort = SortType.desc)
         {
             try
             {
-                var list = _attributeValueService.GetAll(atributeId);
+                Params param = new Params();
+                param.sortBy = sortBy;
+                param.sort = sort;
+      
+                var list = _attributeValueService.GetAll(param);
 
                 return Ok(list);
             }
             catch (Exception ex)
             {
                 logger.Error(ex);
-                return NotFound();
+                return StatusCode(500);
             }
 
         }
@@ -50,7 +55,7 @@ namespace EShop.Server.Controllers
             catch (Exception ex)
             {
                 logger.Error(ex);
-                return NotFound();
+               return StatusCode(500);
             }
         }
 
@@ -82,7 +87,7 @@ namespace EShop.Server.Controllers
             catch (Exception ex)
             {
                 logger.Error(ex);
-                return NotFound();
+                return StatusCode(500);
             }
         }
 
