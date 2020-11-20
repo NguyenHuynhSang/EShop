@@ -64,7 +64,8 @@ namespace EShop.Server
                    {
                        builder.WithOrigins(global.global.Origins)
                                             .AllowAnyHeader()
-                                            .AllowAnyMethod(); 
+                                            .AllowAnyMethod()
+                                            .AllowCredentials(); 
                    });
 
 
