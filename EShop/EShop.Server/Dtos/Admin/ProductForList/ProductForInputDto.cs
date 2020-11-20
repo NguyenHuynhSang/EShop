@@ -1,5 +1,6 @@
 ﻿using EShop.Server.Interface;
 using EShop.Server.Models;
+using EShop.Server.Models.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EShop.Server.Dtos.Admin
 {
-    public class ProductForInputDto:ISeoAble
+    public class ProductForInputDto:ISeoAble,IActiveAble
     {
         public int Id { get; set; }
 
@@ -31,9 +32,13 @@ namespace EShop.Server.Dtos.Admin
         public bool ApplyPromotion { set; get; }
 
         public IEnumerable<ProductVesionForCreateDto> ProductVersions { set; get; }
+
+
+        public int Weight { get; set; }
         public string SEOTitle { get; set; }
         public string SEOUrl { get ; set ; }
         public string SEODescription { get ; set ; }
+        public bool IsActive { get ; set; }
     }
     public class ProductVesionForCreateDto
     {

@@ -26,7 +26,6 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 
-
 namespace EShop.Server
 {
     public class Startup
@@ -124,8 +123,10 @@ namespace EShop.Server
 
             services.AddSwaggerGen(swagger =>
             {
-                swagger.SwaggerDoc("v1", new OpenApiInfo { Title = "My API" });
+                swagger.EnableAnnotations();
                 swagger.DescribeAllEnumsAsStrings();
+                swagger.SwaggerDoc("v1", new OpenApiInfo { Title = "My API" });
+              
                 //swagger.DocumentFilter<CustomModelDocumentForSwagger<ProductFilterModel>>();
             });
 

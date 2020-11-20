@@ -1,4 +1,6 @@
-﻿using EShop.Server.Models;
+﻿using EShop.Server.Interface;
+using EShop.Server.Models;
+using EShop.Server.Models.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EShop.Server.Dtos.Admin.ProductForList
 {
-    public class ProductForListDto
+    public class ProductForListDto:IAuditAble,IActiveAble
     {
 
         public int Id { get; set; }
@@ -43,8 +45,7 @@ namespace EShop.Server.Dtos.Admin.ProductForList
 
      
         public string ModifiedBy { get; set; }
-
-
+        public bool IsActive { get ; set; }
     }
 
     public class ProductVersionAttributeDto

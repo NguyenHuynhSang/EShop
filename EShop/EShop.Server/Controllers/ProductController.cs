@@ -16,6 +16,8 @@ using EShop.Server.Dtos.Admin;
 using AutoMapper;
 using Microsoft.AspNetCore.Cors;
 using System.IO;
+using Swashbuckle.AspNetCore.Annotations;
+
 namespace EShop.Server.Controllers
 {
 
@@ -37,6 +39,7 @@ namespace EShop.Server.Controllers
 
         [HttpGet]
         [EnableCors("ApiCorsPolicy")]
+        [SwaggerOperation("Write your summary here")]
         public ActionResult<IEnumerable<ProductForListDto>> GetAll(string filterProperty, FilterOperator filterOperator, FilterType filterType,string filterValue, string filterValue1,string sortBy, SortType sort=SortType.desc)
         {
           
