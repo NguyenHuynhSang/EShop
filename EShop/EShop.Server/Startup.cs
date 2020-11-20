@@ -25,6 +25,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
+using Microsoft.Extensions.FileProviders;
 
 namespace EShop.Server
 {
@@ -153,7 +154,12 @@ namespace EShop.Server
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                Path.Combine(env.ContentRootPath, "Doc")),
+                RequestPath = "/Doc"
+            });
             app.UseHttpsRedirection();
 
             app.UseRouting();

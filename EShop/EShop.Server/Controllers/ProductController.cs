@@ -19,7 +19,7 @@ using System.IO;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Configuration;
 using System.ComponentModel;
-
+using System.IO;
 namespace EShop.Server.Controllers
 {
 
@@ -94,7 +94,7 @@ namespace EShop.Server.Controllers
         }
 
 
-        [SwaggerOperation(Summary = "Tạo sản phẩm, khi load page gọi api/productcatalog/getchild để lấy ds catalog thuộc các danh mục gốc, gọi /api/attributevalue/getall  để lấy các giá trị attributeValue, có các khóa ngoại là phải truyền catalogID , attributeValueID có sẵn trong database")]
+        [SwaggerOperationCustom(Summary = "Tạo sản phẩm mới",FileName = "product_create.description")]
         [HttpPost]
         public ActionResult<Product> Create(ProductForInputDto product)
         {

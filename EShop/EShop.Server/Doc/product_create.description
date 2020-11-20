@@ -1,0 +1,7 @@
+﻿Tên Api: 
+<br>	
+Khóa ngoại: 
+<br>
+Luồng: 
+<br>
+Mô tả: khi load page gọi api/productcatalog/getchild để lấy ds catalog thuộc các danh mục gốc, gọi /api/attributevalue/getall  để lấy các giá trị attributeValue, có các khóa ngoại là phải truyền catalogID , attributeValueID có sẵn trong database
