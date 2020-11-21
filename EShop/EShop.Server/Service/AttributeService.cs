@@ -4,6 +4,8 @@ using EShop.Server.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using EShop.Server.Extension;
+using System.Linq;
 
 namespace EShop.Server.Service
 {
@@ -11,7 +13,7 @@ namespace EShop.Server.Service
     public interface IAttributeService
     {
         EShop.Server.Models.Attribute Add(EShop.Server.Models.Attribute attribute);
-        IEnumerable<EShop.Server.Models.Attribute> GetAll(string keyword);
+        IEnumerable<EShop.Server.Models.Attribute> GetAll(Params param);
         public EShop.Server.Models.Attribute GetAttributeById(int id);
 
         public EShop.Server.Models.Attribute Delete(EShop.Server.Models.Attribute attribute);
@@ -43,10 +45,15 @@ namespace EShop.Server.Service
             return _attributeRepository.Delete(attribute);
         }
 
-        public IEnumerable<EShop.Server.Models.Attribute> GetAll(string keyword)
+        public IEnumerable<EShop.Server.Models.Attribute> GetAll(Params param)
         {
-  
-              return _attributeRepository.GetAll();
+
+            var query = _attributeRepository.GetAll();
+            if (!String.IsNullOrEmpty(param.filterProperty))
+            {
+                query = query.AsQueryable().WhereTo(param);
+            }
+            return query.AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort); ;
           
 
         }

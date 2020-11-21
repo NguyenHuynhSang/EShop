@@ -7,6 +7,7 @@ using EShop.Server.Models;
 using EShop.Server.Service;
 
 using Microsoft.AspNetCore.Mvc;
+using static EShop.Server.Extension.FilterExtension;
 
 namespace EShop.Server.Controllers
 {
@@ -22,14 +23,19 @@ namespace EShop.Server.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<AttributeValue>> GetAll(string sortBy, SortType sort = SortType.desc)
+        public ActionResult<IEnumerable<AttributeValue>> GetAll(string filterProperty, FilterOperator filterOperator, FilterType filterType, string filterValue, string filterValue1, string sortBy, SortType sort = SortType.desc)
         {
             try
             {
                 Params param = new Params();
                 param.sortBy = sortBy;
                 param.sort = sort;
-      
+                param.filterProperty = filterProperty;
+                param.filterOperator = filterOperator;
+                param.filterValue1 = filterValue1;
+                param.filterValue = filterValue;
+                param.filterType = filterType;
+
                 var list = _attributeValueService.GetAll(param);
 
                 return Ok(list);

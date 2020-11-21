@@ -3,13 +3,13 @@
 <br>
 Khóa ngoại lấy từ ds các bảng có quan hệ: catalogID, attributeValueID  
 <br>
-Luồng:  <br>
+<h4> Luồng:</h1>  <br>
 <ul>
   <li>
     Khi tải trang: gọi api: api/productcatalog/getchild để lấy ds calalog vào khung chọn loại danh mục( hiển thị name, giá trị là id), sản phẩm có  1 phiên bản mặc định
   </li>
   <li>
-    Trong phần phiên bản, người dùng bấm nút (thêm thuộc tính) gọi api <span class="opblock-summary-path" data-path="/api/attributevalue/create"><a class="nostyle"><span>​/api​/attributevalue​/create</span></a></span> để đổ vào selectlist, người dùng chọn giá trị thuộc tính, có thể xóa thuộc tính<br>
+    Trong phần phiên bản, người dùng bấm nút (thêm thuộc tính) sau đó gọi api
   </li>
   <li>
     Người dùng bấm nút thêm phiên bản để thêm 1 phiên bản mới của sản phẩm, có thể xóa các phiên bản, nhưng phải giữ lại 1
@@ -19,7 +19,10 @@ Luồng:  <br>
   </li>
 </ul>
   <br>
-Sơ đồ lớp: <br>
+  <h4> Sequence diagram:</h1>  <br>
+    <img   src="https://user-images.githubusercontent.com/35994204/99878776-460e4e00-2c3a-11eb-8bc5-4f16ff39eb01.png" alt="Girl in a jacket">
+    <br>
+  <h4> Sơ đồ lớp:</h1>  <br>
   <img  style="width: 50%;height: 50%;" src="https://user-images.githubusercontent.com/35994204/99153042-81f46100-26d8-11eb-984a-3cd3431db192.png" alt="Girl in a jacket">
 <br>
 

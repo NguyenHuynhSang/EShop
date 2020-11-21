@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EShop.Server.Extension;
 using EShop.Server.Service;
 
 using Microsoft.AspNetCore.Mvc;
 
 namespace EShop.Server.Controllers
 {
+    using static EShop.Server.Extension.FilterExtension;
     using ProductAttribute = Server.Models.Attribute;
     [Route("api/[controller]/[action]")]
     [ApiController]
@@ -22,12 +24,20 @@ namespace EShop.Server.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<ProductAttribute>> GetAll(string keyword)
+        public ActionResult<IEnumerable<ProductAttribute>> GetAll(string filterProperty, FilterOperator filterOperator, FilterType filterType, string filterValue, string filterValue1, string sortBy, SortType sort = SortType.desc)
         {
 
             try
             {
-                var list = _attributeService.GetAll(keyword);
+                Params param = new Params();
+                param.sortBy = sortBy;
+                param.sort = sort;
+                param.filterProperty = filterProperty;
+                param.filterOperator = filterOperator;
+                param.filterValue1 = filterValue1;
+                param.filterValue = filterValue;
+                param.filterType = filterType;
+                var list = _attributeService.GetAll(param);
 
                 return Ok(list.ToList());
             }

@@ -46,9 +46,13 @@ namespace EShop.Server.Service
         public IEnumerable<AttributeValue> GetAll(Params param)
         {
 
-            var result= _attributeValueRepository.GetAll().AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
-
-            return result;
+            var query = _attributeValueRepository.GetAll();
+            if (!String.IsNullOrEmpty(param.filterProperty))
+            {
+                query = query.AsQueryable().WhereTo(param);
+            }
+             query = query.AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
+            return query;
 
 
         }
