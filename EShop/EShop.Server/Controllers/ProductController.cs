@@ -94,7 +94,7 @@ namespace EShop.Server.Controllers
         }
 
 
-        [SwaggerOperationCustom(Summary = "Tạo sản phẩm mới",FileName = "product_create.description")]
+        [SwaggerOperationCustom(Summary = "Tạo sản phẩm mới",FileName = "product_create.html")]
         [HttpPost]
         public ActionResult<Product> Create(ProductForInputDto product)
         {

@@ -1,0 +1,26 @@
+﻿Mô tả: 1 sản phẩm có ít nhất 1 phiên bản, các phiên bản có 0 hoặc nhiều attributeValue, mối phiên bản  có 0 hoặc nhiều hình ảnh
+      Trong đó có duy nhất 1 ảnh đại diện (isMain=true) và SeoUrl  mặc định được sinh ra dựa vào name sản phẩm
+<br>
+Khóa ngoại lấy từ ds các bảng có quan hệ: catalogID, attributeValueID  
+<br>
+Luồng:  <br>
+<ul>
+  <li>
+    Khi tải trang: gọi api: api/productcatalog/getchild để lấy ds calalog vào khung chọn loại danh mục( hiển thị name, giá trị là id), sản phẩm có  1 phiên bản mặc định
+  </li>
+  <li>
+    Trong phần phiên bản, người dùng bấm nút (thêm thuộc tính) gọi api <span class="opblock-summary-path" data-path="/api/attributevalue/create"><a class="nostyle"><span>​/api​/attributevalue​/create</span></a></span> để đổ vào selectlist, người dùng chọn giá trị thuộc tính, có thể xóa thuộc tính<br>
+  </li>
+  <li>
+    Người dùng bấm nút thêm phiên bản để thêm 1 phiên bản mới của sản phẩm, có thể xóa các phiên bản, nhưng phải giữ lại 1
+  </li>
+  <li>
+    Phần hình ảnh của phiên bản người dùng bấm nút thêm để thêm các ảnh, và bấm nút chọn để set ảnh đại diện cho phiên bản
+  </li>
+</ul>
+  <br>
+Sơ đồ lớp: <br>
+  <img  style="width: 50%;height: 50%;" src="https://user-images.githubusercontent.com/35994204/99153042-81f46100-26d8-11eb-984a-3cd3431db192.png" alt="Girl in a jacket">
+<br>
+
+
