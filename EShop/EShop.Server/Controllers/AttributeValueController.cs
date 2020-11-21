@@ -48,6 +48,32 @@ namespace EShop.Server.Controllers
 
         }
 
+
+        [HttpGet]
+        public ActionResult<IEnumerable<AttributeValue>> GetListByAttributeId(int attributeId, string sortBy, SortType sort = SortType.desc)
+        {
+            try
+            {
+                Params param = new Params();
+                param.sortBy = sortBy;
+                param.sort = sort;
+            
+  
+                param.filterValue = attributeId.ToString();
+
+                var list = _attributeValueService.GetListByAttributeID(param);
+
+                return Ok(list);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+                return StatusCode(500);
+            }
+
+        }
+
+
         [HttpPost]
         public ActionResult<AttributeValue> Create(AttributeValue attr)
         {
@@ -61,7 +87,7 @@ namespace EShop.Server.Controllers
             catch (Exception ex)
             {
                 logger.Error(ex);
-               return StatusCode(500);
+                return StatusCode(500);
             }
         }
 

@@ -15,6 +15,9 @@ namespace EShop.Server.Service
         AttributeValue Add(AttributeValue attributeValue);
         IEnumerable<AttributeValue> GetAll(Params param);
 
+        IEnumerable<AttributeValue> GetListByAttributeID(Params param);
+
+
         public AttributeValue GetAttributeValueById(int id);
 
         public AttributeValue Delete(AttributeValue attributeValue);
@@ -61,6 +64,14 @@ namespace EShop.Server.Service
         public AttributeValue GetAttributeValueById(int id)
         {
             return _attributeValueRepository.GetSingleById(id);
+        }
+
+        public IEnumerable<AttributeValue> GetListByAttributeID(Params param)
+        {
+            var query = _attributeValueRepository.GetAll();
+            query = query.Where(x => x.AttributeID == Int32.Parse(param.filterValue));
+            query = query.AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
+            return query;
         }
 
         public void SaveChanges()
