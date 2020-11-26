@@ -3,8 +3,10 @@ using EShop.Server.Models;
 using EShop.Server.Models.Interface;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace EShop.Server.Dtos.Admin
 {
@@ -12,11 +14,13 @@ namespace EShop.Server.Dtos.Admin
     {
         public int Id { get; set; }
 
+        [DefaultValue(6)]
         public int CatalogID { set; get; }
 
         public string Url { set; get; }
 
 
+        [DefaultValue("Sản phẩm mặc định")]
         public string Name { set; get; }
 
         public string Summary { set; get; }
@@ -39,6 +43,7 @@ namespace EShop.Server.Dtos.Admin
         public string SEOUrl { get ; set ; }
         public string SEODescription { get ; set ; }
         public bool IsActive { get ; set; }
+   
     }
     public class ProductVesionForCreateDto
     {
@@ -61,7 +66,7 @@ namespace EShop.Server.Dtos.Admin
 
         public IEnumerable<ProductVersionImagesForCreateDto> ProductVersionImages { set; get; }
 
-
+   
     }
 
     public class ProductVersionAttributeForCreateDto

@@ -598,6 +598,93 @@
 
       }
     ]
+  },
+  {
+    "catalogID": 10,
+    "name": "QUẦN SHORT CARO XẾP LY QS005 ",
+    "summary": "Chất liệu: 75% cotton, 25% polyester Form: Regular",
+    "description": "Đặc tính: Quần short form suông tạo cảm giác thoải mái trong mọi hoạt động. Họa tiết caro nhuyễn tuy không quá mới lạ nhưng sẽ khiến tủ đồ của bạn có nhiều lựa chọn hơn giữa vô số các gam màu quen thuộc.",
+    "weight": 200,
+    "originalPrice": 283500,
+    "deliver": true,
+    "applyPromotion": true,
+    "createdDate": null,
+    "createdBy": null,
+    "modifiedDate": null,
+    "modifiedBy": null,
+    "seoTitle": "Quần Short Caro ",
+    "seoUrl": "quan-short-kaki-qs204",
+    "seoDescription": null,
+    "isActive": true,
+    "productVersions": [
+      {
+        "wareHouseID": 100,
+        "price": 315000,
+        "promotionPrice": 283500,
+        "quantity": 50,
+        "sku": "ULZZANG",
+        "barcode": "ULZZANG",
+        "productVersionImages": [
+          {
+            "isMain": true,
+            "url": "https://4menshop.com/images/thumbs/2020/09/quan-short-caro-xep-ly-qs005-15508-slide-products-5f7148db072a8.png"
+          },
+          {
+            "isMain": false,
+            "url": "https://4menshop.com/images/thumbs/2020/09/quan-short-caro-xep-ly-qs005-15508-slide-products-5f7148db4a627.png"
+          },
+          {
+            "isMain": false,
+            "url": "https://4menshop.com/images/thumbs/2020/09/quan-short-caro-xep-ly-qs005-15508-slide-products-5f7148db967a0.png"
+          }
+        ],
+        "productVersionAttributes": [
+          {
+            "AttributeValueID": 10
+          },
+          {
+            "AttributeValueID": 11
+          },
+          {
+            "AttributeValueID": 12
+          }
+        ]
+
+      },
+      {
+        "wareHouseID": 120,
+        "price": 315000,
+        "promotionPrice": 283500,
+        "quantity": 200,
+        "sku": "ULZZANG1",
+        "barcode": "ULZZANG1",
+        "productVersionImages": [
+          {
+            "isMain": true,
+            "url": "https://4menshop.com/images/thumbs/2020/09/quan-short-caro-xep-ly-qs005-mau-den-15509-slide-products-5f714c8e09102.png"
+          },
+          {
+            "isMain": false,
+            "url": "https://4menshop.com/images/thumbs/2020/09/quan-short-caro-xep-ly-qs005-mau-den-15509-slide-products-5f714c8ed5130.png"
+          },
+          {
+            "isMain": false,
+            "url": "https://4menshop.com/images/thumbs/2020/09/quan-short-caro-xep-ly-qs005-mau-den-15509-slide-products-5f714c8f261e4.png"
+          }
+        ],
+        "productVersionAttributes": [
+          {
+            "AttributeValueID": 10
+          },
+          {
+            "AttributeValueID": 11
+          }
+        ]
+
+      }
+
+
+    ]
   }
 
 

@@ -27,9 +27,13 @@ namespace EShop.Server.Controllers
 
     [ApiController]
 
+   
 
     public class ProductController : ApiControllerBase
     {
+      
+
+      
         private IProductService _productService;// service xử dụng
         private readonly IMapper _mapper;
         public ProductController(IProductService productService, IMapper mapper)
@@ -95,7 +99,9 @@ namespace EShop.Server.Controllers
 
 
         [SwaggerOperationCustom(Summary = "Tạo sản phẩm mới",FileName = "product_create.html")]
+      
         [HttpPost]
+
         public ActionResult<Product> Create(ProductForInputDto product)
         {
             try

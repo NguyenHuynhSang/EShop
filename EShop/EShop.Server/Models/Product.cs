@@ -2,6 +2,7 @@
 using EShop.Server.Models.Interface;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
@@ -21,7 +22,8 @@ namespace EShop.Server.Models
         public int Id { set; get; }
         [MaxLength(500)] //chỉ định độ dài tối đa, nếu k có mặc định là max
 
-        
+       
+
         public int CatalogID { set; get; }
 
         [ForeignKey("CatalogID")]
