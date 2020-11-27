@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http;
 
 namespace EShop.Server.Dtos.Admin
 {
@@ -26,8 +27,6 @@ namespace EShop.Server.Dtos.Admin
         public string Summary { set; get; }
 
         public string Description { set; get; }
-
-
 
         public decimal OriginalPrice { get; set; }
 
@@ -78,6 +77,10 @@ namespace EShop.Server.Dtos.Admin
         public String Url { set; get; }
 
         public bool IsMain { set; get; }
+
+        public IFormFile File { get; set; }
+        public string PublicId { get; set; }
+
     }
 
 

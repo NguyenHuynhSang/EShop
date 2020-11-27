@@ -26,12 +26,14 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Microsoft.Extensions.FileProviders;
+using EShop.Server.Helper;
+using System.Configuration;
 
 namespace EShop.Server
 {
     public class Startup
     {
-       
+
 
 
         public Startup(IConfiguration configuration)
@@ -40,7 +42,7 @@ namespace EShop.Server
         }
 
         public IConfiguration Configuration { get; }
-        
+
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -66,18 +68,15 @@ namespace EShop.Server
                                             .AllowAnyHeader()
                                             .AllowAnyMethod()
                                             .AllowAnyOrigin()
-                                           ; 
+                                           ;
                    });
 
-
            }
-
-
             );
+
+            services.Configure<CloudinarySetting>(Configuration.GetSection("CloudinarySetting"));
+
             services.AddAutoMapper(typeof(Startup));
-
-
-
 
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IAuthService, AuthService>();
@@ -128,7 +127,7 @@ namespace EShop.Server
                 swagger.EnableAnnotations();
                 swagger.DescribeAllEnumsAsStrings();
                 swagger.SwaggerDoc("v1", new OpenApiInfo { Title = "My API" });
-              
+
                 //swagger.DocumentFilter<CustomModelDocumentForSwagger<ProductFilterModel>>();
             });
 
@@ -148,7 +147,7 @@ namespace EShop.Server
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, Seed seeder, ILoggerFactory loggerFactory)
         {
-          
+
             loggerFactory.AddLog4Net();
 
             if (env.IsDevelopment())

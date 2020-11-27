@@ -21,7 +21,9 @@ namespace EShop.Server.Models
 
 
         [ForeignKey("ProductVersionID")]
-        public ProductVersion ProductVersion{ private set; get; }
+        public ProductVersion ProductVersion { private set; get; }
+
+        public string PublicId { get; set; }
 
     }
 }
