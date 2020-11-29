@@ -34,7 +34,7 @@ namespace EShop.Server.Controllers
         }
 
         [HttpPost]
-        public ActionResult<ProductVersionImagesForCreateDto> AddProductPhoto(ProductVersionImagesForCreateDto productVersionImage)
+        public ActionResult<ProductVersionImagesForCreateDto> AddProductPhoto([FromForm]ProductVersionImagesForCreateDto productVersionImage)
         {
             try
             {
@@ -45,13 +45,16 @@ namespace EShop.Server.Controllers
                 {
                     using (var stream = file.OpenReadStream())
                     {
-                        var uploadParams = new ImageUploadParams();
+                        var uploadParams = new ImageUploadParams()
                         {
-                            var File = new FileDescription(file.Name, stream);
-                        }
+                            File = new FileDescription(file.Name, stream)
+                        };
                         updateResult = _cloudinary.Upload(uploadParams);
                     }
                 }
+
+                // xóa bỏ file khi đã lưu để giảm lưu lượng trả về
+                productVersionImage.File = null;
                 productVersionImage.Url = updateResult.Url.ToString();
                 productVersionImage.PublicId = updateResult.PublicId;
                 return Ok(productVersionImage);
