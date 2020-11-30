@@ -63,6 +63,10 @@ namespace EShop.Server.Data
 
 
         public DbSet<Slide> Slides { get; set; }
+        public DbSet<SlideGroup> SlideGroups { get; set; }
+        public DbSet<Menu> Menus { get; set; }
+        public DbSet<MenuGroup> MenuGroups { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) //Một bảng có 2 khóa chính phải sử dụng fluent API
         {
@@ -122,6 +126,7 @@ namespace EShop.Server.Data
             var data = JsonConvert.DeserializeObject<List<Models.ProductCatalog>>(dataJson);
             modelBuilder.Entity<ProductCatalog>().HasData(data);
         }
+
 
 
 

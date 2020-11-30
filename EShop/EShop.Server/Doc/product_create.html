@@ -19,7 +19,7 @@
             calalog vào khung chọn loại danh mục( hiển thị name, giá trị là id), sản phẩm có  1 phiên bản mặc định
         </li>
         <li>
-            2. Trong phần phiên bản, người dùng bấm nút (thêm thuộc tính) sau đó gọi /api/attribute/getall để lấy ds attribute( hiển thị name, giá trị id.
+            2. Trong phần phiên bản, người dùng bấm nút (thêm thuộc tính) sau đó gọi  <b>/api/attribute/getall</b>  để lấy ds attribute( hiển thị name, giá trị id.
             Người dùng chọn attribute sau đó gọi <b>/api/attributevalue/getlistbyattributeid</b>  để lấy giá trị thuộc tính dựa vào attributeID
         </li>
         <li>
@@ -28,6 +28,8 @@
         <li>
             4. Sau khi người dùng kéo thả ảnh vào hoặc chọn ảnh tải lên, gọi <b> api/photo/addproductphoto</b> với file là hình ảnh tải lên
             api sẽ trả về đúng cấu trúc của productVersionImage và set lại file=null dể trách trường hợp gửi file đó lên khi lưu product 1 lần nữa, 
+            phần xử lý ảnh isMain trên client-side, cách này chấp nhận dư thừa ảnh tải lên so với gửi hết ảnh lên api product create rồi mới update lên
+             cloud 
         </li>
     </ul>
 </body>
