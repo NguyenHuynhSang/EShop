@@ -1,5 +1,6 @@
 ﻿using EShop.Server.Dtos.Admin.ProductForList;
 using Microsoft.Net.Http.Headers;
+using Swashbuckle.AspNetCore.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -90,7 +91,7 @@ namespace EShop.Server.Extension
 
 
         [JsonConverter(typeof(JsonStringEnumConverter))]
-
+  
         public enum FilterType
         {
             num = 1,

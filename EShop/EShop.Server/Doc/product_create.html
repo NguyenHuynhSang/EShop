@@ -1,31 +1,35 @@
-﻿Mô tả: 1 sản phẩm có ít nhất 1 phiên bản, các phiên bản có 0 hoặc nhiều attributeValue, mối phiên bản  có 0 hoặc nhiều hình ảnh
-      Trong đó có duy nhất 1 ảnh đại diện (isMain=true) và SeoUrl  mặc định được sinh ra dựa vào name sản phẩm
-<br>
-Khóa ngoại lấy từ ds các bảng có quan hệ: catalogID, attributeValueID  
-<br>
-<h4> Luồng:</h4>  <br>
-<ul>
-  <li>
-    Khi tải trang: gọi api: api/productcatalog/getchild để lấy ds calalog vào khung chọn loại danh mục( hiển thị name, giá trị là id), sản phẩm có  1 phiên bản mặc định
-  </li>
-  <li>
-    Trong phần phiên bản, người dùng bấm nút (thêm thuộc tính) sau đó gọi /api/attribute/getall để lấy ds attribute( hiển thị name, giá trị id <br>
-      Người dùng chọn attribute sau đó gọi /api/attributevalue/getlistbyattributeid để lấy giá trị thuộc tính dựa vào attributeID
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <h2>
+        Mô tả: 1 sản phẩm có ít nhất 1 phiên bản, các phiên bản có 0 hoặc nhiều attributeValue, mối phiên bản  có 0 hoặc nhiều hình ảnh
+        Trong đó có duy nhất 1 ảnh đại diện (isMain=true) và SeoUrl  mặc định được sinh ra dựa vào name sản phẩm
+    </h2>
+    <span>
+        Khóa ngoại lấy từ ds các bảng có quan hệ: catalogID, attributeValueID
+    </span>
+    <h4> Luồng:</h4> 
+    <ul>
+        <li>
+            1. Khi tải trang: gọi api: <b> api/productcatalog/getchild</b> để lấy ds
+            calalog vào khung chọn loại danh mục( hiển thị name, giá trị là id), sản phẩm có  1 phiên bản mặc định
+        </li>
+        <li>
+            2. Trong phần phiên bản, người dùng bấm nút (thêm thuộc tính) sau đó gọi /api/attribute/getall để lấy ds attribute( hiển thị name, giá trị id.
+            Người dùng chọn attribute sau đó gọi <b>/api/attributevalue/getlistbyattributeid</b>  để lấy giá trị thuộc tính dựa vào attributeID
+        </li>
+        <li>
+            3. Người dùng bấm nút thêm phiên bản để thêm 1 phiên bản mới của sản phẩm, có thể xóa các phiên bản, nhưng phải giữ lại 1
+        </li>
+        <li>
+            4. Sau khi người dùng kéo thả ảnh vào hoặc chọn ảnh tải lên, gọi <b> api/photo/addproductphoto</b> với file là hình ảnh tải lên
+            api sẽ trả về đúng cấu trúc của productVersionImage và set lại file=null dể trách trường hợp gửi file đó lên khi lưu product 1 lần nữa, 
+        </li>
+    </ul>
+</body>
 
-  </li>
-  <li>
-    Người dùng bấm nút thêm phiên bản để thêm 1 phiên bản mới của sản phẩm, có thể xóa các phiên bản, nhưng phải giữ lại 1
-  </li>
-  <li>
-    Phần hình ảnh của phiên bản người dùng bấm nút thêm để thêm các ảnh, và bấm nút chọn để set ảnh đại diện cho phiên bản
-  </li>
-</ul>
-  <br>
-  <h4> Sequence diagram:</h4>  <br>
-    <img   src="https://user-images.githubusercontent.com/35994204/99878776-460e4e00-2c3a-11eb-8bc5-4f16ff39eb01.png" alt="Girl in a jacket">
-    <br>
-  <h4> Sơ đồ lớp:</h4>  <br>
-  <img  style="width: 50%;height: 50%;" src="https://user-images.githubusercontent.com/35994204/99153042-81f46100-26d8-11eb-984a-3cd3431db192.png" alt="Girl in a jacket">
-<br>
-
-
+</html>
