@@ -12,6 +12,9 @@ namespace EShop.Server.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { set; get; }
 
+        [Required]
+        public string Name { set; get; }
+
 
         [Required]
         public int ProductID { set; get; }

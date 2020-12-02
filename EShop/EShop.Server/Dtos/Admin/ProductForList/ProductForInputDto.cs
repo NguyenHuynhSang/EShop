@@ -47,6 +47,8 @@ namespace EShop.Server.Dtos.Admin
     public class ProductVesionForCreateDto
     {
 
+        public string Name { set; get; }
+
         public string Description { set; get; }
 
         public decimal Price { set; get; }
