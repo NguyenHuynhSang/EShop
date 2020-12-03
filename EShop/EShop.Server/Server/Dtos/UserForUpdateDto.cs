@@ -1,4 +1,4 @@
-namespace DatingApp.API.Dtos
+namespace EShop.Server.Server.Dtos
 {
     public class UserForUpdateDto
     {

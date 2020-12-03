@@ -12,7 +12,7 @@ using EShop.Server.Extension;
 using AutoMapper;
 using static EShop.Server.Extension.FilterExtension;
 
-namespace EShop.Server.Controllers
+namespace EShop.Server.Server.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]

@@ -9,7 +9,7 @@ using EShop.Server.Extension;
 
 namespace EShop.Server.Data
 {
-    using ProductAttribute = Server.Models.Attribute;
+    using ProductAttribute = EShop.Server.Models.Attribute;
 
     public class EShopDbContext : DbContext
     {
@@ -105,7 +105,7 @@ namespace EShop.Server.Data
         private void SeedProductAttribute(ModelBuilder modelBuilder)
         {
 
-            var dataJson = File.ReadAllText("Data/product.attribute.data.json");
+            var dataJson = File.ReadAllText("Data/Seed/product.attribute.data.json");
             var attrobutes = JsonConvert.DeserializeObject<List<Models.Attribute>>(dataJson);
             modelBuilder.Entity<Models.Attribute>().HasData(attrobutes);
         }
@@ -116,7 +116,7 @@ namespace EShop.Server.Data
         private void SeedAttributeValue(ModelBuilder modelBuilder)
         {
 
-            var dataJson = File.ReadAllText("Data/attribute.value.data.json");
+            var dataJson = File.ReadAllText("Data/Seed/attribute.value.data.json");
             var data = JsonConvert.DeserializeObject<List<Models.AttributeValue>>(dataJson);
             modelBuilder.Entity<Models.AttributeValue>().HasData(data);
         }
@@ -124,7 +124,7 @@ namespace EShop.Server.Data
         {
 
 
-            var dataJson = File.ReadAllText("Data/product.catalog.data.json");
+            var dataJson = File.ReadAllText("Data/Seed/product.catalog.data.json");
             var data = JsonConvert.DeserializeObject<List<Models.ProductCatalog>>(dataJson);
             modelBuilder.Entity<ProductCatalog>().HasData(data);
         }
@@ -134,7 +134,7 @@ namespace EShop.Server.Data
 
         //private void SeedProduct(ModelBuilder modelBuilder)
         //{
-        //    var dataJson = File.ReadAllText("Data/product.data.json");
+        //    var dataJson = File.ReadAllText("Data/Seed/product.data.json");
         //    var data = JsonConvert.DeserializeObject<List<Models.Product>>(dataJson);
         //    modelBuilder.Entity<Product>().HasData(data);
 

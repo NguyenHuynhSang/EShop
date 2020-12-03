@@ -7,28 +7,28 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20200608161623_add_table_users.cs" />
-    <Compile Remove="Migrations\20200608161623_add_table_users.Designer.cs" />
-    <Compile Remove="Migrations\20200611111111_seed_productVersopm.cs" />
-    <Compile Remove="Migrations\20200611111111_seed_productVersopm.Designer.cs" />
-    <Compile Remove="Migrations\20200612124736_test.cs" />
-    <Compile Remove="Migrations\20200612124736_test.Designer.cs" />
-    <Compile Remove="Migrations\20200612125510_fix_audit_table.cs" />
-    <Compile Remove="Migrations\20200612125510_fix_audit_table.Designer.cs" />
-    <Compile Remove="Migrations\20200614103652_rename_table_category_toBlogCategory_catalog_toProductCatalog.cs" />
-    <Compile Remove="Migrations\20200614103652_rename_table_category_toBlogCategory_catalog_toProductCatalog.Designer.cs" />
-    <Compile Remove="Migrations\20200715145122_test.cs" />
-    <Compile Remove="Migrations\20200715145122_test.Designer.cs" />
-    <Compile Remove="Migrations\20201026141358_add_table_seedlog.cs" />
-    <Compile Remove="Migrations\20201026141358_add_table_seedlog.Designer.cs" />
-    <Compile Remove="Migrations\20201103141243_product_change_ID.cs" />
-    <Compile Remove="Migrations\20201103141243_product_change_ID.Designer.cs" />
-    <Compile Remove="Migrations\20201103142048_product_change_ID.cs" />
-    <Compile Remove="Migrations\20201103142048_product_change_ID.Designer.cs" />
-    <Compile Remove="Migrations\20201107133604_add_table_slide.cs" />
-    <Compile Remove="Migrations\20201107133604_add_table_slide.Designer.cs" />
-    <Compile Remove="Migrations\20201115062740_fix_migration.cs" />
-    <Compile Remove="Migrations\20201115062740_fix_migration.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200608161623_add_table_users.cs" />
+    <Compile Remove="Data\Migrations\20200608161623_add_table_users.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200611111111_seed_productVersopm.cs" />
+    <Compile Remove="Data\Migrations\20200611111111_seed_productVersopm.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200612124736_test.cs" />
+    <Compile Remove="Data\Migrations\20200612124736_test.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200612125510_fix_audit_table.cs" />
+    <Compile Remove="Data\Migrations\20200612125510_fix_audit_table.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200614103652_rename_table_category_toBlogCategory_catalog_toProductCatalog.cs" />
+    <Compile Remove="Data\Migrations\20200614103652_rename_table_category_toBlogCategory_catalog_toProductCatalog.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200715145122_test.cs" />
+    <Compile Remove="Data\Migrations\20200715145122_test.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201026141358_add_table_seedlog.cs" />
+    <Compile Remove="Data\Migrations\20201026141358_add_table_seedlog.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201103141243_product_change_ID.cs" />
+    <Compile Remove="Data\Migrations\20201103141243_product_change_ID.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201103142048_product_change_ID.cs" />
+    <Compile Remove="Data\Migrations\20201103142048_product_change_ID.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201107133604_add_table_slide.cs" />
+    <Compile Remove="Data\Migrations\20201107133604_add_table_slide.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201115062740_fix_migration.cs" />
+    <Compile Remove="Data\Migrations\20201115062740_fix_migration.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -62,6 +62,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Client\Dtos\" />
+    <Folder Include="Client\Service\" />
     <Folder Include="Utility\" />
   </ItemGroup>
 

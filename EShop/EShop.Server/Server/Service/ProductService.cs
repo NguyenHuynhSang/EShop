@@ -144,7 +144,7 @@ namespace EShop.Server.Service
 
         public void Seed()
         {
-            var productData = File.ReadAllText("Data/product.data.json");
+            var productData = File.ReadAllText("Data/Seed/product.data.json");
             var products = JsonConvert.DeserializeObject<List<Product>>(productData);
 
             foreach (var product in products)

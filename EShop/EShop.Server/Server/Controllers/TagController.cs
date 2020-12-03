@@ -7,7 +7,7 @@ using System.Net.Http;
 using System.Net;
 using System.Linq;
 
-namespace EShop.Server.Controllers
+namespace EShop.Server.Server.Controllers
 {
 
     [Route("api/[controller]/[action]")]

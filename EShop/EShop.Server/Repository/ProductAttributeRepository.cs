@@ -6,7 +6,7 @@ using System.Text;
 
 namespace EShop.Server.Repository
 {
-    using ProductAttribute = Server.Models.Attribute;
+    using ProductAttribute = EShop.Server.Models.Attribute;
     public interface IProductAttributeRepository : IRepository<ProductAttribute>
     {
         IEnumerable<ProductAttribute> GetByAlias(string alias);

@@ -1,4 +1,4 @@
-﻿using DatingApp.API.Dtos;
+﻿using EShop.Server.Server.Dtos;
 using EShop.Server.Models;
 using System;
 using System.Collections.Generic;

@@ -67,7 +67,7 @@ namespace EShop.Server.Data
 
         private void SeedUsers()
         {
-            var userData = File.ReadAllText("Data/user.data.json");
+            var userData = File.ReadAllText("Data/Seed/user.data.json");
             var users = JsonConvert.DeserializeObject<List<User>>(userData);
 
             foreach (var user in users)
@@ -96,7 +96,7 @@ namespace EShop.Server.Data
 
         private void SeedProductCatalog()
         {
-            var dataJson = File.ReadAllText("Data/product.catalog.data.json");
+            var dataJson = File.ReadAllText("Data/Seed/product.catalog.data.json");
             var data = JsonConvert.DeserializeObject<List<Models.ProductCatalog>>(dataJson);
 
             foreach (var item in data)
@@ -121,7 +121,7 @@ namespace EShop.Server.Data
 
         private void SeedAttributeValue()
         {
-            var dataJson = File.ReadAllText("Data/attribute.value.data.json");
+            var dataJson = File.ReadAllText("Data/Seed/attribute.value.data.json");
             var data = JsonConvert.DeserializeObject<List<Models.AttributeValue>>(dataJson);
 
             foreach (var item in data)
@@ -137,7 +137,7 @@ namespace EShop.Server.Data
 
         private void SeedProduct()
         {
-            var productData = File.ReadAllText("Data/product.data.json");
+            var productData = File.ReadAllText("Data/Seed/product.data.json");
             var products = JsonConvert.DeserializeObject<List<Product>>(productData);
 
             foreach (var product in products)
@@ -157,7 +157,7 @@ namespace EShop.Server.Data
 
         private void SeedProductAttribute()
         {
-            var dataJson = File.ReadAllText("Data/product.attribute.data.json");
+            var dataJson = File.ReadAllText("Data/Seed/product.attribute.data.json");
             var data = JsonConvert.DeserializeObject<List<Models.Attribute>>(dataJson);
 
             foreach (var item in data)

@@ -2,7 +2,7 @@ using System.Security.Claims;
 using log4net;
 using Microsoft.AspNetCore.Mvc;
 
-namespace EShop.Server.Controllers
+namespace EShop.Server.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

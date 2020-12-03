@@ -9,7 +9,7 @@ using EShop.Server.Service;
 using Microsoft.AspNetCore.Mvc;
 using static EShop.Server.Extension.FilterExtension;
 
-namespace EShop.Server.Controllers
+namespace EShop.Server.Server.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]

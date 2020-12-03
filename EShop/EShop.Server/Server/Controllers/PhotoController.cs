@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.Options;
 using Microsoft.Extensions.Options;
 
-namespace EShop.Server.Controllers
+namespace EShop.Server.Server.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]

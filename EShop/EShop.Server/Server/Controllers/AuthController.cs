@@ -6,14 +6,14 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
-using DatingApp.API.Dtos;
+using EShop.Server.Server.Dtos;
 using EShop.Server.Models;
 using EShop.Server.Repository;
 using EShop.Server.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Configuration;
-namespace EShop.Server.Controllers
+namespace EShop.Server.Server.Controllers
 {
     public class AuthController : ApiControllerBase
     {

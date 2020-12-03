@@ -20,7 +20,7 @@ using Swashbuckle.AspNetCore.Annotations;
 using System.Configuration;
 using System.ComponentModel;
 using System.IO;
-namespace EShop.Server.Controllers
+namespace EShop.Server.Server.Controllers
 {
 
     [Route("api/[controller]/[action]")]

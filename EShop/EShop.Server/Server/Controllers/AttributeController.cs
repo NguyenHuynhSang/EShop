@@ -7,10 +7,10 @@ using EShop.Server.Service;
 
 using Microsoft.AspNetCore.Mvc;
 
-namespace EShop.Server.Controllers
+namespace EShop.Server.Server.Controllers
 {
     using static EShop.Server.Extension.FilterExtension;
-    using ProductAttribute = Server.Models.Attribute;
+    using ProductAttribute = EShop.Server.Models.Attribute;
     [Route("api/[controller]/[action]")]
     [ApiController]
     public class AttributeController : ApiControllerBase

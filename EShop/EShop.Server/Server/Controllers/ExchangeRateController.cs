@@ -4,28 +4,26 @@ using System.Linq;
 using System.Threading.Tasks;
 using EShop.Server.Models;
 using EShop.Server.Service;
-
 using Microsoft.AspNetCore.Mvc;
 
-namespace EShop.Server.Controllers
+namespace EShop.Server.Server.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class ProductAttributeController : ApiControllerBase
+    public class ExchangeRateController : ApiControllerBase
     {
-        private IProductAttributeService _productAttbuteService;// service xử dụng
-        public ProductAttributeController(IProductAttributeService productAttributeService)
+        private IExchangeRateService _exchangeRateService;// service xử dụng
 
+        public ExchangeRateController(IExchangeRateService exchangeRateService)
         {
-            _productAttbuteService = productAttributeService;
+            this._exchangeRateService = exchangeRateService;
         }
-
         [HttpGet]
-        public ActionResult<IEnumerable<EShop.Server.Models.Attribute>> GetAll(string keyword)
+        public ActionResult<IEnumerable<ExchangeRateDongA>> GetAll(string keyword)
         {
             try
             {
-                var list = _productAttbuteService.GetAll(keyword);
+                var list = _exchangeRateService.GetAll(keyword);
                 return Ok(list);
             }
             catch (Exception ex)
@@ -33,8 +31,11 @@ namespace EShop.Server.Controllers
                 logger.Error(ex);
                 return StatusCode(500);
             }
-          
+        
         }
+
+
+
 
     }
 }
