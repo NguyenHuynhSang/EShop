@@ -28,6 +28,8 @@ using Newtonsoft.Json;
 using Microsoft.Extensions.FileProviders;
 using EShop.Server.Helper;
 using System.Configuration;
+using StackExchange.Redis;
+using EShop.Server.Data.Repository;
 
 namespace EShop.Server
 {
@@ -47,12 +49,13 @@ namespace EShop.Server
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-            //Read connection from ConnectionString.txt
-            //var connectionString = File.ReadAllText("ConnectionString.txt");
-
-            //services.AddDbContext<EShopDbContext>(x => x.UseSqlServer(connectionString));
             services.AddDbContext<EShopDbContext>(x => x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddSingleton<ConnectionMultiplexer>(c =>
+            {
+                var configuration = ConfigurationOptions.Parse(Configuration.GetConnectionString("Redis"), true);
+                return ConnectionMultiplexer.Connect(configuration);
+            });
+
             services.AddControllers().AddNewtonsoftJson(opt =>
             {
                 opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
@@ -82,6 +85,7 @@ namespace EShop.Server
             services.AddScoped<IAuthService, AuthService>();
             services.AddTransient<Seed>();
 
+            services.AddScoped<IBasketRepository, BasketRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IProductService, ProductService>();
 
