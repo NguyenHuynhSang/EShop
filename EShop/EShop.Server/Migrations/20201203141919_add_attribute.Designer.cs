@@ -4,14 +4,16 @@ using EShop.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EShop.Server.Migrations
 {
     [DbContext(typeof(EShopDbContext))]
-    partial class EShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201203141919_add_attribute")]
+    partial class add_attribute
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -97,30 +99,6 @@ namespace EShop.Server.Migrations
                             Id = 14,
                             AttributeID = 1,
                             Name = "XXL"
-                        },
-                        new
-                        {
-                            Id = 15,
-                            AttributeID = 2,
-                            Name = "Jean"
-                        },
-                        new
-                        {
-                            Id = 16,
-                            AttributeID = 2,
-                            Name = "Denim"
-                        },
-                        new
-                        {
-                            Id = 17,
-                            AttributeID = 2,
-                            Name = "Len"
-                        },
-                        new
-                        {
-                            Id = 18,
-                            AttributeID = 2,
-                            Name = "Nỉ"
                         });
                 });
 

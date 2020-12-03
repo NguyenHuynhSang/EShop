@@ -1,5 +1,4 @@
 ﻿[
-
   {
     "Id": 10,
     "Name": "S",
@@ -24,6 +23,26 @@
     "Id": 14,
     "Name": "XXL",
     "AttributeID": 1
+  },
+  {
+    "Id": 15,
+    "Name": "Jean",
+    "AttributeID": 2
+  },
+  {
+    "Id": 16,
+    "Name": "Denim",
+    "AttributeID": 2
+  },
+  {
+    "Id": 17,
+    "Name": "Len",
+    "AttributeID": 2
+  },
+  {
+    "Id": 18,
+    "Name": "Nỉ",
+    "AttributeID": 2
   }
 
 ]
