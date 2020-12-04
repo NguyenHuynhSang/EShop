@@ -69,7 +69,7 @@ namespace EShop.Server.Server.Controllers
             {
                 logger.Error(ex);
                 logger.Debug(ex);
-                return NotFound();
+                return BadRequest(ex);
             }
         }
         [HttpGet]

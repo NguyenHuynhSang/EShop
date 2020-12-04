@@ -90,10 +90,10 @@ namespace EShop.Server.Service
                 }
 
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                
-                return ProductPropertyConverter(productsReturn.AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort), param);
+
+                throw ex;
             }
             return ProductPropertyConverter(productsReturn.AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort), param);
 

@@ -19,23 +19,21 @@ namespace EShop.Server.Extension
             /// <summary>
             /// num filter
             /// </summary>
-            equal = 1,
-            notEqual = 2,
-            greaterThan = 3,
-            greaterThanOrEqual = 4,
-            lessThan = 5,
-            lessThanOrEqual = 6,
-            range = 7,
+            equal=1,
+            notEqual,
+            greaterThan,
+            greaterThanOrEqual,
+            lessThan,
+            lessThanOrEqual,
+            range,
 
             /// <summary>
             /// Text filter
             /// </summary>
-            partialMatch = 100,
-            notPartialMatch = 101,
-            contains = 104,
-            notContains = 105,
-            startsWith = 106,
-            endsWith = 107,
+            contains,
+            notContains,
+            startsWith ,
+            endsWith,
 
 
         }
@@ -46,29 +44,27 @@ namespace EShop.Server.Extension
                    "M/d/yyyy h:mm", "M/d/yyyy h:mm",
                    "MM/dd/yyyy hh:mm", "M/dd/yyyy hh:mm"};
 
-        private static Dictionary<int, string> NumberFilterOperator
-            = new Dictionary<int, string>
+        private static Dictionary<FilterOperator, string> NumberFilterOperator
+            = new Dictionary<FilterOperator, string>
         {
-           { 1,"{0}= @0" },
-           { 2,"{0}!= @0" },
-           { 3,"{0}> @0" },
-           { 4,"{0}>= @0" },
-           { 5,"{0}< @0" },
-           { 6,"{0}<= @0" },
-           { 7,"{0}>= @0 and {1}<=@1" },
+           { FilterOperator.equal,"{0}= @0" },
+           { FilterOperator.notEqual,"{0}!= @0" },
+           { FilterOperator.greaterThan,"{0}> @0" },
+           { FilterOperator.greaterThanOrEqual,"{0}>= @0" },
+           { FilterOperator.lessThan,"{0}< @0" },
+           { FilterOperator.lessThanOrEqual,"{0}<= @0" },
+           { FilterOperator.range,"{0}>= @0 and {1}<=@1" },
         };
 
-        private static Dictionary<int, string> TextFilterOperator
-           = new Dictionary<int, string>
+        private static Dictionary<FilterOperator, string> TextFilterOperator
+           = new Dictionary<FilterOperator, string>
        {
-           { 100,"{0}.ToLower().Contains(@0)" },
-           { 101,"!{0}.ToLower().Contains(@0)" },
-           { 1,"{0}.Equals(@0)" },
-           { 2,"!{0}.Equals(@0)" },
-           { 104,"{0}.ToLower().Contains(@0)" },
-           { 105,"!{0}.ToLower().Contains(@0)" },
-           { 106,"{0}.StartsWith(@0)" },
-           { 107,"{0}.EndsWith(@0)" },
+           { FilterOperator.equal,"{0}.Equals(@0)" },
+           { FilterOperator.notEqual,"!{0}.Equals(@0)" },
+           { FilterOperator.contains,"{0}.ToLower().Contains(@0)" },
+           { FilterOperator.notContains,"!{0}.ToLower().Contains(@0)" },
+           { FilterOperator.startsWith,"{0}.StartsWith(@0)" },
+           { FilterOperator.endsWith,"{0}.EndsWith(@0)" },
        };
 
         private static Dictionary<int, string> DateFilterOperator
@@ -80,11 +76,11 @@ namespace EShop.Server.Extension
             };
 
 
-        private static Dictionary<int, string> SetFilterOperator
-       = new Dictionary<int, string>
+        private static Dictionary<FilterOperator, string> SetFilterOperator
+       = new Dictionary<FilterOperator, string>
            {
-                   { 200,"==@0" },
-                   { 201,"!= @0" },
+                   {FilterOperator.equal,"==@0" },
+                   {FilterOperator.notEqual,"!= @0" },
            };
 
 
@@ -92,10 +88,10 @@ namespace EShop.Server.Extension
   
         public enum FilterType
         {
-            num = 1,
-            text = 2,
-            date = 3,
-            set = 4
+            num=1,
+            text,
+            date,
+            set,
         }
 
         public static Type GetItemType<T>(this IEnumerable<T> enumerable)
@@ -114,10 +110,10 @@ namespace EShop.Server.Extension
             switch ((FilterType)param.filterType)
             {
                 case FilterType.num:
-                    operatorSyntax = FilterExtension.NumberFilterOperator[(int)param.filterOperator];
+                    operatorSyntax = FilterExtension.NumberFilterOperator[param.filterOperator];
                     break;
                 case FilterType.text:
-                    operatorSyntax = FilterExtension.TextFilterOperator[(int)param.filterOperator];
+                    operatorSyntax = FilterExtension.TextFilterOperator[param.filterOperator];
                     break;
                 case FilterType.date:
                     operatorSyntax = FilterExtension.DateFilterOperator[(int)param.filterOperator];
@@ -125,7 +121,7 @@ namespace EShop.Server.Extension
                     return source.Where(formattedPredicate, DateTime.ParseExact(param.filterValue, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture));
                     break;
                 case FilterType.set:
-                    operatorSyntax = FilterExtension.SetFilterOperator[(int)param.filterOperator];
+                    operatorSyntax = FilterExtension.SetFilterOperator[param.filterOperator];
                     var properties = param.filterProperty.Split('.');
                     var collection = typeOfSource;
                     var syntaxExtend = "";
