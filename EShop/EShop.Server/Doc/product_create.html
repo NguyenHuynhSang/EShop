@@ -26,10 +26,9 @@
             3. Người dùng bấm nút thêm phiên bản để thêm 1 phiên bản mới của sản phẩm, có thể xóa các phiên bản, nhưng phải giữ lại 1
         </li>
         <li>
-            4. Sau khi người dùng kéo thả ảnh vào hoặc chọn ảnh tải lên, gọi <b> api/photo/addproductphoto</b> với file là hình ảnh tải lên
-            api sẽ trả về đúng cấu trúc của productVersionImage và set lại file=null dể trách trường hợp gửi file đó lên khi lưu product 1 lần nữa, 
-            phần xử lý ảnh isMain trên client-side, cách này chấp nhận dư thừa ảnh tải lên so với gửi hết ảnh lên api product create rồi mới update lên
-             cloud 
+            4. Sau khi người dùng kéo thả ảnh vào hoặc chọn ảnh tải lên gửi file qua api <b> api/photo/addphoto </b> sẽ trả về Url của ảnh,
+            và publicId, gán vào productVersionImage các trường tương ứng ( ảnh chính isMain xử lý trên client) trong danh sách ảnh của
+            ver hiện tại chỉ có duy nhất 1 ảnh chính.
         </li>
     </ul>
 </body>

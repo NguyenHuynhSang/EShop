@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using EShop.Server.Extension;
 using AutoMapper;
 using static EShop.Server.Extension.FilterExtension;
+using System.Web.Http.Results;
 
 namespace EShop.Server.Server.Controllers
 {
@@ -46,7 +47,7 @@ namespace EShop.Server.Server.Controllers
             catch (Exception ex)
             {
                 logger.Error(ex);
-                return StatusCode(500);
+                return BadRequest(ex.ToString());
             }
          
         }
@@ -71,7 +72,8 @@ namespace EShop.Server.Server.Controllers
             catch (Exception ex)
             {
                 logger.Error(ex);
-                return StatusCode(500);
+
+                return BadRequest(ex.ToString());
             }
           
         }
@@ -88,7 +90,7 @@ namespace EShop.Server.Server.Controllers
             catch (Exception ex)
             {
                 logger.Error(ex);
-                return StatusCode(500);
+                return BadRequest(ex.ToString());
             }
         }
 
@@ -106,7 +108,7 @@ namespace EShop.Server.Server.Controllers
             catch (Exception ex)
             {
                 logger.Error(ex);
-                return StatusCode(500);
+                return BadRequest(ex.ToString());
             }
            
         }
@@ -123,7 +125,7 @@ namespace EShop.Server.Server.Controllers
             catch (Exception ex)
             {
                 logger.Error(ex);
-                return StatusCode(500);
+                return BadRequest(ex.ToString());
             }
         }
         [HttpPost]
@@ -139,7 +141,7 @@ namespace EShop.Server.Server.Controllers
             catch (Exception ex)
             {
                 logger.Error(ex);
-                return StatusCode(500);
+                return BadRequest(ex.ToString());
             }
         }
 

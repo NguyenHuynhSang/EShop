@@ -80,7 +80,6 @@ namespace EShop.Server.Dtos.Admin
 
         public bool IsMain { set; get; }
 
-        public IFormFile File { get; set; }
         public string PublicId { get; set; }
 
     }

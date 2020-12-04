@@ -50,11 +50,11 @@ namespace EShop.Server
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<EShopDbContext>(x => x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddSingleton<ConnectionMultiplexer>(c =>
-            {
-                var configuration = ConfigurationOptions.Parse(Configuration.GetConnectionString("Redis"), true);
-                return ConnectionMultiplexer.Connect(configuration);
-            });
+            //services.AddSingleton<ConnectionMultiplexer>(c =>
+            //{
+            //    var configuration = ConfigurationOptions.Parse(Configuration.GetConnectionString("Redis"), true);
+            //    return ConnectionMultiplexer.Connect(configuration);
+            //});
 
             services.AddControllers().AddNewtonsoftJson(opt =>
             {
@@ -85,7 +85,7 @@ namespace EShop.Server
             services.AddScoped<IAuthService, AuthService>();
             services.AddTransient<Seed>();
 
-            services.AddScoped<IBasketRepository, BasketRepository>();
+            //services.AddScoped<IBasketRepository, BasketRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IProductService, ProductService>();
 
