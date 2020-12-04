@@ -5,12 +5,14 @@ using System.Threading.Tasks;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using EShop.Server.Dtos.Admin;
+using EShop.Server.Extension;
 using EShop.Server.Helper;
 using EShop.Server.Server.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.Options;
 using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace EShop.Server.Server.Controllers
 {
@@ -35,6 +37,7 @@ namespace EShop.Server.Server.Controllers
         }
 
         [HttpPost]
+        [SwaggerOperationCustom(Summary = "Lưu hình ảnh lên cloud", FileName = "photo_create.html")]
         public ActionResult<Photo> AddPhoto([FromForm] IFormFile File )
         {
             try

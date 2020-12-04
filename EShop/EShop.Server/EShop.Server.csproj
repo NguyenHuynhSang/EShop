@@ -84,6 +84,7 @@
     <None Remove="Doc\bootstrap.bundle.min.js" />
     <None Remove="Doc\bootstrap.min.css" />
     <None Remove="Doc\custom.css" />
+    <None Remove="Doc\photo_create.html" />
     <None Remove="Doc\product_getall.html" />
     <None Remove="Doc\swagget_index.html" />
     <None Remove="Doc\time_sheet.html" />
