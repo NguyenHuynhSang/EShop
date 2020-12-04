@@ -79,8 +79,8 @@ namespace EShop.Server.Extension
         private static Dictionary<FilterOperator, string> SetFilterOperator
        = new Dictionary<FilterOperator, string>
            {
-                   {FilterOperator.equal,"==@0" },
-                   {FilterOperator.notEqual,"!= @0" },
+                   {FilterOperator.equal,"{0}==@0" },
+                   {FilterOperator.notEqual,"{0}!= @0" },
            };
 
 
@@ -122,59 +122,73 @@ namespace EShop.Server.Extension
                     break;
                 case FilterType.set:
                     operatorSyntax = FilterExtension.SetFilterOperator[param.filterOperator];
-                    var properties = param.filterProperty.Split('.');
-                    var collection = typeOfSource;
-                    var syntaxExtend = "";
-                    int counter = 0;
-                    for (int i = 0; i < properties.Length; i++)
+                    break;
+            }
+
+
+            var properties = param.filterProperty.Split('.');
+            var collection = typeOfSource;
+            var syntaxExtend = "";
+            int counter = 0;
+            for (int i = 0; i < properties.Length; i++)
+            {
+
+                if (i < properties.Length - 1)
+                {
+                    var prop = collection.GetProperty(properties[i], BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
+                    if (prop.PropertyType.Name == typeof(IEnumerable<>).Name)
                     {
-
-                        if (i < properties.Length - 1)
-                        {
-                            var prop = collection.GetProperty(properties[i], BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
-                            if (prop.PropertyType.Name == typeof(IEnumerable<>).Name)
-                            {
-                                counter++;
-                                syntaxExtend += properties[i] + ".Any(";
-                                collection = prop.PropertyType.GetGenericArguments()[0];
-                            }
-                            else
-                            {
-                                syntaxExtend += properties[i] + ".";
-                            }
-
-                        }
-                        else
-                        {
-                            string extend = "";
-                            for (int j = 0; j < counter; j++)
-                            {
-                                extend += ")";
-                            }
-                            syntaxExtend += properties[i] + operatorSyntax + extend;
-                        }
-
+                        counter++;
+                        syntaxExtend += properties[i] + ".Any(";
+                        collection = prop.PropertyType.GetGenericArguments()[0];
                     }
-                    //careful with child list when using Any
-                    return source.Where(syntaxExtend, param.filterValue);
-                    // productsReturn.Where(x => x.ProductVersions.Any(x => x.ProductVersionAttributes.Any(x => x.AtributeID == 1)));
-                    break;
-                default:
-                    break;
+                    else
+                    {
+                        syntaxExtend += properties[i] + ".";
+                    }
+
+                }
+                else
+                {
+                    string extend = "";
+                    for (int j = 0; j < counter; j++)
+                    {
+                        extend += ")";
+                    }
+                    string predicate = "";
+                   
+                    if (param.filterOperator == FilterOperator.range)
+                    {
+                        predicate = String.Format(operatorSyntax, properties[i], properties[i]);
+                    }
+                    else
+                    {
+                        predicate = String.Format(operatorSyntax, properties[i]);
+                    }
+                  
+                    syntaxExtend += predicate + extend;
+                }
+
             }
+            //careful with child list when using Any
+            if (!String.IsNullOrEmpty(param.filterValue1) && param.filterOperator==FilterOperator.range)
+            {
+                return source.Where(syntaxExtend, param.filterValue,param.filterValue1);
+            }
+            return source.Where(syntaxExtend, param.filterValue);
 
 
-            string predicate = operatorSyntax;
-            if (!String.IsNullOrEmpty(param.filterValue1))
-            {
-                predicate = String.Format(operatorSyntax, param.filterProperty, param.filterProperty);
-                return source.Where(predicate, param.filterValue, param.filterValue1);
-            }
-            else
-            {
-                predicate = String.Format(operatorSyntax, param.filterProperty);
-            }
-            return source.Where(predicate, param.filterValue);
+            //string predicate = operatorSyntax;
+            //if (!String.IsNullOrEmpty(param.filterValue1))
+            //{
+            //    predicate = String.Format(operatorSyntax, param.filterProperty, param.filterProperty);
+            //    return source.Where(predicate, param.filterValue, param.filterValue1);
+            //}
+            //else
+            //{
+            //    predicate = String.Format(operatorSyntax, param.filterProperty);
+            //}
+            //return source.Where(predicate, param.filterValue);
 
 
         }
