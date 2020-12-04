@@ -47,7 +47,7 @@ namespace EShop.Server.Server.Controllers
         [HttpGet]
         [EnableCors("ApiCorsPolicy")]
 
-        [SwaggerOperation(Summary = "Lấy ra tất cả các product không phân trang")]
+        [SwaggerOperationCustom(Summary = "Lấy ra tất cả các product không phân trang", FileName = "product_getall.html")]
    
         public ActionResult<IEnumerable<ProductForListDto>> GetAll(string filterProperty, FilterOperator filterOperator, FilterType filterType,string filterValue, string filterValue1,string sortBy, SortType sort=SortType.desc)
         {
@@ -73,7 +73,7 @@ namespace EShop.Server.Server.Controllers
             }
         }
         [HttpGet]
-        [SwaggerOperation(Summary = "Lấy ra tất cả các product có phân trang")]
+        [SwaggerOperationCustom(Summary = "Lấy ra tất cả các product có phân trang", FileName = "product_getall.html")]
         public ActionResult<PagedListWrapper<ProductForListDto>> GetAllPaging(string filterProperty, FilterOperator filterOperator, FilterType filterType, string filterValue, string filterValue1, string sortBy, SortType sort=SortType.desc, decimal? currency=null, string weight="kg", int page = 1, int perPage = 50)
         {
             

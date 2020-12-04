@@ -19,25 +19,23 @@ namespace EShop.Server.Extension
             /// <summary>
             /// num filter
             /// </summary>
-            num_equal = 1,
-            num_notEqual = 2,
-            num_greaterThan = 3,
-            num_greaterThanOrEqual = 4,
-            num_lessThan = 5,
-            num_lessThanOrEqual = 6,
-            num_range = 7,
+            equal = 1,
+            notEqual = 2,
+            greaterThan = 3,
+            greaterThanOrEqual = 4,
+            lessThan = 5,
+            lessThanOrEqual = 6,
+            range = 7,
 
             /// <summary>
             /// Text filter
             /// </summary>
-            text_partialMatch = 100,
-            text_notPartialMatch = 101,
-            text_equals = 102,
-            text_notEqual = 103,
-            text_contains = 104,
-            text_notContains = 105,
-            text_startsWith = 106,
-            text_endsWith = 107,
+            partialMatch = 100,
+            notPartialMatch = 101,
+            contains = 104,
+            notContains = 105,
+            startsWith = 106,
+            endsWith = 107,
 
 
         }
@@ -65,8 +63,8 @@ namespace EShop.Server.Extension
        {
            { 100,"{0}.ToLower().Contains(@0)" },
            { 101,"!{0}.ToLower().Contains(@0)" },
-           { 102,"{0}.Equals(@0)" },
-           { 103,"!{0}.Equals(@0)" },
+           { 1,"{0}.Equals(@0)" },
+           { 2,"!{0}.Equals(@0)" },
            { 104,"{0}.ToLower().Contains(@0)" },
            { 105,"!{0}.ToLower().Contains(@0)" },
            { 106,"{0}.StartsWith(@0)" },
@@ -76,7 +74,7 @@ namespace EShop.Server.Extension
         private static Dictionary<int, string> DateFilterOperator
         = new Dictionary<int, string>
             {
-                   { 200,"{0}==@0" },
+                   { 1,"{0}==@0" },
                    { 201,"{0}< @0" },
                    { 202,"{0}> @0" },
             };
