@@ -36,9 +36,11 @@ namespace EShop.Server.Server.Controllers
 
         }
 
+ 
+
         [HttpPost]
         [SwaggerOperationCustom(Summary = "Lưu hình ảnh lên cloud", FileName = "photo_create.html")]
-        public ActionResult<Photo> AddPhoto([FromForm] IFormFile File )
+        public ActionResult<Photo> AddPhoto(IFormFile File )
         {
             try
             {
@@ -66,7 +68,7 @@ namespace EShop.Server.Server.Controllers
             catch (Exception ex)
             {
 
-                throw ex;
+                return BadRequest(ex);
             }
     
         }
