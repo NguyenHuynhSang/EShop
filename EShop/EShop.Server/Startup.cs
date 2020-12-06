@@ -30,6 +30,7 @@ using EShop.Server.Helper;
 using System.Configuration;
 using StackExchange.Redis;
 using EShop.Server.Data.Repository;
+using EShop.Server.Entities;
 
 namespace EShop.Server
 {
@@ -78,6 +79,8 @@ namespace EShop.Server
             );
 
             services.Configure<CloudinarySetting>(Configuration.GetSection("CloudinarySetting"));
+            services.Configure<SmtpSetting>(Configuration.GetSection("SmtpSetting"));
+
 
             services.AddAutoMapper(typeof(Startup));
 
