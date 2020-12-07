@@ -11,7 +11,10 @@ namespace EShop.Server.Client.Controller
     [ApiController]
     public class ProductController : ControllerBase
     {
-
+        public ProductController()
+        {
+            
+        }
 
     }
 }

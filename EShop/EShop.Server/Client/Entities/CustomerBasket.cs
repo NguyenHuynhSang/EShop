@@ -15,6 +15,6 @@ namespace EShop.Server.Entities
         {
         }
         public string Id { set; get; }
-        public List<BasketItem> Items{ set;get; }
+        public List<BasketItem> Items { set; get; } = new List<BasketItem>();
     }
 }

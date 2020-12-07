@@ -17,7 +17,6 @@ namespace EShop.Server.Server.Controllers
     {
         private readonly IAttributeValueService _attributeValueService;// service xử dụng
         public AttributeValueController(IAttributeValueService attributeValueService)
-
         {
             _attributeValueService = attributeValueService;
         }
