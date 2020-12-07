@@ -17,6 +17,7 @@ using AutoMapper;
 using EShop.Server.Dtos.Admin.ProductForList;
 using System.Text.Encodings.Web;
 using System.IO;
+using EShop.Server.Server.Dtos.ProductForList;
 
 namespace EShop.Server.Service
 {
@@ -25,6 +26,8 @@ namespace EShop.Server.Service
         public Product Add(Product product);
         public Product Update(Product product);
         public IEnumerable<ProductForListDto> GetAll(Params param);
+
+        public IEnumerable<ProductVersionForListDto> GetAllVersion(Params param);
 
         public Product GetProductById(int id);
         public Product Delete(int id);
@@ -35,17 +38,21 @@ namespace EShop.Server.Service
 
 
 
+
+
     }
     public class ProductService : IProductService
     {
         private readonly IProductRepository _productRepository;
+        private readonly IProductVersionRepository _productVerRepository;
         private readonly IMapper _mapper;
 
 
-        public ProductService(IProductRepository productRepository, IMapper mapper)
+        public ProductService(IProductRepository productRepository,IProductVersionRepository productVersionRepository, IMapper mapper)
         {
             this._productRepository = productRepository;
             this._mapper = mapper;
+            this._productVerRepository = productVersionRepository;
 
         }
         public Product Add(Product product)
@@ -156,5 +163,30 @@ namespace EShop.Server.Service
 
         }
 
+        public IEnumerable<ProductVersionForListDto> GetAllVersion(Params param)
+        {
+            var query = _productVerRepository.GetMulti(null, q => q.Include(x => x.Product)
+                                  .ThenInclude(y => y.Catalog)
+                              .Include(x => x.ProductVersionImages)
+                                  .Include(x => x.ProductVersionAttributes)
+                                     .ThenInclude(z => z.AttributeValue)
+                                     .ThenInclude(t => t.Attribute));
+            var productsReturn = query.Select(x => _mapper.Map<ProductVersionForListDto>(x));
+
+            try
+            {
+                if (!String.IsNullOrEmpty(param.filterProperty))
+                {
+                    productsReturn = productsReturn.AsQueryable().WhereTo(param);
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            return productsReturn.AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
+        }
     }
 }

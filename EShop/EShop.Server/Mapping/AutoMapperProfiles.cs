@@ -10,6 +10,7 @@ using EShop.Server.ViewModels;
 using static EShop.Server.SchedulerTask.ExchangeRateTask;
 using EShop.Server.Dtos.Admin.ProductForList;
 using EShop.Server.Dtos.Admin;
+using EShop.Server.Server.Dtos.ProductForList;
 
 namespace EShop.Server.Mapping
 {
@@ -76,8 +77,14 @@ namespace EShop.Server.Mapping
                        opt.MapFrom(src => src.ProductVersionAttributes);
                    });
             CreateMap<ProductCatalog, ProductCatalogDto>();
+            CreateMap<ProductVersionAttribute, ProductVersionAttributeDto>();
             CreateMap<Product, ProductForListDto>();
-   
+            CreateMap<Product, ProductForListVerDto>()
+                .ForMember(dest => dest.CatalogId, opt => opt.MapFrom(src => src.Catalog.Id))
+                 .ForMember(dest => dest.CatalogName, opt => opt.MapFrom(src => src.Catalog.Name)); 
+            CreateMap<ProductVersion, ProductVersionForListDto>()
+                .ForMember(dest=>dest.MainImage,opt=>opt.MapFrom(src=>src.ProductVersionImages.FirstOrDefault(x=>x.IsMain==true).Url));
+            
 
             CreateMap<Item, ExchangeRateDongA>()
                 .ForMember(dest => dest.type, opt => opt.NullSubstitute("N/A"))

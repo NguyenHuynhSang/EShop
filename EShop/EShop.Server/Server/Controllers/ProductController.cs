@@ -20,6 +20,8 @@ using Swashbuckle.AspNetCore.Annotations;
 using System.Configuration;
 using System.ComponentModel;
 using System.IO;
+using EShop.Server.Server.Dtos.ProductForList;
+
 namespace EShop.Server.Server.Controllers
 {
 
@@ -71,6 +73,71 @@ namespace EShop.Server.Server.Controllers
                 return BadRequest(ex);
             }
         }
+
+
+        [HttpGet]
+        [EnableCors("ApiCorsPolicy")]
+
+        [SwaggerOperationCustom(Summary = "Lấy ra tất cả các product version không phân trang", FileName = "product_getall.html")]
+
+        public ActionResult<IEnumerable<ProductVersionForListDto>> GetAllVersion(string filterProperty, FilterOperator filterOperator, FilterType filterType, string filterValue, string filterValue1, string sortBy, SortType sort = SortType.desc)
+        {
+
+            try
+            {
+                Params param = new Params();
+                param.sortBy = sortBy;
+                param.sort = sort;
+                param.filterProperty = filterProperty;
+                param.filterOperator = filterOperator;
+                param.filterValue1 = filterValue1;
+                param.filterValue = filterValue;
+                param.filterType = filterType;
+                var list = _productService.GetAllVersion(param);
+                return Ok(list);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+                logger.Debug(ex);
+                return BadRequest(ex);
+            }
+        }
+
+
+        [HttpGet]
+        [EnableCors("ApiCorsPolicy")]
+
+        [SwaggerOperationCustom(Summary = "Lấy ra tất cả các product version có phân trang", FileName = "product_getall.html")]
+
+        public ActionResult<IEnumerable<ProductVersionForListDto>> GetAllVersionPaging(string filterProperty, FilterOperator filterOperator, FilterType filterType, string filterValue, string filterValue1, string sortBy, SortType sort = SortType.desc, decimal? currency = null, string weight = "kg", int page = 1, int perPage = 50)
+        {
+
+            try
+            {
+                Params param = new Params();
+                param.currency = currency;
+                param.weight = weight;
+                param.sortBy = sortBy;
+                param.sort = sort;
+                param.perPage = perPage;
+                param.page = page;
+                param.filterProperty = filterProperty;
+                param.filterOperator = filterOperator;
+                param.filterValue1 = filterValue1;
+                param.filterValue = filterValue;
+                param.filterType = filterType;
+                var list = _productService.GetAllVersion(param);
+                return Ok(PagedList<ProductVersionForListDto>.ToPagedList(list, page, perPage));
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+                logger.Debug(ex);
+                return BadRequest(ex);
+            }
+        }
+
         [HttpGet]
         [SwaggerOperationCustom(Summary = "Lấy ra tất cả các product có phân trang", FileName = "product_getall.html")]
         public ActionResult<PagedListWrapper<ProductForListDto>> GetAllPaging(string filterProperty, FilterOperator filterOperator, FilterType filterType, string filterValue, string filterValue1, string sortBy, SortType sort=SortType.desc, decimal? currency=null, string weight="kg", int page = 1, int perPage = 50)
@@ -85,6 +152,11 @@ namespace EShop.Server.Server.Controllers
                 param.sort = sort;
                 param.perPage = perPage;
                 param.page = page;
+                 param.filterProperty = filterProperty;
+                param.filterOperator = filterOperator;
+                param.filterValue1 = filterValue1;
+                param.filterValue = filterValue;
+                param.filterType = filterType;
                 var list = _productService.GetAll(param);
                 return Ok(PagedList<ProductForListDto>.ToPagedList(list, page, perPage));
             }
