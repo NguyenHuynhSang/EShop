@@ -96,6 +96,7 @@ namespace EShop.Server
             services.AddScoped<IBasketRepository, BasketRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IProductClientService, ProductClientService>();
             services.AddScoped<IProductVersionRepository, ProductVersionRepository>();
 
 

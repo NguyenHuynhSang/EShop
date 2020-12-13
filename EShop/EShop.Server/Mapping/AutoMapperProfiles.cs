@@ -95,9 +95,16 @@ namespace EShop.Server.Mapping
                  .ForMember(dest => dest.CatalogId, opt => opt.MapFrom(src => src.Catalog.Id))
                   .ForMember(dest => dest.CatalogName, opt => opt.MapFrom(src => src.Catalog.Name));
 
-            CreateMap<ProductVersion, ProductVersionForSaleDto>()
-              .ForMember(dest => dest.MainImage, opt => opt.MapFrom(src => src.ProductVersionImages.FirstOrDefault(x => x.IsMain == true).Url));
 
+            CreateMap<ProductVersion, RelativeProductVersionDto>()
+               .ForMember(dest => dest.MainImage, opt => opt.MapFrom(src => src.ProductVersionImages.FirstOrDefault(x => x.IsMain == true).Url));
+
+            CreateMap<ProductVersion, ProductVersionForSaleDto>()
+              .ForMember(dest => dest.MainImage, opt => opt.MapFrom(src => src.ProductVersionImages.FirstOrDefault(x => x.IsMain == true).Url))
+                .ForMember(dest => dest.RelativeProductVersions, opt => opt.MapFrom(src => src.Product.ProductVersions.Where(x=>x.Id!=src.Id)));
+            
+      
+            
             CreateMap<Item, ExchangeRateDongA>()
                 .ForMember(dest => dest.type, opt => opt.NullSubstitute("N/A"))
                 .ForMember(dest => dest.muack, act => act.MapFrom(src => String.IsNullOrEmpty(src.muack) ? 0 : float.Parse(src.muack)))
