@@ -11,7 +11,7 @@ namespace EShop.Server.Client.Service
         public void GetTopSaleList();
         public void GetNewProductList();
 
-        public void GetProductDetail(int id);
+        public void GetProductVersionDetail(int id);
 
     }
 

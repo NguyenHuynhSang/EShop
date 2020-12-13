@@ -1,0 +1,48 @@
+﻿[
+  {
+    "Id": 1,
+    "Name": "Trang chủ",
+    "Target": "_self",
+    "IsActive": true,
+    "Order": 1,
+    "MenuGroupId": 2,
+    "Link": "/trang-chu"
+  },
+  {
+    "Id": 2,
+    "Name": "Sản phẩm",
+    "Target": "_self",
+    "IsActive": true,
+    "Order": 2,
+    "MenuGroupId": 2,
+    "Link": "/san-pham"
+  },
+  {
+    "Id": 3,
+    "Name": "Danh mục",
+    "Target": "_self",
+    "IsActive": false,
+    "Order": 3,
+    "MenuGroupId": 2,
+    "Link": "/danh-muc"
+  },
+  {
+    "Id": 4,
+    "Name": "Giỏ hàng",
+    "Target": "_self",
+    "IsActive": true,
+    "Order": 4,
+    "MenuGroupId": 2,
+    "Link": "/gio-hang"
+  }
+  {
+    "Id": 4,
+    "Name": "Về chúng tôi",
+    "Target": "_self",
+    "IsActive": true,
+    "Order": 5,
+    "MenuGroupId": 2,
+    "Link": "/gioi-thieu"
+  }
+
+]

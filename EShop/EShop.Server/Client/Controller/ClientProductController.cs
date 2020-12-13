@@ -9,9 +9,9 @@ namespace EShop.Server.Client.Controller
 {
     [Route("api/client/[controller]/[action]")]
     [ApiController]
-    public class ProductClientController : ControllerBase
+    public class ClientProductController : ControllerBase
     {
-        public ProductClientController()
+        public ClientProductController()
         {
 
         }

@@ -96,6 +96,8 @@ namespace EShop.Server.Data
             SeedProductAttribute(modelBuilder);
             SeedAttributeValue(modelBuilder);
             SeedProductCatalog(modelBuilder);
+            SeedMenuGroup(modelBuilder);
+        //    SeedMenu(modelBuilder);
            // SeedProduct(modelBuilder);
         }
 
@@ -119,6 +121,24 @@ namespace EShop.Server.Data
             var dataJson = File.ReadAllText("Data/Seed/attribute.value.data.json");
             var data = JsonConvert.DeserializeObject<List<Models.AttributeValue>>(dataJson);
             modelBuilder.Entity<Models.AttributeValue>().HasData(data);
+        }
+
+
+        private void SeedMenuGroup(ModelBuilder modelBuilder)
+        {
+
+            var dataJson = File.ReadAllText("Data/Seed/menu.group.data.json");
+            var data = JsonConvert.DeserializeObject<List<MenuGroup>>(dataJson);
+            modelBuilder.Entity<MenuGroup>().HasData(data);
+        }
+
+        private void SeedMenu(ModelBuilder modelBuilder)
+        {
+           
+            var dataJson = File.ReadAllText("Data/Seed/menu.data.json");
+            var data = JsonConvert.DeserializeObject<List<Menu>>(dataJson);
+          
+            modelBuilder.Entity<Menu>().HasData(data);
         }
         private void SeedProductCatalog(ModelBuilder modelBuilder)
         {
