@@ -64,8 +64,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Client\Dtos\" />
-    <Folder Include="Client\Service\" />
     <Folder Include="Shared\" />
     <Folder Include="swagger\" />
     <Folder Include="Utility\" />

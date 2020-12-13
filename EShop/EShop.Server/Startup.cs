@@ -31,6 +31,7 @@ using System.Configuration;
 using StackExchange.Redis;
 using EShop.Server.Data.Repository;
 using EShop.Server.Entities;
+using EShop.Server.Client.Service;
 
 namespace EShop.Server
 {
@@ -88,6 +89,10 @@ namespace EShop.Server
             services.AddScoped<IAuthService, AuthService>();
             services.AddTransient<Seed>();
 
+            services.AddScoped<ISlideRepository, SlideRepository>();
+            services.AddScoped<ISlideClientService, SlideClientService>();
+
+
             services.AddScoped<IBasketRepository, BasketRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IProductService, ProductService>();
@@ -117,6 +122,11 @@ namespace EShop.Server
             services.AddScoped<IExchangeRateRepository, ExchangeRateRepository>();
             services.AddScoped<IExchangeRateService, ExchangeRateService>();
 
+         
+
+
+            services.AddScoped<IMenuRepository, MenuRepository>();
+            services.AddScoped<IMenuClientService, MenuClientService>();
 
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer((options) =>
