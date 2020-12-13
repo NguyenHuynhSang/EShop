@@ -11,6 +11,7 @@ using static EShop.Server.SchedulerTask.ExchangeRateTask;
 using EShop.Server.Dtos.Admin.ProductForList;
 using EShop.Server.Dtos.Admin;
 using EShop.Server.Server.Dtos.ProductForList;
+using EShop.Server.Client.Dtos;
 
 namespace EShop.Server.Mapping
 {
@@ -81,10 +82,21 @@ namespace EShop.Server.Mapping
             CreateMap<Product, ProductForListDto>();
             CreateMap<Product, ProductForListVerDto>()
                 .ForMember(dest => dest.CatalogId, opt => opt.MapFrom(src => src.Catalog.Id))
-                 .ForMember(dest => dest.CatalogName, opt => opt.MapFrom(src => src.Catalog.Name)); 
+                 .ForMember(dest => dest.CatalogName, opt => opt.MapFrom(src => src.Catalog.Name));
+
+
+      
+
             CreateMap<ProductVersion, ProductVersionForListDto>()
                 .ForMember(dest=>dest.MainImage,opt=>opt.MapFrom(src=>src.ProductVersionImages.FirstOrDefault(x=>x.IsMain==true).Url));
-            
+
+
+            CreateMap<Product, ProductForSaleDto>()
+                 .ForMember(dest => dest.CatalogId, opt => opt.MapFrom(src => src.Catalog.Id))
+                  .ForMember(dest => dest.CatalogName, opt => opt.MapFrom(src => src.Catalog.Name));
+
+            CreateMap<ProductVersion, ProductVersionForSaleDto>()
+              .ForMember(dest => dest.MainImage, opt => opt.MapFrom(src => src.ProductVersionImages.FirstOrDefault(x => x.IsMain == true).Url));
 
             CreateMap<Item, ExchangeRateDongA>()
                 .ForMember(dest => dest.type, opt => opt.NullSubstitute("N/A"))

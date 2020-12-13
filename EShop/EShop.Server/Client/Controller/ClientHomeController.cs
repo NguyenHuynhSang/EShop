@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EShop.Server.Client.Dtos;
 using EShop.Server.Client.Service;
 using EShop.Server.Models;
 using Microsoft.AspNetCore.Http;
@@ -15,11 +16,12 @@ namespace EShop.Server.Client.Controller
     {
         private readonly ISlideClientService _slideClientService;
         private readonly IMenuClientService _menuClientService;
-
-        public ClientHomeController(ISlideClientService slideClientService, IMenuClientService menuClientService)
+        private readonly IProductClientService _productClientService;
+        public ClientHomeController(ISlideClientService slideClientService, IMenuClientService menuClientService,IProductClientService productClientService)
         {
             _slideClientService = slideClientService;
             _menuClientService = menuClientService;
+            _productClientService = productClientService;
         }
 
 
@@ -53,7 +55,22 @@ namespace EShop.Server.Client.Controller
                 return BadRequest(ex.ToString());
             }
         }
-    
+
+
+        [HttpGet]
+        public ActionResult<IEnumerable<ProductForSaleDto>> GetAllNewProduct()
+        {
+            try
+            {
+                //TEST
+                var result = _productClientService.GetNewProductList();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+            }
+        }
 
     }
 }

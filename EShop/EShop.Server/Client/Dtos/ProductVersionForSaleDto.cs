@@ -1,22 +1,18 @@
 ﻿using EShop.Server.Dtos.Admin.ProductForList;
 using EShop.Server.Interface;
-using EShop.Server.Models;
-using EShop.Server.Models.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EShop.Server.Server.Dtos.ProductForList
+namespace EShop.Server.Client.Dtos
 {
-    public class ProductVersionForListDto
+    public class ProductVersionForSaleDto
     {
         public string Name { set; get; }
-        
-        public ProductForListVerDto Product { set; get; }
-        public int Id { set; get; }
 
-        public int WareHouseID { set; get; }
+        public ProductForSaleDto Product { set; get; }
+        public int Id { set; get; }
 
         public string Description { set; get; }
 
@@ -31,15 +27,21 @@ namespace EShop.Server.Server.Dtos.ProductForList
 
         public string MainImage { set; get; }
 
-        public IEnumerable<ProductVersionAttributeDto> ProductVersionAttributes { set; get; }
+        public IEnumerable<RelativeProductVersionDto> RelativeProductVersions { set; get; }
 
         public IEnumerable<ProductVersionImageDto> ProductVersionImages { set; get; }
     }
 
-
-    public class ProductForListVerDto : IAuditAble, IActiveAble,ISeoAble
+    public class RelativeProductVersionDto
     {
+        public int Id { set; get; }
+        public string Name { set; get; }
+        public string MainImage { set; get; }
+    }
 
+
+    public class ProductForSaleDto : ISeoAble
+    {
         public int Id { get; set; }
 
 
@@ -59,26 +61,9 @@ namespace EShop.Server.Server.Dtos.ProductForList
 
         public int Weight { get; set; }
 
-
-
         public decimal OriginalPrice { get; set; }
-
-        public bool Deliver { get; set; }
-
-        public bool ApplyPromotion { get; set; }
-
-
-        public DateTime? CreatedDate { get; set; }
-        public string CreatedBy { get; set; }
-
-        public DateTime? ModifiedDate { get; set; }
-
-
-        public string ModifiedBy { get; set; }
-        public bool IsActive { get; set; }
-        public string SEOTitle { get ; set ; }
-        public string SEOUrl { get ; set ; }
-        public string SEODescription { get ; set ; }
+        public string SEOTitle { get; set; }
+        public string SEOUrl { get; set; }
+        public string SEODescription { get; set; }
     }
-
 }
