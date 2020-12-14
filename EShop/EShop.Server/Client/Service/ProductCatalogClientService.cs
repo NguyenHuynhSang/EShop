@@ -17,7 +17,7 @@ namespace EShop.Server.Client.Service
     {
         private readonly ICatalogRepository _catalogRepository;
         private readonly IMapper _mapper;
-        public ProductCatalogClientService(ICatalogRepository catalogRepository, IMapper mapper)
+        public ProductCatalogClientService(ICatalogRepository catalogRepository, IMapper mapper) 
         {
             _catalogRepository = catalogRepository;
             _mapper = mapper;

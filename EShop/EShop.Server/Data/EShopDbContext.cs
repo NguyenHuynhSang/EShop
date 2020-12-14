@@ -96,7 +96,7 @@ namespace EShop.Server.Data
             SeedProductAttribute(modelBuilder);
             SeedAttributeValue(modelBuilder);
             SeedProductCatalog(modelBuilder);
-            SeedMenuGroup(modelBuilder);
+          //  SeedMenuGroup(modelBuilder);
         //    SeedMenu(modelBuilder);
            // SeedProduct(modelBuilder);
         }

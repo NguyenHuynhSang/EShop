@@ -421,18 +421,6 @@ namespace EShop.Server.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("MenuGroup");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "ADMIN"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "CLIENT"
-                        });
                 });
 
             modelBuilder.Entity("EShop.Server.Models.News", b =>

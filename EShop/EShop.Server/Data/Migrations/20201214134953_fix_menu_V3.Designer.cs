@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EShop.Server.Migrations
 {
     [DbContext(typeof(EShopDbContext))]
-    [Migration("20201214132200_add_catalog_relation")]
-    partial class add_catalog_relation
+    [Migration("20201214134953_fix_menu_V3")]
+    partial class fix_menu_V3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -364,67 +364,6 @@ namespace EShop.Server.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Image");
-                });
-
-            modelBuilder.Entity("EShop.Server.Models.Menu", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Link")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("MenuGroupId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Order")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Target")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MenuGroupId");
-
-                    b.ToTable("Menu");
-                });
-
-            modelBuilder.Entity("EShop.Server.Models.MenuGroup", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("MenuGroup");
-
-           
                 });
 
             modelBuilder.Entity("EShop.Server.Models.News", b =>
@@ -960,15 +899,6 @@ namespace EShop.Server.Migrations
                     b.HasOne("EShop.Server.Models.Attribute", "Attribute")
                         .WithMany()
                         .HasForeignKey("AttributeID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("EShop.Server.Models.Menu", b =>
-                {
-                    b.HasOne("EShop.Server.Models.MenuGroup", "MenuGroup")
-                        .WithMany()
-                        .HasForeignKey("MenuGroupId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

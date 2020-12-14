@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EShop.Server.Migrations
 {
     [DbContext(typeof(EShopDbContext))]
-    [Migration("20201214132200_add_catalog_relation")]
-    partial class add_catalog_relation
+    [Migration("20201214134339_fix_mif")]
+    partial class fix_mif
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -423,8 +423,6 @@ namespace EShop.Server.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("MenuGroup");
-
-           
                 });
 
             modelBuilder.Entity("EShop.Server.Models.News", b =>

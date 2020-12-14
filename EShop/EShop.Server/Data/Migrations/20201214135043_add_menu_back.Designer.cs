@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EShop.Server.Migrations
 {
     [DbContext(typeof(EShopDbContext))]
-    [Migration("20201213135028_seed_menugroup")]
-    partial class seed_menugroup
+    [Migration("20201214135043_add_menu_back")]
+    partial class add_menu_back
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -423,18 +423,6 @@ namespace EShop.Server.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("MenuGroup");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "ADMIN"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "CLIENT"
-                        });
                 });
 
             modelBuilder.Entity("EShop.Server.Models.News", b =>
@@ -659,6 +647,8 @@ namespace EShop.Server.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ParentID");
 
                     b.ToTable("ProductCatalog");
 
@@ -1021,6 +1011,13 @@ namespace EShop.Server.Migrations
                         .HasForeignKey("CatalogID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("EShop.Server.Models.ProductCatalog", b =>
+                {
+                    b.HasOne("EShop.Server.Models.ProductCatalog", "Parent")
+                        .WithMany("ChildCatalogs")
+                        .HasForeignKey("ParentID");
                 });
 
             modelBuilder.Entity("EShop.Server.Models.ProductVersion", b =>
