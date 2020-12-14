@@ -17,7 +17,8 @@ namespace EShop.Server.Models
         public int Id { set; get; }
 
         public int? ParentID { set; get; }
-
+        [ForeignKey("ParentID")]
+        public ProductCatalog Parent { get; set; }
         [StringLength(500)]
         public string Name { set; get; }
 
@@ -30,5 +31,7 @@ namespace EShop.Server.Models
         public string CreatedBy { get ; set ; }
         public DateTime? ModifiedDate { get ; set ; }
         public string ModifiedBy { get ; set ; }
+        public ICollection<ProductCatalog> ChildCatalogs { get; set; }
+
     }
 }

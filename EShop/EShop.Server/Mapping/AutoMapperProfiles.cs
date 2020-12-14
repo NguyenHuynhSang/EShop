@@ -102,9 +102,10 @@ namespace EShop.Server.Mapping
             CreateMap<ProductVersion, ProductVersionForSaleDto>()
               .ForMember(dest => dest.MainImage, opt => opt.MapFrom(src => src.ProductVersionImages.FirstOrDefault(x => x.IsMain == true).Url))
                 .ForMember(dest => dest.RelativeProductVersions, opt => opt.MapFrom(src => src.Product.ProductVersions.Where(x=>x.Id!=src.Id)));
-            
-      
-            
+
+            CreateMap<ProductCatalog, ProductCatalogForMenuDto>();
+
+   
             CreateMap<Item, ExchangeRateDongA>()
                 .ForMember(dest => dest.type, opt => opt.NullSubstitute("N/A"))
                 .ForMember(dest => dest.muack, act => act.MapFrom(src => String.IsNullOrEmpty(src.muack) ? 0 : float.Parse(src.muack)))

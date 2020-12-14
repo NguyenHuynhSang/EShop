@@ -98,7 +98,7 @@ namespace EShop.Server
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IProductClientService, ProductClientService>();
             services.AddScoped<IProductVersionRepository, ProductVersionRepository>();
-
+            services.AddScoped<IProductCatalogClientService, ProductCatalogClientService>();
 
             services.AddScoped<ICatalogRepository, CatalogRepository>();
             services.AddScoped<ICatalogService, CatalogService>();

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EShop.Server.Client.Dtos;
+using EShop.Server.Client.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,9 +13,10 @@ namespace EShop.Server.Client.Controller
     [ApiController]
     public class ClientProductController : ControllerBase
     {
-        public ClientProductController()
+        private readonly IProductClientService _productClientService;
+        public ClientProductController(IProductClientService productClientService)
         {
-
+            _productClientService = productClientService;
         }
 
         [HttpGet]
@@ -23,26 +26,21 @@ namespace EShop.Server.Client.Controller
         }
 
 
-        [HttpGet]
-        public void GetAllByCategoryId()
-        {
-
-        }
-        [HttpGet]
-        public void GetAllNew()
-        {
-
-        }
-        [HttpGet]
-        public void GetAllTopSale()
-        {
-
-        }
+   
 
         [HttpGet]
-        public void Detail(int id)
+        public ActionResult<ProductVersionForSaleDto> Detail(int id)
         {
-
+            try
+            {
+                //TEST
+                var result = _productClientService.GetProductVersionDetail(id);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+            }
         }
 
 

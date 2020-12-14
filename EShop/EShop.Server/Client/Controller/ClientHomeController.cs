@@ -17,18 +17,20 @@ namespace EShop.Server.Client.Controller
         private readonly ISlideClientService _slideClientService;
         private readonly IMenuClientService _menuClientService;
         private readonly IProductClientService _productClientService;
-        public ClientHomeController(ISlideClientService slideClientService, IMenuClientService menuClientService,IProductClientService productClientService)
+        private readonly IProductCatalogClientService _productCatalogClientService;
+        public ClientHomeController(ISlideClientService slideClientService, IMenuClientService menuClientService,IProductClientService productClientService, IProductCatalogClientService productCatalogClientService)
         {
             _slideClientService = slideClientService;
             _menuClientService = menuClientService;
             _productClientService = productClientService;
+            _productCatalogClientService = productCatalogClientService;
         }
 
 
 
         [HttpGet]
 
-        public ActionResult<IEnumerable<Slide>> GetSlide()
+        public ActionResult<IEnumerable<Slide>> GetAllSlide()
         {
             try
             {
@@ -41,6 +43,25 @@ namespace EShop.Server.Client.Controller
                 return BadRequest(ex.ToString());
             }
         }
+
+        [HttpGet]
+
+        public ActionResult<IEnumerable<ProductCatalogForMenuDto>> GetProductCatalogMenu()
+        {
+            try
+            {
+                //TEST
+                var catalogs = _productCatalogClientService.GetProductCatalog();
+                return Ok(catalogs);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+            }
+        }
+
+
+
         [HttpGet]
         public ActionResult<Menu> GetMainMenu()
         {

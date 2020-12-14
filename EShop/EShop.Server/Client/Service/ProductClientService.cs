@@ -15,7 +15,7 @@ namespace EShop.Server.Client.Service
         public IEnumerable<string> GetTopSaleList();
         public IEnumerable<ProductVersionForSaleDto> GetNewProductList();
 
-        public void GetProductVersionDetail(int id);
+        public ProductVersionForSaleDto GetProductVersionDetail(int id);
 
     }
 
@@ -37,22 +37,27 @@ namespace EShop.Server.Client.Service
 
         public IEnumerable<ProductVersionForSaleDto> GetNewProductList()
         {
-            var query = _productVerRepository.GetMulti(null, q => q.Include(x => x.Product)
+            var query = _productVerRepository.GetMulti(x => x.Product.IsActive == true, q => q.Include(x => x.Product)
                                  .ThenInclude(y => y.Catalog)
                                   .Include(x => x.Product)
                                   .ThenInclude(y => y.ProductVersions)
                                   .ThenInclude(z => z.ProductVersionImages)
                              .Include(x => x.ProductVersionImages)) ;
-            var productsReturn = query.Select(x => _mapper.Map<ProductVersionForSaleDto>(x));
-            
-
-
+            var productsReturn = query.Select(x => _mapper.Map<ProductVersionForSaleDto>(x));      
             return productsReturn;
         }
 
-        public void GetProductVersionDetail(int id)
+        public ProductVersionForSaleDto GetProductVersionDetail(int id)
         {
-            throw new NotImplementedException();
+            var query = _productVerRepository.GetMulti(null, q => q.Include(x => x.Product)
+                                .ThenInclude(y => y.Catalog)
+                                 .Include(x => x.Product)
+                                 .ThenInclude(y => y.ProductVersions)
+                                 .ThenInclude(z => z.ProductVersionImages)
+                            .Include(x => x.ProductVersionImages)).SingleOrDefault(x=>x.Id==id&&x.Product.IsActive==true);
+            var productsReturn = _mapper.Map<ProductVersionForSaleDto>(query);
+
+            return productsReturn;
         }
 
         public IEnumerable<string> GetTopSaleList()
