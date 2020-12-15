@@ -43,9 +43,7 @@ namespace EShop.Server.Server.Dtos.ProductForList
         public int Id { get; set; }
 
 
-        public int CatalogId { set; get; }
-
-        public string CatalogName { set; get; }
+        public ProductCatalogDto Catalog { set; get; }
 
 
         public string Url { get; set; }

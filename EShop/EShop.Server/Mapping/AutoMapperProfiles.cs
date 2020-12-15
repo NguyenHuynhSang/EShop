@@ -80,10 +80,7 @@ namespace EShop.Server.Mapping
             CreateMap<ProductCatalog, ProductCatalogDto>();
             CreateMap<ProductVersionAttribute, ProductVersionAttributeDto>();
             CreateMap<Product, ProductForListDto>();
-            CreateMap<Product, ProductForListVerDto>()
-                .ForMember(dest => dest.CatalogId, opt => opt.MapFrom(src => src.Catalog.Id))
-                 .ForMember(dest => dest.CatalogName, opt => opt.MapFrom(src => src.Catalog.Name));
-
+            CreateMap<Product, ProductForListVerDto>();
 
       
 
