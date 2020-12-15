@@ -136,7 +136,7 @@ namespace EShop.Server.Extension
                 if (i < properties.Length - 1)
                 {
                     var prop = collection.GetProperty(properties[i], BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
-                    if (prop.PropertyType.Name == typeof(IEnumerable<>).Name)
+                    if (prop!=null && prop.PropertyType.Name == typeof(IEnumerable<>).Name)
                     {
                         counter++;
                         syntaxExtend += properties[i] + ".Any(";
