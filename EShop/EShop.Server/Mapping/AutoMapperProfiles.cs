@@ -43,7 +43,8 @@ namespace EShop.Server.Mapping
             CreateMap<PhotoForCreationDto, Photo>();
             CreateMap<Photo, PhotoForReturnDto>();
 
-            CreateMap<ProductVersionImage, ProductVersionImageDto>();
+            CreateMap<ProductVersionImage, ProductVersionImageDto>()
+               .ForMember(dest => dest.Url, opt => opt.MapFrom(src => src.Url != "string" ? src.Url: @"http://res.cloudinary.com/eshop2020/image/upload/v1608051839/oel4objxjlis3jby8ifk.png"));
             CreateMap<AttributeValue, AttributeValueDto>();
             CreateMap<ProductVersionAttribute, ProductVersionAttributeDto>()
                  .ForMember(dest => dest.AttributeName, opt =>
@@ -85,7 +86,7 @@ namespace EShop.Server.Mapping
       
 
             CreateMap<ProductVersion, ProductVersionForListDto>()
-                .ForMember(dest=>dest.MainImage,opt=>opt.MapFrom(src=>src.ProductVersionImages.FirstOrDefault(x=>x.IsMain==true).Url));
+                .ForMember(dest=>dest.MainImage,opt=>opt.MapFrom(src=> src.ProductVersionImages.FirstOrDefault(x => x.IsMain == true).Url!="string"?src.ProductVersionImages.FirstOrDefault(x=>x.IsMain==true).Url: @"http://res.cloudinary.com/eshop2020/image/upload/v1608051839/oel4objxjlis3jby8ifk.png"));
 
 
             CreateMap<Product, ProductForSaleDto>()
