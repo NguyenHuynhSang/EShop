@@ -13,7 +13,7 @@ namespace EShop.Server.Client.Service
     {
         public void GetAllByCategory();
         public IEnumerable<string> GetTopSaleList();
-        public IEnumerable<ProductVersionForSaleDto> GetNewProductList();
+        public IEnumerable<ProductVersionForSaleDto> GetNewProductList(int numRecord);
 
         public ProductVersionForSaleDto GetProductVersionDetail(int id);
 
@@ -35,7 +35,7 @@ namespace EShop.Server.Client.Service
             throw new NotImplementedException();
         }
 
-        public IEnumerable<ProductVersionForSaleDto> GetNewProductList()
+        public IEnumerable<ProductVersionForSaleDto> GetNewProductList(int numRecord)
         {
             var query = _productVerRepository.GetMulti(x => x.Product.IsActive == true, q => q.Include(x => x.Product)
                                  .ThenInclude(y => y.Catalog)
@@ -43,7 +43,7 @@ namespace EShop.Server.Client.Service
                                   .ThenInclude(y => y.ProductVersions)
                                   .ThenInclude(z => z.ProductVersionImages)
                              .Include(x => x.ProductVersionImages)) ;
-            var productsReturn = query.Select(x => _mapper.Map<ProductVersionForSaleDto>(x));      
+            var productsReturn = query.OrderByDescending(x=>x.Product.CreatedDate).Select(x => _mapper.Map<ProductVersionForSaleDto>(x)).Take(numRecord);      
             return productsReturn;
         }
 

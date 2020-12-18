@@ -84,7 +84,7 @@ namespace EShop.Server.Client.Controller
             try
             {
                 //TEST
-                var result = _productClientService.GetNewProductList();
+                var result = _productClientService.GetNewProductList(20);
                 return Ok(result);
             }
             catch (Exception ex)
