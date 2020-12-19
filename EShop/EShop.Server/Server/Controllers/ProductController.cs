@@ -47,12 +47,10 @@ namespace EShop.Server.Server.Controllers
 
         [HttpGet]
         [EnableCors("ApiCorsPolicy")]
-
         [SwaggerOperationCustom(Summary = "Lấy ra tất cả các product không phân trang", FileName = "product_getall.html")]
    
         public ActionResult<IEnumerable<ProductForListDto>> GetAll(string filterProperty, FilterOperator filterOperator, FilterType filterType,string filterValue, string filterValue1,string sortBy, SortType sort=SortType.desc)
         {
-          
             try
             {
                 Params param = new Params();

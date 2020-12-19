@@ -60,9 +60,9 @@ namespace EShop.Server.Extension
            = new Dictionary<FilterOperator, string>
        {
            { FilterOperator.equal,"{0}.Equals(@0)" },
-           { FilterOperator.notEqual,"!{0}.Equals(@0)" },
-           { FilterOperator.contains,"{0}.ToLower().Contains(@0)" },
-           { FilterOperator.notContains,"!{0}.ToLower().Contains(@0)" },
+           { FilterOperator.notEqual,"{0}!=@0" },
+           { FilterOperator.contains,"{0}.ToLower().Contains(@0.ToLower())==true" },
+           { FilterOperator.notContains,"{0}.ToLower().Contains(@0.ToLower())==false" },
            { FilterOperator.startsWith,"{0}.StartsWith(@0)" },
            { FilterOperator.endsWith,"{0}.EndsWith(@0)" },
        };
@@ -105,6 +105,9 @@ namespace EShop.Server.Extension
             {
                 return source;
             }
+            string a = "";
+
+          
             var typeOfSource = source.First().GetType();
             string operatorSyntax = "";
             switch ((FilterType)param.filterType)

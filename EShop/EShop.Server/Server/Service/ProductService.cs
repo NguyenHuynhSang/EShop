@@ -91,7 +91,7 @@ namespace EShop.Server.Service
 
             try
             {
-                if (!String.IsNullOrEmpty(param.filterProperty))
+                if (!String.IsNullOrEmpty(param.filterProperty)&&!String.IsNullOrEmpty(param.filterValue))
                 {
                     productsReturn = productsReturn.AsQueryable().WhereTo(param);
                 }
@@ -175,7 +175,7 @@ namespace EShop.Server.Service
 
             try
             {
-                if (!String.IsNullOrEmpty(param.filterProperty))
+                if (!String.IsNullOrEmpty(param.filterProperty) && !String.IsNullOrEmpty(param.filterValue))
                 {
                     productsReturn = productsReturn.AsQueryable().WhereTo(param);
                 }

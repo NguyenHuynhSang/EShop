@@ -38,10 +38,5 @@ namespace EShop.Server.Client.Controller
             await _basketRepository.DeleteBasketAsync(id);
         }
 
-
-
-
-
-
     }
 }
