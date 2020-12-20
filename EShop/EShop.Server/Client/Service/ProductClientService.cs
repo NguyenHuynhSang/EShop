@@ -14,7 +14,7 @@ namespace EShop.Server.Client.Service
         public void GetAllByCategory();
         public IEnumerable<string> GetTopSaleList();
         public IEnumerable<ProductVersionForSaleDto> GetNewProductList(int numRecord);
-
+        public IEnumerable<ProductVersionForSaleDto> GetPromotionProductList(int numRecord);
         public ProductVersionForSaleDto GetProductVersionDetail(int id);
 
     }
@@ -42,8 +42,8 @@ namespace EShop.Server.Client.Service
                                   .Include(x => x.Product)
                                   .ThenInclude(y => y.ProductVersions)
                                   .ThenInclude(z => z.ProductVersionImages)
-                             .Include(x => x.ProductVersionImages)) ;
-            var productsReturn = query.OrderByDescending(x=>x.Product.CreatedDate).Select(x => _mapper.Map<ProductVersionForSaleDto>(x)).Take(numRecord);      
+                             .Include(x => x.ProductVersionImages));
+            var productsReturn = query.OrderByDescending(x => x.Product.CreatedDate).Select(x => _mapper.Map<ProductVersionForSaleDto>(x)).Take(numRecord);
             return productsReturn;
         }
 
@@ -54,9 +54,21 @@ namespace EShop.Server.Client.Service
                                  .Include(x => x.Product)
                                  .ThenInclude(y => y.ProductVersions)
                                  .ThenInclude(z => z.ProductVersionImages)
-                            .Include(x => x.ProductVersionImages)).SingleOrDefault(x=>x.Id==id&&x.Product.IsActive==true);
+                            .Include(x => x.ProductVersionImages)).SingleOrDefault(x => x.Id == id && x.Product.IsActive == true);
             var productsReturn = _mapper.Map<ProductVersionForSaleDto>(query);
 
+            return productsReturn;
+        }
+
+        public IEnumerable<ProductVersionForSaleDto> GetPromotionProductList(int numRecord)
+        {
+            var query = _productVerRepository.GetMulti(x => x.Product.IsActive == true && x.PromotionPrice > 0, q => q.Include(x => x.Product)
+                                    .ThenInclude(y => y.Catalog)
+                                     .Include(x => x.Product)
+                                     .ThenInclude(y => y.ProductVersions)
+                                     .ThenInclude(z => z.ProductVersionImages)
+                                .Include(x => x.ProductVersionImages));
+            var productsReturn = query.OrderByDescending(x => x.Price - x.PromotionPrice).Select(x => _mapper.Map<ProductVersionForSaleDto>(x)).Take(numRecord);
             return productsReturn;
         }
 

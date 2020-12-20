@@ -11,6 +11,7 @@ namespace EShop.Server.global
         {
             "http://eshopadmin.netlify.app",
             "http://localhost:3000",
+            "http://eshop-client.netlify.app/",
             "https://eshopadmin.netlify.app/auth/login"
         };
 

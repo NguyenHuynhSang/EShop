@@ -79,7 +79,7 @@ namespace EShop.Server.Client.Controller
 
 
         [HttpGet]
-        public ActionResult<IEnumerable<ProductForSaleDto>> GetAllNewProduct()
+        public ActionResult<IEnumerable<ProductForSaleDto>> GetNewProductList(int count=20)
         {
             try
             {
@@ -93,5 +93,20 @@ namespace EShop.Server.Client.Controller
             }
         }
 
+
+        [HttpGet]
+        public ActionResult<IEnumerable<ProductForSaleDto>> GetTopPromotionProductList(int count = 20)
+        {
+            try
+            {
+                //TEST
+                var result = _productClientService.GetPromotionProductList(20);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+            }
+        }
     }
 }
