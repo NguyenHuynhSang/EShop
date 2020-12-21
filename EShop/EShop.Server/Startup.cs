@@ -32,6 +32,7 @@ using StackExchange.Redis;
 using EShop.Server.Data.Repository;
 using EShop.Server.Entities;
 using EShop.Server.Client.Service;
+using EShop.Server.Server.Service;
 
 namespace EShop.Server
 {
@@ -102,7 +103,7 @@ namespace EShop.Server
 
             services.AddScoped<ICatalogRepository, CatalogRepository>();
             services.AddScoped<ICatalogService, CatalogService>();
-
+     
             services.AddScoped<INewsRepository, NewsRepository>();
             services.AddScoped<INewsService, NewsService>();
 
@@ -127,6 +128,7 @@ namespace EShop.Server
 
 
             services.AddScoped<IMenuRepository, MenuRepository>();
+            services.AddScoped<IMenuService, MenuService>();
             services.AddScoped<IMenuClientService, MenuClientService>();
 
 

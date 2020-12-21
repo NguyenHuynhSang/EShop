@@ -26,10 +26,7 @@ namespace EShop.Server.Client.Controller
             _productCatalogClientService = productCatalogClientService;
         }
 
-
-
         [HttpGet]
-
         public ActionResult<IEnumerable<Slide>> GetAllSlide()
         {
             try

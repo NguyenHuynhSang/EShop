@@ -22,12 +22,18 @@ namespace EShop.Server.Client.Controller
 
         [HttpGet]
 
-        public ActionResult<IEnumerable<ProductVersionForSaleDto>> GetAllProductPaging(string sortBy, SortType sort = SortType.desc, int page = 1, int perPage = 50)
+        public ActionResult<IEnumerable<ProductVersionForSaleDto>> GetAllProductPaging(string sortBy= "Product.CreatedDate", SortType sort = SortType.desc, int page = 1, int perPage = 50)
         {
             try
             {
-                //TEST
-                var result = _productClientService.GetListProductByConditon(20);
+                Params param = new Params();
+       
+                param.sortBy = sortBy;
+                param.sort = sort;
+                param.perPage = perPage;
+                param.page = page;
+
+                var result = _productClientService.GetListProductByConditon(param);
                 return Ok(PagedList<ProductVersionForSaleDto>.ToPagedList(result, page, perPage));
             }
             catch (Exception ex)

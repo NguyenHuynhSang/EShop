@@ -65,5 +65,7 @@ namespace EShop.Server.Client.Dtos
         public string SEOTitle { get; set; }
         public string SEOUrl { get; set; }
         public string SEODescription { get; set; }
+        public DateTime? CreatedDate { get; set; }
+
     }
 }

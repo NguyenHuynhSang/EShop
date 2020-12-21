@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using EShop.Server.Client.Dtos;
+using EShop.Server.Extension;
 using EShop.Server.Repository;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -16,7 +17,7 @@ namespace EShop.Server.Client.Service
         public IEnumerable<ProductVersionForSaleDto> GetNewProductList(int numRecord);
         public IEnumerable<ProductVersionForSaleDto> GetPromotionProductList(int numRecord);
         public ProductVersionForSaleDto GetProductVersionDetail(int id);
-        public IEnumerable<ProductVersionForSaleDto> GetListProductByConditon(int numRecord);
+        public IEnumerable<ProductVersionForSaleDto> GetListProductByConditon(Params param);
 
 
     }
@@ -37,9 +38,16 @@ namespace EShop.Server.Client.Service
             throw new NotImplementedException();
         }
 
-        public IEnumerable<ProductVersionForSaleDto> GetListProductByConditon(int numRecord)
+        public IEnumerable<ProductVersionForSaleDto> GetListProductByConditon(Params param)
         {
-            throw new NotImplementedException();
+            var query = _productVerRepository.GetMulti(x => x.Product.IsActive == true, q => q.Include(x => x.Product)
+                                .ThenInclude(y => y.Catalog)
+                                 .Include(x => x.Product)
+                                 .ThenInclude(y => y.ProductVersions)
+                                 .ThenInclude(z => z.ProductVersionImages)
+                            .Include(x => x.ProductVersionImages));
+            var productsReturn = query.Select(x => _mapper.Map<ProductVersionForSaleDto>(x));
+            return productsReturn.AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
         }
 
         public IEnumerable<ProductVersionForSaleDto> GetNewProductList(int numRecord)
