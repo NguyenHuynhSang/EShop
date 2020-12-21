@@ -16,6 +16,8 @@ namespace EShop.Server.Client.Service
         public IEnumerable<ProductVersionForSaleDto> GetNewProductList(int numRecord);
         public IEnumerable<ProductVersionForSaleDto> GetPromotionProductList(int numRecord);
         public ProductVersionForSaleDto GetProductVersionDetail(int id);
+        public IEnumerable<ProductVersionForSaleDto> GetListProductByConditon(int numRecord);
+
 
     }
 
@@ -31,6 +33,11 @@ namespace EShop.Server.Client.Service
             _mapper = mapper;
         }
         public void GetAllByCategory()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<ProductVersionForSaleDto> GetListProductByConditon(int numRecord)
         {
             throw new NotImplementedException();
         }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EShop.Server.Client.Dtos;
 using EShop.Server.Client.Service;
+using EShop.Server.Extension;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,9 +21,19 @@ namespace EShop.Server.Client.Controller
         }
 
         [HttpGet]
-        public void GetAllProduct()
-        {
 
+        public ActionResult<IEnumerable<ProductVersionForSaleDto>> GetAllProductPaging(string sortBy, SortType sort = SortType.desc, int page = 1, int perPage = 50)
+        {
+            try
+            {
+                //TEST
+                var result = _productClientService.GetListProductByConditon(20);
+                return Ok(PagedList<ProductVersionForSaleDto>.ToPagedList(result, page, perPage));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+            }
         }
 
 
