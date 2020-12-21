@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EShop.Server.Client.Controller
 {
-    [Route("api/client/[controller]/[action]")]
+    [Route("api/client/product/[action]")]
     [ApiController]
     public class ClientProductController : ControllerBase
     {

@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EShop.Server.Client.Controller
 {
-    [Route("api/client/[controller]/[action]")]
+    [Route("api/client/home/[action]")]
     [ApiController]
     public class ClientHomeController : ControllerBase
     {
@@ -63,7 +63,7 @@ namespace EShop.Server.Client.Controller
 
 
         [HttpGet]
-        public ActionResult<Menu> GetMainMenu()
+        public ActionResult<IEnumerable<Menu>> GetMainMenu()
         {
             try
             {

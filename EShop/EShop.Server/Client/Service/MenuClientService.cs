@@ -9,7 +9,7 @@ namespace EShop.Server.Client.Service
 {
     public interface IMenuClientService
     {
-        public Menu GetMenu();
+        public IEnumerable<Menu> GetMenu();
 
     }
     public class MenuClientService : IMenuClientService
@@ -21,9 +21,9 @@ namespace EShop.Server.Client.Service
         {
             _menuRepository = menuRepository;
         }
-        public Menu GetMenu()
+        public IEnumerable<Menu> GetMenu()
         {
-            var result = _menuRepository.GetSingleByCondition(x=>x.MenuGroupId==2 && x.IsActive==true);
+            var result = _menuRepository.GetMulti(x=>x.MenuGroupId==2 && x.IsActive==true);
             return result;
         }
     }
