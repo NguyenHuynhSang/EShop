@@ -15,6 +15,8 @@ namespace EShop.Server.Models
         [Key]
         public int Id { set; get; }
 
+        public string Username { set; get; }
+        public string Password { set; get; }
         public string Name { set; get; }
 
         [Required]

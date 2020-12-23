@@ -70,6 +70,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Client\Dtos\Customer\" />
     <Folder Include="Shared\" />
     <Folder Include="swagger\" />
     <Folder Include="Utility\" />

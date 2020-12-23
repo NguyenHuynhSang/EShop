@@ -54,7 +54,7 @@ namespace EShop.Server.Models
 
         public bool ApplyPromotion { set; get; }
 
-
+     
         public IEnumerable<ProductVersion> ProductVersions { set; get; }
         public DateTime? CreatedDate { get  ; set  ; }
         public string CreatedBy { get  ; set  ; }

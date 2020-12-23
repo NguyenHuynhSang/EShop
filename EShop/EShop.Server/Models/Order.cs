@@ -19,7 +19,14 @@ namespace EShop.Server.Models
         public Customer Customer { set; get; }
 
         public String Note { set; get; }
+        public string Name { set; get; }
 
+        [Required]
+        public string Phone { set; get; }
+
+        public string Address { set; get; }
+
+        public string Email { set; get; }
 
         public DateTime? CreatedDate { get  ; set  ; }
         public string CreatedBy { get  ; set  ; }
