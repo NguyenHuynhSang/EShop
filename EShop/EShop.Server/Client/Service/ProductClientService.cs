@@ -15,6 +15,8 @@ namespace EShop.Server.Client.Service
         public void GetAllByCategory();
         public IEnumerable<string> GetTopSaleList();
         public IEnumerable<ProductVersionForSaleDto> GetNewProductList(int numRecord);
+
+        public IEnumerable<ProductVersionForSaleDto> GetFeatureProductList(int numRecord);
         public IEnumerable<ProductVersionForSaleDto> GetPromotionProductList(int numRecord);
         public ProductVersionForSaleDto GetProductVersionDetail(int id);
         public IEnumerable<ProductVersionForSaleDto> GetListProductByConditon(Params param);
@@ -38,6 +40,21 @@ namespace EShop.Server.Client.Service
             throw new NotImplementedException();
         }
 
+        public IEnumerable<ProductVersionForSaleDto> GetFeatureProductList(int numRecord)
+        {
+            var query = _productVerRepository.GetMulti(x => x.Product.IsActive == true &&x.Quantity!=0, q => q.Include(x => x.Product)
+                                .ThenInclude(y => y.Catalog)
+                               .Include(x => x.Product)
+                                .ThenInclude(x => x.ProductComments)
+                                 .ThenInclude(x => x.Customer)
+                                .Include(x => x.Product)
+                               .ThenInclude(y => y.ProductVersions)
+                               .ThenInclude(z => z.ProductVersionImages)
+                           .Include(x => x.ProductVersionImages));
+            var productsReturn = query.OrderByDescending(x => x.Product.CreatedDate).Select(x => _mapper.Map<ProductVersionForSaleDto>(x)).Take(numRecord);
+            return productsReturn;
+        }
+
         public IEnumerable<ProductVersionForSaleDto> GetListProductByConditon(Params param)
         {
             var query = _productVerRepository.GetMulti(x => x.Product.IsActive == true, q => q.Include(x => x.Product)
@@ -52,7 +69,7 @@ namespace EShop.Server.Client.Service
 
         public IEnumerable<ProductVersionForSaleDto> GetNewProductList(int numRecord)
         {
-            var query = _productVerRepository.GetMulti(x => x.Product.IsActive == true, q => q.Include(x => x.Product)
+            var query = _productVerRepository.GetMulti(x => x.Product.IsActive == true && x.Quantity != 0, q => q.Include(x => x.Product)
                                   .ThenInclude(y => y.Catalog)
                                  .Include(x => x.Product)
                                   .ThenInclude(x => x.ProductComments)

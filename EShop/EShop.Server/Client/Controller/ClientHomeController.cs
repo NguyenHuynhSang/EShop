@@ -92,6 +92,22 @@ namespace EShop.Server.Client.Controller
 
 
         [HttpGet]
+        public ActionResult<IEnumerable<ProductForSaleDto>> GetTopSaleProductList(int count = 20)
+        {
+            try
+            {
+                //TEST
+                var result = _productClientService.GetFeatureProductList(20);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+            }
+        }
+
+
+        [HttpGet]
         public ActionResult<IEnumerable<ProductForSaleDto>> GetTopPromotionProductList(int count = 20)
         {
             try
