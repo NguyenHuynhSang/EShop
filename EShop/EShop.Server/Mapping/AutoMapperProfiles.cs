@@ -12,6 +12,7 @@ using EShop.Server.Dtos.Admin.ProductForList;
 using EShop.Server.Dtos.Admin;
 using EShop.Server.Server.Dtos.ProductForList;
 using EShop.Server.Client.Dtos;
+using EShop.Server.Client.Dtos.Customer;
 
 namespace EShop.Server.Mapping
 {
@@ -97,6 +98,8 @@ namespace EShop.Server.Mapping
             CreateMap<ProductVersion, RelativeProductVersionDto>()
                .ForMember(dest => dest.MainImage, opt => opt.MapFrom(src => src.ProductVersionImages.FirstOrDefault(x => x.IsMain == true).Url));
 
+            CreateMap<Customer, CustomerForViewDto>();
+            CreateMap<ProductComment, ProductCommentDto>();
             CreateMap<ProductVersion, ProductVersionForSaleDto>()
                  .ForMember(dest => dest.MainImage, opt => opt.MapFrom(src => src.ProductVersionImages.Count() > 0 && src.ProductVersionImages.FirstOrDefault(x => x.IsMain == true).Url != "string" ? src.ProductVersionImages.FirstOrDefault(x => x.IsMain == true).Url : @"http://res.cloudinary.com/eshop2020/image/upload/v1608746056/wsrmyveqzxb2p5yloub3.jpg"))
             .ForMember(dest => dest.ProductVersionImages, opt => opt.MapFrom(src => src.ProductVersionImages.Count() > 0 ? src.ProductVersionImages : new List<ProductVersionImage>() { new ProductVersionImage() { IsMain = true, Url = @"http://res.cloudinary.com/eshop2020/image/upload/v1608746056/wsrmyveqzxb2p5yloub3.jpg" } }))

@@ -67,6 +67,9 @@ namespace EShop.Server.Client.Service
             var query = _productVerRepository.GetMulti(null, q => q.Include(x => x.Product)
                                 .ThenInclude(y => y.Catalog)
                                  .Include(x => x.Product)
+                                  .ThenInclude(x => x.ProductComments)
+                                   .ThenInclude(x => x.Customer)
+                                  .Include(x => x.Product)
                                  .ThenInclude(y => y.ProductVersions)
                                  .ThenInclude(z => z.ProductVersionImages)
                             .Include(x => x.ProductVersionImages)).SingleOrDefault(x => x.Id == id && x.Product.IsActive == true);

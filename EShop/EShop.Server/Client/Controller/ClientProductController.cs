@@ -46,12 +46,12 @@ namespace EShop.Server.Client.Controller
    
 
         [HttpGet]
-        public ActionResult<ProductVersionForSaleDto> Detail(int id)
+        public ActionResult<ProductVersionForSaleDto> Detail(int VerId)
         {
             try
             {
                 //TEST
-                var result = _productClientService.GetProductVersionDetail(id);
+                var result = _productClientService.GetProductVersionDetail(VerId);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -59,8 +59,6 @@ namespace EShop.Server.Client.Controller
                 return BadRequest(ex.ToString());
             }
         }
-
-
 
 
     }

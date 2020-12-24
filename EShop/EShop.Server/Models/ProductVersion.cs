@@ -51,6 +51,7 @@ namespace EShop.Server.Models
 
         public IEnumerable<ProductVersionImage> ProductVersionImages { set; get; }
 
+       
 
         
 

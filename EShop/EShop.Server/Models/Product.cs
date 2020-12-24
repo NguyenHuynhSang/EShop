@@ -56,6 +56,7 @@ namespace EShop.Server.Models
 
      
         public IEnumerable<ProductVersion> ProductVersions { set; get; }
+        public IEnumerable<ProductComment> ProductComments { set; get; }
         public DateTime? CreatedDate { get  ; set  ; }
         public string CreatedBy { get  ; set  ; }
         public DateTime? ModifiedDate { get  ; set  ; }
@@ -64,5 +65,6 @@ namespace EShop.Server.Models
         public string SEOUrl { get  ; set  ; }
         public string SEODescription { get  ; set  ; }
         public bool IsActive { get  ; set  ; }
+       
     }
 }

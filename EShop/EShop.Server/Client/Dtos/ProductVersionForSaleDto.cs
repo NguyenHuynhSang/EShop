@@ -1,4 +1,5 @@
-﻿using EShop.Server.Dtos.Admin.ProductForList;
+﻿using EShop.Server.Client.Dtos.Customer;
+using EShop.Server.Dtos.Admin.ProductForList;
 using EShop.Server.Interface;
 using System;
 using System.Collections.Generic;
@@ -49,7 +50,7 @@ namespace EShop.Server.Client.Dtos
 
         public string CatalogName { set; get; }
 
-
+        public int AverageRating { set; get; }
         public string Url { get; set; }
 
         public string Name { get; set; }
@@ -67,5 +68,20 @@ namespace EShop.Server.Client.Dtos
         public string SEODescription { get; set; }
         public DateTime? CreatedDate { get; set; }
 
+        public IEnumerable<ProductCommentDto> ProductComments { set; get; }
+
+
+    }
+
+
+    public class ProductCommentDto
+    {
+        public int Id { set; get; }
+        public CustomerForViewDto Customer { get; private set; }
+        public string Comment { set; get; }
+        public int Rating { set; get; }
+        public bool HasPurchased { set; get; } = false;
+        public DateTime? CreatedDate { get; set; }
+        public bool IsActive { get; set; }
     }
 }
