@@ -753,6 +753,43 @@ namespace EShop.Server.Migrations
                         });
                 });
 
+            modelBuilder.Entity("EShop.Server.Models.ProductComment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("HasPurchased")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductComment");
+                });
+
             modelBuilder.Entity("EShop.Server.Models.ProductVersion", b =>
                 {
                     b.Property<int>("Id")
@@ -1035,6 +1072,21 @@ namespace EShop.Server.Migrations
                     b.HasOne("EShop.Server.Models.ProductCatalog", "Parent")
                         .WithMany("ChildCatalogs")
                         .HasForeignKey("ParentID");
+                });
+
+            modelBuilder.Entity("EShop.Server.Models.ProductComment", b =>
+                {
+                    b.HasOne("EShop.Server.Models.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EShop.Server.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("EShop.Server.Models.ProductVersion", b =>

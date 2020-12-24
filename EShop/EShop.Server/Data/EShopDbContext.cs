@@ -70,6 +70,10 @@ namespace EShop.Server.Data
         public DbSet<Order> Orders { get; set; }
 
         public DbSet<OrderDetail> OrderDetails { get; set; }
+
+
+
+        public DbSet<ProductComment> ProductComments { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder) //Một bảng có 2 khóa chính phải sử dụng fluent API
         {
 

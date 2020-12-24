@@ -1,24 +1,30 @@
-﻿using System;
+﻿using EShop.Server.Models.Interface;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace EShop.Server.Models
 {
-    public class ProductComment
+    [Table("ProductComment")]
+    public class ProductComment : IActiveAble
     {
-        public int id;
-        public int CustomerId;
+        [Key]
+        public int Id { set; get; }
+
+        public int CustomerId { set; get; }
         [ForeignKey("CustomerId")]
         public Customer Customer { get; private set; }
-        public string ProductId { set; get; }
+        public int ProductId { set; get; }
         [ForeignKey("ProductId")]
         public Product Product { get; private set; }
         public string Comment { set; get; }
-        public float Rating { set; get; }
+        [Range(0, 5)]
+        public int Rating { set; get; }
         public bool HasPurchased { set; get; } = false;
         public DateTime? CreatedDate { get; set; }
-
+        public bool IsActive { get; set; } = true;
     }
 }
