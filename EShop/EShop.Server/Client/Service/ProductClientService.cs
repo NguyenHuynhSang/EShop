@@ -53,10 +53,13 @@ namespace EShop.Server.Client.Service
         public IEnumerable<ProductVersionForSaleDto> GetNewProductList(int numRecord)
         {
             var query = _productVerRepository.GetMulti(x => x.Product.IsActive == true, q => q.Include(x => x.Product)
-                                 .ThenInclude(y => y.Catalog)
+                                  .ThenInclude(y => y.Catalog)
+                                 .Include(x => x.Product)
+                                  .ThenInclude(x => x.ProductComments)
+                                   .ThenInclude(x => x.Customer)
                                   .Include(x => x.Product)
-                                  .ThenInclude(y => y.ProductVersions)
-                                  .ThenInclude(z => z.ProductVersionImages)
+                                 .ThenInclude(y => y.ProductVersions)
+                                 .ThenInclude(z => z.ProductVersionImages)
                              .Include(x => x.ProductVersionImages));
             var productsReturn = query.OrderByDescending(x => x.Product.CreatedDate).Select(x => _mapper.Map<ProductVersionForSaleDto>(x)).Take(numRecord);
             return productsReturn;
@@ -81,10 +84,13 @@ namespace EShop.Server.Client.Service
         public IEnumerable<ProductVersionForSaleDto> GetPromotionProductList(int numRecord)
         {
             var query = _productVerRepository.GetMulti(x => x.Product.IsActive == true && x.PromotionPrice > 0, q => q.Include(x => x.Product)
-                                    .ThenInclude(y => y.Catalog)
-                                     .Include(x => x.Product)
-                                     .ThenInclude(y => y.ProductVersions)
-                                     .ThenInclude(z => z.ProductVersionImages)
+                                     .ThenInclude(y => y.Catalog)
+                                 .Include(x => x.Product)
+                                  .ThenInclude(x => x.ProductComments)
+                                   .ThenInclude(x => x.Customer)
+                                  .Include(x => x.Product)
+                                 .ThenInclude(y => y.ProductVersions)
+                                 .ThenInclude(z => z.ProductVersionImages)
                                 .Include(x => x.ProductVersionImages));
             var productsReturn = query.OrderByDescending(x => x.Price - x.PromotionPrice).Select(x => _mapper.Map<ProductVersionForSaleDto>(x)).Take(numRecord);
             return productsReturn;

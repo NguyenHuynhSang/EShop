@@ -92,8 +92,8 @@ namespace EShop.Server.Mapping
 
             CreateMap<Product, ProductForSaleDto>()
                  .ForMember(dest => dest.CatalogId, opt => opt.MapFrom(src => src.Catalog.Id))
-                  .ForMember(dest => dest.CatalogName, opt => opt.MapFrom(src => src.Catalog.Name));
-
+                  .ForMember(dest => dest.CatalogName, opt => opt.MapFrom(src => src.Catalog.Name))
+                            .ForMember(dest => dest.AverageRating, opt => opt.MapFrom(src => src.ProductComments.Count()==0?0:src.ProductComments.Average(x => x.Rating)));
 
             CreateMap<ProductVersion, RelativeProductVersionDto>()
                .ForMember(dest => dest.MainImage, opt => opt.MapFrom(src => src.ProductVersionImages.FirstOrDefault(x => x.IsMain == true).Url));
@@ -103,8 +103,8 @@ namespace EShop.Server.Mapping
             CreateMap<ProductVersion, ProductVersionForSaleDto>()
                  .ForMember(dest => dest.MainImage, opt => opt.MapFrom(src => src.ProductVersionImages.Count() > 0 && src.ProductVersionImages.FirstOrDefault(x => x.IsMain == true).Url != "string" ? src.ProductVersionImages.FirstOrDefault(x => x.IsMain == true).Url : @"http://res.cloudinary.com/eshop2020/image/upload/v1608746056/wsrmyveqzxb2p5yloub3.jpg"))
             .ForMember(dest => dest.ProductVersionImages, opt => opt.MapFrom(src => src.ProductVersionImages.Count() > 0 ? src.ProductVersionImages : new List<ProductVersionImage>() { new ProductVersionImage() { IsMain = true, Url = @"http://res.cloudinary.com/eshop2020/image/upload/v1608746056/wsrmyveqzxb2p5yloub3.jpg" } }))
-                .ForMember(dest => dest.RelativeProductVersions, opt => opt.MapFrom(src => src.Product.ProductVersions.Where(x=>x.Id!=src.Id)));
-
+                .ForMember(dest => dest.RelativeProductVersions, opt => opt.MapFrom(src => src.Product.ProductVersions.Where(x => x.Id != src.Id)));
+                
             CreateMap<ProductCatalog, ProductCatalogForMenuDto>();
 
    
