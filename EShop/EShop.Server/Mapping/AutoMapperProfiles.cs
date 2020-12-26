@@ -99,6 +99,11 @@ namespace EShop.Server.Mapping
                .ForMember(dest => dest.MainImage, opt => opt.MapFrom(src => src.ProductVersionImages.FirstOrDefault(x => x.IsMain == true).Url));
 
             CreateMap<Customer, CustomerForViewDto>();
+            CreateMap<Customer, CustomerForLoginDto>();
+            CreateMap<Customer, CustomerForRegisterDto>();
+            CreateMap<Customer, CustomerForDetailDto>();
+
+
             CreateMap<ProductComment, ProductCommentDto>();
             CreateMap<ProductVersion, ProductVersionForSaleDto>()
                  .ForMember(dest => dest.MainImage, opt => opt.MapFrom(src => src.ProductVersionImages.Count() > 0 && src.ProductVersionImages.FirstOrDefault(x => x.IsMain == true).Url != "string" ? src.ProductVersionImages.FirstOrDefault(x => x.IsMain == true).Url : @"http://res.cloudinary.com/eshop2020/image/upload/v1608746056/wsrmyveqzxb2p5yloub3.jpg"))
