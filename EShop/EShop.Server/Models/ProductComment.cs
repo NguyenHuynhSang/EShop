@@ -14,6 +14,10 @@ namespace EShop.Server.Models
         [Key]
         public int Id { set; get; }
 
+        public int? ParentId { set; get; }
+
+        [ForeignKey("ParentId")]
+        public ProductComment ParentComment { get; set; }
         public int CustomerId { set; get; }
         [ForeignKey("CustomerId")]
         public Customer Customer { get; private set; }
@@ -26,5 +30,6 @@ namespace EShop.Server.Models
         public bool HasPurchased { set; get; } = false;
         public DateTime? CreatedDate { get; set; }
         public bool IsActive { get; set; } = true;
+        public IEnumerable<ProductComment> ChildComments { get; set; }
     }
 }
