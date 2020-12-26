@@ -33,6 +33,11 @@ namespace EShop.Server.Models
         public DateTime? ModifiedDate { get  ; set  ; }
         public string ModifiedBy { get  ; set  ; }
 
+
+        public int OrderStatusId { set; get; }
+        [ForeignKey("OrderStatusId")]
+        public OrderStatus Status { set; get; }
+
         public ICollection<OrderDetail> OrderDetails { set; get; }
     }
 }

@@ -18,13 +18,13 @@ namespace EShop.Server.Client.Controller
 {
     [Route("api/client/[controller]/[action]")]
     [ApiController]
-    public class ClientAuthController : ControllerBase
+    public class ClientCustomerController : ControllerBase
     {
         private readonly ICustomerService _authService;
         private readonly IConfiguration _config;
         private readonly IMapper _mapper;
 
-        public ClientAuthController(ICustomerService authService, IConfiguration config, IMapper mapper)
+        public ClientCustomerController(ICustomerService authService, IConfiguration config, IMapper mapper)
         {
 
             this._config = config;
