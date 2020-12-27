@@ -24,6 +24,9 @@ namespace EShop.Server.Client.Controller
         private readonly IConfiguration _config;
         private readonly IMapper _mapper;
 
+
+        
+
         public ClientCustomerController(ICustomerService authService, IConfiguration config, IMapper mapper)
         {
 
@@ -83,7 +86,8 @@ namespace EShop.Server.Client.Controller
                 {
                 new Claim(ClaimTypes.NameIdentifier, userFromRepo.Id.ToString()),
                 new Claim(ClaimTypes.Name, userFromRepo.Username),
-            };
+                };
+               
 
                 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value));
                 var cred = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
@@ -106,9 +110,31 @@ namespace EShop.Server.Client.Controller
             }
             catch (Exception ex)
             {
-                return NotFound();
+                return BadRequest(ex.ToString());
             }
 
         }
+
+
+        [HttpGet]
+        public ActionResult<CustomerForDetailDto> GetCustomerDetail()
+        {
+            try
+            {
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+                throw;
+            }
+
+
+
+        }
+
+
+
+
     }
 }

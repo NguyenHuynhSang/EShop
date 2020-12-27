@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static EShop.Server.Client.Controller.ClientProductController;
 
 namespace EShop.Server.Client.Service
 {
@@ -19,7 +20,7 @@ namespace EShop.Server.Client.Service
         public IEnumerable<ProductVersionForSaleDto> GetFeatureProductList(int numRecord);
         public IEnumerable<ProductVersionForSaleDto> GetPromotionProductList(int numRecord);
         public ProductVersionForSaleDto GetProductVersionDetail(int id);
-        public IEnumerable<ProductVersionForSaleDto> GetListProductByConditon(Params param);
+        public IEnumerable<ProductVersionForSaleDto> GetListProductByConditon(Params param, ProductForSaleFilter Filter);
 
 
     }
@@ -55,7 +56,7 @@ namespace EShop.Server.Client.Service
             return productsReturn;
         }
 
-        public IEnumerable<ProductVersionForSaleDto> GetListProductByConditon(Params param)
+        public IEnumerable<ProductVersionForSaleDto> GetListProductByConditon(Params param, ProductForSaleFilter filter)
         {
             var query = _productVerRepository.GetMulti(x => x.Product.IsActive == true, q => q.Include(x => x.Product)
                                 .ThenInclude(y => y.Catalog)
@@ -63,6 +64,11 @@ namespace EShop.Server.Client.Service
                                  .ThenInclude(y => y.ProductVersions)
                                  .ThenInclude(z => z.ProductVersionImages)
                             .Include(x => x.ProductVersionImages));
+
+
+            query = query.Where(x => String.IsNullOrEmpty(filter.ProductName) ? true : x.Product.Name.ToLower().Contains(filter.ProductName.ToLower()) )
+                .Where(x => filter.CalalogIds.Count()>0?filter.CalalogIds.Count(y=>y==x.Product.CatalogID)>0:true);
+               
             var productsReturn = query.Select(x => _mapper.Map<ProductVersionForSaleDto>(x));
             return productsReturn.AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
         }
