@@ -26,8 +26,8 @@ namespace EShop.Server.Client.Controller
         public class ProductForSaleFilter
         {
             public string ProductName { set; get; }
-            public string FromPrice { set; get; }
-            public string ToPrice { set; get; }
+            public int? FromPrice { set; get; }
+            public int? ToPrice { set; get; }
             public List<int> CalalogIds { set; get; } = new List<int>();
             public string[] Colors { set; get; }
             public string[] Tags { set; get; }
@@ -35,6 +35,7 @@ namespace EShop.Server.Client.Controller
 
         }
         [HttpPost]
+        [SwaggerOperationCustom(Summary = "[Trang sản phẩm]Lấy ra tất cả phiên bản sản phẩm có phân trang và filter, filter được wrap lại trong form-data,([swagger]-Bỏ CHECK Send empty value với mấy cái array bên dưới)")]
         public ActionResult<IEnumerable<ProductVersionForSaleDto>> GetAllProductPaging([FromForm] ProductForSaleFilter Filter,string sortBy = "Product.CreatedDate", SortType sort = SortType.desc, int page = 1, int perPage = 50)
         {
             try
@@ -54,15 +55,16 @@ namespace EShop.Server.Client.Controller
         }
 
 
-   
 
+
+        [SwaggerOperationCustom(Summary = "[Trang chi tiết sản phẩm]Lấy ra chi tiết phiên bản sản phẩm dựa vào ProductVersionId truyền vào")]
         [HttpGet]
-        public ActionResult<ProductVersionForSaleDto> Detail(int VerId)
+        public ActionResult<ProductVersionForSaleDto> Detail(int ProductVersionId)
         {
             try
             {
                 //TEST
-                var result = _productClientService.GetProductVersionDetail(VerId);
+                var result = _productClientService.GetProductVersionDetail(ProductVersionId);
                 return Ok(result);
             }
             catch (Exception ex)
