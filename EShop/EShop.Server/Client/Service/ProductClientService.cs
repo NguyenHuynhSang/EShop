@@ -66,9 +66,21 @@ namespace EShop.Server.Client.Service
                             .Include(x => x.ProductVersionImages));
 
 
-            query = query.Where(x => String.IsNullOrEmpty(filter.ProductName) ? true : x.Product.Name.ToLower().Contains(filter.ProductName.ToLower()) )
-                .Where(x => filter.CalalogIds.Count()>0?filter.CalalogIds.Count(y=>y==x.Product.CatalogID)>0:true);
-               
+            query = query.Where(x => String.IsNullOrEmpty(filter.ProductName) ? true : x.Product.Name.ToLower().Contains(filter.ProductName.ToLower()))
+                .Where(x => filter.CalalogIds.Count() > 0 ? filter.CalalogIds.Count(y => y == x.Product.CatalogID) > 0 : true);
+            if (filter.FromPrice != null && (filter.ToPrice == null|| filter.ToPrice==0))
+            {
+                query = query.Where(x => x.PromotionPrice != 0 ? x.PromotionPrice >= filter.FromPrice : x.Price >= filter.FromPrice);
+            }
+           else if ((filter.ToPrice != null && filter.ToPrice != 0) && filter.FromPrice == null)
+            {
+                query = query.Where(x => x.PromotionPrice != 0 ? x.PromotionPrice <= filter.ToPrice : x.Price <= filter.ToPrice);
+            }
+
+            else if ((filter.ToPrice != null && filter.ToPrice != 0) && filter.FromPrice != null)
+            {
+                query = query.Where(x => x.PromotionPrice != 0 ? x.PromotionPrice <= filter.ToPrice && x.PromotionPrice>=filter.FromPrice : x.Price <= filter.ToPrice &&x.Price>= filter.FromPrice);
+            }
             var productsReturn = query.Select(x => _mapper.Map<ProductVersionForSaleDto>(x));
             return productsReturn.AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
         }

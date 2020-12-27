@@ -18,7 +18,7 @@ namespace EShop.Server.Client.Controller
         [HttpGet]
         public ActionResult<OrderForCheckOutDto> CheckOut(OrderForCheckOutDto order)
         {
-
+            
 
             return Ok(order);
         }
