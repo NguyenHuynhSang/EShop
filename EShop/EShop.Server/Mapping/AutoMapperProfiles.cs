@@ -13,6 +13,7 @@ using EShop.Server.Dtos.Admin;
 using EShop.Server.Server.Dtos.ProductForList;
 using EShop.Server.Client.Dtos;
 using EShop.Server.Client.Dtos.Customer;
+using EShop.Server.Client.Dtos.Order;
 
 namespace EShop.Server.Mapping
 {
@@ -156,6 +157,10 @@ namespace EShop.Server.Mapping
             CreateMap<Models.Attribute, Models.Attribute>()
                   .ForMember(dest => dest.Id, opt => opt.Ignore());
 
+
+            CreateMap<OrderDetailForCheckOutDto, OrderDetail>();
+            CreateMap<OrderForCheckOutDto, Order>();
+         
 
 
         }

@@ -19,11 +19,12 @@ namespace EShop.Server.Models
         public Customer Customer { set; get; }
 
         public String Note { set; get; }
+        [Required]
         public string Name { set; get; }
 
         [Required]
         public string Phone { set; get; }
-
+        [Required]
         public string Address { set; get; }
 
         public string Email { set; get; }
@@ -38,6 +39,6 @@ namespace EShop.Server.Models
         [ForeignKey("OrderStatusId")]
         public OrderStatus Status { set; get; }
 
-        public ICollection<OrderDetail> OrderDetails { set; get; }
+        public IEnumerable<OrderDetail> OrderDetails { set; get; }
     }
 }

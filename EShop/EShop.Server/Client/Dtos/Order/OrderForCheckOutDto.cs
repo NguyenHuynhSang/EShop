@@ -9,8 +9,9 @@ namespace EShop.Server.Client.Dtos.Order
     public class OrderForCheckOutDto
     {
 
-        [Required]
+     
         public int CustomerId { set; get; }
+
 
         public String Note { set; get; }
         [Required]
@@ -30,8 +31,8 @@ namespace EShop.Server.Client.Dtos.Order
     {
         [Required]
         public int ProductVersionId { set; get; }
-     
-     
+
+
         [Required]
         public int Quantity { set; get; }
 
@@ -39,7 +40,5 @@ namespace EShop.Server.Client.Dtos.Order
         public decimal Price { set; get; }
 
 
-        [Required]
-        public int OrderId { set; get; }
     }
 }
