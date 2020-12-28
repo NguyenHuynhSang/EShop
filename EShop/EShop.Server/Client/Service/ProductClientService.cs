@@ -53,7 +53,7 @@ namespace EShop.Server.Client.Service
                                .ThenInclude(y => y.ProductVersions)
                                .ThenInclude(z => z.ProductVersionImages)
                            .Include(x => x.ProductVersionImages));
-            var productsReturn = query.OrderByDescending(x => x.Product.CreatedDate).Select(x => _mapper.Map<ProductVersionForSaleDto>(x)).Take(numRecord);
+            var productsReturn = query.OrderByDescending(x => x.TotalSold).Select(x => _mapper.Map<ProductVersionForSaleDto>(x)).Take(numRecord);
             return productsReturn;
         }
 

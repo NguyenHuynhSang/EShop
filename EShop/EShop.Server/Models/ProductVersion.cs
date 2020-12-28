@@ -37,7 +37,8 @@ namespace EShop.Server.Models
         [Column(TypeName = "decimal(18,0)")]
         public decimal? PromotionPrice { set; get; }
 
-        
+        public int TotalSold { set; get; }
+
         public int Quantity { set; get; }
 
         [MaxLength(250)]

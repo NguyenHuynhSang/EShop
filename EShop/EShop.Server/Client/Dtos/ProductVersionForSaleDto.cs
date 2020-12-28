@@ -20,7 +20,7 @@ namespace EShop.Server.Client.Dtos
         public decimal Price { set; get; }
         public decimal? PromotionPrice { set; get; }
         public int Quantity { set; get; }
-
+        public int TotalSold { set; get; }
         public string SKU { set; get; }
 
         public string Barcode { set; get; }
@@ -49,7 +49,7 @@ namespace EShop.Server.Client.Dtos
         public int CatalogId { set; get; }
 
         public string CatalogName { set; get; }
-
+     
         public int AverageRating { set; get; }
         public string Url { get; set; }
 
