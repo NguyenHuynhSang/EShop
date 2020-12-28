@@ -22,8 +22,9 @@ namespace EShop.Server.Models
         public string ModifiedBy { get; set; }
         public DateTime? ModifiedDate { get; set; }
 
+        public string Subtitle { set; get; }
         public string Title { set; get; }
-        public string ButtonText { set; get; }
+        public string BtnText { set; get; }
 
         public int SlideGroupId { set; get; }
         [ForeignKey("SlideGroupId")]

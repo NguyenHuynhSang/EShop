@@ -20,6 +20,7 @@ namespace EShop.Server.Client.Service
         public IEnumerable<ProductVersionForSaleDto> GetFeatureProductList(int numRecord);
         public IEnumerable<ProductVersionForSaleDto> GetPromotionProductList(int numRecord);
         public ProductVersionForSaleDto GetProductVersionDetail(int id);
+        public ProductVersionForSaleDto GetProductDetail(int id);
         public IEnumerable<ProductVersionForSaleDto> GetListProductByConditon(Params param, ProductForSaleFilter Filter);
 
 
@@ -66,20 +67,20 @@ namespace EShop.Server.Client.Service
                             .Include(x => x.ProductVersionImages));
 
 
-            query = query.Where(x => String.IsNullOrEmpty(filter.ProductName) ? true : x.Product.Name.ToLower().Contains(filter.ProductName.ToLower()))
+            query = query.Where(x => String.IsNullOrEmpty(filter.Keyword) ? true : x.Product.Name.ToLower().Contains(filter.Keyword.ToLower()))
                 .Where(x => filter.CalalogIds.Count() > 0 ? filter.CalalogIds.Count(y => y == x.Product.CatalogID) > 0 : true);
-            if (filter.FromPrice != null && (filter.ToPrice == null|| filter.ToPrice==0))
+            if (filter.MinPrice != null && (filter.MaxPrice == null|| filter.MaxPrice==0))
             {
-                query = query.Where(x => x.PromotionPrice != 0 ? x.PromotionPrice >= filter.FromPrice : x.Price >= filter.FromPrice);
+                query = query.Where(x => x.PromotionPrice != 0 ? x.PromotionPrice >= filter.MinPrice : x.Price >= filter.MinPrice);
             }
-           else if ((filter.ToPrice != null && filter.ToPrice != 0) && filter.FromPrice == null)
+           else if ((filter.MaxPrice != null && filter.MaxPrice != 0) && filter.MinPrice == null)
             {
-                query = query.Where(x => x.PromotionPrice != 0 ? x.PromotionPrice <= filter.ToPrice : x.Price <= filter.ToPrice);
+                query = query.Where(x => x.PromotionPrice != 0 ? x.PromotionPrice <= filter.MaxPrice : x.Price <= filter.MaxPrice);
             }
 
-            else if ((filter.ToPrice != null && filter.ToPrice != 0) && filter.FromPrice != null)
+            else if ((filter.MaxPrice != null && filter.MaxPrice != 0) && filter.MinPrice != null)
             {
-                query = query.Where(x => x.PromotionPrice != 0 ? x.PromotionPrice <= filter.ToPrice && x.PromotionPrice>=filter.FromPrice : x.Price <= filter.ToPrice &&x.Price>= filter.FromPrice);
+                query = query.Where(x => x.PromotionPrice != 0 ? x.PromotionPrice <= filter.MaxPrice && x.PromotionPrice>=filter.MinPrice : x.Price <= filter.MaxPrice &&x.Price>= filter.MinPrice);
             }
             var productsReturn = query.Select(x => _mapper.Map<ProductVersionForSaleDto>(x));
             return productsReturn.AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
@@ -97,6 +98,26 @@ namespace EShop.Server.Client.Service
                                  .ThenInclude(z => z.ProductVersionImages)
                              .Include(x => x.ProductVersionImages));
             var productsReturn = query.OrderByDescending(x => x.Product.CreatedDate).Select(x => _mapper.Map<ProductVersionForSaleDto>(x)).Take(numRecord);
+            return productsReturn;
+        }
+
+        public ProductVersionForSaleDto GetProductDetail(int id)
+        {
+            var query = _productVerRepository.GetMulti(null, q => q.Include(x => x.Product)
+                              .ThenInclude(y => y.Catalog)
+                               .Include(x => x.Product)
+                                .ThenInclude(x => x.ProductComments)
+                                 .ThenInclude(x => x.Customer)
+                                  .Include(x => x.Product)
+                                  .ThenInclude(x => x.ProductComments)
+                                .ThenInclude(x => x.ChildComments)
+                                 .ThenInclude(x => x.Customer)
+                                .Include(x => x.Product)
+                               .ThenInclude(y => y.ProductVersions)
+                               .ThenInclude(z => z.ProductVersionImages)
+                          .Include(x => x.ProductVersionImages)).SingleOrDefault(x => x.Product.Id == id && x.Product.IsActive == true);
+            var productsReturn = _mapper.Map<ProductVersionForSaleDto>(query);
+
             return productsReturn;
         }
 
