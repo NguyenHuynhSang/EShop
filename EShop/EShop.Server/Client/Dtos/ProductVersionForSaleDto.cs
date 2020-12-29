@@ -14,9 +14,6 @@ namespace EShop.Server.Client.Dtos
 
         public ProductForSaleDto Product { set; get; }
         public int Id { set; get; }
-
-        public string Description { set; get; }
-
         public decimal Price { set; get; }
         public decimal? PromotionPrice { set; get; }
         public int Quantity { set; get; }

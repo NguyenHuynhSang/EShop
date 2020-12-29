@@ -44,6 +44,7 @@ namespace EShop.Server.Models
 
         public string Description { set; get; }
 
+        public string AddtitionalInformation { set; get; }
         public int Weight { set; get; }
 
         [Column(TypeName = "decimal(18,0)")]

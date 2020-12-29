@@ -25,9 +25,7 @@ namespace EShop.Server.Models
 
         
 
-        [MaxLength(500)]
-        public string Description { set; get; }
-
+      
 
         [Column(TypeName = "decimal(18,0)")]
         [Required]
