@@ -113,7 +113,8 @@ namespace EShop.Server.Mapping
             CreateMap<Customer, CustomerForDetailDto>();
 
 
-            CreateMap<ProductComment, ProductCommentDto>();
+            CreateMap<ProductComment, ProductCommentDto>()
+                 .ForMember(dest => dest.CustomerName, opt => opt.MapFrom(src => src.Customer.Name));
             CreateMap<ProductVersion, ProductVersionForSaleDto>()
                  .ForMember(dest => dest.MainImage, opt => opt.MapFrom(src => src.ProductVersionImages.Count() > 0 && src.ProductVersionImages.FirstOrDefault(x => x.IsMain == true).Url != "string" ? src.ProductVersionImages.FirstOrDefault(x => x.IsMain == true).Url : @"http://res.cloudinary.com/eshop2020/image/upload/v1608746056/wsrmyveqzxb2p5yloub3.jpg"))
             .ForMember(dest => dest.ProductVersionImages, opt => opt.MapFrom(src => src.ProductVersionImages.Count() > 0 ? src.ProductVersionImages : new List<ProductVersionImage>() { new ProductVersionImage() { IsMain = true, Url = @"http://res.cloudinary.com/eshop2020/image/upload/v1608746056/wsrmyveqzxb2p5yloub3.jpg" } }))

@@ -75,7 +75,7 @@ namespace EShop.Server.Client.Dtos
     {
         public int Id { set; get; }
     
-        public CustomerForViewDto Customer { get; private set; }
+        public string CustomerName { set; get; }
         public string Comment { set; get; }
         public int Rating { set; get; }
         public bool HasPurchased { set; get; } = false;
