@@ -27,6 +27,12 @@ namespace EShop.Server.Models
         public string Comment { set; get; }
         [Range(0, 5)]
         public int Rating { set; get; }
+
+        public int Helpful { set; get; }
+        public int UnHelpful { set; get; }
+        public string Title { set; get; }
+        public int FromDay { set; get; }
+
         public bool HasPurchased { set; get; } = false;
         public DateTime? CreatedDate { get; set; }
         public bool IsActive { get; set; } = true;

@@ -79,10 +79,13 @@ namespace EShop.Server.Client.Dtos
         public string Comment { set; get; }
         public int Rating { set; get; }
         public bool HasPurchased { set; get; } = false;
-        public DateTime? CreatedDate { get; set; }
-        public bool IsActive { get; set; }
 
-        public  IEnumerable<ProductCommentDto> ChildComments { get; set; }
+
+        public int Helpful { set; get; }
+        public int UnHelpful { set; get; }
+        
+        public string Title { set; get; }
+        public int FromDay { set; get; }
 
     }
 }
