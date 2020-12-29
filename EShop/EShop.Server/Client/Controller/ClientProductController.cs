@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EShop.Server.Client.Dtos;
+using EShop.Server.Client.Dtos.Customer;
 using EShop.Server.Client.Service;
 using EShop.Server.Extension;
 using Microsoft.AspNetCore.Http;
@@ -74,6 +75,21 @@ namespace EShop.Server.Client.Controller
             }
         }
 
+
+        [HttpGet]
+        public ActionResult<IEnumerable<ProductVersionRelatedDto>> GetProductVerListByCatalog(int CatalogId )
+        {
+            try
+            {
+                //TEST
+                var result = _productClientService.GetProductListByCatalogId(CatalogId);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+            }
+        }
         //[HttpGet("{ProductId}")]
 
         //public ActionResult<ProductVersionForSaleDto> ProductDetail(int ProductId)

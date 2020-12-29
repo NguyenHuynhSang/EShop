@@ -96,6 +96,14 @@ namespace EShop.Server.Mapping
                   .ForMember(dest => dest.CatalogName, opt => opt.MapFrom(src => src.Catalog.Name))
                             .ForMember(dest => dest.AverageRating, opt => opt.MapFrom(src => src.ProductComments.Count()==0?0:src.ProductComments.Average(x => x.Rating)));
 
+
+            CreateMap<Product, ProductRelatedDto>();
+            CreateMap<ProductVersion, ProductVersionRelatedDto>()
+                  .ForMember(dest => dest.MainImage, opt => opt.MapFrom(src => src.ProductVersionImages.Count() > 0 && src.ProductVersionImages.FirstOrDefault(x => x.IsMain == true).Url != "string" ? src.ProductVersionImages.FirstOrDefault(x => x.IsMain == true).Url : @"http://res.cloudinary.com/eshop2020/image/upload/v1608746056/wsrmyveqzxb2p5yloub3.jpg"));
+
+
+
+
             CreateMap<ProductVersion, RelativeProductVersionDto>()
                .ForMember(dest => dest.MainImage, opt => opt.MapFrom(src => src.ProductVersionImages.FirstOrDefault(x => x.IsMain == true).Url));
 

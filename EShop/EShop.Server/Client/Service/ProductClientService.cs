@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using EShop.Server.Client.Dtos;
+using EShop.Server.Client.Dtos.Customer;
 using EShop.Server.Extension;
 using EShop.Server.Repository;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,8 @@ namespace EShop.Server.Client.Service
 
         public IEnumerable<ProductVersionForSaleDto> GetFeatureProductList(int numRecord);
         public IEnumerable<ProductVersionForSaleDto> GetPromotionProductList(int numRecord);
+        public IEnumerable<ProductVersionRelatedDto> GetProductListByCatalogId(int CatalogId);
+        
         public ProductVersionForSaleDto GetProductVersionDetail(int id);
         public ProductVersionForSaleDto GetProductDetail(int id);
         public IEnumerable<ProductVersionForSaleDto> GetListProductByConditon(Params param, ProductForSaleFilter Filter);
@@ -118,6 +121,15 @@ namespace EShop.Server.Client.Service
                           .Include(x => x.ProductVersionImages)).SingleOrDefault(x => x.Product.Id == id && x.Product.IsActive == true);
             var productsReturn = _mapper.Map<ProductVersionForSaleDto>(query);
 
+            return productsReturn;
+        }
+
+        public IEnumerable<ProductVersionRelatedDto> GetProductListByCatalogId(int CatalogId)
+        {
+            var query = _productVerRepository.GetMulti(x => x.Product.IsActive == true && x.Quantity != 0 && x.Product.CatalogID == CatalogId, q => q.Include(x => x.Product)
+                                .ThenInclude(y => y.Catalog)
+                               .Include(x => x.ProductVersionImages));
+            var productsReturn = query.OrderByDescending(x => x.Product.CreatedDate).Select(x => _mapper.Map<ProductVersionRelatedDto>(x));
             return productsReturn;
         }
 
