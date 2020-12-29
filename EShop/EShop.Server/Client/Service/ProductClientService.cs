@@ -20,7 +20,7 @@ namespace EShop.Server.Client.Service
 
         public IEnumerable<ProductVersionForSaleDto> GetFeatureProductList(int numRecord);
         public IEnumerable<ProductVersionForSaleDto> GetPromotionProductList(int numRecord);
-        public IEnumerable<ProductVersionRelatedDto> GetProductListByCatalogId(int CatalogId);
+        public IEnumerable<ProductVersionRelatedDto> GetProductListByCatalog(int CatalogId);
         
         public ProductVersionForSaleDto GetProductVersionDetail(int id);
         public ProductVersionForSaleDto GetProductDetail(int id);
@@ -124,9 +124,11 @@ namespace EShop.Server.Client.Service
             return productsReturn;
         }
 
-        public IEnumerable<ProductVersionRelatedDto> GetProductListByCatalogId(int CatalogId)
+        public IEnumerable<ProductVersionRelatedDto> GetProductListByCatalog(int verId)
         {
-            var query = _productVerRepository.GetMulti(x => x.Product.IsActive == true && x.Quantity != 0 && x.Product.CatalogID == CatalogId, q => q.Include(x => x.Product)
+            var currentVer = _productVerRepository.GetSingleByCondition(x => x.Id == verId,
+                q => q.Include(q => q.Product));
+            var query = _productVerRepository.GetMulti(x => x.Product.IsActive == true && x.Quantity != 0 && x.Product.CatalogID == currentVer.Product.CatalogID && x.Product.Id!=currentVer.Product.Id, q => q.Include(x => x.Product)
                                 .ThenInclude(y => y.Catalog)
                                .Include(x => x.ProductVersionImages));
             var productsReturn = query.OrderByDescending(x => x.Product.CreatedDate).Select(x => _mapper.Map<ProductVersionRelatedDto>(x));

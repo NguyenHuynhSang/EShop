@@ -77,12 +77,12 @@ namespace EShop.Server.Client.Controller
 
 
         [HttpGet]
-        public ActionResult<IEnumerable<ProductVersionRelatedDto>> GetProductVerListByCatalog(int CatalogId )
+        public ActionResult<IEnumerable<ProductVersionRelatedDto>> GetRelatedVersionInSameCatalog(int ProductVersionId )
         {
             try
             {
                 //TEST
-                var result = _productClientService.GetProductListByCatalogId(CatalogId);
+                var result = _productClientService.GetProductListByCatalog(ProductVersionId);
                 return Ok(result);
             }
             catch (Exception ex)
