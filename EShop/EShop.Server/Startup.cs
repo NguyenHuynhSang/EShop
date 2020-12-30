@@ -118,7 +118,7 @@ namespace EShop.Server
 
             services.AddScoped<IProductAttributeRepository, ProductAttributeRepository>();
             services.AddScoped<IProductAttributeService, ProductAttributeService>();
-
+          
 
 
             services.AddScoped<IExchangeRateRepository, ExchangeRateRepository>();
@@ -126,6 +126,7 @@ namespace EShop.Server
 
 
             services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IOrderClientService, OrderClientService>();
 
             services.AddScoped<ICustomerRepository, CustomerRepository>();
@@ -136,8 +137,10 @@ namespace EShop.Server
             services.AddScoped<IMenuClientService, MenuClientService>();
 
 
+           
 
-            
+
+
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer((options) =>
             {
