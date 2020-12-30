@@ -175,7 +175,7 @@ namespace EShop.Server.Client.Service
         {
             var currentVer = _productVerRepository.GetSingleByCondition(x => x.Id == productVersionId,
                q => q.Include(q => q.Product));
-            var query = _productVerRepository.GetMulti(x => x.Product.IsActive == true && x.Quantity != 0&& x.Product.Id != currentVer.Product.Id, q => q.Include(x => x.Product)
+            var query = _productVerRepository.GetMulti(x => x.Product.IsActive == true && x.Quantity != 0&& x.Product.Id != currentVer.Product.Id && x.Product.CatalogID != currentVer.Product.CatalogID, q => q.Include(x => x.Product)
                                   .ThenInclude(y => y.Catalog)
                                  .Include(x => x.ProductVersionImages));
             var productsReturn = query.OrderByDescending(x => Guid.NewGuid()).Select(x => _mapper.Map<ProductVersionRelatedDto>(x));
