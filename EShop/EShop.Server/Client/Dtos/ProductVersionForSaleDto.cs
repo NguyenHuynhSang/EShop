@@ -35,6 +35,7 @@ namespace EShop.Server.Client.Dtos
         public int Id { set; get; }
         public string Name { set; get; }
         public string MainImage { set; get; }
+        public IEnumerable<ProductVersionImageDto> ProductVersionImages { set; get; }
     }
 
 

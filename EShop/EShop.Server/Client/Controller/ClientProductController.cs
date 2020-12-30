@@ -82,7 +82,23 @@ namespace EShop.Server.Client.Controller
             try
             {
                 //TEST
-                var result = _productClientService.GetProductListByCatalog(ProductVersionId);
+                var result = _productClientService.GetProductListByVer(ProductVersionId);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+            }
+        }
+
+
+        [HttpGet]
+        public ActionResult<IEnumerable<ProductVersionRelatedDto>> GetRecommendedVersionList(int ProductVersionId)
+        {
+            try
+            {
+                //TEST
+                var result = _productClientService.GetRecommendProductList(ProductVersionId);
                 return Ok(result);
             }
             catch (Exception ex)

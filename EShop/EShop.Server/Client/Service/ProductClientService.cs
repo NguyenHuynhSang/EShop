@@ -20,8 +20,9 @@ namespace EShop.Server.Client.Service
 
         public IEnumerable<ProductVersionForSaleDto> GetFeatureProductList(int numRecord);
         public IEnumerable<ProductVersionForSaleDto> GetPromotionProductList(int numRecord);
-        public IEnumerable<ProductVersionRelatedDto> GetProductListByCatalog(int CatalogId);
-        
+        public IEnumerable<ProductVersionRelatedDto> GetProductListByVer(int Verid);
+        public IEnumerable<ProductVersionRelatedDto> GetRecommendProductList(int productVersionId);
+
         public ProductVersionForSaleDto GetProductVersionDetail(int id);
         public ProductVersionForSaleDto GetProductDetail(int id);
         public IEnumerable<ProductVersionForSaleDto> GetListProductByConditon(Params param, ProductForSaleFilter Filter);
@@ -124,7 +125,7 @@ namespace EShop.Server.Client.Service
             return productsReturn;
         }
 
-        public IEnumerable<ProductVersionRelatedDto> GetProductListByCatalog(int verId)
+        public IEnumerable<ProductVersionRelatedDto> GetProductListByVer(int verId)
         {
             var currentVer = _productVerRepository.GetSingleByCondition(x => x.Id == verId,
                 q => q.Include(q => q.Product));
@@ -168,6 +169,17 @@ namespace EShop.Server.Client.Service
                                 .Include(x => x.ProductVersionImages));
             var productsReturn = query.OrderByDescending(x => x.Price - x.PromotionPrice).Select(x => _mapper.Map<ProductVersionForSaleDto>(x)).Take(numRecord);
             return productsReturn;
+        }
+
+        public IEnumerable<ProductVersionRelatedDto> GetRecommendProductList(int productVersionId)
+        {
+            var currentVer = _productVerRepository.GetSingleByCondition(x => x.Id == productVersionId,
+               q => q.Include(q => q.Product));
+            var query = _productVerRepository.GetMulti(x => x.Product.IsActive == true && x.Quantity != 0&& x.Product.Id != currentVer.Product.Id, q => q.Include(x => x.Product)
+                                  .ThenInclude(y => y.Catalog)
+                                 .Include(x => x.ProductVersionImages));
+            var productsReturn = query.OrderByDescending(x => Guid.NewGuid()).Select(x => _mapper.Map<ProductVersionRelatedDto>(x));
+            return productsReturn.Take(20);
         }
 
         public IEnumerable<string> GetTopSaleList()

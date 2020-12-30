@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EShop.Server.Dtos.Admin.ProductForList;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ namespace EShop.Server.Client.Dtos.Customer
         public decimal Price { set; get; }
         public decimal? PromotionPrice { set; get; }
         public string MainImage { set; get; }
+        public IEnumerable<ProductVersionImageDto> ProductVersionImages { set; get; }
         public ProductRelatedDto Product { set; get; }
     }
 
