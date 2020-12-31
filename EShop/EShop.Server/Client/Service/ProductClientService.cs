@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using EShop.Server.Client.Dtos;
+using EShop.Server.Client.Dtos.Catalog;
 using EShop.Server.Client.Dtos.Customer;
 using EShop.Server.Extension;
 using EShop.Server.Repository;
@@ -14,7 +15,7 @@ namespace EShop.Server.Client.Service
 {
     public interface IProductClientService
     {
-        public void GetAllByCategory();
+       
         public IEnumerable<string> GetTopSaleList();
         public IEnumerable<ProductVersionForSaleDto> GetNewProductList(int numRecord);
 
@@ -27,23 +28,29 @@ namespace EShop.Server.Client.Service
         public ProductVersionForSaleDto GetProductDetail(int id);
         public IEnumerable<ProductVersionForSaleDto> GetListProductByConditon(Params param, ProductForSaleFilter Filter);
 
-
+        public IEnumerable<CatalogForFilterDto> GetCatalogsForFilter();
     }
 
     public class ProductClientService : IProductClientService
     {
         private readonly IProductRepository _productRepository;
+        private readonly ICatalogRepository _catalogRepository;
         private readonly IProductVersionRepository _productVerRepository;
         private readonly IMapper _mapper;
-        public ProductClientService(IProductRepository productRepository, IProductVersionRepository productVersionRepository, IMapper mapper)
+        public ProductClientService(IProductRepository productRepository, ICatalogRepository catalogRepository, IProductVersionRepository productVersionRepository, IMapper mapper)
         {
             _productRepository = productRepository;
             _productVerRepository = productVersionRepository;
+            _catalogRepository = catalogRepository;
             _mapper = mapper;
         }
-        public void GetAllByCategory()
+      
+
+        public IEnumerable<CatalogForFilterDto> GetCatalogsForFilter()
         {
-            throw new NotImplementedException();
+            var query = _catalogRepository.GetMulti(x=>x.ParentID!=null);
+            var result = query.Select(x => _mapper.Map<CatalogForFilterDto>(x));
+            return result.OrderBy(x=>x.Name);
         }
 
         public IEnumerable<ProductVersionForSaleDto> GetFeatureProductList(int numRecord)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EShop.Server.Client.Dtos;
+using EShop.Server.Client.Dtos.Catalog;
 using EShop.Server.Client.Dtos.Customer;
 using EShop.Server.Client.Service;
 using EShop.Server.Extension;
@@ -58,7 +59,7 @@ namespace EShop.Server.Client.Controller
 
         [HttpGet]
         [SwaggerOperationCustom(Summary = "[Trang sản phẩm]Lấy ra tất cả phiên bản sản phẩm có phân trang và filter")]
-        public ActionResult<IEnumerable<ProductVersionForSaleDto>> GetAllProductPaging(string keyword,int? MinPrice,int? MaxPrice, [FromQuery] int[] catalogIds, [FromQuery] string[] Colors, [FromQuery] string[] Sizes, [FromQuery] string[] Tags, string sortBy = "Product.CreatedDate", SortType sort = SortType.desc, int page = 1, int perPage = 50)
+        public ActionResult<IEnumerable<ProductVersionForSaleDto>> GetAllProductVersionPaging(string keyword,int? MinPrice,int? MaxPrice, [FromQuery] int[] CatalogIds, [FromQuery] string[] Colors, [FromQuery] string[] Sizes, [FromQuery] string[] Tags, string sortBy = "Product.CreatedDate", SortType sort = SortType.desc, int page = 1, int perPage = 50)
         {
             try
             {
@@ -68,7 +69,7 @@ namespace EShop.Server.Client.Controller
                 param.perPage = perPage;
                 param.page = page;
                 ProductForSaleFilter filter = new ProductForSaleFilter();
-                filter.CalalogIds = catalogIds;
+                filter.CalalogIds = CatalogIds;
                 filter.Colors = Colors;
                 filter.Keyword = keyword;
                 filter.MinPrice = MinPrice;
@@ -83,8 +84,20 @@ namespace EShop.Server.Client.Controller
             }
         }
 
-
-
+        [HttpGet]
+        public ActionResult<CatalogForFilterDto> GetCatalogListForFilter()
+        {
+            try
+            {
+                //TEST
+                var result = _productClientService.GetCatalogsForFilter();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+            }
+        }
 
         [SwaggerOperationCustom(Summary = "[Trang chi tiết sản phẩm]Lấy ra chi tiết phiên bản sản phẩm dựa vào ProductVersionId truyền vào")]
         [HttpGet("{ProductVersionId}")]
