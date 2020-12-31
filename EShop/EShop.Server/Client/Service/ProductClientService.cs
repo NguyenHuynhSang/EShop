@@ -78,11 +78,13 @@ namespace EShop.Server.Client.Service
                                  .Include(x => x.Product)
                                  .ThenInclude(y => y.ProductVersions)
                                  .ThenInclude(z => z.ProductVersionImages)
-                            .Include(x => x.ProductVersionImages));
+                            .Include(x => x.ProductVersionImages)
+                                .Include(x => x.ProductVersionAttributes));
 
 
             query = query.Where(x => String.IsNullOrEmpty(filter.Keyword) ? true : x.Product.Name.ToLower().Contains(filter.Keyword.ToLower()))
-                .Where(x => filter.CalalogIds.Count() > 0 ? filter.CalalogIds.Count(y => y == x.Product.CatalogID) > 0 : true);
+                .Where(x => filter.CalalogIds.Count() > 0 ? filter.CalalogIds.Count(y => y == x.Product.CatalogID) > 0 : true)
+              .Where(x => filter.Size.Count() > 0 ? filter.Size.Any(y=>x.ProductVersionAttributes.Any(z=>z.AttributeValueID==y)) : true);
             if (filter.MinPrice != null && (filter.MaxPrice == null || filter.MaxPrice == 0))
             {
                 query = query.Where(x => x.PromotionPrice != 0 ? x.PromotionPrice >= filter.MinPrice : x.Price >= filter.MinPrice);

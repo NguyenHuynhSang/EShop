@@ -33,7 +33,7 @@ namespace EShop.Server.Client.Controller
             public int[] CalalogIds { set; get; }
             public string[] Colors { set; get; }
             public string[] Tags { set; get; }
-            public string[] Size { set; get; }
+            public int[] Size { set; get; }
 
         }
         //[HttpPost]
@@ -59,7 +59,7 @@ namespace EShop.Server.Client.Controller
 
         [HttpGet]
         [SwaggerOperationCustom(Summary = "[Trang sản phẩm]Lấy ra tất cả phiên bản sản phẩm có phân trang và filter")]
-        public ActionResult<IEnumerable<ProductVersionForSaleDto>> GetAllProductVersionPaging(string keyword,int? MinPrice,int? MaxPrice, [FromQuery] int[] CatalogIds, [FromQuery] string[] Colors, [FromQuery] string[] Sizes, [FromQuery] string[] Tags, string sortBy = "Product.CreatedDate", SortType sort = SortType.desc, int page = 1, int perPage = 50)
+        public ActionResult<IEnumerable<ProductVersionForSaleDto>> GetAllProductVersionPaging(string keyword,int? MinPrice,int? MaxPrice, [FromQuery] int[] CatalogIds, [FromQuery] string[] Colors, [FromQuery] int[] Sizes, [FromQuery] string[] Tags, string sortBy = "Product.CreatedDate", SortType sort = SortType.desc, int page = 1, int perPage = 50)
         {
             try
             {
@@ -73,6 +73,7 @@ namespace EShop.Server.Client.Controller
                 filter.Colors = Colors;
                 filter.Keyword = keyword;
                 filter.MinPrice = MinPrice;
+                filter.Size = Sizes;
                 filter.MaxPrice = MaxPrice;
                 filter.Tags = Tags;
                 var result = _productClientService.GetListProductByConditon(param, filter);
