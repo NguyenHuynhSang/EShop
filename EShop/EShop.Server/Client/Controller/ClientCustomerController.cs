@@ -89,6 +89,7 @@ namespace EShop.Server.Client.Controller
                 };
                
 
+
                 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value));
                 var cred = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
                 var tokenDescriptor = new SecurityTokenDescriptor

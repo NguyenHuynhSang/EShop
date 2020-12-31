@@ -21,23 +21,44 @@ namespace EShop.Server.Client.Controller
             _productClientService = productClientService;
         }
 
-     
+
 
 
         public class ProductForSaleFilter
         {
-            public string ProductName { set; get; }
-            public int? FromPrice { set; get; }
-            public int? ToPrice { set; get; }
-            public List<int> CalalogIds { set; get; } = new List<int>();
+            public string Keyword { set; get; }
+            public int? MinPrice { set; get; }
+            public int? MaxPrice { set; get; }
+            public int[] CalalogIds { set; get; }
             public string[] Colors { set; get; }
             public string[] Tags { set; get; }
             public string[] Size { set; get; }
 
         }
-        [HttpPost]
-        [SwaggerOperationCustom(Summary = "[Trang sản phẩm]Lấy ra tất cả phiên bản sản phẩm có phân trang và filter, filter được wrap lại trong form-data,([swagger]-Bỏ CHECK Send empty value với mấy cái array bên dưới)")]
-        public ActionResult<IEnumerable<ProductVersionForSaleDto>> GetAllProductPaging([FromForm] ProductForSaleFilter Filter,string sortBy = "Product.CreatedDate", SortType sort = SortType.desc, int page = 1, int perPage = 50)
+        //[HttpPost]
+        //[SwaggerOperationCustom(Summary = "[Trang sản phẩm]Lấy ra tất cả phiên bản sản phẩm có phân trang và filter, filter được wrap lại trong form-data,([swagger]-Bỏ CHECK Send empty value với mấy cái array bên dưới)")]
+        //public ActionResult<IEnumerable<ProductVersionForSaleDto>> GetAllProductPagingV2([FromForm] ProductForSaleFilter Filter, string sortBy = "Product.CreatedDate", SortType sort = SortType.desc, int page = 1, int perPage = 50)
+        //{
+        //    try
+        //    {
+        //        Params param = new Params();
+        //        param.sortBy = sortBy;
+        //        param.sort = sort;
+        //        param.perPage = perPage;
+        //        param.page = page;
+        //        var result = _productClientService.GetListProductByConditon(param, Filter);
+        //        return Ok(PagedList<ProductVersionForSaleDto>.ToPagedList(result, page, perPage));
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest(ex.ToString());
+        //    }
+        //}
+
+
+        [HttpGet]
+        [SwaggerOperationCustom(Summary = "[Trang sản phẩm]Lấy ra tất cả phiên bản sản phẩm có phân trang và filter")]
+        public ActionResult<IEnumerable<ProductVersionForSaleDto>> GetAllProductPaging(string keyword,int? MinPrice,int? MaxPrice, [FromQuery] int[] catalogIds, [FromQuery] string[] Colors, [FromQuery] string[] Sizes, [FromQuery] string[] Tags, string sortBy = "Product.CreatedDate", SortType sort = SortType.desc, int page = 1, int perPage = 50)
         {
             try
             {
@@ -46,7 +67,14 @@ namespace EShop.Server.Client.Controller
                 param.sort = sort;
                 param.perPage = perPage;
                 param.page = page;
-                var result = _productClientService.GetListProductByConditon(param, Filter);
+                ProductForSaleFilter filter = new ProductForSaleFilter();
+                filter.CalalogIds = catalogIds;
+                filter.Colors = Colors;
+                filter.Keyword = keyword;
+                filter.MinPrice = MinPrice;
+                filter.MaxPrice = MaxPrice;
+                filter.Tags = Tags;
+                var result = _productClientService.GetListProductByConditon(param, filter);
                 return Ok(PagedList<ProductVersionForSaleDto>.ToPagedList(result, page, perPage));
             }
             catch (Exception ex)
@@ -77,7 +105,7 @@ namespace EShop.Server.Client.Controller
 
 
         [HttpGet]
-        public ActionResult<IEnumerable<ProductVersionRelatedDto>> GetRelatedVersionInSameCatalog(int ProductVersionId )
+        public ActionResult<IEnumerable<ProductVersionRelatedDto>> GetRelatedVersionInSameCatalog(int ProductVersionId)
         {
             try
             {

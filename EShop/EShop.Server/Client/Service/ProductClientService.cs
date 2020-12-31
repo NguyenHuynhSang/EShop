@@ -71,20 +71,20 @@ namespace EShop.Server.Client.Service
                             .Include(x => x.ProductVersionImages));
 
 
-            query = query.Where(x => String.IsNullOrEmpty(filter.ProductName) ? true : x.Product.Name.ToLower().Contains(filter.ProductName.ToLower()))
+            query = query.Where(x => String.IsNullOrEmpty(filter.Keyword) ? true : x.Product.Name.ToLower().Contains(filter.Keyword.ToLower()))
                 .Where(x => filter.CalalogIds.Count() > 0 ? filter.CalalogIds.Count(y => y == x.Product.CatalogID) > 0 : true);
-            if (filter.FromPrice != null && (filter.ToPrice == null|| filter.ToPrice==0))
+            if (filter.MinPrice != null && (filter.MaxPrice == null|| filter.MaxPrice==0))
             {
-                query = query.Where(x => x.PromotionPrice != 0 ? x.PromotionPrice >= filter.FromPrice : x.Price >= filter.FromPrice);
+                query = query.Where(x => x.PromotionPrice != 0 ? x.PromotionPrice >= filter.MinPrice : x.Price >= filter.MinPrice);
             }
-           else if ((filter.ToPrice != null && filter.ToPrice != 0) && filter.FromPrice == null)
+           else if ((filter.MaxPrice != null && filter.MaxPrice != 0) && filter.MinPrice == null)
             {
-                query = query.Where(x => x.PromotionPrice != 0 ? x.PromotionPrice <= filter.ToPrice : x.Price <= filter.ToPrice);
+                query = query.Where(x => x.PromotionPrice != 0 ? x.PromotionPrice <= filter.MaxPrice : x.Price <= filter.MaxPrice);
             }
 
-            else if ((filter.ToPrice != null && filter.ToPrice != 0) && filter.FromPrice != null)
+            else if ((filter.MaxPrice != null && filter.MaxPrice != 0) && filter.MinPrice != null)
             {
-                query = query.Where(x => x.PromotionPrice != 0 ? x.PromotionPrice <= filter.ToPrice && x.PromotionPrice>=filter.FromPrice : x.Price <= filter.ToPrice &&x.Price>= filter.FromPrice);
+                query = query.Where(x => x.PromotionPrice != 0 ? x.PromotionPrice <= filter.MaxPrice && x.PromotionPrice>=filter.MinPrice : x.Price <= filter.MaxPrice &&x.Price>= filter.MinPrice);
             }
             var productsReturn = query.Select(x => _mapper.Map<ProductVersionForSaleDto>(x));
             return productsReturn.AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
