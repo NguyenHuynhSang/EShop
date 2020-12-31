@@ -2,6 +2,7 @@
 using EShop.Server.Client.Dtos;
 using EShop.Server.Client.Dtos.Catalog;
 using EShop.Server.Client.Dtos.Customer;
+using EShop.Server.Client.Dtos.ProductFilterParam;
 using EShop.Server.Extension;
 using EShop.Server.Repository;
 using Microsoft.EntityFrameworkCore;
@@ -15,8 +16,7 @@ namespace EShop.Server.Client.Service
 {
     public interface IProductClientService
     {
-       
-        public IEnumerable<string> GetTopSaleList();
+
         public IEnumerable<ProductVersionForSaleDto> GetNewProductList(int numRecord);
 
         public IEnumerable<ProductVersionForSaleDto> GetFeatureProductList(int numRecord);
@@ -29,41 +29,44 @@ namespace EShop.Server.Client.Service
         public IEnumerable<ProductVersionForSaleDto> GetListProductByConditon(Params param, ProductForSaleFilter Filter);
 
         public IEnumerable<CatalogForFilterDto> GetCatalogsForFilter();
+        public IEnumerable<AttributeForFilterDto> GetSizesForFilter();
     }
 
     public class ProductClientService : IProductClientService
     {
         private readonly IProductRepository _productRepository;
         private readonly ICatalogRepository _catalogRepository;
+        private readonly IAttributeValueRepository _attributeValueRepository;
         private readonly IProductVersionRepository _productVerRepository;
         private readonly IMapper _mapper;
-        public ProductClientService(IProductRepository productRepository, ICatalogRepository catalogRepository, IProductVersionRepository productVersionRepository, IMapper mapper)
+        public ProductClientService(IProductRepository productRepository, IAttributeValueRepository attributeValueRepository, ICatalogRepository catalogRepository, IProductVersionRepository productVersionRepository, IMapper mapper)
         {
             _productRepository = productRepository;
             _productVerRepository = productVersionRepository;
             _catalogRepository = catalogRepository;
+            _attributeValueRepository = attributeValueRepository;
             _mapper = mapper;
         }
-      
+
 
         public IEnumerable<CatalogForFilterDto> GetCatalogsForFilter()
         {
-            var query = _catalogRepository.GetMulti(x=>x.ParentID!=null);
+            var query = _catalogRepository.GetMulti(x => x.ParentID != null);
             var result = query.Select(x => _mapper.Map<CatalogForFilterDto>(x));
-            return result.OrderBy(x=>x.Name);
+            return result.OrderBy(x => x.Name);
         }
 
         public IEnumerable<ProductVersionForSaleDto> GetFeatureProductList(int numRecord)
         {
-            var query = _productVerRepository.GetMulti(x => x.Product.IsActive == true &&x.Quantity!=0, q => q.Include(x => x.Product)
-                                .ThenInclude(y => y.Catalog)
-                               .Include(x => x.Product)
-                                .ThenInclude(x => x.ProductComments)
-                                 .ThenInclude(x => x.Customer)
-                                .Include(x => x.Product)
-                               .ThenInclude(y => y.ProductVersions)
-                               .ThenInclude(z => z.ProductVersionImages)
-                           .Include(x => x.ProductVersionImages));
+            var query = _productVerRepository.GetMulti(x => x.Product.IsActive == true && x.Quantity != 0, q => q.Include(x => x.Product)
+                                   .ThenInclude(y => y.Catalog)
+                                  .Include(x => x.Product)
+                                   .ThenInclude(x => x.ProductComments)
+                                    .ThenInclude(x => x.Customer)
+                                   .Include(x => x.Product)
+                                  .ThenInclude(y => y.ProductVersions)
+                                  .ThenInclude(z => z.ProductVersionImages)
+                              .Include(x => x.ProductVersionImages));
             var productsReturn = query.OrderByDescending(x => x.TotalSold).Select(x => _mapper.Map<ProductVersionForSaleDto>(x)).Take(numRecord);
             return productsReturn;
         }
@@ -80,18 +83,18 @@ namespace EShop.Server.Client.Service
 
             query = query.Where(x => String.IsNullOrEmpty(filter.Keyword) ? true : x.Product.Name.ToLower().Contains(filter.Keyword.ToLower()))
                 .Where(x => filter.CalalogIds.Count() > 0 ? filter.CalalogIds.Count(y => y == x.Product.CatalogID) > 0 : true);
-            if (filter.MinPrice != null && (filter.MaxPrice == null|| filter.MaxPrice==0))
+            if (filter.MinPrice != null && (filter.MaxPrice == null || filter.MaxPrice == 0))
             {
                 query = query.Where(x => x.PromotionPrice != 0 ? x.PromotionPrice >= filter.MinPrice : x.Price >= filter.MinPrice);
             }
-           else if ((filter.MaxPrice != null && filter.MaxPrice != 0) && filter.MinPrice == null)
+            else if ((filter.MaxPrice != null && filter.MaxPrice != 0) && filter.MinPrice == null)
             {
                 query = query.Where(x => x.PromotionPrice != 0 ? x.PromotionPrice <= filter.MaxPrice : x.Price <= filter.MaxPrice);
             }
 
             else if ((filter.MaxPrice != null && filter.MaxPrice != 0) && filter.MinPrice != null)
             {
-                query = query.Where(x => x.PromotionPrice != 0 ? x.PromotionPrice <= filter.MaxPrice && x.PromotionPrice>=filter.MinPrice : x.Price <= filter.MaxPrice &&x.Price>= filter.MinPrice);
+                query = query.Where(x => x.PromotionPrice != 0 ? x.PromotionPrice <= filter.MaxPrice && x.PromotionPrice >= filter.MinPrice : x.Price <= filter.MaxPrice && x.Price >= filter.MinPrice);
             }
             var productsReturn = query.Select(x => _mapper.Map<ProductVersionForSaleDto>(x));
             return productsReturn.AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
@@ -136,9 +139,9 @@ namespace EShop.Server.Client.Service
         {
             var currentVer = _productVerRepository.GetSingleByCondition(x => x.Id == verId,
                 q => q.Include(q => q.Product));
-            var query = _productVerRepository.GetMulti(x => x.Product.IsActive == true && x.Quantity != 0 && x.Product.CatalogID == currentVer.Product.CatalogID && x.Product.Id!=currentVer.Product.Id, q => q.Include(x => x.Product)
-                                .ThenInclude(y => y.Catalog)
-                               .Include(x => x.ProductVersionImages));
+            var query = _productVerRepository.GetMulti(x => x.Product.IsActive == true && x.Quantity != 0 && x.Product.CatalogID == currentVer.Product.CatalogID && x.Product.Id != currentVer.Product.Id, q => q.Include(x => x.Product)
+                                  .ThenInclude(y => y.Catalog)
+                                 .Include(x => x.ProductVersionImages));
             var productsReturn = query.OrderByDescending(x => x.Product.CreatedDate).Select(x => _mapper.Map<ProductVersionRelatedDto>(x));
             return productsReturn;
         }
@@ -182,16 +185,20 @@ namespace EShop.Server.Client.Service
         {
             var currentVer = _productVerRepository.GetSingleByCondition(x => x.Id == productVersionId,
                q => q.Include(q => q.Product));
-            var query = _productVerRepository.GetMulti(x => x.Product.IsActive == true && x.Quantity != 0&& x.Product.Id != currentVer.Product.Id && x.Product.CatalogID != currentVer.Product.CatalogID, q => q.Include(x => x.Product)
-                                  .ThenInclude(y => y.Catalog)
-                                 .Include(x => x.ProductVersionImages));
+            var query = _productVerRepository.GetMulti(x => x.Product.IsActive == true && x.Quantity != 0 && x.Product.Id != currentVer.Product.Id && x.Product.CatalogID != currentVer.Product.CatalogID, q => q.Include(x => x.Product)
+                                   .ThenInclude(y => y.Catalog)
+                                  .Include(x => x.ProductVersionImages));
             var productsReturn = query.OrderByDescending(x => Guid.NewGuid()).Select(x => _mapper.Map<ProductVersionRelatedDto>(x));
             return productsReturn.Take(20);
         }
 
-        public IEnumerable<string> GetTopSaleList()
+        public IEnumerable<AttributeForFilterDto> GetSizesForFilter()
         {
-            throw new NotImplementedException();
+            var query = _attributeValueRepository.GetMulti(x => x.AttributeID == 1);
+            var result = query.Select(x => _mapper.Map<AttributeForFilterDto>(x));
+            return result;
         }
+
+
     }
 }

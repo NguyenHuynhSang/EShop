@@ -15,6 +15,7 @@ using EShop.Server.Client.Dtos;
 using EShop.Server.Client.Dtos.Customer;
 using EShop.Server.Client.Dtos.Order;
 using EShop.Server.Client.Dtos.Catalog;
+using EShop.Server.Client.Dtos.ProductFilterParam;
 
 namespace EShop.Server.Mapping
 {
@@ -123,7 +124,9 @@ namespace EShop.Server.Mapping
                 
             CreateMap<ProductCatalog, ProductCatalogForMenuDto>();
             CreateMap<ProductCatalog, CatalogForFilterDto>();
-            
+
+            CreateMap<AttributeValue, AttributeForFilterDto>();
+
             CreateMap<Item, ExchangeRateDongA>()
                 .ForMember(dest => dest.type, opt => opt.NullSubstitute("N/A"))
                 .ForMember(dest => dest.muack, act => act.MapFrom(src => String.IsNullOrEmpty(src.muack) ? 0 : float.Parse(src.muack)))

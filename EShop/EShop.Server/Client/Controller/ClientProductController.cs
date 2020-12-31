@@ -99,6 +99,23 @@ namespace EShop.Server.Client.Controller
             }
         }
 
+
+        [HttpGet]
+        public ActionResult<CatalogForFilterDto> GetSizeListForFilter()
+        {
+            try
+            {
+                //TEST
+                var result = _productClientService.GetSizesForFilter();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+            }
+        }
+
+
         [SwaggerOperationCustom(Summary = "[Trang chi tiết sản phẩm]Lấy ra chi tiết phiên bản sản phẩm dựa vào ProductVersionId truyền vào")]
         [HttpGet("{ProductVersionId}")]
 
