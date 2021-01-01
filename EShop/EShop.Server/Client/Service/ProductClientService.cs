@@ -26,7 +26,7 @@ namespace EShop.Server.Client.Service
 
         public ProductVersionForSaleDto GetProductVersionDetail(int id);
         public ProductVersionForSaleDto GetProductDetail(int id);
-        public IEnumerable<ProductVersionForSaleDto> GetListProductByConditon(Params param, ProductForSaleFilter Filter);
+        public IEnumerable<ProductVersionForSaleListDto> GetListProductByConditon(Params param, ProductForSaleFilter Filter);
 
         public IEnumerable<CatalogForFilterDto> GetCatalogsForFilter();
         public IEnumerable<AttributeForFilterDto> GetSizesForFilter();
@@ -71,7 +71,7 @@ namespace EShop.Server.Client.Service
             return productsReturn;
         }
 
-        public IEnumerable<ProductVersionForSaleDto> GetListProductByConditon(Params param, ProductForSaleFilter filter)
+        public IEnumerable<ProductVersionForSaleListDto> GetListProductByConditon(Params param, ProductForSaleFilter filter)
         {
             var query = _productVerRepository.GetMulti(x => x.Product.IsActive == true, q => q.Include(x => x.Product)
                                 .ThenInclude(y => y.Catalog)
@@ -98,7 +98,7 @@ namespace EShop.Server.Client.Service
             {
                 query = query.Where(x => x.PromotionPrice != 0 ? x.PromotionPrice <= filter.MaxPrice && x.PromotionPrice >= filter.MinPrice : x.Price <= filter.MaxPrice && x.Price >= filter.MinPrice);
             }
-            var productsReturn = query.Select(x => _mapper.Map<ProductVersionForSaleDto>(x));
+            var productsReturn = query.Select(x => _mapper.Map<ProductVersionForSaleListDto>(x));
             return productsReturn.AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
         }
 

@@ -13,8 +13,7 @@ namespace EShop.Server.Dtos.Admin
 {
     public class ProductForInputDto:ISeoAble,IActiveAble
     {
-        public int Id { get; set; }
-
+     
         [DefaultValue(6)]
         public int CatalogID { set; get; }
 
