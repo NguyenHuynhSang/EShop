@@ -46,6 +46,7 @@ namespace EShop.Server.Client.Dtos
 
         public int CatalogId { set; get; }
 
+        public int? ParentCatalogId { set; get; }
         public string CatalogName { set; get; }
      
         public int AverageRating { set; get; }

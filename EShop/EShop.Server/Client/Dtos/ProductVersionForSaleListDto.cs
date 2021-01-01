@@ -30,10 +30,11 @@ namespace EShop.Server.Client.Dtos
 
 
         public int CatalogId { set; get; }
-
+        public int? ParentCatalogId { set; get; }
         public string CatalogName { set; get; }
 
         public int AverageRating { set; get; }
+        public int NumOfComments { set; get; }
         public string Name { get; set; }
         public string Summary { get; set; }
 

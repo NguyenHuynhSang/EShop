@@ -76,12 +76,12 @@ namespace EShop.Server.Client.Controller
 
 
         [HttpGet]
-        public ActionResult<IEnumerable<ProductVersionForSaleDto>> GetNewProductList(int count=20)
+        public ActionResult<IEnumerable<ProductVersionForSaleDto>> GetNewProductList(int count=20,int? CatalogId=1)
         {
             try
             {
                 //TEST
-                var result = _productClientService.GetNewProductList(count);
+                var result = _productClientService.GetNewProductList(count, CatalogId);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -92,12 +92,12 @@ namespace EShop.Server.Client.Controller
 
 
         [HttpGet]
-        public ActionResult<IEnumerable<ProductVersionForSaleDto>> GetTopSaleProductList(int count = 20)
+        public ActionResult<IEnumerable<ProductVersionForSaleDto>> GetTopSaleProductList(int count = 20, int? CatalogId = 1)
         {
             try
             {
                 //TEST
-                var result = _productClientService.GetFeatureProductList(count);
+                var result = _productClientService.GetFeatureProductList(count, CatalogId);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -108,12 +108,12 @@ namespace EShop.Server.Client.Controller
 
 
         [HttpGet]
-        public ActionResult<IEnumerable<ProductVersionForSaleDto>> GetTopPromotionProductList(int count = 20)
+        public ActionResult<IEnumerable<ProductVersionForSaleDto>> GetTopPromotionProductList(int count = 20, int? CatalogId = 1)
         {
             try
             {
                 //TEST
-                var result = _productClientService.GetPromotionProductList(count);
+                var result = _productClientService.GetPromotionProductList(count, CatalogId);
                 return Ok(result);
             }
             catch (Exception ex)

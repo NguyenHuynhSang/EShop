@@ -17,10 +17,10 @@ namespace EShop.Server.Client.Service
     public interface IProductClientService
     {
 
-        public IEnumerable<ProductVersionForSaleDto> GetNewProductList(int numRecord);
+        public IEnumerable<ProductVersionForSaleDto> GetNewProductList(int numRecord, int? catalogId);
 
-        public IEnumerable<ProductVersionForSaleDto> GetFeatureProductList(int numRecord);
-        public IEnumerable<ProductVersionForSaleDto> GetPromotionProductList(int numRecord);
+        public IEnumerable<ProductVersionForSaleDto> GetFeatureProductList(int numRecord, int? catalogId);
+        public IEnumerable<ProductVersionForSaleDto> GetPromotionProductList(int numRecord, int? catalogId);
         public IEnumerable<ProductVersionRelatedDto> GetProductListByVer(int Verid);
         public IEnumerable<ProductVersionRelatedDto> GetRecommendProductList(int productVersionId);
 
@@ -56,17 +56,17 @@ namespace EShop.Server.Client.Service
             return result.OrderBy(x => x.Name);
         }
 
-        public IEnumerable<ProductVersionForSaleDto> GetFeatureProductList(int numRecord)
+        public IEnumerable<ProductVersionForSaleDto> GetFeatureProductList(int numRecord, int? catalogId)
         {
-            var query = _productVerRepository.GetMulti(x => x.Product.IsActive == true && x.Quantity != 0, q => q.Include(x => x.Product)
-                                   .ThenInclude(y => y.Catalog)
-                                  .Include(x => x.Product)
-                                   .ThenInclude(x => x.ProductComments)
-                                    .ThenInclude(x => x.Customer)
-                                   .Include(x => x.Product)
-                                  .ThenInclude(y => y.ProductVersions)
-                                  .ThenInclude(z => z.ProductVersionImages)
-                              .Include(x => x.ProductVersionImages));
+            var query = _productVerRepository.GetMulti(x => x.Product.IsActive == true && x.Quantity != 0 && x.Product.Catalog.ParentID == catalogId, q => q.Include(x => x.Product)
+                                     .ThenInclude(y => y.Catalog)
+                                    .Include(x => x.Product)
+                                     .ThenInclude(x => x.ProductComments)
+                                      .ThenInclude(x => x.Customer)
+                                     .Include(x => x.Product)
+                                    .ThenInclude(y => y.ProductVersions)
+                                    .ThenInclude(z => z.ProductVersionImages)
+                                .Include(x => x.ProductVersionImages));
             var productsReturn = query.OrderByDescending(x => x.TotalSold).Select(x => _mapper.Map<ProductVersionForSaleDto>(x)).Take(numRecord);
             return productsReturn;
         }
@@ -76,6 +76,9 @@ namespace EShop.Server.Client.Service
             var query = _productVerRepository.GetMulti(x => x.Product.IsActive == true, q => q.Include(x => x.Product)
                                 .ThenInclude(y => y.Catalog)
                                  .Include(x => x.Product)
+                                 .ThenInclude(x => x.ProductComments)
+                                    .ThenInclude(x => x.Customer)
+                                       .Include(x => x.Product)
                                  .ThenInclude(y => y.ProductVersions)
                                  .ThenInclude(z => z.ProductVersionImages)
                             .Include(x => x.ProductVersionImages)
@@ -84,7 +87,7 @@ namespace EShop.Server.Client.Service
 
             query = query.Where(x => String.IsNullOrEmpty(filter.Keyword) ? true : x.Product.Name.ToLower().Contains(filter.Keyword.ToLower()))
                 .Where(x => filter.CalalogIds.Count() > 0 ? filter.CalalogIds.Count(y => y == x.Product.CatalogID) > 0 : true)
-              .Where(x => filter.Size.Count() > 0 ? filter.Size.Any(y=>x.ProductVersionAttributes.Any(z=>z.AttributeValueID==y)) : true);
+              .Where(x => filter.Size.Count() > 0 ? filter.Size.Any(y => x.ProductVersionAttributes.Any(z => z.AttributeValueID == y)) : true);
             if (filter.MinPrice != null && (filter.MaxPrice == null || filter.MaxPrice == 0))
             {
                 query = query.Where(x => x.PromotionPrice != 0 ? x.PromotionPrice >= filter.MinPrice : x.Price >= filter.MinPrice);
@@ -102,17 +105,17 @@ namespace EShop.Server.Client.Service
             return productsReturn.AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
         }
 
-        public IEnumerable<ProductVersionForSaleDto> GetNewProductList(int numRecord)
+        public IEnumerable<ProductVersionForSaleDto> GetNewProductList(int numRecord, int? catalogId)
         {
-            var query = _productVerRepository.GetMulti(x => x.Product.IsActive == true && x.Quantity != 0, q => q.Include(x => x.Product)
-                                  .ThenInclude(y => y.Catalog)
-                                 .Include(x => x.Product)
-                                  .ThenInclude(x => x.ProductComments)
-                                   .ThenInclude(x => x.Customer)
-                                  .Include(x => x.Product)
-                                 .ThenInclude(y => y.ProductVersions)
-                                 .ThenInclude(z => z.ProductVersionImages)
-                             .Include(x => x.ProductVersionImages));
+            var query = _productVerRepository.GetMulti(x => x.Product.IsActive == true && x.Quantity != 0 && x.Product.Catalog.ParentID == catalogId, q => q.Include(x => x.Product)
+                                    .ThenInclude(y => y.Catalog)
+                                   .Include(x => x.Product)
+                                    .ThenInclude(x => x.ProductComments)
+                                     .ThenInclude(x => x.Customer)
+                                    .Include(x => x.Product)
+                                   .ThenInclude(y => y.ProductVersions)
+                                   .ThenInclude(z => z.ProductVersionImages)
+                               .Include(x => x.ProductVersionImages));
             var productsReturn = query.OrderByDescending(x => x.Product.CreatedDate).Select(x => _mapper.Map<ProductVersionForSaleDto>(x)).Take(numRecord);
             return productsReturn;
         }
@@ -168,9 +171,9 @@ namespace EShop.Server.Client.Service
             return productsReturn;
         }
 
-        public IEnumerable<ProductVersionForSaleDto> GetPromotionProductList(int numRecord)
+        public IEnumerable<ProductVersionForSaleDto> GetPromotionProductList(int numRecord, int? catalogId)
         {
-            var query = _productVerRepository.GetMulti(x => x.Product.IsActive == true && x.PromotionPrice > 0, q => q.Include(x => x.Product)
+            var query = _productVerRepository.GetMulti(x => x.Product.IsActive == true && x.PromotionPrice > 0 && x.Product.Catalog.ParentID == catalogId, q => q.Include(x => x.Product)
                                      .ThenInclude(y => y.Catalog)
                                  .Include(x => x.Product)
                                   .ThenInclude(x => x.ProductComments)
@@ -187,9 +190,16 @@ namespace EShop.Server.Client.Service
         {
             var currentVer = _productVerRepository.GetSingleByCondition(x => x.Id == productVersionId,
                q => q.Include(q => q.Product));
-            var query = _productVerRepository.GetMulti(x => x.Product.IsActive == true && x.Quantity != 0 && x.Product.Id != currentVer.Product.Id && x.Product.CatalogID != currentVer.Product.CatalogID, q => q.Include(x => x.Product)
+            var query = _productVerRepository.GetMulti(x => x.Product.IsActive == true && x.Quantity != 0 && x.Product.Id != currentVer.Product.Id && x.Product.CatalogID != currentVer.Product.CatalogID,
+                q => q.Include(x => x.Product)
                                    .ThenInclude(y => y.Catalog)
-                                  .Include(x => x.ProductVersionImages));
+                                    .Include(x => x.Product)
+                                 .ThenInclude(x => x.ProductComments)
+                                    .ThenInclude(x => x.Customer)
+                                       .Include(x => x.Product)
+                                 .ThenInclude(y => y.ProductVersions)
+                                 .ThenInclude(z => z.ProductVersionImages)
+                            .Include(x => x.ProductVersionImages));
             var productsReturn = query.OrderByDescending(x => Guid.NewGuid()).Select(x => _mapper.Map<ProductVersionRelatedDto>(x));
             return productsReturn.Take(20);
         }
