@@ -77,7 +77,22 @@ namespace EShop.Server.Client.Controller
                 throw;
             }
         }
-        
+
+        [HttpGet]
+        public ActionResult<IEnumerable<ShippingFee>> GetShippingFee(int DistrictId,string ward_code)
+        {
+            try
+            {
+                var result = _giaoHangNhanhService.GetShippingFee(ward_code,DistrictId);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+                throw;
+            }
+        }
+
 
     }
 }
