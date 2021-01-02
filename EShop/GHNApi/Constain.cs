@@ -8,7 +8,7 @@ namespace GHNApi
     {
         public static string GET_PROVINCE_URL = @"https://dev-online-gateway.ghn.vn/shiip/public-api/master-data/province";
         public static string GET_DISTRIC_URL = @"https://dev-online-gateway.ghn.vn/shiip/public-api/master-data/district";
-        public static string GET_WARD_URL = @"https://dev-online-gateway.ghn.vn/shiip/public-api/master-data/ward?district_id";
+        public static string GET_WARD_URL = @"https://dev-online-gateway.ghn.vn/shiip/public-api/master-data/ward";
         
 
 

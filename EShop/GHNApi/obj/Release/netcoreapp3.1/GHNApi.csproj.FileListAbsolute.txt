@@ -1,0 +1,9 @@
+D:\Git\CoreAngular\EShop\EShop\GHNApi\bin\Release\netcoreapp3.1\GHNApi.deps.json
+D:\Git\CoreAngular\EShop\EShop\GHNApi\bin\Release\netcoreapp3.1\GHNApi.dll
+D:\Git\CoreAngular\EShop\EShop\GHNApi\bin\Release\netcoreapp3.1\GHNApi.pdb
+D:\Git\CoreAngular\EShop\EShop\GHNApi\obj\Release\netcoreapp3.1\GHNApi.csprojAssemblyReference.cache
+D:\Git\CoreAngular\EShop\EShop\GHNApi\obj\Release\netcoreapp3.1\GHNApi.AssemblyInfoInputs.cache
+D:\Git\CoreAngular\EShop\EShop\GHNApi\obj\Release\netcoreapp3.1\GHNApi.AssemblyInfo.cs
+D:\Git\CoreAngular\EShop\EShop\GHNApi\obj\Release\netcoreapp3.1\GHNApi.csproj.CoreCompileInputs.cache
+D:\Git\CoreAngular\EShop\EShop\GHNApi\obj\Release\netcoreapp3.1\GHNApi.dll
+D:\Git\CoreAngular\EShop\EShop\GHNApi\obj\Release\netcoreapp3.1\GHNApi.pdb
