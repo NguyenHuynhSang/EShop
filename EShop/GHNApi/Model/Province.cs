@@ -8,6 +8,6 @@ namespace GHNApi.Model
     {
         public int ProvinceID { set; get; }
         public string ProvinceName { set; get; }
-        public int Code { set; get; }
+        public string Code { set; get; }
     }
 }

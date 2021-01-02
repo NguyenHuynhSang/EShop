@@ -33,5 +33,37 @@ namespace EShop.Server.Client.Controller
                 throw;
             }
         }
+
+        [HttpGet]
+        public ActionResult<IEnumerable<District>> GetDistrictByProvinceId(int ProvinceId)
+        {
+            try
+            {
+                var result = _giaoHangNhanhService.GetDistricFromProvinceId(ProvinceId);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+                throw;
+            }
+        }
+
+        [HttpGet]
+        public ActionResult<IEnumerable<Ward>> GetWardByDistrictId(int DistrictId)
+        {
+            try
+            {
+                var result = _giaoHangNhanhService.GetWardByDistrictId(DistrictId);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+                throw;
+            }
+        }
+
+        
     }
 }
