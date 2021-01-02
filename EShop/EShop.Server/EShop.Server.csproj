@@ -110,4 +110,8 @@
     <None Include="Data\Seed\menu.group.data.json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GHNApi\GHNApi.csproj" />
+  </ItemGroup>
+
 </Project>
