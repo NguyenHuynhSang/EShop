@@ -40,5 +40,10 @@ namespace EShop.Server.Models
         public OrderStatus Status { set; get; }
 
         public IEnumerable<OrderDetail> OrderDetails { set; get; }
+        
+        public int ShippingFee { set; get; }
+
+
+
     }
 }
