@@ -59,7 +59,7 @@ namespace EShop.Server.Client.Controller
 
         [HttpGet]
         [SwaggerOperationCustom(Summary = "[Trang sản phẩm]Lấy ra tất cả phiên bản sản phẩm có phân trang và filter")]
-        public ActionResult<IEnumerable<ProductVersionForSaleListDto>> GetAllProductVersionPaging(string keyword,int? MinPrice,int? MaxPrice, [FromQuery] int[] CatalogIds, [FromQuery] string[] Colors, [FromQuery] int[] Sizes, [FromQuery] string[] Tags, string sortBy = "Product.CreatedDate", SortType sort = SortType.desc, int page = 1, int perPage = 50)
+        public ActionResult<IEnumerable<ProductVersionForSaleListDto>> GetAllProductVersionPaging(string keyword,int? MinPrice,int? MaxPrice, [FromQuery] int[] CatalogIds, [FromQuery] int[] Sizes, [FromQuery] string[] Tags, string sortBy = "Product.CreatedDate", SortType sort = SortType.desc, int page = 1, int perPage = 50)
         {
             try
             {
@@ -70,7 +70,7 @@ namespace EShop.Server.Client.Controller
                 param.page = page;
                 ProductForSaleFilter filter = new ProductForSaleFilter();
                 filter.CalalogIds = CatalogIds;
-                filter.Colors = Colors;
+                filter.Colors = null;
                 filter.Keyword = keyword;
                 filter.MinPrice = MinPrice;
                 filter.Size = Sizes;

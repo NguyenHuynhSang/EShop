@@ -32,6 +32,7 @@ namespace EShop.Server.Models
         public DateTime? ModifiedDate { get ; set ; }
         public string ModifiedBy { get ; set ; }
         public ICollection<ProductCatalog> ChildCatalogs { get; set; }
+        public IEnumerable<Product> Products { get; set; }
 
     }
 }

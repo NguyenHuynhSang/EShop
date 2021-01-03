@@ -8,6 +8,8 @@ public class PagedList<T> : List<T>
 	public int TotalPages { get; private set; }
 	public int PageSize { get; private set; }
 	public int TotalCount { get; private set; }
+	public int StartPosition { get; private set; }
+
 
 	public bool HasPrevious => CurrentPage > 1;
 	public bool HasNext => CurrentPage < TotalPages;
@@ -32,6 +34,7 @@ public class PagedList<T> : List<T>
 		pagedListWapper.TotalPages = (int)Math.Ceiling(count / (double)pageSize);
 		pagedListWapper.CurrentPage = pageNumber;
 		pagedListWapper.PageSize = pageSize;
+		pagedListWapper.StartPosition = pageNumber * pageSize;
 		return pagedListWapper;
 	}
 
@@ -45,5 +48,6 @@ public class PagedListWrapper<T>
 	public int TotalPages { get; set; }
 	public int PageSize { get; set; }
 	public int TotalCount { get; set; }
+	public int StartPosition { get;  set; }
 
 }

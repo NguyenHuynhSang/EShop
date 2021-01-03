@@ -51,7 +51,9 @@ namespace EShop.Server.Client.Service
 
         public IEnumerable<CatalogForFilterDto> GetCatalogsForFilter()
         {
-            var query = _catalogRepository.GetMulti(x => x.ParentID != null);
+            var query = _catalogRepository.GetMulti(x => x.ParentID != null,
+                q=>q.Include(y=>y.Products)
+                .ThenInclude(z=>z.ProductVersions));
             var result = query.Select(x => _mapper.Map<CatalogForFilterDto>(x));
             return result.OrderBy(x => x.Name);
         }

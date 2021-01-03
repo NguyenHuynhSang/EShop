@@ -9,5 +9,6 @@ namespace EShop.Server.Client.Dtos.Catalog
     {
         public int Id { set; get; }
         public string Name { set; get; }
+        public int Total { set; get; }
     }
 }

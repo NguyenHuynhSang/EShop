@@ -145,9 +145,10 @@ namespace EShop.Server.Mapping
 
 
 
-            CreateMap<ProductCatalog, ProductCatalogForMenuDto>();
-            CreateMap<ProductCatalog, CatalogForFilterDto>();
-
+            CreateMap<ProductCatalog, ProductCatalogForMenuDto>()
+                ;
+            CreateMap<ProductCatalog, CatalogForFilterDto>()
+               .ForMember(dest => dest.Total, act => act.MapFrom(src=>src.Products.Sum(x=>x.ProductVersions.Count())));
             CreateMap<AttributeValue, AttributeForFilterDto>();
 
             CreateMap<Item, ExchangeRateDongA>()
