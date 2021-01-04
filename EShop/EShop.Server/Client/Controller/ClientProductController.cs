@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using EShop.Server.Client.Dtos;
@@ -30,10 +31,13 @@ namespace EShop.Server.Client.Controller
             public string Keyword { set; get; }
             public int? MinPrice { set; get; }
             public int? MaxPrice { set; get; }
-            public int[] CalalogIds { set; get; }
+            public int[] CalalogIds { set; get; } = new int[0];
             public string[] Colors { set; get; }
             public string[] Tags { set; get; }
-            public int[] Size { set; get; }
+            public int[] Size { set; get; } = new int[0];
+            [Range(0, 5)]
+            public int? Rating { set; get; }
+
 
         }
         //[HttpPost]
@@ -59,7 +63,7 @@ namespace EShop.Server.Client.Controller
 
         [HttpGet]
         [SwaggerOperationCustom(Summary = "[Trang sản phẩm]Lấy ra tất cả phiên bản sản phẩm có phân trang và filter")]
-        public ActionResult<IEnumerable<ProductVersionForSaleListDto>> GetAllProductVersionPaging(string keyword,int? MinPrice,int? MaxPrice, [FromQuery] int[] CatalogIds, [FromQuery] int[] Sizes, [FromQuery] string[] Tags, string sortBy = "Product.CreatedDate", SortType sort = SortType.desc, int page = 1, int perPage = 50)
+        public ActionResult<IEnumerable<ProductVersionForSaleListDto>> GetAllProductVersionPaging(string keyword,int? MinPrice,int? MaxPrice,int Rating, string CatalogIds, string SizeIds, string sortBy = "Product.CreatedDate", SortType sort = SortType.desc, int page = 1, int perPage = 50)
         {
             try
             {
@@ -69,13 +73,26 @@ namespace EShop.Server.Client.Controller
                 param.perPage = perPage;
                 param.page = page;
                 ProductForSaleFilter filter = new ProductForSaleFilter();
-                filter.CalalogIds = CatalogIds;
+                
+                if (!String.IsNullOrEmpty(CatalogIds))
+                {
+                    int[] decodeCatalogIds = Array.ConvertAll(CatalogIds.Split(','), int.Parse);
+                    filter.CalalogIds = decodeCatalogIds;
+                }
+                if (!String.IsNullOrEmpty(SizeIds))
+                {
+                    int[] decodeSizeIds = Array.ConvertAll(SizeIds.Split(','), int.Parse);
+                    filter.Size = decodeSizeIds;
+                }
+              
+               
                 filter.Colors = null;
                 filter.Keyword = keyword;
                 filter.MinPrice = MinPrice;
-                filter.Size = Sizes;
+              
+                filter.Rating = Rating;
                 filter.MaxPrice = MaxPrice;
-                filter.Tags = Tags;
+                filter.Tags = null;
                 var result = _productClientService.GetListProductByConditon(param, filter);
                 return Ok(PagedList<ProductVersionForSaleListDto>.ToPagedList(result, page, perPage));
             }

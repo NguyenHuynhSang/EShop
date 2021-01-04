@@ -23,6 +23,7 @@ namespace EShop.Server.Client.Dtos.Order
 
         public string Email { set; get; }
 
+        public int ShippingFee { set; get; }
 
         public IEnumerable<OrderDetailForCheckOutDto> OrderDetails { set; get; }
     }

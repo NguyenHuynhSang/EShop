@@ -104,6 +104,7 @@ namespace EShop.Server.Client.Service
                 query = query.Where(x => x.PromotionPrice != 0 ? x.PromotionPrice <= filter.MaxPrice && x.PromotionPrice >= filter.MinPrice : x.Price <= filter.MaxPrice && x.Price >= filter.MinPrice);
             }
             var productsReturn = query.Select(x => _mapper.Map<ProductVersionForSaleListDto>(x));
+            productsReturn = productsReturn.Where(x => x.Product.AverageRating >= filter.Rating.Value);
             return productsReturn.AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
         }
 
