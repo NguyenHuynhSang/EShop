@@ -6,6 +6,7 @@ using EShop.Server.Client.Dtos.ProductFilterParam;
 using EShop.Server.Extension;
 using EShop.Server.Repository;
 using Microsoft.EntityFrameworkCore;
+using MoreLinq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -105,7 +106,16 @@ namespace EShop.Server.Client.Service
             }
             var productsReturn = query.Select(x => _mapper.Map<ProductVersionForSaleListDto>(x));
             productsReturn = productsReturn.Where(x => x.Product.AverageRating >= filter.Rating.Value);
-            return productsReturn.AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
+            if (filter.CollapsedVersion)
+            {
+                return productsReturn.DistinctBy(x => x.Product.Id).AsQueryable().OrderByWithDirection(param.sortBy, param.sort);
+            }
+            else
+            {
+                return productsReturn.AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
+
+            }
+            
         }
 
         public IEnumerable<ProductVersionForSaleDto> GetNewProductList(int numRecord, int? catalogId)

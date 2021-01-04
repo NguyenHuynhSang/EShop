@@ -38,6 +38,7 @@ namespace EShop.Server.Client.Controller
             [Range(0, 5)]
             public int? Rating { set; get; }
 
+            public bool CollapsedVersion { set; get; }
 
         }
         //[HttpPost]
@@ -63,7 +64,7 @@ namespace EShop.Server.Client.Controller
 
         [HttpGet]
         [SwaggerOperationCustom(Summary = "[Trang sản phẩm]Lấy ra tất cả phiên bản sản phẩm có phân trang và filter")]
-        public ActionResult<IEnumerable<ProductVersionForSaleListDto>> GetAllProductVersionPaging(string keyword,int? MinPrice,int? MaxPrice,int Rating, string CatalogIds, string SizeIds, string sortBy = "Product.CreatedDate", SortType sort = SortType.desc, int page = 1, int perPage = 50)
+        public ActionResult<IEnumerable<ProductVersionForSaleListDto>> GetAllProductVersionPaging(string keyword, int? MinPrice, int? MaxPrice, int Rating, bool CollapsedVersion, string CatalogIds, string SizeIds, string sortBy = "Product.CreatedDate", SortType sort = SortType.desc, int page = 1, int perPage = 50)
         {
             try
             {
@@ -73,7 +74,7 @@ namespace EShop.Server.Client.Controller
                 param.perPage = perPage;
                 param.page = page;
                 ProductForSaleFilter filter = new ProductForSaleFilter();
-                
+
                 if (!String.IsNullOrEmpty(CatalogIds))
                 {
                     int[] decodeCatalogIds = Array.ConvertAll(CatalogIds.Split(','), int.Parse);
@@ -84,12 +85,12 @@ namespace EShop.Server.Client.Controller
                     int[] decodeSizeIds = Array.ConvertAll(SizeIds.Split(','), int.Parse);
                     filter.Size = decodeSizeIds;
                 }
-              
-               
+
+
                 filter.Colors = null;
                 filter.Keyword = keyword;
                 filter.MinPrice = MinPrice;
-              
+                filter.CollapsedVersion = CollapsedVersion;
                 filter.Rating = Rating;
                 filter.MaxPrice = MaxPrice;
                 filter.Tags = null;
