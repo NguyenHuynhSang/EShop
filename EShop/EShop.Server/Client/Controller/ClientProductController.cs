@@ -64,7 +64,7 @@ namespace EShop.Server.Client.Controller
 
         [HttpGet]
         [SwaggerOperationCustom(Summary = "[Trang sản phẩm]Lấy ra tất cả phiên bản sản phẩm có phân trang và filter")]
-        public ActionResult<IEnumerable<ProductVersionForSaleListDto>> GetAllProductVersionPaging(string keyword, int? MinPrice, int? MaxPrice, int Rating, bool CollapsedVersion, string CatalogIds, string SizeIds, string sortBy = "Product.CreatedDate", SortType sort = SortType.desc, int page = 1, int perPage = 50)
+        public ActionResult<IEnumerable<ProductVersionForSaleListDto>> GetAllProductVersionPaging(string keyword=null, int? MinPrice=null, int? MaxPrice=null, int Rating=0, bool CollapsedVersion=false, string CatalogIds = null, string SizeIds=null, string sortBy = "Product.CreatedDate", SortType sort = SortType.desc, int page = 1, int perPage = 50)
         {
             try
             {

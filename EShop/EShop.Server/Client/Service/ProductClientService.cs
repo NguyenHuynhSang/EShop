@@ -29,6 +29,7 @@ namespace EShop.Server.Client.Service
         public ProductVersionForSaleDto GetProductDetail(int id);
         public IEnumerable<ProductVersionForSaleListDto> GetListProductByConditon(Params param, ProductForSaleFilter Filter);
 
+        public bool CheckVersionQuantity(int verId,int quantity);
         public IEnumerable<CatalogForFilterDto> GetCatalogsForFilter();
         public IEnumerable<AttributeForFilterDto> GetSizesForFilter();
     }
@@ -49,6 +50,12 @@ namespace EShop.Server.Client.Service
             _mapper = mapper;
         }
 
+        public bool CheckVersionQuantity(int verId, int quantity)
+        {
+            var record = _productVerRepository.GetSingleById(verId);
+
+            return record.Quantity > quantity ? true : false;
+        }
 
         public IEnumerable<CatalogForFilterDto> GetCatalogsForFilter()
         {
