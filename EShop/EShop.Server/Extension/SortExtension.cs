@@ -20,7 +20,7 @@ public static class SortExtension
                 case SortType.desc:
                     return source.OrderBy(keySelector == null ? "0" : keySelector + " descending");
                     break;
-                case SortType.esc:
+                case SortType.asc:
                     return source.OrderBy(keySelector == null ? "0" : keySelector);
                     break;
                 default:

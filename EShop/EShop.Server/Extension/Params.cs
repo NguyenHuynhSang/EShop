@@ -12,7 +12,7 @@ namespace EShop.Server.Extension
     public enum SortType
     {
         desc=0,
-        esc=1
+        asc=1
     }
     public class Params
     {

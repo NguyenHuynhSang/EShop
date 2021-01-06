@@ -6,6 +6,7 @@ using System.Collections.Generic;
 
 namespace GHNApi
 {
+  
     public interface IGiaoHangNhanhService
     {
         public IEnumerable<Province> GetProvince();
@@ -14,6 +15,8 @@ namespace GHNApi
         public IEnumerable<ShippingService> GetSupportedShippingService(int toDistricId);
 
         public ShippingFee GetShippingFee(string to_ward_code, int to_district_id);
+
+        //public ShippingOrder CreateShippingOrder();
     }
     public class GiaoHangNhanhService : IGiaoHangNhanhService
     {

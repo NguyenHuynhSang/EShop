@@ -42,7 +42,7 @@ namespace EShop.Server.Client.Controller
             try
             {
                 Customer.Username = Customer.Username.ToLower();
-
+                
                 if (_authService.UserExists(Customer.Username))
                 {
                     return BadRequest("Tên người dùng đã tồn tại");
@@ -52,6 +52,7 @@ namespace EShop.Server.Client.Controller
                 {
                     Username = Customer.Username,
                     Password = Customer.Password,
+                    Phone = ""
                     
                 };
                 var newUser = _authService.Register(userToCreate);
@@ -59,6 +60,33 @@ namespace EShop.Server.Client.Controller
                 {
                     this._authService.SaveChange();
                 }
+                var userFromRepo = _authService.Login(Customer.Username.ToLower(), Customer.Password);
+
+                var claims = new[]
+               {
+                new Claim(ClaimTypes.NameIdentifier, userFromRepo.Id.ToString()),
+                new Claim(ClaimTypes.Name, userFromRepo.Username),
+                };
+
+                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value));
+                var cred = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+                var tokenDescriptor = new SecurityTokenDescriptor
+                {
+                    Subject = new ClaimsIdentity(claims),
+                    Expires = DateTime.Now.AddDays(1),
+                    SigningCredentials = cred,
+                };
+
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var token = tokenHandler.CreateToken(tokenDescriptor);
+                var userToReturn = _mapper.Map<CustomerForDetailDto>(userFromRepo);
+
+                return Ok(new
+                {
+                    token = tokenHandler.WriteToken(token),
+                    customer = userToReturn,
+                });
+
 
                 return StatusCode(201);
                 // return Ok(newUser);
