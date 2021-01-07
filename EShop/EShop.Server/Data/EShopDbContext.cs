@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using EShop.Server.Extension;
+using GHNApi.Model;
 
 namespace EShop.Server.Data
 {
@@ -74,6 +75,10 @@ namespace EShop.Server.Data
 
 
         public DbSet<ProductComment> ProductComments { get; set; }
+
+        public DbSet<Province> Provinces  { get; set; }
+        public DbSet<District> District { get; set; }
+        public DbSet<Ward> Ward { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder) //Một bảng có 2 khóa chính phải sử dụng fluent API
         {
 
