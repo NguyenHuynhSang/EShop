@@ -195,6 +195,7 @@ namespace EShop.Server
                 Path.Combine(env.ContentRootPath, "Doc")),
                 RequestPath = "/Doc"
             });
+            app.UseCors(global.global.ApiCorsPolicy);
             app.UseHttpsRedirection();
             app.UseAuthentication();
 
@@ -205,7 +206,7 @@ namespace EShop.Server
                 endpoints.MapControllers();
             });
            
-            app.UseCors(global.global.ApiCorsPolicy);
+           
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
