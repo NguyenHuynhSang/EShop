@@ -1,6 +1,7 @@
 ﻿using EShop.Server.Client.Dtos.Order;
 using EShop.Server.Client.Service;
 using EShop.Server.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace EShop.Server.Client.Controller
 {
+    [Authorize]
     [Route("api/client/[controller]/[action]")]
     [ApiController]
     public class ClientCheckOutController : ControllerBase

@@ -196,20 +196,16 @@ namespace EShop.Server
                 RequestPath = "/Doc"
             });
             app.UseHttpsRedirection();
+            app.UseAuthentication();
 
             app.UseRouting();
-
-            app.UseCors(global.global.ApiCorsPolicy);
-
-
             app.UseAuthorization();
-
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
-
+           
+            app.UseCors(global.global.ApiCorsPolicy);
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {

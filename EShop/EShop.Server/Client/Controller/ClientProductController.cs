@@ -8,7 +8,6 @@ using EShop.Server.Client.Dtos.Catalog;
 using EShop.Server.Client.Dtos.Customer;
 using EShop.Server.Client.Service;
 using EShop.Server.Extension;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EShop.Server.Client.Controller
@@ -60,6 +59,14 @@ namespace EShop.Server.Client.Controller
         //        return BadRequest(ex.ToString());
         //    }
         //}
+
+
+        [HttpGet]
+       
+        public ActionResult<string> TestAuthen()
+        {
+            return Ok("Authen");
+        }
 
 
         [HttpGet]
