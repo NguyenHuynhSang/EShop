@@ -19,10 +19,14 @@ namespace EShop.Server.Models
         public string Password { set; get; }
         public string Name { set; get; }
 
+        
+        public IEnumerable<Address> Address { set; get; }
+
+
         [Required]
         public string Phone { set; get; }
 
-        public string Address { set; get; }
+        public string AddressDetail { set; get; }
 
         public string Email { set; get; }
 

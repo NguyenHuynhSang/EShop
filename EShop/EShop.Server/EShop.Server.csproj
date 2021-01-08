@@ -37,6 +37,14 @@
     <Compile Remove="Data\Migrations\20201214134042_add_menu.Designer.cs" />
     <Compile Remove="Data\Migrations\20201226133751_add_parent_comment_v2.cs" />
     <Compile Remove="Data\Migrations\20201226133751_add_parent_comment_v2.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210108113330_fix_cus_db.cs" />
+    <Compile Remove="Data\Migrations\20210108113330_fix_cus_db.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210108113558_add_cus_address.cs" />
+    <Compile Remove="Data\Migrations\20210108113558_add_cus_address.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210108113750_fix_code.cs" />
+    <Compile Remove="Data\Migrations\20210108113750_fix_code.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210108114404_fix_address_v3.cs" />
+    <Compile Remove="Data\Migrations\20210108114404_fix_address_v3.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -4,48 +4,22 @@ using EShop.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EShop.Server.Migrations
 {
     [DbContext(typeof(EShopDbContext))]
-    partial class EShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210108113449_fix_col_add")]
+    partial class fix_col_add
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("EShop.Server.Models.Address", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("AddressDetail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("WardCode")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("isMain")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CustomerId");
-
-                    b.HasIndex("WardCode");
-
-                    b.ToTable("Addresses");
-                });
 
             modelBuilder.Entity("EShop.Server.Models.Attribute", b =>
                 {
@@ -1151,19 +1125,6 @@ namespace EShop.Server.Migrations
                     b.HasIndex("DistrictId");
 
                     b.ToTable("Ward");
-                });
-
-            modelBuilder.Entity("EShop.Server.Models.Address", b =>
-                {
-                    b.HasOne("EShop.Server.Models.Customer", "Customer")
-                        .WithMany("Address")
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("GHNApi.Model.Ward", "Ward")
-                        .WithMany()
-                        .HasForeignKey("WardCode");
                 });
 
             modelBuilder.Entity("EShop.Server.Models.AttributeValue", b =>

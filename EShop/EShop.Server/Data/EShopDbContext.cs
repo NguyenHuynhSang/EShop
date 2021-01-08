@@ -79,6 +79,8 @@ namespace EShop.Server.Data
         public DbSet<Province> Provinces  { get; set; }
         public DbSet<District> District { get; set; }
         public DbSet<Ward> Ward { get; set; }
+
+        public DbSet<Address> Addresses { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder) //Một bảng có 2 khóa chính phải sử dụng fluent API
         {
 
