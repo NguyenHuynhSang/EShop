@@ -1,5 +1,4 @@
-﻿using EShop.Server.Client.Dtos.Shipping;
-using EShop.Server.Models;
+﻿using EShop.Server.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EShop.Server.Client.Dtos.Customer
 {
-    public class CustomerForDetailDto
+    public class CustomerForOrderDto
     {
         public int Id { set; get; }
 
@@ -16,8 +15,8 @@ namespace EShop.Server.Client.Dtos.Customer
 
         public string Phone { set; get; }
 
+        public Address MainAddress { set; get; }
 
-        public IEnumerable<AddressForViewDto>  Addresses {set;get;}
 
         public string Email { set; get; }
     }

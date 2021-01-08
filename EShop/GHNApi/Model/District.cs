@@ -9,7 +9,7 @@ namespace GHNApi.Model
     public class District
     {
         [Key]
-        public int Id { set; get; }
+        public int DistrictId { set; get; }
         public int ProvinceId { set; get; }
         [ForeignKey("ProvinceId")]
         public Province Province { set; get; }

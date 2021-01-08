@@ -16,6 +16,7 @@ using EShop.Server.Client.Dtos.Customer;
 using EShop.Server.Client.Dtos.Order;
 using EShop.Server.Client.Dtos.Catalog;
 using EShop.Server.Client.Dtos.ProductFilterParam;
+using EShop.Server.Client.Dtos.Shipping;
 
 namespace EShop.Server.Mapping
 {
@@ -124,12 +125,14 @@ namespace EShop.Server.Mapping
             CreateMap<ProductVersion, RelativeProductVersionDto>()
                .ForMember(dest => dest.MainImage, opt => opt.MapFrom(src => src.ProductVersionImages.FirstOrDefault(x => x.IsMain == true).Url));
 
+            CreateMap<Address, AddressForViewDto>()
+                 .ForMember(dest => dest.WardCode, opt => opt.MapFrom(src => src.WardCode)); ;
             CreateMap<Customer, CustomerForViewDto>();
             CreateMap<Customer, CustomerForLoginDto>();
             CreateMap<Customer, CustomerForRegisterDto>();
             CreateMap<Customer, CustomerForDetailDto>();
-
-
+           
+            
             CreateMap<ProductComment, ProductCommentDto>()
                  .ForMember(dest => dest.CustomerName, opt => opt.MapFrom(src => src.Customer.Name));
             CreateMap<ProductVersion, ProductVersionForSaleDto>()

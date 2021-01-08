@@ -1,5 +1,6 @@
 ﻿using EShop.Server.Data.Repository;
 using EShop.Server.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,11 @@ namespace EShop.Server.Client.Service
         }
         public Customer Login(string username, string password)
         {
-            var user = _customerRepository.GetSingleByCondition(x => x.Username == username && x.Password == password);
+            var user = _customerRepository.GetSingleByCondition(x => x.Username == username && x.Password == password,
+                q=>q.Include(x=>x.Addresses)
+                .ThenInclude(x=>x.Ward)
+                .ThenInclude(x => x.District)
+                .ThenInclude(x => x.Province));
 
             if (user == null) return null;
             return user;

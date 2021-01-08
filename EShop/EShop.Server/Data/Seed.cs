@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using EShop.Server.Migrations;
 using EShop.Server.Models;
+using GHNApi.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
@@ -31,7 +32,7 @@ namespace EShop.Server.Data
             //SeedProductAttribute();
             //SeedAttributeValue();
             //SeedProductCatalog();
-           
+
             //if (_context.SeedLogs.Count() == 0)
             //{
 
@@ -46,7 +47,20 @@ namespace EShop.Server.Data
             //{
 
             //}
+         //   SeedDistrict();
+            //SeedWard();
+            if (_context.SeedLogs.Count() == 0)
+            {
 
+                SeedLog log = new SeedLog();
+                log.DataVersion = 1;
+                context.SeedLogs.Add(log);
+                context.SaveChanges();
+                SeedProvince();
+             
+                
+            }
+         
 
 
 
@@ -134,6 +148,75 @@ namespace EShop.Server.Data
 
 
         }
+
+
+        private void SeedProvince()
+        {
+            var dataJson = File.ReadAllText("Data/Seed/province.data.json");
+            var data = JsonConvert.DeserializeObject<List<Province>>(dataJson);
+
+            foreach (var item in data)
+            {
+                _context.Provinces.AddOrUpdate(item);
+
+            }
+            _context.SaveChanges();
+        }
+
+
+        private void SeedDistrict()
+        {
+            var list = _context.District;
+            _context.District.RemoveRange(list);
+            _context.SaveChanges();
+            var dataJson = File.ReadAllText("Data/Seed/district.data.json");
+            var data = JsonConvert.DeserializeObject<List<District>>(dataJson);
+
+            _context.District.AddRange(data);
+            _context.SaveChanges();
+            //int count = 0;
+            //foreach (var item in data)
+            //{
+            //    if (count==359)
+            //    {
+            //        count = 0;
+
+            //    }
+            //    count++;
+            //    _context.Add(item);
+            //    _context.SaveChanges();
+
+            
+
+
+
+
+        }
+
+
+        private void SeedWard()
+        {
+            var list = _context.Ward;
+            _context.Ward.RemoveRange(list);
+            _context.SaveChanges();
+            var dataJson = File.ReadAllText("Data/Seed/ward.data.json");
+
+            var dataJson2 = File.ReadAllText("Data/Seed/district.data.json");
+            var data2 = JsonConvert.DeserializeObject<List<District>>(dataJson2);
+
+            var db = _context.District;
+            var data = JsonConvert.DeserializeObject<List<Ward>>(dataJson);
+            int counter = 1;
+         
+            _context.Ward.AddRange(data);
+            _context.SaveChanges();
+           
+          
+          
+        }
+
+
+
 
         private void SeedProduct()
         {

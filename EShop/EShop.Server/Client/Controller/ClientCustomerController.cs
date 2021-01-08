@@ -145,6 +145,25 @@ namespace EShop.Server.Client.Controller
         }
 
 
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateInfor(CustomerForDetailDto user)
+        {
+            try
+            {
+                return Ok(new
+                {
+
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+            }
+
+        }
+
+
         [HttpGet]
         public ActionResult<CustomerForDetailDto> GetCustomerDetail()
         {

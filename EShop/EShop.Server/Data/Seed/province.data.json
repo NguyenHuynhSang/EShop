@@ -1,0 +1,317 @@
+[
+  {
+    "provinceID": 201,
+    "provinceName": "Hà Nội",
+    "code": "4"
+  },
+  {
+    "provinceID": 202,
+    "provinceName": "Hồ Chí Minh",
+    "code": "8"
+  },
+  {
+    "provinceID": 203,
+    "provinceName": "Đà Nẵng",
+    "code": "511"
+  },
+  {
+    "provinceID": 204,
+    "provinceName": "Đồng Nai",
+    "code": "61"
+  },
+  {
+    "provinceID": 205,
+    "provinceName": "Bình Dương",
+    "code": "065"
+  },
+  {
+    "provinceID": 206,
+    "provinceName": "Bà Rịa - Vũng Tàu",
+    "code": "64"
+  },
+  {
+    "provinceID": 207,
+    "provinceName": "Gia Lai",
+    "code": "59"
+  },
+  {
+    "provinceID": 208,
+    "provinceName": "Khánh Hòa",
+    "code": "58"
+  },
+  {
+    "provinceID": 209,
+    "provinceName": "Lâm Đồng",
+    "code": "63"
+  },
+  {
+    "provinceID": 210,
+    "provinceName": "Đắk Lắk",
+    "code": "500"
+  },
+  {
+    "provinceID": 211,
+    "provinceName": "Long An",
+    "code": "72"
+  },
+  {
+    "provinceID": 212,
+    "provinceName": "Tiền Giang",
+    "code": "73"
+  },
+  {
+    "provinceID": 213,
+    "provinceName": "Bến Tre",
+    "code": "75"
+  },
+  {
+    "provinceID": 214,
+    "provinceName": "Trà Vinh",
+    "code": "74"
+  },
+  {
+    "provinceID": 215,
+    "provinceName": "Vĩnh Long",
+    "code": "70"
+  },
+  {
+    "provinceID": 216,
+    "provinceName": "Đồng Tháp",
+    "code": "67"
+  },
+  {
+    "provinceID": 217,
+    "provinceName": "An Giang",
+    "code": "76"
+  },
+  {
+    "provinceID": 218,
+    "provinceName": "Sóc Trăng",
+    "code": "79"
+  },
+  {
+    "provinceID": 219,
+    "provinceName": "Kiên Giang",
+    "code": "77"
+  },
+  {
+    "provinceID": 220,
+    "provinceName": "Cần Thơ",
+    "code": "710"
+  },
+  {
+    "provinceID": 221,
+    "provinceName": "Vĩnh Phúc",
+    "code": "211"
+  },
+  {
+    "provinceID": 223,
+    "provinceName": "Thừa Thiên - Huế",
+    "code": "54"
+  },
+  {
+    "provinceID": 224,
+    "provinceName": "Hải Phòng",
+    "code": "31"
+  },
+  {
+    "provinceID": 225,
+    "provinceName": "Hải Dương",
+    "code": "320"
+  },
+  {
+    "provinceID": 226,
+    "provinceName": "Thái Bình",
+    "code": "36"
+  },
+  {
+    "provinceID": 227,
+    "provinceName": "Hà Giang",
+    "code": "219"
+  },
+  {
+    "provinceID": 228,
+    "provinceName": "Tuyên Quang",
+    "code": "27"
+  },
+  {
+    "provinceID": 229,
+    "provinceName": "Phú Thọ",
+    "code": "210"
+  },
+  {
+    "provinceID": 230,
+    "provinceName": "Quảng Ninh",
+    "code": "33"
+  },
+  {
+    "provinceID": 231,
+    "provinceName": "Nam Định",
+    "code": "350"
+  },
+  {
+    "provinceID": 232,
+    "provinceName": "Hà Nam",
+    "code": "351"
+  },
+  {
+    "provinceID": 233,
+    "provinceName": "Ninh Bình",
+    "code": "30"
+  },
+  {
+    "provinceID": 234,
+    "provinceName": "Thanh Hóa",
+    "code": "37"
+  },
+  {
+    "provinceID": 235,
+    "provinceName": "Nghệ An",
+    "code": "38"
+  },
+  {
+    "provinceID": 236,
+    "provinceName": "Hà Tĩnh",
+    "code": "39"
+  },
+  {
+    "provinceID": 237,
+    "provinceName": "Quảng Bình",
+    "code": "52"
+  },
+  {
+    "provinceID": 238,
+    "provinceName": "Quảng Trị",
+    "code": "53"
+  },
+  {
+    "provinceID": 239,
+    "provinceName": "Bình Phước",
+    "code": "651"
+  },
+  {
+    "provinceID": 240,
+    "provinceName": "Tây Ninh",
+    "code": "66"
+  },
+  {
+    "provinceID": 241,
+    "provinceName": "Đắk Nông",
+    "code": "501"
+  },
+  {
+    "provinceID": 242,
+    "provinceName": "Quảng Ngãi",
+    "code": "55"
+  },
+  {
+    "provinceID": 243,
+    "provinceName": "Quảng Nam",
+    "code": "510"
+  },
+  {
+    "provinceID": 244,
+    "provinceName": "Thái Nguyên",
+    "code": "280"
+  },
+  {
+    "provinceID": 245,
+    "provinceName": "Bắc Kạn",
+    "code": "281"
+  },
+  {
+    "provinceID": 246,
+    "provinceName": "Cao Bằng",
+    "code": "26"
+  },
+  {
+    "provinceID": 247,
+    "provinceName": "Lạng Sơn",
+    "code": "25"
+  },
+  {
+    "provinceID": 248,
+    "provinceName": "Bắc Giang",
+    "code": "240"
+  },
+  {
+    "provinceID": 249,
+    "provinceName": "Bắc Ninh",
+    "code": "241"
+  },
+  {
+    "provinceID": 250,
+    "provinceName": "Hậu Giang",
+    "code": "711"
+  },
+  {
+    "provinceID": 252,
+    "provinceName": "Cà Mau",
+    "code": "780"
+  },
+  {
+    "provinceID": 253,
+    "provinceName": "Bạc Liêu",
+    "code": "781"
+  },
+  {
+    "provinceID": 258,
+    "provinceName": "Bình Thuận",
+    "code": "62"
+  },
+  {
+    "provinceID": 259,
+    "provinceName": "Kon Tum",
+    "code": "60"
+  },
+  {
+    "provinceID": 260,
+    "provinceName": "Phú Yên",
+    "code": "57"
+  },
+  {
+    "provinceID": 261,
+    "provinceName": "Ninh Thuận",
+    "code": "68"
+  },
+  {
+    "provinceID": 262,
+    "provinceName": "Bình Định",
+    "code": "56"
+  },
+  {
+    "provinceID": 263,
+    "provinceName": "Yên Bái",
+    "code": "29"
+  },
+  {
+    "provinceID": 264,
+    "provinceName": "Lai Châu",
+    "code": "231"
+  },
+  {
+    "provinceID": 265,
+    "provinceName": "Điện Biên",
+    "code": "230"
+  },
+  {
+    "provinceID": 266,
+    "provinceName": "Sơn La",
+    "code": "22"
+  },
+  {
+    "provinceID": 267,
+    "provinceName": "Hòa Bình",
+    "code": "218"
+  },
+  {
+    "provinceID": 268,
+    "provinceName": "Hưng Yên",
+    "code": "321"
+  },
+  {
+    "provinceID": 269,
+    "provinceName": "Lào Cai",
+    "code": "20"
+  }
+]

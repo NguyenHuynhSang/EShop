@@ -1,26 +1,25 @@
-﻿using EShop.Server.Interface;
-using EShop.Server.Models.Interface;
+﻿using EShop.Server.Client.Dtos.Shipping;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EShop.Server.Models
+namespace EShop.Server.Client.Dtos.Customer
 {
-    [Table("Customer")]
-    public class Customer : IAuditAble
+    public class CustomerForUpdateDto
     {
-        [Key]
+  
         public int Id { set; get; }
-
+        [Required]
         public string Username { set; get; }
+        [Required]
         public string Password { set; get; }
+        [Required]
         public string Name { set; get; }
 
-        
-        public IEnumerable<Address> Addresses { set; get; }
+
+        public IEnumerable<AddressForUpdate> Addresses { set; get; }
 
 
         [Required]
