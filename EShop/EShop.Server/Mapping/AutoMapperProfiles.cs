@@ -126,13 +126,20 @@ namespace EShop.Server.Mapping
                .ForMember(dest => dest.MainImage, opt => opt.MapFrom(src => src.ProductVersionImages.FirstOrDefault(x => x.IsMain == true).Url));
 
             CreateMap<Address, AddressForViewDto>()
-                 .ForMember(dest => dest.WardCode, opt => opt.MapFrom(src => src.WardCode)); ;
+                 .ForMember(dest => dest.WardCode, opt => opt.MapFrom(src => src.WardCode));
+            CreateMap<AddressForInputDto, Address>();
+
+
             CreateMap<Customer, CustomerForViewDto>();
             CreateMap<Customer, CustomerForLoginDto>();
             CreateMap<Customer, CustomerForRegisterDto>();
             CreateMap<Customer, CustomerForDetailDto>();
-           
-            
+            CreateMap<CustomerForUpdateDto, Customer>()
+            .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+            CreateMap<Customer, CustomerForUpdateDto>();
+          
+
+
             CreateMap<ProductComment, ProductCommentDto>()
                  .ForMember(dest => dest.CustomerName, opt => opt.MapFrom(src => src.Customer.Name));
             CreateMap<ProductVersion, ProductVersionForSaleDto>()

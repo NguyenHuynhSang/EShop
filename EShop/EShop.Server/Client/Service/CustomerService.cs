@@ -1,4 +1,6 @@
-﻿using EShop.Server.Data.Repository;
+﻿using AutoMapper;
+using EShop.Server.Client.Dtos.Customer;
+using EShop.Server.Data.Repository;
 using EShop.Server.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -15,15 +17,18 @@ namespace EShop.Server.Client.Service
         Customer Login(string username, string password);
         bool UserExists(string username);
 
+        Customer UpdateInfor(CustomerForUpdateDto input);
         void SaveChange();
 
     }
     public class CustomerService : ICustomerService
     {
         private readonly ICustomerRepository _customerRepository;
-        public CustomerService(ICustomerRepository customerRepository)
+        private readonly IMapper _mapper;
+        public CustomerService(ICustomerRepository customerRepository, IMapper mapper)
         {
             _customerRepository = customerRepository;
+            _mapper = mapper;
         }
         public Customer Login(string username, string password)
         {
@@ -45,6 +50,13 @@ namespace EShop.Server.Client.Service
         public void SaveChange()
         {
             _customerRepository.Commit();
+        }
+
+        public Customer UpdateInfor(CustomerForUpdateDto input)
+        {
+            var old = _customerRepository.GetSingleById(input.Id);
+            var update= _mapper.Map<CustomerForUpdateDto,Customer>(input,old);
+            return _customerRepository.Update(update);
         }
 
         public bool UserExists(string username)

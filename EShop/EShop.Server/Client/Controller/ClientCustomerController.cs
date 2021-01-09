@@ -14,8 +14,11 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Authorization;
+
 namespace EShop.Server.Client.Controller
 {
+    [Authorize]
     [Route("api/client/[controller]/[action]")]
     [ApiController]
     public class ClientCustomerController : ControllerBase
@@ -23,7 +26,7 @@ namespace EShop.Server.Client.Controller
         private readonly ICustomerService _authService;
         private readonly IConfiguration _config;
         private readonly IMapper _mapper;
-
+        
 
         
 
@@ -36,6 +39,7 @@ namespace EShop.Server.Client.Controller
         }
 
         [HttpPost("register")]
+        [AllowAnonymous]
         public IActionResult Register(CustomerForRegisterDto Customer)
         {
             // validate request
@@ -102,6 +106,7 @@ namespace EShop.Server.Client.Controller
 
 
         [HttpPost("login")]
+        [AllowAnonymous]
         public async Task<IActionResult> Login(CustomerForLoginDto user)
         {
             try
@@ -147,14 +152,15 @@ namespace EShop.Server.Client.Controller
 
 
         [HttpPost]
-        public async Task<IActionResult> UpdateInfor(CustomerForDetailDto user)
+        [AllowAnonymous]
+        public async Task<IActionResult> UpdateInfor(CustomerForUpdateDto user)
         {
             try
             {
-                return Ok(new
-                {
-
-                });
+               var entity= _authService.UpdateInfor(user);
+                _authService.SaveChange();
+                var userReturn = _mapper.Map<CustomerForDetailDto>(entity);
+                return Ok(userReturn);
             }
             catch (Exception ex)
             {

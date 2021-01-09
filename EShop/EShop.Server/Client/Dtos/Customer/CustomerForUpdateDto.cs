@@ -9,17 +9,14 @@ namespace EShop.Server.Client.Dtos.Customer
 {
     public class CustomerForUpdateDto
     {
-  
+        [Required]
         public int Id { set; get; }
-        [Required]
-        public string Username { set; get; }
-        [Required]
         public string Password { set; get; }
         [Required]
         public string Name { set; get; }
 
 
-        public IEnumerable<AddressForUpdate> Addresses { set; get; }
+        public IEnumerable<AddressForInputDto> Addresses { set; get; }
 
 
         [Required]
@@ -33,5 +30,14 @@ namespace EShop.Server.Client.Dtos.Customer
         public string CreatedBy { get; set; }
         public DateTime? ModifiedDate { get; set; }
         public string ModifiedBy { get; set; }
+    }
+
+    public class AddressForInputDto
+    {
+        public int Id { set; get; }
+
+        public string WardCode { set; get; }
+        public string AddressDetail { set; get; }
+        public string isMain { set; get; }
     }
 }
