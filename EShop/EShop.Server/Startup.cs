@@ -34,6 +34,7 @@ using EShop.Server.Entities;
 using EShop.Server.Client.Service;
 using EShop.Server.Server.Service;
 using GHNApi;
+using EShop.Server.Data.Repository.Address;
 
 namespace EShop.Server
 {
@@ -136,6 +137,10 @@ namespace EShop.Server
             services.AddScoped<IMenuRepository, MenuRepository>();
             services.AddScoped<IMenuService, MenuService>();
             services.AddScoped<IMenuClientService, MenuClientService>();
+            services.AddScoped<IDistrictRepository, DistrictRepository>();
+            services.AddScoped<IWardRepository, WardRepository>();
+
+            services.AddScoped<IAddressService, AddressService>();
 
             services.AddScoped<IGiaoHangNhanhService, GiaoHangNhanhService>();
             

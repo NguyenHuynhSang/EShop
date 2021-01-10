@@ -1,4 +1,6 @@
-﻿using GHNApi;
+﻿using EShop.Server.Client.Service;
+using EShop.Server.Data.Repository.Address;
+using GHNApi;
 using GHNApi.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,9 +16,11 @@ namespace EShop.Server.Client.Controller
     public class ClientGiaoHangNhanhController : ControllerBase
     {
         private readonly IGiaoHangNhanhService _giaoHangNhanhService;
-        public ClientGiaoHangNhanhController(IGiaoHangNhanhService giaoHangNhanhService)
+        private readonly IAddressService _addressService;
+        public ClientGiaoHangNhanhController(IGiaoHangNhanhService giaoHangNhanhService, IAddressService addressService)
         {
             _giaoHangNhanhService = giaoHangNhanhService;
+            _addressService = addressService;
         }
 
         [HttpGet]
@@ -79,10 +83,11 @@ namespace EShop.Server.Client.Controller
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<ShippingFee>> GetShippingFee(int DistrictId,string ward_code)
+        public ActionResult<IEnumerable<ShippingFee>> GetShippingFee(string ward_code)
         {
             try
             {
+                var DistrictId = _addressService.GetDistrictByWardCode(ward_code);
                 var result = _giaoHangNhanhService.GetShippingFee(ward_code,DistrictId);
                 return Ok(result);
             }
