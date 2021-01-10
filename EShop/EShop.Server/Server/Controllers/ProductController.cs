@@ -74,7 +74,7 @@ namespace EShop.Server.Server.Controllers
 
 
         [HttpGet]
-        [EnableCors("ApiCorsPolicy")]
+
 
         [SwaggerOperationCustom(Summary = "Lấy ra tất cả các product version không phân trang", FileName = "product_getall.html")]
 
@@ -104,7 +104,7 @@ namespace EShop.Server.Server.Controllers
 
 
         [HttpGet]
-        [EnableCors("ApiCorsPolicy")]
+ 
 
         [SwaggerOperationCustom(Summary = "Lấy ra tất cả các product version có phân trang", FileName = "product_getall.html")]
 
