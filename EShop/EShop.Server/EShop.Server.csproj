@@ -47,6 +47,8 @@
     <Compile Remove="Data\Migrations\20210108114404_fix_address_v3.Designer.cs" />
     <Compile Remove="Data\Migrations\20210108120217_fix_address_v4.cs" />
     <Compile Remove="Data\Migrations\20210108120217_fix_address_v4.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210110134952_add_tag_value.cs" />
+    <Compile Remove="Data\Migrations\20210110134952_add_tag_value.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

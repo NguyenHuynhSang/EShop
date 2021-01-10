@@ -81,6 +81,8 @@ namespace EShop.Server.Data
         public DbSet<Ward> Ward { get; set; }
 
         public DbSet<Address> Addresses { get; set; }
+
+        public DbSet<ProductVersionTag> ProductVersionTags  { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder) //Một bảng có 2 khóa chính phải sử dụng fluent API
         {
 
@@ -100,6 +102,8 @@ namespace EShop.Server.Data
 
             //update
             modelBuilder.Entity<ProductVersionAttribute>().HasKey(sc => new { sc.AttributeValueID, sc.ProductVersionID });
+            modelBuilder.Entity<ProductVersionTag>().HasKey(sc => new { sc.TagId, sc.ProductVersionID });
+
 
             modelBuilder.Entity<ContentTag>()
                 .HasKey(o => new { o.TagID, o.ContentID });

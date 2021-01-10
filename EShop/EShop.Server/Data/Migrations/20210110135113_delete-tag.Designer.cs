@@ -4,14 +4,16 @@ using EShop.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EShop.Server.Migrations
 {
     [DbContext(typeof(EShopDbContext))]
-    partial class EShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210110135113_delete-tag")]
+    partial class deletetag
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -945,21 +947,6 @@ namespace EShop.Server.Migrations
                     b.ToTable("ProductVersionImage");
                 });
 
-            modelBuilder.Entity("EShop.Server.Models.ProductVersionTag", b =>
-                {
-                    b.Property<int>("TagId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductVersionID")
-                        .HasColumnType("int");
-
-                    b.HasKey("TagId", "ProductVersionID");
-
-                    b.HasIndex("ProductVersionID");
-
-                    b.ToTable("ProductVersionTags");
-                });
-
             modelBuilder.Entity("EShop.Server.Models.SeedLog", b =>
                 {
                     b.Property<int>("Id")
@@ -1035,24 +1022,6 @@ namespace EShop.Server.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SlideGroups");
-                });
-
-            modelBuilder.Entity("EShop.Server.Models.Tag", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("EnName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Tag");
                 });
 
             modelBuilder.Entity("EShop.Server.Models.User", b =>
@@ -1305,21 +1274,6 @@ namespace EShop.Server.Migrations
                     b.HasOne("EShop.Server.Models.ProductVersion", "ProductVersion")
                         .WithMany("ProductVersionImages")
                         .HasForeignKey("ProductVersionID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("EShop.Server.Models.ProductVersionTag", b =>
-                {
-                    b.HasOne("EShop.Server.Models.ProductVersion", "ProductVersion")
-                        .WithMany()
-                        .HasForeignKey("ProductVersionID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EShop.Server.Models.Tag", "Tag")
-                        .WithMany()
-                        .HasForeignKey("TagId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

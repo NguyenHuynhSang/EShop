@@ -74,5 +74,79 @@ namespace EShop.Server.Server.Controllers
         }
 
 
+
+        [HttpPost]
+        [SwaggerOperationCustom(Summary = "Lưu hình ảnh lên cloud", FileName = "photo_create.html")]
+        public ActionResult<Photo> AddPhotoTagging(IFormFile File)
+        {
+            try
+            {
+                Photo photo = new Photo();
+                var updateResult = new ImageUploadResult();
+                var file = File;
+
+                if (file.Length > 0)
+                {
+                    using (var stream = file.OpenReadStream())
+                    {
+                        var uploadParams = new ImageUploadParams()
+                        {
+                            File = new FileDescription(file.Name, stream),
+                            Categorization= "google_tagging",
+                            AutoTagging = 0.9f
+                        };
+                        updateResult = _cloudinary.Upload(uploadParams);
+                    }
+                }
+
+                // xóa bỏ file khi đã lưu để giảm lưu lượng trả về
+                photo.Url = updateResult.Url.ToString();
+                photo.PublicId = updateResult.PublicId;
+                return Ok(photo);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex);
+            }
+
+        }
+
+        [HttpPost]
+        [SwaggerOperationCustom(Summary = "Lưu hình ảnh lên cloud", FileName = "photo_create.html")]
+        public ActionResult<Photo> AddPhotoTaggingImma(IFormFile File)
+        {
+            try
+            {
+                Photo photo = new Photo();
+                var updateResult = new ImageUploadResult();
+                var file = File;
+
+                if (file.Length > 0)
+                {
+                    using (var stream = file.OpenReadStream())
+                    {
+                        var uploadParams = new ImageUploadParams()
+                        {
+                            File = new FileDescription(file.Name, stream),
+                            Categorization = "imagga_tagging",
+                        };
+                        updateResult = _cloudinary.Upload(uploadParams);
+                    }
+                }
+
+                // xóa bỏ file khi đã lưu để giảm lưu lượng trả về
+                photo.Url = updateResult.Url.ToString();
+                photo.PublicId = updateResult.PublicId;
+                return Ok(photo);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex);
+            }
+
+        }
+
     }
 }

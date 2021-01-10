@@ -49,7 +49,7 @@ namespace EShop.Server.Service
             }
             else
             {
-                return _TagRepository.GetMulti(x => x.TagName.Contains(keyword));
+                return _TagRepository.GetMulti(null);
             }
 
         }

@@ -10,10 +10,9 @@ namespace EShop.Server.Models
     public class Tag
     {
         [Key] // chỉ định    khóa chính
-        [MaxLength(50)]
 
-        public String Id { set; get; }
-        [MaxLength(50)] //chỉ định độ dài tối đa, nếu k có mặc định là max
-        public string TagName { set; get; }
+        public int Id { set; get; } 
+        public string Name { set; get; }
+        public string EnName { set; get; }
     }
 }
