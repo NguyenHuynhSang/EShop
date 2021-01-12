@@ -18,16 +18,7 @@ namespace EShop.Server.Models
         [ForeignKey("CustomerId")]
         public Customer Customer { set; get; }
 
-        public String Note { set; get; }
-        [Required]
-        public string Name { set; get; }
-
-        [Required]
-        public string Phone { set; get; }
-        [Required]
-        public string Address { set; get; }
-
-        public string Email { set; get; }
+        public int AddressId { set; get; }
 
         public DateTime? CreatedDate { get  ; set  ; }
         public string CreatedBy { get  ; set  ; }

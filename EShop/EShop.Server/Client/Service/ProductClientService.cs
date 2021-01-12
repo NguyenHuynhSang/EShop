@@ -9,7 +9,9 @@ using Microsoft.EntityFrameworkCore;
 using MoreLinq;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using static EShop.Server.Client.Controller.ClientProductController;
 
@@ -80,7 +82,22 @@ namespace EShop.Server.Client.Service
             var productsReturn = query.OrderByDescending(x => x.TotalSold).Select(x => _mapper.Map<ProductVersionForSaleDto>(x)).Take(numRecord);
             return productsReturn;
         }
+        static string RemoveDiacritics(string text)
+        {
+            string formD = text.Normalize(NormalizationForm.FormD);
+            StringBuilder sb = new StringBuilder();
 
+            foreach (char ch in formD)
+            {
+                UnicodeCategory uc = CharUnicodeInfo.GetUnicodeCategory(ch);
+                if (uc != UnicodeCategory.NonSpacingMark)
+                {
+                    sb.Append(ch);
+                }
+            }
+
+            return sb.ToString().Normalize(NormalizationForm.FormC);
+        }
         public IEnumerable<ProductVersionForSaleListDto> GetListProductByConditon(Params param, ProductForSaleFilter filter)
         {
             var query = _productVerRepository.GetMulti(x => x.Product.IsActive == true, q => q.Include(x => x.Product)
@@ -95,7 +112,7 @@ namespace EShop.Server.Client.Service
                                 .Include(x => x.ProductVersionAttributes));
 
 
-            query = query.Where(x => String.IsNullOrEmpty(filter.Keyword) ? true : x.Product.Name.ToLower().Contains(filter.Keyword.ToLower()))
+            query = query.Where(x => String.IsNullOrEmpty(filter.Keyword) ? true : RemoveDiacritics(x.Product.Name.ToLower()).Contains(RemoveDiacritics(filter.Keyword.ToLower())))
                 .Where(x => filter.CalalogIds.Count() > 0 ? filter.CalalogIds.Count(y => y == x.Product.CatalogID) > 0 : true)
               .Where(x => filter.Size.Count() > 0 ? filter.Size.Any(y => x.ProductVersionAttributes.Any(z => z.AttributeValueID == y)) : true);
             if (filter.MinPrice != null && (filter.MaxPrice == null || filter.MaxPrice == 0))

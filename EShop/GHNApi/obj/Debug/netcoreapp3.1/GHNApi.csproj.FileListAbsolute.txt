@@ -6,3 +6,4 @@ D:\Git\CoreAngular\EShop\EShop\GHNApi\obj\Debug\netcoreapp3.1\GHNApi.AssemblyInf
 D:\Git\CoreAngular\EShop\EShop\GHNApi\obj\Debug\netcoreapp3.1\GHNApi.csproj.CoreCompileInputs.cache
 D:\Git\CoreAngular\EShop\EShop\GHNApi\obj\Debug\netcoreapp3.1\GHNApi.dll
 D:\Git\CoreAngular\EShop\EShop\GHNApi\obj\Debug\netcoreapp3.1\GHNApi.pdb
+D:\Git\CoreAngular\EShop\EShop\GHNApi\obj\Debug\netcoreapp3.1\GHNApi.csprojAssemblyReference.cache

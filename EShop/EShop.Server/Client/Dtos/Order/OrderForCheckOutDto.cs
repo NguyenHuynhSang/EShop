@@ -13,15 +13,7 @@ namespace EShop.Server.Client.Dtos.Order
         public int CustomerId { set; get; }
 
 
-        public String Note { set; get; }
-        [Required]
-        public string Name { set; get; }
-        [Required]
-        public string Phone { set; get; }
-        [Required]
-        public string Address { set; get; }
-
-        public string Email { set; get; }
+        public int AddressId { set; get; }
 
         public int ShippingFee { set; get; }
 

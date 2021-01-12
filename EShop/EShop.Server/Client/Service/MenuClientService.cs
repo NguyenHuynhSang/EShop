@@ -10,7 +10,6 @@ namespace EShop.Server.Client.Service
     public interface IMenuClientService
     {
         public IEnumerable<Menu> GetMenu();
-
     }
     public class MenuClientService : IMenuClientService
     {
