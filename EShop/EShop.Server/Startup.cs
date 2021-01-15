@@ -139,7 +139,7 @@ namespace EShop.Server
             services.AddScoped<IMenuClientService, MenuClientService>();
             services.AddScoped<IDistrictRepository, DistrictRepository>();
             services.AddScoped<IWardRepository, WardRepository>();
-
+            services.AddScoped<IAddressRepository, AddressRepository>();
             services.AddScoped<IAddressService, AddressService>();
 
             services.AddScoped<IGiaoHangNhanhService, GiaoHangNhanhService>();

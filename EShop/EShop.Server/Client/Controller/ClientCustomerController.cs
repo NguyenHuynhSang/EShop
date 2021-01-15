@@ -15,6 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Authorization;
+using EShop.Server.Client.Dtos.Shipping;
 
 namespace EShop.Server.Client.Controller
 {
@@ -26,16 +27,17 @@ namespace EShop.Server.Client.Controller
         private readonly ICustomerService _authService;
         private readonly IConfiguration _config;
         private readonly IMapper _mapper;
-        
+        private readonly IAddressService _addressService;
 
         
 
-        public ClientCustomerController(ICustomerService authService, IConfiguration config, IMapper mapper)
+        public ClientCustomerController(ICustomerService authService, IConfiguration config, IMapper mapper, IAddressService addressService)
         {
 
             this._config = config;
             this._authService = authService;
             this._mapper = mapper;
+            _addressService = addressService;
         }
 
         [HttpPost("register")]
@@ -104,6 +106,21 @@ namespace EShop.Server.Client.Controller
 
         }
 
+        [HttpGet]
+        public ActionResult<IEnumerable<AddressForUpdate>> GetAddresses(int userId)
+        {
+            try
+            {
+                var record= _addressService.GetAddress(userId);
+                var result= record.Select(x => _mapper.Map<AddressForUpdate>(x));
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+            }
+          
+        }
 
         [HttpPost("login")]
         [AllowAnonymous]
@@ -139,7 +156,7 @@ namespace EShop.Server.Client.Controller
                 return Ok(new
                 {
                     token = tokenHandler.WriteToken(token),
-                    customer = userToReturn,
+                    user = userToReturn,
                 });
             }
             catch (Exception ex)
@@ -149,6 +166,11 @@ namespace EShop.Server.Client.Controller
 
         }
 
+        [HttpPost]
+        public void AddAddress()
+        {
+
+        }
 
 
         [HttpPost]

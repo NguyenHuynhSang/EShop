@@ -9,10 +9,10 @@ namespace EShop.Server.Client.Dtos.Customer
 {
     public class CustomerForUpdateDto
     {
-        [Required]
+      
         public int Id { set; get; }
         public string Password { set; get; }
-        [Required]
+      
         public string Name { set; get; }
 
 

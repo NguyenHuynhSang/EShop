@@ -51,7 +51,6 @@ namespace EShop.Server.Server.Controllers
 
 
         [HttpGet]
- 
         public ActionResult<IEnumerable<Order>> GetAllPaging(string filterProperty, FilterOperator filterOperator, FilterType filterType, string filterValue, string filterValue1, string sortBy, SortType sort = SortType.desc, decimal? currency = null, string weight = "kg", int page = 1, int perPage = 50)
         {
 
