@@ -1,4 +1,5 @@
 ﻿using EShop.Server.Client.Dtos.Shipping;
+using EShop.Server.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -9,17 +10,13 @@ namespace EShop.Server.Client.Dtos.Customer
 {
     public class CustomerForUpdateDto
     {
-      
+        [Required]
         public int Id { set; get; }
         public string Password { set; get; }
-      
+        public string CurrentPass { set; get; }
         public string Name { set; get; }
-
-
         public IEnumerable<AddressForInputDto> Addresses { set; get; }
 
-
-        [Required]
         public string Phone { set; get; }
 
         public string AddressDetail { set; get; }
@@ -34,8 +31,6 @@ namespace EShop.Server.Client.Dtos.Customer
 
     public class AddressForInputDto
     {
-        public int Id { set; get; }
-
         public string WardCode { set; get; }
         public string AddressDetail { set; get; }
         public string isMain { set; get; }

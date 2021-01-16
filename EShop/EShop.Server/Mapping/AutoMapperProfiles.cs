@@ -126,7 +126,10 @@ namespace EShop.Server.Mapping
                .ForMember(dest => dest.MainImage, opt => opt.MapFrom(src => src.ProductVersionImages.FirstOrDefault(x => x.IsMain == true).Url));
 
             CreateMap<Address, AddressForViewDto>()
-                 .ForMember(dest => dest.WardCode, opt => opt.MapFrom(src => src.WardCode));
+                 .ForMember(dest => dest.WardCode, opt => opt.MapFrom(src => src.WardCode))
+                 .ForMember(dest => dest.DistrictName, opt => opt.MapFrom(src => src.Ward.District.DistrictName))
+                 .ForMember(dest => dest.ProvinceName, opt => opt.MapFrom(src => src.Ward.District.Province.ProvinceName))
+              .ForMember(dest => dest.WardName, opt => opt.MapFrom(src => src.Ward.WardName));
             CreateMap<AddressForInputDto, Address>();
 
 

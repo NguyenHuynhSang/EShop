@@ -19,6 +19,7 @@ namespace EShop.Server.Client.Service
 
         Customer UpdateInfor(CustomerForUpdateDto input);
         void SaveChange();
+        Customer GetCustomerById(int id);
 
     }
     public class CustomerService : ICustomerService
@@ -30,6 +31,17 @@ namespace EShop.Server.Client.Service
             _customerRepository = customerRepository;
             _mapper = mapper;
         }
+
+        public Customer GetCustomerById(int id)
+        {
+          var user=  _customerRepository.GetSingleByCondition(x => x.Id == id,
+                q => q.Include(x => x.Addresses)
+                .ThenInclude(x => x.Ward)
+                .ThenInclude(x => x.District)
+                .ThenInclude(x => x.Province));
+            return user;
+        }
+
         public Customer Login(string username, string password)
         {
             var user = _customerRepository.GetSingleByCondition(x => x.Username == username && x.Password == password,
@@ -55,6 +67,7 @@ namespace EShop.Server.Client.Service
         public Customer UpdateInfor(CustomerForUpdateDto input)
         {
             var old = _customerRepository.GetSingleById(input.Id);
+           
             var update= _mapper.Map<CustomerForUpdateDto,Customer>(input,old);
             return _customerRepository.Update(update);
         }

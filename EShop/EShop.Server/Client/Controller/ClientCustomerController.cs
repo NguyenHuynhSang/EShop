@@ -16,6 +16,8 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Authorization;
 using EShop.Server.Client.Dtos.Shipping;
+using EShop.Server.Extension;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace EShop.Server.Client.Controller
 {
@@ -107,6 +109,7 @@ namespace EShop.Server.Client.Controller
         }
 
         [HttpGet]
+        [SwaggerOperation(Summary ="AUTHEN")]
         public ActionResult<IEnumerable<AddressForUpdate>> GetAddresses(int userId)
         {
             try
@@ -167,19 +170,90 @@ namespace EShop.Server.Client.Controller
         }
 
         [HttpPost]
-        public void AddAddress()
+        [SwaggerOperation(Summary = "AUTHEN")]
+        public ActionResult<CustomerForDetailDto> AddAddress(int userId,AddressForInputDto address)
         {
+            try
+            {
+                var adr = _mapper.Map<Address>(address);
+                adr.CustomerId = userId;
+                var result = _addressService.AddAddress(adr);
+                var user= _authService.GetCustomerById(userId);
+                var userReturn = _mapper.Map<CustomerForDetailDto>(user);
+                return Ok(userReturn);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+                throw;
+            }
+           
+
+
+
+        }
+
+        [HttpDelete]
+        [SwaggerOperation(Summary = "AUTHEN")]
+        public ActionResult<CustomerForDetailDto> DeleteAddress(int  addressId)
+        {
+            try
+            {
+                var result = _addressService.DeleteAddress(addressId);
+                var user = _authService.GetCustomerById(result.CustomerId);
+                var userReturn = _mapper.Map<CustomerForDetailDto>(user);
+                return Ok(userReturn);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+                throw;
+            }
+
+        }
+
+        [HttpPost]
+        [SwaggerOperation(Summary = "AUTHEN")]
+        [AllowAnonymous]
+        public ActionResult<CustomerForDetailDto> SetMainAddress(int addressId)
+        {
+            try
+            {
+                var result = _addressService.SetMainAddress(addressId);
+                var user = _authService.GetCustomerById(result.CustomerId);
+                var userReturn = _mapper.Map<CustomerForDetailDto>(user);
+                return Ok(userReturn);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+                throw;
+            }
 
         }
 
 
+
         [HttpPost]
-        [AllowAnonymous]
+        [SwaggerOperation(Summary = "AUTHEN")]
         public async Task<IActionResult> UpdateInfor(CustomerForUpdateDto user)
         {
             try
             {
-               var entity= _authService.UpdateInfor(user);
+                var current = _authService.GetCustomerById(user.Id);
+                if (!String.IsNullOrEmpty(user.CurrentPass))
+                {
+                    if (user.CurrentPass != current.Password)
+                    {
+                        return BadRequest(false);
+                    }
+                }
+                else
+                {
+                    user.Password = current.Password;
+                }
+                var entity= _authService.UpdateInfor(user);
+                 
                 _authService.SaveChange();
                 var userReturn = _mapper.Map<CustomerForDetailDto>(entity);
                 return Ok(userReturn);
@@ -193,11 +267,14 @@ namespace EShop.Server.Client.Controller
 
 
         [HttpGet]
-        public ActionResult<CustomerForDetailDto> GetCustomerDetail()
+        [SwaggerOperation(Summary = "AUTHEN")]
+        public ActionResult<CustomerForDetailDto> GetCustomerDetail(int id)
         {
             try
             {
-                return Ok();
+               var entity= _authService.GetCustomerById(id);
+                var result=_mapper.Map<CustomerForDetailDto>(entity);
+                return Ok(result);
             }
             catch (Exception ex)
             {
