@@ -1,5 +1,6 @@
 ﻿using EShop.Server.Extension;
 using EShop.Server.Models;
+using EShop.Server.Server.Dtos.Order;
 using EShop.Server.Server.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -51,7 +52,7 @@ namespace EShop.Server.Server.Controllers
 
 
         [HttpGet]
-        public ActionResult<IEnumerable<Order>> GetAllPaging(string filterProperty, FilterOperator filterOperator, FilterType filterType, string filterValue, string filterValue1, string sortBy, SortType sort = SortType.desc, decimal? currency = null, string weight = "kg", int page = 1, int perPage = 50)
+        public ActionResult<IEnumerable<OrderForListDto>> GetAllPaging(string filterProperty, FilterOperator filterOperator, FilterType filterType, string filterValue, string filterValue1, string sortBy, SortType sort = SortType.desc, decimal? currency = null, string weight = "kg", int page = 1, int perPage = 50)
         {
 
             try
@@ -69,7 +70,7 @@ namespace EShop.Server.Server.Controllers
                 param.filterValue = filterValue;
                 param.filterType = filterType;
                 var list = _orderService.GetAll(param);
-                return Ok(PagedList<Order>.ToPagedList(list, page, perPage));
+                return Ok(PagedList<OrderForListDto>.ToPagedList(list, page, perPage));
             }
             catch (Exception ex)
             {

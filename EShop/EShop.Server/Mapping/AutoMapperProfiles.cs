@@ -17,6 +17,7 @@ using EShop.Server.Client.Dtos.Order;
 using EShop.Server.Client.Dtos.Catalog;
 using EShop.Server.Client.Dtos.ProductFilterParam;
 using EShop.Server.Client.Dtos.Shipping;
+using EShop.Server.Server.Dtos.Order;
 
 namespace EShop.Server.Mapping
 {
@@ -140,8 +141,10 @@ namespace EShop.Server.Mapping
             CreateMap<CustomerForUpdateDto, Customer>()
             .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
             CreateMap<Customer, CustomerForUpdateDto>();
-          
-
+            CreateMap<Customer, CustomerForOrderDto>();
+            CreateMap<Order, OrderForListDto>()
+                 .ForMember(dest => dest.Total, opt => opt.MapFrom(src => src.OrderDetails.Sum(x=>x.Price*x.Quantity)))
+                 .ForMember(dest => dest.TotalQuantity, opt => opt.MapFrom(src => src.OrderDetails.Sum(x=>x.Quantity)));
 
             CreateMap<ProductComment, ProductCommentDto>()
                  .ForMember(dest => dest.CustomerName, opt => opt.MapFrom(src => src.Customer.Name));

@@ -16,10 +16,8 @@ namespace EShop.Server.Models
 
         public int CustomerId { set; get; }
         [ForeignKey("CustomerId")]
-        public Customer Customer { set; get; }
-
-        public int AddressId { set; get; }
-
+        public Customer Customer { set; get; }       
+        public string ShippingDetail { set; get; }
         public DateTime? CreatedDate { get  ; set  ; }
         public string CreatedBy { get  ; set  ; }
         public DateTime? ModifiedDate { get  ; set  ; }

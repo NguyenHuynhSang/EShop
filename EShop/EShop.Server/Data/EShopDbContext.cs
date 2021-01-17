@@ -83,6 +83,7 @@ namespace EShop.Server.Data
         public DbSet<Address> Addresses { get; set; }
 
         public DbSet<ProductVersionTag> ProductVersionTags  { get; set; }
+        public DbSet<AddressToShip> AddressToShips { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder) //Một bảng có 2 khóa chính phải sử dụng fluent API
         {
 

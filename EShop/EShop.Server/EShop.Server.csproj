@@ -49,6 +49,28 @@
     <Compile Remove="Data\Migrations\20210108120217_fix_address_v4.Designer.cs" />
     <Compile Remove="Data\Migrations\20210110134952_add_tag_value.cs" />
     <Compile Remove="Data\Migrations\20210110134952_add_tag_value.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210117141023_add_address_relative.cs" />
+    <Compile Remove="Data\Migrations\20210117141023_add_address_relative.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210117141329_add_address_relative.cs" />
+    <Compile Remove="Data\Migrations\20210117141329_add_address_relative.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210117141616_add_address_relative.cs" />
+    <Compile Remove="Data\Migrations\20210117141616_add_address_relative.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210117141707_add_address_relative.cs" />
+    <Compile Remove="Data\Migrations\20210117141707_add_address_relative.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210117141739_add_address_relative.cs" />
+    <Compile Remove="Data\Migrations\20210117141739_add_address_relative.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210117141935_add_address_relative.cs" />
+    <Compile Remove="Data\Migrations\20210117141935_add_address_relative.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210117142224_add_address_relative.cs" />
+    <Compile Remove="Data\Migrations\20210117142224_add_address_relative.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210117142441_add_address_relative.cs" />
+    <Compile Remove="Data\Migrations\20210117142441_add_address_relative.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210117142729_add_address_relative.cs" />
+    <Compile Remove="Data\Migrations\20210117142729_add_address_relative.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210117142923_add_address_relative.cs" />
+    <Compile Remove="Data\Migrations\20210117142923_add_address_relative.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210117143143_add_address_relative.cs" />
+    <Compile Remove="Data\Migrations\20210117143143_add_address_relative.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
