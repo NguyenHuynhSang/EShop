@@ -167,6 +167,31 @@ namespace EShop.Server
                 swagger.EnableAnnotations();
                 swagger.DescribeAllEnumsAsStrings();
                 swagger.SwaggerDoc("v1", new OpenApiInfo { Title = "My API" });
+                swagger.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = "JWT Authorization header using the Bearer scheme (Example: 'Bearer 12345abcdef')",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer",
+                    
+                });
+
+                swagger.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference
+                        {
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "Bearer",
+                        }
+                    },
+                  Array.Empty<string>()
+                }
+            });
+
 
                 //swagger.DocumentFilter<CustomModelDocumentForSwagger<ProductFilterModel>>();
             });

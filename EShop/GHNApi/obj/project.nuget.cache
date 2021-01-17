@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "wr8MJc5CluE8mvhfxeSTiPORKkzAwRq1RDCCbJUi7AoMBGrYEWwAlDaykP87OF7CbUSjXNlrTYqaJ750QprWYQ==",
+  "success": true,
+  "projectFilePath": "D:\\Git\\CoreAngular\\EShop\\EShop\\GHNApi\\GHNApi.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Asus\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\Asus\\.nuget\\packages\\restsharp\\106.11.7\\restsharp.106.11.7.nupkg.sha512"
+  ],
+  "logs": []
+}
