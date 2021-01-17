@@ -14,7 +14,7 @@ namespace GHNApi
         public IEnumerable<Ward> GetWardByDistrictId(int Id);
         public IEnumerable<ShippingService> GetSupportedShippingService(int toDistricId);
 
-        public ShippingFee GetShippingFee(string to_ward_code, int to_district_id);
+        public ShippingFee GetShippingFee(string to_ward_code, int to_district_id,int type);
 
         //public ShippingOrder CreateShippingOrder();
     }
@@ -73,13 +73,13 @@ namespace GHNApi
             return resqContent.Data;
         }
 
-        public ShippingFee GetShippingFee(string to_ward_code, int to_district_id)
+        public ShippingFee GetShippingFee(string to_ward_code, int to_district_id, int type)
         {
             var client = new RestClient(Constain.GET__SHIPPING_FREE_URL);
             var request = new RestRequest(Method.GET);
             request.AddHeader("Token", Constain.Token);
             request.AddParameter("shop_id", Constain.SHOP_ID);
-            request.AddParameter("service_type_id", 2);
+            request.AddParameter("service_type_id", type);
             request.AddParameter("insurance_value", 0);
             request.AddParameter("to_ward_code", to_ward_code);
             request.AddParameter("to_district_id", to_district_id);

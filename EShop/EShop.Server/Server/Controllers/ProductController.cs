@@ -29,8 +29,6 @@ namespace EShop.Server.Server.Controllers
 
     [ApiController]
 
-   
-
     public class ProductController : ApiControllerBase
     {
       

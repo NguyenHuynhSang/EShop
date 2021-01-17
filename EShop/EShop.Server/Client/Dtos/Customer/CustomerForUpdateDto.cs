@@ -33,6 +33,6 @@ namespace EShop.Server.Client.Dtos.Customer
     {
         public string WardCode { set; get; }
         public string AddressDetail { set; get; }
-        public string isMain { set; get; }
+        public bool isMain { set; get; }
     }
 }

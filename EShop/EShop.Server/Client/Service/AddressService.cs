@@ -43,10 +43,9 @@ namespace EShop.Server.Client.Service
         {
 
             _addressRepository.Add(add);
-            _addressRepository.Commit();
             if (add.isMain==true)
             {
-                var some = _addressRepository.GetMulti(x => x.CustomerId == add.CustomerId).ToList();
+                var some = _addressRepository.GetMulti(x => x.CustomerId == add.CustomerId ).ToList();
                 some.ForEach(a => a.isMain = false);
             }
             _addressRepository.Commit();

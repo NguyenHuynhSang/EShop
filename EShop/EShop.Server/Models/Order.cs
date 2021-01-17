@@ -25,7 +25,11 @@ namespace EShop.Server.Models
         public DateTime? ModifiedDate { get  ; set  ; }
         public string ModifiedBy { get  ; set  ; }
 
+        public string ShipName { set; get; }
+        public string ShipPhone { set; get; }
+        public string ShipEmail { set; get; }
 
+        public string Note { set; get; }
         public int OrderStatusId { set; get; }
         [ForeignKey("OrderStatusId")]
         public OrderStatus Status { set; get; }

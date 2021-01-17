@@ -4,14 +4,16 @@ using EShop.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EShop.Server.Migrations
 {
     [DbContext(typeof(EShopDbContext))]
-    partial class EShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210117092055_fix_doc")]
+    partial class fix_doc
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -505,15 +507,6 @@ namespace EShop.Server.Migrations
 
                     b.Property<int>("OrderStatusId")
                         .HasColumnType("int");
-
-                    b.Property<string>("ShipEmail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ShipName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ShipPhone")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ShippingFee")
                         .HasColumnType("int");

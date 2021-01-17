@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace EShop.Server.Client.Controller
@@ -17,6 +18,13 @@ namespace EShop.Server.Client.Controller
     {
         private readonly IGiaoHangNhanhService _giaoHangNhanhService;
         private readonly IAddressService _addressService;
+        [JsonConverter(typeof(JsonStringEnumConverter))]
+        public enum ShipType
+        {
+            SAVING=1,
+            STANDARD,
+            FAST
+        }
         public ClientGiaoHangNhanhController(IGiaoHangNhanhService giaoHangNhanhService, IAddressService addressService)
         {
             _giaoHangNhanhService = giaoHangNhanhService;
@@ -88,7 +96,7 @@ namespace EShop.Server.Client.Controller
             try
             {
                 var DistrictId = _addressService.GetDistrictByWardCode(ward_code);
-                var result = _giaoHangNhanhService.GetShippingFee(ward_code,DistrictId);
+                var result = _giaoHangNhanhService.GetShippingFee(ward_code,DistrictId, (int)ShipType.STANDARD);
                 return Ok(result);
             }
             catch (Exception ex)

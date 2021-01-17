@@ -195,6 +195,7 @@ namespace EShop.Server.Client.Controller
 
         [HttpDelete]
         [SwaggerOperation(Summary = "AUTHEN")]
+        [AllowAnonymous]
         public ActionResult<CustomerForDetailDto> DeleteAddress(int  addressId)
         {
             try
@@ -214,7 +215,6 @@ namespace EShop.Server.Client.Controller
 
         [HttpPost]
         [SwaggerOperation(Summary = "AUTHEN")]
-        [AllowAnonymous]
         public ActionResult<CustomerForDetailDto> SetMainAddress(int addressId)
         {
             try
