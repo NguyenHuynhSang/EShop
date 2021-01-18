@@ -15,10 +15,8 @@ namespace EShop.Server.Client.Dtos.Order
         public string ShipName { set; get; }
         public string ShipPhone { set; get; }
         public string ShipEmail { set; get; }
-        
+    
         public int AddressId { set; get; }
-
-        public int ShippingFee { set; get; }
         public string Note { set; get; }
 
         public IEnumerable<OrderDetailForCheckOutDto> OrderDetails { set; get; }

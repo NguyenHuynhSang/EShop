@@ -2,6 +2,7 @@
 using EShop.Server.Data.Repository;
 using EShop.Server.Data.Repository.Address;
 using EShop.Server.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,8 @@ namespace EShop.Server.Client.Service
         IEnumerable<Address> AddAddress(Address add);
         Address DeleteAddress(int id);
         Address SetMainAddress(int id);
+        Address GetById(int id);
+
     }
     public class AddressService : IAddressService
     {
@@ -69,6 +72,12 @@ namespace EShop.Server.Client.Service
             add.isMain = true;
             _addressRepository.Commit();
             return add;
+        }
+
+        public Address GetById(int id)
+        {
+           var result = _addressRepository.GetSingleByCondition(x=>x.Id==id, q=>q.Include(z=>z.Ward).ThenInclude(y=>y.District).ThenInclude(y => y.Province));
+            return result;
         }
     }
 }

@@ -15,7 +15,6 @@ namespace EShop.Server.Client.Dtos.Customer
         public string Password { set; get; }
         public string CurrentPass { set; get; }
         public string Name { set; get; }
-        public IEnumerable<AddressForInputDto> Addresses { set; get; }
 
         public string Phone { set; get; }
 
