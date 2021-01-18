@@ -26,40 +26,17 @@ namespace EShop.Server.Server.Controllers
 
 
         [HttpGet]
- 
-        public ActionResult<IEnumerable<Order>> GetAll(string filterProperty, FilterOperator filterOperator, FilterType filterType, string filterValue, string filterValue1, string sortBy, SortType sort = SortType.desc)
-        {
 
-            try
-            {
-                Params param = new Params();
-                param.sortBy = sortBy;
-                param.sort = sort;
-                param.filterProperty = filterProperty;
-                param.filterOperator = filterOperator;
-                param.filterValue1 = filterValue1;
-                param.filterValue = filterValue;
-                param.filterType = filterType;
-                var list = _orderService.GetAll(param);
-                return Ok(list);
-            }
-            catch (Exception ex)
-            {
-
-                return BadRequest(ex);
-            }
-        }
 
 
         [HttpGet]
-        public ActionResult<IEnumerable<OrderForListDto>> GetAllPaging(string filterProperty, FilterOperator filterOperator, FilterType filterType, string filterValue, string filterValue1, string sortBy, SortType sort = SortType.desc, decimal? currency = null, string weight = "kg", int page = 1, int perPage = 50)
+        public ActionResult<IEnumerable<OrderForListDto>> GetAllPaging(string filterProperty, FilterOperator filterOperator, FilterType filterType, string filterValue, string filterValue1, string sortBy= "Status.id", SortType sort = SortType.desc, int page = 1, int perPage = 50)
         {
 
             try
             {
                 Params param = new Params();
-                param.currency = currency;
-                param.weight = weight;
+
                 param.sortBy = sortBy;
                 param.sort = sort;
                 param.perPage = perPage;
@@ -74,11 +51,24 @@ namespace EShop.Server.Server.Controllers
             }
             catch (Exception ex)
             {
-   
                 return BadRequest(ex);
             }
         }
 
+        [HttpGet]
+        public ActionResult<IEnumerable<OrderStatus>>  GetOrderStatus()
+        {
+            try
+            {
+
+                var statuses = _orderService.GetOrderStatus();
+                return Ok(statuses);
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex.ToString());
+            }
+        } 
 
         [HttpPut]
         public ActionResult<Order> Update(Order order)

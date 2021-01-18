@@ -126,7 +126,7 @@ namespace EShop.Server
             services.AddScoped<IExchangeRateRepository, ExchangeRateRepository>();
             services.AddScoped<IExchangeRateService, ExchangeRateService>();
 
-
+            services.AddScoped<IOrderStatusRepository, OrderStatusRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IOrderClientService, OrderClientService>();

@@ -23,6 +23,7 @@ namespace EShop.Server.Server.Service
         public Order Update(Order order);
 
         void SaveChanges();
+        public IEnumerable<OrderStatus> GetOrderStatus();
 
         
 
@@ -31,11 +32,13 @@ namespace EShop.Server.Server.Service
     public class OrderService : IOrderService
     {
         private readonly IOrderRepository _orderRepository;
+        private readonly IOrderStatusRepository _orderStatusRepository;
         private readonly IMapper _mapper;
-        public OrderService(IOrderRepository orderRepository, IMapper mapper)
+        public OrderService(IOrderRepository orderRepository, IMapper mapper, IOrderStatusRepository orderStatusRepository)
         {
             _orderRepository = orderRepository;
             _mapper = mapper;
+            _orderStatusRepository = orderStatusRepository;
         }
 
 
@@ -55,13 +58,31 @@ namespace EShop.Server.Server.Service
                                                             .Include(x=>x.Customer)
                                                             .Include(x=>x.OrderDetails)
                                                             .Include(x=>x.Status));
-            var result=query.Select(x => _mapper.Map<OrderForListDto>(x));
-            return result;
+            var result = query.Select(x => _mapper.Map<OrderForListDto>(x));
+            try
+            {
+                if (!String.IsNullOrEmpty(param.filterProperty) && !String.IsNullOrEmpty(param.filterValue))
+                {
+                    result = result.AsQueryable().WhereTo(param);
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            return result.AsQueryable().Distinct().OrderByWithDirection(param.sortBy, param.sort);
         }
 
         public Order GetOrderBId(int id)
         {
             return _orderRepository.GetSingleByCondition(x=>x.Id==id, q => q.Include(x => x.OrderDetails));
+        }
+
+        public IEnumerable<OrderStatus> GetOrderStatus()
+        {
+            return _orderStatusRepository.GetAll();
         }
 
         public void SaveChanges()
