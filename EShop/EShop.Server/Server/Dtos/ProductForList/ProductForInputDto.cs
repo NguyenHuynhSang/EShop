@@ -63,9 +63,10 @@ namespace EShop.Server.Dtos.Admin
        
 
         public IEnumerable<ProductVersionAttributeForCreateDto> ProductVersionAttributes { set; get; }
+        public IEnumerable<ProductVersionTagsForCreateDto> ProductVersionTags { set; get; }
 
         public IEnumerable<ProductVersionImagesForCreateDto> ProductVersionImages { set; get; }
-
+        
    
     }
 
@@ -73,6 +74,13 @@ namespace EShop.Server.Dtos.Admin
     {
         public int AttributeValueID { set; get; }
     }
+
+
+    public class ProductVersionTagsForCreateDto
+    {
+        public int TagId { get; set; }
+    }
+
     public class ProductVersionImagesForCreateDto
     {
         public String Url { set; get; }

@@ -50,9 +50,9 @@ namespace EShop.Server.Models
 
         public IEnumerable<ProductVersionImage> ProductVersionImages { set; get; }
 
-       
 
-        
+        public IEnumerable<ProductVersionTag> ProductVersionTags { set; get; }
+
 
     }
 }
