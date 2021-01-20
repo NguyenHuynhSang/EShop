@@ -43,6 +43,8 @@ namespace EShop.Server.Mapping
                 {
                     opt.MapFrom(src => src.DateOfBirth.Age());
                 });
+            
+
             CreateMap<UserForUpdateDto, User>();
             CreateMap<Photo, PhotoForDetailDto>();
 
@@ -121,8 +123,7 @@ namespace EShop.Server.Mapping
             .ForMember(dest => dest.ProductVersionImages, opt => opt.MapFrom(src => src.ProductVersionImages.Count() > 0 ? src.ProductVersionImages : new List<ProductVersionImage>() { new ProductVersionImage() { IsMain = true, Url = @"http://res.cloudinary.com/eshop2020/image/upload/v1608746056/wsrmyveqzxb2p5yloub3.jpg" } }))
                 .ForMember(dest => dest.RelativeProductVersions, opt => opt.MapFrom(src => src.Product.ProductVersions.Where(x => x.Id != src.Id)));
 
-
-
+         
             CreateMap<ProductVersion, RelativeProductVersionDto>()
                .ForMember(dest => dest.MainImage, opt => opt.MapFrom(src => src.ProductVersionImages.FirstOrDefault(x => x.IsMain == true).Url));
 
@@ -178,12 +179,14 @@ namespace EShop.Server.Mapping
             ///product dto block
             ///
 
-
+            CreateMap<ProductVersionTag, ProductVersionTagsForCreateDto>();
+            CreateMap<ProductVersionTagsForCreateDto, ProductVersionTag>();
             CreateMap<ProductVersionAttributeForCreateDto, Models.ProductVersionAttribute>();
             //     CreateMap<ProductVersionImageDto, Models.ProductVersionImage>();
             CreateMap<ProductVersionImagesForCreateDto, Models.ProductVersionImage>();
             CreateMap<ProductVesionForCreateDto, ProductVersion>()
                .ForMember(dest => dest.ProductVersionImages, opt => opt.MapFrom(src => src.ProductVersionImages))
+               .ForMember(dest => dest.ProductVersionTags, opt => opt.MapFrom(src => src.ProductVersionTags))
                .ForMember(dest => dest.ProductVersionAttributes, opt => opt.MapFrom(src => src.ProductVersionAttributes));
             CreateMap<ProductForInputDto, Product>()
                 .ForMember(dest => dest.ProductVersions, opt => opt.MapFrom(src => src.ProductVersions));
