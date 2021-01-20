@@ -1,17 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using EShop.Server.Dtos.Admin;
 using EShop.Server.Extension;
 using EShop.Server.Helper;
+using EShop.Server.Models;
+using EShop.Server.Repository;
 using EShop.Server.Server.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.Options;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace EShop.Server.Server.Controllers
@@ -22,7 +27,8 @@ namespace EShop.Server.Server.Controllers
     {
         private Cloudinary _cloudinary;
         private readonly IOptions<CloudinarySetting> _cloudinaryConfig;
-        public PhotoController(IOptions<CloudinarySetting> cloudinaryConfig)
+        private readonly ITagRepository _tagRepository;
+        public PhotoController(IOptions<CloudinarySetting> cloudinaryConfig, ITagRepository tagRepository)
         {
             _cloudinaryConfig = cloudinaryConfig;
 
@@ -33,25 +39,61 @@ namespace EShop.Server.Server.Controllers
                 );
 
             _cloudinary = new Cloudinary(acc);
+            _tagRepository = tagRepository;
 
         }
 
- 
+
+        [HttpPost]
+        public async Task<ActionResult<IEnumerable<Tag>>> TaggingApi(IFormFile File)
+        {
+            var file = File;
+            using (var httpClient = new HttpClient())
+            {
+                using (var form = new MultipartFormDataContent())
+                {
+                    using (var fs = file.OpenReadStream())
+                    {
+                        using (var streamContent = new StreamContent(fs))
+                        {
+                            using (var fileContent = new ByteArrayContent(await streamContent.ReadAsByteArrayAsync()))
+                            {
+                                fileContent.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
+
+                                // "file" parameter name should be the same as the server side input parameter name
+                                form.Add(fileContent, "file", file.FileName);
+                                var response = await httpClient.PostAsync(@"http://flask-api123.herokuapp.com/tagging", form);
+                                var rs = response.Content;
+                                string responseBody = await response.Content.ReadAsStringAsync();
+                                TagReturn json = JsonConvert.DeserializeObject<TagReturn>(responseBody);
+                               var result= _tagRepository.GetMulti(x => x.EnName == json.Category || x.EnName==json.Color);
+                                return Ok(result);
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
         [HttpPost]
         [SwaggerOperationCustom(Summary = "Lưu hình ảnh lên cloud", FileName = "photo_create.html")]
-        public ActionResult<Photo> AddPhoto(IFormFile File )
+        public async Task<ActionResult<Entities.Photo>> AddPhotoAsync(IFormFile File)
         {
             try
             {
-                Photo photo = new Photo();
+                Entities.Photo photo = new Entities.Photo();
                 var updateResult = new ImageUploadResult();
                 var file = File;
+
+
+
+
 
                 if (file.Length > 0)
                 {
                     using (var stream = file.OpenReadStream())
                     {
+
                         var uploadParams = new ImageUploadParams()
                         {
                             File = new FileDescription(file.Name, stream)
@@ -70,18 +112,18 @@ namespace EShop.Server.Server.Controllers
 
                 return BadRequest(ex);
             }
-    
+
         }
 
 
 
         [HttpPost]
         [SwaggerOperationCustom(Summary = "Lưu hình ảnh lên cloud", FileName = "photo_create.html")]
-        public ActionResult<Photo> AddPhotoTagging(IFormFile File)
+        public ActionResult<Entities.Photo> AddPhotoTagging(IFormFile File)
         {
             try
             {
-                Photo photo = new Photo();
+                Entities.Photo photo = new Entities.Photo();
                 var updateResult = new ImageUploadResult();
                 var file = File;
 
@@ -92,7 +134,7 @@ namespace EShop.Server.Server.Controllers
                         var uploadParams = new ImageUploadParams()
                         {
                             File = new FileDescription(file.Name, stream),
-                            Categorization= "google_tagging",
+                            Categorization = "google_tagging",
                             AutoTagging = 0.9f
                         };
                         updateResult = _cloudinary.Upload(uploadParams);
@@ -114,11 +156,11 @@ namespace EShop.Server.Server.Controllers
 
         [HttpPost]
         [SwaggerOperationCustom(Summary = "Lưu hình ảnh lên cloud", FileName = "photo_create.html")]
-        public ActionResult<Photo> AddPhotoTaggingImma(IFormFile File)
+        public ActionResult<Entities.Photo> AddPhotoTaggingImma(IFormFile File)
         {
             try
             {
-                Photo photo = new Photo();
+                Entities.Photo photo = new Entities.Photo();
                 var updateResult = new ImageUploadResult();
                 var file = File;
 

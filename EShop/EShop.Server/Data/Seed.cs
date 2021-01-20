@@ -60,7 +60,7 @@ namespace EShop.Server.Data
              
                 
             }
-         
+         //   SeedTag();
 
 
 
@@ -237,7 +237,19 @@ namespace EShop.Server.Data
 
         }
 
+        private void SeedTag()
+        {
+            var tagdatas = File.ReadAllText("Data/Seed/tags.data.json");
+            var tags = JsonConvert.DeserializeObject<List<Tag>>(tagdatas);
 
+            _context.Tags.AddRange(tags);
+
+            _context.SaveChanges();
+
+
+
+
+        }
         private void SeedProductAttribute()
         {
             var dataJson = File.ReadAllText("Data/Seed/product.attribute.data.json");

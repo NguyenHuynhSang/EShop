@@ -1,0 +1,442 @@
+﻿[
+  {
+    "EnName": "Shirts",
+    "Name": "Áo sơ mi"
+  },
+  {
+    "EnName": "Navy Blue",
+    "Name": "Xanh hải quân"
+  },
+  {
+    "EnName": "Jeans",
+    "Name": "Jean"
+  },
+  {
+    "EnName": "Blue",
+    "Name": "Màu xanh"
+  },
+  {
+    "EnName": "Track Pants",
+    "Name": "Quần thể thao"
+  },
+  {
+    "EnName": "Black",
+    "Name": "Màu đen"
+  },
+  {
+    "EnName": "Tshirts",
+    "Name": "Áo thun"
+  },
+  {
+    "EnName": "Grey",
+    "Name": "Màu xám"
+  },
+  {
+    "EnName": "Green",
+    "Name": "Xanh lá cây"
+  },
+  {
+    "EnName": "Socks",
+    "Name": "vớ"
+  },
+  {
+    "EnName": "Watches",
+    "Name": "Đồng hồ"
+  },
+  {
+    "EnName": "Casual Shoes",
+    "Name": "Giầy/dép"
+  },
+  {
+    "EnName": "Flip Flops",
+    "Name": "Dép lào"
+  },
+  {
+    "EnName": "Purple",
+    "Name": "Màu tím"
+  },
+  {
+    "EnName": "Sandals",
+    "Name": "Dép quai hậu"
+  },
+  {
+    "EnName": "Sweatshirts",
+    "Name": "Áo nỉ"
+  },
+  {
+    "EnName": "Deodorant",
+    "Name": "Xịt khử mùi"
+  },
+  {
+    "EnName": "White",
+    "Name": "Màu trắng"
+  },
+  {
+    "EnName": "Formal Shoes",
+    "Name": "Giầy tây"
+  },
+  {
+    "EnName": "Brown",
+    "Name": "Màu nâu"
+  },
+  {
+    "EnName": "Belts",
+    "Name": "Thắc lưng"
+  },
+  {
+    "EnName": "Off White",
+    "Name": "Màu trắng đụt"
+  },
+  {
+    "EnName": "Waistcoat",
+    "Name": "Áo gi lê"
+  },
+  {
+    "EnName": "Sports Shoes",
+    "Name": "Giầy thể thao"
+  },
+  {
+    "EnName": "Shorts",
+    "Name": "Quần short"
+  },
+  {
+    "EnName": "Briefs",
+    "Name": "Đồ lót "
+  },
+  {
+    "EnName": "Maroon",
+    "Name": "Màu hạt dẻ"
+  },
+  {
+    "EnName": "Red",
+    "Name": "Màu đỏ"
+  },
+  {
+    "EnName": "Silver",
+    "Name": "Màu trắng bạc"
+  },
+  {
+    "EnName": "Khaki",
+    "Name": "Kaki"
+  },
+  {
+    "EnName": "Pink",
+    "Name": "Màu hồng"
+  },
+  {
+    "EnName": "Sunglasses",
+    "Name": "Kính mát"
+  },
+  {
+    "EnName": "Innerwear Vests",
+    "Name": "Áo thun ôm"
+  },
+  {
+    "EnName": "Yellow",
+    "Name": "Màu vàng"
+  },
+  {
+    "EnName": "Wallets",
+    "Name": "Ví đựng tiền"
+  },
+  {
+    "EnName": "Copper",
+    "Name": "Màu vàng đồng"
+  },
+  {
+    "EnName": "Beige",
+    "Name": "Màu be"
+  },
+  {
+    "EnName": "Bracelet",
+    "Name": "Vòng đeo tay"
+  },
+  {
+    "EnName": "Steel",
+    "Name": "Màu trắng thép"
+  },
+  {
+    "EnName": "Caps",
+    "Name": "Mũ"
+  },
+  {
+    "EnName": "Gold",
+    "Name": "Màu Gold"
+  },
+  {
+    "EnName": "Trousers",
+    "Name": "Quần"
+  },
+  {
+    "EnName": "Tan",
+    "Name": "Màu nâu titan"
+  },
+  {
+    "EnName": "Boxers",
+    "Name": "Quần Boxers"
+  },
+  {
+    "EnName": "Multi",
+    "Name": "Nhiều màu"
+  },
+  {
+    "EnName": "Perfume and Body Mist",
+    "Name": "Nước hoa và xịt toàn thân"
+  },
+  {
+    "EnName": "Olive",
+    "Name": "Màu ôliu"
+  },
+  {
+    "EnName": "Trunk",
+    "Name": "Tủ đựng"
+  },
+  {
+    "EnName": "Charcoal",
+    "Name": "Màu than củi"
+  },
+  {
+    "EnName": "Sports Sandals",
+    "Name": "Dép thể thao"
+  },
+  {
+    "EnName": "Sweaters",
+    "Name": "Áo len"
+  },
+  {
+    "EnName": "Free Gifts",
+    "Name": "Quà lưu niệm"
+  },
+  {
+    "EnName": "Burgundy",
+    "Name": "Màu đỏ rượu"
+  },
+  {
+    "EnName": "Grey Melange",
+    "Name": "Màu xám Melange"
+  },
+  {
+    "EnName": "Tracksuits",
+    "Name": "Bộ đồ thể thao"
+  },
+  {
+    "EnName": "Orange",
+    "Name": "Màu cam"
+  },
+  {
+    "EnName": "Ties",
+    "Name": "Cà vạt"
+  },
+  {
+    "EnName": "Cream",
+    "Name": "Màu kem"
+  },
+  {
+    "EnName": "Jackets",
+    "Name": "Áo khoác"
+  },
+  {
+    "EnName": "Bangle",
+    "Name": "Vòng"
+  },
+  {
+    "EnName": "Turquoise Blue",
+    "Name": "Màu ngọc lam"
+  },
+  {
+    "EnName": "Mufflers",
+    "Name": "Màu nhạt"
+  },
+  {
+    "EnName": "Night suits",
+    "Name": "Đồ ngủ"
+  },
+  {
+    "EnName": "Metallic",
+    "Name": "Màu kim loại"
+  },
+  {
+    "EnName": "Peach",
+    "Name": "Màu lòng đào"
+  },
+  {
+    "EnName": "Accessory Gift Set",
+    "Name": "Bộ quà tặng"
+  },
+  {
+    "EnName": "Mustard",
+    "Name": "Màu mù tạt"
+  },
+  {
+    "EnName": "Scarves",
+    "Name": "Khăn quàng cổ"
+  },
+  {
+    "EnName": "Coffee Brown",
+    "Name": "Màu cà phê"
+  },
+  {
+    "EnName": "Suspenders",
+    "Name": "Dây treo"
+  },
+  {
+    "EnName": "Lavender",
+    "Name": "Màu oải hương"
+  },
+  {
+    "EnName": "Fragrance Gift Set",
+    "Name": "Bộ nước hoa"
+  },
+  {
+    "EnName": "Kurtas",
+    "Name": "Áo sơ mi không cổ"
+  },
+  {
+    "EnName": "Ring",
+    "Name": "Nhẫn"
+  },
+  {
+    "EnName": "Lounge Pants",
+    "Name": "Quần dài"
+  },
+  {
+    "EnName": "Laptop Bag",
+    "Name": "Túi đựng laptop"
+  },
+  {
+    "EnName": "Backpacks",
+    "Name": "Cặp"
+  },
+  {
+    "EnName": "Bronze",
+    "Name": ""
+  },
+  {
+    "EnName": "Lounge Shorts",
+    "Name": "Quần shorts"
+  },
+  {
+    "EnName": "Gloves",
+    "Name": "Găng tay"
+  },
+  {
+    "EnName": "Duffel Bag",
+    "Name": "Túi vải thô"
+  },
+  {
+    "EnName": "Mushroom Brown",
+    "Name": "màu âu nấm"
+  },
+  {
+    "EnName": "Rust",
+    "Name": "Màu nâu cam"
+  },
+  {
+    "EnName": "Pendant",
+    "Name": "Mặt dây chuyền"
+  },
+  {
+    "EnName": "Nehru Jackets",
+    "Name": "Áo khoác Nehru"
+  },
+  {
+    "EnName": "Cufflinks",
+    "Name": "Khuy băng"
+  },
+  {
+    "EnName": "Teal",
+    "Name": "Màu xanh lá cây ánh xanh lam"
+  },
+  {
+    "EnName": "NA",
+    "Name": "Không rõ"
+  },
+  {
+    "EnName": "Messenger Bag",
+    "Name": "Túi messenger"
+  },
+  {
+    "EnName": "Sunscreen",
+    "Name": "Kem chống nắng"
+  },
+  {
+    "EnName": "Handbags",
+    "Name": "Túi xách"
+  },
+  {
+    "EnName": "Kurtis",
+    "Name": "Đồ đa năng"
+  },
+  {
+    "EnName": "Tunics",
+    "Name": "Áo trùm hông"
+  },
+  {
+    "EnName": "Water Bottle",
+    "Name": "Chai đựng nước"
+  },
+  {
+    "EnName": "Churidar",
+    "Name": "Quần bó"
+  },
+  {
+    "EnName": "Rain Jacket",
+    "Name": "Áo mưa"
+  },
+  {
+    "EnName": "Waist Pouch",
+    "Name": "Túi thắc lưng"
+  },
+  {
+    "EnName": "Magenta",
+    "Name": "Màu cánh sen"
+  },
+  {
+    "EnName": "Heels",
+    "Name": "Vớ dài"
+  },
+  {
+    "EnName": "Sea Green",
+    "Name": "Màu xanh biển"
+  },
+  {
+    "EnName": "Fluorescent Green",
+    "Name": "Màu xanh neon"
+  },
+  {
+    "EnName": "Blazers",
+    "Name": "Áo khoác Blazer"
+  },
+  {
+    "EnName": "Tights",
+    "Name": "Quần tất"
+  },
+  {
+    "EnName": "Mens Grooming Kit",
+    "Name": "Mens Grooming Kit"
+  },
+  {
+    "EnName": "Rain Trousers",
+    "Name": "Quần đi mưa"
+  },
+  {
+    "EnName": "Shoe Accessories",
+    "Name": "Phụ kiện giầy"
+  },
+  {
+    "EnName": "Body Wash and Scrub",
+    "Name": "Sửa rửa mặt"
+  },
+  {
+    "EnName": "Stoles",
+    "Name": "Áo choàn"
+  },
+  {
+    "EnName": "Suits",
+    "Name": "Suits"
+  },
+  {
+    "EnName": "Tops",
+    "Name": "Áo"
+  }
+]
