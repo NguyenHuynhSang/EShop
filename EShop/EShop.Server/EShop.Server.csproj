@@ -71,6 +71,8 @@
     <Compile Remove="Data\Migrations\20210117142923_add_address_relative.Designer.cs" />
     <Compile Remove="Data\Migrations\20210117143143_add_address_relative.cs" />
     <Compile Remove="Data\Migrations\20210117143143_add_address_relative.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210122143241_fix_order_relative.cs" />
+    <Compile Remove="Data\Migrations\20210122143241_fix_order_relative.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -83,13 +85,13 @@
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.4" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.6">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.6" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.6">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -135,9 +137,13 @@
     <None Remove="Doc\product_getall.html" />
     <None Remove="Doc\swagget_index.html" />
     <None Remove="Doc\time_sheet.html" />
+    <None Remove="eshopdb.db" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="eshopdb.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="index.html" />
   </ItemGroup>
 

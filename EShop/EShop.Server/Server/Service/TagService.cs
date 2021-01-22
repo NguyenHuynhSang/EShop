@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace EShop.Server.Service
 {
@@ -43,14 +44,16 @@ namespace EShop.Server.Service
 
         public IEnumerable<Tag> GetAll(string keyword)
         {
-            if (String.IsNullOrEmpty(keyword))
+            if (!String.IsNullOrEmpty(keyword))
             {
-                return _TagRepository.GetAll();
+                return _TagRepository.GetMulti(x => x.Name.ToLower().Contains(keyword.ToLower())).OrderByDescending(x => x.Name.ToLower().StartsWith("màu")).ThenBy(x=>x.Name);
+
             }
             else
             {
-                return _TagRepository.GetMulti(null);
+                return _TagRepository.GetMulti(null).OrderByDescending(x => x.Name.ToLower().StartsWith("màu")).ThenBy(x => x.Name);
             }
+
 
         }
 

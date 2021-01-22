@@ -36,7 +36,6 @@ namespace EShop.Server.Server.Controllers
             try
             {
                 Params param = new Params();
-
                 param.sortBy = sortBy;
                 param.sort = sort;
                 param.perPage = perPage;
@@ -68,22 +67,25 @@ namespace EShop.Server.Server.Controllers
             {
                 return NotFound(ex.ToString());
             }
-        } 
+        }
 
         [HttpPut]
-        public ActionResult<Order> Update(Order order)
+        public ActionResult<bool> UpdateOrderStatus(int orderId,int StatusId)
         {
             try
             {
-
-                var updatedOrder = _orderService.Update(order);
+                var entity = _orderService.GetOrderBId(orderId);
+                entity.OrderStatusId = StatusId;
+                var updatedOrder = _orderService.Update(entity);
                 _orderService.SaveChanges();
-                return Ok(updatedOrder);
+                return Ok(true);
             }
             catch (Exception ex)
             {
                 return NotFound(ex.ToString());
             }
         }
+
+       
     }
 }

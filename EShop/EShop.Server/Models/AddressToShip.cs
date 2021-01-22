@@ -16,6 +16,5 @@ namespace EShop.Server.Models
         [ForeignKey("WardCode")]
         public virtual Ward Ward { set; get; }
         public string AddressDetail { set; get; }
-        public bool isMain { set; get; }
     }
 }

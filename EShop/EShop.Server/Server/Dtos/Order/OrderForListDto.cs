@@ -14,7 +14,6 @@ namespace EShop.Server.Server.Dtos.Order
 
         public CustomerForOrderDto Customer { set; get; }
         public int AddressId { set; get; }
-        public AddressForViewDto Address { set; get; }
 
         public DateTime? CreatedDate { get; set; }
         public string CreatedBy { get; set; }
@@ -24,7 +23,7 @@ namespace EShop.Server.Server.Dtos.Order
         public string ShipName { set; get; }
         public string ShipPhone { set; get; }
         public string ShipEmail { set; get; }
-
+        public string ShippingDetail { set; get; }
         public string Note { set; get; }
         public int OrderStatusId { set; get; }
         public OrderStatus Status { set; get; }
