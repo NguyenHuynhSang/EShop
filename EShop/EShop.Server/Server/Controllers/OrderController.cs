@@ -1,4 +1,5 @@
-﻿using EShop.Server.Extension;
+﻿using AutoMapper;
+using EShop.Server.Extension;
 using EShop.Server.Models;
 using EShop.Server.Server.Dtos.Order;
 using EShop.Server.Server.Service;
@@ -17,10 +18,12 @@ namespace EShop.Server.Server.Controllers
     public class OrderController : ControllerBase
     {
         private readonly IOrderService _orderService;
+        private readonly IMapper _mapper;
 
-        public OrderController(IOrderService orderService)
+        public OrderController(IOrderService orderService, IMapper mapper)
         {
             _orderService = orderService;
+            _mapper = mapper;
         }
 
 
@@ -68,6 +71,26 @@ namespace EShop.Server.Server.Controllers
                 return NotFound(ex.ToString());
             }
         }
+
+
+
+        [HttpGet("{id}")]
+        public ActionResult<IEnumerable<OrderForDetailDto>> GetOrderDetail(int id)
+        {
+            try
+            {
+
+                var order = _orderService.GetOrderDetail(id);
+                var orderReturn = _mapper.Map<OrderForDetailDto>(order);
+
+                return Ok(orderReturn);
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex.ToString());
+            }
+        }
+
 
         [HttpPut]
         public ActionResult<bool> UpdateOrderStatus(int orderId,int StatusId)

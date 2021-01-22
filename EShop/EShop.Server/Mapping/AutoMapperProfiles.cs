@@ -18,6 +18,7 @@ using EShop.Server.Client.Dtos.Catalog;
 using EShop.Server.Client.Dtos.ProductFilterParam;
 using EShop.Server.Client.Dtos.Shipping;
 using EShop.Server.Server.Dtos.Order;
+using static EShop.Server.Server.Dtos.Order.OrderForDetailDto;
 
 namespace EShop.Server.Mapping
 {
@@ -143,6 +144,14 @@ namespace EShop.Server.Mapping
             .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
             CreateMap<Customer, CustomerForUpdateDto>();
             CreateMap<Customer, CustomerForOrderDto>();
+
+            CreateMap<OrderDetail,OrderDetailForView>()
+                 .ForMember(dest => dest.ProductName, opt => opt.MapFrom(src => src.ProductVersion.Product.Name+" "+src.ProductVersion.Name))
+                .ForMember(dest => dest.ProductImage, opt => opt.MapFrom(src => src.ProductVersion.ProductVersionImages.FirstOrDefault(x=>x.IsMain==true).Url));
+
+            CreateMap<Order, OrderForDetailDto>()
+                  .ForMember(dest => dest.Total, opt => opt.MapFrom(src => src.OrderDetails.Sum(x=>x.Quantity*x.Price)));
+
             CreateMap<Order, OrderForListDto>()
                  .ForMember(dest => dest.Total, opt => opt.MapFrom(src => src.OrderDetails.Sum(x=>x.Price*x.Quantity)))
                  .ForMember(dest => dest.TotalQuantity, opt => opt.MapFrom(src => src.OrderDetails.Sum(x=>x.Quantity)));
@@ -212,6 +221,7 @@ namespace EShop.Server.Mapping
 
             CreateMap<Models.Attribute, Models.Attribute>()
                   .ForMember(dest => dest.Id, opt => opt.Ignore());
+
 
 
             CreateMap<OrderDetailForCheckOutDto, OrderDetail>();

@@ -18,6 +18,7 @@ namespace EShop.Server.Server.Service
 
         public Order GetOrderBId(int id);
 
+        public Order GetOrderDetail(int id);
         public Order Delete(Order order);
 
         public Order Update(Order order);
@@ -25,7 +26,6 @@ namespace EShop.Server.Server.Service
         void SaveChanges();
         public IEnumerable<OrderStatus> GetOrderStatus();
 
-        
 
 
     }
@@ -78,6 +78,18 @@ namespace EShop.Server.Server.Service
         public Order GetOrderBId(int id)
         {
             return _orderRepository.GetSingleByCondition(x=>x.Id==id, q => q.Include(x => x.OrderDetails));
+        }
+
+        public Order GetOrderDetail(int id)
+        {
+            return _orderRepository.GetSingleByCondition(x => x.Id == id, q => q.Include(x => x.OrderDetails)
+                                                                                .ThenInclude(x=>x.ProductVersion)
+                                                                                .ThenInclude(x => x.ProductVersionImages)
+                                                                                .Include(x=>x.OrderDetails)
+                                                                                .ThenInclude(x => x.ProductVersion)
+                                                                                .ThenInclude(x=>x.Product)
+                                                                                .Include(x => x.Customer)
+                                                                                .Include(x => x.Status));
         }
 
         public IEnumerable<OrderStatus> GetOrderStatus()
