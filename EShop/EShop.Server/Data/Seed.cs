@@ -49,17 +49,17 @@ namespace EShop.Server.Data
             //}
          //   SeedDistrict();
             //SeedWard();
-            if (_context.SeedLogs.Count() == 0)
-            {
+            //if (_context.SeedLogs.Count() == 0)
+            //{
 
-                SeedLog log = new SeedLog();
-                log.DataVersion = 1;
-                context.SeedLogs.Add(log);
-                context.SaveChanges();
-                SeedProvince();
+            //    SeedLog log = new SeedLog();
+            //    log.DataVersion = 1;
+            //    context.SeedLogs.Add(log);
+            //    context.SaveChanges();
+            //    SeedProvince();
              
                 
-            }
+            //}
          //   SeedTag();
 
 

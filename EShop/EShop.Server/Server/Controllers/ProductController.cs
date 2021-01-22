@@ -174,6 +174,7 @@ namespace EShop.Server.Server.Controllers
             try
                 {
                 var productForCreate = _mapper.Map<Product>(product);
+                productForCreate.IsActive = true;
                 var newProduct = _productService.Add(productForCreate);
                 _productService.SaveChanges();
                 return Ok(newProduct);
