@@ -205,7 +205,7 @@ namespace EShop.Server
                 args.SetObserved();
             });
             services.AddRouting(options => options.LowercaseUrls = true);
-
+            services.AddMvc();
 
 
         }
