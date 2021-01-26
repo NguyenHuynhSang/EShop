@@ -27,7 +27,6 @@ namespace EShop.Server.Client.Dtos.Order
         [Required]
         public int ProductVersionId { set; get; }
 
-
         [Required]
         public int Quantity { set; get; }
 

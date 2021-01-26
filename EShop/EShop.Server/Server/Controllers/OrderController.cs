@@ -109,6 +109,25 @@ namespace EShop.Server.Server.Controllers
             }
         }
 
-       
+
+        [HttpDelete("{id}")]
+        public ActionResult<bool> Delete(int id)
+        {
+            try
+            {
+                var oldEntity = _orderService.GetOrderBId(id);
+                _orderService.Delete(oldEntity);
+                _orderService.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return NotFound();
+            }
+        }
+
+
+
+
     }
 }

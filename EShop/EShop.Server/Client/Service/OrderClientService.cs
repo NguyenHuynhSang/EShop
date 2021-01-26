@@ -12,7 +12,7 @@ namespace EShop.Server.Client.Service
 {
     public interface IOrderClientService
     {
-        public OrderForCheckOutDto CheckOut(OrderForCheckOutDto order,decimal fee, Address address);
+        public OrderForCheckOutDto CheckOut(OrderForCheckOutDto order, decimal fee, Address address);
         public void SaveChange();
     }
     public class OrderClientService : IOrderClientService
@@ -26,20 +26,20 @@ namespace EShop.Server.Client.Service
             _mapper = mapper;
             _giaoHangNhanhService = giaoHangNhanhService;
             _orderRepository = orderRepository;
-        
+
         }
 
-  
-      
+
+
         public OrderForCheckOutDto CheckOut(OrderForCheckOutDto order, decimal fee, Address address)
         {
 
             Order orderReturn = _mapper.Map<Order>(order);
-        
+
             orderReturn.CreatedDate = DateTime.Now;
             orderReturn.OrderStatusId = 1;
             orderReturn.ShippingFee = (int)fee;
-            orderReturn.ShippingDetail = address.AddressDetail + address.Ward.WardName + address.Ward.District.DistrictName+address.Ward.District.Province.ProvinceName;
+            orderReturn.ShippingDetail = address.AddressDetail + " " + address.Ward.WardName + " " + address.Ward.District.DistrictName + " " + address.Ward.District.Province.ProvinceName;
             _orderRepository.Add(orderReturn);
             return order;
 

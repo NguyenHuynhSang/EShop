@@ -125,6 +125,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="app\**" />
+    <Compile Remove="Assets\**" />
+    <Content Remove="app\**" />
+    <Content Remove="Assets\**" />
+    <EmbeddedResource Remove="app\**" />
+    <EmbeddedResource Remove="Assets\**" />
+    <None Remove="app\**" />
+    <None Remove="Assets\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="Data\Seed\menu.data.json" />
     <Content Remove="Data\Seed\menu.group.data.json" />
   </ItemGroup>
