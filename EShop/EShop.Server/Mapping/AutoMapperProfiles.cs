@@ -19,6 +19,7 @@ using EShop.Server.Client.Dtos.ProductFilterParam;
 using EShop.Server.Client.Dtos.Shipping;
 using EShop.Server.Server.Dtos.Order;
 using static EShop.Server.Server.Dtos.Order.OrderForDetailDto;
+using EShop.Server.Server.Dtos.Customer;
 
 namespace EShop.Server.Mapping
 {
@@ -135,7 +136,8 @@ namespace EShop.Server.Mapping
               .ForMember(dest => dest.WardName, opt => opt.MapFrom(src => src.Ward.WardName));
             CreateMap<AddressForInputDto, Address>();
 
-
+            
+            CreateMap<Customer, CustomerForOrderDetailDto>();
             CreateMap<Customer, CustomerForViewDto>();
             CreateMap<Customer, CustomerForLoginDto>();
             CreateMap<Customer, CustomerForRegisterDto>();

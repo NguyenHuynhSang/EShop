@@ -1,4 +1,6 @@
-﻿using EShop.Server.Models;
+﻿using EShop.Server.Client.Dtos.Customer;
+using EShop.Server.Models;
+using EShop.Server.Server.Dtos.Customer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +14,7 @@ namespace EShop.Server.Server.Dtos.Order
 
         public int CustomerId { set; get; }
      
-        public Customer Customer { set; get; }
+        public CustomerForOrderDetailDto Customer { set; get; }
         public int? AddressToShipId { set; get; }
         public string ShippingDetail { set; get; }
         public DateTime? CreatedDate { get; set; }

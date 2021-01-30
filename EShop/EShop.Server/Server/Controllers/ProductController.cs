@@ -106,7 +106,7 @@ namespace EShop.Server.Server.Controllers
 
         [SwaggerOperationCustom(Summary = "Lấy ra tất cả các product version có phân trang", FileName = "product_getall.html")]
 
-        public ActionResult<IEnumerable<ProductVersionForListDto>> GetAllVersionPaging(string filterProperty, FilterOperator filterOperator, FilterType filterType, string filterValue, string filterValue1, string sortBy, SortType sort = SortType.desc, decimal? currency = null, string weight = "kg", int page = 1, int perPage = 50)
+        public ActionResult<IEnumerable<ProductVersionForListDto>> GetAllVersionPaging(string filterProperty, FilterOperator filterOperator, FilterType filterType, string filterValue, string filterValue1, string sortBy = "product.CreatedDate", SortType sort = SortType.desc, decimal? currency = null, string weight = "kg", int page = 1, int perPage = 50)
         {
 
             try
@@ -136,7 +136,7 @@ namespace EShop.Server.Server.Controllers
 
         [HttpGet]
         [SwaggerOperationCustom(Summary = "Lấy ra tất cả các product có phân trang", FileName = "product_getall.html")]
-        public ActionResult<PagedListWrapper<ProductForListDto>> GetAllPaging(string filterProperty, FilterOperator filterOperator, FilterType filterType, string filterValue, string filterValue1, string sortBy, SortType sort=SortType.desc, decimal? currency=null, string weight="kg", int page = 1, int perPage = 50)
+        public ActionResult<PagedListWrapper<ProductForListDto>> GetAllPaging(string filterProperty, FilterOperator filterOperator, FilterType filterType, string filterValue, string filterValue1, string sortBy= "createdDate", SortType sort=SortType.desc, decimal? currency=null, string weight="kg", int page = 1, int perPage = 50)
         {
             
             try
@@ -173,7 +173,9 @@ namespace EShop.Server.Server.Controllers
         {
             try
                 {
+             
                 var productForCreate = _mapper.Map<Product>(product);
+                productForCreate.AddtitionalInformation = @"Là áo thun mỏng và nhẹ thích hợp cho tuổi teen";
                 productForCreate.IsActive = true;
                 var newProduct = _productService.Add(productForCreate);
                 _productService.SaveChanges();
