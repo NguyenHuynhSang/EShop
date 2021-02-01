@@ -54,8 +54,9 @@ namespace EShop.Server
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //string connect = "Data Source=./eshopdb.db";
-            services.AddDbContext<EShopDbContext>(x => x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            string connectStr = "Data Source=./Eshopdb.db";
+            services.AddDbContext<EShopDbContext>(x => x.UseSqlite(connectStr));
+            //services.AddDbContext<EShopDbContext>(x => x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddSingleton<IConnectionMultiplexer>(c =>
             {
                 var configuration = ConfigurationOptions.Parse(Configuration.GetConnectionString("Redis"), true);
