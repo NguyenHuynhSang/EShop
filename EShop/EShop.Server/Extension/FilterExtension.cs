@@ -19,7 +19,7 @@ namespace EShop.Server.Extension
             /// <summary>
             /// num filter
             /// </summary>
-            equal=1,
+            equal,
             notEqual,
             greaterThan,
             greaterThanOrEqual,
@@ -67,12 +67,14 @@ namespace EShop.Server.Extension
            { FilterOperator.endsWith,"{0}.EndsWith(@0)" },
        };
 
-        private static Dictionary<int, string> DateFilterOperator
-        = new Dictionary<int, string>
+        private static Dictionary<FilterOperator, string> DateFilterOperator
+        = new Dictionary<FilterOperator, string>
             {
-                   { 1,"{0}==@0" },
-                   { 201,"{0}< @0" },
-                   { 202,"{0}> @0" },
+                   { FilterOperator.equal,"{0}==@0" },
+                   { FilterOperator.lessThan,"{0}< @0" },
+                   { FilterOperator.greaterThan,"{0}> @0" },
+                   { FilterOperator.lessThanOrEqual,"{0}<= @0" },
+                   { FilterOperator.greaterThanOrEqual,"{0}>= @0" },
             };
 
 
@@ -88,7 +90,7 @@ namespace EShop.Server.Extension
   
         public enum FilterType
         {
-            num=1,
+            num,
             text,
             date,
             set,
@@ -119,7 +121,7 @@ namespace EShop.Server.Extension
                     operatorSyntax = FilterExtension.TextFilterOperator[param.filterOperator];
                     break;
                 case FilterType.date:
-                    operatorSyntax = FilterExtension.DateFilterOperator[(int)param.filterOperator];
+                    operatorSyntax = FilterExtension.DateFilterOperator[param.filterOperator];
                     var formattedPredicate = String.Format(operatorSyntax, param.filterProperty);
                     return source.Where(formattedPredicate, DateTime.ParseExact(param.filterValue, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture));
                     break;
