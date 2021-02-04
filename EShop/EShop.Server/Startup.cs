@@ -35,6 +35,7 @@ using EShop.Server.Client.Service;
 using EShop.Server.Server.Service;
 using GHNApi;
 using EShop.Server.Data.Repository.Address;
+using EShop.Server.Extension.mailer;
 
 namespace EShop.Server
 {
@@ -57,6 +58,9 @@ namespace EShop.Server
             string connectStr = "Data Source=./Eshopdb.db";
             services.AddDbContext<EShopDbContext>(x => x.UseSqlite(connectStr));
             //services.AddDbContext<EShopDbContext>(x => x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.Configure<SmtpSetting>(Configuration.GetSection("SmtpSettings"));
+            services.AddSingleton<IMailer, Mailer>();
+
             services.AddSingleton<IConnectionMultiplexer>(c =>
             {
                 var configuration = ConfigurationOptions.Parse(Configuration.GetConnectionString("Redis"), true);

@@ -1,5 +1,6 @@
 ﻿using EShop.Server.Entities;
 using MailKit.Net.Smtp;
+using MailKit.Security;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
@@ -39,7 +40,7 @@ namespace EShop.Server.Extension.mailer
 
                     if (_env.IsDevelopment())
                     {
-                        await client.ConnectAsync(_smtpSettings.Server, _smtpSettings.Port, true);
+                        await client.ConnectAsync(_smtpSettings.Server, _smtpSettings.Port, SecureSocketOptions.Auto);
                     }
                     else
                     {
