@@ -30,7 +30,7 @@ namespace EShop.Server.Mapping
             CreateMap<User, UserForListDto>()
                 .ForMember(dest => dest.PhotoUrl, opt =>
                 {
-                    opt.MapFrom(src => src.Photos.FirstOrDefault(p => p.IsMain).Url);
+                    opt.MapFrom(src => src.Photos!=null?src.Photos.FirstOrDefault(p => p.IsMain).Url: @"https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/768px-User_icon_2.svg.png");
                 })
                 .ForMember(dest => dest.Age, opt =>
                 {
@@ -45,8 +45,9 @@ namespace EShop.Server.Mapping
                 {
                     opt.MapFrom(src => src.DateOfBirth.Age());
                 });
-            
 
+            CreateMap<UserForCreateDto, User>();
+            CreateMap<User, UserForCreateDto>();
             CreateMap<UserForUpdateDto, User>();
             CreateMap<Photo, PhotoForDetailDto>();
 

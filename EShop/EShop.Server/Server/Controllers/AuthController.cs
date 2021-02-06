@@ -45,6 +45,7 @@ namespace EShop.Server.Server.Controllers
                 var userToCreate = new User
                 {
                     Username = user.Username,
+                    Created=DateTime.Now
                 };
                 var newUser = _authService.Register(userToCreate, user.Password);
                 if (newUser != null)
