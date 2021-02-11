@@ -18,8 +18,12 @@ namespace EShop.Server.Service
 
         IEnumerable<UserForListDto> GetAll(Params param);
         void SaveChange();
-
+        bool Delete(int id);
         User Create(User user, string password);
+
+        User GetById(int id);
+        User Update(User user, string password);
+
     }
 
 
@@ -61,11 +65,13 @@ namespace EShop.Server.Service
         public User Login(string username, string password)
         {
             var user = _authRepository.GetSingleByConditionAddRelative(username, password);
-
+          
             if (user == null) return null;
             if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
                 return null;
-
+            user.LastActive = DateTime.Now;
+            _authRepository.Update(user);
+            _authRepository.Commit();
             return user;
         }
 
@@ -116,8 +122,32 @@ namespace EShop.Server.Service
             CreatePasswordHash(password, out passwordHash, out passwordSalt);
             user.PasswordHash = passwordHash;
             user.PasswordSalt = passwordSalt;
-
             return _authRepository.Add(user);
+        }
+
+        public bool Delete(int id)
+        {
+            var entity = _authRepository.GetSingleById(id);
+           var oldEntity= _authRepository.Delete(entity);
+            if (oldEntity != null)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public User GetById(int id)
+        {
+            return _authRepository.GetSingleById(id);
+        }
+
+        public User Update(User user, string password)
+        {
+            byte[] passwordHash, passwordSalt;
+            CreatePasswordHash(password, out passwordHash, out passwordSalt);
+            user.PasswordHash = passwordHash;
+            user.PasswordSalt = passwordSalt;
+            return _authRepository.Update(user);
         }
     }
 }

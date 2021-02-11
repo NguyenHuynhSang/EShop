@@ -49,6 +49,8 @@ namespace EShop.Server.Mapping
             CreateMap<UserForCreateDto, User>();
             CreateMap<User, UserForCreateDto>();
             CreateMap<UserForUpdateDto, User>();
+            CreateMap<User, UserForUpdateDto>();
+            
             CreateMap<Photo, PhotoForDetailDto>();
 
             CreateMap<PhotoForCreationDto, Photo>();

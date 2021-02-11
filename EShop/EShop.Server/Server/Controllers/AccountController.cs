@@ -53,7 +53,6 @@ namespace EShop.Server.Server.Controllers
 
 
         [HttpPost]
-
         public ActionResult Create(UserForCreateDto user)
         {
             try
@@ -79,6 +78,69 @@ namespace EShop.Server.Server.Controllers
                 return BadRequest(ex.ToString());
             }
         }
+
+
+
+
+        [HttpPut]
+        public ActionResult Update(UserForUpdateDto user)
+        {
+            try
+            {
+                var newUser = _mapper.Map<User>(user);
+                var userReturn = _authService.Update(newUser, user.Password);
+                if (userReturn != null)
+                {
+                    this._authService.SaveChange();
+                }
+                return StatusCode(201);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+            }
+        }
+
+        [HttpGet]
+        public ActionResult<UserForUpdateDto> GetUserForUpdate(int id)
+        {
+            try
+            {
+                var entity=_authService.GetById(id);
+                var newUser = _mapper.Map<UserForUpdateDto>(entity);
+                return Ok(newUser);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.ToString());
+            }
+        }
+
+
+
+
+
+        [HttpDelete("{id}")]
+        public ActionResult<bool> Delete(int id)
+        {
+            try
+            {
+                _authService.Delete(id);
+                _authService.SaveChange();
+                return Ok(true);
+                
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.ToString());
+            }
+        }
+
+
+
+
 
 
     }
