@@ -103,7 +103,7 @@ namespace EShop.Server.Server.Controllers
             catch (Exception ex)
             {
                 logger.Error(ex);
-                return NotFound();
+                return NotFound(ex.ToString());
             }
 
         }

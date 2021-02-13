@@ -69,9 +69,9 @@ namespace EShop.Server.Service
             if (user == null) return null;
             if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
                 return null;
-            user.LastActive = DateTime.Now;
-            _authRepository.Update(user);
-            _authRepository.Commit();
+            //user.LastActive = DateTime.Now;
+            //_authRepository.Update(user);
+            //_authRepository.Commit();
             return user;
         }
 
