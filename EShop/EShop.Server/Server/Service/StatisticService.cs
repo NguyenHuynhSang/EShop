@@ -41,7 +41,6 @@ namespace EShop.Server.Server.Service
                 .ExecuteStoredProc((handler) =>
                 {
                     list = handler.ReadToList<RevenueStatisticViewModelDateType>();
-                    int a = 5;
                 });
 
             List<RevenueStatistic> listReturn = new List<RevenueStatistic>();

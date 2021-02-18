@@ -26,27 +26,39 @@ namespace EShop.Server.Server.Controllers
             try
             {
 
-                string fdate, tDate;
-                if (fromDate!=null)
+                string fdate = "", tDate = "";
+                if (fromDate != null)
+                {
+                    if (fromDate < new DateTime(2000, 01, 01))
+                    {
+                        fromDate = new DateTime(2000, 01, 01);
+                    }
                     fdate = Convert.ToDateTime(fromDate).ToString("MM/dd/yyyy");
+                }     
                 else
                 {
                     fdate = "01/01/2019";
                 }
                 if (toDate != null)
+                {
+                    if (toDate < new DateTime(2000, 01, 01))
+                    {
+                        toDate = DateTime.Now;
+                    }
                     tDate = Convert.ToDateTime(toDate).ToString("MM/dd/yyyy");
+                }    
                 else
                 {
                     tDate = DateTime.Now.ToString("MM/dd/yyyy");
                 }
 
-                var result = _statisticService.GetStatistic(fdate,tDate);
+                var result = _statisticService.GetStatistic(fdate, tDate);
                 return Ok(result);
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.ToString());
-             }
+            }
 
         }
     }
