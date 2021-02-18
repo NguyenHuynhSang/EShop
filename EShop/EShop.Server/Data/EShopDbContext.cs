@@ -7,6 +7,7 @@ using System.IO;
 using System.Text;
 using EShop.Server.Extension;
 using GHNApi.Model;
+using EShop.Server.Server.Entities;
 
 namespace EShop.Server.Data
 {
@@ -56,7 +57,7 @@ namespace EShop.Server.Data
         public DbSet<ProductVersionAttribute> ProductVersionAttributes { get; set; }
         public DbSet<User> Users { get; set; }
 
-        public DbSet<Photo> Photos { get; set; }
+        public DbSet<Models.Photo> Photos { get; set; }
 
         public DbSet<ExchangeRateDongA> ExchangeRateDongAs { get; set; }
 
@@ -83,6 +84,10 @@ namespace EShop.Server.Data
         public DbSet<Address> Addresses { get; set; }
 
         public DbSet<ProductVersionTag> ProductVersionTags  { get; set; }
+
+        public DbSet<RevenueStatisticViewModelDateType> RevenueStatisticViewModelDateTypes { get; set; }
+
+
         public DbSet<AddressToShip> AddressToShips { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder) //Một bảng có 2 khóa chính phải sử dụng fluent API
         {

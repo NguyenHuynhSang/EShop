@@ -55,9 +55,9 @@ namespace EShop.Server
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            string connectStr = "Data Source=./Eshopdb.db";
-            services.AddDbContext<EShopDbContext>(x => x.UseSqlite(connectStr));
-            //services.AddDbContext<EShopDbContext>(x => x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+           // string connectStr = "Data Source=./Doc/Eshopdb.db";
+           // services.AddDbContext<EShopDbContext>(x => x.UseSqlite(connectStr));
+            services.AddDbContext<EShopDbContext>(x => x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.Configure<SmtpSetting>(Configuration.GetSection("SmtpSettings"));
             services.AddSingleton<IMailer, Mailer>();
 
@@ -149,9 +149,10 @@ namespace EShop.Server
             services.AddScoped<IAddressService, AddressService>();
 
             services.AddScoped<IGiaoHangNhanhService, GiaoHangNhanhService>();
+
+            services.AddScoped<IStatisticService, StatisticService>();
+
             
-
-
 
 
 
